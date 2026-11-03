@@ -1,0 +1,10 @@
+* text=auto
+*.png -text
+*.zip -text
+
+# PDF semantic approvals bind the exact adapter bytes, including line endings.
+collectors/catalog_pdf_tables.py -text
+collectors/catalog_pdf_variants.py -text
+collectors/catalog_pdf_national.py -text
+collectors/catalog_pdf_national_v2.py -text
+collectors/catalog_hit_public.py -text

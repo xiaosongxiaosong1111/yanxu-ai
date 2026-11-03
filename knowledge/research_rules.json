@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "updated_at": "2026-11-02",
+  "purpose": "官方规则入口与程序解释，不是全国招生事实全集。",
+  "rules": [
+    {"id":"year-separation","topic":"years","title":"目标年度与参考年度分开","reference_year":2027,"target_year":2028,"text":"2027年招生规定和学校目录仅作2028规划参考；目标年度未公布的字段继续标为未知，不直接改写年份。","url":"https://www.moe.gov.cn/srcsite/A15/moe_778/s3261/202609/t20260923_1451734.html","source_type":"official_policy","status":"reference_only"},
+    {"id":"discipline-catalog","topic":"overview","title":"研究生教育学科专业目录","reference_year":2022,"text":"官方专业分类帮助理解领域和名称，不证明具体学校某年招生或使用某一考试科目；须关注后续调整与校方目录。","url":"https://www.moe.gov.cn/srcsite/A22/moe_833/202209/t20220914_660828.html","source_type":"official_taxonomy","status":"versioned_reference"},
+    {"id":"scoped-subjects","topic":"subjects","title":"科目身份与完整考试单元","reference_year":2027,"text":"科目使用目录原始代码、名称、考试单元与命题范围。不同学校同码自命题不自动互认；可选科目必须按整组组合处理。用户未提供的备考科目不能视为已准备。","url":"https://www.moe.gov.cn/srcsite/A15/moe_778/s3261/202609/t20260923_1451734.html","source_type":"project_validation_rule","status":"algorithm_boundary"},
+    {"id":"evidence-levels","topic":"evidence","title":"线索、原文与字段事实分层","text":"搜索结果用于发现来源；官方原文读取成功不代表字段已审校。正式比较只用已发布核验事实，并保留原文和适用范围。","source_type":"project_validation_rule","status":"algorithm_boundary"},
+    {"id":"historical-transfer","topic":"transfer","title":"历史调剂不等于当年缺额","reference_year":2027,"text":"调剂须继续核对当年政策、学校条件与实际开放名额。历史科目相容不等于可申请或保证录取。","url":"https://www.moe.gov.cn/srcsite/A15/moe_778/s3261/202609/t20260923_1451734.html","source_type":"project_interpretation","status":"reference_only"}
+  ]
+}

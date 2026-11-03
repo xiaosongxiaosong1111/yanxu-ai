@@ -1,0 +1,4 @@
+# Document replay and large catalog loading. Frontend has no build step.
+ijson==3.4.0.post0
+pdfplumber==0.11.10
+xlrd==2.0.2

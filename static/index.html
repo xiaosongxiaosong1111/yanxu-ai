@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="研序 AI，从一个考研想法开始，结合元宝搜索、官方原文与可解释算法，研究院校、科目和备考路线。">
+  <title>研序 AI · 把下一站研究得更清楚</title>
+  <link rel="icon" href="./mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./details.css">
+  <link rel="stylesheet" href="./official.css">
+  <link rel="stylesheet" href="./charts.css">
+  <link rel="stylesheet" href="./collection-progress.css">
+  <link rel="stylesheet" href="./catalog-facts.css">
+  <script type="module" src="./application.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#app">跳到页面内容</a>
+  <header id="site-header" class="site-header"></header>
+  <main id="app" tabindex="-1"><div class="initial-loading">正在展开你的下一站…</div></main>
+  <footer class="site-footer"><div class="footer-inner"><span><strong>研序</strong> 认真选择你的下一站。</span><button type="button" data-action="sources">官方来源与核验记录 <span aria-hidden="true">↗</span></button></div></footer>
+  <dialog id="preferences-dialog" class="preferences-dialog" aria-labelledby="preferences-title"></dialog>
+  <dialog id="evidence-dialog" class="evidence-dialog" aria-labelledby="evidence-title"></dialog>
+  <dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">请启用 JavaScript 使用官方资料查询、条件分析与候选对比。</p></noscript>
+</body>
+</html>

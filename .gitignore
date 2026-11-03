@@ -1,0 +1,28 @@
+__pycache__/
+.venv/
+.coverage
+.coverage.*
+htmlcov/
+.env
+*.log
+data/runtime/
+tools/poppler-*/
+.runtime-deps/
+
+# Local caches, development artifacts and machine-specific browser captures.
+.pytest_cache/
+.coverage*
+*.coverage
+*.py[cod]
+node_modules/
+/screenshots/
+.env.*
+*.sqlite
+*.sqlite-*
+*.db
+
+# Public data is delivered only through reviewed, checksummed bundles.
+/data/*
+!/data/README.md
+!/data/catalog_coverage_2027.csv
+!/data/bundles/
