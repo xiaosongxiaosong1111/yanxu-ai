@@ -224,6 +224,7 @@ python -X utf8 server.py --port 4180
 | [运行说明](docs/RUNNING.md) | 安装、数据恢复与发布、配置、开发和测试 |
 | [Agent 实现契约](docs/AGENT_UPGRADE_PLAN.md) | 工具白名单、任务轮次、条件确认、Skill、预算和取消语义 |
 | [实际验证记录](docs/VERIFICATION.md) | 区分本地原文、算法、接口夹具与真实服务调用的验证范围 |
+| [封面与生成记录](docs/assets/cover-prompt.md) | 复用视觉方向、当前文案与实际图像生成提示词 |
 
 ```text
 yanxu-ai/
