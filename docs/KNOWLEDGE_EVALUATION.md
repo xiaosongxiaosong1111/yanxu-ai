@@ -156,7 +156,7 @@ flowchart LR
 重跑时发现的两个排序缺陷：
 
 - `_window_ranked` 读取邻接片段时把 `(entry_id, generation_id, ordinal)` 错写成 `((entry_id, generation_id), ordinal)`，窗口正文实际恒为空，覆盖率与 bigram 排序退化为 0。修正后候选片段与其前后各 1 段真正参与计分。
-- 自然排序、RRF 和 `rule_v2` 在同分时使用随机生成的 `k_`/`sg_` 标识决胜，导致同一语料在不同进程可能给出不同首屏。现改用原件 SHA-256、URL、ordinal 等稳定顺序；修正后关键词臂在 3 个独立进程、9 次重复中结果一致。
+- 自然排序、RRF 和 `rule_v2` 在同分时使用随机生成的 `k_`/`sg_` 标识决胜，导致同一语料在不同进程可能给出不同首屏。现改用原件 SHA-256、URL、ordinal 等稳定顺序；修正后关键词臂在 3 个独立进程、9 次重复中结果一致（`data/runtime/node4/claude-opt/keyword-repeat.log`）。
 
 回归与指标：
 
