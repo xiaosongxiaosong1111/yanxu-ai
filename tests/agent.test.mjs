@@ -175,3 +175,36 @@ test('invalid exclusion tokens are rejected instead of silently truncated',()=>{
  }
  assert.deepEqual(parseExclusionList('408、901@school-a'),[{code:'408'},{code:'901',scope:'school-a'}]);
 });
+
+test('turn changes expose reused evidence, changed conditions and paused field conflicts',()=>{
+ const report={inheritance:{reused:true,candidate_ids:['p1'],source_ids:['s1','s2'],stale_candidate_ids:['old'],profile_changed:['max_annual_tuition']},field_candidates:[{field:'tuition',label:'学费与收费口径',status:'conflict',value:null,values:[{url:'https://example.edu.cn/fees',title:'2027收费公示',year:2027,quote:'学费15000元/年'}]},{field:'tuition',label:'学费与收费口径',status:'verified',value:12000,period:'year',values:[{url:'https://example.edu.cn/fees',title:'2027收费公示',year:2027,quote:'学费12000元/年'}]}]};
+ const html=renderAgent({task:{id:'a',status:'completed',turn_id:2,turn_changes:['max_annual_tuition'],report}});
+ assert.match(html,/本轮继承与变化/);assert.match(html,/沿用上轮 1 个候选、2 份已核对来源/);
+ assert.match(html,/每年学费上限/);assert.match(html,/1 个上轮候选因年份或来源不再有效/);
+ assert.match(html,/来源冲突，已暂停/);assert.match(html,/两个独立原文一致/);
+ assert.match(html,/href="https:\/\/example.edu.cn\/fees"/);assert.match(html,/回到原文/);
+ const fresh=renderAgent({task:{id:'a',status:'completed',report:{}}});
+ assert.ok(!fresh.includes('本轮继承与变化'));
+});
+
+test('the plan ledger lists checked goals, unknown facts, next actions and remaining budget',()=>{
+ const report={plan:{version:1,goals:[{id:'scope',label:'确定可研究的合理范围',status:'done',completion:'取得有限、可解释的候选。'},{id:'evidence',label:'补齐关键事实',status:'partial',completion:'没有资料时保持 unknown。'}],facts:[{status:'known'},{status:'unknown'},{status:'unknown'}],next_actions:[{priority:1,tool:'search_official_sources',args:{query:'学费 收费标准'},reason:'费用未知时先核对收费公示。'}],budget:{remaining:{searches:2,documents:3,tool_calls:9}},completion:{ready:false,statement:'当前成果可以查看，但仍有开放目标。'}}};
+ const html=renderAgent({task:{id:'a',status:'partial',report},tab:'methods'});
+ assert.match(html,/研究计划与缺口/);assert.match(html,/事实已明确 <strong>1<\/strong>/);assert.match(html,/仍未知 <strong>2<\/strong>/);
+ assert.match(html,/接下来优先核对/);assert.match(html,/费用未知时先核对收费公示/);
+ assert.match(html,/剩余检索 2 次 · 文档 3 次 · 工具调用 9 次/);assert.match(html,/仍有开放目标/);
+ const empty=renderAgent({task:{id:'a',status:'completed',report:{}},tab:'methods'});
+ assert.ok(!empty.includes('研究计划与缺口'));
+});
+
+test('decision reasons and candidates return to the saved original without unsafe links',()=>{
+ const program={id:'p1',unit_id:'u',unit_name:'大学',name:'计算机',code:'085404'};
+ const report={candidates:[program],decisions:[{candidate_id:'p1',original_links:[{url:'https://example.edu.cn/original',title:'招生简章'},{url:'javascript:alert(1)'}],reasons:[{field:'tuition',message:'学费已由两个原文核对。',evidence:[{url:'https://example.edu.cn/original'}]}]}],algorithm:{matching:{summary:{input_count:1},matches:[{program,reasons:[{field:'tuition',label:'学费与收费口径',message:'学费已由两个原文核对。',evidence:[{url:'https://example.edu.cn/original'},{url:'javascript:alert(1)'}]}]}]}}};
+ const overview=renderAgent({task:{id:'a',status:'completed',report}});
+ assert.match(overview,/class="ya-candidate-links"/);assert.match(overview,/href="https:\/\/example.edu.cn\/original"/);
+ assert.ok(!overview.includes('href="javascript:'));
+ const methods=renderAgent({task:{id:'a',status:'completed',report},tab:'methods'});
+ assert.match(methods,/学费已由两个原文核对/);assert.match(methods,/class="ya-original-links"/);
+ assert.equal((methods.match(/href="https:\/\/example.edu.cn\/original"/g)||[]).length>=2,true);
+ assert.ok(!methods.includes('href="javascript:'));
+});
