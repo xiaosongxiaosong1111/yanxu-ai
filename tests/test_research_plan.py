@@ -1,0 +1,99 @@
+"""Research planning ledger: deterministic gaps, budgets and Skill contract checks."""
+import unittest
+
+from research_plan import build_plan
+
+
+def candidate(**overrides):
+    row = {'id': 'p1', 'unit_id': 'u1', 'unit_name': '测试大学', 'year': 2027,
+           'eligibility_evidence_complete': False, 'tuition': None,
+           'subjects': [{'code': '408', 'name': '计算机学科专业基础'}]}
+    row.update(overrides)
+    return row
+
+
+class PlanTests(unittest.TestCase):
+    def build(self, programs=None, **overrides):
+        values = {'task': {'id': 'r_1', 'target_year': 2028, 'reference_year': 2027},
+                  'programs': programs if programs is not None else {'p1': candidate()},
+                  'sources': {}, 'algorithm': {'matching': {'summary': {'input_count': 1}}},
+                  'gaps': [], 'usage': {'searches': 1, 'documents': 0, 'tool_calls': 3, 'rounds': 2},
+                  'loaded_skills': ('understand-intent', 'research-official-sources', 'verify-evidence',
+                                    'compare-plans'),
+                  'executed_tools': ('find_candidates', 'compare_candidates')}
+        values.update(overrides)
+        return build_plan(**values)
+
+    def test_missing_eligibility_and_tuition_stay_unknown_with_prioritized_next_actions(self):
+        plan = self.build()
+        facts = {(row['candidate_id'], row['fact']): row for row in plan['facts']}
+        self.assertEqual(facts[('p1', 'eligibility')]['status'], 'unknown')
+        self.assertIsNone(facts[('p1', 'eligibility')]['value'])
+        self.assertEqual(facts[('p1', 'tuition')]['status'], 'unknown')
+        self.assertIsNone(facts[('p1', 'tuition')]['value'])
+        self.assertEqual(facts[('p1', 'subjects')]['status'], 'known')
+        queries = [row['args']['query'] for row in plan['next_actions']]
+        self.assertTrue(any('报考条件' in query for query in queries))
+        self.assertTrue(any('学费' in query for query in queries))
+        self.assertEqual([row['priority'] for row in plan['next_actions']], [1, 2])
+        self.assertEqual(plan['missing_fact_count'], 2)
+        self.assertEqual(plan['goals'][1]['status'], 'partial')
+        self.assertIn('unknown', plan['goals'][1]['completion'])
+
+    def test_zero_or_blank_cost_is_unknown_not_free(self):
+        plan = self.build({'p1': candidate(tuition=0, eligibility_evidence_complete=True)})
+        tuition = next(row for row in plan['facts'] if row['fact'] == 'tuition')
+        self.assertEqual(tuition['status'], 'unknown')
+        self.assertIsNone(tuition['value'])
+        self.assertIn('学费', ''.join(row['args']['query'] for row in plan['next_actions']))
+
+    def test_completion_is_not_claimed_when_candidates_or_algorithm_are_missing(self):
+        no_algorithm = self.build(algorithm={})
+        self.assertFalse(no_algorithm['completion']['ready'])
+        self.assertIn('algorithm', no_algorithm['completion']['remaining_goals'])
+        self.assertIn('不能把模型说完成当作研究完成', no_algorithm['completion']['statement'])
+        empty = self.build(programs={})
+        self.assertFalse(empty['completion']['ready'])
+        self.assertEqual(empty['goals'][0]['status'], 'open')
+
+    def test_budget_is_finite_and_never_negative(self):
+        plan = self.build(usage={'searches': 9, 'documents': 9, 'tool_calls': 99})
+        self.assertEqual(plan['budget']['remaining'], {'searches': 0, 'documents': 0, 'tool_calls': 0})
+        self.assertIn('保留已有成果', plan['budget']['stop_policy'])
+
+    def test_skill_loading_execution_and_checked_result_are_independent(self):
+        plan = self.build()
+        skills = {row['id']: row for row in plan['skills']}
+        self.assertTrue(skills['understand-intent']['checked'])
+        self.assertEqual(skills['understand-intent']['status'], 'checked')
+        self.assertTrue(skills['compare-plans']['checked'])
+        self.assertFalse(skills['verify-evidence']['checked'])
+        self.assertNotEqual(skills['verify-evidence']['status'], 'checked')
+        only_loaded = self.build(executed_tools=())
+        loaded = {row['id']: row for row in only_loaded['skills']}
+        self.assertEqual(loaded['compare-plans']['status'], 'loaded')
+        self.assertFalse(loaded['compare-plans']['checked'])
+        not_loaded = self.build(loaded_skills=())
+        self.assertEqual({row['id']: row for row in not_loaded['skills']}['compare-plans']['status'], 'not_loaded')
+
+    def test_official_evidence_must_carry_real_year_and_sha_before_verification_passes(self):
+        weak = {'s1': {'id': 's1', 'unit_id': 'u1', 'status': 'official_original_read', 'year': None,
+                       'sha256': 'a' * 64}}
+        self.assertFalse({row['id']: row for row in self.build(sources=weak, executed_tools=('search_knowledge_segments',))['skills']}['verify-evidence']['checked'])
+        strong = {'s1': {'id': 's1', 'unit_id': 'u1', 'status': 'official_original_read', 'year': 2027,
+                         'sha256': 'a' * 64}}
+        self.assertTrue({row['id']: row for row in self.build(sources=strong, executed_tools=('search_knowledge_segments',))['skills']}['verify-evidence']['checked'])
+
+    def test_previous_report_carries_candidate_and_evidence_versions_for_inheritance(self):
+        previous = {'candidates': [{'id': 'p1'}], 'evidence': [{'id': 's1'}, {'id': 's2'}]}
+        task = {'id': 'r_2', 'target_year': 2028, 'reference_year': 2027,
+                'previous_turn_id': 1, 'previous_report': previous}
+        plan = self.build(task=task)
+        self.assertEqual(plan['previous']['turn_id'], 1)
+        self.assertEqual(plan['previous']['candidate_ids'], ['p1'])
+        self.assertEqual(plan['previous']['evidence_ids'], ['s1', 's2'])
+        self.assertIn('只重算受影响', plan['previous']['inherit'])
+
+
+if __name__ == '__main__':
+    unittest.main()
