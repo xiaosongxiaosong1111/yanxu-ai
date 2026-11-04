@@ -1,6 +1,6 @@
 # 研序 AI · 项目介绍与开发交接地图
 
-> 仓库：[`xiaosongxiaosong1111/yanxu-ai`](https://github.com/xiaosongxiaosong1111/yanxu-ai) · 更新：2026-11-03
+> 仓库：[`xiaosongxiaosong1111/yanxu-ai`](https://github.com/xiaosongxiaosong1111/yanxu-ai) · 更新：2026-11-04
 
 这份文档面向接手项目的开发者或 AI。先理解三条数据路径，再按模块定位问题；无需先通读所有采集器或历史规划。
 
@@ -20,7 +20,7 @@
 4. [运行说明](RUNNING.md)、[Agent 接口契约](AGENT_UPGRADE_PLAN.md)：安装和精确字段。
 5. [验收记录](VERIFICATION.md)：实际执行过的检查及未覆盖边界。
 
-下一阶段执行顺序见 [Agent 与知识系统升级任务表](AGENT_ROADMAP.md)。节点1—3已完成代码实施与独立本地验收，最新结果见 [N3验收](work_nodes/03-knowledge-workbench.md)；向量检索、目标缺口决策和新证据进入推荐仍待后续节点。
+执行顺序见 [Agent 与知识系统升级任务表](AGENT_ROADMAP.md)。节点1—3已完成独立验收；4C2 与节点5–7已由 Claude 本地交付并待 Codex 复查，包含 Milvus Lite 语义索引、确定性计划账本、证据继承/字段候选和决策界面。最新验证状态见 [Claude 交接](CLAUDE_HANDOFF.md)；真实付费模型、元宝与 4180 主端口仍未在本轮运行。
 
 [初版契约](PRODUCT_CONTRACT.md)、[早期实现基线](IMPLEMENTATION.md)、[V3](V3_PLAN.md)/[V4](V4_PLAN.md) 记录演进背景，含当时尚未接入 AI 等历史描述。判断当前能力时以代码、本文及 Agent 契约为准，不应照旧规划删除已经存在的接口或重建另一套应用。
 
@@ -215,11 +215,11 @@ N3 将有界详情与完整提取稿分开：原件上限 8MB，规范提取稿�
 | 维护与重建 | `knowledge_lifecycle.py / knowledge_operations.py / knowledge_indexing.py` | 撤信、冲突、同范围版本选择、失败任务与幂等重试；质量不能由维护按钮直接升级 |
 | Agent 与阅读 | `research_knowledge.py`、`static/knowledge-reader.mjs` | `search_knowledge_segments` 定位，`read_knowledge_segment` 有界补读；当前报告与历史报告复核来源 |
 
-SQLite 继续保存权威状态和本地关键词索引。检索先执行学校、实际年度、质量和当前代次过滤，再分页；原件失效在计数与截取前处理。直接片段 AND 无结果时，所有词必须先出现在同一提取稿，随后按片段覆盖词数排序；`match_mode=document_terms` 提醒它只是同文档定位，不能据此合并事实。尚未接入向量模型或 Milvus。
+SQLite 继续保存权威状态和本地关键词索引；Milvus Lite 只保存可从合格片段重建的派生向量，不替代权威状态。检索先执行学校、实际年度、质量和当前代次过滤，再在有限候选中融合关键词与语义通道；返回前再次核对来源有效状态。直接片段 AND 无结果时，所有词必须先出现在同一提取稿，随后按片段覆盖词数排序；`match_mode=document_terms` 提醒它只是同文档定位，不能据此合并事实。语义索引必须由用户显式准备模型、测试保存连接并建立；打开页面、轮询和普通关键词搜索不下载模型或发起向量调用。
 
 同一 URL、学校、实际年度出现不同完整文本时先标记冲突，由用户核对后明确采用；不同年、不同学校不自动替代。撤信不会删除审计，旧上下文和历史报告的摘录/解释停止被当作可信结果返回。旧库只读不自动建表或补造全文，显式写操作才事务迁移，缺质量列的旧标签仍待核。
 
-格式支持和基线数据见 [知识评测](KNOWLEDGE_EVALUATION.md)，节点验收见 [N3](work_nodes/03-knowledge-workbench.md)。本节点取得的网页知识仍不自动进入正式推荐字段；该通路在 N6 实施。
+格式支持和基线数据见 [知识评测](KNOWLEDGE_EVALUATION.md)，节点验收见 [N3](work_nodes/03-knowledge-workbench.md)。N6 已能从已读取原文产生带出处/年度/作用域的字段候选，年度学费需两份独立原文一致才参与推荐，冲突暂停；这些草案仍不直接写入正式发布目录。
 
 ## 7. 文件与存储分工
 

@@ -96,7 +96,7 @@ Windows通过当前用户DPAPI加密全部凭据，写入`data/runtime/settings.
 
 报告结构为`{summary,assistant_summary,questions,candidates,evidence,algorithm,gaps,profile_proposal,coverage}`。`algorithm`按实际调用保存`matching/routes/adjustments`等结果；`coverage`包含候选数、查询单位、真实target/reference年、已发布版本及`verification_mode=bounded_research,national_complete=false`。未执行的算法不填假结果，来源读取成功不等于字段正式核验，搜索摘要与原文摘录分开。
 
-报告另含`skills:[{id,label,loaded,related_tools,executed_tools,status}]`，状态区分not_loaded/loaded/used；used仅说明关联工具成功执行，不承诺模型完整遵守规程。`questions`最多三项结构化关键问题。`knowledge:{saved_count,cache_hits,errors,notice}`记录真实入库与复用；来源带`knowledge_id/knowledge_saved/cache_hit/cached_at`，旧任务没有这些字段时保留未知状态。
+报告另含`skills:[{id,label,loaded,related_tools,executed_tools,status}]`，状态区分not_loaded/loaded/used；used仅说明关联工具成功执行，不承诺模型完整遵守规程。N5 起增加确定性`plan`：`goals/facts/missing_fact_count/next_actions/gaps/budget/skills/completion`，Skill 可区分loaded/executed/checked/partial/not_loaded，`checked`必须有确定性产物；模型自称完成不会把目标标为完成。`questions`最多三项结构化关键问题。`knowledge:{saved_count,cache_hits,errors,notice}`记录真实入库与复用；来源带`knowledge_id/knowledge_saved/cache_hit/cached_at`，旧任务没有这些字段时保留未知状态。
 
 知识库GET `/api/knowledge`接受q/status/year/unit_id/page/page_size/quality；quality默认为accepted，也支持pending/excluded/all，entry_id详情与筛选互斥，空年份不当作错误。每项返回`quality:{version,state,reusable,material_type,reasons:[{code,message}]}`；全库分区计数为`summary.quality_counts`，列表total按筛选计算，facets按所选质量分区计算。原status描述取得状态，quality描述准入，不混作字段已核验。
 
@@ -106,7 +106,11 @@ Windows通过当前用户DPAPI加密全部凭据，写入`data/runtime/settings.
 
 N3增加`validity=active/revoked/conflict/superseded`，与质量和取得状态独立。完整有界提取稿、真实PDF页和Unicode字符跨度单独持久化；`search_knowledge_segments`定位，`read_knowledge_segment`有限补读章节、独立表头和同提取版本邻接，不能把上下文拼成连续引文。`match_mode=document_terms`表示关键词分散在同一原文，不能当成单片段满足复合事实。任务返回`report/previous_report`及模型历史上下文都复核当前来源，失效旧摘录和可信解释停止返回，持久审计保留。
 
+N4 增加GET `/api/knowledge/vectors`（desired/serving/staging、jobs、last_build、embedding_model）和POST `/api/knowledge/vectors/build`、`/cancel`、`/api/knowledge/embedding/prepare`；构建与模型准备均为显式操作，打开页面或轮询不下载、不推理、不计费。`/api/knowledge/retrieve`在关键词结果之外融合有限语义候选，响应记录mode/degraded/degraded_reason/reranker/usage/usage_known；语义相近不证明资格或科目正确。
+
 阅读HTTP增加GET `/api/knowledge/segments`、`/api/knowledge/segment`、`/api/knowledge/jobs`；维护为POST `/api/knowledge/state`、`/api/knowledge/select-version`、`/api/knowledge/reindex`。补读接口固定可信模式，维护同源校验、独立限频，状态采用须理由；恢复不升级质量，版本替代只允许同学校/来源范围/实际年度。重建仅从留档SHA或完整提取稿本地派生，失败保留旧可用代次和任务审计，不声明向量已就绪。完整字段以`knowledge_api.py`为准，验收见 [N3](work_nodes/03-knowledge-workbench.md)。
+
+N6 起任务响应增加`previous_turn_id/turn_changes/unit_scope_changed`和轮次级`inherit`事件；报告增加`inheritance/field_candidates/field_applications/decisions`，候选可带`field_conflicts`。复用的候选与来源在进入账本前重新核对年份、身份和安全链接；条件变化只重算受影响算法。字段候选保留引文、来源、年度、作用域和片段偏移，只有两份独立原文一致的年度学费才参与推荐，冲突暂停，资格草案保持unknown。N7 界面只展示这些实际字段，并为候选和算法理由提供安全原文回链。
 
 程序比较只消费已发布、可计算候选，沿用资格三态、考试单元/命题学校/整组备选、偏好/Pareto、换科路线和最小调整。未查到新学校的结构化专业时可以展示来源与缺口，不能为覆盖数字制造专业记录，也不把新网页未经审核的值写入`admissions.json`。
 

@@ -8,7 +8,7 @@
 
 已有旧摘要不会自动变成完整原文。若显示“尚未建立本地索引”，在“维护与版本”展开后显式重建：只读取 SHA 仍一致的本机原件，不联网、不调用模型。原件无法解析或年份不明时保留真实待核状态；失败任务可查看并重试。扫描 PDF 保持待 OCR，旧 DOC 保持不支持；DOCX/XLSX 的未解析结构或隐藏内容显示提取不完整，XLS 需要已安装的 `xlrd`。
 
-撤信、恢复和版本采用均须填写理由并确认。同一来源、学校、实际年度有不同文本时先保留冲突，核对官方原文后再采用；不能用“恢复”按钮跳过来源与质量检查。历史报告会复核来源，但持久审计记录保留。知识库当前仍是个人本机 SQLite，向量库与 Embedding 尚未接入。
+撤信、恢复和版本采用均须填写理由并确认。同一来源、学校、实际年度有不同文本时先保留冲突，核对官方原文后再采用；不能用“恢复”按钮跳过来源与质量检查。历史报告会复核来源，但持久审计记录保留。知识库仍以个人本机 SQLite 为权威状态；Milvus Lite 只保存可从片段重建的派生向量，语义索引为可选能力，未构建时关键词与结构检索照常工作。
 
 离线真实问题评测使用临时数据库，见 [知识库评测](KNOWLEDGE_EVALUATION.md)。需要先恢复公开数据包并配置原文提取器；不要求研究连接的 Key。
 
@@ -19,6 +19,8 @@
 ```powershell
 python tools/prepare_data.py
 python -m pip install -r requirements.txt
+# 可选：本机语义索引与 Milvus Lite；安装到同一隔离虚拟环境
+python -m pip install -r requirements-vector.txt
 ```
 
 恢复工具只使用标准库，不联网、不启动模型、不读取 Key；已有不同资料会拒绝覆盖。分发内容和逐文件 SHA 见[data/README.md](../data/README.md)及`data/bundles/manifest.json`。大于32MiB的资料文件由 `ijson` 分块读取，避免同时驻留巨大的原始字符串。
@@ -153,6 +155,18 @@ python -X utf8 -c "from pathlib import Path; from knowledge_store import Knowled
 
 旧知识库没有质量记录时一律待核。升级时先备份`data/runtime/knowledge.sqlite`，再显式执行`KnowledgeStore(Path('data')).reassess()`，仅使用本地留档、单位登记和规则重新分类；不联网、不调用模型。原研究库、正式目录与连接配置不参与重写。新增保存与重分类不会直接相信来源传入的quality或“官方已验证”标志。
 
+## 知识语义索引（可选）
+
+语义索引用于补充不同说法的官方条款，不替代关键词和结构检索，也不改变学校、年度、质量和有效性准入。默认锁定本机 `BAAI/bge-small-zh-v1.5`（512 维，L2 归一化）；远端向量服务只在显式选择、测试并保存后使用。打开页面、读取索引状态、后台轮询和普通关键词搜索都不会下载模型或发起向量调用。
+
+1. 在隔离虚拟环境安装 `requirements-vector.txt`（PyMilvus 3.0.2、Milvus Lite 3.2.2、FastEmbed 0.9.1；运行时为 CPU）。
+2. 启动服务后进入「AI与元宝设置 → 知识语义索引」，先点「准备本机模型」。首次需要约 95 MB 固定公开模型文件；没有准备时索引状态明确显示未就绪，不会假装可用。
+3. 选择向量服务商、测试并保存独立连接。测试会真实生成两段固定短文本的向量并返回实际维度；聊天、元宝和向量连接互不替代。
+4. 回到索引区域点「建立语义索引」，确认后后台只处理当前通过准入且仍有效的原文片段。构建可「停止构建」，已完成片段保留；成功前继续使用当前 serving 索引，失败或换模型不会把新标签贴到旧索引。
+5. 在知识库点「混合检索」才会主动提交一次语义查询；结果会显示实际 embedding 调用、成功次数、输入 token（未知就写未知）、耗时和是否降级。语义相近不代表科目、资格或报考条件相同，仍须回到原文核对。
+
+N4C2 的 34 题同输入配对使用真实本机模型、Milvus Lite 和临时 SQLite，索引构建约 1956 秒、1957 个向量窗口；混合检索与冻结查询基线的来源召回同为 31/31，但完整必要引文为 25/34 对 29/34，未观察到全面质量提升。自然语言纯关键词臂因当前整句匹配边界为 0/31，不能据此宣称优于 BM25。详见 [知识库评测](KNOWLEDGE_EVALUATION.md)。
+
 本次代码支持这些接入路径，真实Key验证必须以实际成功请求为准。离线单元测试、HTTP夹具或浏览器测试通过不能证明16个入口全部真实可用；没有有效Key时不能宣称元宝研究闭环或厂商连接已完成。
 
 ## 新增本地API
@@ -256,7 +270,7 @@ python -X utf8 server.py --port 4180
 
 ```powershell
 python -X utf8 -m unittest discover -s tests -v
-python -X utf8 -m coverage run --branch --source=grad_engine,planning_engine,service,service_verification,server,snapshot_cache,radar,source_proof,public_sources,enrichment,evidence,collection_status,catalog_index,catalog_replay,published_catalog,provider_catalog,ai_transport,secret_store,settings_store,research_service,research_store,research_tools,knowledge_store,knowledge_quality,source_privacy,collectors -m unittest discover -s tests
+python -X utf8 -m coverage run --branch --source=grad_engine,planning_engine,service,service_verification,server,snapshot_cache,radar,source_proof,public_sources,enrichment,evidence,collection_status,catalog_index,catalog_replay,published_catalog,provider_catalog,ai_transport,secret_store,settings_store,research_service,research_store,research_tools,research_plan,research_fields,knowledge_store,knowledge_quality,knowledge_retrieval,knowledge_vector_store,source_privacy,collectors -m unittest discover -s tests
 python -X utf8 -m coverage report -m
 node --test tests/*.test.mjs
 python -X utf8 -m unittest tests.test_agent_http tests.test_provider_settings tests.test_research_service tests.test_research_store tests.test_research_tools
@@ -270,6 +284,8 @@ node tests/browser-yuanbao-auth.cjs
 node tests/browser-workbench.cjs
 node tests/browser-agent-ime.cjs
 node tests/browser-knowledge.cjs
+node tests/browser-knowledge-hybrid.cjs
+node tests/browser-agent-decisions.cjs
 ```
 
 `coverage`与Playwright为测试依赖，不是应用运行时依赖。浏览器脚本优先读取已安装的`playwright`；可用`FORMAL_PLAYWRIGHT_PATH`指定模块路径，`FORMAL_BROWSER_PATH`指定可执行文件，或用`FORMAL_BROWSER_CHANNEL`选择本机Edge等浏览器。本开发机保留已有安装路径作为回退。迁移机器需准备对应浏览器环境，不能把未运行的浏览器测试视为通过。`FORMAL_FILTER`仅用于故障定位；最终验收须不设置该过滤器。
