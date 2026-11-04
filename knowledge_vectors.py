@@ -182,8 +182,10 @@ class VectorIndex:
         accounting['stage']='verify'
         result,candidate=self._current_hits(rows,items,unit_id,year,entry_id,limit)
         accounting['stage']='done'
+        facts={'embedding_calls':1,'successful_embedding_calls':1,
+               **(usage if isinstance(usage,dict) else {})}
         return {**empty,'segments':result,'total':len(result),'returned_count':len(result),
-                'candidate_count':candidate,'usage':usage,'usage_known':known,
+                'candidate_count':candidate,'usage':facts,'usage_known':known,
                 'latency_ms':int((time.monotonic()-started)*1000)}
 
     def _search_batches(self,space,vector,items,event):

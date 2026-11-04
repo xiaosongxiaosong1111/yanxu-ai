@@ -109,13 +109,16 @@ def _public_document(value):
 
 class AdmissionService:
     def __init__(self, data_dir=None, engine=None, search_opener=None, search_api_key=None, radar=None, source_proof=None,
-                 settings=None, research=None, knowledge=None):
+                 settings=None, research=None, knowledge=None, vectors=None, retriever=None, preparer=None):
         self.data_dir = Path(data_dir) if data_dir is not None else Path(__file__).parent / 'data'
         self._provided_engine = engine
         self._provided_key = search_api_key
         self._settings = settings
         self._research = research
         self._knowledge = knowledge
+        self._vectors = vectors
+        self._retriever_instance = retriever
+        self._preparer = preparer
         self._extension_lock = threading.RLock()
         self._closed = False
         self._opener = search_opener or build_opener(NoRedirect()).open
@@ -219,6 +222,123 @@ class AdmissionService:
                 self._knowledge = importlib.import_module('knowledge_store').KnowledgeStore(self.data_dir)
             return self._knowledge
 
+    def _vector_index(self):
+        with self._extension_lock:
+            if self._closed:
+                raise ServiceError('vector_unavailable', '向量索引服务已关闭。', 503)
+            if self._vectors is None:
+                try:
+                    module = importlib.import_module('knowledge_vectors')
+                    self._vectors = module.VectorIndex(self._knowledge_service(), self._settings_service())
+                except ServiceError:
+                    raise
+                except Exception as error:
+                    self._raise_extension('knowledge', error, 'vector_unavailable', '向量索引暂时不可用，可继续使用关键词检索。')
+            return self._vectors
+
+    def _retriever(self):
+        with self._extension_lock:
+            if self._closed:
+                raise ServiceError('retrieval_unavailable', '检索服务已关闭。', 503)
+            if self._retriever_instance is None:
+                try:
+                    module = importlib.import_module('knowledge_retrieval')
+                    self._retriever_instance = module.HybridRetriever(self._knowledge_service(), self._vector_index())
+                except ServiceError:
+                    raise
+                except Exception as error:
+                    self._raise_extension('knowledge', error, 'retrieval_unavailable', '检索服务暂时不可用，请稍后重试。')
+            return self._retriever_instance
+
+    def _embedding_preparer(self):
+        with self._extension_lock:
+            if self._closed:
+                raise ServiceError('vector_unavailable', '向量索引服务已关闭。', 503)
+            if self._preparer is None:
+                try:
+                    module = importlib.import_module('embedding_prepare')
+                    self._preparer = module.ModelPreparer(self.data_dir)
+                except Exception as error:
+                    self._raise_extension('knowledge', error, 'embedding_model_not_ready', '本机向量模型状态暂时无法读取。')
+            return self._preparer
+
+    def _raise_extension(self, kind, error, code, message):
+        module_name, name = {'settings':('settings_store','SettingsError'),'research':('research_service','ResearchError'),
+                             'knowledge':('knowledge_store','KnowledgeError')}[kind]
+        try:
+            error_type = getattr(importlib.import_module(module_name), name)
+        except Exception:
+            error_type = ()
+        if error_type and isinstance(error, error_type):
+            raise ServiceError(error.code, error.message, error.status) from None
+        if kind == 'knowledge':
+            try:
+                prepare = importlib.import_module('embedding_prepare').PrepareError
+            except Exception:
+                prepare = ()
+            if prepare and isinstance(error, prepare):
+                raise ServiceError(error.code, error.message, error.status) from None
+        if kind == 'knowledge':
+            raise ServiceError(code, message, 503) from None
+        raise error
+
+    def knowledge_retrieve(self, q, unit_id='', year=None, entry_id=None, limit=8, allow_remote=False):
+        try:
+            return self._retriever().retrieve(q, unit_id=unit_id, year=year, entry_id=entry_id,
+                                              limit=limit, allow_remote=allow_remote)
+        except ServiceError:
+            raise
+        except Exception as error:
+            self._raise_extension('knowledge', error, 'retrieval_unavailable', '检索服务暂时不可用，请稍后重试。')
+
+    def vector_status(self):
+        try:
+            status = self._vector_index().status()
+        except ServiceError:
+            raise
+        except Exception as error:
+            self._raise_extension('knowledge', error, 'vector_unavailable', '向量索引状态暂时无法读取。')
+        try:
+            model = self._embedding_preparer().status()
+        except ServiceError as error:
+            model = {'state': 'failed', 'prepared': False, 'error_code': error.code}
+        except Exception:
+            model = {'state': 'failed', 'prepared': False, 'error_code': 'embedding_model_status_unavailable'}
+        return {**status, 'embedding_model': model}
+
+    def vector_build(self, payload):
+        if not isinstance(payload, dict) or set(payload) - {'profile_id'}:
+            raise ServiceError('invalid_query', '向量构建请求包含不支持的字段。')
+        profile_id = payload.get('profile_id')
+        if profile_id is not None and (not isinstance(profile_id, str) or not 1 <= len(profile_id) <= 100):
+            raise ServiceError('invalid_query', '向量配置编号不正确。')
+        try:
+            return self._vector_index().start_build(profile_id)
+        except ServiceError:
+            raise
+        except Exception as error:
+            self._raise_extension('knowledge', error, 'vector_unavailable', '向量索引构建暂时无法启动。')
+
+    def vector_cancel(self, payload):
+        if not isinstance(payload, dict) or payload:
+            raise ServiceError('invalid_query', '取消请求不需要额外字段。')
+        try:
+            return self._vector_index().cancel_build()
+        except ServiceError:
+            raise
+        except Exception as error:
+            self._raise_extension('knowledge', error, 'vector_unavailable', '向量索引任务暂时无法取消。')
+
+    def embedding_prepare(self, payload):
+        if not isinstance(payload, dict) or payload:
+            raise ServiceError('invalid_query', '模型准备请求不需要额外字段。')
+        try:
+            return self._embedding_preparer().start_prepare()
+        except ServiceError:
+            raise
+        except Exception as error:
+            self._raise_extension('knowledge', error, 'embedding_model_not_ready', '本机向量模型暂时无法准备。')
+
     def _extension_call(self, kind, method, *args, **kwargs):
         try:
             target = {'settings':self._settings_service,'research':self._research_service,'knowledge':self._knowledge_service}[kind]()
@@ -226,13 +346,7 @@ class AdmissionService:
         except ServiceError:
             raise
         except Exception as error:
-            module_name, name = {'settings':('settings_store','SettingsError'),'research':('research_service','ResearchError'),'knowledge':('knowledge_store','KnowledgeError')}[kind]
-            error_type = getattr(importlib.import_module(module_name), name)
-            if isinstance(error, error_type):
-                raise ServiceError(error.code, error.message, error.status) from None
-            if kind == 'knowledge':
-                raise ServiceError('knowledge_unavailable', '知识库暂时无法读取，请稍后重试。', 503) from None
-            raise
+            self._raise_extension(kind, error, 'knowledge_unavailable', '知识库暂时无法读取，请稍后重试。')
 
     def _settings_call(self, method, *args, **kwargs):
         return self._extension_call('settings', method, *args, **kwargs)
@@ -297,8 +411,17 @@ class AdmissionService:
                 return
             self._closed = True
             research = self._research
+            retriever = self._retriever_instance
+            vectors = self._vectors
         if research is not None:
             research.close()
+        if retriever is not None:
+            retriever.close()
+        if vectors is not None:
+            try:
+                vectors.close()
+            except Exception:
+                pass
 
     def _connection_status(self):
         configured = bool(self._search_config())

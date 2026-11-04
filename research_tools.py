@@ -144,7 +144,7 @@ TOOLS=[
             {'topic':{'type':'string','enum':['overview','subjects','evidence','transfer','years']}}),
     _schema('search_knowledge','优先检索本机已积累的公共资料。缓存保留原读取日期与年度，不等于刚联网核验；不能把线索当作已采用事实。',
             {'query':{'type':'string'},'unit_id':{'type':'string'},'year':{'type':'integer'}},('query',)),
-    _schema('search_knowledge_segments','按学校和实际年度检索当前有效原文片段，定位长文后半段、表格和条款；关键词命中不等于字段已核验。',
+    _schema('search_knowledge_segments','按学校和实际年度检索当前有效原文片段，定位长文后半段、表格和条款；本机向量索引可用时融合关键词与语义候选，退化时如实退回关键词；语义命中不等于字段已核验。',
             {'query':{'type':'string'},'entry_id':{'type':'string'},'unit_id':{'type':'string'},'year':{'type':'integer'}},('query',)),
     _schema('read_knowledge_segment','精读本轮已发现的segment_id及有限邻接上下文，保留原文位置、表头、否定和例外；失效来源不可复用。',
             {'segment_id':{'type':'string'},'before':{'type':'integer'},'after':{'type':'integer'},'max_chars':{'type':'integer'}},('segment_id',)),
@@ -156,17 +156,20 @@ TOOLS=[
 
 class ResearchTools:
     def __init__(self, admission, settings, task, data_dir, *, network=None, source_fetcher=fetch_official_document,
-                 stop_event=None,deadline=None,knowledge_store=None):
+                 stop_event=None,deadline=None,knowledge_store=None,retriever=None):
         self.admission,self.settings,self.task=admission,settings,task
         self.data_dir=Path(data_dir).resolve();self.network=network;self.source_fetcher=source_fetcher
         self.stop_event=stop_event;self.deadline=deadline if deadline is not None else time.monotonic()+LIMITS['max_seconds']
         self.programs={};self.sources={};self.algorithm={};self.gaps=[];self.searched_units=set()
         self.profile_proposal=None;self.candidate_metrics=None
-        self._knowledge_store=knowledge_store;self.knowledge_errors=[];self._knowledge_failures={};self.saved_sources=set();self.cache_hits=set()
+        self._knowledge_store=knowledge_store;self._hybrid_retriever_instance=retriever
+        self.knowledge_errors=[];self._knowledge_failures={};self.saved_sources=set();self.cache_hits=set()
         self._knowledge_states={};self._filtered_sources=set()
         self._knowledge_segments={};self._knowledge_invalidated=set();self._trusted_knowledge_ids=set()
         self.loaded_skills=();self.executed_tools=set();self._algorithm_signature=None
-        self.usage={'searches':0,'documents':0,'tool_calls':0,'model_calls':0,'rounds':0,'total_tokens':0,'algorithm_calls':0}
+        self.usage={'searches':0,'documents':0,'tool_calls':0,'model_calls':0,'rounds':0,'total_tokens':0,
+                    'algorithm_calls':0,'embedding_calls':0,'successful_embedding_calls':0,
+                    'embedding_input_tokens':0,'embedding_usage_known':True}
         self.bootstrap=admission.catalog_bootstrap()
         self.units={row['id']:row for row in self.bootstrap.get('units',[]) if isinstance(row,dict) and isinstance(row.get('id'),str)}
         self.revision=self.bootstrap.get('revision')
@@ -396,6 +399,19 @@ class ResearchTools:
         if unit:value={**value,'unit_name':unit['name']}
         self.sources[source_id]={'id':source_id,**_public_source(value)}
         return source_id
+
+    def _hybrid_retriever(self):
+        return self._hybrid_retriever_instance
+
+    def _record_retrieval_usage(self, usage, known):
+        """Add only the finite accounting facts the vector layer reported."""
+        value=usage if isinstance(usage,dict) else {}
+        for key in ('embedding_calls','successful_embedding_calls'):
+            count=value.get(key,0)
+            if type(count) is int and count>=0:self.usage[key]+=count
+        tokens=value.get('input_tokens')
+        if type(tokens) is int and tokens>=0:self.usage['embedding_input_tokens']+=tokens
+        if known is not True:self.usage['embedding_usage_known']=False
 
     def _knowledge(self):
         if self._knowledge_store is None:

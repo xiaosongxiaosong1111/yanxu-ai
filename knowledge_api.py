@@ -93,6 +93,24 @@ def _state(payload):
     return result
 
 
+def _retrieve(payload):
+    values = _object(payload, ('q', 'unit_id', 'year', 'entry_id', 'limit'), ('q',))
+    query = _string(values.get('q'), 240, False)
+    year = values.get('year')
+    if year == '':
+        year = None
+    if year is not None:
+        year = _number(year, 1900, 2100)
+    entry = _identifier(values['entry_id'], 'k', 24) if 'entry_id' in values else None
+    return {'q': query, 'unit_id': _string(values.get('unit_id', ''), 100),
+            'year': year, 'entry_id': entry, 'limit': _number(values.get('limit', 8), 1, 20)}
+
+
+def _empty(payload):
+    _object(payload, ())
+    return {}
+
+
 _ACTIONS = {
     'segments': ('search_segments', _search), 'segment': ('read_segment', _read),
     'jobs': ('jobs', _entry), 'state': ('change_validity', _state),
@@ -106,5 +124,19 @@ def checked_request(action, payload, error_type):
             raise ValueError('知识操作不受支持。')
         method, check = _ACTIONS[action]
         return method, check(payload)
+    except ValueError as error:
+        raise error_type('invalid_query', str(error)) from None
+
+
+def checked_retrieve(payload, error_type):
+    try:
+        return _retrieve(payload)
+    except ValueError as error:
+        raise error_type('invalid_query', str(error)) from None
+
+
+def checked_empty(payload, error_type):
+    try:
+        return _empty(payload)
     except ValueError as error:
         raise error_type('invalid_query', str(error)) from None

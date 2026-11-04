@@ -82,11 +82,21 @@ def rule_rerank(query,rows,limit):
     return selected
 
 
-def _usage(result):
-    values=result.get('usage')
+def _usage(values):
+    """Only finite, non-negative accounting facts survive; never text, keys or paths."""
     if not isinstance(values,dict):return {}
-    return {key:value for key,value in values.items() if re.fullmatch(r'[a-z_]{1,40}',str(key)) and
-            (type(value) in {int,float} and math.isfinite(value) and value>=0 or key=='usage_known' and type(value) is bool)}
+    result={}
+    for key,value in values.items():
+        if not re.fullmatch(r'[a-z_]{1,40}',str(key)) or key=='usage_known':continue
+        if value is None and key in {'input_tokens','total_tokens'}:result[key]=None
+        elif type(value) in {int,float} and math.isfinite(value) and value>=0:result[key]=value
+    return result
+
+
+def _known(values,fallback):
+    if isinstance(values,dict) and type(values.get('usage_known')) is bool:return values['usage_known']
+    return fallback
+
 
 
 class HybridRetriever:
@@ -102,16 +112,27 @@ class HybridRetriever:
 
     def _semantic(self,query,scope,allow_remote,stop):
         self._check(stop)
-        if self.vector_index is None:return [],{},'vector_not_ready'
+        if self.vector_index is None:return [],{'usage':{},'usage_known':True,'space_id':None},'vector_not_ready'
         try:
             result=self.vector_index.search(query,**scope,limit=40,stop_event=stop,allow_remote=allow_remote)
             self._check(stop)
-            return result.get('segments',[])[:40],result,''
+            usage=_usage(result.get('usage'))
+            fallback=_known(result.get('usage'),bool(result.get('usage')))
+            known=result['usage_known'] if type(result.get('usage_known')) is bool else fallback
+            return result.get('segments',[])[:40],{'usage':usage,'usage_known':known,
+                'space_id':result.get('space_id'),'latency_ms':result.get('latency_ms')},''
         except Exception as error:
             self._check(stop)
-            if 'cancel' in str(getattr(error,'code','')):raise KnowledgeError('retrieval_cancelled','检索已取消。',409) from None
             code=getattr(error,'code','vector_unavailable')
-            return [],{},code if code in _DEGRADATIONS else 'vector_unavailable'
+            metadata=getattr(error,'retrieval_usage',None)
+            if 'cancel' in str(code):
+                failure=KnowledgeError('retrieval_cancelled','检索已取消。',409)
+                failure.retrieval_usage=metadata
+                raise failure from None
+            usage=_usage(metadata)
+            known=_known(metadata,False)
+            latency=metadata.get('latency_ms') if isinstance(metadata,dict) else None
+            return [],{'usage':usage,'usage_known':known,'space_id':None,'latency_ms':latency},code if code in _DEGRADATIONS else 'vector_unavailable'
 
     def _hydrate(self,hit,scope):
         identifier=hit.get('id') if isinstance(hit,dict) else None
@@ -145,8 +166,13 @@ class HybridRetriever:
             mode=hits[rank['id']].get('match_mode','semantic' if rank['methods']==['semantic'] else 'segment_terms')
             hydrated.append({**row,'match_mode':mode,'rrf_score':rank['rrf_score'],'retrieval_methods':rank['methods'],'retrieval_ranks':rank['ranks']})
         results=rule_rerank(query,hydrated,limit);self._check(stop_event)
+        usage=dict(vector.get('usage') or {})
+        usage_known=vector.get('usage_known',not reason)
         return {'segments':results,'returned_count':len(results),'candidate_count':len(hydrated),
+            'usage':usage,'usage_known':bool(usage_known),
             'retrieval':{'mode':'keyword' if reason else 'hybrid','methods':list(channels),'space_id':vector.get('space_id'),
-                'degraded':bool(reason),'degraded_reason':reason,'partial_scope':True,'usage':_usage(vector),
-                'reranker':'rule_v1','notice':NOTICE,'latency':{'keyword_ms':keyword_ms,'semantic_ms':semantic_ms,
-                    'rerank_ms':(time.perf_counter()-rerank_started)*1000,'total_ms':(time.perf_counter()-started)*1000}}}
+                'degraded':bool(reason),'degraded_reason':reason,'partial_scope':True,'usage':usage,
+                'usage_known':bool(usage_known),'reranker':'rule_v1','notice':NOTICE,
+                'latency':{'keyword_ms':keyword_ms,'semantic_ms':semantic_ms,
+                    'rerank_ms':(time.perf_counter()-rerank_started)*1000,'total_ms':(time.perf_counter()-started)*1000},
+                **({'embedding_latency_ms':vector['latency_ms']} if type(vector.get('latency_ms')) is int else {})}}

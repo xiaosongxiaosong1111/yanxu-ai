@@ -12,7 +12,7 @@ import time
 from urllib.parse import parse_qs, unquote, urlsplit
 
 from service import AdmissionService, ServiceError
-from knowledge_api import READ_ACTIONS, WRITE_ACTIONS
+from knowledge_api import READ_ACTIONS, WRITE_ACTIONS, checked_retrieve, checked_empty
 
 
 MAX_BODY_BYTES = 65536
@@ -236,7 +236,19 @@ class AdmissionHandler(BaseHTTPRequestHandler):
     def _get(self, parsed):
         if self._knowledge_get(parsed): return
         path = parsed.path
-        if path in {'/api/settings', '/api/settings/providers'}:
+        if path == '/api/knowledge/retrieve':
+            if not self.server.retrieval_limiter.allow(self.client_address[0]):
+                raise ServiceError('rate_limited', '知识检索较频繁，请稍后再试。', 429)
+            query = self._query(parsed, ('q', 'unit_id', 'year', 'entry_id', 'limit'), ('q',), allow_empty_year=True)
+            self._json(self.server.service.knowledge_retrieve(**query, allow_remote=False))
+        elif path == '/api/knowledge/vectors':
+            self._query(parsed, ())
+            self._json(self.server.service.vector_status())
+        elif path in {'/api/knowledge/vectors/build', '/api/knowledge/vectors/cancel',
+                      '/api/knowledge/embedding/prepare'}:
+            self._query(parsed, ())
+            raise ServiceError('method_not_allowed', '此接口需要 POST 请求。', 405)
+        elif path in {'/api/settings', '/api/settings/providers'}:
             self._query(parsed, ())
             method = self.server.service.settings_public if path == '/api/settings' else self.server.service.settings_providers
             self._json(method())
@@ -283,6 +295,31 @@ class AdmissionHandler(BaseHTTPRequestHandler):
 
     def _post(self, parsed):
         self._origin()
+        if parsed.path == '/api/knowledge/retrieve':
+            self._query(parsed, ())
+            if not self.server.retrieval_limiter.allow(self.client_address[0]):
+                raise ServiceError('rate_limited', '知识检索较频繁，请稍后再试。', 429)
+            values = checked_retrieve(self._read_json(), ServiceError)
+            self._json(self.server.service.knowledge_retrieve(**values, allow_remote=True))
+            return
+        if parsed.path in {'/api/knowledge/vectors/build', '/api/knowledge/vectors/cancel',
+                           '/api/knowledge/embedding/prepare'}:
+            self._query(parsed, ())
+            if not self.server.knowledge_limiter.allow(self.client_address[0]):
+                raise ServiceError('rate_limited', '向量索引维护较频繁，请稍后再试。', 429)
+            payload = self._read_json()
+            if parsed.path == '/api/knowledge/vectors/build':
+                value = self.server.service.vector_build(payload)
+            elif parsed.path == '/api/knowledge/vectors/cancel':
+                checked_empty(payload, ServiceError)
+                value = self.server.service.vector_cancel(payload)
+            else:
+                checked_empty(payload, ServiceError)
+                value = self.server.service.embedding_prepare(payload)
+            self._json(value, status=202)
+            return
+        if parsed.path == '/api/knowledge/vectors':
+            raise ServiceError('method_not_allowed', '向量状态接口只接受 GET 请求。', 405)
         if parsed.path in WRITE_ACTIONS:
             self._query(parsed, ())
             if not self.server.knowledge_limiter.allow(self.client_address[0]):
@@ -364,6 +401,7 @@ def create_server(host='127.0.0.1', port=4180, service=None, static_dir=None, ra
     server.settings_limiter = RateLimiter(limit=12)
     server.research_limiter = RateLimiter(limit=6)
     server.knowledge_limiter = RateLimiter(limit=12)
+    server.retrieval_limiter = RateLimiter(limit=20)
     return server
 
 

@@ -5,6 +5,7 @@ import re
 from types import SimpleNamespace
 from urllib.parse import urlsplit, urlunsplit
 
+from knowledge_store import KnowledgeError
 from research_store import ResearchError
 
 SOURCE_FIELDS = ('url','title','unit_id','unit_name','year','requested_year','status','sha256',
@@ -167,7 +168,39 @@ def _remember_segment(tools, segment, source):
     return public
 
 
-def search_segments(tools, query, unit_id, year, entry_id, reusable):
+def _hybrid_groups(tools, query, unit_id, year, entry_id, reusable):
+    getter=getattr(tools,'_hybrid_retriever',None);retriever=getter() if callable(getter) else None
+    if retriever is None:return None
+    groups=[];query_total=0;semantic=False;reason=''
+    for selected in ([unit_id] if unit_id else tools.task['unit_ids'] or ['']):
+        tools._check_control()
+        try:
+            value=retriever.retrieve(query,unit_id=selected,year=year,entry_id=entry_id,
+                                     limit=8,allow_remote=False,stop_event=tools.stop_event)
+        except KnowledgeError as error:
+            if 'cancel' in str(getattr(error,'code','')):
+                raise ResearchError('cancelled','研究已取消。',409) from None
+            metadata=getattr(error,'retrieval_usage',None)
+            if isinstance(metadata,dict):
+                tools._record_retrieval_usage(metadata,metadata.get('usage_known',False))
+            return None
+        except ResearchError:
+            raise
+        except Exception:
+            return None
+        tools._record_retrieval_usage(value.get('usage'),value.get('usage_known'))
+        rows=[]
+        for segment in value.get('segments',[]):
+            source=_current_segment(tools,segment,year,selected,reusable)
+            if source:rows.append((segment,source))
+        retrieval=value.get('retrieval') if isinstance(value.get('retrieval'),dict) else {}
+        semantic=semantic or retrieval.get('mode')=='hybrid'
+        if retrieval.get('degraded'):reason=reason or retrieval.get('degraded_reason') or 'vector_unavailable'
+        groups.append(rows);query_total+=value.get('candidate_count') or len(rows)
+    return groups,query_total,semantic,reason
+
+
+def _keyword_groups(tools, query, unit_id, year, entry_id, reusable):
     groups=[];query_total=0
     for selected in ([unit_id] if unit_id else tools.task['unit_ids'] or ['']):
         rows=[]
@@ -182,6 +215,15 @@ def search_segments(tools, query, unit_id, year, entry_id, reusable):
                 if source:rows.append((segment,source))
             if len(rows)>=8 or page*8>=total:break
         groups.append(rows);query_total+=total
+    return groups,query_total
+
+
+def search_segments(tools, query, unit_id, year, entry_id, reusable):
+    hybrid=_hybrid_groups(tools,query,unit_id,year,entry_id,reusable)
+    if hybrid is None:
+        groups,query_total=_keyword_groups(tools,query,unit_id,year,entry_id,reusable)
+        semantic,reason=False,''
+    else:groups,query_total,semantic,reason=hybrid
     results=[];seen=set()
     for row in (row for group in zip_longest(*groups) for row in group if row is not None):
         segment,source=row
@@ -190,8 +232,13 @@ def search_segments(tools, query, unit_id, year, entry_id, reusable):
         if public:results.append(public);seen.add(public['id'])
         if len(results)>=8:break
     distributed=any(item.get('match_mode')=='document_terms' for item in results)
-    return {'segments':results,'total':len(results),'query_total':query_total,
-            'notice':'命中来自当前有效知识留档；字符位置属于所标提取版本，表头/上下文与正文分别引用。'+(DISTRIBUTED_NOTICE if distributed else '')}
+    notice='命中来自当前有效知识留档；字符位置属于所标提取版本，表头/上下文与正文分别引用。'
+    if semantic:notice+='语义候选只用于定位，相近表述不代表科目、资格或报考条件相同，仍须精读原文。'
+    elif reason:notice+='本机向量检索暂不可用，本轮已退回关键词检索；命中仍须精读原文。'
+    value={'segments':results,'total':len(results),'query_total':query_total,
+           'notice':notice+(DISTRIBUTED_NOTICE if distributed else '')}
+    if reason:value['degraded_reason']=reason
+    return value
 
 
 def _bounded_result(payload, limit):
