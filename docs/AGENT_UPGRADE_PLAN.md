@@ -86,7 +86,7 @@ Windows通过当前用户DPAPI加密全部凭据，写入`data/runtime/settings.
 
 ## 工具、条件确认与报告
 
-后端只注册`find_units,find_candidates,search_official_sources,read_official_source,compare_candidates,plan_subject_routes,suggest_adjustments,read_knowledge,search_knowledge,propose_profile`。不提供shell、任意远程执行或任意URL读取工具。原文读取只接受本轮已发现的source_id及核对后的学校官网，研招网共享访问门禁继续生效。
+后端只注册`find_units,find_candidates,search_official_sources,read_official_source,compare_candidates,plan_subject_routes,suggest_adjustments,read_knowledge,search_knowledge,search_knowledge_segments,read_knowledge_segment,propose_profile`。不提供shell、任意远程执行或任意URL读取工具。原文读取只接受本轮已发现的source_id及核对后的学校官网，研招网共享访问门禁继续生效。片段补读只接受本轮已发现且仍属当前有效提取代次的segment_id，受学校/真实年度及预算约束。
 
 取得候选后，程序确保实际匹配核算，不依赖模型恰好调用比较工具；完整科目才自动计算路线。自动核算单独计`usage.algorithm_calls`，不消耗模型/搜索调用。候选或profile变化会重新计算。宽泛查询在有限已发布分页内按学校分散；有候选、一次实际检索及至少两项关键未知后暂停请用户补充。每项模型工具结果提供有界摘要，完整原文与算法报告另存，累积token仍按实际usage统计，不将停止策略当作硬费用上限。
 
@@ -104,9 +104,13 @@ Windows通过当前用户DPAPI加密全部凭据，写入`data/runtime/settings.
 
 保存仅由受控研究工具或明确离线导入执行，不提供任意客户端写入。忽略来源自己提交的quality或归属通过标志，官方归属由服务根据真实document校验或精确单位登记计算。保存来源而不保存私人query/profile，原文校SHA、多个引用去重、旧版摘录/全文分开；规则过滤不视作存储故障。`search_knowledge`仅返回accepted且reusable的资料，仍按真实年度和完整性再次防守。复用资料不直接变成正式招生事实。
 
+N3增加`validity=active/revoked/conflict/superseded`，与质量和取得状态独立。完整有界提取稿、真实PDF页和Unicode字符跨度单独持久化；`search_knowledge_segments`定位，`read_knowledge_segment`有限补读章节、独立表头和同提取版本邻接，不能把上下文拼成连续引文。`match_mode=document_terms`表示关键词分散在同一原文，不能当成单片段满足复合事实。任务返回`report/previous_report`及模型历史上下文都复核当前来源，失效旧摘录和可信解释停止返回，持久审计保留。
+
+阅读HTTP增加GET `/api/knowledge/segments`、`/api/knowledge/segment`、`/api/knowledge/jobs`；维护为POST `/api/knowledge/state`、`/api/knowledge/select-version`、`/api/knowledge/reindex`。补读接口固定可信模式，维护同源校验、独立限频，状态采用须理由；恢复不升级质量，版本替代只允许同学校/来源范围/实际年度。重建仅从留档SHA或完整提取稿本地派生，失败保留旧可用代次和任务审计，不声明向量已就绪。完整字段以`knowledge_api.py`为准，验收见 [N3](work_nodes/03-knowledge-workbench.md)。
+
 程序比较只消费已发布、可计算候选，沿用资格三态、考试单元/命题学校/整组备选、偏好/Pareto、换科路线和最小调整。未查到新学校的结构化专业时可以展示来源与缺口，不能为覆盖数字制造专业记录，也不把新网页未经审核的值写入`admissions.json`。
 
-Skills是随研究实际加载的白名单文件，缺失或过大时失败；网页、PDF和工具返回是资料，不作为系统指令。知识库只是带来源与年度的官方规则入口及程序解释，不是全国招生事实全集。原目录查询、原文抽屉、我的方案、历史数据与旧API继续保留，旧`/api/chat`仍返回`not_configured`，不与新研究任务协议混用。
+Skills是随研究实际加载的白名单文件，缺失或过大时失败；网页、PDF和工具返回是资料，不作为系统指令。静态规则索引与动态来源知识库分开；后者积累带出处、实际年度、质量、有效状态和原文位置的材料，不代表全国招生事实全集。原目录查询、原文抽屉、我的方案、历史数据与旧API继续保留，旧`/api/chat`仍返回`not_configured`，不与新研究任务协议混用。
 
 ## 验证边界
 

@@ -22,6 +22,7 @@ from collection_status import CollectionStatus
 from published_catalog import PublishedCatalog, CatalogQueryError
 from catalog_facts_store import CatalogFactsStore, CatalogFactsError
 from json_reader import read_json, SnapshotReadError
+from knowledge_api import checked_request
 
 
 SEARCH_ENDPOINT = 'https://api.wsa.cloud.tencent.com/SearchPro'
@@ -285,6 +286,10 @@ class AdmissionService:
                 raise ServiceError('invalid_query', '知识库分页参数格式不正确。')
             pagination[name]=value
         return self._extension_call('knowledge', 'search', query=q, status=status, year=year, unit_id=unit_id, quality=quality, **pagination)
+
+    def knowledge_request(self, action, payload):
+        method, values = checked_request(action, payload, ServiceError)
+        return self._extension_call('knowledge', method, **values)
 
     def close(self):
         with self._extension_lock:

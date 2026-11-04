@@ -17,6 +17,7 @@ from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
 
 from collectors.discovery import DiscoveryError, USER_AGENT, _LIMITS, _PinnedConnection, _Response, _url_parts, public_target
 from collectors.documents import decode_text
+from document_extraction import OFFICE_TYPES, canonical_document, extract_office_document, validate_media
 
 
 MAX_BYTES = 8 * 1024 * 1024
@@ -213,6 +214,9 @@ class _VisibleHTML(HTMLParser):
         self.stack, self.parts, self.main, self.title, self.heading = [], [], [], [], []
 
     def handle_starttag(self, tag, attrs):
+        if tag == 'body':
+            # Browsers close a misplaced/open head before rendering body content.
+            self.handle_endtag('head')
         values = dict(attrs)
         style = re.sub(r'\s+', '', values.get('style', '').lower())
         hidden = tag in {'script', 'style', 'nav', 'aside', 'footer', 'header', 'noscript', 'template'}
@@ -287,14 +291,79 @@ def _extract(raw, content_type, cache_dir, pdf_extractor, remaining, url=''):
         if pieces and not pieces[-1].strip():
             pieces = pieces[:-1]
         pages = [{'page': index, 'text': piece} for index, piece in enumerate(pieces, 1)]
-        return text, pages, '', ''
+        return text, pages, '', '', {'format': 'pdf'}
+    validate_media(raw, media_type)
+    if media_type in OFFICE_TYPES:
+        office = extract_office_document(raw, media_type)
+        return office['text'], office['pages'], '', '', {'format': office['format'], 'extraction_state': office['extraction_state']}
     if media_type not in {'text/html', 'application/xhtml+xml'}:
-        raise SourceError('unsupported_type', '只读取官方HTML或PDF原文。')
+        raise SourceError('unsupported_type', '只读取支持的官方HTML、PDF或Office原文。')
     parser = _VisibleHTML()
     parser.feed(rendered_source_html(decode_text(raw, content_type), url))
     parser.close()
     text, title = parser.result()
-    return text, [{'page': 1, 'text': text}], title, re.sub(r'\s+', ' ', ''.join(parser.heading)).strip()
+    return text, [{'page': 1, 'text': text}], title, re.sub(r'\s+', ' ', ''.join(parser.heading)).strip(), {'format': 'html'}
+
+
+def _fetched_document(current, unit, raw, content_type, text, pages, title, heading, extraction_info):
+    attribution = document_attribution(current, unit, text, title, heading)
+    if attribution['status'] == 'wrong_unit':
+        raise SourceError('wrong_unit', attribution['reason'])
+    document = {'url': current, 'text': text, 'pages': pages, 'raw': raw,
+                'sha256': hashlib.sha256(raw).hexdigest(), 'content_type': content_type,
+                'checked_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
+                'document_title': title, 'document_heading': heading,
+                'attribution_status': attribution['status'], 'attribution_reason': attribution['reason'],
+                'extraction_status': 'extracted' if text.strip() else 'empty_text', **extraction_info}
+    try:
+        extraction = canonical_document(document)
+    except (ValueError, TypeError):
+        raise SourceError('extraction_error', '原文提取内容或位置格式不正确。') from None
+    return {**document, 'format': extraction['format'], 'extraction': extraction,
+            'extraction_state': extraction['extraction_status']}
+
+
+def _saved_media(raw, content_type):
+    if content_type:
+        if not isinstance(content_type, str):
+            raise SourceError('unsupported_type', '保存的原文类型格式不正确。')
+        return content_type
+    if raw.startswith(b'%PDF-'):
+        return 'application/pdf'
+    if re.match(br'\s*<(?:!doctype\s+html|html|head|body|main|article|title|div|p|h[1-6])\b', raw[:500], re.I):
+        return 'text/html'
+    raise SourceError('unsupported_type', '保存的原文类型不明，需要明确格式后重新提取。')
+
+
+def extract_saved_document(raw, content_type='', url='', *, timeout=15, pdf_extractor=None, cache_dir=None):
+    """Parse a SHA-checked local original without fetching or renewing source authority."""
+    if isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or not 0 < timeout <= 60:
+        raise SourceError('invalid_limit', '提取超时必须在0至60秒之间。')
+    if not isinstance(raw, bytes) or len(raw) > MAX_BYTES:
+        raise SourceError('too_large', '保存的原文格式不正确或超过8MB。')
+    content_type = _saved_media(raw, content_type)
+    deadline = time.monotonic() + timeout
+    def remaining():
+        value = deadline - time.monotonic()
+        if value <= 0: raise SourceError('timeout', '保存原文的文字提取超时。')
+        return value
+    try:
+        text, pages, title, heading, info = _extract(raw, content_type, cache_dir, pdf_extractor, remaining, url)
+        remaining()
+        document = {'url': url, 'raw': raw, 'sha256': hashlib.sha256(raw).hexdigest(),
+                    'text': text, 'pages': pages, 'content_type': content_type,
+                    'document_title': title, 'document_heading': heading,
+                    'checked_at': None, 'attribution_status': 'not_rechecked', 'network_verified': False,
+                    'extraction_status': 'extracted' if text.strip() else 'empty_text', **info}
+        extraction = canonical_document(document)
+        return {**document, 'format': extraction['format'], 'extraction': extraction,
+                'extraction_state': extraction['extraction_status']}
+    except SourceError:
+        raise
+    except subprocess.TimeoutExpired:
+        raise SourceError('timeout', '保存原文的文字提取超时。') from None
+    except (ValueError, OSError, subprocess.SubprocessError):
+        raise SourceError('extraction_error', '保存原文暂时无法完成文字提取。') from None
 
 
 def fetch_official_document(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
@@ -372,7 +441,7 @@ def fetch_official_document(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
                 finally:
                     semaphore.release()
             try:
-                text, pages, title, heading = _extract(raw, content_type, cache_dir, pdf_extractor, remaining, current)
+                text, pages, title, heading, extraction_info = _extract(raw, content_type, cache_dir, pdf_extractor, remaining, current)
             except SourceError:
                 raise
             except subprocess.TimeoutExpired as error:
@@ -380,15 +449,7 @@ def fetch_official_document(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
             except (ValueError, OSError, subprocess.SubprocessError) as error:
                 raise SourceError('extraction_error', '原文文字提取失败，不能作为补证依据。') from error
             remaining()
-            attribution = document_attribution(current, unit, text, title, heading)
-            if attribution['status'] == 'wrong_unit':
-                raise SourceError('wrong_unit', attribution['reason'])
-            return {'url': current, 'text': text, 'pages': pages, 'raw': raw,
-                    'sha256': hashlib.sha256(raw).hexdigest(), 'content_type': content_type,
-                    'checked_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
-                    'document_title': title, 'document_heading': heading,
-                    'attribution_status': attribution['status'], 'attribution_reason': attribution['reason'],
-                    'extraction_status': 'extracted' if text.strip() else 'empty_text'}
+            return _fetched_document(current, unit, raw, content_type, text, pages, title, heading, extraction_info)
     except DiscoveryError as error:
         raise SourceError(error.code, str(error)) from error
     except (TimeoutError, socket.timeout) as error:

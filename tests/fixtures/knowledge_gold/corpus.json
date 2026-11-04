@@ -1,0 +1,3928 @@
+{
+  "schema_version": 1,
+  "corpus_id": "yanxu-n3-real-evidence-20261103-v1",
+  "status": "frozen_source_gold_not_runtime_acceptance",
+  "created_date": "2026-11-03",
+  "planning_year": 2028,
+  "source_snapshot_notice": "Reviewed public bundles; no live URL verification; no synthetic documents.",
+  "split_policy": "24 development / 10 holdout; shared-source and exact-raw-hash connected components stay together.",
+  "holdout_rule": "Index the complete source corpus, but do not tune retrieval or expected answers against holdout questions.",
+  "sources": [
+    {
+      "id": "national-367888-2027-ad9f9440723bfa25-4573e8e67aee",
+      "unit_id": "367888",
+      "unit_name": "北京工商大学",
+      "title": "北京工商大学2027年硕士研究生招生章程 研究生招生信息网",
+      "url": "https://yzb.btbu.edu.cn/sszs/7f4c2604e05d4e42af863b008ec7f8cf.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/4573e8e67aee444c8be7.html",
+      "raw_sha256": "4573e8e67aee444c8be78f68392f089665c492af7248b8d26d69980fa2afb495",
+      "original_member": "data/snapshots/national/2027/367888/ad9f9440723bfa25-4573e8e67aee444c.html",
+      "text_path": "texts/cdb621b33f15c184dc97.txt",
+      "text_sha256": "cdb621b33f15c184dc97b1d6deea07b270ed4829788db67bda830c5facf995e0",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "UTF-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:46:50+00:00",
+      "year_proof": {
+        "source_id": "national-367888-2027-ad9f9440723bfa25-4573e8e67aee",
+        "text_path": "texts/cdb621b33f15c184dc97.txt",
+        "text_sha256": "cdb621b33f15c184dc97b1d6deea07b270ed4829788db67bda830c5facf995e0",
+        "char_start": 0,
+        "char_end": 29,
+        "quote": "北京工商大学2027年硕士研究生招生章程 研究生招生信息网",
+        "quote_sha256": "74eec1b199240c280534893d9f10f7617e89fa833efd0ebcdb12aad7c930d741",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-368218-2027-de63b85fecfde89b-878bc99a8de3",
+      "unit_id": "368218",
+      "unit_name": "浙江工业大学",
+      "title": "浙江工业大学2027年硕士研究生招生简章",
+      "url": "http://www.yz.zjut.edu.cn/2026/0929/c4270a346399/page.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/878bc99a8de397c369a1.html",
+      "raw_sha256": "878bc99a8de397c369a123602104a0c347ac8934cb9de8627226ed545240b321",
+      "original_member": "data/snapshots/national/2027/368218/de63b85fecfde89b-878bc99a8de397c3.html",
+      "text_path": "texts/37a098bd68119cddc996.txt",
+      "text_sha256": "37a098bd68119cddc996122a70ae2382f2cc0837fb9720dcad1584a402ab72ff",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:52:58+00:00",
+      "year_proof": {
+        "source_id": "national-368218-2027-de63b85fecfde89b-878bc99a8de3",
+        "text_path": "texts/37a098bd68119cddc996.txt",
+        "text_sha256": "37a098bd68119cddc996122a70ae2382f2cc0837fb9720dcad1584a402ab72ff",
+        "char_start": 0,
+        "char_end": 20,
+        "quote": "浙江工业大学2027年硕士研究生招生简章",
+        "quote_sha256": "a967329be1cd6d2f9240b190a7d33882c22b3dbfc08acd03e6d11f1747733f4d",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-678581-2027-f366f81dcb1a66c5-badd682803f2",
+      "unit_id": "678581",
+      "unit_name": "贵州民族大学",
+      "title": "贵州民族大学2027年硕士研究生招生章程_硕士研究生招生_招生工作_贵州民族大学研究生工作部（研究生院）",
+      "url": "https://yjsy.gzmu.edu.cn/zsgz/ssyjszs/content_88048",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/badd682803f21cabb5ee.html",
+      "raw_sha256": "badd682803f21cabb5ee8e4dbb2783e8d6c05d5f98a95a399a12afae0eff9543",
+      "original_member": "data/snapshots/national/2027/678581/f366f81dcb1a66c5-badd682803f21cab.html",
+      "text_path": "texts/26a18174232f9bd9f385.txt",
+      "text_sha256": "26a18174232f9bd9f38560f888355c6a4ac4fdda517c3ffaf82f700ed0c4e8bf",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:58:59+00:00",
+      "year_proof": {
+        "source_id": "national-678581-2027-f366f81dcb1a66c5-badd682803f2",
+        "text_path": "texts/26a18174232f9bd9f385.txt",
+        "text_sha256": "26a18174232f9bd9f38560f888355c6a4ac4fdda517c3ffaf82f700ed0c4e8bf",
+        "char_start": 0,
+        "char_end": 52,
+        "quote": "贵州民族大学2027年硕士研究生招生章程_硕士研究生招生_招生工作_贵州民族大学研究生工作部（研究生院）",
+        "quote_sha256": "5a08a69a78344f3100106ce69fc43668c96c289b833531e60db0d3782bfb0a58",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+      "unit_id": "2311267403",
+      "unit_name": "内蒙古艺术学院",
+      "title": "内蒙古艺术学院2027年硕士研究生招生简章 - 研究生院（学科建设办公室）",
+      "url": "https://yjs.imac.edu.cn/html-yjs/jzml/20260928/42111.shtml",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/a643b8e7b9e104cff28d.html",
+      "raw_sha256": "a643b8e7b9e104cff28dbc13f1ae094d45659b7a0cd71ddfb5213baf3aebe677",
+      "original_member": "data/snapshots/catalogs/expansion-20261102/north/formal/2311267403-2027/2530febe039dcb15-a643b8e7b9e104cf.html",
+      "text_path": "texts/6d2c39d0216cd333d4e6.txt",
+      "text_sha256": "6d2c39d0216cd333d4e66c519f16bced6479a920f86f3e4e5a4a580aaae29baa",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-11-02T02:02:27+00:00",
+      "year_proof": {
+        "source_id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+        "text_path": "texts/6d2c39d0216cd333d4e6.txt",
+        "text_sha256": "6d2c39d0216cd333d4e66c519f16bced6479a920f86f3e4e5a4a580aaae29baa",
+        "char_start": 0,
+        "char_end": 37,
+        "quote": "内蒙古艺术学院2027年硕士研究生招生简章 - 研究生院（学科建设办公室）",
+        "quote_sha256": "d42f13b79080704b488dcfe4020ba5fa6adfb125e8dd89a8f764dcad783a7418",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "office-367893-2027-7829f856f2962c12fe89",
+      "unit_id": "367893",
+      "unit_name": "中国农业大学",
+      "title": "中国农业大学研究生院 通知公告 中国农业大学2027年硕士研究生招生章程",
+      "url": "https://yz.cau.edu.cn/art/2026/10/8/art_41740_1139718.html",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/7829f856f2962c12fe89.html",
+      "raw_sha256": "7829f856f2962c12fe89560b1bf43e6d0a991bb50d95c3d9727373c46c983605",
+      "original_member": "data/snapshots/catalogs/expansion-20261102/office/367893/cau-charter-native.html",
+      "text_path": "texts/31b3a765b2aa6496c0ef.txt",
+      "text_sha256": "31b3a765b2aa6496c0efd05ba9e7d62fa3c32020cd9855f5db37bcac52e6831b",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "UTF-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-11-02T01:39:50.883521+00:00",
+      "year_proof": {
+        "source_id": "office-367893-2027-7829f856f2962c12fe89",
+        "text_path": "texts/31b3a765b2aa6496c0ef.txt",
+        "text_sha256": "31b3a765b2aa6496c0efd05ba9e7d62fa3c32020cd9855f5db37bcac52e6831b",
+        "char_start": 0,
+        "char_end": 36,
+        "quote": "中国农业大学研究生院 通知公告 中国农业大学2027年硕士研究生招生章程",
+        "quote_sha256": "205b3a91a9e3ee01f972f45211aa9a28f5b0aa3bbc43fc4d3d3768821ff9c7f7",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-367981-2027-9338f6560c9f3019-e2f8118e86d6",
+      "unit_id": "367981",
+      "unit_name": "承德医学院",
+      "title": "研究生院 信息发布 承德医学院2027年招收攻读硕士学位研究生招生章程",
+      "url": "https://yjs.cdmc.edu.cn/art/2026/9/30/art_145_105464.html",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/e2f8118e86d672219461.html",
+      "raw_sha256": "e2f8118e86d67221946179e199ac8653a2bc69d3eaa8b28337437472cab2ac35",
+      "original_member": "data/snapshots/national/2027/367981/9338f6560c9f3019-e2f8118e86d67221.html",
+      "text_path": "texts/4c16b7d08dfc67e4bcf9.txt",
+      "text_sha256": "4c16b7d08dfc67e4bcf9b3eb8870be88ffb69ae20d88d5ca6b1f3e522416f203",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T02:19:24+00:00",
+      "year_proof": {
+        "source_id": "national-367981-2027-9338f6560c9f3019-e2f8118e86d6",
+        "text_path": "texts/4c16b7d08dfc67e4bcf9.txt",
+        "text_sha256": "4c16b7d08dfc67e4bcf9b3eb8870be88ffb69ae20d88d5ca6b1f3e522416f203",
+        "char_start": 0,
+        "char_end": 35,
+        "quote": "研究生院 信息发布 承德医学院2027年招收攻读硕士学位研究生招生章程",
+        "quote_sha256": "78fa273de7e8461b816b0668d4178a1db205d30960e8ae009037fec2e5e24c9c",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-367861-2027-7f2616e18ac33ed0-240a0f4d9435",
+      "unit_id": "367861",
+      "unit_name": "首都体育学院",
+      "title": "研究生部（研究生工作部合署）_首都体育学院",
+      "url": "https://gs.cupes.edu.cn/zsgz/zsjz/842b67cb782744039425268e6d1d715c.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/240a0f4d9435078bbf26.html",
+      "raw_sha256": "240a0f4d9435078bbf26a8c6c85a9a4853d1a351d82dffe498f9ff456df165d2",
+      "original_member": "data/snapshots/national/2027/367861/7f2616e18ac33ed0-240a0f4d9435078b.html",
+      "text_path": "texts/1d886b326cee98a2a5ec.txt",
+      "text_sha256": "1d886b326cee98a2a5ecc7bc8754137c5cf0155facaff950cdcb0fa26ba21e94",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:49:12+00:00",
+      "year_proof": {
+        "source_id": "national-367861-2027-7f2616e18ac33ed0-240a0f4d9435",
+        "text_path": "texts/1d886b326cee98a2a5ec.txt",
+        "text_sha256": "1d886b326cee98a2a5ecc7bc8754137c5cf0155facaff950cdcb0fa26ba21e94",
+        "char_start": 441,
+        "char_end": 461,
+        "quote": "首都体育学院2027年硕士研究生招生简章",
+        "quote_sha256": "cfcacadd51abed167970fb1b797e39eb80c66c6879df3200b6d1c8e753b510d8",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-368190-2027-ad3961bf911d9fa6-8c129bcf4cbf",
+      "unit_id": "368190",
+      "unit_name": "南京中医药大学",
+      "title": "南京中医药大学2027年硕士研究生招生章程",
+      "url": "http://gra.njucm.edu.cn/2026/0930/c7319a172291/page.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/8c129bcf4cbf08ba2670.html",
+      "raw_sha256": "8c129bcf4cbf08ba26704d8818c325312f7d807a94238a7b68fb7af8acda4dda",
+      "original_member": "data/snapshots/national/2027/368190/ad3961bf911d9fa6-8c129bcf4cbf08ba.html",
+      "text_path": "texts/cdc9aaa9eb260c30d204.txt",
+      "text_sha256": "cdc9aaa9eb260c30d204d0c990ff90d81550679eba4372884923771b0afd0c43",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:52:37+00:00",
+      "year_proof": {
+        "source_id": "national-368190-2027-ad3961bf911d9fa6-8c129bcf4cbf",
+        "text_path": "texts/cdc9aaa9eb260c30d204.txt",
+        "text_sha256": "cdc9aaa9eb260c30d204d0c990ff90d81550679eba4372884923771b0afd0c43",
+        "char_start": 0,
+        "char_end": 21,
+        "quote": "南京中医药大学2027年硕士研究生招生章程",
+        "quote_sha256": "c0548209fbb3a993f6ab5db65ed8d6a8ea7a040509444f5d542cc7617b635347",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-3274440799-2027-6d947c41127ba46a-9697c1c89945",
+      "unit_id": "3274440799",
+      "unit_name": "九江学院",
+      "title": "九江学院2027年硕士研究生招生简章-发展规划与研究生处（学科建设处）",
+      "url": "https://fgc.jju.edu.cn/info/1033/2877.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/9697c1c8994557acd1e9.html",
+      "raw_sha256": "9697c1c8994557acd1e99626560af662b43acba25958305650b147a10a0577f5",
+      "original_member": "data/snapshots/national/2027/3274440799/6d947c41127ba46a-9697c1c8994557ac.html",
+      "text_path": "texts/ee630153dfec78b9e255.txt",
+      "text_sha256": "ee630153dfec78b9e25532986358d860da5edf6c51f56f4b8809807f67932926",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "UTF-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:54:09+00:00",
+      "year_proof": {
+        "source_id": "national-3274440799-2027-6d947c41127ba46a-9697c1c89945",
+        "text_path": "texts/ee630153dfec78b9e255.txt",
+        "text_sha256": "ee630153dfec78b9e25532986358d860da5edf6c51f56f4b8809807f67932926",
+        "char_start": 2,
+        "char_end": 37,
+        "quote": "九江学院2027年硕士研究生招生简章-发展规划与研究生处（学科建设处）",
+        "quote_sha256": "500758a67e497cffafddbba804bf18a445b3ce67e49d46d94e75dca1b1067631",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-302965854-2027-3c5bafd24b5b50d8-73c08f95c3ef",
+      "unit_id": "302965854",
+      "unit_name": "湖南人文科技学院",
+      "title": "湖南人文科技学院2027年硕士研究生招生章程-研究生教育教学部-湖南人文科技学院",
+      "url": "https://www.huhst.edu.cn/yjsc/info/1100/27896.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/73c08f95c3ef1faf067b.html",
+      "raw_sha256": "73c08f95c3ef1faf067bdefd941cc90a5ff3a03d5a9b708e9a63558cba5a9861",
+      "original_member": "data/snapshots/national/2027/302965854/3c5bafd24b5b50d8-73c08f95c3ef1faf.html",
+      "text_path": "texts/7c2daae82136d53848d2.txt",
+      "text_sha256": "7c2daae82136d53848d2b61622201e87d7781c6ab54976c2df2a97b58f8a6c2d",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:56:41+00:00",
+      "year_proof": {
+        "source_id": "national-302965854-2027-3c5bafd24b5b50d8-73c08f95c3ef",
+        "text_path": "texts/7c2daae82136d53848d2.txt",
+        "text_sha256": "7c2daae82136d53848d2b61622201e87d7781c6ab54976c2df2a97b58f8a6c2d",
+        "char_start": 2,
+        "char_end": 42,
+        "quote": "湖南人文科技学院2027年硕士研究生招生章程-研究生教育教学部-湖南人文科技学院",
+        "quote_sha256": "906f90b1672f4910556289101ca1b11b7bb7b0e8d24045e4be5096f81f7db00b",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-302960684-2027-f7e4dae904c3168f-9a378022fabc",
+      "unit_id": "302960684",
+      "unit_name": "北京电子科技学院",
+      "title": "北京电子科技学院2027年硕士研究生招生简章",
+      "url": "https://www.besti.edu.cn/600.news.detail.dhtml?news_id=2770",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/9a378022fabc83be549f.html",
+      "raw_sha256": "9a378022fabc83be549f71804ce03e270a8ae7aee8e34731c1bb58667cd41575",
+      "original_member": "data/snapshots/national/2027/302960684/f7e4dae904c3168f-9a378022fabc83be.html",
+      "text_path": "texts/ef025f55cd56b9087d4a.txt",
+      "text_sha256": "ef025f55cd56b9087d4ac6e39750e214503e3767120fbe281c58fef407bafb9c",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "UTF-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T02:15:29+00:00",
+      "year_proof": {
+        "source_id": "national-302960684-2027-f7e4dae904c3168f-9a378022fabc",
+        "text_path": "texts/ef025f55cd56b9087d4a.txt",
+        "text_sha256": "ef025f55cd56b9087d4ac6e39750e214503e3767120fbe281c58fef407bafb9c",
+        "char_start": 0,
+        "char_end": 22,
+        "quote": "北京电子科技学院2027年硕士研究生招生简章",
+        "quote_sha256": "0aebfb098f3bb55f97e9b3760015c95f468fe9c65b2844fced3c67ca3a88624c",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "national-499721832-2027-f9ada7c8657193d0-45ebfc1ff713",
+      "unit_id": "499721832",
+      "unit_name": "海南热带海洋学院",
+      "title": "海南热带海洋学院研究生处",
+      "url": "http://yjs.hntou.edu.cn/zsxx/202609/t20260924_106575.html",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "admissions",
+      "format": "html",
+      "raw_path": "originals/45ebfc1ff7130ff7d9e3.html",
+      "raw_sha256": "45ebfc1ff7130ff7d9e3e844c98bce450afba506628433af584a06963efc7dd7",
+      "original_member": "data/snapshots/national/2027/499721832/f9ada7c8657193d0-45ebfc1ff7130ff7.html",
+      "text_path": "texts/80051246a465d7de8b31.txt",
+      "text_sha256": "80051246a465d7de8b31dfc1c2ddfba2ec5ef62a2e06a1eb5a8f24d8d726d917",
+      "pages": [],
+      "extractor": "eligibility-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "encoding": "utf-8",
+      "year_basis": "original_html_title",
+      "checked_at": "2026-10-30T01:44:26+00:00",
+      "year_proof": {
+        "source_id": "national-499721832-2027-f9ada7c8657193d0-45ebfc1ff713",
+        "text_path": "texts/80051246a465d7de8b31.txt",
+        "text_sha256": "80051246a465d7de8b31dfc1c2ddfba2ec5ef62a2e06a1eb5a8f24d8d726d917",
+        "char_start": 203,
+        "char_end": 225,
+        "quote": "海南热带海洋学院2027年硕士研究生招生简章",
+        "quote_sha256": "3999186911aa37b4ab31b3bffd93c177638ce5c196cd357270b26a47bddde61c",
+        "page": null,
+        "section": null,
+        "role": "primary",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "enrichment-zzu-2027-charter-9ab364731b39",
+      "unit_id": "368317",
+      "unit_name": "郑州大学",
+      "title": "郑州大学2027年硕士研究生招生章程",
+      "url": "https://yz.zzu.edu.cn/info/1092/2432.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "charter",
+      "format": "html",
+      "raw_path": "originals/9ab364731b390f901bce.html",
+      "raw_sha256": "9ab364731b390f901bce1bf16c14dbf9abf52cf6ef701e371cb2cd99e2323ac0",
+      "original_member": "data/snapshots/enrichment/zzu-2027-charter-9ab364731b39.html",
+      "text_path": "texts/efccdc936dedd8c2c308.txt",
+      "text_sha256": "efccdc936dedd8c2c308336783d53b1815b9f76e699379b2715721846470c7e0",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/efccdc936dedd8c2c308.txt",
+          "text_sha256": "efccdc936dedd8c2c308336783d53b1815b9f76e699379b2715721846470c7e0"
+        }
+      ],
+      "extractor": "stdlib HTMLParser visible blocks v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_heading",
+      "year_proof": {
+        "source_id": "enrichment-zzu-2027-charter-9ab364731b39",
+        "text_path": "texts/efccdc936dedd8c2c308.txt",
+        "text_sha256": "efccdc936dedd8c2c308336783d53b1815b9f76e699379b2715721846470c7e0",
+        "char_start": 2,
+        "char_end": 31,
+        "quote": "郑州大学2027年硕士研究生招生章程-郑州大学研究生招生网",
+        "quote_sha256": "24701d29d554713bdcaca05fb94293d413943dba7af0ad8eb6f07e71f0c22d25",
+        "page": null,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+      "unit_id": "368317",
+      "unit_name": "郑州大学",
+      "title": "郑州大学收费标准",
+      "url": "https://www5.zzu.edu.cn/__local/4/32/CB/2F271510B4540C57B0F50027438_5AF8EF08_35542.pdf",
+      "actual_year": null,
+      "metadata_year": 2027,
+      "material_type": "fees",
+      "format": "pdf",
+      "raw_path": "originals/b4ba23c5f304b79ef945.pdf",
+      "raw_sha256": "b4ba23c5f304b79ef9452a125209006c0c8fa12b199075de03e44ab31750e993",
+      "original_member": "data/snapshots/enrichment/zzu-tuition-current-b4ba23c5f304.pdf",
+      "text_path": "texts/6f55de147bd2881a0cae.txt",
+      "text_sha256": "6f55de147bd2881a0cae724dd2de2b39e72fc4a2b8221fdaf07247268c70e3ba",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/19a3d52aa9af0602f974.txt",
+          "text_sha256": "19a3d52aa9af0602f974c1025b20b04049534466bc3d7becacc103ec25b22870"
+        },
+        {
+          "page": 2,
+          "text_path": "texts/39306f0a04a23f56856b.txt",
+          "text_sha256": "39306f0a04a23f56856bfbab61e3365c85c57b9d59adbb775970f0fb90d858ce"
+        },
+        {
+          "page": 3,
+          "text_path": "texts/d190fe9fa6f7df7b8630.txt",
+          "text_sha256": "d190fe9fa6f7df7b8630b16fb7d9a6b8e4b3b66b75ec27f3dc4e1a9d9fd8c170"
+        },
+        {
+          "page": 4,
+          "text_path": "texts/e8aa57b11f211e8ccc91.txt",
+          "text_sha256": "e8aa57b11f211e8ccc91e70fa94ec8b9c408d9d5ebdeaa4e4d52fc5423c8298b"
+        },
+        {
+          "page": 5,
+          "text_path": "texts/8b520d148e06cbfefd42.txt",
+          "text_sha256": "8b520d148e06cbfefd4296dab6b11b827a3600a5d7dc8a89dacee1c01a3f5dc4"
+        },
+        {
+          "page": 6,
+          "text_path": "texts/3f8ed0df40bbe7900af4.txt",
+          "text_sha256": "3f8ed0df40bbe7900af4d99a50f17aa12b8d8af6ebac91fe03f07db36d8809a9"
+        },
+        {
+          "page": 7,
+          "text_path": "texts/2b73bfe3d4b3acaf6327.txt",
+          "text_sha256": "2b73bfe3d4b3acaf632777d603b38f3ba6b4eafd7e5cff77a33b87826a8c5ef9"
+        }
+      ],
+      "extractor": "Xpdf pdftotext 4.00 -raw -enc UTF-8",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "not_stated_in_document",
+      "year_proof": {
+        "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+        "text_path": "texts/19a3d52aa9af0602f974.txt",
+        "text_sha256": "19a3d52aa9af0602f974c1025b20b04049534466bc3d7becacc103ec25b22870",
+        "char_start": 0,
+        "char_end": 8,
+        "quote": "郑州大学收费标准",
+        "quote_sha256": "eb0fdd8c6f7031625228b2bc78d7d22e89bac3f0773b2b71f60c4c939a0fab97",
+        "page": 1,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "title": "南开大学2027级研究生学费收费公示表",
+      "url": "https://yzb.nankai.edu.cn/_upload/article/files/22/4b/a32799114afbb9c735e5ff773c81/e155d52a-7e74-476f-941d-fb81889904c1.pdf",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "fees",
+      "format": "pdf",
+      "raw_path": "originals/3240b07ed70feb7db699.pdf",
+      "raw_sha256": "3240b07ed70feb7db69970f621d87dd337e67de434b5ba84ba29f703d58fd56b",
+      "original_member": "data/snapshots/enrichment/nankai-2027-tuition-3240b07ed70f.pdf",
+      "text_path": "texts/f7b078e2d5ee32872576.txt",
+      "text_sha256": "f7b078e2d5ee3287257617054aac933d81b847105f6d60ff91d7647bf3727e17",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/10cc645493b7de3e284e.txt",
+          "text_sha256": "10cc645493b7de3e284e96b0ee36b85af8e6baa71b6538c4e6766e3df3b45b85"
+        },
+        {
+          "page": 2,
+          "text_path": "texts/48078ccc03d768dc258a.txt",
+          "text_sha256": "48078ccc03d768dc258affe19c54003be62fe18a3485d8aad14b002aa416f5a2"
+        },
+        {
+          "page": 3,
+          "text_path": "texts/28b286284dd3eafac609.txt",
+          "text_sha256": "28b286284dd3eafac609a0cbf97e9e62997bd4ea5b8ef384239bacc55461f613"
+        },
+        {
+          "page": 4,
+          "text_path": "texts/c235ff439cb94e668b10.txt",
+          "text_sha256": "c235ff439cb94e668b1048dee83d48e31b48ff7088d9e674af968d3471f58f6b"
+        }
+      ],
+      "extractor": "Xpdf pdftotext 4.00 -raw -enc UTF-8",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_heading",
+      "year_proof": {
+        "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+        "text_path": "texts/10cc645493b7de3e284e.txt",
+        "text_sha256": "10cc645493b7de3e284e96b0ee36b85af8e6baa71b6538c4e6766e3df3b45b85",
+        "char_start": 0,
+        "char_end": 19,
+        "quote": "南开大学2027级研究生学费收费公示表",
+        "quote_sha256": "4f8eb5c80fa59b0260a63773db8808d58516991fa8a8588277c67f7b3538a269",
+        "page": 1,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "title": "南开大学 2027 级硕士研究生学制",
+      "url": "https://yzb.nankai.edu.cn/_upload/article/files/39/4b/e8bc2da84cc8b9d34b6af0f93e67/baf37b90-056d-4118-aef8-764bf36da13f.pdf",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "duration",
+      "format": "pdf",
+      "raw_path": "originals/0570cceaa6a1b752a094.pdf",
+      "raw_sha256": "0570cceaa6a1b752a094933cecfb440c96b58b31b808f61101b302fcafe97676",
+      "original_member": "data/snapshots/enrichment/nankai-2027-duration-0570cceaa6a1.pdf",
+      "text_path": "texts/5364ac7f971df6445010.txt",
+      "text_sha256": "5364ac7f971df6445010e5b19a557a5186fa89d9fda164563982e3e9211f5640",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/7d39b98c7a01c23164d0.txt",
+          "text_sha256": "7d39b98c7a01c23164d062d9a43aee1396c2700c1d459aca3a09233e9e9d5d42"
+        },
+        {
+          "page": 2,
+          "text_path": "texts/5e736b56ca84f2277f97.txt",
+          "text_sha256": "5e736b56ca84f2277f97f02d0f66a7762bafbdcec3312cf7092ebc4f16748b37"
+        },
+        {
+          "page": 3,
+          "text_path": "texts/267ca019c63b1ee1eea0.txt",
+          "text_sha256": "267ca019c63b1ee1eea00f226d84acf3b810a219a8e0e433bfb846aead38eabb"
+        }
+      ],
+      "extractor": "Xpdf pdftotext 4.00 -raw -enc UTF-8",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_heading",
+      "year_proof": {
+        "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+        "text_path": "texts/7d39b98c7a01c23164d0.txt",
+        "text_sha256": "7d39b98c7a01c23164d062d9a43aee1396c2700c1d459aca3a09233e9e9d5d42",
+        "char_start": 0,
+        "char_end": 18,
+        "quote": "南开大学 2027 级硕士研究生学制",
+        "quote_sha256": "79a24bed9a589206394f3347eb6f0bc45c8bf700d5c6efa3731b53747adb4343",
+        "page": 1,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "history-78cb052e469bde06fcde",
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "title": "密码与网络空间安全学院2026年硕士研究生招生调剂公告",
+      "url": "https://cc.nankai.edu.cn/2026/0407/c13297a597352/page.htm",
+      "actual_year": 2026,
+      "metadata_year": 2026,
+      "material_type": "transfer",
+      "format": "html",
+      "raw_path": "originals/78cb052e469bde06fcde.html",
+      "raw_sha256": "78cb052e469bde06fcde5a0efed05fdef99e3cbd2b81ab94344e71366fa68d9d",
+      "original_member": "data/snapshots/history/2026-78cb052e469bde06.html",
+      "text_path": "texts/3a0cae30eadf85b7843c.txt",
+      "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360"
+        }
+      ],
+      "extractor": "stdlib HTMLParser visible blocks v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_heading",
+      "year_proof": {
+        "source_id": "history-78cb052e469bde06fcde",
+        "text_path": "texts/3a0cae30eadf85b7843c.txt",
+        "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+        "char_start": 0,
+        "char_end": 36,
+        "quote": "【2026考研】密码与网络空间安全学院 2026年硕士研究生招生调剂公告",
+        "quote_sha256": "e1092539e6f71d7fcbb3944029952fd24a0f9450a99c9e68322c9024bb99a33f",
+        "page": null,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "score-nankai-school-2026-e207f065bfea",
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "title": "南开大学2026年全国硕士研究生招生考试考生进入复试的初试成绩基本要求",
+      "url": "https://yzb.nankai.edu.cn/_upload/article/files/e5/40/f4f49be24d958bba39ac61a5c8fe/aeb1f201-52a4-4688-8607-7ca4c8bf11db.pdf",
+      "actual_year": 2026,
+      "metadata_year": 2026,
+      "material_type": "score",
+      "format": "pdf",
+      "raw_path": "originals/e207f065bfea29f374ab.pdf",
+      "raw_sha256": "e207f065bfea29f374ab4fefd3a4623af8a4173bf5e3f57f1a5f26972c9c230f",
+      "original_member": "data/snapshots/scores/nankai-school-2026-e207f065bfea29f3.pdf",
+      "text_path": "texts/6ecee49cb3c85e5644d5.txt",
+      "text_sha256": "6ecee49cb3c85e5644d5cda055cd280b7513f1d2852b5eb359ca999ae5cc92f4",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/4dcfc6ad9d5ce1038750.txt",
+          "text_sha256": "4dcfc6ad9d5ce1038750a51026a677e333753a1175ab67cfa5a2cca7b51d524b"
+        },
+        {
+          "page": 2,
+          "text_path": "texts/0eb6a7c60303786a274f.txt",
+          "text_sha256": "0eb6a7c60303786a274f197079a266cdbd5a221d60a86185915b6860793bb09a"
+        },
+        {
+          "page": 3,
+          "text_path": "texts/bbc0dd49d49de7bba6b2.txt",
+          "text_sha256": "bbc0dd49d49de7bba6b2b7d6f9cea4651da92d59d5d6e7da76411b8475b15d3e"
+        }
+      ],
+      "extractor": "Xpdf pdftotext 4.00 -raw -enc UTF-8",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_heading",
+      "year_proof": {
+        "source_id": "score-nankai-school-2026-e207f065bfea",
+        "text_path": "texts/4dcfc6ad9d5ce1038750.txt",
+        "text_sha256": "4dcfc6ad9d5ce1038750a51026a677e333753a1175ab67cfa5a2cca7b51d524b",
+        "char_start": 0,
+        "char_end": 35,
+        "quote": "南开大学2026年全国硕士研究生招生考试考生进入复试的初试成绩基本要求",
+        "quote_sha256": "cbae4d1879442a1bd610e67e0028af41ebf25d0a07a40bc404826b8262d96621",
+        "page": 1,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "score-nankai-school-2025-ca92bfb2b8e8",
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "title": "南开大学2025年全国硕士研究生招生考试考生进入复试的初试成绩基本要求（学校线)",
+      "url": "https://yzb.nankai.edu.cn/_upload/article/files/29/a3/735bb718434382cc0d06a2a11b83/b09a1314-ada2-496c-956a-128d3b5bc611.pdf",
+      "actual_year": 2025,
+      "metadata_year": 2025,
+      "material_type": "score",
+      "format": "pdf",
+      "raw_path": "originals/ca92bfb2b8e8d211465e.pdf",
+      "raw_sha256": "ca92bfb2b8e8d211465e1acc6b3cb8e6a221eb1fcfa16a12b03ab4170f9cb944",
+      "original_member": "data/snapshots/scores/nankai-school-2025-ca92bfb2b8e8d211.pdf",
+      "text_path": "texts/611600a1a5903dc272e8.txt",
+      "text_sha256": "611600a1a5903dc272e8c7cea075d200de10b5c8a448b830a0db52c3d401deb6",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/ad0496b8a53c78fc793a.txt",
+          "text_sha256": "ad0496b8a53c78fc793a8c6704b3037ccfa7ac013ad50ae1ed1df70c70d32ecd"
+        },
+        {
+          "page": 2,
+          "text_path": "texts/92bf8db35e195365440c.txt",
+          "text_sha256": "92bf8db35e195365440cfb886d2cd9d3295faa4e7b5472f6203d151ec143ce74"
+        },
+        {
+          "page": 3,
+          "text_path": "texts/325d3d80513df6bf3212.txt",
+          "text_sha256": "325d3d80513df6bf3212a3e81fdd4ea53a9086038920de892024d7ea6f06f537"
+        }
+      ],
+      "extractor": "Xpdf pdftotext 4.00 -raw -enc UTF-8",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_heading",
+      "year_proof": {
+        "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+        "text_path": "texts/ad0496b8a53c78fc793a.txt",
+        "text_sha256": "ad0496b8a53c78fc793a8c6704b3037ccfa7ac013ad50ae1ed1df70c70d32ecd",
+        "char_start": 0,
+        "char_end": 41,
+        "quote": "南开大学2025年全国硕士研究生招生考试考生进入复试的初试成绩基本要求\n（学校线)",
+        "quote_sha256": "ef33cba9e83871d21a101b5b07b7775cbfe37d848d0be0e5fd31f16b17a580e8",
+        "page": 1,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "score-nankai-school-2024-af773cdc9cb9",
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "title": "南开大学2024年硕士研究生考试考生进入复试的初试成绩基本要求（学校线）",
+      "url": "https://yzb.nankai.edu.cn/_upload/article/files/4b/5e/3fb796fa4262a61c5f585911dcca/f9810139-2704-4daa-8777-bdf3ea0bfb7c.pdf",
+      "actual_year": 2024,
+      "metadata_year": 2024,
+      "material_type": "score",
+      "format": "pdf",
+      "raw_path": "originals/af773cdc9cb9c79b2573.pdf",
+      "raw_sha256": "af773cdc9cb9c79b2573656a5c7b462a47fb55b083ac8c44513730f4de912be5",
+      "original_member": "data/snapshots/scores/nankai-school-2024-af773cdc9cb9c79b.pdf",
+      "text_path": "texts/d222d3731decdc4c1706.txt",
+      "text_sha256": "d222d3731decdc4c1706ceaae6521538c7e72d701aa88c9bac89ff12194e0c15",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/67935d22a7425dad79f5.txt",
+          "text_sha256": "67935d22a7425dad79f5ec2dcef973903a7c3d4c5e8d32209239607cda253bff"
+        },
+        {
+          "page": 2,
+          "text_path": "texts/fe6b913f66b89a590f42.txt",
+          "text_sha256": "fe6b913f66b89a590f42249f6c6c8918d7b46d54179156f0a5a07ffe1b78ee67"
+        }
+      ],
+      "extractor": "Xpdf pdftotext 4.00 -raw -enc UTF-8",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_heading",
+      "year_proof": {
+        "source_id": "score-nankai-school-2024-af773cdc9cb9",
+        "text_path": "texts/67935d22a7425dad79f5.txt",
+        "text_sha256": "67935d22a7425dad79f5ec2dcef973903a7c3d4c5e8d32209239607cda253bff",
+        "char_start": 0,
+        "char_end": 37,
+        "quote": "南开大学2024年硕士研究生考试考生进入复试的初试成绩\n基本要求（学校线)",
+        "quote_sha256": "666f48087e20a97ac01709ad878ae17f0478196e66fa203e141ae0ebe90dc304",
+        "page": 1,
+        "section": "原始标题",
+        "role": "actual_year",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "support-zzu-fees-publication-052606791aaa",
+      "unit_id": "368317",
+      "unit_name": "郑州大学",
+      "actual_year": null,
+      "title": "郑州大学收费标准官方附件入口",
+      "url": "https://www5.zzu.edu.cn/zcycwb/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1091&wbnewsid=1160",
+      "format": "html",
+      "material_type": "publication_link_metadata",
+      "raw_path": "originals/052606791aaad6390a63.html",
+      "raw_sha256": "052606791aaad6390a63049e6a943d28f6a24e46e6affa98691072e538d17a0d",
+      "original_member": "data/snapshots/enrichment/zzu-tuition-current-publication-052606791aaa.html",
+      "text_path": null,
+      "pages": [],
+      "semantic_indexable": false,
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "year_basis": "not_asserted_by_supporting_link"
+    },
+    {
+      "id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+      "unit_id": "367888",
+      "unit_name": "北京工商大学",
+      "title": "北京工商大学2027年硕士研究生招生专业目录.pdf",
+      "url": "https://yzb.btbu.edu.cn/docs/2026-10/680bddc2b20747049b56c60bbe4a2c04.pdf",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "catalog",
+      "format": "pdf",
+      "raw_path": "originals/69b9d6d4c0eacc386803.pdf",
+      "raw_sha256": "69b9d6d4c0eacc3868031914223a3baf91f4e4ea1a531f06eb57840809f714b2",
+      "original_member": "data/snapshots/catalogs/final-trusted/367888-2027/6391b5df71cbd906-69b9d6d4c0eacc38.pdf",
+      "text_path": "texts/453ca7215a5d940fdc89.txt",
+      "text_sha256": "453ca7215a5d940fdc898fbc8971d1babac42dccf81df478f10b0187a15a0136",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/093bd354a6f053c8c65e.txt",
+          "text_sha256": "093bd354a6f053c8c65e7d3cb2e2ac38e41b64b19051af6b62415b9e815991e5",
+          "full_text_char_start": 0,
+          "full_text_char_end": 1066
+        },
+        {
+          "page": 2,
+          "text_path": "texts/9987fb5838f20b117a12.txt",
+          "text_sha256": "9987fb5838f20b117a124d057ce554c2a92b094c329b7aaa88a507200bc475b7",
+          "full_text_char_start": 1068,
+          "full_text_char_end": 2293
+        },
+        {
+          "page": 3,
+          "text_path": "texts/1fdda774a0fb2a3d7d1f.txt",
+          "text_sha256": "1fdda774a0fb2a3d7d1f7f6b4960ccebacfb4da5ce97a6e171e7593970e33a4b",
+          "full_text_char_start": 2295,
+          "full_text_char_end": 3401
+        },
+        {
+          "page": 4,
+          "text_path": "texts/019c3ef6f5009eece4b9.txt",
+          "text_sha256": "019c3ef6f5009eece4b9b93a545473338a11e593c242f59fcbecbf57548b7a38",
+          "full_text_char_start": 3403,
+          "full_text_char_end": 4600
+        },
+        {
+          "page": 5,
+          "text_path": "texts/b2d7df7c1de9987cae4d.txt",
+          "text_sha256": "b2d7df7c1de9987cae4d5c6d4584489bdb0fb9c44f9117462bbc45f1fe88bad1",
+          "full_text_char_start": 4602,
+          "full_text_char_end": 5820
+        },
+        {
+          "page": 6,
+          "text_path": "texts/4c55ba0fb47a414c1791.txt",
+          "text_sha256": "4c55ba0fb47a414c17916257813e011bdad543067d7d98eef722c5785d405043",
+          "full_text_char_start": 5822,
+          "full_text_char_end": 6883
+        },
+        {
+          "page": 7,
+          "text_path": "texts/3417e0b89889ea162760.txt",
+          "text_sha256": "3417e0b89889ea162760f77f6c279b4ba0d03b1dc3ba5e94088748ecbb3fcb1b",
+          "full_text_char_start": 6885,
+          "full_text_char_end": 8034
+        },
+        {
+          "page": 8,
+          "text_path": "texts/88e4163ef29cbea5b0ec.txt",
+          "text_sha256": "88e4163ef29cbea5b0ecb46848d1525a5886366f628e53882b09297445ed91e4",
+          "full_text_char_start": 8036,
+          "full_text_char_end": 9236
+        },
+        {
+          "page": 9,
+          "text_path": "texts/f215bb2a34440602ad22.txt",
+          "text_sha256": "f215bb2a34440602ad22c642438e9428676df0d0be471f48f4a9d712c290f019",
+          "full_text_char_start": 9238,
+          "full_text_char_end": 10378
+        },
+        {
+          "page": 10,
+          "text_path": "texts/d74c384cf22cd983547d.txt",
+          "text_sha256": "d74c384cf22cd983547dad9d5d11791df946bbe161801ddf93c8e15b3f9eb031",
+          "full_text_char_start": 10380,
+          "full_text_char_end": 11395
+        }
+      ],
+      "extractor": "reviewed archived pdftotext -raw -enc UTF-8; CRLF to LF; page separator=two LF",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_pdf_heading",
+      "checked_at": "2026-10-30T02:57:47+00:00",
+      "year_proof": {
+        "source_id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+        "text_path": "texts/453ca7215a5d940fdc89.txt",
+        "text_sha256": "453ca7215a5d940fdc898fbc8971d1babac42dccf81df478f10b0187a15a0136",
+        "char_start": 0,
+        "char_end": 22,
+        "quote": "北京工商大学2027年硕士研究生招生专业目录",
+        "quote_sha256": "731b98c6eb7580d1b5fe56e320d01c5579e1b322280657f513907551e0f00151",
+        "page": 1,
+        "section": null,
+        "role": "year_heading",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+      "unit_id": "368218",
+      "unit_name": "浙江工业大学",
+      "title": "附件3：浙江工业大学2027年硕士研究生考试招生专业目录（非全日制专业学位硕士）.pdf",
+      "url": "http://www.yz.zjut.edu.cn/_upload/article/files/4a/1c/3e345c4b46689217aa5a4d5800be/644382d0-1107-464b-bda5-82485087a0a9.pdf",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "catalog",
+      "format": "pdf",
+      "raw_path": "originals/cfa925508526e2908763.pdf",
+      "raw_sha256": "cfa925508526e29087632395cf74b60ce938fc14489480b2b5594c3b211ab621",
+      "original_member": "data/snapshots/catalogs/final-trusted/368218-2027/dfe02e9df8b0e98d-cfa925508526e290.pdf",
+      "text_path": "texts/e595f6c112779515ffbf.txt",
+      "text_sha256": "e595f6c112779515ffbf46a581eadcc1e7bfab0c6439883c01f279a7823dd16a",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/7ab6ba4a6ffd8e044902.txt",
+          "text_sha256": "7ab6ba4a6ffd8e04490256acd095af1fde454a97f74b96f2e30265c362c89e92",
+          "full_text_char_start": 0,
+          "full_text_char_end": 1298
+        },
+        {
+          "page": 2,
+          "text_path": "texts/23c06284a9c52cfaea9e.txt",
+          "text_sha256": "23c06284a9c52cfaea9ee45d806e4719017970c55776e5b6d7a9dec02b904f87",
+          "full_text_char_start": 1300,
+          "full_text_char_end": 2237
+        }
+      ],
+      "extractor": "reviewed archived pdftotext -raw -enc UTF-8; CRLF to LF; page separator=two LF",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_pdf_heading",
+      "checked_at": "2026-10-30T02:57:49+00:00",
+      "year_proof": {
+        "source_id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+        "text_path": "texts/e595f6c112779515ffbf.txt",
+        "text_sha256": "e595f6c112779515ffbf46a581eadcc1e7bfab0c6439883c01f279a7823dd16a",
+        "char_start": 0,
+        "char_end": 36,
+        "quote": "浙江工业大学2027年硕士研究生考试招生专业目录（非全日制专业学位硕士）",
+        "quote_sha256": "2960bcae826f4fd908d886a45261b3b20e9a9f8f79ab342ba051bdeaa3987742",
+        "page": 1,
+        "section": null,
+        "role": "year_heading",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "catalog-678581-2027-c7c00396e7f5553b-2859923889d6-v2",
+      "unit_id": "678581",
+      "unit_name": "贵州民族大学",
+      "title": "附件1 贵州民族大学2027年硕士研究生招生专业目录.pdf",
+      "url": "https://yjsy.gzmu.edu.cn/upload/yjsy/contentmanage/article/file/2026/10/08/202610082129074656.pdf?t=1791466148668",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "catalog",
+      "format": "pdf",
+      "raw_path": "originals/2859923889d6d59ffc15.pdf",
+      "raw_sha256": "2859923889d6d59ffc15bff561381826bc07c3364ac8d126401cac1a4ac07e0b",
+      "original_member": "data/snapshots/catalogs/final-trusted/678581-2027/c7c00396e7f5553b-2859923889d6d59f.pdf",
+      "text_path": "texts/e12db55e3dda3a882c0d.txt",
+      "text_sha256": "e12db55e3dda3a882c0d1019422a2899172814ca821214e50cb4da337f6e76fc",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/5ec0027e127a63fcd081.txt",
+          "text_sha256": "5ec0027e127a63fcd0817893f147a6c2173ecf907f4e160920a8eca7b208e05a",
+          "full_text_char_start": 0,
+          "full_text_char_end": 1290
+        },
+        {
+          "page": 2,
+          "text_path": "texts/cf49be4c4ed598abee50.txt",
+          "text_sha256": "cf49be4c4ed598abee50d6f083e51159068695964442a93a1d590fed4513de0c",
+          "full_text_char_start": 1292,
+          "full_text_char_end": 2679
+        },
+        {
+          "page": 3,
+          "text_path": "texts/4f7f78c876a3ec219c58.txt",
+          "text_sha256": "4f7f78c876a3ec219c58697520df0c5fb47bf044a32ee0062b0c21a4e7feb74c",
+          "full_text_char_start": 2681,
+          "full_text_char_end": 3902
+        },
+        {
+          "page": 4,
+          "text_path": "texts/0dc615a8bc4bb5f6e23e.txt",
+          "text_sha256": "0dc615a8bc4bb5f6e23ebb0986366bef0e1e0fbd1a8e62eb84544e4b8d737132",
+          "full_text_char_start": 3904,
+          "full_text_char_end": 4336
+        }
+      ],
+      "extractor": "reviewed archived pdftotext -raw -enc UTF-8; CRLF to LF; page separator=two LF",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_pdf_heading",
+      "checked_at": "2026-10-30T02:57:49+00:00",
+      "year_proof": {
+        "source_id": "catalog-678581-2027-c7c00396e7f5553b-2859923889d6-v2",
+        "text_path": "texts/e12db55e3dda3a882c0d.txt",
+        "text_sha256": "e12db55e3dda3a882c0d1019422a2899172814ca821214e50cb4da337f6e76fc",
+        "char_start": 0,
+        "char_end": 22,
+        "quote": "贵州民族大学2027年硕士研究生招生专业目录",
+        "quote_sha256": "066bd393fa9d282717dcc8b637b0faa70ed4d91c99e7195e970145886158f656",
+        "page": 1,
+        "section": null,
+        "role": "year_heading",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+      "unit_id": "368190",
+      "unit_name": "南京中医药大学",
+      "title": "南京中医药大学2027年硕士研究生招生专业目录.pdf",
+      "url": "http://gra.njucm.edu.cn/_upload/article/files/7f/5d/2f652b4745008f3eabfdcffa689c/e81c18ca-f0bd-4cfe-8e26-a754ad729b3c.pdf",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "catalog",
+      "format": "pdf",
+      "raw_path": "originals/2e12d12881a82bc94245.pdf",
+      "raw_sha256": "2e12d12881a82bc942454c18682af114c0f2decaa846166b0752168c9d394407",
+      "original_member": "data/snapshots/catalogs/expansion-20261102/pdf/formal/368190-2027/a25e865cca3dce00-2e12d12881a82bc9.pdf",
+      "text_path": "texts/770ceec10e2c37c8208f.txt",
+      "text_sha256": "770ceec10e2c37c8208f7f02f46caa46e76630c36bc3228359c8ac73cc37300e",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/9b6930440fff76d805d9.txt",
+          "text_sha256": "9b6930440fff76d805d91d07f6062ffc3806561e1b1928e5d84e6055351d5278",
+          "full_text_char_start": 0,
+          "full_text_char_end": 3619
+        },
+        {
+          "page": 2,
+          "text_path": "texts/02283b3d0eee73c4f80d.txt",
+          "text_sha256": "02283b3d0eee73c4f80dd81eabcf0ebe9a68336afc7a9044707b084376621bd5",
+          "full_text_char_start": 3621,
+          "full_text_char_end": 7055
+        },
+        {
+          "page": 3,
+          "text_path": "texts/cc263d7c9b677c21145d.txt",
+          "text_sha256": "cc263d7c9b677c21145db7d1cfa58a56ce5b9ba1e822ef15ef023ee547e68162",
+          "full_text_char_start": 7057,
+          "full_text_char_end": 10434
+        },
+        {
+          "page": 4,
+          "text_path": "texts/fd82a41586193e91680c.txt",
+          "text_sha256": "fd82a41586193e91680c3be70b271c33ef8d9cb044264113b789ed538afb7074",
+          "full_text_char_start": 10436,
+          "full_text_char_end": 13907
+        },
+        {
+          "page": 5,
+          "text_path": "texts/e478a557d0ad5fe35afe.txt",
+          "text_sha256": "e478a557d0ad5fe35afee80e5a2a561427e6b9e27a81dde849ddcd77e9d4c19e",
+          "full_text_char_start": 13909,
+          "full_text_char_end": 17652
+        },
+        {
+          "page": 6,
+          "text_path": "texts/70debcfb3a3eee762522.txt",
+          "text_sha256": "70debcfb3a3eee762522d118e772bd592f06f8056da463853c80367eabfb18fd",
+          "full_text_char_start": 17654,
+          "full_text_char_end": 21547
+        },
+        {
+          "page": 7,
+          "text_path": "texts/05125f5519194e6be7f1.txt",
+          "text_sha256": "05125f5519194e6be7f1a2532b786171b3bb80a43ed391bde5b0136a3d390bee",
+          "full_text_char_start": 21549,
+          "full_text_char_end": 24741
+        },
+        {
+          "page": 8,
+          "text_path": "texts/27b7e9c2eb9892d5eadd.txt",
+          "text_sha256": "27b7e9c2eb9892d5eadd222a98545dd17e667a846678b0bac72cebc1c0d3d238",
+          "full_text_char_start": 24743,
+          "full_text_char_end": 27833
+        },
+        {
+          "page": 9,
+          "text_path": "texts/2423059c900273a5ce84.txt",
+          "text_sha256": "2423059c900273a5ce84f0002a597ee5f217e8fb61a04da130a461d42ca56632",
+          "full_text_char_start": 27835,
+          "full_text_char_end": 31121
+        },
+        {
+          "page": 10,
+          "text_path": "texts/3cbd3ce7857c7cae82aa.txt",
+          "text_sha256": "3cbd3ce7857c7cae82aa4e72d79d4e6a00e37be944b3348f84fe3e2863a44e48",
+          "full_text_char_start": 31123,
+          "full_text_char_end": 33692
+        },
+        {
+          "page": 11,
+          "text_path": "texts/57cb6336391038667bdf.txt",
+          "text_sha256": "57cb6336391038667bdf458581c93191ff88e3d59ae7ae20ff541e329216c744",
+          "full_text_char_start": 33694,
+          "full_text_char_end": 36092
+        },
+        {
+          "page": 12,
+          "text_path": "texts/3b3e76cb26fd8522edfe.txt",
+          "text_sha256": "3b3e76cb26fd8522edfeb032341a20308e082796f1b2f7a5882f6c616b7e2c92",
+          "full_text_char_start": 36094,
+          "full_text_char_end": 38998
+        },
+        {
+          "page": 13,
+          "text_path": "texts/bf0cea18e512c4129ad6.txt",
+          "text_sha256": "bf0cea18e512c4129ad6042b3ab14ebf08b0868074d952336ef2ed7664cd1e00",
+          "full_text_char_start": 39000,
+          "full_text_char_end": 42080
+        },
+        {
+          "page": 14,
+          "text_path": "texts/52714df3f9ea58ea7b0d.txt",
+          "text_sha256": "52714df3f9ea58ea7b0d94aeb24ef0bdbcf67f64c0ff17b9c01c2a183de1b9d6",
+          "full_text_char_start": 42082,
+          "full_text_char_end": 45162
+        },
+        {
+          "page": 15,
+          "text_path": "texts/d77946336859f3a9347e.txt",
+          "text_sha256": "d77946336859f3a9347e9c55fc9ef5243200c75221b033751aa2659e88b88d26",
+          "full_text_char_start": 45164,
+          "full_text_char_end": 48303
+        },
+        {
+          "page": 16,
+          "text_path": "texts/0a43c31551e8f97bc37a.txt",
+          "text_sha256": "0a43c31551e8f97bc37af961e4b58f8e2eefe49acc60c2d26a2a814396ea020a",
+          "full_text_char_start": 48305,
+          "full_text_char_end": 51403
+        },
+        {
+          "page": 17,
+          "text_path": "texts/a6f5ef7f449dc3b96697.txt",
+          "text_sha256": "a6f5ef7f449dc3b96697f1af0ab397b1b5a7f93af66e1c202a584689ee7d97dc",
+          "full_text_char_start": 51405,
+          "full_text_char_end": 54516
+        },
+        {
+          "page": 18,
+          "text_path": "texts/3955915474ea8d143825.txt",
+          "text_sha256": "3955915474ea8d143825a37f667bf25e370d05c80d9acc8e746ad4655b7aaf72",
+          "full_text_char_start": 54518,
+          "full_text_char_end": 57640
+        },
+        {
+          "page": 19,
+          "text_path": "texts/4e63a807d67f930289c7.txt",
+          "text_sha256": "4e63a807d67f930289c7c28d55784e2458b3c41bc293e253e28a95aabcc65543",
+          "full_text_char_start": 57642,
+          "full_text_char_end": 60888
+        },
+        {
+          "page": 20,
+          "text_path": "texts/cc8652f181203402bd98.txt",
+          "text_sha256": "cc8652f181203402bd98a29c0ea1d464ec3ff0e13fd76d96853727f254179589",
+          "full_text_char_start": 60890,
+          "full_text_char_end": 62020
+        }
+      ],
+      "extractor": "reviewed archived pdftotext -raw -enc UTF-8; CRLF to LF; page separator=two LF",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_pdf_heading",
+      "checked_at": "2026-11-02T02:02:34+00:00",
+      "year_proof": {
+        "source_id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+        "text_path": "texts/770ceec10e2c37c8208f.txt",
+        "text_sha256": "770ceec10e2c37c8208f7f02f46caa46e76630c36bc3228359c8ac73cc37300e",
+        "char_start": 0,
+        "char_end": 23,
+        "quote": "南京中医药大学2027年硕士研究生招生专业目录",
+        "quote_sha256": "0f07cce22d1b854e111e4a341055acdefa2b61b53d3806336746ad5fe0292ba8",
+        "page": 1,
+        "section": null,
+        "role": "year_heading",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "catalog-367927-2027-85a9575f605debb0-da572f009ef2",
+      "unit_id": "367927",
+      "unit_name": "首都经济贸易大学",
+      "title": "首都经济贸易大学2027年硕士研究生招生专业目录与招生计划",
+      "url": "https://yjs.cueb.edu.cn/docs/2026-09/e9ef4e52360d4cf69a85566084a26133.pdf",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "catalog",
+      "format": "pdf",
+      "raw_path": "originals/da572f009ef2bf753307.pdf",
+      "raw_sha256": "da572f009ef2bf753307907e598fab39a0cb20f12b39f0b531e1a9c1226b49d0",
+      "original_member": "data/snapshots/catalogs/expansion-20261102/pdf/formal/367927-2027/85a9575f605debb0-da572f009ef2bf75.pdf",
+      "text_path": "texts/8ed7c151a26b42676e75.txt",
+      "text_sha256": "8ed7c151a26b42676e7567c1a8ba65377c56bfc430d1a6907075654b48469fd4",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/ff84e6cf48cd2ccc29fb.txt",
+          "text_sha256": "ff84e6cf48cd2ccc29fb9906000d7ae2b52bdaff761c0b69ccbeef9ef1c8fec3",
+          "full_text_char_start": 0,
+          "full_text_char_end": 643
+        },
+        {
+          "page": 2,
+          "text_path": "texts/f95de629a43745ae5b9e.txt",
+          "text_sha256": "f95de629a43745ae5b9e1be852c4981c4f9c41acd841b5a5b01217f45d3b6713",
+          "full_text_char_start": 645,
+          "full_text_char_end": 1353
+        },
+        {
+          "page": 3,
+          "text_path": "texts/b3d71c7e63b14b05ef1c.txt",
+          "text_sha256": "b3d71c7e63b14b05ef1cf17af2424d29d4e2aa9afa9ff7ebb70242f214c71bb4",
+          "full_text_char_start": 1355,
+          "full_text_char_end": 1997
+        },
+        {
+          "page": 4,
+          "text_path": "texts/1cc5bd2a19aa2d840e3a.txt",
+          "text_sha256": "1cc5bd2a19aa2d840e3afb3e68fda287ad4f0793532b8f8916522ab484cacd68",
+          "full_text_char_start": 1999,
+          "full_text_char_end": 2562
+        },
+        {
+          "page": 5,
+          "text_path": "texts/d8bfe37f9abb20b3d687.txt",
+          "text_sha256": "d8bfe37f9abb20b3d6878787dc6e0b3c2f97f63f2a6bba10144f2386e7830394",
+          "full_text_char_start": 2564,
+          "full_text_char_end": 3234
+        },
+        {
+          "page": 6,
+          "text_path": "texts/748afa97c44282612f81.txt",
+          "text_sha256": "748afa97c44282612f81cd8f4920d5a5c3eb2f4bb03ed77a0d75e792e0ef92d5",
+          "full_text_char_start": 3236,
+          "full_text_char_end": 3696
+        },
+        {
+          "page": 7,
+          "text_path": "texts/5fe5a6ddbfc1260c8ef9.txt",
+          "text_sha256": "5fe5a6ddbfc1260c8ef9aa7022e524b0023db2804b9f747df8c72fe8a4b4ffb5",
+          "full_text_char_start": 3698,
+          "full_text_char_end": 4181
+        },
+        {
+          "page": 8,
+          "text_path": "texts/0e054aece3ab504aca1a.txt",
+          "text_sha256": "0e054aece3ab504aca1ab5f86ba0fc9c3ad8d2b21678b1b89205c986c0130453",
+          "full_text_char_start": 4183,
+          "full_text_char_end": 4554
+        },
+        {
+          "page": 9,
+          "text_path": "texts/50889e2245c62dd05ccb.txt",
+          "text_sha256": "50889e2245c62dd05ccb5ac10e0290793cfd59f26bd3dd6f4d94461bfe8e9adb",
+          "full_text_char_start": 4556,
+          "full_text_char_end": 5351
+        }
+      ],
+      "extractor": "reviewed archived pdftotext -raw -enc UTF-8; CRLF to LF; page separator=two LF",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_pdf_heading",
+      "checked_at": "2026-11-02T02:02:28+00:00",
+      "year_proof": {
+        "source_id": "catalog-367927-2027-85a9575f605debb0-da572f009ef2",
+        "text_path": "texts/8ed7c151a26b42676e75.txt",
+        "text_sha256": "8ed7c151a26b42676e7567c1a8ba65377c56bfc430d1a6907075654b48469fd4",
+        "char_start": 275,
+        "char_end": 304,
+        "quote": "首都经济贸易大学2027年硕士研究生招生专业目录与招生计划",
+        "quote_sha256": "f88fde639c736f8e5ca36a07884a5347221f1815935b959456c2d2df841f31de",
+        "page": 1,
+        "section": null,
+        "role": "year_heading",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+      "unit_id": "677380",
+      "unit_name": "上海电力大学",
+      "title": "上海电力大学2027年招收攻读硕士学位研究生专业目录、专业简介及学院联系方式.pdf",
+      "url": "https://yjsc.shiep.edu.cn/_upload/article/files/c6/09/0520fb78409c8ee5e6cd111f6ad0/bbde25bd-90fa-49b5-8ccf-4772bd07bc55.pdf",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "catalog",
+      "format": "pdf",
+      "raw_path": "originals/793507ece444ff9eb092.pdf",
+      "raw_sha256": "793507ece444ff9eb09233f6ecc37d67b19de076eb9ae81fc9cebd2139bfa91c",
+      "original_member": "data/snapshots/catalogs/expansion-20261102/pdf/v2/formal/677380-2027/8287cc7f12c39a1f-793507ece444ff9e.pdf",
+      "text_path": "texts/5d4a3ab6918c326f1d92.txt",
+      "text_sha256": "5d4a3ab6918c326f1d9206181f4849a602d0f03a09ec237d5d00ae8e4c88825a",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/ad26ea5bd2c73024d706.txt",
+          "text_sha256": "ad26ea5bd2c73024d70636208152741c84ec0e2502e5ec57cd3b08ba0aa16b4b",
+          "full_text_char_start": 0,
+          "full_text_char_end": 1021
+        },
+        {
+          "page": 2,
+          "text_path": "texts/456a1c158ed1ed3f0382.txt",
+          "text_sha256": "456a1c158ed1ed3f0382ada3cc14621b2b3989000e111d05d94247d189f504a1",
+          "full_text_char_start": 1023,
+          "full_text_char_end": 2211
+        },
+        {
+          "page": 3,
+          "text_path": "texts/0bdb10a2338cfd1b6861.txt",
+          "text_sha256": "0bdb10a2338cfd1b686151e61f068fdd2866fae05a335ebe804bc031a9cc8962",
+          "full_text_char_start": 2213,
+          "full_text_char_end": 3327
+        },
+        {
+          "page": 4,
+          "text_path": "texts/ee1b6e556da1901b4d14.txt",
+          "text_sha256": "ee1b6e556da1901b4d14d563d729ad6db81dbcc362201cd2a94d4273aaba3812",
+          "full_text_char_start": 3329,
+          "full_text_char_end": 4432
+        },
+        {
+          "page": 5,
+          "text_path": "texts/b3432ad2774d66b55a4e.txt",
+          "text_sha256": "b3432ad2774d66b55a4ea0385f310f45f0e2ae4809a5a732f973115c0fef9478",
+          "full_text_char_start": 4434,
+          "full_text_char_end": 5609
+        },
+        {
+          "page": 6,
+          "text_path": "texts/bdeb1851988c673351b3.txt",
+          "text_sha256": "bdeb1851988c673351b3f8b70280e7185509b3d07c8cf58b6dac97562cd321cb",
+          "full_text_char_start": 5611,
+          "full_text_char_end": 6839
+        },
+        {
+          "page": 7,
+          "text_path": "texts/148947ff23e12b154b07.txt",
+          "text_sha256": "148947ff23e12b154b07e5d5a6471457af99a966d0e1671ce588769a6348a038",
+          "full_text_char_start": 6841,
+          "full_text_char_end": 8084
+        },
+        {
+          "page": 8,
+          "text_path": "texts/7bea05059d18620a88d5.txt",
+          "text_sha256": "7bea05059d18620a88d5b541db2a574eb520052e126ac8477d70cece51c8a043",
+          "full_text_char_start": 8086,
+          "full_text_char_end": 9577
+        },
+        {
+          "page": 9,
+          "text_path": "texts/cb8da2546b261314788c.txt",
+          "text_sha256": "cb8da2546b261314788c7c49feb68578eca642b4cfe298f7ea02705e9c2c4662",
+          "full_text_char_start": 9579,
+          "full_text_char_end": 10485
+        },
+        {
+          "page": 10,
+          "text_path": "texts/7807a2de9179342b29c3.txt",
+          "text_sha256": "7807a2de9179342b29c34846926f5e2a6e9441051b130f3e973b9c13de1cf0c5",
+          "full_text_char_start": 10487,
+          "full_text_char_end": 11311
+        },
+        {
+          "page": 11,
+          "text_path": "texts/172d1c9bcca6d73b317b.txt",
+          "text_sha256": "172d1c9bcca6d73b317b6298725b4deff18c1c8bf301fcde2504f01ebc1ce6d5",
+          "full_text_char_start": 11313,
+          "full_text_char_end": 12225
+        },
+        {
+          "page": 12,
+          "text_path": "texts/76a8fc84299559ff5d5c.txt",
+          "text_sha256": "76a8fc84299559ff5d5c11baef8d8a279ba263a3a5f7396c61d07aafe9e2bb85",
+          "full_text_char_start": 12227,
+          "full_text_char_end": 13119
+        },
+        {
+          "page": 13,
+          "text_path": "texts/6e383f2f16048a75606e.txt",
+          "text_sha256": "6e383f2f16048a75606ef505a5dae13128c9566eff1876a87a760c8fe8298b83",
+          "full_text_char_start": 13121,
+          "full_text_char_end": 14199
+        },
+        {
+          "page": 14,
+          "text_path": "texts/8a92453f8064055418ba.txt",
+          "text_sha256": "8a92453f8064055418ba49a06e791cfea5eaa94a38485ca9df2ff100ae617764",
+          "full_text_char_start": 14201,
+          "full_text_char_end": 15322
+        },
+        {
+          "page": 15,
+          "text_path": "texts/2d2e855ef1abf421e8b0.txt",
+          "text_sha256": "2d2e855ef1abf421e8b0a9f5be8d23ed049b9c38038d0302c507cf68c0cac0aa",
+          "full_text_char_start": 15324,
+          "full_text_char_end": 16478
+        },
+        {
+          "page": 16,
+          "text_path": "texts/75e6605033b431fb8471.txt",
+          "text_sha256": "75e6605033b431fb84714e47e1557653379b222bf80569d2fb4d7c9c4ae50940",
+          "full_text_char_start": 16480,
+          "full_text_char_end": 17653
+        },
+        {
+          "page": 17,
+          "text_path": "texts/06fd18227c9a6d8bf03a.txt",
+          "text_sha256": "06fd18227c9a6d8bf03a404885bff679f958886e3ca4b96b9f8b172842e5f3a8",
+          "full_text_char_start": 17655,
+          "full_text_char_end": 18760
+        },
+        {
+          "page": 18,
+          "text_path": "texts/935678d0a2c4313deda7.txt",
+          "text_sha256": "935678d0a2c4313deda7281f62aa511dbaf4e881da2b7c734aa2b36161cd0753",
+          "full_text_char_start": 18762,
+          "full_text_char_end": 19824
+        },
+        {
+          "page": 19,
+          "text_path": "texts/54a7167a51da878ae2b4.txt",
+          "text_sha256": "54a7167a51da878ae2b4de8ea63bd7949e87792e55312d1c0a5fd02fc141d354",
+          "full_text_char_start": 19826,
+          "full_text_char_end": 20917
+        },
+        {
+          "page": 20,
+          "text_path": "texts/08a16ca9cb7899b663a0.txt",
+          "text_sha256": "08a16ca9cb7899b663a04fdfcd0c2104614b466a4e9e58b3b9dc73accd304469",
+          "full_text_char_start": 20919,
+          "full_text_char_end": 22204
+        },
+        {
+          "page": 21,
+          "text_path": "texts/4f98e524c2e64a244aae.txt",
+          "text_sha256": "4f98e524c2e64a244aae985ac0075ffd69aa5e800c8ac98037194325fa52586d",
+          "full_text_char_start": 22206,
+          "full_text_char_end": 23435
+        },
+        {
+          "page": 22,
+          "text_path": "texts/d0c28fc0d14399de1abe.txt",
+          "text_sha256": "d0c28fc0d14399de1abe94b92e012a3753aeb865963682038ee6cce599b26683",
+          "full_text_char_start": 23437,
+          "full_text_char_end": 24762
+        },
+        {
+          "page": 23,
+          "text_path": "texts/13682ca94bfd091ff9a6.txt",
+          "text_sha256": "13682ca94bfd091ff9a606b4074b1f774ea1514f086ead4596338ea3ccc19e82",
+          "full_text_char_start": 24764,
+          "full_text_char_end": 25984
+        },
+        {
+          "page": 24,
+          "text_path": "texts/a2d929346e28f418a60c.txt",
+          "text_sha256": "a2d929346e28f418a60cbb1fe2290268d08345ccae1ba7902022cc6ecf8d8f79",
+          "full_text_char_start": 25986,
+          "full_text_char_end": 27218
+        },
+        {
+          "page": 25,
+          "text_path": "texts/f61430badd3485422d35.txt",
+          "text_sha256": "f61430badd3485422d35b8260edf8a0750aea55e2235e5de7794785852d2c8d1",
+          "full_text_char_start": 27220,
+          "full_text_char_end": 28360
+        },
+        {
+          "page": 26,
+          "text_path": "texts/9f747f3c5d5652d83ba9.txt",
+          "text_sha256": "9f747f3c5d5652d83ba90fa9e34661d82de0970b63274de531c3e269f616c81e",
+          "full_text_char_start": 28362,
+          "full_text_char_end": 29470
+        },
+        {
+          "page": 27,
+          "text_path": "texts/485bc25da79605097b75.txt",
+          "text_sha256": "485bc25da79605097b75d18930475c7011aab0d8231c82e1f483a09d4c6b7099",
+          "full_text_char_start": 29472,
+          "full_text_char_end": 30822
+        },
+        {
+          "page": 28,
+          "text_path": "texts/3e2ecf24236f874d54c6.txt",
+          "text_sha256": "3e2ecf24236f874d54c68d8c352df87adaf71fdbb056f50700ab7607d041af06",
+          "full_text_char_start": 30824,
+          "full_text_char_end": 31931
+        }
+      ],
+      "extractor": "reviewed archived pdftotext -raw -enc UTF-8; CRLF to LF; page separator=two LF",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_pdf_heading",
+      "checked_at": "2026-11-02T02:38:38+00:00",
+      "year_proof": {
+        "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+        "text_path": "texts/5d4a3ab6918c326f1d92.txt",
+        "text_sha256": "5d4a3ab6918c326f1d9206181f4849a602d0f03a09ec237d5d00ae8e4c88825a",
+        "char_start": 13,
+        "char_end": 35,
+        "quote": "上海电力大学2027年招收攻读硕士学位研究生",
+        "quote_sha256": "114cae45a16d60d7fc8acc19f8ff16a9139f38aa9c9f6be4f648f13670184c4d",
+        "page": 1,
+        "section": null,
+        "role": "year_heading",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    },
+    {
+      "id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+      "unit_id": "368087",
+      "unit_name": "哈尔滨工业大学",
+      "title": "哈尔滨工业大学统考硕士研究生招生目录",
+      "url": "https://yzb.hit.edu.cn/_upload/article/files/12/cb/333643d84636a30ab6b586266704/501748af-b6cb-4851-8931-49196a409f82.pdf",
+      "actual_year": null,
+      "metadata_year": 2027,
+      "material_type": "catalog",
+      "format": "pdf",
+      "raw_path": "originals/ed923484944978d7b1bb.pdf",
+      "raw_sha256": "ed923484944978d7b1bb44134e9893003092adb92f7a882ba7a77666d93794c3",
+      "original_member": "data/snapshots/catalogs/expansion-20261102/dynamic/368087/8c2a6f9ac1e47065d65d-ed9234849449.pdf",
+      "text_path": "texts/2aec5297c75d996ebfec.txt",
+      "text_sha256": "2aec5297c75d996ebfec791617e1ba2e2fb6b387316b4aaa2f43942d4940baca",
+      "pages": [
+        {
+          "page": 1,
+          "text_path": "texts/d4887c73f897e434a542.txt",
+          "text_sha256": "d4887c73f897e434a542a0e01db065874eafe5768e91af5840ad8c8b57458755",
+          "full_text_char_start": 0,
+          "full_text_char_end": 840
+        },
+        {
+          "page": 2,
+          "text_path": "texts/df53f229865732fe9562.txt",
+          "text_sha256": "df53f229865732fe9562295aa4fba86bae70699821ad7d0b8bd96223690535ad",
+          "full_text_char_start": 842,
+          "full_text_char_end": 1722
+        },
+        {
+          "page": 3,
+          "text_path": "texts/82ff73d7f7fbc758f8fc.txt",
+          "text_sha256": "82ff73d7f7fbc758f8fcb30a43969b51b51d064f67092e165ed7380bcd36b286",
+          "full_text_char_start": 1724,
+          "full_text_char_end": 2674
+        },
+        {
+          "page": 4,
+          "text_path": "texts/ea56fd49ab6ed3e8d4f1.txt",
+          "text_sha256": "ea56fd49ab6ed3e8d4f1476c2c98df49a7b5a43229339c59c1ad964fcfd605d1",
+          "full_text_char_start": 2676,
+          "full_text_char_end": 3551
+        },
+        {
+          "page": 5,
+          "text_path": "texts/6bdeb0e63518d4dfbc98.txt",
+          "text_sha256": "6bdeb0e63518d4dfbc987874184de323734ed303833a771d1e4613786429b611",
+          "full_text_char_start": 3553,
+          "full_text_char_end": 4386
+        },
+        {
+          "page": 6,
+          "text_path": "texts/78f170fd348adda07353.txt",
+          "text_sha256": "78f170fd348adda07353a40f45ce2cbe110dbe8f1f05e60e3ebc29f7782accd1",
+          "full_text_char_start": 4388,
+          "full_text_char_end": 5371
+        },
+        {
+          "page": 7,
+          "text_path": "texts/3dcc22e9739a2ae48c6d.txt",
+          "text_sha256": "3dcc22e9739a2ae48c6dab37039907e523b5cdc5a8a2afc224d652001df49eee",
+          "full_text_char_start": 5373,
+          "full_text_char_end": 6443
+        },
+        {
+          "page": 8,
+          "text_path": "texts/72bdb1fac209e3b680dd.txt",
+          "text_sha256": "72bdb1fac209e3b680dd6d58387226a15cbbe0d838c47c058bed7a646f9c3089",
+          "full_text_char_start": 6445,
+          "full_text_char_end": 7333
+        },
+        {
+          "page": 9,
+          "text_path": "texts/f5c085b87f12e50a6219.txt",
+          "text_sha256": "f5c085b87f12e50a62199cd13a4d229b74af228400c7855df7ac59b10c71cf19",
+          "full_text_char_start": 7335,
+          "full_text_char_end": 8187
+        },
+        {
+          "page": 10,
+          "text_path": "texts/44cef927d01cd60985a7.txt",
+          "text_sha256": "44cef927d01cd60985a777bd1cea4f47008184918d9357593c5ce01c8a33c82e",
+          "full_text_char_start": 8189,
+          "full_text_char_end": 9063
+        },
+        {
+          "page": 11,
+          "text_path": "texts/b7df07a98eb4fece77d2.txt",
+          "text_sha256": "b7df07a98eb4fece77d25a2a08ed4d745125e17ebe18da991ed8af44527784f1",
+          "full_text_char_start": 9065,
+          "full_text_char_end": 9937
+        },
+        {
+          "page": 12,
+          "text_path": "texts/c7356a4031fbd6143d21.txt",
+          "text_sha256": "c7356a4031fbd6143d216fb6d5a15a2d5c2acc183394fe4992c5e1fc3c6b9f92",
+          "full_text_char_start": 9939,
+          "full_text_char_end": 10894
+        },
+        {
+          "page": 13,
+          "text_path": "texts/3584fde51c74fb9aa585.txt",
+          "text_sha256": "3584fde51c74fb9aa5850aa4b3731ffe7923a0a56193336e25ff5dfeca9fff06",
+          "full_text_char_start": 10896,
+          "full_text_char_end": 11907
+        },
+        {
+          "page": 14,
+          "text_path": "texts/0bb08e33acd6b9805f03.txt",
+          "text_sha256": "0bb08e33acd6b9805f03b976072d4e27dbf2f31720dd8775ada3dc86f9e461bf",
+          "full_text_char_start": 11909,
+          "full_text_char_end": 12776
+        },
+        {
+          "page": 15,
+          "text_path": "texts/0f4c36de9794eaa317bf.txt",
+          "text_sha256": "0f4c36de9794eaa317bfc5c7a372a21702455bfb09760bb1ccf6a9c2b3d6d7f2",
+          "full_text_char_start": 12778,
+          "full_text_char_end": 13690
+        },
+        {
+          "page": 16,
+          "text_path": "texts/88302bd36862aeef6933.txt",
+          "text_sha256": "88302bd36862aeef69335b992e676d1aa3835d73d5c4dc7e324ed8731be31300",
+          "full_text_char_start": 13692,
+          "full_text_char_end": 14616
+        },
+        {
+          "page": 17,
+          "text_path": "texts/f8d649b1c364a5c49222.txt",
+          "text_sha256": "f8d649b1c364a5c4922234407591a6714a2198576dcb3dacf42f429bd058f1ed",
+          "full_text_char_start": 14618,
+          "full_text_char_end": 15507
+        },
+        {
+          "page": 18,
+          "text_path": "texts/8660ca8949ea3f65ed29.txt",
+          "text_sha256": "8660ca8949ea3f65ed2971a33381de63330d19bb4d633f1dba08214bbb2d6b9a",
+          "full_text_char_start": 15509,
+          "full_text_char_end": 16244
+        },
+        {
+          "page": 19,
+          "text_path": "texts/52f88d2a9cc67f8181fb.txt",
+          "text_sha256": "52f88d2a9cc67f8181fb87777ac63f974f1e31a23feea51dc118d8d7d6be3cba",
+          "full_text_char_start": 16246,
+          "full_text_char_end": 16946
+        },
+        {
+          "page": 20,
+          "text_path": "texts/a9f6456d82d9fd11ec18.txt",
+          "text_sha256": "a9f6456d82d9fd11ec1892b63e1471aab00e512211113518d7c87b3813b4d847",
+          "full_text_char_start": 16948,
+          "full_text_char_end": 17861
+        },
+        {
+          "page": 21,
+          "text_path": "texts/1d290d7aa75b41855b26.txt",
+          "text_sha256": "1d290d7aa75b41855b262b70d4635104e2f690500423ff639fbf8fbaa06e8e90",
+          "full_text_char_start": 17863,
+          "full_text_char_end": 18707
+        },
+        {
+          "page": 22,
+          "text_path": "texts/141ebd7c6c7254f27c40.txt",
+          "text_sha256": "141ebd7c6c7254f27c40fe3b05532e1c87df5c39e90d64e3a52704e0c9b62eb7",
+          "full_text_char_start": 18709,
+          "full_text_char_end": 19595
+        },
+        {
+          "page": 23,
+          "text_path": "texts/1a6bde2946fac507df38.txt",
+          "text_sha256": "1a6bde2946fac507df38c532457d667c11c9c86e4776c60c1d93505c84e1836e",
+          "full_text_char_start": 19597,
+          "full_text_char_end": 20594
+        },
+        {
+          "page": 24,
+          "text_path": "texts/6c53784eba7670eba4df.txt",
+          "text_sha256": "6c53784eba7670eba4dfd27f43e245f713e348472feef9eac3ceda48eded2215",
+          "full_text_char_start": 20596,
+          "full_text_char_end": 21374
+        },
+        {
+          "page": 25,
+          "text_path": "texts/8d36b175649009453a83.txt",
+          "text_sha256": "8d36b175649009453a83891e0bb973ea547d747200254530d6de5645cd95dbcb",
+          "full_text_char_start": 21376,
+          "full_text_char_end": 22285
+        },
+        {
+          "page": 26,
+          "text_path": "texts/2db39a70c4f0d6a2675b.txt",
+          "text_sha256": "2db39a70c4f0d6a2675ba30d1d0e1fb7d05245fda454cf319155d1b1ee62a39a",
+          "full_text_char_start": 22287,
+          "full_text_char_end": 23221
+        },
+        {
+          "page": 27,
+          "text_path": "texts/3181b061d2836cd20a0f.txt",
+          "text_sha256": "3181b061d2836cd20a0faa3be8d92a1f5ec23e24dfd02d60bfff42e3cdb8c9bd",
+          "full_text_char_start": 23223,
+          "full_text_char_end": 24083
+        },
+        {
+          "page": 28,
+          "text_path": "texts/97fa6835573c60db42ae.txt",
+          "text_sha256": "97fa6835573c60db42ae14253f8d688044768b161f0b624d193f6eca579eb935",
+          "full_text_char_start": 24085,
+          "full_text_char_end": 25184
+        },
+        {
+          "page": 29,
+          "text_path": "texts/35fa87bfd80afd4e6390.txt",
+          "text_sha256": "35fa87bfd80afd4e6390efb870991442b03d9d1b9dd2cd640da9a1d09c722e26",
+          "full_text_char_start": 25186,
+          "full_text_char_end": 26016
+        },
+        {
+          "page": 30,
+          "text_path": "texts/fa0b0f673b36efed936b.txt",
+          "text_sha256": "fa0b0f673b36efed936beb2639d3b9d328732633e34e40b843324c1ae3091b40",
+          "full_text_char_start": 26018,
+          "full_text_char_end": 26770
+        },
+        {
+          "page": 31,
+          "text_path": "texts/2be095cc5a2be073ec3f.txt",
+          "text_sha256": "2be095cc5a2be073ec3fe8d036ccc50e4ac12b37ece2bfab0c89d7d156cc217e",
+          "full_text_char_start": 26772,
+          "full_text_char_end": 27329
+        }
+      ],
+      "extractor": "reviewed archived pdftotext -raw -enc UTF-8; CRLF to LF; page separator=two LF",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "not_stated_in_standalone_pdf",
+      "checked_at": "2026-11-02T02:42:07.170584+00:00"
+    },
+    {
+      "id": "doc-4af998d24f86e487664f-9bc2e77aa634",
+      "unit_id": "368087",
+      "unit_name": "哈尔滨工业大学",
+      "title": "2027年统考硕士研究生招生目录",
+      "url": "https://yzb.hit.edu.cn/2026/0924/c22272a401989/page.htm",
+      "actual_year": 2027,
+      "metadata_year": 2027,
+      "material_type": "publication",
+      "format": "html",
+      "raw_path": "originals/9bc2e77aa63409ec4c2e.html",
+      "raw_sha256": "9bc2e77aa63409ec4c2e8bb1263aafa1cf589f1b5fe35a3db0ec6e26e90b0492",
+      "original_member": "data/snapshots/catalogs/expansion-20261102/dynamic/368087/4af998d24f86e487664f-9bc2e77aa634.html",
+      "text_path": "texts/988e48377bc374a97c0d.txt",
+      "text_sha256": "988e48377bc374a97c0d277df7ec32a2a6f5ac79d2742b094fb4107932eb803a",
+      "pages": [],
+      "extractor": "catalog-visible-html-v1",
+      "snapshot_only": true,
+      "live_url_rechecked": false,
+      "semantic_indexable": true,
+      "year_basis": "original_html_title",
+      "checked_at": "2026-11-02T02:41:41.354348+00:00",
+      "year_proof": {
+        "source_id": "doc-4af998d24f86e487664f-9bc2e77aa634",
+        "text_path": "texts/988e48377bc374a97c0d.txt",
+        "text_sha256": "988e48377bc374a97c0d277df7ec32a2a6f5ac79d2742b094fb4107932eb803a",
+        "char_start": 0,
+        "char_end": 16,
+        "quote": "2027年统考硕士研究生招生目录",
+        "quote_sha256": "a39b217b78f670d076225da77c16247b532369a2a5ad8344154e09459b26b5dd",
+        "page": null,
+        "section": "官方年度入口标题",
+        "role": "year_heading",
+        "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "eligibility-01",
+      "source_id": "national-367888-2027-ad9f9440723bfa25-4573e8e67aee",
+      "unit_id": "367888",
+      "unit_name": "北京工商大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "2027年北京工商大学同等学力考生，英语四级425分是唯一满足附加学业条件的途径吗？",
+      "case_type": "rule_with_exception",
+      "expected_evidence": [
+        {
+          "source_id": "national-367888-2027-ad9f9440723bfa25-4573e8e67aee",
+          "text_path": "texts/cdb621b33f15c184dc97.txt",
+          "text_sha256": "cdb621b33f15c184dc97b1d6deea07b270ed4829788db67bda830c5facf995e0",
+          "char_start": 821,
+          "char_end": 1034,
+          "quote": "（3）获得国家承认的高职高专毕业学历后满2年（如无特别说明，本规定涉及年限要求均指毕业后到录取当年入学前）或2年以上，以及国家承认学历的本科结业生，按本科毕业同等学力身份报考。以本科毕业同等学力身份报考的考生（工商管理、旅游管理、物流工程与管理、工业工程与管理硕士专业学位的同等学力考生除外）应符合以下条件：大学英语四级成绩在425分及以上；或取得公共英语三级证书；或在正式刊物上已发表与所报考学科专业研究领域相关的学术论文。",
+          "quote_sha256": "44e939f64e27342456ee0ec18864c70a508d459ed8e4e7827bc4840c0711d240",
+          "page": null,
+          "section": "（二）报名参加全国硕士研究生招生考试的人员，须符合下列条件：",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "大学英语四级成绩在425分及以上不是唯一途径，原文还列公共英语三级证书或相关学术论文。",
+        "工商管理、旅游管理、物流工程与管理、工业工程与管理硕士专业学位的同等学力考生属于该段附加条件的明示例外。"
+      ],
+      "forbidden_inferences": [
+        "不能将三个替代条件误读成必须同时满足。",
+        "不能把该段专业例外推广到全部同等学力考生。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "holdout",
+      "human_question": "2027年北京工商大学同等学力考生，英语四级425分是唯一满足附加学业条件的途径吗？",
+      "retrieval_query": "同等学力 英语四级 公共英语",
+      "source_ids": [
+        "national-367888-2027-ad9f9440723bfa25-4573e8e67aee"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "27b3bfbc594f0728"
+    },
+    {
+      "id": "eligibility-02",
+      "source_id": "national-368218-2027-de63b85fecfde89b-878bc99a8de3",
+      "unit_id": "368218",
+      "unit_name": "浙江工业大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "只有专科毕业满两年，是否就能确定满足浙江工业大学2027年该段同等学力报考要求？",
+      "case_type": "insufficient_profile",
+      "expected_evidence": [
+        {
+          "source_id": "national-368218-2027-de63b85fecfde89b-878bc99a8de3",
+          "text_path": "texts/37a098bd68119cddc996.txt",
+          "text_sha256": "37a098bd68119cddc996122a70ae2382f2cc0837fb9720dcad1584a402ab72ff",
+          "char_start": 1374,
+          "char_end": 1508,
+          "quote": "（3）获得国家承认的高职（专科）毕业学历后满2年及以上（毕业后到录取当年入学前，下同），达到大学本科毕业同等学力，且具有所报考专业6门本科主干课成绩（需有进修学校教务部门出具成绩证明或出具自学考试成绩单）的人员，或国家承认学历的本科结业生，按本科毕业同等学力身份报考。",
+          "quote_sha256": "688db511d28e53160abc5a1b8e0dc8e65de5dbc2fe0962cc849030504bbe08b4",
+          "page": null,
+          "section": "（一）报名参加全国硕士研究生招生考试的人员，须符合下列条件：",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "不能只凭毕业年限确定满足；原文还要求达到本科毕业同等学力并具有报考专业6门本科主干课成绩。",
+        "成绩证明的出具渠道须保留教务部门证明或自学考试成绩单这两个原文渠道。"
+      ],
+      "forbidden_inferences": [
+        "不得把缺失的主干课成绩证明默认成已满足。",
+        "仍需结合该校其余报考条件，不能据此保证录取。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "unknown_applicant_eligibility",
+      "split": "holdout",
+      "human_question": "只有专科毕业满两年，是否就能确定满足浙江工业大学2027年该段同等学力报考要求？",
+      "retrieval_query": "同等学力 主干课 成绩",
+      "source_ids": [
+        "national-368218-2027-de63b85fecfde89b-878bc99a8de3"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "1c1f1011cb36330b"
+    },
+    {
+      "id": "eligibility-03",
+      "source_id": "national-678581-2027-f366f81dcb1a66c5-badd682803f2",
+      "unit_id": "678581",
+      "unit_name": "贵州民族大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "贵州民族大学2027年跨学科专业报考美术与书法、设计专业，复试加试有什么要求？",
+      "case_type": "scoped_rule",
+      "expected_evidence": [
+        {
+          "source_id": "national-678581-2027-f366f81dcb1a66c5-badd682803f2",
+          "text_path": "texts/26a18174232f9bd9f385.txt",
+          "text_sha256": "26a18174232f9bd9f38560f888355c6a4ac4fdda517c3ffaf82f700ed0c4e8bf",
+          "char_start": 4505,
+          "char_end": 4608,
+          "quote": "以同等学力身份报考并参加复试的考生，在复试中须加试至少两门与报考专业相关的本科主干课程。跨学科专业报考美术与书法、设计专业的考生在复试时须加试相应专业两门本科主干课程。加试方式为笔试，加试不合格者不予录取。",
+          "quote_sha256": "8db7cc1411ab81d84e823b071054067bb4b2f5b856b6974745b0d1955c3d1a46",
+          "page": null,
+          "section": "（二）复试期间，我校严格采取人证识别、相关信息库数据比对等措施，加强对考生的身份审核及报考专项计划、申请享受初试加分或少数民族照顾政策等资格的复审。对不符合规定条件者，不予复试。",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "该段明确这两类跨学科专业考生须加试相应专业两门本科主干课程。",
+        "加试为笔试，加试不合格者不予录取。"
+      ],
+      "forbidden_inferences": [
+        "不得推广成所有跨专业报考者都适用该两门加试规定。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "human_question": "贵州民族大学2027年跨学科专业报考美术与书法、设计专业，复试加试有什么要求？",
+      "retrieval_query": "跨学科 美术与书法 加试",
+      "source_ids": [
+        "national-678581-2027-f366f81dcb1a66c5-badd682803f2"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "6fd6e09aca8f8997"
+    },
+    {
+      "id": "eligibility-04",
+      "source_id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+      "unit_id": "2311267403",
+      "unit_name": "内蒙古艺术学院",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "内蒙古艺术学院2027年同等学力报考音乐或舞蹈，只满足比赛获奖条件是否就能认定全部报考要求已满足？",
+      "case_type": "insufficient_profile",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+          "text_path": "texts/6d2c39d0216cd333d4e6.txt",
+          "text_sha256": "6d2c39d0216cd333d4e66c519f16bced6479a920f86f3e4e5a4a580aaae29baa",
+          "char_start": 1486,
+          "char_end": 1567,
+          "quote": "同等学力指获得国家承认的高职高专毕业学历后满2年及2年以上的人员，以及国家承认学历的本科结业生。同等学力身份报考我校硕士研究生，应同时满足以下专业要求和外语要求。",
+          "quote_sha256": "5ef897f742c65ef9a1250f90b1707f2b8acec3ea2a2f5b8525dbd35666d333db",
+          "page": null,
+          "section": "（二）同等学力身份报考要求（不含本科毕业生）",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+          "text_path": "texts/6d2c39d0216cd333d4e6.txt",
+          "text_sha256": "6d2c39d0216cd333d4e66c519f16bced6479a920f86f3e4e5a4a580aaae29baa",
+          "char_start": 1649,
+          "char_end": 1725,
+          "quote": "（2）报考音乐、舞蹈专业学位硕士研究生（专业代码1352、1353）的同等学力考生：在省（自治区）级及以上专业展演、比赛中获一、二等奖1项或三等奖2项。",
+          "quote_sha256": "a1a866ab68390715c622bca58f6d8b07b00ede38e3cf6f3eb45021d6363ae0b9",
+          "page": null,
+          "section": "（二）同等学力身份报考要求（不含本科毕业生）",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "音乐、舞蹈专业学位同等学力专业成果条件是省级及以上专业展演比赛一、二等奖1项或三等奖2项。",
+        "不能只凭获奖认定全部要求通过；主规则明确专业要求和外语要求须同时满足。"
+      ],
+      "forbidden_inferences": [
+        "缺失的外语条件不能默认满足。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "unknown_applicant_eligibility",
+      "split": "holdout",
+      "human_question": "内蒙古艺术学院2027年同等学力报考音乐或舞蹈，只满足比赛获奖条件是否就能认定全部报考要求已满足？",
+      "retrieval_query": "同等学力 专业要求 外语要求",
+      "source_ids": [
+        "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "4b244fd50d90e023"
+    },
+    {
+      "id": "eligibility-05",
+      "source_id": "office-367893-2027-7829f856f2962c12fe89",
+      "unit_id": "367893",
+      "unit_name": "中国农业大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "中国农业大学2027年高职专科同等学力条款中，第一作者论文与补修六门本科主干课是二选一吗？",
+      "case_type": "conjunction_rule",
+      "expected_evidence": [
+        {
+          "source_id": "office-367893-2027-7829f856f2962c12fe89",
+          "text_path": "texts/31b3a765b2aa6496c0ef.txt",
+          "text_sha256": "31b3a765b2aa6496c0efd05ba9e7d62fa3c32020cd9855f5db37bcac52e6831b",
+          "char_start": 1510,
+          "char_end": 1728,
+          "quote": "（5）获得国家承认的高职（专科）毕业学历后满2年及以上人员（如无特别说明，本章程涉及年限要求均指毕业后到录取当年入学前），须具备以下报考条件：①公开发表的与报考专业（领域）相关的第一作者研究论文；②补修六门以上（含六门）报考专业（领域）的本科主干课程，由补修课程的高校教务部门出具加盖教务部门公章的成绩单。请于10月24日中午12时前将以上材料发送至cauyzb@cau.edu.cn，经审核后符合以上条件者按本科毕业同等学力身份报考。",
+          "quote_sha256": "d5dcf67fbeaeab69d4880e9cf45a40714aba259f21319498ac15d10ab391aee9",
+          "page": null,
+          "section": "（一）报考条件",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "不是二选一；该条须具备①相关第一作者研究论文和②六门及以上报考专业本科主干课程及加盖教务部门公章的成绩单。",
+        "还须按该归档条款的时点提交材料并通过审核。"
+      ],
+      "forbidden_inferences": [
+        "不得把两项并列要求拆成OR。",
+        "归档中的提交时点不能当作2028报名时点或仍开放的承诺。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "holdout",
+      "human_question": "中国农业大学2027年高职专科同等学力条款中，第一作者论文与补修六门本科主干课是二选一吗？",
+      "retrieval_query": "专科 第一作者 主干课",
+      "source_ids": [
+        "office-367893-2027-7829f856f2962c12fe89"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "2e94d7d03f33a055"
+    },
+    {
+      "id": "eligibility-06",
+      "source_id": "national-367981-2027-9338f6560c9f3019-e2f8118e86d6",
+      "unit_id": "367981",
+      "unit_name": "承德医学院",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "承德医学院2027年生物学学术学位同等学力考生，章程列出的论文要求是什么？",
+      "case_type": "scoped_rule",
+      "expected_evidence": [
+        {
+          "source_id": "national-367981-2027-9338f6560c9f3019-e2f8118e86d6",
+          "text_path": "texts/4c16b7d08dfc67e4bcf9.txt",
+          "text_sha256": "4c16b7d08dfc67e4bcf9b3eb8870be88ffb69ae20d88d5ca6b1f3e522416f203",
+          "char_start": 2664,
+          "char_end": 2809,
+          "quote": "（三）报考我校应用心理、中药专业学位，基础医学、中药学、生物医学工程、生物学学术学位的同等学力考生，在符合报考条件（一）中第1、2、3、4各项要求的基础上，必须满足以下条件：以第一作者在国家公开出版发行的学术期刊发表研究性论文2篇，其中中文核心期刊论文1篇（要求报考时提供中国知网检索页）。",
+          "quote_sha256": "2f61ee8560a5a306d096603ab6c7e4918b35f4335a38d42c71b7e7b6d915539d",
+          "page": null,
+          "section": "（二）报考我校临床医学、中医、护理专业考生须符合下列条件：",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "在共同报考条件之外，要求第一作者研究性论文2篇，其中中文核心期刊论文1篇，并在报考时提供中国知网检索页。"
+      ],
+      "forbidden_inferences": [
+        "不能把这个专业范围的要求推广到目录全部专业。",
+        "未提供考生论文材料时，只能列要求，不能认定考生已符合。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "human_question": "承德医学院2027年生物学学术学位同等学力考生，章程列出的论文要求是什么？",
+      "retrieval_query": "同等学力 第一作者 论文",
+      "source_ids": [
+        "national-367981-2027-9338f6560c9f3019-e2f8118e86d6"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "eefd2d68618f0453"
+    },
+    {
+      "id": "eligibility-07",
+      "source_id": "national-367861-2027-7f2616e18ac33ed0-240a0f4d9435",
+      "unit_id": "367861",
+      "unit_name": "首都体育学院",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "首都体育学院2027年已被接收的推免生，还能报名当年的全国统一考试或单独考试吗？",
+      "case_type": "prohibition",
+      "expected_evidence": [
+        {
+          "source_id": "national-367861-2027-7f2616e18ac33ed0-240a0f4d9435",
+          "text_path": "texts/1d886b326cee98a2a5ec.txt",
+          "text_sha256": "1d886b326cee98a2a5ecc7bc8754137c5cf0155facaff950cdcb0fa26ba21e94",
+          "char_start": 1509,
+          "char_end": 1677,
+          "quote": "（三）接收推免生报名。我校具有接收优秀应届本科毕业生免试攻读研究生资格。具有推荐免试资格的考生，须在教育部规定时间内登录“全国推荐免试攻读研究生（免初试、转段）信息公开暨管理服务系统”报名（网址：https://yz.chsi.com.cn/tm）填报志愿并按时参加复试。已被我校接收的推免生，不得再报名参加当年全国统一考试、单独考试。",
+          "quote_sha256": "2a73e664a57c6f7a8b2d87bcef053a0461ed1bea8591dfe24ce855e1159a213e",
+          "page": null,
+          "section": "（二）报考体育专业学位中的竞赛组织专业的考生，须符合下列条件：",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "该招生简章明确已被接收的推免生不得再报名当年全国统一考试或单独考试。"
+      ],
+      "forbidden_inferences": [
+        "不得将禁止条件省略成只需参加复试即可兼报。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "holdout",
+      "human_question": "首都体育学院2027年已被接收的推免生，还能报名当年的全国统一考试或单独考试吗？",
+      "retrieval_query": "推免 全国统一考试 单独考试",
+      "source_ids": [
+        "national-367861-2027-7f2616e18ac33ed0-240a0f4d9435"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "25d48bdb08e16a1e"
+    },
+    {
+      "id": "eligibility-08",
+      "source_id": "national-368190-2027-ad3961bf911d9fa6-8c129bcf4cbf",
+      "unit_id": "368190",
+      "unit_name": "南京中医药大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "南京中医药大学2027年关于接受同等学力报考的规定，医学类专业代码10开头是否也在可接受范围？",
+      "case_type": "rule_with_exception",
+      "expected_evidence": [
+        {
+          "source_id": "national-368190-2027-ad3961bf911d9fa6-8c129bcf4cbf",
+          "text_path": "texts/cdc9aaa9eb260c30d204.txt",
+          "text_sha256": "cdc9aaa9eb260c30d204d0c990ff90d81550679eba4372884923771b0afd0c43",
+          "char_start": 1999,
+          "char_end": 2039,
+          "quote": "（八）学校除医学专业（专业代码以10开头）外，其他专业均可接受同等学力人员报考。",
+          "quote_sha256": "535f250bf3918392de97c2345728ad8c7f17b8ab76dcbc4eee176651d805d322",
+          "page": null,
+          "section": "（六）报考公共管理专业学位硕士研究生的人员，学业水平须符合下列条件：",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "不是；该条明确除医学专业（代码以10开头）外，其他专业均可接受同等学力人员报考。"
+      ],
+      "forbidden_inferences": [
+        "不得丢掉“除医学专业外”的否定例外。",
+        "其他专业可接受不等于所有其他报考条件已满足。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "human_question": "南京中医药大学2027年关于接受同等学力报考的规定，医学类专业代码10开头是否也在可接受范围？",
+      "retrieval_query": "同等学力 医学 10",
+      "source_ids": [
+        "national-368190-2027-ad3961bf911d9fa6-8c129bcf4cbf"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "f9436122922db527"
+    },
+    {
+      "id": "eligibility-09",
+      "source_id": "national-3274440799-2027-6d947c41127ba46a-9697c1c89945",
+      "unit_id": "3274440799",
+      "unit_name": "九江学院",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2028,
+      "material_type": "admissions",
+      "question": "凭九江学院2027年招生简章，可以认定2028年仍不招非全日制且不设退役大学生士兵专项计划吗？",
+      "case_type": "unknown_target_year",
+      "expected_evidence": [
+        {
+          "source_id": "national-3274440799-2027-6d947c41127ba46a-9697c1c89945",
+          "text_path": "texts/ee630153dfec78b9e255.txt",
+          "text_sha256": "ee630153dfec78b9e25532986358d860da5edf6c51f56f4b8809807f67932926",
+          "char_start": 934,
+          "char_end": 1081,
+          "quote": "我校2027年招生专业及拟招生计划详见《九江学院2027年硕士研究生招生专业目录》。各专业实际招生人数以教育部及江西省教育厅正式下达的招生计划数为准，并根据各专业上线生源情况等进行适当调整，目录中公布的拟招生人数仅供参考。我校2027年不设退役大学生士兵专项招生计划，不招收非全日制硕士研究生。",
+          "quote_sha256": "1b6a5f9ef0f8defd267202cea4546cd357086b5d021bb5a7c49013f5cb1007ee",
+          "page": null,
+          "section": "一、招生专业和招生计划",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "只能证明归档2027年简章明确不设该专项计划、不招非全日制。",
+        "2028年的相同事项在本证据下必须保持未知，需目标年度官方资料。"
+      ],
+      "forbidden_inferences": [
+        "不得将2027政策重标成2028政策。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "unknown_target_year",
+      "split": "development",
+      "human_question": "凭九江学院2027年招生简章，可以认定2028年仍不招非全日制且不设退役大学生士兵专项计划吗？",
+      "retrieval_query": "2027 非全日制 士兵",
+      "source_ids": [
+        "national-3274440799-2027-6d947c41127ba46a-9697c1c89945"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "e538c286ea347bfb"
+    },
+    {
+      "id": "eligibility-10",
+      "source_id": "national-302965854-2027-3c5bafd24b5b50d8-73c08f95c3ef",
+      "unit_id": "302965854",
+      "unit_name": "湖南人文科技学院",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "湖南人文科技学院2027年全日制定向就业考生，参加复试前还要准备什么？录取后能改就业方式吗？",
+      "case_type": "conjunction_rule",
+      "expected_evidence": [
+        {
+          "source_id": "national-302965854-2027-3c5bafd24b5b50d8-73c08f95c3ef",
+          "text_path": "texts/7c2daae82136d53848d2.txt",
+          "text_sha256": "7c2daae82136d53848d2b61622201e87d7781c6ab54976c2df2a97b58f8a6c2d",
+          "char_start": 2482,
+          "char_end": 2602,
+          "quote": "（二） 我校全日制硕士研究生为全日制学习方式，即脱产在校学习。定向就业的硕士研究生应当在被录取前与我校及用人单位分别签订定向就业合同，在规定时间内出具所在单位的“同意脱产学习证明”，方可参加复试，且一经录取后，不得变更录取信息中的就业方式。",
+          "quote_sha256": "a8e81ddb52375f42ccd055168d618081cbb0f2fccc83772aabdf4891ed94ab66",
+          "page": null,
+          "section": "八、录取",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "定向合同须在被录取前与学校及用人单位分别签订；按规定时间出具单位同意脱产学习证明后方可参加复试。",
+        "一经录取不得变更录取信息中的就业方式。"
+      ],
+      "forbidden_inferences": [
+        "不得因“定向”就推断可以不脱产学习。",
+        "不能忽略证明材料的复试前置关系。",
+        "不得将签订定向合同的期限从被录取前提前为复试前。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "human_question": "湖南人文科技学院2027年全日制定向就业考生，参加复试前还要准备什么？录取后能改就业方式吗？",
+      "retrieval_query": "定向就业 脱产 学习证明",
+      "source_ids": [
+        "national-302965854-2027-3c5bafd24b5b50d8-73c08f95c3ef"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "ace6d3f45536e0ab"
+    },
+    {
+      "id": "eligibility-11",
+      "source_id": "national-302960684-2027-f7e4dae904c3168f-9a378022fabc",
+      "unit_id": "302960684",
+      "unit_name": "北京电子科技学院",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "北京电子科技学院2027年这一报考分支中，普通高校应届本科考生也一律必须是在编人员吗？",
+      "case_type": "branch_scope",
+      "expected_evidence": [
+        {
+          "source_id": "national-302960684-2027-f7e4dae904c3168f-9a378022fabc",
+          "text_path": "texts/ef025f55cd56b9087d4a.txt",
+          "text_sha256": "ef025f55cd56b9087d4ac6e39750e214503e3767120fbe281c58fef407bafb9c",
+          "char_start": 1272,
+          "char_end": 1433,
+          "quote": "（2）中国大陆地区普通高校全日制本科考生，且学业水平符合相关条件之一：国家承认学历的普通高校应届本科毕业生（或为2026年毕业未就业，且能提供未就业期间政审证明材料）；具有国家承认的大学本科毕业学历的在职考生，原则上应为党政系统、国有企事业单位的在编人员，且工作单位同意报考；在校研究生报考须在报名前征得所在培养单位同意。",
+          "quote_sha256": "629a98c630abc54d0aa09eba7d0533be51be8756a91b8bc9234b1f8c5c5b2dcc",
+          "page": null,
+          "section": "一、报考条件",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "不能这样泛化；原文把普通高校应届本科分支与在职考生分支分开，在编人员的“原则上”要求位于在职考生分支。",
+        "应届分支和2026年毕业未就业分支仍有各自前提；不能据此保证任何考生符合全部资格。"
+      ],
+      "forbidden_inferences": [
+        "不得把在职分支的要求套到所有应届考生。",
+        "不得删掉“原则上”变成没有例外的绝对陈述。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "holdout",
+      "human_question": "北京电子科技学院2027年这一报考分支中，普通高校应届本科考生也一律必须是在编人员吗？",
+      "retrieval_query": "应届 在职 在编",
+      "source_ids": [
+        "national-302960684-2027-f7e4dae904c3168f-9a378022fabc"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "0af7e8a9c0ced9b6"
+    },
+    {
+      "id": "eligibility-12",
+      "source_id": "national-499721832-2027-f9ada7c8657193d0-45ebfc1ff713",
+      "unit_id": "499721832",
+      "unit_name": "海南热带海洋学院",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "admissions",
+      "question": "海南热带海洋学院2027年非全日制硕士能否按非定向就业录取？",
+      "case_type": "prohibition",
+      "expected_evidence": [
+        {
+          "source_id": "national-499721832-2027-f9ada7c8657193d0-45ebfc1ff713",
+          "text_path": "texts/80051246a465d7de8b31.txt",
+          "text_sha256": "80051246a465d7de8b31dfc1c2ddfba2ec5ef62a2e06a1eb5a8f24d8d726d917",
+          "char_start": 881,
+          "char_end": 985,
+          "quote": "学校非全日制专业只招收在职或定向就业硕士研究生，录取方式为定向就业。定向就业的硕士研究生须在被录取前与学校、用人单位签订定向就业合同，毕业后回定向单位就业（期间工作关系等变动，由考生与定向单位自行协商解决）。",
+          "quote_sha256": "184d0200ac21ebe2f4325b9efca2f95c2e118850e0a860b232c39d5f48ab390b",
+          "page": null,
+          "section": "二、招生类型",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "该段明确学校非全日制专业录取方式为定向就业，定向生须在录取前签订学校、用人单位定向合同。"
+      ],
+      "forbidden_inferences": [
+        "不得把全日制/非全日制与定向/非定向这两组概念混为一组。",
+        "不得把归档2027资料当作2028正式报考依据。",
+        "不得据一条资格要求推断已被录取或保证录取。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "human_question": "海南热带海洋学院2027年非全日制硕士能否按非定向就业录取？",
+      "retrieval_query": "非全日制 定向就业 录取",
+      "source_ids": [
+        "national-499721832-2027-f9ada7c8657193d0-45ebfc1ff713"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "f508b2f3e0dd4e19"
+    },
+    {
+      "id": "PF01",
+      "source_id": "enrichment-zzu-2027-charter-9ab364731b39",
+      "source_ids": [
+        "enrichment-zzu-2027-charter-9ab364731b39"
+      ],
+      "unit_id": "368317",
+      "unit_name": "郑州大学",
+      "source_year": 2027,
+      "reference_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2028,
+      "human_question": "郑州大学2027章程里，学术学位硕士的学习方式和学制是什么？可以直接用到2028吗？",
+      "retrieval_query": "学术学位 学制",
+      "material_type": "charter",
+      "scope": {
+        "degree_type": "学术学位",
+        "study_mode": "全日制"
+      },
+      "case_type": "answer_with_boundaries",
+      "expected_evidence": [
+        {
+          "source_id": "enrichment-zzu-2027-charter-9ab364731b39",
+          "text_path": "texts/efccdc936dedd8c2c308.txt",
+          "text_sha256": "efccdc936dedd8c2c308336783d53b1815b9f76e699379b2715721846470c7e0",
+          "char_start": 5232,
+          "char_end": 5251,
+          "quote": "学术学位学习方式均为全日制，学制3年。",
+          "quote_sha256": "f9de2559b95a859ff6ef794681aad838ac24fd8f66d206ecd68e3559518f6669",
+          "page": null,
+          "section": "七、学习方式及学制",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "该2027章程规定学术学位均全日制、学制3年；2028制度仍待当年正式依据。"
+      ],
+      "forbidden_inferences": [
+        "不能把2027章程改标2028；不能把该句推广到所有专业学位"
+      ],
+      "expected_result": "answer_with_boundaries",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "development",
+      "source_group": "72661a02668a5088"
+    },
+    {
+      "id": "PF02",
+      "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+      "source_ids": [
+        "enrichment-zzu-tuition-current-b4ba23c5f304",
+        "enrichment-zzu-2027-charter-9ab364731b39",
+        "support-zzu-fees-publication-052606791aaa"
+      ],
+      "unit_id": "368317",
+      "unit_name": "郑州大学",
+      "source_year": null,
+      "reference_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2028,
+      "human_question": "郑州大学收费PDF中的学硕8000元是什么计费口径？能只凭PDF认定它是2027级或2028级标准吗？",
+      "retrieval_query": "学硕 收费标准",
+      "material_type": "fees",
+      "scope": {
+        "degree_type": "学术学位",
+        "fee_period": "year",
+        "document_year": null
+      },
+      "case_type": "year_and_scope_boundary",
+      "expected_evidence": [
+        {
+          "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+          "text_path": "texts/3f8ed0df40bbe7900af4.txt",
+          "text_sha256": "3f8ed0df40bbe7900af4d99a50f17aa12b8d8af6ebac91fe03f07db36d8809a9",
+          "char_start": 82,
+          "char_end": 91,
+          "quote": "学硕专业 8000",
+          "quote_sha256": "0bb018118089302c5b73ca313151d5780198dbeff43cc019f21a2022de2b9753",
+          "page": 6,
+          "section": "2、研究生学费标准",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+          "text_path": "texts/3f8ed0df40bbe7900af4.txt",
+          "text_sha256": "3f8ed0df40bbe7900af4d99a50f17aa12b8d8af6ebac91fe03f07db36d8809a9",
+          "char_start": 0,
+          "char_end": 34,
+          "quote": "2、研究生学费标准\n类别\n标准(元\n/\n生·年）\n收费\n依据\n备\n注",
+          "quote_sha256": "b68f371fb0fc42794317dacd60fe81e88b333a76278d7c9dc08a8853bc0c175f",
+          "page": 6,
+          "section": "2、研究生学费标准",
+          "role": "table_header",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+          "text_path": "texts/3f8ed0df40bbe7900af4.txt",
+          "text_sha256": "3f8ed0df40bbe7900af4d99a50f17aa12b8d8af6ebac91fe03f07db36d8809a9",
+          "char_start": 72,
+          "char_end": 81,
+          "quote": "按\n学\n年\n缴\n费",
+          "quote_sha256": "e8f1ce725b5bce1cb7f886d08002860e75afd2a6a1f9470b447253b30877121a",
+          "page": 6,
+          "section": "2、研究生学费标准",
+          "role": "merged_cell_context",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-zzu-2027-charter-9ab364731b39",
+          "text_path": "texts/efccdc936dedd8c2c308.txt",
+          "text_sha256": "efccdc936dedd8c2c308336783d53b1815b9f76e699379b2715721846470c7e0",
+          "char_start": 5309,
+          "char_end": 5428,
+          "quote": "我校学费标准详见“郑州大学收费标准”（https://www5.zzu.edu.cn/zcycwb/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1091&wbnewsid=1160）。",
+          "quote_sha256": "e1c8849a41a0531d7ffef5a6b2e18e1b037bf04ede0d9802e20a1434fa5b26a2",
+          "page": null,
+          "section": "八、学费标准及奖助政策",
+          "role": "applicability_link",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "费用表为学硕8000元/生·年、按学年缴费；PDF自身没有入学级年份。2027适用性须保留章程引用链，2028仍未知。"
+      ],
+      "forbidden_inferences": [
+        "PDF本身year必须未知，不用metadata.year=2027替代主标题",
+        "未审定引用链时不得把无年PDF独立升级为2027可复用知识",
+        "不能推定专业学位也为8000，不能视为2028新政"
+      ],
+      "expected_result": "year_and_scope_boundary",
+      "retrieval_recall_applicable": false,
+      "runtime_admission_expectation": {
+        "enrichment-zzu-tuition-current-b4ba23c5f304": "pending_without_reviewed_applicability_year",
+        "must_not_fill_document_year_from_metadata": true
+      },
+      "split": "development",
+      "source_group": "72661a02668a5088"
+    },
+    {
+      "id": "PF03",
+      "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+      "source_ids": [
+        "enrichment-nankai-2027-tuition-3240b07ed70f"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2027,
+      "reference_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "human_question": "南开2027全日制电子信息硕士与非全日制软件工程硕士的年学费一样吗？",
+      "retrieval_query": "电子信息 软件工程 学费",
+      "material_type": "fees",
+      "scope": {
+        "degree_type": "专业学位硕士",
+        "study_modes": [
+          "全日制",
+          "非全日制"
+        ]
+      },
+      "case_type": "answer_with_boundaries",
+      "expected_evidence": [
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "text_path": "texts/10cc645493b7de3e284e.txt",
+          "text_sha256": "10cc645493b7de3e284e96b0ee36b85af8e6baa71b6538c4e6766e3df3b45b85",
+          "char_start": 320,
+          "char_end": 336,
+          "quote": "二、全日制专业学位硕士研究生学费",
+          "quote_sha256": "7b2e0ae7a45e6d6c2255226814ab3007218917a1c102604e707ea8addad53011",
+          "page": 1,
+          "section": "二、全日制专业学位硕士研究生学费",
+          "role": "table_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "text_path": "texts/10cc645493b7de3e284e.txt",
+          "text_sha256": "10cc645493b7de3e284e96b0ee36b85af8e6baa71b6538c4e6766e3df3b45b85",
+          "char_start": 711,
+          "char_end": 737,
+          "quote": "电子信息 津发改价管〔2026〕184号 14000",
+          "quote_sha256": "b1a571592b5af88d95e7ce67401abb497a890f9d48f1c5c6b4720657fb5a1f11",
+          "page": 1,
+          "section": "二、全日制专业学位硕士研究生学费",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "text_path": "texts/48078ccc03d768dc258a.txt",
+          "text_sha256": "48078ccc03d768dc258affe19c54003be62fe18a3485d8aad14b002aa416f5a2",
+          "char_start": 659,
+          "char_end": 676,
+          "quote": "四、非全日制专业学位硕士研究生学费",
+          "quote_sha256": "dbad4c11c12460cfbf01bf651e3667673c1b6df6b2e4590bd7c73c2c41ff67b3",
+          "page": 2,
+          "section": "四、非全日制专业学位硕士研究生学费",
+          "role": "cross_page_table_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "text_path": "texts/28b286284dd3eafac609.txt",
+          "text_sha256": "28b286284dd3eafac609a0cbf97e9e62997bd4ea5b8ef384239bacc55461f613",
+          "char_start": 56,
+          "char_end": 81,
+          "quote": "软件工程 津发改价费〔2014〕93号 18000",
+          "quote_sha256": "da3fe06afe23637ead751c06d2e53a7a1fa58792cc008786b20bdb414baa016e",
+          "page": 3,
+          "section": "四、非全日制专业学位硕士研究生学费（续表）",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "text_path": "texts/10cc645493b7de3e284e.txt",
+          "text_sha256": "10cc645493b7de3e284e96b0ee36b85af8e6baa71b6538c4e6766e3df3b45b85",
+          "char_start": 30,
+          "char_end": 43,
+          "quote": "收费标准\n（元/生.学年）",
+          "quote_sha256": "a9b74b6f2e835dfbb528e198b58557779806e2ef13180088622bee7d4c6c7a62",
+          "page": 1,
+          "section": "表头",
+          "role": "table_header",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "不一样。全日制电子信息硕士14000元/生·学年；非全日制软件工程硕士18000元/生·学年，后者表格类别从第2页延续至第3页。"
+      ],
+      "forbidden_inferences": [
+        "不可把第2页全日制专业博士电子信息18000错配给全日制硕士",
+        "不可把按学年金额当全程总额",
+        "不是2028标准"
+      ],
+      "expected_result": "answer_with_boundaries",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "development",
+      "source_group": "57f2649ca140be36"
+    },
+    {
+      "id": "PF04",
+      "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+      "source_ids": [
+        "enrichment-nankai-2027-duration-0570cceaa6a1"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2027,
+      "reference_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "human_question": "南开2027计算机学院035的全日制085400电子信息硕士学制是几年？",
+      "retrieval_query": "035 电子信息 学制",
+      "material_type": "duration",
+      "scope": {
+        "department_code": "035",
+        "program_code": "085400",
+        "study_mode": "全日制",
+        "degree_type": "专业学位"
+      },
+      "case_type": "answer_with_boundaries",
+      "expected_evidence": [
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "text_path": "texts/7d39b98c7a01c23164d0.txt",
+          "text_sha256": "7d39b98c7a01c23164d062d9a43aee1396c2700c1d459aca3a09233e9e9d5d42",
+          "char_start": 427,
+          "char_end": 454,
+          "quote": "全日制 035 计算机学院 085400 电子信息 3",
+          "quote_sha256": "abc39d0b503cfdd21b710085db29a1f4d0193f312b726edf849b8fd30f7504e0",
+          "page": 1,
+          "section": "二、专业学位硕士研究生",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "text_path": "texts/7d39b98c7a01c23164d0.txt",
+          "text_sha256": "7d39b98c7a01c23164d062d9a43aee1396c2700c1d459aca3a09233e9e9d5d42",
+          "char_start": 322,
+          "char_end": 331,
+          "quote": "学制(单\n位：年)",
+          "quote_sha256": "327727f242620a6a7b015c1fc96aac29481d87425d8104ddbaf140ac6793d08e",
+          "page": 1,
+          "section": "二、专业学位硕士研究生",
+          "role": "table_header",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "原表明确为3年，仅适用该学院、专业和学习方式的2027级记录。"
+      ],
+      "forbidden_inferences": [
+        "不能从专业大类推所有学院/全日制及非全日制都为3年",
+        "2028培养方案未据此确定"
+      ],
+      "expected_result": "answer_with_boundaries",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "development",
+      "source_group": "8754208e7a73c061"
+    },
+    {
+      "id": "PF05",
+      "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+      "source_ids": [
+        "enrichment-nankai-2027-duration-0570cceaa6a1"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2027,
+      "reference_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "human_question": "南开2027级硕士学制是不是一律三年？",
+      "retrieval_query": "学制 联合培养",
+      "material_type": "duration",
+      "scope": {
+        "degree_type": "学术学位",
+        "rule_requires_exceptions": true
+      },
+      "case_type": "answer_with_boundaries",
+      "expected_evidence": [
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "text_path": "texts/7d39b98c7a01c23164d0.txt",
+          "text_sha256": "7d39b98c7a01c23164d062d9a43aee1396c2700c1d459aca3a09233e9e9d5d42",
+          "char_start": 93,
+          "char_end": 282,
+          "quote": "1、法学院、周恩来政府管理学院、商学院、日本研究院国\n际政治专业、环境科学与工程学院环境科学专业联合培养项目、\n外国语学院英语语言文学专业联合培养项目、\n周恩来政府管理学\n院国际关系专业联合培养项目、\n经济学院区域经济学专业联合培\n养项目为 2 年学制；\n2、数学科学学院应用数学专业联合培养项目学制为 2.5 年。\n3、\n其他研究生培养单位的学术学位硕士研究生为 3 年学制。",
+          "quote_sha256": "db7eff691a0b131b33bb8dbc75ac7ea715f6dbadf76d42d7988653143c630aad",
+          "page": 1,
+          "section": "一、学术学位硕士研究生",
+          "role": "rule_and_exceptions",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "text_path": "texts/7d39b98c7a01c23164d0.txt",
+          "text_sha256": "7d39b98c7a01c23164d062d9a43aee1396c2700c1d459aca3a09233e9e9d5d42",
+          "char_start": 51,
+          "char_end": 79,
+          "quote": "研究生的基本修业年限以其入学当年培养方案规定的学制为准。",
+          "quote_sha256": "435eb3f46701b34674cd32ec41e44a5aa266b023065a35eecb0b5ff2664e9941",
+          "page": 1,
+          "section": "总则",
+          "role": "year_boundary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "不是。原文列出部分单位/联合培养项目2年、应用数学联合培养2.5年，其余学术学位3年，并以入学当年培养方案为准。"
+      ],
+      "forbidden_inferences": [
+        "不能只读取“其他...3年”而丢掉前面的2年和2.5年例外",
+        "不据此替代2028当年培养方案"
+      ],
+      "expected_result": "answer_with_boundaries",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "development",
+      "source_group": "8754208e7a73c061"
+    },
+    {
+      "id": "PF06",
+      "source_id": "score-nankai-school-2024-af773cdc9cb9",
+      "source_ids": [
+        "score-nankai-school-2024-af773cdc9cb9"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2024,
+      "reference_year": 2024,
+      "planning_year": 2028,
+      "question_year": 2024,
+      "human_question": "南开2024学术工学08和专业工程类085/086的学校总分线分别是多少？",
+      "retrieval_query": "工学 工程类 学校线",
+      "material_type": "score",
+      "scope": {
+        "plan": "普通计划",
+        "statistics": "school_retest_threshold",
+        "degree_types": [
+          "学术学位",
+          "专业学位"
+        ]
+      },
+      "case_type": "answer_with_boundaries",
+      "expected_evidence": [
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "text_path": "texts/67935d22a7425dad79f5.txt",
+          "text_sha256": "67935d22a7425dad79f5ec2dcef973903a7c3d4c5e8d32209239607cda253bff",
+          "char_start": 223,
+          "char_end": 245,
+          "quote": "工学（08） 50 50 70 75 300",
+          "quote_sha256": "ca16aca081d6b857ef69a935045b9a36ba8420ae60261e99365025547bea9d59",
+          "page": 1,
+          "section": "学术学位",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "text_path": "texts/67935d22a7425dad79f5.txt",
+          "text_sha256": "67935d22a7425dad79f5ec2dcef973903a7c3d4c5e8d32209239607cda253bff",
+          "char_start": 505,
+          "char_end": 533,
+          "quote": "工程类（085、086） 50 50 70 75 310",
+          "quote_sha256": "590837f544a3545b1a12902be51b1cc464506fa8596b9f0b0f66c2aae7e5073b",
+          "page": 1,
+          "section": "专业学位",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "text_path": "texts/67935d22a7425dad79f5.txt",
+          "text_sha256": "67935d22a7425dad79f5ec2dcef973903a7c3d4c5e8d32209239607cda253bff",
+          "char_start": 80,
+          "char_end": 84,
+          "quote": "学术学位",
+          "quote_sha256": "9146ce0808c2001d36e3c50d801170e3607a153e5c1d2605d32e5330b30bffa9",
+          "page": 1,
+          "section": "学术学位",
+          "role": "table_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "text_path": "texts/67935d22a7425dad79f5.txt",
+          "text_sha256": "67935d22a7425dad79f5ec2dcef973903a7c3d4c5e8d32209239607cda253bff",
+          "char_start": 340,
+          "char_end": 344,
+          "quote": "专业学位",
+          "quote_sha256": "e53c65087683915997e2b6c2e808621ae285d1d7c3b7d6a34e786f75b9c54f4f",
+          "page": 1,
+          "section": "专业学位",
+          "role": "table_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "text_path": "texts/67935d22a7425dad79f5.txt",
+          "text_sha256": "67935d22a7425dad79f5ec2dcef973903a7c3d4c5e8d32209239607cda253bff",
+          "char_start": 38,
+          "char_end": 79,
+          "quote": "学科门类（专业）\n单科要求\n总分要求\n政治\n(联考综合)\n外语 业务科一 业务科二",
+          "quote_sha256": "e32e728c967f07b7696fa461396782cb6125ea0288553bf929f90729a44dc87d",
+          "page": 1,
+          "section": "单科及总分要求",
+          "role": "table_header",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "学术工学08总分300；专业工程类085/086总分310。两行的列顺序均是政治、外语、业务一、业务二、总分；不是录取最低分。"
+      ],
+      "forbidden_inferences": [
+        "不能混用学硕/专硕行",
+        "学校线不是学院线或录取最低/最高分",
+        "不能移作2025、2026或2028分数"
+      ],
+      "expected_result": "answer_with_boundaries",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "development",
+      "source_group": "51ee41a97799e901"
+    },
+    {
+      "id": "PF07",
+      "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+      "source_ids": [
+        "score-nankai-school-2025-ca92bfb2b8e8"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2025,
+      "reference_year": 2025,
+      "planning_year": 2028,
+      "question_year": 2025,
+      "human_question": "南开2025学术工学总分达到290就一定达到学院复试线、甚至录取了吗？",
+      "retrieval_query": "工学 学校线 学院",
+      "material_type": "score",
+      "scope": {
+        "degree_type": "学术学位",
+        "discipline": "08",
+        "statistics": "school_retest_threshold"
+      },
+      "case_type": "answer_with_boundaries",
+      "expected_evidence": [
+        {
+          "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+          "text_path": "texts/ad0496b8a53c78fc793a.txt",
+          "text_sha256": "ad0496b8a53c78fc793a8c6704b3037ccfa7ac013ad50ae1ed1df70c70d32ecd",
+          "char_start": 85,
+          "char_end": 89,
+          "quote": "学术学位",
+          "quote_sha256": "9146ce0808c2001d36e3c50d801170e3607a153e5c1d2605d32e5330b30bffa9",
+          "page": 1,
+          "section": "学术学位",
+          "role": "table_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+          "text_path": "texts/ad0496b8a53c78fc793a.txt",
+          "text_sha256": "ad0496b8a53c78fc793a8c6704b3037ccfa7ac013ad50ae1ed1df70c70d32ecd",
+          "char_start": 228,
+          "char_end": 250,
+          "quote": "工学（08） 50 40 70 75 290",
+          "quote_sha256": "93b85110a14bb0952a26351df0414d48312ea0315e734558a14dfcae8508734e",
+          "page": 1,
+          "section": "学术学位",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+          "text_path": "texts/325d3d80513df6bf3212.txt",
+          "text_sha256": "325d3d80513df6bf3212a3e81fdd4ea53a9086038920de892024d7ea6f06f537",
+          "char_start": 13,
+          "char_end": 142,
+          "quote": "1.以上为考生进入我校复试的初试成绩基本要求（即学校线），各学院可在不低于学校\n复试基本要求的基础上，根据生源和计划情况确定本学院普通计划考生进入复试的初试成绩\n要求。各学院考生进入复试的初试成绩要求将陆续在学院网站发布，请随时关注学院网站发\n布的最新信息。",
+          "quote_sha256": "7a50c461e1a78548c57b65244bd4586df971c9f413ddf5d006f99825ccdc9053",
+          "page": 3,
+          "section": "请考生认真阅读以下说明：第1条",
+          "role": "limitation",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "不能。该学校线的学术工学总分290、单科50/40/70/75；各学院可在不低于学校基本要求基础上另定普通计划复试要求，录取结论仍未知。"
+      ],
+      "forbidden_inferences": [
+        "学院线未知；录取最低分未知；是否录取未知",
+        "学校总分290不是一项即可满足的全部条件"
+      ],
+      "expected_result": "answer_with_boundaries",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "development",
+      "source_group": "7d6e611654911022"
+    },
+    {
+      "id": "PF08",
+      "source_id": "score-nankai-school-2026-e207f065bfea",
+      "source_ids": [
+        "score-nankai-school-2026-e207f065bfea"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2026,
+      "reference_year": 2026,
+      "planning_year": 2028,
+      "question_year": 2028,
+      "human_question": "2026南开学术工学学校线是290，能据此断言2028也为290吗？",
+      "retrieval_query": "2026 工学 学校线",
+      "material_type": "score",
+      "scope": {
+        "degree_type": "学术学位",
+        "discipline": "08",
+        "target_inference_year": 2028
+      },
+      "case_type": "target_year_unknown",
+      "expected_evidence": [
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "text_path": "texts/4dcfc6ad9d5ce1038750.txt",
+          "text_sha256": "4dcfc6ad9d5ce1038750a51026a677e333753a1175ab67cfa5a2cca7b51d524b",
+          "char_start": 0,
+          "char_end": 35,
+          "quote": "南开大学2026年全国硕士研究生招生考试考生进入复试的初试成绩基本要求",
+          "quote_sha256": "cbae4d1879442a1bd610e67e0028af41ebf25d0a07a40bc404826b8262d96621",
+          "page": 1,
+          "section": "文件标题",
+          "role": "actual_year",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "text_path": "texts/4dcfc6ad9d5ce1038750.txt",
+          "text_sha256": "4dcfc6ad9d5ce1038750a51026a677e333753a1175ab67cfa5a2cca7b51d524b",
+          "char_start": 82,
+          "char_end": 86,
+          "quote": "学术学位",
+          "quote_sha256": "9146ce0808c2001d36e3c50d801170e3607a153e5c1d2605d32e5330b30bffa9",
+          "page": 1,
+          "section": "学术学位",
+          "role": "table_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "text_path": "texts/4dcfc6ad9d5ce1038750.txt",
+          "text_sha256": "4dcfc6ad9d5ce1038750a51026a677e333753a1175ab67cfa5a2cca7b51d524b",
+          "char_start": 225,
+          "char_end": 247,
+          "quote": "工学（08） 50 45 70 75 290",
+          "quote_sha256": "0d327f020d0818c9b2f7de3094305f0d1f85f9b2976a001cad74a41bf32b142f",
+          "page": 1,
+          "section": "学术学位",
+          "role": "answer",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "text_path": "texts/bbc0dd49d49de7bba6b2.txt",
+          "text_sha256": "bbc0dd49d49de7bba6b2b7d6f9cea4651da92d59d5d6e7da76411b8475b15d3e",
+          "char_start": 13,
+          "char_end": 144,
+          "quote": "1.以上为考生进入我校复试的初试成绩基本要求（即学校线），各学院可在\n不低于学校复试基本要求的基础上，\n根据生源和计划情况确定本学院普通计划考\n生进入复试的初试成绩要求。\n各学院考生进入复试的初试成绩要求将陆续在学院\n网站发布，请随时关注学院网站发布的最新信息。",
+          "quote_sha256": "10cdc8485cd3800e50eb4a6a175c2868f50ae7390d4c197545a50017e499cab8",
+          "page": 3,
+          "section": "请考生认真阅读以下说明：第1条",
+          "role": "limitation",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "只能确认2026的该行总分290、单科50/45/70/75；2028分数仍未知，且当年的学院要求另定。"
+      ],
+      "forbidden_inferences": [
+        "2028学校线未知",
+        "2028学院线和录取分未知",
+        "不得用检索目标年度覆盖2026原文实际年度"
+      ],
+      "expected_result": "target_year_unknown",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "development",
+      "source_group": "5037e897cc5b3d84"
+    },
+    {
+      "id": "PF09",
+      "source_id": "history-78cb052e469bde06fcde",
+      "source_ids": [
+        "history-78cb052e469bde06fcde"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2026,
+      "reference_year": 2026,
+      "planning_year": 2028,
+      "question_year": 2026,
+      "human_question": "按南开密码学院2026调剂公告，一志愿081200、全日制，英语二数学二和计算机学科专业基础这一套科目是否在历史允许路线内？",
+      "retrieval_query": "081200 英语 调剂",
+      "material_type": "transfer",
+      "scope": {
+        "first_choice_program_code": "081200",
+        "first_choice_study_mode": "全日制",
+        "target_program_code": "145200"
+      },
+      "case_type": "answer_with_boundaries",
+      "expected_evidence": [
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+          "char_start": 414,
+          "char_end": 440,
+          "quote": "我院接收调剂专业为：密码（专业代码：145200）。",
+          "quote_sha256": "2177eca022f870deca7b3d3bebc45a234c32bf45becec4a2f80f57de9825501f",
+          "page": null,
+          "section": "一、接收调剂专业",
+          "role": "target_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+          "char_start": 453,
+          "char_end": 527,
+          "quote": "调剂考生须符合《南开大学2026年硕士研究生招生简章》规定的报考条件，同时调剂考生一志愿学习方式须为全日制，一志愿报考专业和考生科目须满足以下条件：",
+          "quote_sha256": "9bdfdb26f8dbd76a8c2a6d709ad2e6ba8c785106512801e8cdd1f5e6be5fd862",
+          "page": null,
+          "section": "二、申请调剂的基本条件",
+          "role": "prerequisite",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+          "char_start": 528,
+          "char_end": 604,
+          "quote": "初试专业代码\n初试专业名称\n初试科目要求\n初试成绩要求\n政治理论名称\n外国语名称\n业务课一名称\n业务课二名称\n总分\n政治理论\n外国语\n业务课一\n业务课二",
+          "quote_sha256": "ca96b28782f5577d60c21faba61cc558b8fbe06be77c559df7eeab90b3020092",
+          "page": null,
+          "section": "二、申请调剂的基本条件",
+          "role": "table_header",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+          "char_start": 605,
+          "char_end": 677,
+          "quote": "081200\n计算机科学与技术\n思想政治理论\n英语（一）或英语（二）\n数学（一）或数学（二）\n计算机学科专业基础\n290\n50\n50\n75\n75",
+          "quote_sha256": "c30a3c930d7dff1d3b37010a27bb19200f50496faf9fa4f64b3cc90cb05a14b9",
+          "page": null,
+          "section": "二、申请调剂的基本条件/081200路线",
+          "role": "whole_alternative_route",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "历史表中081200路线允许英语一或二、数学一或二和计算机学科专业基础，另有总分290与单科50/50/75/75等要求；只说明该历史科目路线相容，不保证资格、缺额或录取。"
+      ],
+      "forbidden_inferences": [
+        "其他资格仍须按招生简章核对",
+        "未给成绩时不能视为分数达标",
+        "不是2028可申请或存在缺额的证明"
+      ],
+      "expected_result": "answer_with_boundaries",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "holdout",
+      "source_group": "00471c04bfc49ab1"
+    },
+    {
+      "id": "PF10",
+      "source_id": "history-78cb052e469bde06fcde",
+      "source_ids": [
+        "history-78cb052e469bde06fcde"
+      ],
+      "unit_id": "367949",
+      "unit_name": "南开大学",
+      "source_year": 2026,
+      "reference_year": 2026,
+      "planning_year": 2028,
+      "question_year": 2028,
+      "human_question": "看到这份密码学院调剂公告，现在能把它当作2028可报名的调剂机会吗？",
+      "retrieval_query": "调剂 截止时间",
+      "material_type": "transfer",
+      "scope": {
+        "target_program_code": "145200",
+        "historical_only": true
+      },
+      "case_type": "historical_opportunity_unknown",
+      "expected_evidence": [
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+          "char_start": 0,
+          "char_end": 36,
+          "quote": "【2026考研】密码与网络空间安全学院 2026年硕士研究生招生调剂公告",
+          "quote_sha256": "e1092539e6f71d7fcbb3944029952fd24a0f9450a99c9e68322c9024bb99a33f",
+          "page": null,
+          "section": "网页标题",
+          "role": "actual_year",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+          "char_start": 991,
+          "char_end": 1042,
+          "quote": "请考生待“全国硕士生招生复试调剂服务系统”开放后申请调剂，截止时间为2026年4月8日中午12：00。",
+          "quote_sha256": "af1f17d8243aa12a4fb53f40ef287e99b7f231eff76e364aa3c60e34f5592bcb",
+          "page": null,
+          "section": "三、调剂流程/1、调剂系统报名",
+          "role": "historical_deadline",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "text_path": "texts/3a0cae30eadf85b7843c.txt",
+          "text_sha256": "3a0cae30eadf85b7843ca2ae3b77d186b3cf7881db6ba2f16d3bf69df5df8360",
+          "char_start": 1728,
+          "char_end": 1768,
+          "quote": "以上内容如有变动，请以最新通知为准。请考生随时关注南开大学研招网及学院官网通知。",
+          "quote_sha256": "e3c1b316aed0c8500320d4ab06a405dd6a5ba92e348608b0ce57daea0a4df7c0",
+          "page": null,
+          "section": "四、其他",
+          "role": "version_boundary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "不能。该公告为2026，明确截止2026年4月8日中午12:00；2028是否有缺额、开放时间及条件都须重新核实。"
+      ],
+      "forbidden_inferences": [
+        "2028缺额未知",
+        "当前是否接受报名未知",
+        "历史条件相容不等于有名额或保证录取"
+      ],
+      "expected_result": "historical_opportunity_unknown",
+      "retrieval_recall_applicable": true,
+      "runtime_admission_expectation": null,
+      "split": "holdout",
+      "source_group": "00471c04bfc49ab1"
+    },
+    {
+      "id": "catalog-01",
+      "source_id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+      "source_ids": [
+        "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2"
+      ],
+      "unit_id": "367888",
+      "unit_name": "北京工商大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "2027年北京工商大学计算机技术085404的初试和复试分别考什么？",
+      "human_question": "2027年北京工商大学计算机技术085404的初试和复试分别考什么？",
+      "retrieval_query": "085404 计算机技术 初试 复试",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+          "text_path": "texts/453ca7215a5d940fdc89.txt",
+          "text_sha256": "453ca7215a5d940fdc898fbc8971d1babac42dccf81df478f10b0187a15a0136",
+          "char_start": 7010,
+          "char_end": 7157,
+          "quote": "1.计算机技术（085404）\n00不区分研究方向\n包括：\n01大数据可视分析\n02商业物联网\n03数据挖掘与社会计算\n04移动计算与云服务\n全日制 3年 6000元/年\n①101思想政治理论\n②204英语（二）\n③302数学（二）\n④408计算机学科专业基础\nC语言程序设计 41 5 46\n",
+          "quote_sha256": "559f1d23df5f92ca002eaa6263462dea11ba5a4c6df7c8ca5e83df4ef167993f",
+          "page": 7,
+          "section": "106计算机与人工智能学院 / 085404",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "初试为101、204、302、408，复试是C语言程序设计。"
+      ],
+      "forbidden_inferences": [
+        "不能把初试408写成复试科目。",
+        "不能将同页控制工程或人工智能的业务课二移到计算机技术。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "50085d6a220ed047"
+    },
+    {
+      "id": "catalog-02",
+      "source_id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+      "source_ids": [
+        "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2"
+      ],
+      "unit_id": "367888",
+      "unit_name": "北京工商大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "同一页的人工智能085410，也和计算机技术一样考408吗？",
+      "human_question": "同一页的人工智能085410，也和计算机技术一样考408吗？",
+      "retrieval_query": "085410 人工智能 初试",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+          "text_path": "texts/453ca7215a5d940fdc89.txt",
+          "text_sha256": "453ca7215a5d940fdc898fbc8971d1babac42dccf81df478f10b0187a15a0136",
+          "char_start": 7315,
+          "char_end": 7463,
+          "quote": "3.人工智能（085410）\n00不区分研究方向\n包括：\n01多模态感知和边缘计算\n02计算机视觉与智能装备\n03区块链与大数据\n04智能自主无人系统\n全日制 3年 6000元/年\n①101思想政治理论\n②204英语（二）\n③302数学（二）\n④836自动控制原理\n人工智能基础 20 5 25\n",
+          "quote_sha256": "041bc63bae7403bfde123d20b71e392b2b36a54c777b91f1f8b71b28bef0cce1",
+          "page": 7,
+          "section": "106计算机与人工智能学院 / 085410",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "该2027目录人工智能085410业务课二为836自动控制原理，不能套用085404的408。"
+      ],
+      "forbidden_inferences": [
+        "不能因为专业属于人工智能就推断全国都考408。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "50085d6a220ed047"
+    },
+    {
+      "id": "catalog-03",
+      "source_id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+      "source_ids": [
+        "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2"
+      ],
+      "unit_id": "368218",
+      "unit_name": "浙江工业大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "2027浙工大非全工业工程与管理125603，专科毕业满五年就能直接认定符合吗？",
+      "human_question": "2027浙工大非全工业工程与管理125603，专科毕业满五年就能直接认定符合吗？",
+      "retrieval_query": "125603 工业工程与管理 工作年限 定向",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+          "text_path": "texts/e595f6c112779515ffbf.txt",
+          "text_sha256": "e595f6c112779515ffbf46a581eadcc1e7bfab0c6439883c01f279a7823dd16a",
+          "char_start": 240,
+          "char_end": 443,
+          "quote": "125603\n工业工程与管理\n专业学位 非全日制 00.不区分研究方向\n①199管理类综合能力\n②204英语（二）\n③-无\n④--无\n1.原则上招收在职定向就业人员 ，报考类别请选择“定\n向就业”。\n2.工作年限要求：本科毕业后有3年以上工作经验；或\n获得国家承认的高职（专科）毕业学历或本科结业后，\n达到本科毕业同等学力并有5年以上工作经验；或获得硕\n士、博士研究生学历或学位后有2年以上工作经验。\n3\n",
+          "quote_sha256": "3d3b77cda469075d1127311e3bfb80c9c6f7c42867d6c60f4e645e78f56a22a9",
+          "page": 1,
+          "section": "002机械工程学院 / 125603",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "原文要求本科同等学力并有5年以上工作经验，原则上在职定向；不能把毕业年限等同工作经验。"
+      ],
+      "forbidden_inferences": [
+        "不能默认未填工作经历、同等学力证明或定向类别已满足。",
+        "还需核对章程中的其他条件。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "unknown_applicant_eligibility",
+      "split": "development",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "d5706cbf26a7c6fe"
+    },
+    {
+      "id": "catalog-04",
+      "source_id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+      "source_ids": [
+        "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2"
+      ],
+      "unit_id": "368218",
+      "unit_name": "浙江工业大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "浙工大2027非全日制设计135700，科目三和科目四都可以带马克笔吗？",
+      "human_question": "浙工大2027非全日制设计135700，科目三和科目四都可以带马克笔吗？",
+      "retrieval_query": "135700 设计 马克笔 科目三 科目四",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+          "text_path": "texts/e595f6c112779515ffbf.txt",
+          "text_sha256": "e595f6c112779515ffbf46a581eadcc1e7bfab0c6439883c01f279a7823dd16a",
+          "char_start": 1311,
+          "char_end": 1618,
+          "quote": "135700\n设计\n专业学位 非全日制\n01.工业设计\n02.人居环境与公共艺术设计\n03.视觉传达与数字媒体艺术设计\n①101思想政治理论\n②204英语（二）\n③610设计基础\n④905设计综合\n1.科目三仅允许携带常规文具（即黑色字迹签字笔、钢\n笔、碳素笔，2B铅笔，无封套橡皮，直尺），不能携带\n画板、马克笔、画笔、水彩笔、刀具类、颜料类、非常\n规考试用纸等非常规文具。\n2.科目四可带铅笔、勾线笔、马克笔、水笔、高光笔、\n尺子、橡皮、圆规、美工刀、工具袋。\n3.按研究方向分列招生计划、划定复试分数线、组织复\n试，请考生认真考虑，慎重选择研究方向。\n4.指标暂按3个配置，后续将根据报考情况适当调整。\n3\n",
+          "quote_sha256": "35cbf9adfeb20d2c651cac6368cb07ef3fe296615cb7f380b2a4c907f13b2e1d",
+          "page": 2,
+          "section": "015设计与建筑学院 / 135700",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "科目三禁止马克笔等非常规文具；科目四明确可带马克笔。"
+      ],
+      "forbidden_inferences": [
+        "不能将科目三的禁令推广为科目四也禁止，或将科目四允许扩展至科目三。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "d5706cbf26a7c6fe"
+    },
+    {
+      "id": "catalog-05",
+      "source_id": "catalog-678581-2027-c7c00396e7f5553b-2859923889d6-v2",
+      "source_ids": [
+        "catalog-678581-2027-c7c00396e7f5553b-2859923889d6-v2"
+      ],
+      "unit_id": "678581",
+      "unit_name": "贵州民族大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "贵州民族大学2027目录的拟招生人数包含拟接收推免生吗？",
+      "human_question": "贵州民族大学2027目录的拟招生人数包含拟接收推免生吗？",
+      "retrieval_query": "招生计划 拟招生人数 推免",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-678581-2027-c7c00396e7f5553b-2859923889d6-v2",
+          "text_path": "texts/e12db55e3dda3a882c0d.txt",
+          "text_sha256": "e12db55e3dda3a882c0d1019422a2899172814ca821214e50cb4da337f6e76fc",
+          "char_start": 79,
+          "char_end": 144,
+          "quote": "招生计划说明：拟招生人数不包含拟接收推免生人数。各学院、专业（领域）的招生人数将根据国家正式下达规模数和实际生源情况作相应调整。\n",
+          "quote_sha256": "353667b031b7e27aa0b38506d203ae1d15e5a2db5ec9d918a92de613c0d991d2",
+          "page": 1,
+          "section": "目录全表招生计划说明",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "不包含拟接收推免生人数，人数会按正式规模和实际生源调整。"
+      ],
+      "forbidden_inferences": [
+        "不能把拟招生数当最终录取数或把推免重复相减。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "holdout",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "49ebed86b52ed50a"
+    },
+    {
+      "id": "catalog-06",
+      "source_id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+      "source_ids": [
+        "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8"
+      ],
+      "unit_id": "368190",
+      "unit_name": "南京中医药大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "南京中医药大学2027中医内科学105701的01方向计划为6，能把全专业招生人数写成6吗？",
+      "human_question": "南京中医药大学2027中医内科学105701的01方向计划为6，能把全专业招生人数写成6吗？",
+      "retrieval_query": "105701 01 心血管病 计划",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+          "text_path": "texts/770ceec10e2c37c8208f.txt",
+          "text_sha256": "770ceec10e2c37c8208f7f02f46caa46e76630c36bc3228359c8ac73cc37300e",
+          "char_start": 68,
+          "char_end": 170,
+          "quote": "院系所\n代码\n院系所名称 专业代码 专业名称\n研究\n方向\n码\n研究方向名称 学位类型 学习方式 计划\n是否接收\n退役士兵\n计划\n是否接\n收少干\n计划\n初试科目一 初试科目二 初试科目三 初试科目四 备注\n",
+          "quote_sha256": "2c01ba63bd4c9a032db2300bacb9c86010e30535618d74b3eb24f5f120233146",
+          "page": 1,
+          "section": null,
+          "role": "table_header",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+          "text_path": "texts/770ceec10e2c37c8208f.txt",
+          "text_sha256": "770ceec10e2c37c8208f7f02f46caa46e76630c36bc3228359c8ac73cc37300e",
+          "char_start": 170,
+          "char_end": 286,
+          "quote": "000 不区分院系所 105701 中医内科学 01 心血管病的临床研究(002第一临床医学院、附属医院（江苏省中医院）) 专业学位 全日制 6 是 是 101思想政治理论 201英语（一） 307临床医学综合能力（中医） --无\n",
+          "quote_sha256": "de5c12835047d41e29be38fbb048b269181af1635106169554418ebd983674e4",
+          "page": 1,
+          "section": "105701 / 01方向",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "6对应该行心血管病临床研究方向，不是105701全专业总数。"
+      ],
+      "forbidden_inferences": [
+        "不得跨方向汇总或把一行计划代填整个专业人数。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "unknown_program_total",
+      "split": "development",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "fffda7a1acb02584"
+    },
+    {
+      "id": "catalog-07",
+      "source_id": "catalog-367927-2027-85a9575f605debb0-da572f009ef2",
+      "source_ids": [
+        "catalog-367927-2027-85a9575f605debb0-da572f009ef2"
+      ],
+      "unit_id": "367927",
+      "unit_name": "首都经济贸易大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "想研究不考408的方向，首都经贸2027电子信息085400与计算机081200能混用考试科目吗？",
+      "human_question": "想研究不考408的方向，首都经贸2027电子信息085400与计算机081200能混用考试科目吗？",
+      "retrieval_query": "085400 电子信息 806 程序设计",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-367927-2027-85a9575f605debb0-da572f009ef2",
+          "text_path": "texts/8ed7c151a26b42676e75.txt",
+          "text_sha256": "8ed7c151a26b42676e7567c1a8ba65377c56bfc430d1a6907075654b48469fd4",
+          "char_start": 4738,
+          "char_end": 4814,
+          "quote": "专业学位 085400电子信息 00不区分研究方向 (1)全日制 15\n①101思想政治理论\n②204英语（二）\n③302数学（二）\n④806程序设计\n",
+          "quote_sha256": "59a9f2fefc09cf408a609c9c099f92dcb3dfbe6feda4dd1a89b91bf723e4a01f",
+          "page": 9,
+          "section": "227人工智能学院 / 085400",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "该页085400电子信息是101、204、302、806程序设计，不应套用081200的408。"
+      ],
+      "forbidden_inferences": [
+        "只说明这份2027目录中的科目，不能据此确认2028科目或完整报考资格。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "holdout",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "27b3f801d3e1547d"
+    },
+    {
+      "id": "catalog-08",
+      "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+      "source_ids": [
+        "catalog-677380-2027-8287cc7f12c39a1f-793507ece444"
+      ],
+      "unit_id": "677380",
+      "unit_name": "上海电力大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "上海电力2027化学工程与技术081700的复试F015无机化学B，所有考生都可选吗？",
+      "human_question": "上海电力2027化学工程与技术081700的复试F015无机化学B，所有考生都可选吗？",
+      "retrieval_query": "081700 F015 无机化学 复试",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "text_path": "texts/5d4a3ab6918c326f1d92.txt",
+          "text_sha256": "5d4a3ab6918c326f1d9206181f4849a602d0f03a09ec237d5d00ae8e4c88825a",
+          "char_start": 259,
+          "char_end": 426,
+          "quote": "081700 化学工程与技术（全日\n制）\n19 ①101思想政治理论\n②201英语（一）\n③302数学（二）\n④824无机化学A\nF015：无机化学B（仅适于初试\n未考无机化学科目的考生）\nF016：有机化学\nF017：分析化学\nF018：化工原理\nF020：环境化学\n（F015、F016、F017、F018、\nF020任选一科）\n",
+          "quote_sha256": "f4c83c3632278f91aeced412b4923236580437d094f0bd16205a5b1ff2138017",
+          "page": 1,
+          "section": "020环境与化学工程学院 / 081700",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "F015仅适用于初试未考无机化学科目的考生，不能忽略这个限制。"
+      ],
+      "forbidden_inferences": [
+        "不能只摘任选一科而丢掉F015的适用例外，也不能混用其他专业的复试列表。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "f1c6f64c2f5d49df"
+    },
+    {
+      "id": "catalog-09",
+      "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+      "source_ids": [
+        "catalog-677380-2027-8287cc7f12c39a1f-793507ece444"
+      ],
+      "unit_id": "677380",
+      "unit_name": "上海电力大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "上海电力的人工智能085410专业简介，强调了哪些能源电力研究方向？",
+      "human_question": "上海电力的人工智能085410专业简介，强调了哪些能源电力研究方向？",
+      "retrieval_query": "人工智能 电力能源 机器视觉 自然语言处理",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "text_path": "texts/5d4a3ab6918c326f1d92.txt",
+          "text_sha256": "5d4a3ab6918c326f1d9206181f4849a602d0f03a09ec237d5d00ae8e4c88825a",
+          "char_start": 23417,
+          "char_end": 23434,
+          "quote": "十四、人工智能 代码：085410",
+          "quote_sha256": "daf9883676f182b0773eb2aac4a726fbf78e8e97858e3aa3cdddf0b2a92a89e1",
+          "page": 21,
+          "section": "专业简介 / 十四人工智能",
+          "role": "scope_heading",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "text_path": "texts/5d4a3ab6918c326f1d92.txt",
+          "text_sha256": "5d4a3ab6918c326f1d9206181f4849a602d0f03a09ec237d5d00ae8e4c88825a",
+          "char_start": 23908,
+          "char_end": 24018,
+          "quote": "学科根据能源互联网发展需求，结合我校电力特色，在机器视觉技术及应用、\n人工智能与信息安全、自然语言处理技术、人工智能与自动化程序、用电能效与\n智能调控、嵌入式系统与电力机器人、智能计算与智能电网应用等领域具有重要\n影响。",
+          "quote_sha256": "7a1427bb4c7a52bc4e4e9a47100cb816121c23e98377591d73cc379d53ddf550",
+          "page": 22,
+          "section": "十四人工智能的跨页续文",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "应合读第21页专业标题和第22页续文；原文列机器视觉、人工智能与信息安全、自然语言处理、嵌入式系统与电力机器人等。"
+      ],
+      "forbidden_inferences": [
+        "不能把上一节控制工程或下一节大数据的简介归给人工智能。",
+        "研究方向简介不能冒充考试科目或招生承诺。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "case_type": "cross_page_scope_after_20",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "f1c6f64c2f5d49df"
+    },
+    {
+      "id": "catalog-10",
+      "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+      "source_ids": [
+        "catalog-677380-2027-8287cc7f12c39a1f-793507ece444"
+      ],
+      "unit_id": "677380",
+      "unit_name": "上海电力大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2028,
+      "material_type": "catalog",
+      "question": "只凭这份2027招生目录，可以确认上海电力2028年人工智能085410的招生计划吗？",
+      "human_question": "只凭这份2027招生目录，可以确认上海电力2028年人工智能085410的招生计划吗？",
+      "retrieval_query": "2027 人工智能 招生专业目录",
+      "expected_evidence": [
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "text_path": "texts/5d4a3ab6918c326f1d92.txt",
+          "text_sha256": "5d4a3ab6918c326f1d9206181f4849a602d0f03a09ec237d5d00ae8e4c88825a",
+          "char_start": 13,
+          "char_end": 35,
+          "quote": "上海电力大学2027年招收攻读硕士学位研究生",
+          "quote_sha256": "114cae45a16d60d7fc8acc19f8ff16a9139f38aa9c9f6be4f648f13670184c4d",
+          "page": 1,
+          "section": null,
+          "role": "source_year",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "不能确认2028正式招生计划，应标目标年度未知，继续查当年官方目录。"
+      ],
+      "forbidden_inferences": [
+        "不能把历史年份改成目标年份，也不能据未取得2028文件推断该专业停招。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "unknown_target_year",
+      "split": "development",
+      "case_type": "year_boundary",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": true,
+      "source_group": "f1c6f64c2f5d49df"
+    },
+    {
+      "id": "catalog-11",
+      "source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+      "source_ids": [
+        "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+        "doc-4af998d24f86e487664f-9bc2e77aa634"
+      ],
+      "unit_id": "368087",
+      "unit_name": "哈尔滨工业大学",
+      "source_year": 2027,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "合读官方2027目录入口和附件，哈工大深圳55高端科技投资EMBA允许非定向考生报考吗？",
+      "human_question": "合读官方2027目录入口和附件，哈工大深圳55高端科技投资EMBA允许非定向考生报考吗？",
+      "retrieval_query": "125100 55 高端科技投资 EMBA 深圳 定向",
+      "expected_evidence": [
+        {
+          "source_id": "doc-4af998d24f86e487664f-9bc2e77aa634",
+          "text_path": "texts/988e48377bc374a97c0d.txt",
+          "text_sha256": "988e48377bc374a97c0d277df7ec32a2a6f5ac79d2742b094fb4107932eb803a",
+          "char_start": 0,
+          "char_end": 16,
+          "quote": "2027年统考硕士研究生招生目录",
+          "quote_sha256": "a39b217b78f670d076225da77c16247b532369a2a5ad8344154e09459b26b5dd",
+          "page": null,
+          "section": "官方年度入口标题",
+          "role": "year_heading",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        },
+        {
+          "source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+          "text_path": "texts/2aec5297c75d996ebfec.txt",
+          "text_sha256": "2aec5297c75d996ebfec791617e1ba2e2fb6b387316b4aaa2f43942d4940baca",
+          "char_start": 25389,
+          "char_end": 25480,
+          "quote": "*125100工商管理 55高端科技投资EMBA（深圳）：仅招收在职\n定向就业考生\n(2)非全日\n制\n①199管理类综合能力②202俄语或203日语或204英语（二）③-无④--无\n",
+          "quote_sha256": "f91acdbc96b936df8571a60a821ff7e09989c4bc984cbbaaca0d5c4e9075e55a",
+          "page": 29,
+          "section": "150商学院 / EMBA55深圳",
+          "role": "primary",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": true,
+      "allowed_conclusions": [
+        "需同时核入口标题、PDF精确链接和第29页条款；该方向仅招在职定向就业考生。"
+      ],
+      "forbidden_inferences": [
+        "不能单靠PDF元数据或URL填2027；不能把55深圳、56哈尔滨、57上海授课点混成一个方向。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "source_rule_only",
+      "split": "development",
+      "year_basis": "publication_chain",
+      "publication_chain": {
+        "year_basis": "publication_chain",
+        "year": 2027,
+        "parent_source_id": "doc-4af998d24f86e487664f-9bc2e77aa634",
+        "parent_sha256": "9bc2e77aa63409ec4c2e8bb1263aafa1cf589f1b5fe35a3db0ec6e26e90b0492",
+        "attachment_source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+        "attachment_sha256": "ed923484944978d7b1bb44134e9893003092adb92f7a882ba7a77666d93794c3",
+        "resolved_attachment_url": "https://yzb.hit.edu.cn/_upload/article/files/12/cb/333643d84636a30ab6b586266704/501748af-b6cb-4851-8931-49196a409f82.pdf",
+        "exact_link_span": {
+          "quote": "/_upload/article/files/12/cb/333643d84636a30ab6b586266704/501748af-b6cb-4851-8931-49196a409f82.pdf",
+          "char_start": 19218,
+          "char_end": 19316,
+          "offset_basis": "UTF-8 decoded raw HTML, Unicode code points, half-open"
+        }
+      },
+      "case_type": "two_source_year_and_late_scope",
+      "reference_year": 2027,
+      "retrieval_recall_applicable": false,
+      "evaluation_note": "Publication-chain challenge; do not require standalone undated PDF accepted recall.",
+      "source_group": "53e90eb79007c6f5"
+    },
+    {
+      "id": "catalog-12",
+      "source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+      "source_ids": [
+        "doc-8c2a6f9ac1e47065d65d-ed9234849449"
+      ],
+      "unit_id": "368087",
+      "unit_name": "哈尔滨工业大学",
+      "source_year": null,
+      "planning_year": 2028,
+      "question_year": 2027,
+      "material_type": "catalog",
+      "question": "不看发布入口，只给这份31页PDF本身，能否证明其招生年度是2027？",
+      "human_question": "不看发布入口，只给这份31页PDF本身，能否证明其招生年度是2027？",
+      "retrieval_query": "哈尔滨工业大学 统考 硕士 招生目录 年度",
+      "expected_evidence": [
+        {
+          "source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+          "text_path": "texts/2aec5297c75d996ebfec.txt",
+          "text_sha256": "2aec5297c75d996ebfec791617e1ba2e2fb6b387316b4aaa2f43942d4940baca",
+          "char_start": 0,
+          "char_end": 14,
+          "quote": "专业\n（标注*号为专业学位）",
+          "quote_sha256": "b3b9426a18e780e27409beb783b0f4d275fca0936fbbff4d1c21d96c6d157732",
+          "page": 1,
+          "section": "PDF自身表头",
+          "role": "standalone_scope",
+          "offset_basis": "UTF-8 LF text, Unicode code points, zero-based half-open"
+        }
+      ],
+      "must_read_together": false,
+      "allowed_conclusions": [
+        "不能；PDF本身没有明示招生年度，独立年份应保持未知。官方发布链可以另行共读，但不能冒充PDF自身标题。"
+      ],
+      "forbidden_inferences": [
+        "不得把metadata_year或requested_year抄为原文实际年份。",
+        "不能将归档2027材料直接当作2028正式报考条件。"
+      ],
+      "expected_result": "unknown_standalone_document_year",
+      "split": "development",
+      "case_type": "standalone_year_unknown",
+      "evidence_policy": "standalone_pdf_only",
+      "excluded_context_source_ids": [
+        "doc-4af998d24f86e487664f-9bc2e77aa634"
+      ],
+      "reference_year": 2027,
+      "retrieval_recall_applicable": false,
+      "source_group": "53e90eb79007c6f5"
+    }
+  ],
+  "publication_links": [
+    {
+      "case_id": "PF02",
+      "parent_source_id": "support-zzu-fees-publication-052606791aaa",
+      "attachment_source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+      "parent_sha256": "052606791aaad6390a63049e6a943d28f6a24e46e6affa98691072e538d17a0d",
+      "attachment_sha256": "b4ba23c5f304b79ef9452a125209006c0c8fa12b199075de03e44ab31750e993",
+      "resolved_attachment_url": "https://www5.zzu.edu.cn/__local/4/32/CB/2F271510B4540C57B0F50027438_5AF8EF08_35542.pdf",
+      "exact_link_span": {
+        "quote": "/__local/4/32/CB/2F271510B4540C57B0F50027438_5AF8EF08_35542.pdf",
+        "char_start": 8971,
+        "char_end": 9034,
+        "normalization": "CRLF/CR to LF"
+      }
+    },
+    {
+      "year_basis": "publication_chain",
+      "year": 2027,
+      "parent_source_id": "doc-4af998d24f86e487664f-9bc2e77aa634",
+      "parent_sha256": "9bc2e77aa63409ec4c2e8bb1263aafa1cf589f1b5fe35a3db0ec6e26e90b0492",
+      "attachment_source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+      "attachment_sha256": "ed923484944978d7b1bb44134e9893003092adb92f7a882ba7a77666d93794c3",
+      "resolved_attachment_url": "https://yzb.hit.edu.cn/_upload/article/files/12/cb/333643d84636a30ab6b586266704/501748af-b6cb-4851-8931-49196a409f82.pdf",
+      "exact_link_span": {
+        "quote": "/_upload/article/files/12/cb/333643d84636a30ab6b586266704/501748af-b6cb-4851-8931-49196a409f82.pdf",
+        "char_start": 19218,
+        "char_end": 19316,
+        "offset_basis": "UTF-8 decoded raw HTML, Unicode code points, half-open",
+        "normalization": "none"
+      },
+      "case_id": "catalog-11"
+    }
+  ],
+  "counts": {
+    "questions": 34,
+    "sources": 29,
+    "primary_sources": 28,
+    "unique_units": 17,
+    "splits": {
+      "holdout": 10,
+      "development": 24
+    },
+    "trusted_recall_applicable_cases": 31
+  }
+}

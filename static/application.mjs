@@ -119,8 +119,9 @@ function renderPage({preserveScroll=true}={}){
  if(preserveScroll)window.scrollTo(0,y);mountPlanWorkbench();mountSourceCenter();hydrateVisiblePage();
 }
 
-function openKnowledge({entry_id='',query='',quality='accepted'}={}){
+function openKnowledge({entry_id='',segment_id='',query='',quality='accepted'}={}){
  const queryParams=new URLSearchParams();if(entry_id)queryParams.set('entry_id',entry_id);if(query)queryParams.set('q',query);if(['pending','excluded','all'].includes(quality))queryParams.set('quality',quality);
+ if(entry_id&&/^sg_[a-f0-9]{32}$/.test(segment_id))queryParams.set('segment_id',segment_id);
  navigate('/knowledge'+(queryParams.size?'?'+queryParams.toString():''));
 }
 async function mountResearchSurface(surface){
@@ -128,7 +129,7 @@ async function mountResearchSurface(surface){
  try{
   const module=await import('./'+surface+'.mjs');
   if(generation!==surfaceGeneration||!container?.isConnected)return;
-  const options=surface==='settings'?{api,onBack:()=>navigate(researchReturn),onSaved:refreshServiceStatus}:surface==='knowledge'?{api,onBack:()=>navigate(knowledgeReturn),initialEntryId:params().get('entry_id')||'',initialQuery:params().get('q')||'',initialQuality:params().get('quality')||'accepted'}:{api,bootstrap:state.bootstrap,getBootstrap:()=>state.bootstrap,initialTaskId:params().get('id')||'',onSettings:()=>navigate('/settings'),onTaskChange:id=>navigate('/research?id='+encodeURIComponent(id),{replace:true}),onOpenProgram:openProgram,onCoverage:()=>showInfo('coverage'),onDiscover:()=>navigate('/discover'),onKnowledge:openKnowledge};
+  const options=surface==='settings'?{api,onBack:()=>navigate(researchReturn),onSaved:refreshServiceStatus}:surface==='knowledge'?{api,onBack:()=>navigate(knowledgeReturn),initialEntryId:params().get('entry_id')||'',initialSegmentId:params().get('segment_id')||'',initialQuery:params().get('q')||'',initialQuality:params().get('quality')||'accepted'}:{api,bootstrap:state.bootstrap,getBootstrap:()=>state.bootstrap,initialTaskId:params().get('id')||'',onSettings:()=>navigate('/settings'),onTaskChange:id=>navigate('/research?id='+encodeURIComponent(id),{replace:true}),onOpenProgram:openProgram,onCoverage:()=>showInfo('coverage'),onDiscover:()=>navigate('/discover'),onKnowledge:openKnowledge};
   const cleanup=(surface==='settings'?module.mountSettings:surface==='knowledge'?module.mountKnowledge:module.mountAgent)(container,options);
   if(generation===surfaceGeneration)surfaceCleanup=cleanup;else cleanup?.();
  }catch(error){if(generation===surfaceGeneration&&container?.isConnected){container.innerHTML=`<div class="page-container"><h1>页面暂时未能打开</h1><p class="service-error" role="alert">${esc(error.message||'请刷新后重试。')}</p><button class="btn btn-primary" data-action="reload-surface">重新打开</button></div>`;}}

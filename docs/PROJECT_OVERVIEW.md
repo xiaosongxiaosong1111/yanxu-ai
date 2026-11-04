@@ -20,6 +20,8 @@
 4. [运行说明](RUNNING.md)、[Agent 接口契约](AGENT_UPGRADE_PLAN.md)：安装和精确字段。
 5. [验收记录](VERIFICATION.md)：实际执行过的检查及未覆盖边界。
 
+下一阶段执行顺序见 [Agent 与知识系统升级任务表](AGENT_ROADMAP.md)。节点1—3已完成代码实施与独立本地验收，最新结果见 [N3验收](work_nodes/03-knowledge-workbench.md)；向量检索、目标缺口决策和新证据进入推荐仍待后续节点。
+
 [初版契约](PRODUCT_CONTRACT.md)、[早期实现基线](IMPLEMENTATION.md)、[V3](V3_PLAN.md)/[V4](V4_PLAN.md) 记录演进背景，含当时尚未接入 AI 等历史描述。判断当前能力时以代码、本文及 Agent 契约为准，不应照旧规划删除已经存在的接口或重建另一套应用。
 
 ## 2. 三条核心数据路径
@@ -141,11 +143,13 @@ sequenceDiagram
 
 科目身份使用 `(code, scope)`，再按 `exam_unit` 及同组 OR 备选比较。距离是需要调整的考试单元数，不是科目名称的字符串相似度；缺备考信息、错误备选组、科目标识待核时结果未知或不支持匹配。
 
+`excluded_subjects` 独立表达不愿参加的科目，与已准备的 `subjects` 分开。过滤禁项不能证明原本不明确的 OR 组合合法；合法替代方案会重新计算换科。明确冲突不被其他单元的未知抹掉。排除项自身 scope 为未知值时拒绝；缺少自命题作用域时保持待核，不能默默当成已经避开。
+
 ### 5.2 排序与 Pareto
 
 - 科目分项基于需要调整的单元占比；费用分项只使用可比较的真实费用。
 - 综合分仅在有效分项齐全时为确定值；缺失分项给出区间、缺失项及排序依据，不直接赋零。
-- 地区当前主要作约束和解释分项，不加入综合加权主动维度。费用优先可在全程费用不足时按已知年费比较，必须说明回退口径。
+- `provinces` 是硬条件，`preferred_provinces` 是软偏好；后者只有在综合模式且地区权重大于0时参与加权。费用/科目优先仍按其主要依据排序，地区零权重不改变顺序。费用优先可在全程费用不足时按已知年费比较，必须说明回退口径。
 - Pareto 前沿仅对明确条件匹配、有效分项完整的项目计算。实现使用排序和前缀最大值树的 skyline，避免对全国候选做简单两两扫描。
 - 偏好分表示用户设置下的取舍，不是录取概率。
 
@@ -154,6 +158,16 @@ sequenceDiagram
 `plan_routes` 分别用 0、1、2 个考试单元上限重新计算，给出新增、保留、移除和未知数量；不改变学历、背景、地区等其他事实。
 
 `suggest_adjustments` 仅枚举用户显式允许的 `max_subject_changes / provinces / max_annual_tuition`，最多 128 个组合。优先最少改变字段，再去重和去除被支配选项。待确认方向可以保留为研究候选，但 `feasible` 仍依据已知条件匹配数量，不把待核算作已可申请。
+
+候选变化时，依赖的 matching、routes、adjustments 会失效，避免把旧集合的试算展示为新结果。条件提案逐字段附原句、条件种类和冲突提示，确认后才进入下一轮算法。
+
+### 5.4 先筛选，再精选
+
+`find_candidates` 使用固定发布 revision，逐页读取查询范围的完整候选行，再做硬筛、粗排和跨校精选。显式选择学校仍最多8所；按省份推导学校不再截取前8所，也不依据其他默认年度的 program_count 跳过学校。未发现符合地区的学校时不回落全国。
+
+结果分别保存 `total_in_query / total_complete`、`scanned_count / scan_complete`、硬筛排除数、待确认数。本次入选通过 `query_candidate_ids / selected_count` 表达，累计精选通过 `candidate_ids / cumulative_selected_count` 表达，并记录 `carried_over_count`。`candidates` 仍是本轮累计精选集合，不能把其中所有记录解读成本次学校查询的新命中。
+
+预算截止、取消、提前空页及已知发布版本变化会保留一致版本的已得成果。尚未拿到有效COUNT时总数未知；未知系统异常继续向上抛，不伪装为正常部分完成。扫描不完整时任务不能标为 completed。
 
 历史复试/调剂匹配和敏感性分析在 [grad_engine.py](../grad_engine.py)；它们逐年份保留来源，不提供当年缺额预测。
 
@@ -187,6 +201,25 @@ flowchart TD
 8. 规则过滤与存储故障分别计数；后者才进入真实保存缺口。
 
 知识库旧记录无有效质量标记时默认待核。升级前先备份，再显式 `reassess()` 事务重分类；失败回滚，不删除研究任务或修改连接配置。
+
+### 原文、提取、结构片段和索引代次
+
+N3 将有界详情与完整提取稿分开：原件上限 8MB，规范提取稿上限 200 万 Unicode 字符、1000 页，超过上限明确标为 `partial`。旧详情仍限制 32000 字符，不把全文直接塞进模型。
+
+| 层 | 实现与存储 | 关键约束 |
+| --- | --- | --- |
+| 原文件 | `public_sources.py`、`research-sources/<SHA>.bin` | 公共归属、下载限制、SHA 与隐私检查；离线重提取不伪造联网时间 |
+| 规范提取 | `document_extraction.py`、`knowledge_extractions` | 独立提取器版本和文本 SHA，真实页与字符跨度；扫描 PDF 待 OCR，旧 DOC 不支持 |
+| 结构片段 | `knowledge_segments.py`、`knowledge_segments` | 章节、段落、表头和表格行；主片段属于真实 PDF 页，跨页上下文单独引用 |
+| 当前代次 | `knowledge_repository.py`、`knowledge_generations / knowledge_entry_state` | 仅当前成功代次可复用；`text == extraction_text[start:end]`；字符单位是 Unicode codepoint |
+| 维护与重建 | `knowledge_lifecycle.py / knowledge_operations.py / knowledge_indexing.py` | 撤信、冲突、同范围版本选择、失败任务与幂等重试；质量不能由维护按钮直接升级 |
+| Agent 与阅读 | `research_knowledge.py`、`static/knowledge-reader.mjs` | `search_knowledge_segments` 定位，`read_knowledge_segment` 有界补读；当前报告与历史报告复核来源 |
+
+SQLite 继续保存权威状态和本地关键词索引。检索先执行学校、实际年度、质量和当前代次过滤，再分页；原件失效在计数与截取前处理。直接片段 AND 无结果时，所有词必须先出现在同一提取稿，随后按片段覆盖词数排序；`match_mode=document_terms` 提醒它只是同文档定位，不能据此合并事实。尚未接入向量模型或 Milvus。
+
+同一 URL、学校、实际年度出现不同完整文本时先标记冲突，由用户核对后明确采用；不同年、不同学校不自动替代。撤信不会删除审计，旧上下文和历史报告的摘录/解释停止被当作可信结果返回。旧库只读不自动建表或补造全文，显式写操作才事务迁移，缺质量列的旧标签仍待核。
+
+格式支持和基线数据见 [知识评测](KNOWLEDGE_EVALUATION.md)，节点验收见 [N3](work_nodes/03-knowledge-workbench.md)。本节点取得的网页知识仍不自动进入正式推荐字段；该通路在 N6 实施。
 
 ## 7. 文件与存储分工
 
@@ -229,6 +262,8 @@ flowchart TD
 | 设置操作 | `POST /api/settings/models`、`test`、`save`、`delete`；测试可能消耗外部额度 |
 | 研究任务 | `POST /api/research`、`research/continue`、`research/cancel`；`GET /api/research` 读列表或任务/增量事件 |
 | 知识库 | `GET /api/knowledge`，支持 `quality=accepted/pending/excluded/all`；详情用互斥的 `entry_id` |
+| 精读原文 | `GET /api/knowledge/segments` 与 `knowledge/segment`；固定可信补读，字符预算与同版本邻接限制 |
+| 知识维护 | `GET /api/knowledge/jobs`；`POST knowledge/state`、`knowledge/select-version`、`knowledge/reindex`；同源校验与独立维护限频 |
 
 精确查询和正文参数见 [Agent 契约](AGENT_UPGRADE_PLAN.md)、[运行说明](RUNNING.md) 与 [server.py](../server.py)。普通 GET 读取任务不会调用模型；不要为验收界面自动重放真实研究。旧 `/api/chat` 返回 `not_configured`，与新研究 API 不混用。
 
@@ -300,4 +335,4 @@ Python 全套中有依赖真实采集留档的重放与历史资料用例。公�
 - 研招网访问门禁不通过清缓存、换身份或跳转绕过。
 - 本机单用户不等于公网多用户；增加登录必须同时完成任务、知识、配置与权限隔离。
 
-产品下一阶段的优先级与完成条件见 [需求文档](REQUIREMENTS.md#7-后续需求与优先级)。
+产品约束见 [需求文档](REQUIREMENTS.md#7-后续需求与优先级)，逐项开发依赖和完成条件见 [Agent 与知识系统升级任务表](AGENT_ROADMAP.md)。

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mergeTaskEvents,shouldPoll,renderAgent,taskStatusLabel} from '../static/agent.mjs';
+import {mergeTaskEvents,shouldPoll,renderAgent,taskStatusLabel,parseExclusionList,formatExclusionList} from '../static/agent.mjs';
 
 test('incremental events merge by identity and stale tasks do not contaminate a new research',()=>{
  const old={id:'a',events:[{id:1,title:'first'},{id:2,title:'second'}]};
@@ -154,4 +154,24 @@ test('research heading describes actual collaboration without a fixed nationwide
   const html=render(usage);assert.match(html,/官方资料研究/);assert.ok(!html.includes('AI × 元宝协同研究'));
  }
  assert.ok(!both.includes('已遍历全国'));assert.ok(!both.includes('全国完整推荐'));
+});
+
+test('soft regions and excluded subjects stay visible, confirmable and editable',()=>{
+ const html=renderAgent({task:{id:'a',status:'awaiting_input',query:'只去天津，不考408',profile:{provinces:[],preferred_provinces:['天津'],excluded_subjects:[{code:'408',scope:'national'}]},report:{profile_proposal:{requires_confirmation:true,updates:{preferred_provinces:['天津'],excluded_subjects:[{code:'408',scope:'national'}]},evidence:[{field:'preferred_provinces',quote:'优先天津'},{field:'excluded_subjects',quote:'不考408'}]}}}});
+ assert.match(html,/优先地区/);assert.match(html,/不考科目/);assert.match(html,/408@national/);
+ assert.match(html,/确认条件并继续/);
+ assert.match(html,/name="condition.preferred_provinces"/);assert.match(html,/name="condition.excluded_subjects"/);
+});
+
+test('exclusion editor values round-trip without losing scope',()=>{
+ assert.deepEqual(parseExclusionList('408@national、901'),[{code:'408',scope:'national'},{code:'901'}]);
+ assert.equal(formatExclusionList([{code:'408',scope:'national'},{code:'901'}]),'408@national、901');
+ assert.deepEqual(parseExclusionList(''),[]);
+});
+
+test('invalid exclusion tokens are rejected instead of silently truncated',()=>{
+ for(const value of ['901@@school-a','901@school-a@school-b','@school-a','901@']){
+  assert.throws(()=>parseExclusionList(value),/不考科目|格式|作用域|代码/);
+ }
+ assert.deepEqual(parseExclusionList('408、901@school-a'),[{code:'408'},{code:'901',scope:'school-a'}]);
 });

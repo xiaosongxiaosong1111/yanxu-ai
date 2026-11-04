@@ -13,6 +13,9 @@ import uuid
 from source_privacy import contains_personal_roster
 from knowledge_quality import assess_quality, QUALITY_VERSION, QUALITY_STATES
 from public_sources import official_source_url
+from knowledge_schema import ensure_schema
+import knowledge_repository as segments
+from document_extraction import canonical_document
 
 
 STATUSES=('search_lead','official_original_read','published_snapshot')
@@ -44,6 +47,15 @@ def _valid_quality(value):
             and value['reusable']==(value['state']=='accepted') and isinstance(value.get('reasons'),list)):
         return value
     return _pending_quality()
+
+
+def _stored_quality(row, has_quality):
+    value = _valid_quality(json.loads(row['payload']).get('quality'))
+    if not has_quality:return _pending_quality()
+    if row['quality'] == 'excluded' or value['state'] == 'excluded':
+        return {**value, 'state': 'excluded', 'reusable': False}
+    if row['quality'] != value['state']:return _pending_quality()
+    return value
 
 
 def _text(value,limit,empty=True):
@@ -98,30 +110,10 @@ class KnowledgeStore:
         except (OSError,sqlite3.Error):
             raise KnowledgeError('knowledge_unavailable','本机知识库暂时无法读取或保存，请稍后重试。',503) from None
         connection.row_factory=sqlite3.Row
+        connection.execute('PRAGMA foreign_keys=ON')
         try:
             with connection:
-                if create:
-                    connection.executescript('''
-                        CREATE TABLE IF NOT EXISTS knowledge_entries(
-                            id TEXT PRIMARY KEY,family TEXT NOT NULL,version_key TEXT NOT NULL,
-                            url TEXT NOT NULL,unit_id TEXT NOT NULL,unit_name TEXT NOT NULL,
-                            year INTEGER,requested_year INTEGER,status TEXT NOT NULL,title TEXT NOT NULL,
-                            sha256 TEXT NOT NULL,full_text TEXT NOT NULL,pages TEXT NOT NULL,
-                            first_seen_at TEXT NOT NULL,last_seen_at TEXT NOT NULL,payload TEXT NOT NULL,
-                            quality TEXT NOT NULL DEFAULT 'pending',
-                            UNIQUE(family,version_key));
-                        CREATE INDEX IF NOT EXISTS knowledge_scope ON knowledge_entries(status,year,unit_id);
-                        CREATE TABLE IF NOT EXISTS knowledge_provenance(
-                            entry_id TEXT NOT NULL,research_id TEXT NOT NULL,
-                            PRIMARY KEY(entry_id,research_id));
-                    ''')
-                    if not self._has_quality(connection):connection.execute("ALTER TABLE knowledge_entries ADD COLUMN quality TEXT NOT NULL DEFAULT 'pending'")
-                    connection.execute('CREATE INDEX IF NOT EXISTS knowledge_quality_state ON knowledge_entries(quality,status,year,unit_id)')
-                    existed=self._has_fts(connection)
-                    try:
-                        connection.execute("CREATE VIRTUAL TABLE IF NOT EXISTS knowledge_fts USING fts5(entry_id UNINDEXED,title,unit_name,body,tokenize='trigram')")
-                        if not existed:connection.execute("INSERT INTO knowledge_fts SELECT id,title,unit_name,full_text FROM knowledge_entries WHERE quality<>'excluded'")
-                    except sqlite3.OperationalError:pass
+                if create:ensure_schema(connection)
                 yield connection
         except (sqlite3.Error,ValueError,TypeError):
             raise KnowledgeError('knowledge_unavailable','本机知识库暂时无法读取或保存，请稍后重试。',503) from None
@@ -149,7 +141,9 @@ class KnowledgeStore:
         if not digest:return False
         try:
             target=self._blob_path(digest)
-            return target.is_file() and target.stat().st_size<=8*1024*1024 and hashlib.sha256(target.read_bytes()).hexdigest()==digest
+            if not target.is_file() or target.stat().st_size>8*1024*1024:return False
+            with target.open('rb') as stream:raw=stream.read(8*1024*1024+1)
+            return len(raw)<=8*1024*1024 and hashlib.sha256(raw).hexdigest()==digest
         except (OSError,KnowledgeError):return False
 
     def _prepare(self,source,document):
@@ -238,6 +232,7 @@ class KnowledgeStore:
     def save_source(self,source,research_id='',query='',document=None):
         if research_id and (not isinstance(research_id,str) or not re.fullmatch(r'r_[0-9a-f]{32}',research_id)):
             raise KnowledgeError('invalid_knowledge','研究引用编号不正确。')
+        source,document,canonical=self._document_input(source,document)
         value=self._prepare(source,document);stamp=_stamp()
         family=hashlib.sha256((value['url']+'|'+value['unit_id']).encode()).hexdigest()
         version=(value['sha256']+'|'+str(value['year'])) if value['sha256'] else value['status']+'|'+str(value['year'])+'|'+str(value['requested_year'])
@@ -264,16 +259,46 @@ class KnowledgeStore:
             first=current['first_seen_at'] if current else stamp
             payload={key:item for key,item in value.items() if key not in {'full_text','pages','_raw'}}
             row=(identifier,family,version,value['url'],value['unit_id'],value['unit_name'],value['year'],value['requested_year'],value['status'],value['title'],value['sha256'],value['full_text'],json.dumps(value['pages'],ensure_ascii=False),first,stamp,json.dumps(payload,ensure_ascii=False),value['quality']['state'])
-            connection.execute('INSERT OR REPLACE INTO knowledge_entries VALUES('+','.join('?' for _ in row)+')',row)
+            columns=('id','family','version_key','url','unit_id','unit_name','year','requested_year','status','title',
+                     'sha256','full_text','pages','first_seen_at','last_seen_at','payload','quality')
+            update=','.join(key+'=excluded.'+key for key in columns if key not in {'id','first_seen_at'})
+            connection.execute('INSERT INTO knowledge_entries ('+','.join(columns)+') VALUES ('+','.join('?' for _ in row)+') ON CONFLICT(id) DO UPDATE SET '+update,row)
             self._index(connection,identifier,value,value['full_text'])
             self._reference(connection,identifier,research_id)
+            if canonical is not None and value['quality']['state']!='excluded':
+                segments.persist_document(connection,identifier,value,canonical,stamp)
+                from knowledge_operations import reconcile_versions
+                reconcile_versions(self,connection,identifier)
             return self._public(connection,identifier)
+
+    def _document_input(self,source,document):
+        if document is None:return source,None,None
+        if not isinstance(source,dict) or not isinstance(document,dict):raise KnowledgeError('invalid_knowledge','原文格式不正确。')
+        pages=document.get('pages',[])
+        if isinstance(pages,list) and contains_personal_roster(str(source.get('title','')),document.get('text',''),
+                *(item.get('text','') for item in pages if isinstance(item,dict))):
+            return source,document,None
+        try:canonical=canonical_document(document)
+        except (ValueError,TypeError):raise KnowledgeError('invalid_knowledge','原文提取内容或页码格式不正确。') from None
+        normalized=dict(document)
+        text=document.get('text')
+        if text is None:text=''
+        if not isinstance(text,str):raise KnowledgeError('invalid_knowledge','原文文本格式不正确。')
+        normalized['text']=canonical['text']
+        normalized['pages']=canonical['pages']
+        if canonical.get('format')=='pdf':normalized['text']=normalized['text'].replace('\f','\n')
+        if canonical['extraction_status'] in {'unsupported','needs_ocr'}:
+            normalized.update(text='',pages=[])
+            source={**source,'excerpt':''}
+        elif canonical.get('format')=='pdf' and isinstance(source,dict):
+            source={**source,'excerpt':str(source.get('excerpt') or '').replace('\f','\n')}
+        return source,normalized,canonical
 
     def _public(self,connection,identifier,detail=False,terms=()):
         row=connection.execute('SELECT * FROM knowledge_entries WHERE id=?',(identifier,)).fetchone()
         if row is None:raise KnowledgeError('unknown_knowledge','没有找到这份知识库资料。',404)
         has_quality=self._has_quality(connection)
-        value=json.loads(row['payload']);value={**value,'quality':_valid_quality(value.get('quality')) if has_quality else _pending_quality()}
+        value=json.loads(row['payload']);value={**value,'quality':_stored_quality(row,has_quality)}
         available=row['status']=='official_original_read' and self._blob_available(row['sha256'])
         full=row['full_text'];pages=json.loads(row['pages'])
         if row['status']=='official_original_read' and not available:
@@ -281,28 +306,100 @@ class KnowledgeStore:
             value['authority_evidence']={'status':'unverified','basis':''}
             value['quality']=_valid_quality(assess_quality(value,'',original_available=False,authority_verified=False))
             full='';pages=[]
-            connection.execute("UPDATE knowledge_entries SET status='search_lead',full_text='',pages='[]',payload=? WHERE id=?",(json.dumps(value,ensure_ascii=False),identifier))
+            connection.execute("UPDATE knowledge_entries SET status='search_lead',payload=? WHERE id=?",(json.dumps(value,ensure_ascii=False),identifier))
             self._index(connection,identifier,value,'')
         if has_quality and row['quality']!=value['quality']['state']:
             connection.execute('UPDATE knowledge_entries SET quality=?,payload=? WHERE id=?',(value['quality']['state'],json.dumps(value,ensure_ascii=False),identifier))
-        if value['quality']['state']=='excluded':full='';pages=[];value={**value,'excerpt':''}
+        if value['quality']['state']=='excluded' or value.get('snapshot_status')=='missing_or_changed':
+            full='';pages=[];value={**value,'excerpt':''}
         snippet=value.get('excerpt','')
         for term in terms:
             position=full.casefold().find(term.casefold())
             if position>=0:snippet=full[max(0,position-100):position+500];break
         count=connection.execute('SELECT count(*) FROM knowledge_entries WHERE family=?',(row['family'],)).fetchone()[0]
         provenance=[item[0] for item in connection.execute('SELECT research_id FROM knowledge_provenance WHERE entry_id=? ORDER BY research_id',(identifier,))]
-        public={**value,'id':identifier,'excerpt':snippet[:600],'first_seen_at':row['first_seen_at'],'last_seen_at':row['last_seen_at'],
+        public={**value,**segments.state_summary(connection,identifier),'id':identifier,'excerpt':snippet[:600],'first_seen_at':row['first_seen_at'],'last_seen_at':row['last_seen_at'],
                 'provenance':provenance,'version_count':count,'source_group':'sha_'+row['sha256'] if row['sha256'] else 'url_'+row['family'][:24],
                 'original_available':available,'text_truncated':value.get('text_truncated',False) or len(full)>DETAIL_LIMIT,'saved':True}
+        public['usable']=self._usable(public)
+        if public.get('validity')!='active':
+            full='';pages=[];public['excerpt']=''
         if detail:public={**public,'text':full[:DETAIL_LIMIT],'text_length':len(full),'pages':pages}
         return public
+
+    @staticmethod
+    def _usable(value):
+        return (value.get('quality',{}).get('state')=='accepted' and value.get('quality',{}).get('reusable') is True
+                and value.get('validity','active')=='active' and type(value.get('year')) is int
+                and (value.get('status')=='published_snapshot' or
+                     value.get('status')=='official_original_read' and value.get('original_available') is True))
+
+    @staticmethod
+    def _entry_id(value):
+        if not isinstance(value,str) or not re.fullmatch(r'k_[0-9a-f]{24}',value):
+            raise KnowledgeError('invalid_knowledge','知识库资料编号不正确。')
+        return value
+
+    def change_validity(self,entry_id,validity,reason,replacement_id=None):
+        from knowledge_operations import change_validity
+        return change_validity(self,entry_id,validity,reason,replacement_id)
+
+    def choose_version(self,entry_id,reason):
+        from knowledge_operations import choose_version
+        return choose_version(self,entry_id,reason)
+
+    def jobs(self,entry_id=None):
+        from knowledge_operations import jobs
+        return jobs(self,entry_id)
+
+    def search_segments(self,query='',entry_id=None,unit_id='',year=None,page=1,page_size=8,quality='accepted'):
+        query=_text(query,240);unit_id=_text(unit_id,100);year=_year(year)
+        if entry_id is not None:self._entry_id(entry_id)
+        if (not isinstance(quality,str) or quality not in {'all',*QUALITY_STATES} or type(page) is not int or not 1<=page<=1000000
+                or type(page_size) is not int or not 1<=page_size<=100):
+            raise KnowledgeError('invalid_knowledge_query','片段筛选或分页参数不正确。')
+        empty={'segments':[],'total':0,'page':page,'page_size':page_size,'index_state':'unindexed'}
+        if not self.path.is_file():return empty
+        scope={'query':query,'entry_id':entry_id,'unit_id':unit_id,'year':year,'quality':quality}
+        with self._lock,self._connection() as connection:
+            if not segments.available(connection):return empty
+            for item in segments.matching_sources(connection,**scope):self._public(connection,item[0])
+            rows,total,match_mode=segments.query_rows(connection,**scope,page=page,page_size=page_size)
+            result=[]
+            for item in rows:
+                row=segments.segment_row(connection,item[0]);source=self._public(connection,row['entry_id'])
+                current=source.get('extraction') or {}
+                if (source.get('validity')!='active' or current.get('generation_id')!=row['generation_id']
+                        or quality=='accepted' and not self._usable(source)):continue
+                result.append({**segments.public_segment(row,source),'match_mode':match_mode})
+            return {**empty,'segments':result,'total':total,'index_state':'ready','match_mode':match_mode}
+
+    def read_segment(self,segment_id,*,before=0,after=0,max_chars=6000,trusted_only=True):
+        if (not isinstance(segment_id,str) or not re.fullmatch(r'sg_[0-9a-f]{32}',segment_id)
+                or type(before) is not int or not 0<=before<=3 or type(after) is not int or not 0<=after<=3
+                or type(max_chars) is not int or not 1<=max_chars<=20000 or type(trusted_only) is not bool):
+            raise KnowledgeError('invalid_segment_query','片段编号或补读范围不正确。')
+        if not self.path.is_file():raise KnowledgeError('unknown_segment','没有找到这段来源。',404)
+        with self._lock,self._connection() as connection:
+            row=segments.segment_row(connection,segment_id)
+            if row is None:raise KnowledgeError('unknown_segment','没有找到这段来源。',404)
+            source=self._public(connection,row['entry_id'])
+            current=(source.get('extraction') or {}).get('generation_id')==row['generation_id'] and row['generation_state']=='succeeded'
+            if source['validity']!='active' or source['quality']['state']=='excluded' or not current or trusted_only and not self._usable(source):
+                raise KnowledgeError('knowledge_not_reusable','这段来源已失效或尚未通过核验，不能作为可信依据。',409)
+            return segments.read_window(connection,row,source,before,after,max_chars)
+
+    def rebuild_segments(self,entry_id):
+        from knowledge_indexing import rebuild
+        return rebuild(self,entry_id)
 
     def get(self,entry_id):
         if not isinstance(entry_id,str) or not re.fullmatch(r'k_[0-9a-f]{24}',entry_id):
             raise KnowledgeError('invalid_knowledge','知识库资料编号不正确。')
         if not self.path.is_file():raise KnowledgeError('unknown_knowledge','没有找到这份知识库资料。',404)
-        with self._lock,self._connection() as connection:return self._public(connection,entry_id,detail=True)
+        with self._lock,self._connection() as connection:
+            from knowledge_operations import versions
+            return {**self._public(connection,entry_id,detail=True), 'versions': versions(self,connection,entry_id)}
 
     def search(self,query='',status='',year=None,unit_id='',page=1,page_size=12,quality='accepted'):
         query=_text(query,240);unit_id=_text(unit_id,100);year=_year(year)
@@ -317,6 +414,8 @@ class KnowledgeStore:
         with self._lock,self._connection() as connection:
             quality_column=self._quality_column(connection)
             if quality!='all':where.append(quality_column+'=?');values.append(quality)
+            if quality=='accepted' and segments.available(connection):
+                where.append("id NOT IN (SELECT entry_id FROM knowledge_entry_state WHERE validity<>'active')")
             # Missing files are cheap to invalidate globally; actual cache hits are hashed below.
             for record in connection.execute("SELECT id,sha256 FROM knowledge_entries WHERE status='official_original_read'").fetchall():
                 try:

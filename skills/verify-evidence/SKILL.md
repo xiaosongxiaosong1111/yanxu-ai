@@ -17,4 +17,12 @@ description: Separate discovered links, downloaded originals and adopted field-l
 
 search_knowledge只复用accepted且reusable=true的资料，不能把搜索线索算作知识命中。真实year与requested_year分开；相同原文SHA的多个URL不能当成独立印证，旧版本不能当成新年度规则；留档失踪或被篡改后撤销原文读取信任。保存故障与规则过滤分别报告，不把正常过滤称为系统故障。
 
+需要核对具体条款时，先用search_knowledge_segments在本轮学校、实际年度和accepted质量范围内定位，再用read_knowledge_segment补读本轮实际发现的segment_id。不得编造片段ID、文件路径或URL。补读前后各0至2段，正文、表头和邻接条款合计最多8000字符；没有读到的上下文保留未知，不把有界补读说成通读全文。
+
+逐字引文只采用工具返回的text及其char_start/char_end；偏移属于明确的extraction_id/generation_id规范提取稿。表头、例外和上级限定从contexts分别引用，不把search_text、标题或补全的表头拼进连续引文。保留source_id、原站URL、真实PDF页码或HTML章节路径；HTML缺少真实锚点时不得编造PDF页码或章节URL。
+
+match_mode=document_terms表示复合关键词分散在同一份当前原文中，单个命中片段未必同时满足全部条件；须分别精读其适用范围和上下文，不能据此合并事实或推断同一专业同时符合这些条件。
+
+质量accepted还须validity=active、usable=true且原文SHA与当前提取代次可核验。revoked、conflict、superseded、质量降级或留档失效时，旧摘录、旧tool消息和旧推断停止复用；重新检索当前有效版本。工具提示来源变化时报告资料缺口，不继续照搬先前解释；新文本仍不能绕过字段审校参与确定性招生算法。
+
 可能含逐人录取或复试名单的材料只向研究对话提供来源与版本信息，不把姓名、考号或原始名单传给模型。完整工具原文与报告另存，模型上下文只收到明确标记的有界摘要，不得假装模型已通读全部材料。

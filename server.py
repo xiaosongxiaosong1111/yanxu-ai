@@ -12,6 +12,7 @@ import time
 from urllib.parse import parse_qs, unquote, urlsplit
 
 from service import AdmissionService, ServiceError
+from knowledge_api import READ_ACTIONS, WRITE_ACTIONS
 
 
 MAX_BODY_BYTES = 65536
@@ -221,7 +222,19 @@ class AdmissionHandler(BaseHTTPRequestHandler):
         except OSError as error: raise ServiceError('not_found', '资源暂不可读取。', 404) from error
         self._send(200, raw, STATIC_TYPES[path.suffix.lower()])
 
+    def _knowledge_get(self, parsed):
+        if parsed.path in READ_ACTIONS:
+            action, allowed = READ_ACTIONS[parsed.path]
+            query = self._query(parsed, allowed, allow_empty_year=True)
+            self._json(self.server.service.knowledge_request(action, query))
+            return True
+        if parsed.path in WRITE_ACTIONS:
+            self._query(parsed, ())
+            raise ServiceError('method_not_allowed', '此接口需要 POST 请求。', 405)
+        return False
+
     def _get(self, parsed):
+        if self._knowledge_get(parsed): return
         path = parsed.path
         if path in {'/api/settings', '/api/settings/providers'}:
             self._query(parsed, ())
@@ -270,6 +283,14 @@ class AdmissionHandler(BaseHTTPRequestHandler):
 
     def _post(self, parsed):
         self._origin()
+        if parsed.path in WRITE_ACTIONS:
+            self._query(parsed, ())
+            if not self.server.knowledge_limiter.allow(self.client_address[0]):
+                raise ServiceError('rate_limited', '知识维护操作较频繁，请稍后再试。', 429)
+            self._json(self.server.service.knowledge_request(WRITE_ACTIONS[parsed.path], self._read_json()))
+            return
+        if parsed.path in READ_ACTIONS:
+            raise ServiceError('method_not_allowed', '知识读取接口只接受读取请求。', 405)
         extension_routes = {'/api/settings/models': 'settings_models', '/api/settings/test': 'settings_test',
                             '/api/settings/save': 'settings_save', '/api/settings/delete': 'settings_delete',
                             '/api/research': 'research_create', '/api/research/cancel': 'research_cancel',
@@ -342,6 +363,7 @@ def create_server(host='127.0.0.1', port=4180, service=None, static_dir=None, ra
     server.search_limiter = RateLimiter(limit=10)
     server.settings_limiter = RateLimiter(limit=12)
     server.research_limiter = RateLimiter(limit=6)
+    server.knowledge_limiter = RateLimiter(limit=12)
     return server
 
 

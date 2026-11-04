@@ -155,11 +155,14 @@ class ServerTests(unittest.TestCase):
         from catalog_index import CatalogIndex
         from service import COLLECTIONS
         service = AdmissionService(search_api_key='')
+        self.addCleanup(service.close)
         registry = service._load('units.json', ('units',))
         admissions = service._load('admissions.json', COLLECTIONS)
         history = service._load('history.json', COLLECTIONS)
-        sample = next(row for row in history['admitted_statistics']
-                      if row['unit_id'] == '367949' and row.get('subject_scores'))
+        sample = next((row for row in history['admitted_statistics']
+                       if row['unit_id'] == '367949' and row.get('subject_scores')), None)
+        if sample is None:
+            self.skipTest('公开资料包不分发逐人录取原件及依赖统计；此用例需要完整开发留档。')
         program = next(row for row in admissions['programs']
                        if row['unit_id'] == sample['unit_id'] and row['department'] == sample['department']
                        and row['name'] == sample['program_name'] and row['study_mode'] == sample['study_mode'])

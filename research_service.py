@@ -8,7 +8,8 @@ import time
 
 from grad_engine import validate_profile
 from research_store import ResearchError, ResearchStore, identity
-from research_tools import LIMITS, TOOLS, ResearchTools, text
+from research_tools import LIMITS, TOOLS, ResearchTools, text, _reusable_knowledge
+import research_knowledge
 
 _BASE=Path(__file__).resolve().parent
 _SKILLS=('understand-intent','research-official-sources','verify-evidence','compare-plans')
@@ -43,6 +44,7 @@ class ResearchService:
         self.data_dir=Path(data_dir).resolve()
         self.admission,self.settings=admissions_service,settings
         self.ai_client=ai_client
+        self._knowledge_store=None
         self.store=ResearchStore(self.data_dir/'runtime/research.sqlite')
         self._queue=queue.Queue(maxsize=4)
         self._lock=threading.RLock();self._stopped=threading.Event();self._controls={}
@@ -88,11 +90,20 @@ class ResearchService:
 
     def get(self,research_id,after_event=0):
         with self._lock:
-            task=self.store.get(research_id,after_event)
+            task=self._current_task(self.store.get(research_id,after_event))
             return {**task,'can_continue':task['status'] in _TERMINAL and research_id not in self._controls and not self._stopped.is_set()}
 
     def list(self,limit=20):
-        return self.store.list(limit)
+        result=self.store.list(limit);cache={}
+        return {**result,'tasks':[self._current_task(task,cache) for task in result['tasks']]}
+
+    def _current_task(self,task,cache=None):
+        def current(identifier):
+            if self._knowledge_store is None:
+                from knowledge_store import KnowledgeStore
+                self._knowledge_store=KnowledgeStore(self.data_dir)
+            return self._knowledge_store.get(identifier)
+        return research_knowledge.refresh_saved_task(task,current,_reusable_knowledge,cache)
 
     def cancel(self,payload):
         _payload(payload,('research_id',),('research_id',));identifier=identity(payload['research_id'])
@@ -239,6 +250,10 @@ class ResearchService:
 
     @staticmethod
     def _context(base,messages,tools):
+        if tools.refresh_knowledge():
+            ledger={'sources':[row for row in tools.sources.values() if row.get('knowledge_current') is not False],
+                    'notice':'旧来源状态或版本已变化；先前tool消息和解释停止复用，只依据当前有效账本重新核对。'}
+            return [*deepcopy(base),{'role':'user','content':ResearchService._model_result(ledger)}]
         if len(messages)<=8:return messages
         last=max(index for index,item in enumerate(messages) if item['role']=='assistant')
         ledger={'candidates':[{'id':row['id'],'unit_id':row.get('unit_id'),'unit_name':row.get('unit_name'),
@@ -316,7 +331,10 @@ class ResearchService:
                 if not calls:
                     self._compare(identifier,tools)
                     explanation,questions=self._explanation(content,tools)
-                    status='awaiting_input' if tools.profile_proposal or questions else 'completed' if tools.programs else 'partial'
+                    tools.refresh_knowledge()
+                    incomplete=bool(tools._knowledge_invalidated or tools.candidate_metrics and tools.candidate_metrics.get('scan_complete') is False)
+                    status=('awaiting_input' if tools.profile_proposal or questions else
+                            'partial' if incomplete or not tools.programs else 'completed')
                     break
                 for call in calls:
                     if stop.is_set() or self._stopped.is_set():status='cancelled';break
@@ -345,6 +363,7 @@ class ResearchService:
             else:tools.gaps.append('已达到本轮模型研究轮次上限，结果保留为部分研究。')
             if stop.is_set() or self._stopped.is_set():status='cancelled'
             if status!='cancelled':self._compare(identifier,tools)
+            if tools.refresh_knowledge() and status=='completed':status='partial'
             explanation,questions=self._explanation('',tools)
             self.store.update(identifier,status=status,report=tools.report(explanation,questions),usage=tools.usage,error=None)
             self.store.event(identifier,'finished','本轮研究已结束','可以查看候选、原文、算法结果和待补资料，再调整偏好继续。',event_type=status)
@@ -365,4 +384,5 @@ class ResearchService:
                 'search_official_sources':'使用元宝寻找官方资料','read_official_source':'读取并保存学校官方原文',
                 'compare_candidates':'计算条件匹配、科目调整与多目标取舍','plan_subject_routes':'比较0/1/2科调整路线',
                 'suggest_adjustments':'试算允许变化的条件情景','read_knowledge':'核对规则与适用年度',
-                'search_knowledge':'复用本机已留档的公共资料','propose_profile':'整理需要你确认的备考条件'}.get(name,'检查工具是否可用')
+                'search_knowledge':'复用本机已留档的公共资料','search_knowledge_segments':'定位当前有效的原文条款与表格',
+                'read_knowledge_segment':'精读原文片段、表头与邻接条款','propose_profile':'整理需要你确认的备考条件'}.get(name,'检查工具是否可用')

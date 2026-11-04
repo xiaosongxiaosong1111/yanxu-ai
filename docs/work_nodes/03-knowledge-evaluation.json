@@ -1,0 +1,1912 @@
+{
+  "corpus_id": "yanxu-n3-real-evidence-20261103-v1",
+  "corpus_sha256": "0b46b370bb75215fac0fa3c028a80309f37b28c300b0b36f7fa9cd04448edcd9",
+  "freeze_manifest_sha256": "922ab5e31cfee1db239fedc990e3e99b948b9c320b2a0b9b3371b9cd5323c1ce",
+  "split": "all",
+  "top_k": 8,
+  "split_notice": "Original split labels are preserved; both groups were inspected during debugging. This is not a blind holdout evaluation.",
+  "strategy": "Frozen keyword query, strict school/year scope, first page, bounded adjacent reads; no LLM.",
+  "metrics": {
+    "questions": 34,
+    "trusted_recall_denominator": 31,
+    "source_recall_hits": 31,
+    "all_required_quotes_read": 29,
+    "gold_quotes": 61,
+    "quotes_present_after_extraction": 61,
+    "quotes_read_with_valid_spans": 52,
+    "trusted_quote_denominator": 54,
+    "trusted_quotes_read": 51,
+    "runtime_span_or_budget_violations": 0
+  },
+  "by_split": {
+    "development": {
+      "questions": 24,
+      "trusted_recall_denominator": 21,
+      "source_recall_hits": 21,
+      "all_required_quotes_read": 20,
+      "gold_quotes": 45,
+      "quotes_present_after_extraction": 45,
+      "quotes_read_with_valid_spans": 38,
+      "trusted_quote_denominator": 38,
+      "trusted_quotes_read": 37,
+      "runtime_span_or_budget_violations": 0
+    },
+    "holdout": {
+      "questions": 10,
+      "trusted_recall_denominator": 10,
+      "source_recall_hits": 10,
+      "all_required_quotes_read": 9,
+      "gold_quotes": 16,
+      "quotes_present_after_extraction": 16,
+      "quotes_read_with_valid_spans": 14,
+      "trusted_quote_denominator": 16,
+      "trusted_quotes_read": 14,
+      "runtime_span_or_budget_violations": 0
+    }
+  },
+  "source_quality_counts": {
+    "accepted": 25,
+    "pending": 4
+  },
+  "challenges": [
+    {
+      "id": "PF02",
+      "standalone_year_remains_unknown": true,
+      "publication_chain_runtime_supported": false,
+      "note": "Frozen publication links are auditable; runtime does not adopt their year automatically."
+    },
+    {
+      "id": "catalog-11",
+      "standalone_year_remains_unknown": true,
+      "publication_chain_runtime_supported": false,
+      "note": "Frozen publication links are auditable; runtime does not adopt their year automatically."
+    },
+    {
+      "id": "catalog-12",
+      "standalone_year_remains_unknown": true,
+      "publication_chain_runtime_supported": false,
+      "note": "Frozen publication links are auditable; runtime does not adopt their year automatically."
+    }
+  ],
+  "sources": [
+    {
+      "id": "national-367888-2027-ad9f9440723bfa25-4573e8e67aee",
+      "unit_id": "367888",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "5507e34bf166b6d920b6906b76314dbdfa67c29e8ba7d390dae6b7e7304f27ac"
+    },
+    {
+      "id": "national-368218-2027-de63b85fecfde89b-878bc99a8de3",
+      "unit_id": "368218",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "ea51732f26698cf895812280479cca52dd28e475d953f43976c686ff99128f4b"
+    },
+    {
+      "id": "national-678581-2027-f366f81dcb1a66c5-badd682803f2",
+      "unit_id": "678581",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "1a560efeac20a85c4798bbef6954d7a5a054bf3a4d6a2c700170f595eec9d89f"
+    },
+    {
+      "id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+      "unit_id": "2311267403",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "0cc8e224a3cccb95d75238c1dbbb8ea0bcc2851cbb6470b0b069592e7a984cb2"
+    },
+    {
+      "id": "office-367893-2027-7829f856f2962c12fe89",
+      "unit_id": "367893",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "04b15a36e0a2467384603c7361a42371044607a1479e55590f664a1dd19f7110"
+    },
+    {
+      "id": "national-367981-2027-9338f6560c9f3019-e2f8118e86d6",
+      "unit_id": "367981",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "8f17f10cf6ec3e149f0f8cccb070dfbea6dc3ae0d196e0a46ed43935c2f9c77c"
+    },
+    {
+      "id": "national-367861-2027-7f2616e18ac33ed0-240a0f4d9435",
+      "unit_id": "367861",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "08a86df70ba2a8ce40c3822d1d9cb338327e7fd90c86bedd28e59f83cb677509"
+    },
+    {
+      "id": "national-368190-2027-ad3961bf911d9fa6-8c129bcf4cbf",
+      "unit_id": "368190",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "2b99d143f290789d0aa60fa0bc86cfb85705303f064ab3a475ab1bec39d48c56"
+    },
+    {
+      "id": "national-3274440799-2027-6d947c41127ba46a-9697c1c89945",
+      "unit_id": "3274440799",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "3bb9f4592951afd3f40b4c237559183e1ec9786682703c69a7167d9fb1afc8bf"
+    },
+    {
+      "id": "national-302965854-2027-3c5bafd24b5b50d8-73c08f95c3ef",
+      "unit_id": "302965854",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "53caf054c6b954deeab4de3a2ea1654e22ff118e8b73e7e7d6ea69d3495c5243"
+    },
+    {
+      "id": "national-302960684-2027-f7e4dae904c3168f-9a378022fabc",
+      "unit_id": "302960684",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "de50778c6f83c5bfac9f303424dafb9998559436edfab916e12bdaa9417a449a"
+    },
+    {
+      "id": "national-499721832-2027-f9ada7c8657193d0-45ebfc1ff713",
+      "unit_id": "499721832",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "3a4a7a0d8c2d1fc49caec135c61b2c1fffa873da4af58dfb535ff633959b483f"
+    },
+    {
+      "id": "enrichment-zzu-2027-charter-9ab364731b39",
+      "unit_id": "368317",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "admissions",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "bb1db42fe78f0632ddaf71e521eb37329cb5f5e590b16f495f2ad33618a8d57a"
+    },
+    {
+      "id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+      "unit_id": "368317",
+      "actual_year": null,
+      "inferred_year": null,
+      "quality": {
+        "version": 1,
+        "state": "pending",
+        "reusable": false,
+        "material_type": "fees",
+        "reasons": [
+          {
+            "code": "year_unknown",
+            "message": "来源适用年度未明确，检索目标年度不能替代。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "90d98155221c47c3488d414e3d6672581de1082c7d7a3cee39eb333809e56a50"
+    },
+    {
+      "id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+      "unit_id": "367949",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "fees",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "46aa5fbf93f9ce7b0be6f06e3b47e4c6a496585447907e6a33a9f426bf872883"
+    },
+    {
+      "id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+      "unit_id": "367949",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "fees",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "1a5130897752b87f7b62ede1e2363cba88e22dd5843e74d0b60c1a1fb51d7bcd"
+    },
+    {
+      "id": "history-78cb052e469bde06fcde",
+      "unit_id": "367949",
+      "actual_year": 2026,
+      "inferred_year": 2026,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "transfer",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "7b62ee5b24d3f711a20d74e006c5d8c75b4514966618b8723cf2b96358a16154"
+    },
+    {
+      "id": "score-nankai-school-2026-e207f065bfea",
+      "unit_id": "367949",
+      "actual_year": 2026,
+      "inferred_year": 2026,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "scores",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "1d723c548ea90bab0a2382e9b6b0f0f5320fdb8af868c255444dc46eea379d88"
+    },
+    {
+      "id": "score-nankai-school-2025-ca92bfb2b8e8",
+      "unit_id": "367949",
+      "actual_year": 2025,
+      "inferred_year": 2025,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "scores",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "4f57bbb921019a63b250ac44f0e1bb20f3bac8dae59a6e3d53eb1aa3e6d3eed1"
+    },
+    {
+      "id": "score-nankai-school-2024-af773cdc9cb9",
+      "unit_id": "367949",
+      "actual_year": 2024,
+      "inferred_year": 2024,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "scores",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "a506a7740dc41e5596879407ca319b070b13d57a5781a5588208aeea6eb7ff8c"
+    },
+    {
+      "id": "support-zzu-fees-publication-052606791aaa",
+      "unit_id": "368317",
+      "actual_year": null,
+      "inferred_year": null,
+      "quality": {
+        "version": 1,
+        "state": "pending",
+        "reusable": false,
+        "material_type": "fees",
+        "reasons": [
+          {
+            "code": "year_unknown",
+            "message": "来源适用年度未明确，检索目标年度不能替代。"
+          },
+          {
+            "code": "body_not_substantive",
+            "message": "正文尚无与材料类型相符的实质信息；可能只是发布页或附件入口。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "bec8c7dc2c4d0b794850c523dfadedf6fbc5961555e807bd915d6343d58c27b0"
+    },
+    {
+      "id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+      "unit_id": "367888",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "025eb70bd46f4601d630a142376d24482c80963ae827fe19303d049256fd73ec"
+    },
+    {
+      "id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+      "unit_id": "368218",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "5247064fed864a9c80e6cbec8771b698974d0206858c4ed77bd44234858b6777"
+    },
+    {
+      "id": "catalog-678581-2027-c7c00396e7f5553b-2859923889d6-v2",
+      "unit_id": "678581",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "efdd6f6f63cfe3bc82ed56cf0af27456b8ff52113059558e54fcb47f6ffe8d29"
+    },
+    {
+      "id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+      "unit_id": "368190",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "ced10de62654348e9c998c60fd798391ac89c4361d15c86e37f37a394f9bd450"
+    },
+    {
+      "id": "catalog-367927-2027-85a9575f605debb0-da572f009ef2",
+      "unit_id": "367927",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "54b3db499b854797a456cd21adf9941a56e6199d5ea350acd270c6a3bb53ba23"
+    },
+    {
+      "id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+      "unit_id": "677380",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "accepted",
+        "reusable": true,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "admission_passed",
+            "message": "已通过来源、实际年度与招生正文准入；具体字段仍需逐项核验。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "6d7e3630a2c78f4c8118d5c96d872a274340e8b943baeaa40a064084ee195fb3"
+    },
+    {
+      "id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+      "unit_id": "368087",
+      "actual_year": null,
+      "inferred_year": null,
+      "quality": {
+        "version": 1,
+        "state": "pending",
+        "reusable": false,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "year_unknown",
+            "message": "来源适用年度未明确，检索目标年度不能替代。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "b42d928f8e569d2e85f7bc75f9a35c69d57dec9f9fa96580d405b7b179082c9d"
+    },
+    {
+      "id": "doc-4af998d24f86e487664f-9bc2e77aa634",
+      "unit_id": "368087",
+      "actual_year": 2027,
+      "inferred_year": 2027,
+      "quality": {
+        "version": 1,
+        "state": "pending",
+        "reusable": false,
+        "material_type": "catalog",
+        "reasons": [
+          {
+            "code": "body_not_substantive",
+            "message": "正文尚无与材料类型相符的实质信息；可能只是发布页或附件入口。"
+          }
+        ]
+      },
+      "extraction_status": "complete",
+      "text_sha256": "706cbe08a2f6cef934fb89590e28d37d182dd363752df619edee9fd6348fa066"
+    }
+  ],
+  "questions": [
+    {
+      "id": "eligibility-01",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "同等学力 英语四级 公共英语",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-367888-2027-ad9f9440723bfa25-4573e8e67aee",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            805,
+            1018
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 2,
+      "matching_segments": 2,
+      "read_chars": 2943,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-02",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "同等学力 主干课 成绩",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-368218-2027-de63b85fecfde89b-878bc99a8de3",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            1353,
+            1487
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 2,
+      "matching_segments": 2,
+      "read_chars": 1274,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "unknown_applicant_eligibility"
+    },
+    {
+      "id": "eligibility-03",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "跨学科 美术与书法 加试",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-678581-2027-f366f81dcb1a66c5-badd682803f2",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            3635,
+            3738
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 1438,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-04",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "同等学力 专业要求 外语要求",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            1210,
+            1291
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "catalog-2311267403-2027-2530febe039dcb15-a643b8e7b9e1",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            1373,
+            1449
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 1136,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "unknown_applicant_eligibility"
+    },
+    {
+      "id": "eligibility-05",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "专科 第一作者 主干课",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "office-367893-2027-7829f856f2962c12fe89",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            1381,
+            1599
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 1216,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-06",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "同等学力 第一作者 论文",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-367981-2027-9338f6560c9f3019-e2f8118e86d6",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            2599,
+            2744
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 703,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-07",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "推免 全国统一考试 单独考试",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-367861-2027-7f2616e18ac33ed0-240a0f4d9435",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            1083,
+            1251
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 874,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-08",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "同等学力 医学 10",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-368190-2027-ad3961bf911d9fa6-8c129bcf4cbf",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            1977,
+            2017
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 2141,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-09",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "2027 非全日制 士兵",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-3274440799-2027-6d947c41127ba46a-9697c1c89945",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            887,
+            1034
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 1179,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "unknown_target_year"
+    },
+    {
+      "id": "eligibility-10",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "定向就业 脱产 学习证明",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-302965854-2027-3c5bafd24b5b50d8-73c08f95c3ef",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            2440,
+            2560
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 788,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-11",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "应届 在职 在编",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-302960684-2027-f7e4dae904c3168f-9a378022fabc",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            407,
+            568
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 759,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "eligibility-12",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "非全日制 定向就业 录取",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "national-499721832-2027-f9ada7c8657193d0-45ebfc1ff713",
+          "role": "primary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            868,
+            972
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 2,
+      "matching_segments": 2,
+      "read_chars": 1101,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "PF01",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "学术学位 学制",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "enrichment-zzu-2027-charter-9ab364731b39",
+          "role": "answer",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            5193,
+            5212
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 1170,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "answer_with_boundaries"
+    },
+    {
+      "id": "PF02",
+      "split": "development",
+      "applicable": false,
+      "retrieval_query": "学硕 收费标准",
+      "source_recalled": true,
+      "all_required_quotes_read": false,
+      "evidence": [
+        {
+          "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+          "role": "answer",
+          "expected_page": 6,
+          "extracted": true,
+          "runtime_span": [
+            2080,
+            2089
+          ],
+          "read_covered": false
+        },
+        {
+          "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+          "role": "table_header",
+          "expected_page": 6,
+          "extracted": true,
+          "runtime_span": [
+            1998,
+            2032
+          ],
+          "read_covered": false
+        },
+        {
+          "source_id": "enrichment-zzu-tuition-current-b4ba23c5f304",
+          "role": "merged_cell_context",
+          "expected_page": 6,
+          "extracted": true,
+          "runtime_span": [
+            2070,
+            2079
+          ],
+          "read_covered": false
+        },
+        {
+          "source_id": "enrichment-zzu-2027-charter-9ab364731b39",
+          "role": "applicability_link",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            5270,
+            5389
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 2,
+      "matching_segments": 2,
+      "read_chars": 1418,
+      "violations": [],
+      "source_year": null,
+      "source_quality": "pending",
+      "expected_result": "year_and_scope_boundary"
+    },
+    {
+      "id": "PF03",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "电子信息 软件工程 学费",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "role": "table_scope",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            320,
+            336
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "role": "answer",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            711,
+            737
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "role": "cross_page_table_scope",
+          "expected_page": 2,
+          "extracted": true,
+          "runtime_span": [
+            1519,
+            1536
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "role": "answer",
+          "expected_page": 3,
+          "extracted": true,
+          "runtime_span": [
+            1878,
+            1903
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "enrichment-nankai-2027-tuition-3240b07ed70f",
+          "role": "table_header",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            30,
+            43
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 14,
+      "read_chars": 8093,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "answer_with_boundaries"
+    },
+    {
+      "id": "PF04",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "035 电子信息 学制",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "role": "answer",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            427,
+            454
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "role": "table_header",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            322,
+            331
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 16,
+      "read_chars": 1947,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "answer_with_boundaries"
+    },
+    {
+      "id": "PF05",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "学制 联合培养",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "role": "rule_and_exceptions",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            93,
+            282
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "enrichment-nankai-2027-duration-0570cceaa6a1",
+          "role": "year_boundary",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            51,
+            79
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 346,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "answer_with_boundaries"
+    },
+    {
+      "id": "PF06",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "工学 工程类 学校线",
+      "source_recalled": true,
+      "all_required_quotes_read": false,
+      "evidence": [
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "role": "answer",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            223,
+            245
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "role": "answer",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            505,
+            533
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "role": "table_scope",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            80,
+            84
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "role": "table_scope",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            340,
+            344
+          ],
+          "read_covered": false
+        },
+        {
+          "source_id": "score-nankai-school-2024-af773cdc9cb9",
+          "role": "table_header",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            38,
+            79
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 6,
+      "matching_segments": 6,
+      "read_chars": 2468,
+      "violations": [],
+      "source_year": 2024,
+      "source_quality": "accepted",
+      "expected_result": "answer_with_boundaries"
+    },
+    {
+      "id": "PF07",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "工学 学校线 学院",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+          "role": "table_scope",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            85,
+            89
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+          "role": "answer",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            228,
+            250
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2025-ca92bfb2b8e8",
+          "role": "limitation",
+          "expected_page": 3,
+          "extracted": true,
+          "runtime_span": [
+            1458,
+            1587
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 10,
+      "read_chars": 2046,
+      "violations": [],
+      "source_year": 2025,
+      "source_quality": "accepted",
+      "expected_result": "answer_with_boundaries"
+    },
+    {
+      "id": "PF08",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "2026 工学 学校线",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "role": "actual_year",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            0,
+            35
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "role": "table_scope",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            82,
+            86
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "role": "answer",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            225,
+            247
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "score-nankai-school-2026-e207f065bfea",
+          "role": "limitation",
+          "expected_page": 3,
+          "extracted": true,
+          "runtime_span": [
+            1454,
+            1585
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 9,
+      "read_chars": 1883,
+      "violations": [],
+      "source_year": 2026,
+      "source_quality": "accepted",
+      "expected_result": "target_year_unknown"
+    },
+    {
+      "id": "PF09",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "081200 英语 调剂",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "role": "target_scope",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            83,
+            109
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "role": "prerequisite",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            122,
+            196
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "role": "table_header",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            197,
+            273
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "role": "whole_alternative_route",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            274,
+            346
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 14,
+      "read_chars": 2295,
+      "violations": [],
+      "source_year": 2026,
+      "source_quality": "accepted",
+      "expected_result": "answer_with_boundaries"
+    },
+    {
+      "id": "PF10",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "调剂 截止时间",
+      "source_recalled": true,
+      "all_required_quotes_read": false,
+      "evidence": [
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "role": "actual_year",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            0,
+            36
+          ],
+          "read_covered": false
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "role": "historical_deadline",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            660,
+            711
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "history-78cb052e469bde06fcde",
+          "role": "version_boundary",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            1397,
+            1437
+          ],
+          "read_covered": false
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 206,
+      "violations": [],
+      "source_year": 2026,
+      "source_quality": "accepted",
+      "expected_result": "historical_opportunity_unknown"
+    },
+    {
+      "id": "catalog-01",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "085404 计算机技术 初试 复试",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+          "role": "primary",
+          "expected_page": 7,
+          "extracted": true,
+          "runtime_span": [
+            7004,
+            7150
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 12,
+      "read_chars": 2171,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-02",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "085410 人工智能 初试",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-367888-2027-6391b5df71cbd906-69b9d6d4c0ea-v2",
+          "role": "primary",
+          "expected_page": 7,
+          "extracted": true,
+          "runtime_span": [
+            7309,
+            7456
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 23,
+      "read_chars": 2302,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-03",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "125603 工业工程与管理 工作年限 定向",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+          "role": "primary",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            240,
+            442
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 273,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "unknown_applicant_eligibility"
+    },
+    {
+      "id": "catalog-04",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "135700 设计 马克笔 科目三 科目四",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-368218-2027-dfe02e9df8b0e98d-cfa925508526-v2",
+          "role": "primary",
+          "expected_page": 2,
+          "extracted": true,
+          "runtime_span": [
+            1310,
+            1616
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 17,
+      "read_chars": 1723,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-05",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "招生计划 拟招生人数 推免",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-678581-2027-c7c00396e7f5553b-2859923889d6-v2",
+          "role": "primary",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            79,
+            143
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 520,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-06",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "105701 01 心血管病 计划",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+          "role": "table_header",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            68,
+            169
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "catalog-368190-2027-a25e865cca3dce00-2e12d12881a8",
+          "role": "primary",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            170,
+            285
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 771,
+      "read_chars": 5895,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "unknown_program_total"
+    },
+    {
+      "id": "catalog-07",
+      "split": "holdout",
+      "applicable": true,
+      "retrieval_query": "085400 电子信息 806 程序设计",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-367927-2027-85a9575f605debb0-da572f009ef2",
+          "role": "primary",
+          "expected_page": 9,
+          "extracted": true,
+          "runtime_span": [
+            4730,
+            4805
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 430,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-08",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "081700 F015 无机化学 复试",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "role": "primary",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            259,
+            425
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 14,
+      "read_chars": 4760,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-09",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "人工智能 电力能源 机器视觉 自然语言处理",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "role": "scope_heading",
+          "expected_page": 21,
+          "extracted": true,
+          "runtime_span": [
+            23397,
+            23414
+          ],
+          "read_covered": true
+        },
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "role": "primary",
+          "expected_page": 22,
+          "extracted": true,
+          "runtime_span": [
+            23887,
+            23997
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 1,
+      "matching_segments": 1,
+      "read_chars": 1850,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-10",
+      "split": "development",
+      "applicable": true,
+      "retrieval_query": "2027 人工智能 招生专业目录",
+      "source_recalled": true,
+      "all_required_quotes_read": true,
+      "evidence": [
+        {
+          "source_id": "catalog-677380-2027-8287cc7f12c39a1f-793507ece444",
+          "role": "source_year",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            13,
+            35
+          ],
+          "read_covered": true
+        }
+      ],
+      "hits": 8,
+      "matching_segments": 36,
+      "read_chars": 5970,
+      "violations": [],
+      "source_year": 2027,
+      "source_quality": "accepted",
+      "expected_result": "unknown_target_year"
+    },
+    {
+      "id": "catalog-11",
+      "split": "development",
+      "applicable": false,
+      "retrieval_query": "125100 55 高端科技投资 EMBA 深圳 定向",
+      "source_recalled": false,
+      "all_required_quotes_read": false,
+      "evidence": [
+        {
+          "source_id": "doc-4af998d24f86e487664f-9bc2e77aa634",
+          "role": "year_heading",
+          "expected_page": null,
+          "extracted": true,
+          "runtime_span": [
+            322,
+            338
+          ],
+          "read_covered": false
+        },
+        {
+          "source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+          "role": "primary",
+          "expected_page": 29,
+          "extracted": true,
+          "runtime_span": [
+            25361,
+            25451
+          ],
+          "read_covered": false
+        }
+      ],
+      "hits": 0,
+      "matching_segments": 0,
+      "read_chars": 0,
+      "violations": [],
+      "source_year": null,
+      "source_quality": "pending",
+      "expected_result": "source_rule_only"
+    },
+    {
+      "id": "catalog-12",
+      "split": "development",
+      "applicable": false,
+      "retrieval_query": "哈尔滨工业大学 统考 硕士 招生目录 年度",
+      "source_recalled": false,
+      "all_required_quotes_read": false,
+      "evidence": [
+        {
+          "source_id": "doc-8c2a6f9ac1e47065d65d-ed9234849449",
+          "role": "standalone_scope",
+          "expected_page": 1,
+          "extracted": true,
+          "runtime_span": [
+            0,
+            14
+          ],
+          "read_covered": false
+        }
+      ],
+      "hits": 0,
+      "matching_segments": 0,
+      "read_chars": 0,
+      "violations": [],
+      "source_year": null,
+      "source_quality": "pending",
+      "expected_result": "unknown_standalone_document_year"
+    }
+  ],
+  "network_calls": 0,
+  "application_database_reads": 0,
+  "model_calls": 0,
+  "limits": "Historical public snapshots only. Keyword/read coverage is not answer accuracy, vector recall or live URL verification."
+}

@@ -7,7 +7,7 @@ from source_privacy import contains_personal_roster
 QUALITY_VERSION = 1
 QUALITY_STATES = ('accepted', 'pending', 'excluded')
 _KINDS = (
-    ('scores', r'分数线|复试基本(?:分数|要求)|初试成绩要求'),
+    ('scores', r'分数线|复试基本(?:分数|要求)|初试成绩(?:基本)?要求'),
     ('catalog', r'(?:招生)?专业目录|招生目录|目录依据'),
     ('subjects', r'考试科目|初试科目|科目调整|考试大纲|参考书|考试范围'),
     ('fees', r'学费|收费|学制|奖助'),
@@ -20,6 +20,11 @@ _GATE_BODY = re.compile(r'请完成.{0,16}(?:验证|验证码)|验证后.{0,8}�
 _NOISE = re.compile(r'@font-face\s*\{|\.[\w-]+(?:\s+\w+)?\s*\{[^}]*\}|showDynClicks\s*\([^)]*\)|(?:font-family|width|height)\s*:[^;\n]+;', re.I)
 _EXAM_CODE = re.compile(r'(?<!\d)(?:10\d|20\d|30\d|[4-9]\d\d)(?!\d)')
 _NUMBER_CODE = re.compile(r'(?<!\d)(?:0[1-9]|1[0-4])\d{4}(?!\d)')
+_SCORE_COLUMNS = re.compile(r'总分|思想政治理论|政治|外(?:国语|语)|英语(?:[一二])?|业务[课科][一二12]|专业课[一二12]|单科')
+_SCORE_ROW = re.compile(r'(?P<label>(?:\d{2,6}[ \t]*)?[\u3400-\u9fff][^\n]*?)[ \t|]+(?P<values>\d{1,3}(?:\.\d+)?(?:[ \t|]+\d{1,3}(?:\.\d+)?){2,5})[ \t|]*')
+_SCORE_SUBJECT_CODE = r'(?:0[1-9]|1[0-4])\d{0,4}(?:[A-Z]\d{1,2})?'
+_BRACKETED_SUBJECT_CODES = re.compile(r'[（(]\s*' + _SCORE_SUBJECT_CODE +
+                                     r'(?:\s*[、,，/]\s*' + _SCORE_SUBJECT_CODE + r')*\s*[)）]')
 
 
 def _plain(value):
@@ -30,6 +35,53 @@ def _plain(value):
 
 def _material(title):
     return next((kind for kind, pattern in _KINDS if re.search(pattern, title)), 'unknown')
+
+
+def _score_label(label):
+    # Codes belong in a leading field or an explicit parenthesized category.
+    # A date or an extra numeric score cell must never be absorbed into a label.
+    label = re.sub(r'^' + _SCORE_SUBJECT_CODE + r'[ \t]*', '', label)
+    label = _BRACKETED_SUBJECT_CODES.sub('', label)
+    return not re.search(r'\d', label)
+
+
+def _score_table(body):
+    lines = [line.strip() for line in body.splitlines() if line.strip()]
+    for index, row in enumerate(lines):
+        if len(row) > 300: continue
+        found = _SCORE_ROW.fullmatch(row)
+        if not found or not _score_label(found['label']): continue
+        if re.search(r'附件|下载|点击|浏览|阅读|发布|更新|时间|日期|电话|地址', found['label']): continue
+        heading = re.sub(r'\s+', '', '\n'.join(lines[max(0, index - 18):index]))
+        columns = _SCORE_COLUMNS.findall(heading)
+        if len([column for column in columns if column not in {'单科', '总分'}]) >= 2:
+            columns = [column for column in columns if column != '单科']
+        values = re.split(r'[ \t|]+', found['values'])
+        if columns.count('总分') == 1 and 3 <= len(columns) == len(values) <= 6 and all(0 <= float(value) <= 500 for value in values):
+            return True
+    return False
+
+
+def _fee_table(body):
+    # A unit in a separate real table header can govern numeric data rows.
+    # Bare years, download counters and policy citations are not tuition facts.
+    unit = r'[（(]\s*(?:单位\s*[:：]\s*)?(?:万)?元\s*[/／]\s*生\s*[.·/／]\s*(?:学年|年|学期)\s*[）)]'
+    if not re.search(r'收费标准\s*' + unit, body): return False
+    for line in body.splitlines():
+        if re.search(r'附件|下载|浏览|阅读|发布|更新|时间|日期|电话|地址|邮编', line): continue
+        row = re.fullmatch(r'\s*([\u3400-\u9fff][^\n]{0,160}?)\s+(\d{1,8}(?:\.\d{1,2})?)\s*', line)
+        if not row: continue
+        descriptor = row[1].split()[0]
+        if re.search(r'政策|文件|文号|字号|依据|单位|备注|序号|页码|页数|表号|编号|收费标准', descriptor): continue
+        if not re.match(r'[^\s]{0,6}(?:发改|教财|财综|财教|价费|财税|财办)', row[1]): return True
+    return False
+
+
+def _score_facts(body):
+    without_full_marks = re.sub(r'[（(][^()（）]{0,30}满分[^()（）]{0,60}[)）]', '', body)
+    without_full_marks = re.sub(r'满分[^\d]{0,12}\d{1,3}\s*分', '', without_full_marks)
+    return (bool(re.search(r'分数|总分|成绩|门类|专业', without_full_marks) and
+                 re.search(r'\d+(?:\.\d+)?\s*(?:分|%)', without_full_marks)) or _score_table(body))
 
 
 def _substantive(kind, body, title=''):
@@ -45,10 +97,10 @@ def _substantive(kind, body, title=''):
                         for code in _NUMBER_CODE.finditer(body))) or
                    len(set(_EXAM_CODE.findall(body))) >= 2 and subjects)
     fees = bool(re.search(r'(?:学费|收费|学制|奖助)', body) and
-                re.search(r'\d+(?:\.\d+)?\s*(?:万元|元)|学制\D{0,8}(?:\d{1,2}(?:\.\d)?|[一二三四五六七八九])\s*年', body))
+                re.search(r'\d+(?:\.\d+)?\s*(?:万元|元)|学制\D{0,8}(?:\d{1,2}(?:\.\d)?|[一二三四五六七八九])\s*年', body)) or _fee_table(body)
     eligibility = bool(re.search(r'报考|学历|学位|同等学力|毕业|资格', body) and re.search(r'须|必须|应当|不得|不接受|允许|要求|符合|具有', body))
     deadline = bool(re.search(r'申请|截止|报名|提交|开放', body) and re.search(r'\d{1,2}月\d{1,2}日|20\d{2}[-/.]\d{1,2}[-/.]\d{1,2}', body))
-    scores = bool(re.search(r'分数|总分|成绩|门类|专业', body) and re.search(r'\d+(?:\.\d+)?\s*(?:分|%)', body))
+    scores = _score_facts(body)
     facts = {'catalog': catalog, 'subjects': subjects, 'fees': fees,
              'admissions': eligibility or fees or deadline,
              'interview': scores or deadline or bool(re.search(r'复试.{0,50}(?:笔试|面试|权重|比例|资格)', body)),
@@ -67,7 +119,7 @@ def _heading_year_conflict(content, year):
         heading = line.strip()
         if len(heading) > 120 or re.match(r'参考|参照|根据|依据|往年|历年|例如', heading): continue
         if re.search(r'[。；]', heading) or _material(heading) == 'unknown': continue
-        found = re.match(r'[^\d]{0,40}(20\d{2})年', heading)
+        found = re.match(r'[^\d]{0,40}(20\d{2})\s*(?:年|级)', heading)
         if found and int(found[1]) != year: return True
     return False
 
@@ -107,7 +159,7 @@ def assess_quality(source, body='', *, original_available=False, authority_verif
     if type(year) is not int or not 1900 <= year <= 2100:
         reasons.append(('year_unknown', '来源适用年度未明确，检索目标年度不能替代。'))
     else:
-        years = set(int(value) for value in re.findall(r'(?<!\d)(20\d{2})\s*年', title))
+        years = set(int(value) for value in re.findall(r'(?<!\d)(20\d{2})\s*(?:年|级)', title))
         if years and year not in years or _heading_year_conflict(content, year):
             reasons.append(('year_conflict', '标题或正文主标题的年度与记录年度不一致，需要核对。'))
     if kind == 'unknown': reasons.append(('material_unknown', '尚未识别为具体的招生目录、规则或公告。'))

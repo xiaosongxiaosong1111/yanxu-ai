@@ -11,19 +11,22 @@ class EngineValidationError(ValueError):
 
 PROFILE_FIELDS = {
     "target_year", "reference_year", "education", "background", "work_years", "study_mode",
-    "max_total_tuition", "max_annual_tuition", "provinces", "subjects", "max_subject_changes", "preferences", "ranking_mode",
+    "max_total_tuition", "max_annual_tuition", "provinces", "preferred_provinces",
+    "excluded_subjects", "subjects", "max_subject_changes", "preferences", "ranking_mode",
 }
 FACT_FIELDS = PROFILE_FIELDS | {
     "total", "politics", "foreign_language", "business1", "business2", "program_code",
     "first_choice_program_code", "degree_type", "exam_type", "plan_type", "english_certificate",
 }
 SUBJECT_FIELDS = {"code", "name", "scope", "exam_unit", "choice_group"}
+EXCLUSION_FIELDS = {"code", "name", "scope"}
 WEIGHTS = {"cost": 2, "subjects": 4, "location": 2}
 OPERATORS = {"eq", "==", "ne", "!=", "in", "not_in", "contains", "prefix_in", "gte", ">=", "lte", "<=", "gt", ">", "lt", "<", "subjects_match", "eq_scoped"}
 LABELS = {
     "education": "学历", "background": "本科专业", "work_years": "工作年限", "study_mode": "学习方式",
     "subjects": "备考科目", "max_annual_tuition": "年学费上限", "max_total_tuition": "全程学费上限",
-    "provinces": "意向地区", "max_subject_changes": "允许调整的科目数", "total": "初试总分",
+    "provinces": "意向地区", "preferred_provinces": "优先地区", "excluded_subjects": "不考科目",
+    "max_subject_changes": "允许调整的科目数", "total": "初试总分",
     "politics": "政治成绩", "foreign_language": "外语成绩", "business1": "业务课一成绩",
     "business2": "业务课二成绩", "first_choice_program_code": "一志愿专业代码",
 }
@@ -81,6 +84,31 @@ def _validate_subjects(values):
     return result
 
 
+def _validate_exclusions(values):
+    if not isinstance(values, list) or len(values) > 32:
+        raise EngineValidationError("excluded_subjects必须是有限的科目数组")
+    result = []
+    for value in values:
+        if not isinstance(value, dict) or value.keys() - EXCLUSION_FIELDS:
+            raise EngineValidationError("不考科目包含不支持的字段")
+        item = {"code": _text(value.get("code"), "不考科目代码", 30)}
+        if value.get("name") is not None:
+            item["name"] = _text(value.get("name"), "不考科目名称", 120, empty=True)
+        if value.get("scope") is not None and str(value.get("scope")).strip():
+            scope = value.get("scope")
+            if _unknown(scope):
+                raise EngineValidationError("不考科目作用域不能是未知值，请填写明确作用域或只填科目代码")
+            item["scope"] = _text(scope, "不考科目作用域", 100)
+        result.append(item)
+    unique, seen = [], set()
+    for item in result:
+        key = (item["code"], item.get("scope", ""))
+        if key not in seen:
+            seen.add(key)
+            unique.append(item)
+    return unique
+
+
 def validate_profile(value):
     if not isinstance(value, dict) or value.keys() - PROFILE_FIELDS:
         raise EngineValidationError("个人条件不是有效对象或包含不支持的字段")
@@ -101,6 +129,11 @@ def validate_profile(value):
     if not isinstance(provinces, list) or len(provinces) > 40:
         raise EngineValidationError("provinces必须是地区数组")
     provinces = list(dict.fromkeys(_text(region, "意向地区", 30) for region in provinces))
+    preferred_provinces = value.get("preferred_provinces", [])
+    if not isinstance(preferred_provinces, list) or len(preferred_provinces) > 40:
+        raise EngineValidationError("preferred_provinces必须是地区数组")
+    preferred_provinces = list(dict.fromkeys(_text(region, "优先地区", 30) for region in preferred_provinces))
+    excluded_subjects = _validate_exclusions(value.get("excluded_subjects", []))
     preferences = value.get("preferences", {})
     if not isinstance(preferences, dict) or preferences.keys() - WEIGHTS.keys():
         raise EngineValidationError("preferences包含不支持的偏好")
@@ -114,7 +147,9 @@ def validate_profile(value):
         "work_years": _limit(value.get("work_years"), "工作年限", 80), "study_mode": study_mode,
         "max_total_tuition": _limit(value.get("max_total_tuition"), "全程学费上限", 10000000),
         "max_annual_tuition": _limit(value.get("max_annual_tuition"), "年学费上限", 10000000),
-        "provinces": provinces, "subjects": _validate_subjects(value.get("subjects", [])),
+        "provinces": provinces, "preferred_provinces": preferred_provinces,
+        "excluded_subjects": excluded_subjects,
+        "subjects": _validate_subjects(value.get("subjects", [])),
         "max_subject_changes": _limit(value.get("max_subject_changes"), "允许调整科目数", 4, True),
         "preferences": weights, "ranking_mode": ranking_mode,
     }
@@ -178,6 +213,90 @@ def _subject_changes(program_subjects, prepared_subjects):
     return {"added": added, "removed": removed, "count": None if uncertain else count,
             "uncertain": uncertain, "program_units": sorted(target), "prepared_units": sorted(prepared),
             "missing_units": missing, "structural_difference": set(target) != set(prepared)}
+
+
+def _exclusion_match(subject, exclusion):
+    if not isinstance(subject, dict):
+        return None
+    code, scope = subject.get("code"), subject.get("scope")
+    if _unknown(code) or not isinstance(code, str):
+        return None
+    if code.strip() != exclusion["code"]:
+        return False
+    if _unknown(scope) or not isinstance(scope, str):
+        return None
+    target = exclusion.get("scope")
+    if target:
+        return scope.strip() == target
+    if scope.strip() == "national":
+        return True
+    return None
+
+
+def _exclusion_groups(subjects):
+    groups, invalid = {}, 0
+    for index, subject in enumerate(subjects):
+        if not isinstance(subject, dict):
+            invalid += 1
+            continue
+        if subject.get("choice_group") is not None and "exam_unit" not in subject:
+            invalid += 1
+            continue
+        slot = subject.get("exam_unit", index + 1)
+        if type(slot) is not int or slot not in range(1, 5):
+            invalid += 1
+            continue
+        groups.setdefault(slot, []).append(subject)
+    return groups, invalid
+
+
+def _exclusion_unit(options, exclusions):
+    values = {str(option.get("choice_group", "")) for option in options}
+    malformed = len(options) > 1 and (len(values) != 1 or not next(iter(values)))
+    remaining, dropped, excluded, uncertain = [], set(), [], []
+    for subject in options:
+        answers = [_exclusion_match(subject, exclusion) for exclusion in exclusions]
+        if any(answer is True for answer in answers):
+            dropped.add(id(subject))
+            excluded.append(deepcopy(subject))
+        else:
+            remaining.append(subject)
+            if any(answer is None for answer in answers) or _identity(subject) is None:
+                uncertain.append(deepcopy(subject))
+    unknown = bool(remaining) and (malformed or any(
+        _identity(subject) is None or any(_exclusion_match(subject, exclusion) is None for exclusion in exclusions)
+        for subject in remaining))
+    return remaining, dropped, excluded, uncertain, malformed, unknown
+
+
+def _exclusion_filter(subjects, exclusions):
+    result = {"status": "matched", "excluded": [], "uncertain": [],
+              "empty_units": [], "unknown_units": [], "malformed_units": []}
+    if not exclusions:
+        return deepcopy(subjects), result
+    if not isinstance(subjects, list):
+        return deepcopy(subjects), {**result, "status": "unknown"}
+    groups, invalid_count = _exclusion_groups(subjects)
+    dropped, excluded, uncertain = set(), [], []
+    empty_units, unknown_units, malformed_units = [], [], []
+    for slot, options in groups.items():
+        remaining, dropped_here, excluded_here, uncertain_here, malformed, unknown = _exclusion_unit(options, exclusions)
+        dropped |= dropped_here
+        excluded.extend(excluded_here)
+        uncertain.extend(uncertain_here)
+        if malformed:
+            malformed_units.append(slot)
+        if not remaining:
+            empty_units.append(slot)
+        elif unknown:
+            unknown_units.append(slot)
+    if invalid_count:
+        unknown_units.append(0)
+    kept = [deepcopy(subject) for subject in subjects if id(subject) not in dropped]
+    status = "excluded" if empty_units else "unknown" if unknown_units else "matched"
+    return kept, {"status": status, "excluded": excluded, "uncertain": uncertain,
+                  "empty_units": empty_units, "unknown_units": unknown_units,
+                  "malformed_units": malformed_units}
 
 
 def _source(value):
@@ -295,21 +414,37 @@ def _exam_matching_blocked(program):
 
 
 def _subject_result(program, profile):
-    changes = _subject_changes(program.get('subjects'), profile['subjects'])
+    subjects, exclusion = _exclusion_filter(program.get('subjects'), profile.get('excluded_subjects', []))
+    changes = _subject_changes(subjects, profile['subjects'])
     evidence = program.get('evidence')
+    exclusion_reason = None
+    exclusion_fields = set()
+    if exclusion['status'] == 'excluded':
+        exclusion_reason = _reason('excluded_subjects', 'excluded',
+                                   '该方向必须考你不愿参加的科目，且没有可证明的合法替代。',
+                                   program.get('exam_evidence') or evidence)
+    elif exclusion['status'] == 'unknown':
+        exclusion_reason = _reason('excluded_subjects', 'unknown',
+                                   '部分科目标识或替代关系尚不明确，不能确认避开所选科目。',
+                                   program.get('exam_evidence') or evidence)
+        exclusion_fields.add('excluded_subjects')
     if _exam_matching_blocked(program):
         changes = {**changes, 'count': None, 'uncertain': True, 'added': [], 'removed': []}
         message = ('原文科目代码与名称存在待核矛盾，暂不参与科目匹配或备考建议。'
                    if program.get('subject_identity_issues') else '当前原文科目套组尚不支持可靠匹配，暂不参与备考建议。')
-        return changes, _reason('subjects', 'excluded', message, program.get('exam_evidence') or evidence), set()
+        return (changes, _reason('subjects', 'excluded', message, program.get('exam_evidence') or evidence),
+                set(), exclusion_reason)
+    if exclusion['status'] in ('excluded', 'unknown'):
+        changes = {**changes, 'count': None, 'uncertain': True, 'added': [], 'removed': []}
     if changes['uncertain']:
         fields = {'subjects'} if not profile['subjects'] or changes['missing_units'] else set()
-        return changes, _reason('subjects', 'unknown', '科目身份、考试单元或当前备考信息不完整，不能判作零换科', evidence), fields
+        return (changes, _reason('subjects', 'unknown', '科目身份、考试单元或当前备考信息不完整，不能判作零换科', evidence),
+                fields | exclusion_fields, exclusion_reason)
     limit = profile['max_subject_changes']
     status = 'excluded' if limit is not None and changes['count'] > limit else 'matched'
     message = (f"按完整科目身份核对，需调整{changes['count']}个考试单元" if status == 'matched'
                else '需要调整的考试单元超过已设上限')
-    return changes, _reason('subjects', status, message, evidence), set()
+    return changes, _reason('subjects', status, message, evidence), exclusion_fields, exclusion_reason
 
 
 def _program_result(program, profile):
@@ -342,8 +477,10 @@ def _program_result(program, profile):
         answer = actual in expected if field == "provinces" else actual == expected
         status = "unknown" if _unknown(actual) else "matched" if answer else "excluded"
         reasons.append(_reason(field, status, "符合已填写的硬条件" if status == "matched" else "资料不足，需确认" if status == "unknown" else "与已填写的硬条件冲突", evidence))
-    changes, subject_reason, subject_fields = _subject_result(program, profile)
+    changes, subject_reason, subject_fields, exclusion_reason = _subject_result(program, profile)
     reasons.append(subject_reason)
+    if exclusion_reason is not None:
+        reasons.append(exclusion_reason)
     missing_fields |= subject_fields
     statuses = [reason["status"] for reason in reasons]
     status = "excluded" if "excluded" in statuses else "unknown" if "unknown" in statuses else "matched"
@@ -401,8 +538,13 @@ def _ranking_basis(entry, profile, active, cost_index):
         method = "subjects" if mode == "subjects" else "subjects_fallback"
         explanation = "按需调整的已知考试单元数由少到多排序。" if mode == "subjects" else "可比学费或偏好资料缺失，回退按已知科目调整数排序，不能据此比较费用。"
     priority = int(mode == "cost" and method not in ("total_cost", "annual_cost"))
-    return {"mode": mode, "method": method, "fields": fields, "missing_fields": missing,
-            "value": value, "priority": priority, "explanation": explanation}
+    result = {"mode": mode, "method": method, "fields": fields, "missing_fields": missing,
+              "value": value, "priority": priority, "explanation": explanation}
+    if profile.get("preferred_provinces"):
+        result["soft_preference"] = {"field": "preferred_provinces",
+                                     "value": deepcopy(profile["preferred_provinces"]),
+                                     "note": "仅影响排序，不作为硬排除条件。"}
+    return result
 
 
 def _rank(entries, profile):
@@ -411,8 +553,11 @@ def _rank(entries, profile):
     known_costs = [cost for cost in costs if cost is not None]
     low, high = (min(known_costs), max(known_costs)) if known_costs else (None, None)
     active = [key for key, weight in profile["preferences"].items() if weight > 0 and key != "location"]
+    soft_location = (profile["ranking_mode"] == "balanced" and bool(profile["preferred_provinces"])
+                     and profile["preferences"]["location"] > 0)
+    scoring = [*active, "location"] if soft_location else active
     cost_index = 1 if known_costs or not any(_tuition(entry["program"])[0] is not None for entry in eligible) else 0
-    denominator = sum(profile["preferences"][key] for key in active)
+    denominator = sum(profile["preferences"][key] for key in scoring)
     scored = []
     for entry in entries:
         if entry["status"] == "excluded":
@@ -422,25 +567,35 @@ def _rank(entries, profile):
         cost = _tuition(program)[1]
         cost_score = None if cost is None else 1 if low == high else (high - cost) / (high - low)
         subject_score = None if changes["count"] is None else 1 - min(1, changes["count"] / max(len(changes["program_units"]), len(changes["prepared_units"]), 1))
-        location_score = None if not profile["provinces"] or _unknown(program.get("province")) else float(program["province"] in profile["provinces"])
+        location_values = profile["preferred_provinces"] or profile["provinces"]
+        location_score = None if not location_values or _unknown(program.get("province")) else float(
+            program.get("province") in location_values)
         components = {"cost": cost_score, "subjects": subject_score, "location": location_score}
-        complete = bool(active) and all(components[key] is not None for key in active)
-        known_sum = sum(components[key] * profile["preferences"][key] for key in active if components[key] is not None)
-        missing_weight = sum(profile["preferences"][key] for key in active if components[key] is None)
+        complete = bool(scoring) and all(components[key] is not None for key in scoring)
+        known_sum = sum(components[key] * profile["preferences"][key] for key in scoring if components[key] is not None)
+        missing_weight = sum(profile["preferences"][key] for key in scoring if components[key] is None)
         interval = [round(100 * known_sum / denominator, 2), round(100 * (known_sum + missing_weight) / denominator, 2)] if denominator else None
         scored.append({**entry, "components": components, "rank_score": interval[0] if complete else None,
                        "rank_interval": interval, "ranking_note": "分数仅表示已设偏好匹配程度，不是录取概率；未知分项不赋零值。"})
-    vectors = [tuple(entry["components"][key] for key in active) for entry in scored
+    vectors = [tuple(entry["components"][key] for key in scoring) for entry in scored
                if entry["status"] == "matched" and entry["rank_score"] is not None]
     frontier = _frontier(vectors)
-    return [{**entry, "ranking_basis": _ranking_basis(entry, profile, active, cost_index),
-             "pareto": tuple(entry["components"][key] for key in active) + (0,) * (3 - len(active)) in frontier
+    return [{**entry, "ranking_basis": _ranking_basis(entry, profile, scoring, cost_index),
+             "pareto": tuple(entry["components"][key] for key in scoring) + (0,) * (3 - len(scoring)) in frontier
              if entry["status"] == "matched" and entry["rank_score"] is not None else None} for entry in scored]
 
 
-def _sort_entries(entries):
-    return sorted(entries, key=lambda entry: (entry["ranking_basis"]["priority"], entry["ranking_basis"]["value"] is None,
-                                             -(entry["ranking_basis"]["value"] or 0)))
+def rank_order_key(entry, profile):
+    basis = entry.get("ranking_basis") or {}
+    value = basis.get("value")
+    preferred = bool(profile.get("preferred_provinces")) and profile.get("preferences", {}).get("location", 0) > 0
+    location = entry.get("components", {}).get("location")
+    location_tie = (0 if not preferred else 0 if location == 1 else 1 if location == 0 else 2)
+    return (basis.get("priority", 0), value is None, -(value or 0), location_tie)
+
+
+def _sort_entries(entries, profile):
+    return sorted(entries, key=lambda entry: rank_order_key(entry, profile))
 
 
 def match_programs(programs, profile):
@@ -451,9 +606,9 @@ def match_programs(programs, profile):
     results = [_program_result(program, profile) for program in current]
     entries = _rank([entry for entry, _ in results], profile)
     questions = Counter(field for entry, fields in results if entry["status"] != "excluded" for field in fields)
-    buckets = {"matches": _sort_entries([entry for entry in entries if entry["status"] == "matched"]),
+    buckets = {"matches": _sort_entries([entry for entry in entries if entry["status"] == "matched"], profile),
                "excluded": [entry for entry in entries if entry["status"] == "excluded"],
-               "needs_confirmation": _sort_entries([entry for entry in entries if entry["status"] == "unknown"])}
+               "needs_confirmation": _sort_entries([entry for entry in entries if entry["status"] == "unknown"], profile)}
     return {**buckets, "questions": [{"field": field, "label": f"请补充{LABELS.get(field, field)}", "affected_count": count}
                                      for field, count in sorted(questions.items(), key=lambda item: (-item[1], item[0]))],
             "summary": {"input_count": len(programs), "reference_count": len(current),
