@@ -14,16 +14,17 @@ class SegmentRetrievalTests(unittest.TestCase):
         self.root=Path(temporary.name)
         self.store=KnowledgeStore(self.root)
 
-    def save(self,name,*,unit='u1',year=2027,complete=True):
-        texts=[f'{year}年硕士研究生招生专业目录\n081200 计算机科学与技术 初试科目101、201、301、408。',
-               '收费说明\n学费每生每年8000元。', '报考说明\n计算机跨专业考生须参加加试。' if complete else '报考说明。']
+    def save(self,name,*,unit='u1',year=2027,complete=True,texts=None,store=None):
+        if texts is None:
+            texts=[f'{year}年硕士研究生招生专业目录\n081200 计算机科学与技术 初试科目101、201、301、408。',
+                   '收费说明\n学费每生每年8000元。', '报考说明\n计算机跨专业考生须参加加试。' if complete else '报考说明。']
         raw=('%PDF-1.4\nfixture '+name).encode()
         source={'url':'https://grad.example.edu.cn/'+name+'.pdf','title':f'{year}年硕士招生专业目录',
                 'unit_id':unit,'unit_name':'合成大学','year':year,'status':'official_original_read',
                 'sha256':hashlib.sha256(raw).hexdigest()}
         document={'raw':raw,'url':source['url'],'text':'\n'.join(texts),
                   'pages':[{'page':i,'text':value} for i,value in enumerate(texts,1)],'attribution_status':'verified'}
-        return self.store.save_source(source,document=document)
+        return (store or self.store).save_source(source,document=document)
 
     def test_document_all_terms_then_segment_any_term_is_explicit_and_scope_safe(self):
         wanted=self.save('wanted')
@@ -68,6 +69,34 @@ class SegmentRetrievalTests(unittest.TestCase):
         wanted=self.save('wanted')
         result=self.store.search('2027年合成大学计算机专业跨专业考生要参加加试吗？')
         self.assertIn(wanted['id'],{item['id'] for item in result['entries']})
+
+    def test_natural_question_revalidates_every_or_candidate_before_pagination(self):
+        header='2027年硕士研究生招生专业目录\n085400 电子信息 初试科目101、201、302、408。'
+        bad=self.save('bad-fee',texts=[header,'收费说明\n学费每生每年8000元。'])
+        good=self.save('good-extra',texts=[header,'报考说明\n计算机跨专业考生须参加加试。'])
+        (self.root/'runtime/research-sources'/(bad['sha256']+'.bin')).write_bytes(b'changed')
+        result=self.store.search_segments('学费和加试有什么要求？',page_size=1)
+        self.assertEqual(result['total'],1)
+        self.assertEqual([item['entry_id'] for item in result['segments']],[good['id']])
+        self.assertEqual(result['match_mode'],'segment_terms')
+
+    def test_natural_window_ranking_uses_neighbour_text_and_not_random_store_ids(self):
+        header='2027年硕士研究生招生专业目录\n085400 电子信息 初试科目101、201、302、408。'
+        wrong_texts=[header,'院系说明\n计算机专业设在计算机学院。']
+        right_texts=[header,'收费说明\n计算机专业学费每生每年8000元。']
+        with tempfile.TemporaryDirectory(prefix='n3-window-order-') as temporary:
+            other=KnowledgeStore(Path(temporary))
+            results=[]
+            for store in (self.store,other):
+                wrong=self.save('0-wrong',texts=wrong_texts,store=store)
+                right=self.save('z-right',texts=right_texts,store=store)
+                found=store.search_segments('计算机专业学费是多少',unit_id='u1',year=2027,page_size=1)
+                results.append(found['segments'][0])
+                self.assertEqual(found['segments'][0]['entry_id'],right['id'])
+                self.assertNotEqual(found['segments'][0]['entry_id'],wrong['id'])
+                self.assertTrue(found['segments'][0]['text'].startswith('2027年'))
+            self.assertEqual(results[0]['text'],results[1]['text'])
+            self.assertNotEqual(results[0]['entry_id'],results[1]['entry_id'])
 
     def test_tampered_fallback_original_is_removed_before_count_and_pagination(self):
         bad=self.save('bad')

@@ -46,12 +46,16 @@ def _source_ok(source):
 
 
 def _quote_at(text, start, end):
+    """Return a quote whose offsets index the exact same characters in ``text``."""
     left = max(0, start - 80)
     left = max(text.rfind('\n', left, start) + 1, left)
     right = text.find('\n', end)
     right = len(text) if right < 0 else right
-    excerpt = text[left:right].strip()
-    return excerpt[:300], left, min(right, left + len(excerpt))
+    body = text[left:right]
+    offset = left + (len(body) - len(body.lstrip()))
+    body = text[offset:right].rstrip()
+    excerpt = body[:300]
+    return excerpt, offset, offset + len(excerpt)
 
 
 def _scope_basis(quote, title):
@@ -64,25 +68,43 @@ def _scope_basis(quote, title):
     return 'unconfirmed'
 
 
+def _scope_codes(quote):
+    """Program codes explicitly named by this quote, sorted for a stable group key."""
+    return tuple(sorted(set(_CODES.findall(quote))))
+
+
+def _study_mode(quote):
+    """Only a single explicit mode narrows the scope; both modes stay wide."""
+    part = '非全日制' in quote
+    full = bool(re.search(r'(?<!非)全日制', quote))
+    if part == full:
+        return None
+    return '非全日制' if part else '全日制'
+
+
 def _digest(source, field, quote):
     identity = '|'.join(str(part) for part in (source.get('id'), source.get('sha256'), field, quote))
     return hashlib.sha256(identity.encode('utf-8')).hexdigest()
 
 
-def _draft(source, field, value, period, quote, start, end, scope_basis):
+def _draft(source, field, value, period, quote, start, end, scope_basis,
+           scope_codes=(), study_mode=None):
     citation = {
         'source_id': source.get('id'), 'knowledge_id': source.get('knowledge_id'),
+        'source_group': source.get('source_group'),
         'url': source.get('url'), 'title': source.get('title'), 'year': source.get('year'),
         'sha256': source.get('sha256'), 'quote': quote,
         'excerpt_start': start, 'excerpt_end': end,
+        'scope_codes': list(scope_codes), 'study_mode': study_mode,
     }
     return {
         'id': 'fc_' + _digest(source, field, quote)[:20],
         'field': field, 'label': FIELD_LABELS[field], 'value': value, 'period': period,
         'unit_id': source['unit_id'], 'unit_name': source.get('unit_name'),
         'year': source['year'], 'scope': {'unit_id': source['unit_id'], 'year': source['year']},
-        'scope_basis': scope_basis, 'quote': quote,
-        'source_id': source.get('id'), 'knowledge_id': source.get('knowledge_id'),
+        'scope_basis': scope_basis, 'scope_codes': list(scope_codes), 'study_mode': study_mode,
+        'quote': quote, 'source_id': source.get('id'), 'knowledge_id': source.get('knowledge_id'),
+        'source_group': source.get('source_group'),
         'url': source.get('url'), 'sha256': source.get('sha256'),
         'excerpt_start': start, 'excerpt_end': end,
         'source': citation, 'status': 'draft', 'paused': True,
@@ -105,14 +127,20 @@ def _tuition_drafts(source):
         if key in seen:
             continue
         seen.add(key)
-        drafts.append(_draft(source, 'tuition', amount, period, quote, start, end, _scope_basis(quote, title)))
+        basis = _scope_basis(quote, title)
+        codes = _scope_codes(quote) if basis == 'program_code' else ()
+        drafts.append(_draft(source, 'tuition', amount, period, quote, start, end, basis,
+                             codes, _study_mode(quote)))
     for match in _FREE.finditer(text):
         quote, start, end = _quote_at(text, match.start(), match.end())
         key = ('year', 0, quote)
         if key in seen:
             continue
         seen.add(key)
-        drafts.append(_draft(source, 'tuition', 0, 'year', quote, start, end, _scope_basis(quote, title)))
+        basis = _scope_basis(quote, title)
+        codes = _scope_codes(quote) if basis == 'program_code' else ()
+        drafts.append(_draft(source, 'tuition', 0, 'year', quote, start, end, basis,
+                             codes, _study_mode(quote)))
     return drafts
 
 
@@ -154,62 +182,75 @@ def extract_field_candidates(sources):
 
 
 def _identity(draft):
-    return draft.get('knowledge_id') or draft.get('sha256') or draft.get('url') or draft.get('source_id')
+    """Prefer the original's digest; two links to one file are not two sources."""
+    return (draft.get('sha256') or draft.get('source_group') or draft.get('knowledge_id')
+            or draft.get('url') or draft.get('source_id'))
 
 
 def _public(row):
     return {key: deepcopy(row.get(key)) for key in
-            ('source_id', 'knowledge_id', 'url', 'title', 'year', 'sha256', 'quote',
-             'excerpt_start', 'excerpt_end', 'value', 'period', 'scope_basis')}
+            ('source_id', 'knowledge_id', 'source_group', 'url', 'title', 'year', 'sha256',
+             'quote', 'excerpt_start', 'excerpt_end', 'value', 'period', 'scope_basis',
+             'scope_codes', 'study_mode')}
 
 
-def _group_id(unit_id, year, field, period, scope_basis):
-    payload = '|'.join(str(part) for part in (unit_id, year, field, period, scope_basis))
+def _group_id(unit_id, year, field, period, scope_basis, scope_codes=(), study_mode=None):
+    payload = '|'.join(str(part) for part in
+                       (unit_id, year, field, period, scope_basis, ','.join(scope_codes), study_mode))
     return 'fc_' + hashlib.sha256(payload.encode('utf-8')).hexdigest()[:20]
 
 
 def merge_field_candidates(drafts):
-    """Merge drafts by scope. Agreement needs two independent sources; disagreement pauses."""
+    """Merge drafts by concrete scope. Agreement needs two independent originals."""
     groups = {}
     for draft in drafts:
         if not isinstance(draft, dict) or draft.get('field') not in FIELD_LABELS:
             continue
+        codes = tuple(draft.get('scope_codes') or ())
         key = (draft.get('unit_id'), draft.get('year'), draft.get('field'), draft.get('period'),
-               draft.get('scope_basis'))
+               draft.get('scope_basis'), codes, draft.get('study_mode'))
         groups.setdefault(key, []).append(draft)
     merged = []
-    for (unit_id, year, field, period, scope_basis), rows in groups.items():
+    for (unit_id, year, field, period, scope_basis, codes, study_mode), rows in groups.items():
         sources = [dict(row) for row in rows]
+        unique, seen = [], set()
+        for row in sources:
+            identity = _identity(row)
+            if identity in seen:
+                continue
+            seen.add(identity)
+            unique.append(row)
         if field == 'eligibility':
             merged.append({
-                'id': _group_id(unit_id, year, field, period, 'unconfirmed'),
+                'id': _group_id(unit_id, year, field, period, 'unconfirmed', codes, study_mode),
                 'field': field, 'label': FIELD_LABELS[field], 'unit_id': unit_id, 'year': year,
-                'period': None, 'scope_basis': 'unconfirmed', 'status': 'needs_review',
-                'paused': True, 'value': None, 'values': [_public(row) for row in sources[:6]],
-                'source_count': len({_identity(row) for row in sources}),
+                'period': None, 'scope_basis': 'unconfirmed', 'scope_codes': list(codes),
+                'study_mode': study_mode, 'status': 'needs_review',
+                'paused': True, 'value': None, 'values': [_public(row) for row in unique[:6]],
+                'source_count': len(unique),
                 'notice': '资格条款仅作为待核线索；未知资格保持 unknown，不参与推荐判定。',
             })
             continue
         values = {}
-        for row in sources:
+        for row in unique:
             values.setdefault((row.get('value'), row.get('period')), []).append(row)
         distinct = len(values)
-        identities = {_identity(row) for row in sources}
         base = {'field': field, 'label': FIELD_LABELS[field], 'unit_id': unit_id, 'year': year,
-                'period': period, 'scope_basis': scope_basis, 'source_count': len(identities),
+                'period': period, 'scope_basis': scope_basis, 'scope_codes': list(codes),
+                'study_mode': study_mode, 'source_count': len(unique),
                 'scope': {'unit_id': unit_id, 'year': year},
-                'id': _group_id(unit_id, year, field, period, scope_basis)}
+                'id': _group_id(unit_id, year, field, period, scope_basis, codes, study_mode)}
         if distinct > 1:
             merged.append({**base, 'status': 'conflict', 'paused': True, 'value': None,
-                           'values': [_public(row) for row in sources[:8]],
-                           'notice': '来源对同一收费口径给出不同数值，字段暂停；受影响候选不参与推荐。'})
+                           'values': [_public(row) for row in unique[:8]],
+                           'notice': '同一具体范围内的来源给出不同数值，字段暂停；其他范围不受影响。'})
             continue
         value, _ = next(iter(values))
-        status = 'verified' if len(identities) >= 2 else 'draft'
+        status = 'verified' if len(unique) >= 2 else 'draft'
         merged.append({**base, 'status': status, 'paused': status != 'verified', 'value': value,
-                       'values': [_public(row) for row in sources[:8]],
-                       'notice': ('两个独立原文一致，可作为带出处的参考字段。' if status == 'verified'
-                                  else '仅有一个来源，保留为草案，不参与推荐。')})
+                       'values': [_public(row) for row in unique[:8]],
+                       'notice': ('两个独立原文在同一具体范围内一致，可作为带出处的参考字段。' if status == 'verified'
+                                  else '仅有一个独立来源，保留为草案，不参与推荐。')})
     return merged
 
 
@@ -219,8 +260,17 @@ def _known_tuition(program):
             and not isinstance(tuition.get('amount'), bool))
 
 
+def _scoped_to_program(row, program):
+    """A scoped group only speaks for the program and study mode it names."""
+    if row.get('scope_basis') == 'program_code':
+        if str(program.get('code') or '') not in tuple(row.get('scope_codes') or ()):
+            return False
+    mode = row.get('study_mode')
+    return not mode or str(program.get('study_mode') or '') == mode
+
+
 def apply_field_candidates(programs, merged):
-    """Apply only verified, year-scoped tuition; conflicts pause the affected candidate."""
+    """Apply only verified, year-scoped tuition; conflicts pause the matching scope."""
     applied, paused = [], []
     by_unit = {}
     for candidate in merged:
@@ -230,7 +280,8 @@ def apply_field_candidates(programs, merged):
     for program in values:
         if not isinstance(program, dict):
             continue
-        rows = by_unit.get((program.get('unit_id'), program.get('year')), [])
+        rows = [row for row in by_unit.get((program.get('unit_id'), program.get('year')), [])
+                if _scoped_to_program(row, program)]
         conflicts = [row for row in rows if row.get('status') == 'conflict']
         if conflicts:
             value = {'field': 'tuition', 'message': conflicts[0].get('notice'),
@@ -243,16 +294,11 @@ def apply_field_candidates(programs, merged):
             continue
         if _known_tuition(program):
             continue
-        ordered = sorted(rows, key=lambda item: (item.get('scope_basis') != 'program_code',
-                                                 -item.get('source_count', 0)))
+        ordered = sorted((row for row in rows if row.get('status') == 'verified'),
+                         key=lambda item: (item.get('scope_basis') != 'program_code',
+                                           -item.get('source_count', 0)))
         for row in ordered:
-            if row.get('status') != 'verified' or row.get('period') != 'year':
-                continue
-            if row.get('scope_basis') == 'program_code':
-                quotes = ' '.join(item.get('quote', '') for item in row.get('values', []))
-                if str(program.get('code')) not in quotes:
-                    continue
-            elif row.get('scope_basis') != 'university_wide':
+            if row.get('period') != 'year' or row.get('scope_basis') not in {'program_code', 'university_wide'}:
                 continue
             evidence = [{'url': item.get('url'), 'title': item.get('title'), 'year': item.get('year'),
                          'sha256': item.get('sha256'), 'source_id': item.get('source_id'),

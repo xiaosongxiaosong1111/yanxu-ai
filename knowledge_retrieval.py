@@ -20,6 +20,16 @@ _DEGRADATIONS={'embedding_not_configured','embedding_model_not_ready','embedding
 NOTICE='仅在当前可核验资料的有限候选中检索；语义相近不等于科目、资格或报考条件相同，仍须精读原文。'
 
 
+def _stable(row):
+    """Content-based ordering key; random store ids must never decide a tie."""
+    source=row.get('source') if isinstance(row,dict) else None
+    source=source if isinstance(source,dict) else {}
+    ordinal=row.get('ordinal') if isinstance(row,dict) else None
+    return (str(source.get('sha256') or ''),str(source.get('url') or ''),
+            str(row.get('entry_id') or ''),ordinal if type(ordinal) is int else -1,
+            str(row.get('id') or ''))
+
+
 def reciprocal_rank_fusion(channels):
     fused={}
     for method,rows in channels.items():
@@ -29,8 +39,9 @@ def reciprocal_rank_fusion(channels):
             if not isinstance(identifier,str) or identifier in seen:continue
             seen.add(identifier);current=fused.get(identifier,{'id':identifier,'rrf_score':0.,'ranks':{},'methods':[]})
             fused[identifier]={**current,'rrf_score':current['rrf_score']+1/(60+rank),
-                'ranks':{**current['ranks'],method:rank},'methods':[*current['methods'],method]}
-    return sorted(fused.values(),key=lambda row:(-row['rrf_score'],row['id']))
+                'ranks':{**current['ranks'],method:rank},'methods':[*current['methods'],method],
+                'tie':current.get('tie') or _stable(row)}
+    return sorted(fused.values(),key=lambda row:(-row['rrf_score'],row['tie']))
 
 
 def _parameters(query,unit_id,year,entry_id,limit,allow_remote):
@@ -120,7 +131,7 @@ def rule_rerank(query,rows,limit):
         scored=[{**row,'rerank':{'version':'rule_v2',**_features(query,row,seen_entries,seen_text,
                                                                   pairs,grams,total,state)}} for row in remaining]
         scored=[{**row,'retrieval_score':sum(value for value in row['rerank'].values() if type(value) is float)} for row in scored]
-        chosen=min(scored,key=lambda row:(-row['retrieval_score'],row['id']))
+        chosen=min(scored,key=lambda row:(-row['retrieval_score'],_stable(row)))
         window=_window_text(chosen)
         state['terms'].update(term for term,_ in pairs if term in window)
         state['grams'].update(gram for gram in grams if gram in window)

@@ -84,6 +84,96 @@ class FieldCandidateTests(unittest.TestCase):
         self.assertEqual(target['tuition']['amount'], 12000)
         self.assertIsNone(other['tuition'])
 
+    def test_different_program_codes_never_merge_into_two_source_agreement(self):
+        merged = merge_field_candidates(extract_field_candidates({
+            'a': source(excerpt='081200 学费标准为12000元/年。'),
+            'b': source('s_' + 'c' * 20, sha256='c' * 64, url='https://grad.example.edu.cn/b.html',
+                        knowledge_id='k_' + 'd' * 24,
+                        excerpt='085404 学费标准为12000元/年。')}))
+        tuition = [row for row in merged if row['field'] == 'tuition']
+        self.assertEqual(len(tuition), 2)
+        self.assertTrue(all(row['status'] == 'draft' and row['source_count'] == 1 for row in tuition))
+        programs = {'a': program(), 'b': program(id='p2', code='085404')}
+        self.assertEqual(apply_field_candidates(programs, merged)['applied'], [])
+        self.assertIsNone(programs['a']['tuition'])
+        self.assertIsNone(programs['b']['tuition'])
+
+    def test_different_codes_with_different_amounts_do_not_conflict_or_pause_other_programs(self):
+        merged = merge_field_candidates(extract_field_candidates({
+            'a': source(excerpt='081200 学费标准为12000元/年。'),
+            'b': source('s_' + 'c' * 20, sha256='c' * 64, url='https://grad.example.edu.cn/b.html',
+                        knowledge_id='k_' + 'd' * 24,
+                        excerpt='085404 学费标准为15000元/年。')}))
+        programs = {'a': program(), 'b': program(id='p2', code='085404'),
+                    'c': program(id='p3', code='125100')}
+        result = apply_field_candidates(programs, merged)
+        self.assertEqual(result['applied'], [])
+        self.assertEqual(result['paused'], [])
+        for row in programs.values():
+            self.assertIsNone(row['tuition'])
+            self.assertNotIn('field_conflicts', row)
+            self.assertNotEqual(row.get('requires_review'), True)
+
+    def test_conflict_pauses_only_the_program_inside_that_code_scope(self):
+        merged = merge_field_candidates(extract_field_candidates({
+            'a': source(excerpt='081200 学费标准为12000元/年。'),
+            'b': source('s_' + 'c' * 20, sha256='c' * 64, url='https://grad.example.edu.cn/b.html',
+                        knowledge_id='k_' + 'd' * 24,
+                        excerpt='081200 学费标准为15000元/年。')}))
+        target, other = program(), program(id='p2', code='085404')
+        programs = {'p1': target, 'p2': other}
+        result = apply_field_candidates(programs, merged)
+        self.assertEqual(result['applied'], [])
+        self.assertEqual([row['program_id'] for row in result['paused']], ['p1'])
+        self.assertEqual(target['field_conflicts'][0]['field'], 'tuition')
+        self.assertIsNone(other['tuition'])
+        self.assertNotIn('field_conflicts', other)
+        self.assertNotEqual(other.get('requires_review'), True)
+
+    def test_two_links_to_the_same_original_are_one_source(self):
+        excerpt = '各专业学费均为12000元/年，收费标准一致。'
+        merged = merge_field_candidates(extract_field_candidates({
+            'a': source(excerpt=excerpt),
+            'b': source('s_' + 'c' * 20, url='https://grad.example.edu.cn/second-link.html',
+                        knowledge_id='k_' + 'd' * 24, excerpt=excerpt)}))
+        tuition = next(row for row in merged if row['field'] == 'tuition')
+        self.assertEqual(tuition['source_count'], 1)
+        self.assertEqual(tuition['status'], 'draft')
+        self.assertEqual(len(tuition['values']), 1)
+        programs = {'p1': program()}
+        self.assertEqual(apply_field_candidates(programs, merged)['applied'], [])
+        self.assertIsNone(programs['p1']['tuition'])
+
+    def test_study_mode_scope_does_not_apply_part_time_fees_to_full_time_programs(self):
+        excerpt = '各专业非全日制学费标准为12000元/年。'
+        merged = merge_field_candidates(extract_field_candidates({
+            'a': source(excerpt=excerpt),
+            'b': source('s_' + 'c' * 20, sha256='c' * 64, url='https://grad.example.edu.cn/b.html',
+                        knowledge_id='k_' + 'd' * 24, excerpt=excerpt)}))
+        full_time, part_time = program(), program(id='p2', study_mode='非全日制')
+        programs = {'p1': full_time, 'p2': part_time}
+        result = apply_field_candidates(programs, merged)
+        self.assertIsNone(full_time['tuition'])
+        self.assertEqual(part_time['tuition']['amount'], 12000)
+        self.assertEqual([row['program_id'] for row in result['applied']], ['p2'])
+
+    def test_quote_offsets_slice_the_original_after_leading_space_trim_and_truncation(self):
+        text = ' ' * 40 + '各专业学费标准为12000元/年' + '乙' * 400
+        draft = next(row for row in extract_field_candidates({'a': source(excerpt=text)})
+                     if row['field'] == 'tuition')
+        self.assertEqual(len(draft['quote']), 300)
+        self.assertEqual(draft['quote'], text[draft['excerpt_start']:draft['excerpt_end']])
+        self.assertEqual(draft['excerpt_start'], 40)
+        other = source('s_' + 'c' * 20, sha256='c' * 64, url='https://grad.example.edu.cn/b.html',
+                       knowledge_id='k_' + 'd' * 24, excerpt=text)
+        merged = merge_field_candidates(extract_field_candidates({'a': source(excerpt=text), 'b': other}))
+        programs = {'p1': program()}
+        apply_field_candidates(programs, merged)
+        evidence = programs['p1']['tuition']['evidence']
+        self.assertEqual(len(evidence), 2)
+        for item in evidence:
+            self.assertEqual(item['quote'], text[item['excerpt_start']:item['excerpt_end']])
+
     def test_eligibility_prose_is_only_a_needs_review_lead_and_unknown_stays_unknown(self):
         drafts = extract_field_candidates({'a': source()})
         eligibility = [row for row in drafts if row['field'] == 'eligibility']

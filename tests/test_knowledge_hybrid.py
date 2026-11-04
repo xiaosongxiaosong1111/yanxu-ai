@@ -44,6 +44,15 @@ class Index:
 
 
 class HybridTests(unittest.TestCase):
+    def test_rerank_tie_break_uses_source_content_not_random_segment_ids(self):
+        def make(number,sha):
+            row=record(number,'计算机 学费');row['rrf_score']=0.;row['_window_text']='计算机 学费'
+            row['source']['sha256']=sha
+            return row
+        for first_number,second_number in ((1,2),(2,1)):
+            chosen=rule_rerank('计算机 学费',[make(first_number,'a'*64),make(second_number,'b'*64)],1)[0]
+            self.assertEqual(chosen['source']['sha256'],'a'*64)
+
     def test_rrf_uses_both_ranks_equal_weights_and_deduplicates_within_channel(self):
         a,b,c=record(1,'甲'),record(2,'乙'),record(3,'丙')
         result=reciprocal_rank_fusion({'keyword':[a,b,a],'semantic':[b,c]})

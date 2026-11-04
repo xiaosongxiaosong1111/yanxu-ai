@@ -183,26 +183,17 @@ def _natural_rows(connection, *, derived, query, entry_id, unit_id, year, qualit
     """Rank by weighted derived-term coverage, never by a model score.
 
     A segment needs only one derived term; the rank rewards segments that carry
-    more of the question. If no segment matches, fall back to documents that
-    contain at least two terms and then any matching segment inside them, which
-    keeps the historical "terms are distributed across one original" notice
-    without ever combining terms from different originals.
+    more of the question. The same OR scope is used by ``matching_sources`` so
+    every candidate source is revalidated before counts and pagination.
     """
     weights={row['term']: row['weight'] for row in analyze_query(query)}
     names=list(dict.fromkeys(derived))
-    where,args=_scope(query,entry_id,unit_id,year,quality,include_terms=False)
-    where.append('('+' OR '.join('instr(lower(s.search_text),lower(?))>0' for _ in names)+')')
-    args.extend(names)
+    where,args=_natural_scope(query,entry_id,unit_id,year,quality,names)
     joins=_joins(where)
     total=connection.execute('SELECT count(*) '+joins,args).fetchone()[0]
-    if total:
-        return _window_ranked(connection,joins,args,names,weights,query,page,page_size),total,'segment_terms'
-    if len(names)<2:
+    if not total:
         return [],0,'segment_terms'
-    where,args=_natural_document_scope(query,entry_id,unit_id,year,quality,names)
-    rank=' + '.join('CASE WHEN instr(lower(s.search_text),lower(?))>0 THEN %s ELSE 0 END'
-                    % weights[name] for name in names)
-    return (*_query(connection,where,args,page,page_size,rank,names),'document_terms')
+    return _window_ranked(connection,joins,args,names,weights,query,page,page_size),total,'segment_terms'
 
 
 def _window_ranked(connection,joins,args,names,weights,query,page,page_size):
@@ -213,7 +204,7 @@ def _window_ranked(connection,joins,args,names,weights,query,page,page_size):
     its neighbours. Scoring the same neighbourhood avoids dropping the segment
     that carries the answer just because another line carries the code.
     """
-    rows=connection.execute('SELECT s.id,s.entry_id,s.generation_id,s.ordinal '+joins,args).fetchall()
+    rows=connection.execute('SELECT s.id,s.entry_id,s.generation_id,s.ordinal,e.sha256,e.url '+joins,args).fetchall()
     keys=list(dict.fromkeys((row['entry_id'],row['generation_id']) for row in rows))
     texts={}
     for offset in range(0,len(keys),150):
@@ -226,21 +217,18 @@ def _window_ranked(connection,joins,args,names,weights,query,page,page_size):
     grams=query_bigrams(query);scored=[]
     for row in rows:
         key=(row['entry_id'],row['generation_id'])
-        body=' '.join(texts.get((key,ordinal),'') for ordinal in range(row['ordinal']-1,row['ordinal']+2)).lower()
+        body=' '.join(texts.get((key[0],key[1],ordinal),'') for ordinal in range(row['ordinal']-1,row['ordinal']+2)).lower()
         coverage=sum(weights[name] for name in names if name.lower() in body)
         overlap=sum(1 for gram in grams if gram in body)
-        scored.append((-coverage,-overlap,row['entry_id'],row['ordinal'],row['id']))
+        scored.append((-coverage,-overlap,row['sha256'] or '',row['url'] or '',row['entry_id'],row['ordinal'],row['id']))
     scored.sort()
     start=(page-1)*page_size
-    return [(item[4],) for item in scored[start:start+page_size]]
+    return [(item[6],) for item in scored[start:start+page_size]]
 
 
-def _natural_document_scope(query,entry_id,unit_id,year,quality,names):
+def _natural_scope(query,entry_id,unit_id,year,quality,names):
+    """Exactly the OR candidate scope used for ranking and for source revalidation."""
     where,args=_scope(query,entry_id,unit_id,year,quality,include_terms=False)
-    matches=' + '.join('(instr(lower(x.text),lower(?))>0)' for _ in names)
-    where.append('EXISTS (SELECT 1 FROM knowledge_extractions x WHERE x.id=s.extraction_id AND ('
-                 + matches + ')>=?)')
-    args.extend(names);args.append(min(2,len(names)))
     where.append('('+' OR '.join('instr(lower(s.search_text),lower(?))>0' for _ in names)+')')
     args.extend(names)
     return where,args
@@ -272,7 +260,7 @@ def _document_scope(query,entry_id,unit_id,year,quality):
 def matching_sources(connection, *, query,entry_id,unit_id,year,quality):
     names=natural_terms(query)
     if names:
-        where,args=_natural_document_scope(query,entry_id,unit_id,year,quality,names)
+        where,args=_natural_scope(query,entry_id,unit_id,year,quality,names)
     else:
         where,args=_document_scope(query,entry_id,unit_id,year,quality)
     return connection.execute('SELECT DISTINCT s.entry_id '+_joins(where),args).fetchall()
