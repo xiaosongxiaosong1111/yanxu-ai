@@ -9,6 +9,13 @@ import knowledge_vector_store as ledger
 from knowledge_vector_build import build,check_stop
 
 BATCH_SIZE=256
+# Stable adapter codes raised while validating the request, before any provider
+# request is sent. They must not be reported as attempted calls.
+_BEFORE_REQUEST={'invalid_embedding_input','invalid_embedding_config','invalid_embedding_dimension',
+    'invalid_provider','invalid_auth_mode','invalid_credentials','invalid_settings','invalid_key',
+    'invalid_model','missing_credentials','missing_key','mixed_credentials','unsafe_endpoint',
+    'invalid_endpoint','embedding_input_too_long','missing_model','embedding_model_not_ready',
+    'embedding_model_invalid'}
 
 
 class VectorIndex:
@@ -20,12 +27,14 @@ class VectorIndex:
             raise KnowledgeError('vector_unavailable','向量索引目录不在项目数据目录内，已拒绝初始化。',503) from None
         self._client=None;self._resource_lock=threading.RLock();self._build_lock=threading.Lock()
         self._thread=None;self._stop=threading.Event();self._closed=False
-        self._async_error=''
+        self._async_error='';self._release_error_code=''
 
     def status(self):
         summary=ledger.summary(self.store)
         if self._async_error and not summary['error_code']:
             summary={**summary,'error_code':self._async_error}
+        if self._release_error_code and not summary['error_code']:
+            summary={**summary,'error_code':self._release_error_code}
         return summary
 
     def _transport(self):
@@ -94,10 +103,33 @@ class VectorIndex:
         return {'state':'cancelling','build_id':status.get('build_id'),'started':True}
 
     def search(self,query,unit_id='',year=None,entry_id=None,limit=40,stop_event=None,allow_remote=False):
+        """One query attempt with request-local, safe usage accounting.
+
+        Every failure carries a `retrieval_usage` metadata dict: calls attempted,
+        calls whose validated receipt returned, known input tokens (or None), whether
+        usage is known, the failing stage and latency. Upstream degradations must not
+        read `{}` as a free/known-zero call.
+        """
+        started=time.monotonic()
+        accounting={'embedding_calls':0,'successful_embedding_calls':0,'input_tokens':None,
+                    'usage_known':True,'stage':'input'}
+        try:
+            return self._search(query,unit_id,year,entry_id,limit,stop_event,allow_remote,accounting)
+        except KnowledgeError as error:
+            if getattr(error,'retrieval_usage',None) is None:
+                error.retrieval_usage={**accounting,'latency_ms':int((time.monotonic()-started)*1000)}
+            raise
+        except Exception:
+            failure=KnowledgeError('vector_unavailable','语义索引暂时不可用，可继续使用关键词检索。',503)
+            failure.retrieval_usage={**accounting,'latency_ms':int((time.monotonic()-started)*1000)}
+            raise failure from None
+
+    def _search(self,query,unit_id,year,entry_id,limit,stop_event,allow_remote,accounting):
         query=_text(query,240,False);unit_id=_text(unit_id,100);year=_year(year)
         if entry_id is not None:self.store._entry_id(entry_id)
         if type(limit) is not int or not 1<=limit<=100 or type(allow_remote) is not bool:
             raise KnowledgeError('invalid_vector_query','向量检索参数不正确。')
+        accounting['stage']='scope'
         status=self.status();active=status['active_space_id']
         if not active:raise KnowledgeError('vector_not_ready','向量索引尚未就绪，请先显式构建。',409)
         space=ledger.space(self.store,active)
@@ -114,20 +146,44 @@ class VectorIndex:
         # Remote embedding always costs money: refuse before any inference unless the
         # user explicitly started this action. Local capability comes from the A
         # contract (`local`), never from guessing by provider name.
+        accounting['stage']='remote_gate'
         if config.get('local') is not True and not allow_remote:
             raise KnowledgeError('vector_remote_requires_action','远程语义检索需要你主动发起，不会在页面读取时计费。',409)
         started=time.monotonic();check_stop(stop_event)
+        accounting['stage']='embedding';accounting['embedding_calls']=1
         try:
             response=self._transport().embed(config,[query],purpose='query',stop_event=stop_event)
-            if response.get('dimension')!=space['dimension'] or len(response.get('vectors',[]))!=1:raise ValueError('Query dimension mismatch.')
+        except KnowledgeError as error:
+            # Input validation failures happen before any provider request; they are
+            # not an attempted, billable call. Anything else stays unknown.
+            if getattr(error,'code','') in _BEFORE_REQUEST:
+                accounting.update(embedding_calls=0,usage_known=True,input_tokens=None,stage='embedding')
+            else:
+                accounting.update(usage_known=False,input_tokens=None,stage='embedding')
+            raise
+        except Exception:
+            # Sent or not, no validated receipt exists: do not pretend zero billing.
+            accounting.update(usage_known=False,input_tokens=None,stage='embedding')
+            raise
+        try:
+            if response.get('dimension')!=space['dimension'] or len(response.get('vectors',[]))!=1:
+                raise ValueError('Query dimension mismatch.')
             vector=checked_vector(response['vectors'][0],space['dimension'])
-            rows=self._search_batches(space,vector,items,stop_event)
-            result,candidate=self._current_hits(rows,items,unit_id,year,entry_id,limit)
-        except KnowledgeError:raise
-        except Exception:raise KnowledgeError('vector_unavailable','语义索引暂时不可用，可继续使用关键词检索。',503) from None
+        except Exception:
+            # A response that failed contract validation is not a usable receipt.
+            accounting.update(usage_known=False,input_tokens=None,stage='embedding_response')
+            raise
+        usage=response.get('usage',{})
+        known=response.get('usage_known',bool(usage))
+        accounting.update(successful_embedding_calls=1,usage_known=known,
+                          input_tokens=(usage.get('input_tokens',usage.get('total_tokens')) if known else None))
+        accounting['stage']='ann'
+        rows=self._search_batches(space,vector,items,stop_event)
+        accounting['stage']='verify'
+        result,candidate=self._current_hits(rows,items,unit_id,year,entry_id,limit)
+        accounting['stage']='done'
         return {**empty,'segments':result,'total':len(result),'returned_count':len(result),
-                'candidate_count':candidate,'usage':response.get('usage',{}),
-                'usage_known':response.get('usage_known',bool(response.get('usage'))),
+                'candidate_count':candidate,'usage':usage,'usage_known':known,
                 'latency_ms':int((time.monotonic()-started)*1000)}
 
     def _search_batches(self,space,vector,items,event):
@@ -159,6 +215,11 @@ class VectorIndex:
         self._stop.set()
         thread=self._thread
         if thread is not None and thread.is_alive():thread.join(timeout=5)
+        report={'released':False,'error_code':''}
         with self._resource_lock:
             self._closed=True
-            if self._client is not None:self._client.close();self._client=None
+            if self._client is not None:
+                value=self._client.close();self._client=None
+                if isinstance(value,dict):report={**report,**value}
+        if report.get('error_code'):self._release_error_code=report['error_code']
+        return report

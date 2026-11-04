@@ -44,63 +44,70 @@ def _still_current(index,item):
     return any(row['id']==item['segment_id'] and row['generation_id']==item['generation_id'] for row in rows)
 
 
-def _embedding(index,space,config,item,event,stats):
+def _embedding(index,space,config,item,event,stats,attempt):
+    """Return a validated vector for one model input.
+
+    `attempt` records the exact lifecycle of the provider call: sent, a validated
+    response was returned, and the usage receipt. Usage is counted as soon as the
+    validated receipt exists; a later cache/ANN/storage failure may not turn that
+    known usage into unknown.
+    """
     vector=index.cache.get(space['id'],item['input_sha'],space['dimension'])
     if vector is not None:
         stats['cache_hits']+=1
-        return vector,{},True
+        attempt.update(returned=True,usage={},known=True)
+        return vector
     stats['provider_calls']+=1
+    attempt['sent']=True
     response=index._transport().embed(config,[item['embedding_text']],purpose='document',stop_event=event)
     values=response.get('vectors',[])
     if len(values)!=1 or response.get('dimension')!=space['dimension']:raise ValueError('Embedding response mismatch.')
     vector=checked_vector(values[0],space['dimension'])
-    # Record usage before the derived cache/ANN writes so an external write failure
-    # can never discard usage the provider already reported (or its absence).
     known=response.get('usage_known',bool(response.get('usage')))
     usage=response.get('usage',{})
+    attempt.update(returned=True,usage=usage,known=known)
     stats['usage_known']=stats['usage_known'] and known
     if known:stats['input_tokens']+=usage.get('input_tokens',usage.get('total_tokens',0))
     else:stats['usage_unknown_calls']+=1
     stats['embedded_inputs']+=1
     index.cache.put(space['id'],item['input_sha'],vector,space['dimension'])
-    return vector,usage,known
+    return vector
 
 
 def process_item(index,space,config,item,build_id,event,stats):
     check_stop(event)
     token,previous=ledger.claim(index.store,space['id'],item['id'],build_id)
-    attempted=False;returned=False;usage={};known=False
+    attempt={'sent':False,'returned':False,'usage':{},'known':False}
     try:
         if not _still_current(index,item):
             ledger.finish_item(index.store,space['id'],item,'cancelled',token,error_code='source_changed');return
-        attempted=True
-        vector,usage,known=_embedding(index,space,config,item,event,stats)
-        returned=True
+        vector=_embedding(index,space,config,item,event,stats,attempt)
         check_stop(event)
         if not _still_current(index,item):
-            ledger.finish_item(index.store,space['id'],item,'cancelled',token,error_code='source_changed');return
+            ledger.finish_item(index.store,space['id'],item,'cancelled',token,attempt['usage'],attempt['known'],error_code='source_changed');return
         if previous=='succeeded' and item['id'] in index._backend().contains(space,[item['id']]):
             # The deterministic vector id binds space+segment+window+input_sha, so a
             # surviving row for a succeeded job already holds this exact vector; the
             # external write can be skipped. After a store loss `contains` is empty
             # and every vector is restored from the derived cache.
-            ledger.finish_item(index.store,space['id'],item,'succeeded',token,usage,known)
+            ledger.finish_item(index.store,space['id'],item,'succeeded',token,attempt['usage'],attempt['known'])
             return
         record={'id':item['id'],'vector':vector,'segment_id':item['segment_id'],'entry_id':item['entry_id'],
                 'generation_id':item['generation_id'],'unit_id':item['unit_id'],'year':item['year'],'visibility':'public'}
         index._backend().upsert(space,[record])
         state='succeeded' if _still_current(index,item) else 'cancelled'
-        if not ledger.finish_item(index.store,space['id'],item,state,token,usage,known):
+        if not ledger.finish_item(index.store,space['id'],item,state,token,attempt['usage'],attempt['known']):
             raise KnowledgeError('vector_lease_lost','该片段的索引任务已被其他执行轮次接管，本轮停止。',409)
     except Exception as error:
         cancelled=getattr(error,'code','')=='vector_cancelled'
-        if attempted and not returned:
+        if attempt['sent'] and not attempt['returned']:
             # The request was sent but no validated response came back: whether the
             # provider billed this call stays unknown for the whole build.
             stats['usage_known']=False
             stats['usage_unknown_calls']+=1
-        state='cancelled' if cancelled else 'uncertain' if attempted and not returned and config.get('local') is not True and not isinstance(error,(ValueError,KnowledgeError)) else 'failed'
-        ledger.finish_item(index.store,space['id'],item,state,token,usage,known,error_code='cancelled' if cancelled else 'vector_write_failed')
+        state='cancelled' if cancelled else 'uncertain' if attempt['sent'] and not attempt['returned'] and config.get('local') is not True and not isinstance(error,(ValueError,KnowledgeError)) else 'failed'
+        ledger.finish_item(index.store,space['id'],item,state,token,attempt['usage'],attempt['known'],
+                           error_code='cancelled' if cancelled else 'vector_write_failed')
         raise
 
 

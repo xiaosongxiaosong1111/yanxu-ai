@@ -1,6 +1,6 @@
 # N4C1 · 混合检索、HTTP与Agent共用通路（待下发）
 
-仅在Codex明确下发且A/B通过独立验收后开始。所有业务与正式测试由本机Claude Code实施，Codex只派发、执行验收及只读复查。不独自在代码库，保留N1—N3和A/B，未验草稿自行审查取舍。完成本检查点后停止，等验收再进入C2。
+按交接分支的连续实施节奏，A/B自验通过后由本机Claude继续本检查点，不等待Codex下发。所有业务与正式测试由本机Claude Code实施，Codex只派发、执行验收及只读复查。不独自在代码库，保留N1—N3和A/B，未验草稿自行审查取舍。完成本检查点后停止，等验收再进入C2。
 
 先读`docs/work_nodes/04-hybrid-retrieval.md`及A/B报告和独立验收记录，采用最终接口。范围是`knowledge_retrieval.py`及必要拆分、`knowledge_api.py`、`service.py`、`server.py`、`research_service.py`、`research_tools.py`、`research_knowledge.py`、本机固定公开模型的显式准备小模块/接口、相关Skill和专门回归。不实施前端或N5研究规划/N6事实自动采用。
 

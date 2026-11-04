@@ -63,8 +63,8 @@ def ensure_schema(connection):
     for statement in DERIVATION_SCHEMA:
         connection.execute(statement)
     _ensure_fts(connection)
-    from knowledge_vector_schema import ensure_vector_schema
-    ensure_vector_schema(connection)
+    # Vector tables are a separate explicit derivation: ordinary N3 saves must not
+    # create them. Only an explicit vector build (knowledge_vector_store) does.
 
 
 def _ensure_fts(connection):

@@ -90,7 +90,8 @@ def register_items(store, space_id, items):
     stamp=_stamp()
     with connection(store,True) as handle:
         for item in items:
-            handle.execute('''INSERT INTO knowledge_vector_items VALUES(?,?,?,?,?,?,?,?,?,?)
+            handle.execute('''INSERT INTO knowledge_vector_items(space_id,item_id,segment_id,entry_id,generation_id,
+                input_sha,char_start,char_end,state,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)
                 ON CONFLICT(space_id,item_id) DO NOTHING''',(space_id,item['id'],item['segment_id'],item['entry_id'],
                 item['generation_id'],item['input_sha'],item['char_start'],item['char_end'],'pending',stamp))
             handle.execute('''INSERT OR IGNORE INTO knowledge_vector_jobs(space_id,item_id,entry_id,state,updated_at)
@@ -119,22 +120,30 @@ def claim(store, space_id, item_id, build_id):
 
 
 def finish_item(store,space_id,item,state,token,usage=None,usage_known=False,error_code=''):
-    """CAS completion; an expired or taken-over lease may never finish its work."""
+    """CAS completion; an expired or taken-over lease may never finish its work.
+
+    A committed item is a vector that was actually written (or verified to still
+    exist) for the current space, segment and model input. A later cancelled or
+    failed attempt may change that attempt's job state but must never revoke the
+    still-valid committed content, so serving reads `committed`, not `state`.
+    """
     with connection(store,True) as handle:
         row=handle.execute('SELECT lease_token,state,lease_until FROM knowledge_vector_jobs WHERE space_id=? AND item_id=?',(space_id,item['id'])).fetchone()
         if (not row or row['lease_token']!=token or row['state']!='running'
                 or not row['lease_until'] or row['lease_until']<=time.time()):return False
         handle.execute('UPDATE knowledge_vector_jobs SET state=?,usage=?,usage_known=?,error_code=?,updated_at=? WHERE space_id=? AND item_id=?',
                        (state,json.dumps(usage or {}),int(usage_known),error_code,_stamp(),space_id,item['id']))
-        handle.execute('UPDATE knowledge_vector_items SET state=?,updated_at=? WHERE space_id=? AND item_id=?',
-                       (state,_stamp(),space_id,item['id']))
+        handle.execute('UPDATE knowledge_vector_items SET state=?,committed=CASE WHEN ?=\'succeeded\' THEN 1 ELSE committed END,updated_at=? WHERE space_id=? AND item_id=?',
+                       (state,state,_stamp(),space_id,item['id']))
         return True
 
 
 def completed_items(store,space_id,segments):
+    """Items whose vectors are committed and still belong to the current segment
+    generation; attempt state (failed/cancelled) never revokes that content."""
     wanted={row['id']:row for row in segments}
     with connection(store) as handle:
-        rows=handle.execute("SELECT * FROM knowledge_vector_items WHERE space_id=? AND state='succeeded'",(space_id,)).fetchall()
+        rows=handle.execute("SELECT * FROM knowledge_vector_items WHERE space_id=? AND committed=1",(space_id,)).fetchall()
         return [dict(row) for row in rows if row['segment_id'] in wanted and row['generation_id']==wanted[row['segment_id']]['generation_id']]
 
 
@@ -145,11 +154,14 @@ def finish_build(store,space_id,build_id,revision,items,stats,error='',profile_i
     with connection(store,True) as handle:
         control=handle.execute('SELECT * FROM knowledge_vector_control WHERE singleton=1').fetchone()
         if control['build_id']!=build_id:raise KnowledgeError('stale_vector_build','索引构建轮次已失效。',409)
-        states={row[0]:row[1] for row in handle.execute('SELECT item_id,state FROM knowledge_vector_items WHERE space_id=?',(space_id,))}
-        complete=sum(states.get(item['id'])=='succeeded' for item in items)
+        states={row[0]:row[1] for row in handle.execute('SELECT item_id,committed FROM knowledge_vector_items WHERE space_id=?',(space_id,))}
+        complete=sum(states.get(item['id'])==1 for item in items)
         if not error and complete!=len(items):error='source_changed'
         if not error and control['revision']!=revision:error='source_changed'
-        state='ready' if not error else 'cancelled' if error=='cancelled' else 'failed'
+        # A failed or cancelled round on the currently serving space keeps that space
+        # serving its committed items; only a staging space becomes failed/cancelled.
+        serving=control['active_space_id']==space_id and complete>0
+        state='ready' if (not error or serving) else 'cancelled' if error=='cancelled' else 'failed'
         handle.execute('UPDATE knowledge_vector_spaces SET state=?,completed_count=?,error_code=?,updated_at=? WHERE id=?',
                        (state,complete,'' if error in ('','cancelled') else error,_stamp(),space_id))
         handle.execute('UPDATE knowledge_vector_control SET build_id=NULL,build_until=NULL,last_build=? WHERE singleton=1',(json.dumps(stats),))

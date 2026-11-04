@@ -1,11 +1,13 @@
 """One lazy native Milvus Lite backend, confined to this project's runtime directory."""
 import json
+import logging
 from pathlib import Path
 import re
 import threading
 
 _POOL={}
 _POOL_LOCK=threading.RLock()
+_LOG=logging.getLogger(__name__)
 
 
 class MilvusBackend:
@@ -71,21 +73,27 @@ class MilvusBackend:
         return [{'id':row['id'],'score':row['distance']} for row in rows[0]]
 
     def close(self):
+        """Close this reference; only the last reference of this exact database
+        releases its embedded server. A release failure is reported safely (stable
+        code only, never the raw exception or a private path) instead of being
+        swallowed, so callers cannot believe a locked database was released."""
         with _POOL_LOCK:
-            if self._closed:return
+            if self._closed:return {'released':False,'error_code':''}
             self._closed=True
             shared=self._shared
             self._shared=None
-            if shared is None:return
+            if shared is None:return {'released':False,'error_code':''}
             shared['refs']-=1
-            if not shared['refs']:
-                with shared['lock']:shared['client'].close()
-                _POOL.pop(self._key,None)
-                # Milvus Lite serves the database from an embedded gRPC server
-                # that holds the LOCK file; releasing the server is what lets a
-                # following process reopen the same data directory.
-                try:
-                    from milvus_lite.server_manager import server_manager_instance
-                    server_manager_instance.release_server(self._key)
-                except Exception:
-                    pass
+            if shared['refs']:return {'released':False,'error_code':''}
+            with shared['lock']:shared['client'].close()
+            _POOL.pop(self._key,None)
+        # Milvus Lite serves the database from an embedded gRPC server that holds
+        # the LOCK file; releasing the server is what lets a following process
+        # reopen the same data directory.
+        try:
+            from milvus_lite.server_manager import server_manager_instance
+            server_manager_instance.release_server(self._key)
+        except Exception:
+            _LOG.warning('milvus_lite server release failed: vector_release_failed')
+            return {'released':False,'error_code':'vector_release_failed'}
+        return {'released':True,'error_code':''}

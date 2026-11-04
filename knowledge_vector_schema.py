@@ -9,7 +9,8 @@ SCHEMA=(
     '''CREATE TABLE IF NOT EXISTS knowledge_vector_items(
         space_id TEXT NOT NULL,item_id TEXT NOT NULL,segment_id TEXT NOT NULL,entry_id TEXT NOT NULL,
         generation_id TEXT NOT NULL,input_sha TEXT NOT NULL,char_start INTEGER NOT NULL,char_end INTEGER NOT NULL,
-        state TEXT NOT NULL,updated_at TEXT NOT NULL,PRIMARY KEY(space_id,item_id))''',
+        state TEXT NOT NULL,updated_at TEXT NOT NULL,committed INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY(space_id,item_id))''',
     '''CREATE TABLE IF NOT EXISTS knowledge_vector_jobs(
         space_id TEXT NOT NULL,item_id TEXT NOT NULL,entry_id TEXT NOT NULL,state TEXT NOT NULL,
         attempts INTEGER NOT NULL DEFAULT 0,lease_token TEXT,lease_until REAL,error_code TEXT NOT NULL DEFAULT '',
@@ -25,6 +26,12 @@ SCHEMA=(
 
 def ensure_vector_schema(connection):
     for statement in SCHEMA:connection.execute(statement)
+    # Older N4 databases have no serving-commit marker: a previously succeeded item
+    # is usable until an authority check says otherwise. New databases start empty.
+    columns={row[1] for row in connection.execute('PRAGMA table_info(knowledge_vector_items)')}
+    if 'committed' not in columns:
+        connection.execute('ALTER TABLE knowledge_vector_items ADD COLUMN committed INTEGER NOT NULL DEFAULT 0')
+        connection.execute("UPDATE knowledge_vector_items SET committed=1 WHERE state='succeeded'")
 
 
 def dirty(connection, entry_id=None):

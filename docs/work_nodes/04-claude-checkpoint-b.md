@@ -1,6 +1,6 @@
-# N4B · 本机Claude实施检查点（待Codex下发）
+# N4B · 本机Claude实施检查点
 
-本文件不是当前任务。只有Codex明确下发本检查点，且N4A已验收通过后才开始。所有业务实现由本机Claude Code负责，Codex仅下命令和验收。保留N1—N3及已验收A，不回退他人改动；现有B草稿未经交付，需你审查、修正并完整验证。
+按交接分支的连续实施节奏，N4A自验通过后由本机Claude继续本检查点；Codex仅下发任务、执行独立验收和只读复查，不代写业务。所有业务实现由本机Claude Code负责。保留N1—N3及已验收A，不回退他人改动；现有B草稿未经交付，需你审查、修正并完整验证。
 
 先读`docs/work_nodes/04-hybrid-retrieval.md`、A交付与Codex验收记录，以及[B 独立验收计划](04-b-acceptance-plan.md)的8条草稿复查。沿用A最终公开契约。只做向量后台，不自行进入C的HTTP、Agent或UI。
 

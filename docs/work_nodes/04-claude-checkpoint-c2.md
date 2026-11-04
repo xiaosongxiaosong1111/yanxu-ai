@@ -1,6 +1,6 @@
 # N4C2 · 精致设置/知识交互、真实评测与交付文档（待下发）
 
-只在Codex明确下发且A/B/C1已验收后开始。Claude实施全部业务与正式测试；Codex只下命令和独立验收。保留他人改动及既有冷白/炭黑/钴蓝视觉，精简常用操作，辅助状态不喧宾夺主。不扩展N5—N7，不提交/推送/云部署。
+按交接分支的连续实施节奏，A/B/C1自验通过后由本机Claude继续本检查点，不等待Codex下发。Claude实施全部业务与正式测试；Codex只下命令和独立验收。保留他人改动及既有冷白/炭黑/钴蓝视觉，精简常用操作，辅助状态不喧宾夺主。不扩展N5—N7，不提交/推送/云部署。
 
 先读N4主合同、前序最终接口与验收报告，以及[前端验收计划](04-frontend-acceptance-plan.md)和[金标评测计划](04-gold-acceptance-plan.md)的只读验收规划。范围：既有`static/settings*`、`embedding-settings*`、`embedding-vectors*`、`knowledge*`及合理小模块、相应前端/浏览器回归、`tools/evaluate_knowledge_gold.py`或独立同目录评测入口及评测契约测试、既有README/需求/项目介绍/路线/验收文档。必须结合实际后端，不只静态展示。
 

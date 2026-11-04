@@ -1,11 +1,18 @@
 """Real native Milvus Lite persistence and cross-process reopen; skipped without pymilvus."""
+from copy import copy
 import json
+import logging
 import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import threading
+from types import ModuleType, SimpleNamespace
 import unittest
+from unittest.mock import patch
+
+import milvus_backend
 
 ROOT=Path(__file__).resolve().parents[1]
 try:
@@ -82,6 +89,48 @@ class MilvusBackendTests(unittest.TestCase):
     def test_database_stays_inside_the_project_data_directory(self):
         backend=MilvusBackend(self.root);self.addCleanup(backend.close)
         self.assertTrue(backend.path.resolve().is_relative_to(self.root.resolve()))
+
+    def mock_backend(self,refs,release):
+        path=str((self.root/'runtime/vector-index/milvus.db').resolve())
+        calls=[]
+        shared={'client':SimpleNamespace(close=lambda:calls.append('client-close')),
+                'lock':threading.RLock(),'refs':refs}
+        backend=milvus_backend.MilvusBackend.__new__(milvus_backend.MilvusBackend)
+        backend._key=path;backend._closed=False;backend._shared=shared
+        parent=ModuleType('milvus_lite');parent.__path__=[]
+        child=ModuleType('milvus_lite.server_manager')
+        child.server_manager_instance=SimpleNamespace(
+            release_server=release,
+            stop_all=lambda:(_ for _ in ()).throw(AssertionError('must not stop unrelated servers')))
+        return backend,shared,path,calls,{'milvus_lite':parent,'milvus_lite.server_manager':child}
+
+    def test_release_runs_only_when_the_last_reference_of_this_database_closes(self):
+        released=[]
+        backend,shared,path,calls,modules=self.mock_backend(2,released.append)
+        other=copy(backend)
+        with patch.dict(sys.modules,modules),patch.dict(milvus_backend._POOL,{path:shared},clear=True):
+            self.assertEqual(backend.close(),{'released':False,'error_code':''})
+            self.assertEqual(released,[])
+            self.assertEqual(calls,[])
+            self.assertEqual(other.close(),{'released':True,'error_code':''})
+        self.assertEqual(released,[path])
+        self.assertEqual(calls,['client-close'])
+
+    def test_server_release_failure_is_visible_and_safe(self):
+        def fail(path):raise OSError('private embedded lock path')
+        backend,shared,path,calls,modules=self.mock_backend(1,fail)
+        records=[]
+        class Handler(logging.Handler):
+            def emit(self,record):records.append(record)
+        handler=Handler(level=logging.WARNING);logging.getLogger().addHandler(handler)
+        self.addCleanup(logging.getLogger().removeHandler,handler)
+        with patch.dict(sys.modules,modules),patch.dict(milvus_backend._POOL,{path:shared},clear=True):
+            result=backend.close()
+        self.assertEqual(result,{'released':False,'error_code':'vector_release_failed'})
+        encoded=json.dumps(result)
+        self.assertNotIn('private embedded lock path',encoded)
+        self.assertNotIn(str(self.root),encoded)
+        self.assertTrue(any('vector_release_failed' in str(record.getMessage()) for record in records))
 
 
 if __name__=='__main__':

@@ -1,8 +1,11 @@
 """Vector governance uses disposable databases and deterministic model fixtures."""
 from copy import deepcopy
+from contextlib import closing
 import hashlib
 import json
 from pathlib import Path
+import shutil
+import sqlite3
 import subprocess
 import tempfile
 import threading
@@ -100,7 +103,7 @@ class FakeEmbedding:
 
 class MemoryBackend:
     def __init__(self):
-        self.rows={};self.queries=[];self.upserts=0;self.fail=False;self.closed=False
+        self.rows={};self.queries=[];self.upserts=0;self.fail=False;self.search_fail=False;self.closed=False
 
     def ensure_space(self,space):self.rows.setdefault(space['id'],{})
 
@@ -114,6 +117,7 @@ class MemoryBackend:
 
     def search(self,space,vector,allowed_ids,limit):
         self.queries.append(tuple(allowed_ids));assert allowed_ids
+        if self.search_fail:raise OSError('private backend search path')
         return sorted([{'id':value,'score':sum(a*b for a,b in zip(vector,row['vector']))}
                        for value,row in self.rows.get(space['id'],{}).items() if value in allowed_ids],
                       key=lambda row:(-row['score'],row['id']))[:limit]
@@ -454,6 +458,125 @@ class KnowledgeVectorTests(unittest.TestCase):
         corrupted=cached[0];corrupted.write_bytes(corrupted.read_bytes()[:-1])
         self.index.cache.__init__(self.root)
         self.assertEqual(self.index.cache.get(space,corrupted.stem,3),None)
+
+    # ---- rework round 1: committed content, usage facts, explicit tables ------------
+    def served(self):
+        return {row['id'] for row in self.index.search('跨考',year=2027,limit=100,allow_remote=True)['segments']}
+
+    def test_n3_save_does_not_create_vector_tables(self):
+        self.save()
+        with closing(sqlite3.connect(self.store.path)) as connection:
+            tables=[row[0] for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'knowledge_vector_%'")]
+        self.assertEqual(tables,[])
+
+    def test_same_space_cancel_preserves_the_complete_previous_serving_set(self):
+        self.save();self.save('two','u2')
+        self.index.build()
+        baseline=self.served();active=self.index.status()['active_space_id']
+        self.assertTrue(baseline)
+        shutil.rmtree(self.root/'runtime/vector-index/cache')
+        started,release=threading.Event(),threading.Event()
+        self.embedding.gate=(started,release)
+        stopped=threading.Event();errors=[]
+        def run():
+            try:self.index.build(stop_event=stopped)
+            except KnowledgeError as error:errors.append(error)
+        worker=threading.Thread(target=run);worker.start()
+        self.assertTrue(started.wait(10))
+        stopped.set();release.set();worker.join(10)
+        self.assertFalse(worker.is_alive())
+        self.assertTrue(errors and errors[0].code=='vector_cancelled')
+        self.assertEqual(self.index.status()['active_space_id'],active)
+        self.assertEqual(self.served(),baseline)
+
+    def test_failed_same_space_rebuild_preserves_the_complete_previous_serving_set(self):
+        self.save();self.save('two','u2')
+        self.index.build()
+        baseline=self.served()
+        class FailingCache:
+            def get(self,*args):return None
+            def put(self,*args):raise OSError('disk full')
+        self.index.cache=FailingCache()
+        with self.assertRaises(KnowledgeError):self.index.build()
+        self.assertEqual(self.served(),baseline)
+
+    def test_cache_write_failure_keeps_the_known_provider_receipt(self):
+        self.save();self.index.build()
+        class FailingCache:
+            def get(self,*args):return None
+            def put(self,*args):raise OSError('disk full')
+        self.index.cache=FailingCache()
+        with self.assertRaises(KnowledgeError):self.index.build()
+        last=self.index.status()['last_build']
+        self.assertTrue(last['usage_known'])
+        self.assertEqual(last['input_tokens'],1)
+        self.assertEqual(last['embedded_inputs'],1)
+        with closing(sqlite3.connect(self.store.path)) as connection:
+            rows=connection.execute("SELECT usage,usage_known FROM knowledge_vector_jobs WHERE state IN ('failed','uncertain')").fetchall()
+        self.assertTrue(rows)
+        self.assertEqual(rows[0][1],1)
+        self.assertEqual(json.loads(rows[0][0])['input_tokens'],1)
+
+    def test_ann_failure_after_embedding_keeps_request_usage(self):
+        self.save();self.index.build();self.backend.search_fail=True
+        calls=len(self.embedding.calls)
+        with self.assertRaises(KnowledgeError) as caught:
+            self.index.search('跨考',year=2027,allow_remote=True)
+        self.assertEqual(caught.exception.code,'vector_unavailable')
+        usage=caught.exception.retrieval_usage
+        self.assertEqual(usage['embedding_calls'],1)
+        self.assertEqual(usage['successful_embedding_calls'],1)
+        self.assertEqual(usage['input_tokens'],1)
+        self.assertTrue(usage['usage_known'])
+        self.assertEqual(usage['stage'],'ann')
+        self.assertEqual(len(self.embedding.calls),calls+1)
+        encoded=json.dumps(usage,ensure_ascii=False)
+        self.assertNotIn('sk-fixture',encoded)
+        self.assertNotIn('跨考',encoded)
+
+    def test_provider_timeout_keeps_attempted_call_with_unknown_usage(self):
+        self.save();self.index.build();self.embedding.fail=True
+        queries=len(self.backend.queries)
+        with self.assertRaises(KnowledgeError) as caught:
+            self.index.search('跨考',year=2027,allow_remote=True)
+        usage=caught.exception.retrieval_usage
+        self.assertEqual(usage['embedding_calls'],1)
+        self.assertEqual(usage['successful_embedding_calls'],0)
+        self.assertIsNone(usage['input_tokens'])
+        self.assertFalse(usage['usage_known'])
+        self.assertEqual(len(self.backend.queries),queries)
+
+    def test_cancel_after_embedding_return_keeps_known_usage_and_cancels(self):
+        self.save();self.index.build()
+        stopped=threading.Event();self.embedding.after_embed=stopped.set
+        queries=len(self.backend.queries)
+        with self.assertRaises(KnowledgeError) as caught:
+            self.index.search('跨考',year=2027,allow_remote=True,stop_event=stopped)
+        self.assertEqual(caught.exception.code,'vector_cancelled')
+        usage=caught.exception.retrieval_usage
+        self.assertEqual(usage['successful_embedding_calls'],1)
+        self.assertEqual(usage['input_tokens'],1)
+        self.assertTrue(usage['usage_known'])
+        self.assertEqual(len(self.backend.queries),queries)
+
+
+    def test_existing_vector_table_migrates_committed_without_revoking_success(self):
+        temporary=tempfile.TemporaryDirectory(prefix='n4-vector-migrate-')
+        self.addCleanup(temporary.cleanup)
+        database=Path(temporary.name)/'knowledge.sqlite'
+        with closing(sqlite3.connect(database)) as connection:
+            connection.execute("""CREATE TABLE knowledge_vector_items(space_id TEXT NOT NULL,item_id TEXT NOT NULL,
+                segment_id TEXT NOT NULL,entry_id TEXT NOT NULL,generation_id TEXT NOT NULL,input_sha TEXT NOT NULL,
+                char_start INTEGER NOT NULL,char_end INTEGER NOT NULL,state TEXT NOT NULL,updated_at TEXT NOT NULL,
+                PRIMARY KEY(space_id,item_id))""")
+            connection.execute("INSERT INTO knowledge_vector_items VALUES('vs_a','vi_a','sg_a','k_a','kg_a','sha',0,1,'succeeded','now')")
+            connection.execute("INSERT INTO knowledge_vector_items VALUES('vs_a','vi_b','sg_b','k_b','kg_b','sha',0,1,'failed','now')")
+            connection.commit()
+            from knowledge_vector_schema import ensure_vector_schema
+            ensure_vector_schema(connection);ensure_vector_schema(connection)
+            committed=dict(connection.execute("SELECT item_id,committed FROM knowledge_vector_items"))
+        self.assertEqual(committed,{'vi_a':1,'vi_b':0})
 
 
 from embedding_transport import EmbeddingTransport
