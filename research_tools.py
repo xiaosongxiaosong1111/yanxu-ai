@@ -17,6 +17,8 @@ from public_sources import fetch_official_document, official_source_url, SourceE
 from research_store import ResearchError
 from source_privacy import contains_personal_roster
 import research_knowledge
+import research_fields
+from research_plan import build_plan
 
 LIMITS={'max_rounds':8,'max_searches':4,'max_documents':4,'max_model_calls':8,
         'max_tool_calls':20,'max_seconds':180,'max_total_tokens':40000,'max_candidates':12}
@@ -173,6 +175,55 @@ class ResearchTools:
         self.bootstrap=admission.catalog_bootstrap()
         self.units={row['id']:row for row in self.bootstrap.get('units',[]) if isinstance(row,dict) and isinstance(row.get('id'),str)}
         self.revision=self.bootstrap.get('revision')
+        self.field_candidates=[];self.field_applications={'applied':[],'paused':[]}
+        self.inheritance=self._inherit(task.get('previous_report'))
+
+    def _inherit(self,previous):
+        """Revalidate the previous turn's candidates and sources before reuse."""
+        info={'turn_id':self.task.get('turn_id',0),'previous_turn_id':self.task.get('previous_turn_id'),
+              'candidate_ids':[],'stale_candidate_ids':[],'source_ids':[],'stale_source_ids':[],
+              'profile_changed':list(self.task.get('turn_changes') or []),
+              'scope_changed':self.task.get('unit_scope_changed') is True,'reused':False}
+        if not isinstance(previous,dict):return info
+        evidence=previous.get('evidence') if isinstance(previous.get('evidence'),list) else []
+        for row in evidence[:60]:
+            if not isinstance(row,dict):continue
+            identifier,url=row.get('id'),row.get('url')
+            if not isinstance(identifier,str) or not re.fullmatch(r's_[0-9a-f]{20}',identifier):continue
+            if row.get('status') not in {'official_original_read','published_snapshot'}:continue
+            if row.get('knowledge_filtered') is True or row.get('usable') is False:continue
+            parsed=urlsplit(str(url or ''))
+            if parsed.scheme not in {'https','http'} or not parsed.hostname:continue
+            if identifier in self.sources:continue
+            self.sources[identifier]=_public_source({**deepcopy(row),'inherited':True,
+                                                     'inherited_from_turn':info['previous_turn_id']})
+            info['source_ids'].append(identifier)
+        candidates=previous.get('candidates') if isinstance(previous.get('candidates'),list) else []
+        for row in candidates[:24]:
+            if not isinstance(row,dict):continue
+            identifier=row.get('id')
+            if not isinstance(identifier,str) or not identifier or identifier in self.programs:continue
+            try:bundle=self.admission.catalog_program(identifier,revision=self.revision)
+            except Exception:
+                info['stale_candidate_ids'].append(identifier);continue
+            program=bundle.get('program') if isinstance(bundle,dict) and isinstance(bundle.get('program'),dict) else bundle
+            stale=(not isinstance(program,dict) or program.get('id')!=identifier
+                   or program.get('year')!=self.task['reference_year']
+                   or bool(self.task['unit_ids']) and program.get('unit_id') not in self.task['unit_ids'])
+            if stale:
+                info['stale_candidate_ids'].append(identifier);continue
+            self.programs[identifier]={**deepcopy(program),'inherited_from_turn':info['previous_turn_id']}
+            info['candidate_ids'].append(identifier)
+        info['reused']=bool(self.programs or self.sources)
+        return info
+
+    def _apply_fields(self):
+        result=research_fields.field_candidates(self.programs,self.sources)
+        self.field_candidates=result['candidates'];self.field_applications=result
+        for row in result.get('paused',[]):
+            message='部分来源的收费口径互相冲突，相关候选已暂停推荐；请回到原文核对。'
+            if message not in self.gaps:self.gaps.append(message)
+        return result
 
     def _unit(self,identifier):
         if not isinstance(identifier,str) or identifier not in self.units:
@@ -383,7 +434,8 @@ class ResearchTools:
     @staticmethod
     def _candidate(row):
         keys=('id','unit_id','unit_name','name','code','department','direction','study_mode','degree_type','year',
-              'subjects','tuition','duration_years','eligibility_evidence_complete','requires_review','notes')
+              'subjects','tuition','duration_years','eligibility_evidence_complete','requires_review','notes',
+              'field_conflicts')
         result={key:deepcopy(row.get(key)) for key in keys if key in row}
         return {**result,'verification_mode':'published_snapshot','exam_unresolved_reason':exam_unresolved_reason(row)}
 
@@ -620,6 +672,7 @@ class ResearchTools:
         return deepcopy(self.sources[source_id])
 
     def _selected(self,args):
+        self._apply_fields()
         ids=args.get('program_ids',list(self.programs))
         if not ids and not self.programs and self.candidate_metrics and self.candidate_metrics.get('scanned_count',0):
             return []
@@ -733,8 +786,51 @@ class ResearchTools:
                                'requires_confirmation':True,'notice':notice}
         return deepcopy(self.profile_proposal)
 
+    def plan(self,questions=None):
+        self._apply_fields()
+        return build_plan(self.task,self.programs,self.sources,self.algorithm,self.gaps,self.usage,
+                          self.loaded_skills,self.executed_tools,self.questions() if questions is None else questions,
+                          self.task.get('previous_report'),inheritance=self.inheritance,
+                          field_candidates=self.field_candidates)
+
+    def decisions(self):
+        """Deterministic recommendation rows whose reasons and sources stay traceable."""
+        matching=(self.algorithm or {}).get('matching') if isinstance(self.algorithm,dict) else {}
+        matching=matching if isinstance(matching,dict) else {}
+        by_url={str(row.get('url')):row.get('id') for row in self.sources.values() if isinstance(row,dict) and row.get('url')}
+        rows=[]
+        for kind in ('matches','needs_confirmation','excluded'):
+            entries=matching.get(kind) if isinstance(matching.get(kind),list) else []
+            for entry in entries:
+                if not isinstance(entry,dict):continue
+                program=entry.get('program') if isinstance(entry.get('program'),dict) else {}
+                reasons,links=[],[]
+                for reason in entry.get('reasons') or []:
+                    if not isinstance(reason,dict):continue
+                    evidence=[]
+                    for ref in reason.get('evidence') or []:
+                        if not isinstance(ref,dict):continue
+                        identifier=by_url.get(str(ref.get('url')))
+                        evidence.append({**deepcopy(ref),'source_id':identifier,
+                                         'return_to_original':bool(ref.get('url'))})
+                        if ref.get('url') and not any(item.get('url')==ref.get('url') for item in links):
+                            links.append({'url':ref.get('url'),'title':ref.get('title') or '来源原文',
+                                          'year':ref.get('year'),'source_id':identifier})
+                    reasons.append({'field':reason.get('field'),'label':reason.get('label'),
+                                    'status':reason.get('status'),'message':reason.get('message'),
+                                    'evidence':evidence})
+                rows.append({'candidate_id':program.get('id'),'unit_id':program.get('unit_id'),
+                             'unit_name':program.get('unit_name'),'name':program.get('name'),
+                             'status':entry.get('status'),'rank_score':entry.get('rank_score'),
+                             'rank_interval':deepcopy(entry.get('rank_interval')),
+                             'subject_changes':deepcopy(entry.get('subject_changes')),
+                             'reasons':reasons,'original_links':links,'deterministic':True,
+                             'not_admission_probability':True})
+        return rows[:24]
+
     def report(self,assistant_summary='',questions=()):
         self.refresh_knowledge()
+        self._apply_fields()
         if self._knowledge_invalidated:assistant_summary=research_knowledge.CURRENT_NOTICE
         candidates=[self._candidate(row) for row in self.programs.values()]
         gaps=list(dict.fromkeys([*self.gaps,'全国专业目录尚未完整覆盖，本轮候选不代表全国最优或全部选择。',
@@ -742,10 +838,16 @@ class ResearchTools:
                                *(['尚未找到已发布的可计算候选，可以继续调整关键词或补充意向地区。'] if not candidates else [])]))
         actual_questions=self.questions()
         if self.profile_proposal:actual_questions=[{'field':'profile_proposal','label':'请确认识别到的备考条件是否准确。','message':'确认后才用于新一轮算法。','options':[]}]
+        plan=self.plan(actual_questions)
         return {'summary':f"本轮整理了{len({row.get('unit_id') for row in candidates})}所学校的{len(candidates)}个已发布候选、{len(self.sources)}份来源或检索线索。",
+                'plan':plan,
                 'assistant_summary':assistant_summary,'questions':actual_questions,'candidates':candidates,
                 'evidence':list(deepcopy(self.sources).values()),'algorithm':deepcopy(self.algorithm),'gaps':gaps,
                 'profile_proposal':deepcopy(self.profile_proposal),
+                'inheritance':deepcopy(self.inheritance),
+                'field_candidates':deepcopy(self.field_candidates),
+                'field_applications':deepcopy(self.field_applications),
+                'decisions':self.decisions(),
                 'skills':self.skills(),'knowledge':{'saved_count':len(self.saved_sources),'cache_hits':len(self.cache_hits),
                     'accepted_count':sum(state=='accepted' for state in self._knowledge_states.values()),
                     'pending_count':sum(state=='pending' for state in self._knowledge_states.values()),'filtered_count':len(self._filtered_sources),
