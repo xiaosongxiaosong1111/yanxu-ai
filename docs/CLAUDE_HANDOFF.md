@@ -9,7 +9,7 @@
 | 1–3 | 已验收。包括资料作用域、用户意图、来源有效性、原文分段和精读。 | [验收节点](CLAUDE_WORK_NODES.md) |
 | 4A | 已独立验收。95 项定向测试通过，8 项 HTTP 安全负例均拒绝，六个生产模块含分支综合覆盖率 87.48%。本机 BGE 实测 512 维，远端厂商用模拟接口验证。 | [A 实现与接口要求](work_nodes/04-claude-checkpoint-a.md) |
 | 4B | 代码已交付，独立验收要求返工。181 项相关正式测试通过，真实 Milvus 跨进程重开及本机模型链路通过。下面的五项缺陷仍可复现。 | **[B 返工任务书](work_nodes/04-claude-checkpoint-b-review1.md)** |
-| 4C1 | 尚未完成。分支包含混合检索与 HTTP 测试草稿。前次完整回归 1686 项中有 10 条断言因这些 HTTP 接口未接入而失败，另有 3 项环境或资料分发原因跳过。 | [检索、HTTP 与 Agent](work_nodes/04-claude-checkpoint-c1.md) |
+| 4C1 | 已交付，待 Codex 独立复查。提交 `5b658f1`；报告 `data/runtime/node4/claude-c1/report.json`，RED 11 项失败/错误，定向 GREEN 315 项通过（跳过 1），完整回归 1715 项通过（跳过 2），七个生产模块含分支覆盖率 82%–94%。 | [检索、HTTP 与 Agent](work_nodes/04-claude-checkpoint-c1.md) |
 | 4C2 | 尚未完成。分支含设置页草稿，仍需完成交互与真实金标评测。 | [页面、评测与交付](work_nodes/04-claude-checkpoint-c2.md) |
 
 先读 [节点 4 总合同](work_nodes/04-hybrid-retrieval.md)，然后直接处理 4B 返工。原返工会话的最后可见操作是读取任务书，本分支保留了此前的可审查实现和复现材料。此前任务书中“等 Codex 下发”描述的是旧协作节奏。本次由 Claude 先连续实施，自验通过一个检查点后按本页顺序继续，最终把各检查点的提交和报告一次交给 Codex 独立复查。遇到实质失败则留在当前检查点修复或明确记录阻塞。
