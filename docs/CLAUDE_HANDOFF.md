@@ -1,6 +1,6 @@
 # 研序 AI · Claude 开发交接
 
-更新于 2026-11-04。开发分支为 `handoff/n4-vector-retrieval`。Claude 负责实现、测试和返工，Codex 在交付后独立检查。4C2 与节点 5–7 已全部本地提交，状态均为 `submitted_for_review`，统一交给 Codex 独立复查。每个检查点保留独立 commit、测试日志、报告和未验证事项。
+更新于 2026-11-04。开发分支为 `handoff/n4-vector-retrieval`。Claude 负责实现、测试和返工，Codex 在交付后独立检查。4C2、C2 检索优化与节点 5–7 已全部本地提交，状态均为 `submitted_for_review`，统一交给 Codex 独立复查。每个检查点保留独立 commit、测试日志、报告和未验证事项。
 
 ## 从哪里开始
 
@@ -11,6 +11,7 @@
 | 4B | 代码已交付，独立验收要求返工。181 项相关正式测试通过，真实 Milvus 跨进程重开及本机模型链路通过。下面的五项缺陷仍可复现。 | **[B 返工任务书](work_nodes/04-claude-checkpoint-b-review1.md)** |
 | 4C1 | 已交付，待 Codex 独立复查。提交 `5b658f1`；报告 `data/runtime/node4/claude-c1/report.json`，RED 11 项失败/错误，定向 GREEN 315 项通过（跳过 1），完整回归 1715 项通过（跳过 2），七个生产模块含分支覆盖率 82%–94%。 | [检索、HTTP 与 Agent](work_nodes/04-claude-checkpoint-c1.md) |
 | 4C2 | 已交付，待 Codex 独立复查。提交 `9a7fa0f`；C2 定向 64 Python、65 Node、6 浏览器通过；真实本机 BGE + Milvus Lite 的 34 题配对显示来源召回与冻结基线同为 31/31，完整必要引文 25/34 对 29/34，未观察到全面提升。报告 `data/runtime/node4/claude-c2/report.json`。 | [页面、评测与交付](work_nodes/04-claude-checkpoint-c2.md) |
+| 4C2 检索优化 | 已交付，待 Codex 独立复查。提交 `c6c7fa5`；新增确定性中文问句词项与有界窗口排序，重排升级为 `rule_v2`。34 题三臂来源召回均为 31/31，完整必要引文均为 29/34，可信引文关键词/混合为 52/54、冻结基线为 51/54；语义通道没有聚合质量增益。完整 Python 1,757 项、Node 220 项通过；四个模块含分支覆盖率合计 94%。报告 `data/runtime/node4/claude-opt/report.json`。 | [C2 评测](KNOWLEDGE_EVALUATION.md) |
 | 5 | 已交付，待 Codex 独立复查。提交 `f57d473`；确定性计划账本与 Skill 完成检查，38 项定向通过。端到端接线随 N6 提交 `237361c`。报告 `data/runtime/node5/claude/report.json`。 | [Agent 路线图](AGENT_ROADMAP.md) |
 | 6 | 已交付，待 Codex 独立复查。提交 `237361c`；证据继承、字段候选、两源一致学费和冲突暂停，52 项定向通过。报告 `data/runtime/node6/claude/report.json`。 | [Agent 路线图](AGENT_ROADMAP.md) |
 | 7 | 已交付，待 Codex 独立复查。提交 `9000700`；计划/缺口、本轮变化、字段出处和原文回链界面，27 项 Node 单测与 6 项隔离浏览器回归通过。报告 `data/runtime/node7/claude/report.json`。 | [Agent 路线图](AGENT_ROADMAP.md) |
@@ -46,8 +47,10 @@
 
 ## 本次交付摘要
 
-- 提交：`9a7fa0f`（4C2）、`f57d473`（N5）、`237361c`（N6）、`9000700`（N7）。
+- 提交：`9a7fa0f`（4C2）、`c6c7fa5`（C2 检索优化）、`f57d473`（N5）、`237361c`（N6）、`9000700`（N7）。
 - 整库回归：Python 1,747 项通过（跳过 2）；Node 220 项通过；C2 浏览器 6 项、N7 隔离浏览器 6 项通过。
 - 覆盖：N5–N7 四个后端模块含分支合计 93%；C2 三个前端模块分支 80.85%–84.51%；`agent.mjs` 整文件行 60.26%/分支 74.21%，未覆盖主要是既有 mount 控制器，浏览器回归另行执行。
-- 明确未验证：真实付费模型/元宝闭环；远端 Embedding；用户运行库迁移；4180 主端口；OCR；发布链年度自动授予；关键词整句匹配修复；跨机器浏览器环境。
-- C2 诚实结论：来源召回与冻结基线相同，完整引文覆盖更低；关键词臂 0/31 是当前整句匹配边界，不能据此宣称优于 BM25 或其他 RAG。
+- C2 检索优化覆盖：`knowledge_query_terms.py` 100%、`knowledge_repository.py` 93%、`knowledge_retrieval.py` 93%、`knowledge_store.py` 94%，四模块含分支合计 94%（123 项定向测试）。
+- 明确未验证：真实付费模型/元宝闭环；远端 Embedding；用户运行库迁移；4180 主端口；OCR；发布链年度自动授予；跨机器浏览器环境。本轮浏览器回归因本机 Playwright 模块缺失未执行，未以其他方式替代。
+- C2 诚实结论（历史）：当轮来源召回与冻结基线相同，完整引文覆盖更低；关键词臂 0/31 是当时的整句匹配边界。
+- C2 检索优化结论：整句边界已修复，关键词臂与混合臂都为 31/31、29/34、52/54，混合臂相对关键词的聚合增量为 0；PF10 多读、catalog-01 少读，catalog-04 在有限窗口内仍不可达。没有观察到混合检索的聚合质量优势，不能据此宣称优于 BM25 或其他 RAG。
