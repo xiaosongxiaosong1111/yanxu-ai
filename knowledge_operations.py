@@ -37,6 +37,8 @@ def change_validity(store, entry_id, validity, reason, replacement_id=None):
             store._entry_id(replacement_id)
             _admitted_original(store, connection, replacement_id)
         _lifecycle(lifecycle.change_state, connection, entry_id, validity, reason, replacement_id)
+        from knowledge_vector_schema import dirty
+        dirty(connection,entry_id)
         return _result(store, connection, entry_id)
 
 
@@ -47,6 +49,8 @@ def choose_version(store, entry_id, reason):
     with store._lock, store._connection(create=True) as connection:
         _admitted_original(store, connection, entry_id)
         _lifecycle(lifecycle.select_current, connection, entry_id, reason)
+        from knowledge_vector_schema import dirty
+        dirty(connection)
         return _result(store, connection, entry_id)
 
 

@@ -95,6 +95,11 @@ def rebuild(store, entry_id):
         if document.get('review_required'):
             return {'entry_id':entry_id,'state':'needs_review','rebuilt':False,**repository.state_summary(connection,entry_id)}
         failed=_attempt(store,connection,source,document)
+        # A rebuild can change the current generation or admission state, so the
+        # derived vector index must be marked stale for this entry (light hook only;
+        # the N3 structure index semantics are untouched).
+        from knowledge_vector_schema import dirty
+        dirty(connection,entry_id)
         summary=repository.state_summary(connection,entry_id)
         state=summary.get('latest_index_job',{}).get('state',summary['index_state'])
         result={'entry_id':entry_id,'rebuilt':not failed and state=='succeeded',**summary,'state':state}

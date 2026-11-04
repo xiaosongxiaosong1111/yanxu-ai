@@ -33,7 +33,7 @@ class AITransport:
 
     def request_json(self,config,method,path,body=None,stop_event=None):
         config=checked_config(config)
-        checked_path=path.split('?',1)[0] if config['provider']=='siliconflow' and path=='/models?sub_type=chat' else path
+        checked_path=path.split('?',1)[0] if config['provider']=='siliconflow' and path in {'/models?sub_type=chat','/models?sub_type=embedding'} else path
         if method not in {'GET','POST'} or not isinstance(path,str) or (path and not path.startswith('/')) or path.startswith('//') or re.search(r'[\x00-\x20\\?#]',checked_path) or '..' in path:
             raise TransportError('invalid_request','接口请求不正确。')
         if config['provider']=='yuanbao' and (method!='POST' or path):
@@ -48,6 +48,8 @@ class AITransport:
         base=config['base_url']
         if config['provider']=='dashscope' and path=='/api/v1/models':
             endpoint=urlsplit(base);base='https://'+endpoint.netloc
+        if config['provider']=='ollama' and path=='/api/tags':
+            endpoint=urlsplit(base);base=endpoint.scheme+'://'+endpoint.netloc
         url=base+path
         headers={'Accept':'application/json','Content-Type':'application/json; charset=utf-8'}
         raw=None

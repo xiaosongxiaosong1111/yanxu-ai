@@ -269,6 +269,8 @@ class KnowledgeStore:
                 segments.persist_document(connection,identifier,value,canonical,stamp)
                 from knowledge_operations import reconcile_versions
                 reconcile_versions(self,connection,identifier)
+            from knowledge_vector_schema import dirty
+            dirty(connection,identifier)
             return self._public(connection,identifier)
 
     def _document_input(self,source,document):
@@ -308,6 +310,8 @@ class KnowledgeStore:
             full='';pages=[]
             connection.execute("UPDATE knowledge_entries SET status='search_lead',payload=? WHERE id=?",(json.dumps(value,ensure_ascii=False),identifier))
             self._index(connection,identifier,value,'')
+            from knowledge_vector_schema import dirty
+            dirty(connection,identifier)
         if has_quality and row['quality']!=value['quality']['state']:
             connection.execute('UPDATE knowledge_entries SET quality=?,payload=? WHERE id=?',(value['quality']['state'],json.dumps(value,ensure_ascii=False),identifier))
         if value['quality']['state']=='excluded' or value.get('snapshot_status')=='missing_or_changed':
@@ -455,6 +459,10 @@ class KnowledgeStore:
                 value={**value,'authority_evidence':proof,'quality':quality}
                 connection.execute('UPDATE knowledge_entries SET quality=?,payload=? WHERE id=?',(quality['state'],json.dumps(value,ensure_ascii=False),row['id']))
                 self._index(connection,row['id'],value,row['full_text'])
+            # A global reassessment can move entries in or out of the eligible set, so
+            # the derived vector index must be marked stale even when nothing changed.
+            from knowledge_vector_schema import dirty
+            dirty(connection)
         return counts
 
     def import_reports(self,research_db_path):

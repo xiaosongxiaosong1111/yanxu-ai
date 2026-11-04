@@ -10,6 +10,19 @@ from yuanbao_auth import build_request
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_siliconflow_embedding_model_catalog_query_is_allowed(self):
+        captured = []
+        def request(c, method, path, body):
+            captured.append(path)
+            return {'data': [{'id': 'BAAI/bge-m3'}]}
+        config = {'provider': 'siliconflow', 'api_key': 'fixture-key'}
+        value = AITransport(request=request).request_json(config, 'GET', '/models?sub_type=embedding')
+        self.assertEqual(captured, ['/models?sub_type=embedding'])
+        self.assertEqual(value['data'][0]['id'], 'BAAI/bge-m3')
+        with self.assertRaises(TransportError):
+            AITransport(request=request).request_json(config, 'GET', '/models?sub_type=unknown')
+        with self.assertRaises(TransportError):
+            AITransport(request=request).request_json(config, 'GET', '/models?sub_type=chat&extra=1')
     def test_anthropic_tool_roundtrip(self):
         captured=[]
         def request(c,method,path,body):

@@ -63,6 +63,8 @@ def ensure_schema(connection):
     for statement in DERIVATION_SCHEMA:
         connection.execute(statement)
     _ensure_fts(connection)
+    from knowledge_vector_schema import ensure_vector_schema
+    ensure_vector_schema(connection)
 
 
 def _ensure_fts(connection):

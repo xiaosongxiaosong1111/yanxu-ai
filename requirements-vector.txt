@@ -1,0 +1,5 @@
+# Optional N4 local vector and CPU embedding runtime; install in a dedicated venv.
+-r requirements.txt
+pymilvus==3.0.2
+milvus-lite==3.2.2
+fastembed==0.9.1
