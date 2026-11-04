@@ -20,6 +20,26 @@ const qualityFilter=value=>qualitySections.some(([state])=>state===value)?value:
 const hasFilters=filters=>['q','status','year','unit_id'].some(key=>!!filters?.[key]);
 const qualityDescription={accepted:'达到本地准入规则的资料，可供研究复用；具体报考字段仍需逐项核验。',pending:'来源、正文或适用年度仍待补查，暂不供研究自动复用。',excluded:'已拦截无效正文、导航片段或个人名单，仅保留来源与拦截理由。',all:'全部来源按质量分层保存，自动复用只采用已达到准入规则的资料。'};
 
+const degradationNames={embedding_not_configured:'向量模型尚未配置',embedding_model_not_ready:'本机模型尚未准备',embedding_profile_unavailable:'索引绑定的模型配置已不可用',model_not_verified:'向量连接尚未验证',vector_not_ready:'语义索引尚未建立',vector_unavailable:'向量服务暂时不可用',vector_remote_requires_action:'远程语义检索需要主动提交',vector_profile_changed:'查询模型与索引不一致'};
+const finite=value=>Number.isInteger(value)&&value>=0?value:null;
+function hybridUsage(result){
+ const usage=object(result.usage),known=result.usage_known===true&&finite(usage.input_tokens)!==null,tokens=finite(usage.input_tokens);
+ const calls=finite(usage.embedding_calls),ok=finite(usage.successful_embedding_calls);
+ return `向量调用 ${calls===null?'未知':calls} 次（成功 ${ok===null?'未知':ok}） · ${known?`输入 ${tokens} token`:'输入 token 未知'}`;
+}
+function hybridResultView(result){
+ const retrieval=object(result.retrieval),segments=list(result.segments),degraded=retrieval.degraded===true,mode=retrieval.mode==='hybrid'?'混合检索':'关键词降级';
+ const reason=degradationNames[retrieval.degraded_reason]||text(retrieval.degraded_reason)||'语义通道暂时不可用';
+ const total=finite(result.returned_count),candidate=finite(result.candidate_count),latency=finite(retrieval.latency?.total_ms);
+ return `<section class="yk-hybrid-results" aria-label="混合检索结果"><div class="yk-hybrid-head"><div><span class="yk-hybrid-mode ${degraded?'is-degraded':''}">${mode}</span><strong>当前范围结果</strong></div><span>返回 ${total===null?'未知':total} 条 · 有限候选 ${candidate===null?'未知':candidate} 条</span></div>${degraded?`<p class="yk-hybrid-degraded" role="status">语义通道未参与：${esc(reason)}。已如实回退到关键词检索，结果仍可精读原文。</p>`:''}<p class="yk-hybrid-usage">${esc(hybridUsage(result))}${latency===null?'':' · 总耗时 '+latency+' ms'}<span>· 主动提交才可能使用向量模型，输入和轮询不会后台计费</span></p><p class="yk-hybrid-notice">${esc(retrieval.notice||'仅在当前可核验资料的有限候选中检索，语义相近不等于科目、资格或报考条件相同。')}</p>${segments.length?`<div class="yk-hybrid-list">${segments.map(segment=>{const source=object(segment.source),methods=list(segment.retrieval_methods),semantic=methods.includes('semantic'),page=finite(segment.page_start);const reasonText=semantic&&methods.includes('keyword')?'关键词与语义同时命中':semantic?'语义候选定位':'关键词命中';return `<button type="button" class="yk-hybrid-hit" data-knowledge-open="${esc(segment.entry_id)}" data-knowledge-hybrid-segment="${esc(segment.id)}"><div><span class="yk-hybrid-hit-kind">${esc(reasonText)}</span><span>${esc(source.unit_name||'招生单位待确认')} · ${Number.isInteger(source.year)?source.year+' 年':'年度待核验'}${page===null?'':' · 第 '+page+' 页'}</span></div><strong>${esc(source.title||'资料标题待补齐')}</strong><p>${esc(text(segment.text).slice(0,220))}</p><small>规则重排 ${esc(text(segment.rerank?.version)||'rule_v1')} · 打开 N3 精读原文</small></button>`;}).join('')}</div>`:`<div class="yk-hybrid-empty" role="status"><strong>当前范围内没有可核验的匹配片段</strong><p>这表示已保存资料中的有限候选没有命中，不代表全国所有学校都没有相关资料。可调整学校、年度或关键词后重新提交。</p></div>`}<p class="yk-boundary-note">以上只代表当前范围的有限候选，不代表全国全部学校或全部材料；语义候选只用于定位，最终是否适用仍须回到原文核对学校、年度、科目与状态。</p></section>`;
+}
+function hybridPanel(state){
+ const hybrid=object(state.hybrid);if(!hybrid.status||hybrid.status==='idle')return '';
+ if(hybrid.status==='loading')return `<section class="yk-hybrid-results is-loading" role="status"><div class="yk-hybrid-head"><div><span class="yk-hybrid-mode">混合检索</span><strong>正在检索当前范围</strong></div></div><p class="yk-muted">这是你主动提交的一次检索；关键词列表保持原位。</p></section>`;
+ if(hybrid.status==='error')return `<section class="yk-hybrid-results is-error" role="alert"><div class="yk-hybrid-head"><div><span class="yk-hybrid-mode is-degraded">检索未完成</span><strong>混合检索暂时不可用</strong></div></div><p>${esc(hybrid.error||'请稍后重试。')}</p><button type="button" class="yk-primary" data-knowledge-action="hybrid-retry">重新提交</button><p class="yk-boundary-note">关键词资料列表仍可使用，原分页不受影响。</p></section>`;
+ return hybridResultView(object(hybrid.result));
+}
+
 function qualityOf(entry){
  const quality=object(entry.quality),state=quality.state==='excluded'?'excluded':quality.version===1&&quality.state==='accepted'&&quality.reusable===true?'accepted':'pending';
  const reasons=list(quality.reasons).filter(reason=>typeof reason?.message==='string'&&reason.message).slice(0,8);
@@ -49,7 +69,7 @@ function emptyLibrary(state){
 
 function filtersView(state){
  const filters=object(state.filters),facets=object(state.facets),units=list(facets.units),years=list(facets.years).filter(Number.isInteger);
- return `<form id="yk-search-form" class="yk-search-form" role="search"><div class="yk-search-field"><label class="yk-sr-only" for="yk-query">搜索已保存的研究资料</label>${icon('search')}<input id="yk-query" name="q" type="search" maxlength="240" value="${esc(filters.q||'')}" placeholder="搜索学校、专业、科目或资料标题"><button type="submit">搜索</button></div><div class="yk-filters"><label>资料类型<select name="status"><option value="">全部资料</option>${kinds.map(([value,title])=>`<option value="${value}"${selected(filters.status,value)}>${title}</option>`).join('')}</select></label><label>招生单位<select name="unit_id"><option value="">全部已保存单位</option>${units.map(unit=>`<option value="${esc(unit.unit_id)}"${selected(filters.unit_id,unit.unit_id)}>${esc(unit.unit_name||unit.unit_id)}</option>`).join('')}</select></label><label>来源年度<select name="year"><option value="">全部年度</option>${years.sort((a,b)=>b-a).map(value=>`<option value="${value}"${selected(filters.year,value)}>${value} 年</option>`).join('')}</select></label>${hasFilters(filters)?'<button type="button" class="yk-reset" data-knowledge-action="reset">清除筛选</button>':''}</div></form>`;
+ return `<form id="yk-search-form" class="yk-search-form" role="search"><div class="yk-search-field"><label class="yk-sr-only" for="yk-query">搜索已保存的研究资料</label>${icon('search')}<input id="yk-query" name="q" type="search" maxlength="240" value="${esc(filters.q||'')}" placeholder="搜索学校、专业、科目或资料标题"><button type="submit">搜索</button><button type="button" class="yk-hybrid-trigger" data-knowledge-action="hybrid-search" ${object(state.hybrid).status==='loading'?'disabled':''}>${object(state.hybrid).status==='loading'?'检索中…':'混合检索'}</button></div><p class="yk-hybrid-hint">“搜索”只读关键词列表；“混合检索”由你主动提交一次，可能使用已保存的向量模型。</p><div class="yk-filters"><label>资料类型<select name="status"><option value="">全部资料</option>${kinds.map(([value,title])=>`<option value="${value}"${selected(filters.status,value)}>${title}</option>`).join('')}</select></label><label>招生单位<select name="unit_id"><option value="">全部已保存单位</option>${units.map(unit=>`<option value="${esc(unit.unit_id)}"${selected(filters.unit_id,unit.unit_id)}>${esc(unit.unit_name||unit.unit_id)}</option>`).join('')}</select></label><label>来源年度<select name="year"><option value="">全部年度</option>${years.sort((a,b)=>b-a).map(value=>`<option value="${value}"${selected(filters.year,value)}>${value} 年</option>`).join('')}</select></label>${hasFilters(filters)?'<button type="button" class="yk-reset" data-knowledge-action="reset">清除筛选</button>':''}</div></form>`;
 }
 
 function entryView(entry,activeId,query=''){
@@ -90,7 +110,7 @@ export function renderKnowledge(state={}){
  const detail=detailOpen?`<section class="yk-reader" aria-label="资料阅读面板">${state.detailStatus==='ready'&&state.detail?reader(state.detail,state.reader):state.detailStatus==='error'?`<div class="yk-detail-state" role="alert"><button type="button" class="yk-back" data-knowledge-action="close-detail">${icon('arrow')}返回资料列表</button><h2 tabindex="-1">这份资料暂时无法读取</h2><p>${esc(state.detailError||'请稍后重试。')}</p><button type="button" class="yk-primary" data-knowledge-action="retry-detail">重新读取</button></div>`:'<div class="yk-detail-state" role="status"><button type="button" class="yk-back" data-knowledge-action="close-detail">返回资料列表</button><h2>正在打开来源</h2><p>读取留档信息与原文摘录。</p></div>'}</section>`:'';
  return `<section class="yk-page ${detailOpen?'has-reader':''}"><button type="button" class="yk-back" data-knowledge-action="back">${icon('arrow')}返回研究</button>
   <header class="yk-heading"><div><span class="yk-eyebrow">从一次查证，到持续积累</span><h1>研究知识库</h1><p>按质量准入积累，通过检查后再复用。<br>原文留档不等于字段已核验，年份与来源始终保留。</p></div><div class="yk-library-mark" aria-hidden="true">${icon('book')}</div></header>
-  ${qualityTabs(state)}${filtersView(state)}
+  ${qualityTabs(state)}${filtersView(state)}${hybridPanel(state)}
   <div class="yk-list-heading"><span>${ready?`找到 ${count(state.total)} 份${current==='all'?'资料':qualityLabel(current)}`:'研究资料'}</span><span>当前筛选结果 · 资料类型与准入质量分别核对</span></div>
   <div class="yk-layout ${detailOpen?'is-reading':''}" id="yk-library-results" role="tabpanel" aria-labelledby="yk-quality-${current}"><div class="yk-list-column">${content}${ready&&count(state.total)>0?`<nav class="yk-pagination" aria-label="知识库分页"><span>第 ${page} / ${pages} 页</span><div><button type="button" data-knowledge-action="previous" ${page<=1?'disabled':''}>上一页</button><button type="button" data-knowledge-action="next" ${page>=pages?'disabled':''}>下一页</button></div></nav>`:''}</div>${detail}</div>
  </section>`;
@@ -104,8 +124,8 @@ function loadStyle(document){
 
 export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSegmentId='',initialQuery='',initialQuality='accepted'}={}){
  const document=container.ownerDocument,view=document.defaultView;loadStyle(document);
- let disposed=false,listController,detailController,listGeneration=0,detailGeneration=0,timer,composing=false,renderPending=false,returnPoint={scroll:0,id:''};
- let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:1,pageSize:12,filters:{q:text(initialQuery),status:'',year:'',unit_id:'',quality:qualityFilter(initialQuality)},error:'',detailId:text(initialEntryId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:''};
+ let disposed=false,listController,detailController,listGeneration=0,detailGeneration=0,hybridController,hybridGeneration=0,timer,composing=false,renderPending=false,returnPoint={scroll:0,id:''};
+ let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:1,pageSize:12,filters:{q:text(initialQuery),status:'',year:'',unit_id:'',quality:qualityFilter(initialQuality)},error:'',detailId:text(initialEntryId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
  const render=()=>{
   if(disposed)return;
   if(composing){renderPending=true;return;}
@@ -118,6 +138,21 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
  };
  const readerControl=createKnowledgeReader({api,onChange:(reader,shouldRender)=>{state={...state,reader};if(shouldRender)render();},onEntryReload:async id=>{await openDetail(id,{remember:false,preserveReader:true});await loadList();}});
  const clearDetail=()=>{detailGeneration++;detailController?.abort();readerControl.reset();state={...state,reader:{},detailId:'',detail:null,detailStatus:'none',detailError:''};};
+ const clearHybrid=()=>{hybridGeneration++;hybridController?.abort();state={...state,hybrid:{status:'idle',result:null,error:'',query:''}};};
+ async function hybridSearch(){
+  if(disposed)return;const query=text(state.filters.q).trim();
+  if(!query){state={...state,hybrid:{status:'error',result:null,error:'请先输入学校、专业、科目或年度问题，再主动提交混合检索。',query:''}};render();container.querySelector('#yk-query')?.focus();return;}
+  hybridController?.abort();hybridController=new AbortController();const ticket=++hybridGeneration;
+  state={...state,hybrid:{status:'loading',result:null,error:'',query}};render();
+  const body={q:query,limit:8},unit=text(state.filters.unit_id),year=text(state.filters.year);
+  if(unit)body.unit_id=unit;if(/^[0-9]{4}$/.test(year))body.year=Number(year);
+  try{
+   const result=await api('/api/knowledge/retrieve',{body,signal:hybridController.signal});
+   if(disposed||ticket!==hybridGeneration)return;
+   if(!result||typeof result!=='object'||!Array.isArray(result.segments))throw new Error('混合检索返回的数据格式需要重新检查。');
+   state={...state,hybrid:{status:'ready',result,error:'',query}};render();
+  }catch(error){if(disposed||ticket!==hybridGeneration||error.name==='AbortError')return;state={...state,hybrid:{status:'error',result:null,error:error.message||'混合检索暂时不可用，请稍后重试。',query}};render();}
+ }
  async function loadList(){
   clearTimeout(timer);listController?.abort();listController=new AbortController();const ticket=++listGeneration;
   state={...state,loadStatus:'loading',error:''};render();
@@ -131,7 +166,7 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
    state={...state,loadStatus:'ready',entries:result.entries,total:result.total,page:Number.isInteger(result.page)?result.page:state.page,summary:object(result.summary),facets:{units:[...units.values()],years}};render();
   }catch(error){if(disposed||ticket!==listGeneration||error.name==='AbortError')return;state={...state,loadStatus:'error',error:error.message||'本地知识库暂时不可用。'};render();}
  }
- async function openDetail(id,{remember=true,preserveReader=false}={}){
+ async function openDetail(id,{remember=true,preserveReader=false,segmentId=''}={}){
   if(remember)returnPoint={scroll:view?.scrollY||0,id};
   detailController?.abort();detailController=new AbortController();const ticket=++detailGeneration;
   if(!preserveReader)readerControl.reset();state={...state,reader:preserveReader?state.reader:{},detailId:id,detail:null,detailStatus:'loading',detailError:''};render();
@@ -139,30 +174,31 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
    const result=await api('/api/knowledge?'+new URLSearchParams({entry_id:id}),{signal:detailController.signal});
    if(disposed||ticket!==detailGeneration)return;
    const detail=object(result?.entry||result);if(detail.id!==id)throw new Error('返回的资料与当前选择不一致，请重新读取。');
-   state={...state,detail,detailStatus:'ready'};readerControl.open(detail);render();if(initialSegmentId&&id===initialEntryId){readerControl.read(initialSegmentId);initialSegmentId='';}container.querySelector('#yk-reader-title')?.focus({preventScroll:true});container.querySelector('.yk-reader')?.scrollIntoView({block:'nearest',behavior:'auto'});
+   state={...state,detail,detailStatus:'ready'};readerControl.open(detail);render();if(segmentId){readerControl.read(segmentId);}else if(initialSegmentId&&id===initialEntryId){readerControl.read(initialSegmentId);initialSegmentId='';}container.querySelector('#yk-reader-title')?.focus({preventScroll:true});container.querySelector('.yk-reader')?.scrollIntoView({block:'nearest',behavior:'auto'});
   }catch(error){if(disposed||ticket!==detailGeneration||error.name==='AbortError')return;state={...state,detailStatus:'error',detailError:error.message||'这份资料暂时无法读取。'};render();}
  }
- const updateFilters=filters=>{clearDetail();state={...state,filters:{...state.filters,...filters},page:1};loadList();};
- const input=event=>{readerControl.input(event.target.name,event.target.value);if(event.target.id!=='yk-query')return;state={...state,filters:{...state.filters,q:event.target.value},page:1};clearTimeout(timer);listGeneration++;listController?.abort();if(composing||event.isComposing)return;timer=setTimeout(()=>{clearDetail();loadList();},240);};
+ const updateFilters=filters=>{clearDetail();clearHybrid();state={...state,filters:{...state.filters,...filters},page:1};loadList();};
+ const input=event=>{readerControl.input(event.target.name,event.target.value);if(event.target.id!=='yk-query')return;hybridGeneration++;hybridController?.abort();state={...state,filters:{...state.filters,q:event.target.value},page:1,hybrid:{status:'idle',result:null,error:'',query:''}};clearTimeout(timer);listGeneration++;listController?.abort();if(composing||event.isComposing)return;timer=setTimeout(()=>{clearDetail();loadList();},240);};
  const change=event=>{if(['status','year','unit_id'].includes(event.target.name))updateFilters({[event.target.name]:event.target.value});};
  const submit=event=>{if(['yk-search-form','yk-segment-search'].includes(event.target.id)&&composing){event.preventDefault();return;}if(event.target.id==='yk-segment-search'){event.preventDefault();readerControl.search();}if(event.target.id==='yk-search-form'){event.preventDefault();clearDetail();state={...state,page:1};loadList();}};
  const click=event=>{
   const button=event.target.closest?.('[data-knowledge-action],[data-knowledge-open],[data-knowledge-quality],[data-knowledge-segment],[data-knowledge-reader],[data-knowledge-maintenance],[data-knowledge-confirm]');if(!button||!container.contains(button)||button.disabled)return;
   if(readerControl.click(button))return;
-  if(button.dataset.knowledgeOpen){openDetail(button.dataset.knowledgeOpen);return;}
+  if(button.dataset.knowledgeOpen){openDetail(button.dataset.knowledgeOpen,{segmentId:text(button.dataset.knowledgeHybridSegment)});return;}
   if(button.dataset.knowledgeQuality){const next=qualityFilter(button.dataset.knowledgeQuality);if(next!==state.filters.quality)updateFilters({quality:next});return;}
   const action=button.dataset.knowledgeAction;
   if(action==='back')onBack?.();
   if(action==='retry')loadList();
   if(action==='retry-detail')openDetail(state.detailId,{remember:false});
   if(action==='close-detail'){clearDetail();render();view?.scrollTo(0,returnPoint.scroll);[...container.querySelectorAll('[data-knowledge-open]')].find(item=>item.dataset.knowledgeOpen===returnPoint.id)?.focus({preventScroll:true});}
-  if(action==='reset'){clearDetail();state={...state,filters:{q:'',status:'',year:'',unit_id:'',quality:state.filters.quality},page:1};loadList();}
+  if(action==='reset'){clearDetail();clearHybrid();state={...state,filters:{q:'',status:'',year:'',unit_id:'',quality:state.filters.quality},page:1};loadList();}
   if(action==='next'||action==='previous'){clearDetail();state={...state,page:Math.max(1,state.page+(action==='next'?1:-1))};loadList();container.querySelector('.yk-list-heading')?.scrollIntoView({block:'start'});}
+  if(action==='hybrid-search'||action==='hybrid-retry')hybridSearch();
  };
  const compositionStart=()=>{composing=true;clearTimeout(timer);};
  const compositionEnd=event=>{composing=false;input(event);if(renderPending){renderPending=false;render();}};
  const toggle=event=>{if(event.target.matches?.('.yk-maintenance'))readerControl.toggle(event.target.open);};
  container.addEventListener('input',input);container.addEventListener('change',change);container.addEventListener('submit',submit);container.addEventListener('click',click);container.addEventListener('compositionstart',compositionStart);container.addEventListener('compositionend',compositionEnd);container.addEventListener('toggle',toggle,true);
  render();loadList();if(initialEntryId)openDetail(initialEntryId,{remember:false});
- return()=>{disposed=true;listGeneration++;detailGeneration++;clearTimeout(timer);listController?.abort();detailController?.abort();readerControl.dispose();container.removeEventListener('input',input);container.removeEventListener('change',change);container.removeEventListener('submit',submit);container.removeEventListener('click',click);container.removeEventListener('compositionstart',compositionStart);container.removeEventListener('compositionend',compositionEnd);container.removeEventListener('toggle',toggle,true);};
+ return()=>{disposed=true;listGeneration++;detailGeneration++;hybridGeneration++;clearTimeout(timer);listController?.abort();detailController?.abort();hybridController?.abort();readerControl.dispose();container.removeEventListener('input',input);container.removeEventListener('change',change);container.removeEventListener('submit',submit);container.removeEventListener('click',click);container.removeEventListener('compositionstart',compositionStart);container.removeEventListener('compositionend',compositionEnd);container.removeEventListener('toggle',toggle,true);};
 }

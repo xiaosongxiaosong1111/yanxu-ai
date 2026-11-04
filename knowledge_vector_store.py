@@ -43,17 +43,49 @@ def eligible(store, unit_id='',year=None,entry_id=None):
         return result
 
 
+def _current_counts(handle):
+    current={'sources':None,'segments':None,'windows':None}
+    if repository.available(handle):
+        row=handle.execute('''SELECT count(DISTINCT s.entry_id),count(*) FROM knowledge_segments s
+            JOIN knowledge_entries e ON e.id=s.entry_id JOIN knowledge_entry_state st
+            ON st.entry_id=e.id AND st.current_generation_id=s.generation_id
+            JOIN knowledge_generations g ON g.id=s.generation_id
+            WHERE e.quality='accepted' AND st.validity='active' AND g.state='succeeded' AND s.searchable=1''').fetchone()
+        if row and row[0] is not None:current={**current,'sources':row[0],'segments':row[1]}
+    return current
+
+
+def _empty_current(store):
+    if not store.path.is_file():return {'sources':None,'segments':None,'windows':None}
+    try:
+        with connection(store) as handle:return _current_counts(handle)
+    except Exception:return {'sources':None,'segments':None,'windows':None}
+
+
 def summary(store):
     empty={'status':'not_ready','backend':'milvus_lite','active_space_id':None,'active_profile_id':None,
            'active_provider':None,'spaces':[],'jobs':{key:0 for key in ('pending','running','succeeded','failed','cancelled','uncertain')},
-           'dirty':True,'building':False,'error_code':'','last_build':{}}
-    if not store.path.is_file():return empty
+           'dirty':True,'building':False,'error_code':'','last_build':{},
+           'current':{'sources':None,'segments':None,'windows':None}}
+    if not store.path.is_file():return {**empty,'current':_empty_current(store)}
     with connection(store) as handle:
-        if not has_table(handle,'knowledge_vector_control'):return empty
+        if not has_table(handle,'knowledge_vector_control'):return {**empty,'current':_current_counts(handle)}
         control=dict(handle.execute('SELECT * FROM knowledge_vector_control WHERE singleton=1').fetchone())
         spaces=[dict(row) for row in handle.execute('SELECT id,profile_id,provider,model,dimension,state,expected_count,completed_count,error_code FROM knowledge_vector_spaces ORDER BY updated_at DESC,id')]
+        # Actual build snapshot counts per space; never inferred from a client page.
+        space_counts={}
+        if has_table(handle,'knowledge_vector_items'):
+            for space_id,sources,segments,windows in handle.execute(
+                    'SELECT space_id,count(DISTINCT entry_id),count(DISTINCT segment_id),count(*) '
+                    'FROM knowledge_vector_items GROUP BY space_id'):
+                space_counts[space_id]={'sources':sources,'segments':segments,'windows':windows}
+        spaces=[{**row,**(space_counts.get(row['id']) or {'sources':None,'segments':None,'windows':None})}
+                for row in spaces]
         active=next((row for row in spaces if row['id']==control['active_space_id']),None)
         counts={row[0]:row[1] for row in handle.execute('SELECT state,count(*) FROM knowledge_vector_jobs GROUP BY state')}
+        # Current index-eligible source/segment counts, using the same authority filters
+        # as eligible(); windows exist only after a build, so they stay unknown here.
+        current=_current_counts(handle)
         building=bool(control['build_id'] and (control['build_until'] or 0)>time.time())
         return {**empty,'status':'building' if building else 'ready' if active else 'failed' if any(row['state']=='failed' for row in spaces) else 'not_ready',
                 'spaces':spaces,'active_space_id':control['active_space_id'],
@@ -61,7 +93,7 @@ def summary(store):
                 'jobs':{**empty['jobs'],**counts},'dirty':bool(control['dirty']),'building':building,
                 'build_id':control['build_id'] if building else None,
                 'error_code':next((row['error_code'] for row in spaces if row['error_code']),''),
-                'last_build':json.loads(control['last_build'])}
+                'last_build':json.loads(control['last_build']),'current':current}
 
 
 def begin_build(store, metadata, profile_id, build_id):
