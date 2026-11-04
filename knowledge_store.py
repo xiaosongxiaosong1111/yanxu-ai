@@ -411,7 +411,7 @@ class KnowledgeStore:
             raise KnowledgeError('invalid_knowledge_query','知识库筛选或分页参数不正确。')
         empty={'entries':[],'total':0,'page':page,'page_size':page_size,'summary':{'total':0,**{s:0 for s in STATUSES},'quality_counts':{s:0 for s in QUALITY_STATES}},'facets':{'units':[],'years':[]}}
         if not self.path.is_file():return empty
-        terms=query.split()[:8];where=[];values=[]
+        derived=segments.natural_terms(query);terms=derived if derived else query.split()[:8];where=[];values=[]
         if status:where.append('status=?');values.append(status)
         if year is not None:where.append('year=?');values.append(year)
         if unit_id:where.append('unit_id=?');values.append(unit_id)
@@ -427,7 +427,11 @@ class KnowledgeStore:
                     missing=not blob.is_file() or blob.stat().st_size>8*1024*1024
                 except (OSError,KnowledgeError):missing=True
                 if missing:self._public(connection,record['id'])
-            if terms and quality not in {'all','excluded'} and all(len(term)>=3 for term in terms) and self._has_fts(connection):
+            if derived:
+                body="instr(lower(title||' '||unit_name||' '||CASE WHEN "+quality_column+"='excluded' THEN '' ELSE full_text END),lower(?))>0"
+                where.append('('+' + '.join('('+body+')' for _ in terms)+')>=?')
+                values.extend(terms);values.append(min(2,len(terms)))
+            elif terms and quality not in {'all','excluded'} and all(len(term)>=3 for term in terms) and self._has_fts(connection):
                 where.append('id IN (SELECT entry_id FROM knowledge_fts WHERE knowledge_fts MATCH ?)')
                 values.append(' AND '.join('"'+term.replace('"','""')+'"' for term in terms))
             else:

@@ -51,6 +51,24 @@ class SegmentRetrievalTests(unittest.TestCase):
         self.assertGreater(result['total'],0)
         self.assertEqual(result['match_mode'],'segment_terms')
 
+    def test_natural_question_uses_derived_terms_instead_of_the_whole_sentence(self):
+        wanted=self.save('wanted')
+        result=self.store.search_segments('2027年合成大学计算机专业跨专业考生要参加加试吗？',unit_id='u1',year=2027,page_size=8)
+        self.assertTrue(result['segments'])
+        self.assertEqual(result['match_mode'],'segment_terms')
+        self.assertIn(wanted['id'],{item['entry_id'] for item in result['segments']})
+        self.assertEqual(result['segments'][0]['match_mode'],'segment_terms')
+
+    def test_natural_question_with_no_known_terms_never_returns_the_whole_corpus(self):
+        self.save('wanted')
+        result=self.store.search_segments('天气晴朗适合去公园散步吗',unit_id='u1',year=2027)
+        self.assertEqual(result['segments'],[])
+
+    def test_entry_search_accepts_the_same_natural_question(self):
+        wanted=self.save('wanted')
+        result=self.store.search('2027年合成大学计算机专业跨专业考生要参加加试吗？')
+        self.assertIn(wanted['id'],{item['id'] for item in result['entries']})
+
     def test_tampered_fallback_original_is_removed_before_count_and_pagination(self):
         bad=self.save('bad')
         good=self.save('good')

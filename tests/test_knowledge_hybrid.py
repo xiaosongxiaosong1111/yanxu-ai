@@ -4,7 +4,7 @@ import threading
 import unittest
 
 from knowledge_store import KnowledgeError
-from knowledge_retrieval import HybridRetriever, reciprocal_rank_fusion
+from knowledge_retrieval import HybridRetriever, reciprocal_rank_fusion, rule_rerank
 
 
 QUALITY={'version':1,'state':'accepted','reusable':True}
@@ -101,10 +101,30 @@ class HybridTests(unittest.TestCase):
         result=HybridRetriever(Store(rows),Index(rows[::-1])).retrieve('计算机招生',limit=2)
         self.assertEqual(result['returned_count'],2);self.assertEqual(result['candidate_count'],4)
         self.assertTrue(result['retrieval']['partial_scope']);self.assertNotIn('total',result)
-        self.assertEqual(result['retrieval']['reranker'],'rule_v1')
+        self.assertEqual(result['retrieval']['reranker'],'rule_v2')
         for row in result['segments']:
             rule=row['rerank']
-            self.assertAlmostEqual(row['retrieval_score'],sum(rule[key] for key in ('rrf','phrase','codes','coverage','redundancy')),7)
+            self.assertAlmostEqual(row['retrieval_score'],sum(rule[key] for key in ('rrf','phrase','codes','coverage','window','bigrams','window_bigrams','novelty','novel_bigrams','heading','entry','overlap','redundancy')),7)
+
+    def test_rerank_prefers_a_window_with_new_terms_and_strips_internal_window_text(self):
+        def candidate(identifier,ordinal,window):
+            return {'id':identifier,'entry_id':'k_'+'a'*24,'ordinal':ordinal,'text':'计算机',
+                    '_window_text':window,'rrf_score':0.,'source':{},'section_path':[]}
+        first=candidate('sg_'+'1'*32,10,'计算机 085404')
+        repeat=candidate('sg_'+'2'*32,20,'计算机 085404')
+        fresh=candidate('sg_'+'3'*32,30,'计算机 301')
+        result=rule_rerank('计算机 085404 301',[first,repeat,fresh],2)
+        self.assertEqual([row['id'] for row in result],['sg_'+'1'*32,'sg_'+'3'*32])
+        self.assertTrue(all('_window_text' not in row for row in result))
+        self.assertGreater(result[1]['rerank']['novelty'],0)
+
+    def test_rerank_penalises_overlapping_read_windows_in_the_same_original(self):
+        def candidate(identifier,ordinal):
+            return {'id':identifier,'entry_id':'k_'+'b'*24,'ordinal':ordinal,'text':'计算机',
+                    '_window_text':'计算机','rrf_score':0.,'source':{},'section_path':[]}
+        near=candidate('sg_'+'4'*32,10);overlap=candidate('sg_'+'5'*32,11);far=candidate('sg_'+'6'*32,40)
+        result=rule_rerank('计算机',[near,overlap,far],2)
+        self.assertEqual([row['id'] for row in result],['sg_'+'4'*32,'sg_'+'6'*32])
 
     def test_limits_private_queries_cancel_and_closing_fail_before_embedding(self):
         row=record(1,'计算机');index=Index([row]);retriever=HybridRetriever(Store([row]),index)

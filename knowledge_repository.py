@@ -5,6 +5,7 @@ import json
 import sqlite3
 
 from knowledge_schema import has_table
+from knowledge_query_terms import analyze as analyze_query, bigrams as query_bigrams, is_natural as natural_query
 from knowledge_segments import build_segments, SEGMENT_VERSION
 
 
@@ -150,7 +151,18 @@ def segment_row(connection, identifier):
         JOIN knowledge_generations g ON g.id=s.generation_id WHERE s.id=?''', (identifier,)).fetchone()
 
 
+def natural_terms(query):
+    """Derived Chinese terms only for an unspaced long question; else empty."""
+    if not natural_query(query):
+        return []
+    return [row['term'] for row in analyze_query(query)]
+
+
 def query_rows(connection, *, query, entry_id, unit_id, year, quality, page, page_size):
+    derived=natural_terms(query)
+    if derived:
+        return _natural_rows(connection,derived=derived,query=query,entry_id=entry_id,unit_id=unit_id,
+                             year=year,quality=quality,page=page,page_size=page_size)
     where,args=_scope(query,entry_id,unit_id,year,quality)
     terms=query.split()[:8]
     if terms and all(len(term) >= 3 for term in terms) and has_table(connection, 'knowledge_segments_fts'):
@@ -165,6 +177,73 @@ def query_rows(connection, *, query, entry_id, unit_id, year, quality, page, pag
     where,args=_document_scope(query,entry_id,unit_id,year,quality)
     rank=' + '.join('CASE WHEN instr(lower(s.search_text),lower(?))>0 THEN 1 ELSE 0 END' for _ in terms)
     return (*_query(connection,where,args,page,page_size,rank,terms),'document_terms')
+
+
+def _natural_rows(connection, *, derived, query, entry_id, unit_id, year, quality, page, page_size):
+    """Rank by weighted derived-term coverage, never by a model score.
+
+    A segment needs only one derived term; the rank rewards segments that carry
+    more of the question. If no segment matches, fall back to documents that
+    contain at least two terms and then any matching segment inside them, which
+    keeps the historical "terms are distributed across one original" notice
+    without ever combining terms from different originals.
+    """
+    weights={row['term']: row['weight'] for row in analyze_query(query)}
+    names=list(dict.fromkeys(derived))
+    where,args=_scope(query,entry_id,unit_id,year,quality,include_terms=False)
+    where.append('('+' OR '.join('instr(lower(s.search_text),lower(?))>0' for _ in names)+')')
+    args.extend(names)
+    joins=_joins(where)
+    total=connection.execute('SELECT count(*) '+joins,args).fetchone()[0]
+    if total:
+        return _window_ranked(connection,joins,args,names,weights,query,page,page_size),total,'segment_terms'
+    if len(names)<2:
+        return [],0,'segment_terms'
+    where,args=_natural_document_scope(query,entry_id,unit_id,year,quality,names)
+    rank=' + '.join('CASE WHEN instr(lower(s.search_text),lower(?))>0 THEN %s ELSE 0 END'
+                    % weights[name] for name in names)
+    return (*_query(connection,where,args,page,page_size,rank,names),'document_terms')
+
+
+def _window_ranked(connection,joins,args,names,weights,query,page,page_size):
+    """Rank segments by the text their bounded read window would expose.
+
+    A table row is often split across neighbouring segments (a program code in
+    one, its subjects in the next), while the reader returns the segment plus
+    its neighbours. Scoring the same neighbourhood avoids dropping the segment
+    that carries the answer just because another line carries the code.
+    """
+    rows=connection.execute('SELECT s.id,s.entry_id,s.generation_id,s.ordinal '+joins,args).fetchall()
+    keys=list(dict.fromkeys((row['entry_id'],row['generation_id']) for row in rows))
+    texts={}
+    for offset in range(0,len(keys),150):
+        chunk=keys[offset:offset+150]
+        clause=' OR '.join('(entry_id=? AND generation_id=?)' for _ in chunk)
+        params=[value for key in chunk for value in key]
+        for item in connection.execute('SELECT entry_id,generation_id,ordinal,search_text '
+                                       'FROM knowledge_segments WHERE '+clause,params):
+            texts[(item['entry_id'],item['generation_id'],item['ordinal'])]=item['search_text'] or ''
+    grams=query_bigrams(query);scored=[]
+    for row in rows:
+        key=(row['entry_id'],row['generation_id'])
+        body=' '.join(texts.get((key,ordinal),'') for ordinal in range(row['ordinal']-1,row['ordinal']+2)).lower()
+        coverage=sum(weights[name] for name in names if name.lower() in body)
+        overlap=sum(1 for gram in grams if gram in body)
+        scored.append((-coverage,-overlap,row['entry_id'],row['ordinal'],row['id']))
+    scored.sort()
+    start=(page-1)*page_size
+    return [(item[4],) for item in scored[start:start+page_size]]
+
+
+def _natural_document_scope(query,entry_id,unit_id,year,quality,names):
+    where,args=_scope(query,entry_id,unit_id,year,quality,include_terms=False)
+    matches=' + '.join('(instr(lower(x.text),lower(?))>0)' for _ in names)
+    where.append('EXISTS (SELECT 1 FROM knowledge_extractions x WHERE x.id=s.extraction_id AND ('
+                 + matches + ')>=?)')
+    args.extend(names);args.append(min(2,len(names)))
+    where.append('('+' OR '.join('instr(lower(s.search_text),lower(?))>0' for _ in names)+')')
+    args.extend(names)
+    return where,args
 
 
 def _scope(query,entry_id,unit_id,year,quality,include_terms=True):
@@ -191,7 +270,11 @@ def _document_scope(query,entry_id,unit_id,year,quality):
 
 
 def matching_sources(connection, *, query,entry_id,unit_id,year,quality):
-    where,args=_document_scope(query,entry_id,unit_id,year,quality)
+    names=natural_terms(query)
+    if names:
+        where,args=_natural_document_scope(query,entry_id,unit_id,year,quality,names)
+    else:
+        where,args=_document_scope(query,entry_id,unit_id,year,quality)
     return connection.execute('SELECT DISTINCT s.entry_id '+_joins(where),args).fetchall()
 
 

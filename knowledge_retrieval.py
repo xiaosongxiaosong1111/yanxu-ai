@@ -5,6 +5,7 @@ import re
 import time
 
 from knowledge_store import KnowledgeError, _text
+from knowledge_query_terms import analyze as analyze_query, bigrams as query_bigrams
 
 _PII=re.compile(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|(?<!\d)1[3-9]\d{9}(?!\d)|(?<!\d)\d{17}[\dXx](?!\d)')
 _MATH={'301','302','303'}
@@ -63,21 +64,69 @@ def _code_compatible(query,body):
     return not requested or not actual or bool(requested&actual)
 
 
-def _features(query,row,seen_entries,seen_text):
-    body=row['text'].lower();terms=query.lower().split()[:8];codes=_positive_codes(query)
+def _pairs(query):
+    analyzed=analyze_query(query)
+    if analyzed:
+        return [(item['term'].lower(),item['weight']) for item in analyzed]
+    return [(term.lower(),1) for term in query.split()[:8]]
+
+
+def _window_text(row):
+    value=row.get('_window_text')
+    return (value if isinstance(value,str) and value else row['text']).lower()
+
+
+def _features(query,row,seen_entries,seen_text,pairs,grams,total,state):
+    """Deterministic lexical agreement plus marginal window coverage.
+
+    Every selected window is read by the caller together with its neighbours, so
+    novelty is measured on the same window body. A candidate that only repeats
+    already-covered terms is less useful than one that exposes a missing code,
+    subject or fee line. No model score enters the ranking.
+    """
+    body=row['text'].lower();window=_window_text(row);codes=_positive_codes(query)
+    own=sum(weight for term,weight in pairs if term in body)
+    hit_weights=sum(weight for term,weight in pairs if term in window)
+    new=sum(weight for term,weight in pairs if term in window and term not in state['terms'])
+    own_grams={gram for gram in grams if gram in body}
+    hit_grams={gram for gram in grams if gram in window}
+    new_grams=hit_grams-state['grams']
+    source=row.get('source') or {}
+    path=row.get('section_path') or []
+    if isinstance(path,list):path=' '.join(str(item) for item in path)
+    heading=(str(source.get('title') or '')+' '+str(path)).lower()
+    ordinal=row.get('ordinal')
+    overlapping=any(entry==row['entry_id'] and type(ordinal) is int and abs(value-ordinal)<=2
+                    for entry,value in state['ordinals'])
     return {'rrf':row['rrf_score'],'phrase':.01 if query.lower() in body else 0.,
             'codes':.01*len(codes&set(_CODES.findall(body)))/max(1,len(codes)),
-            'coverage':.005*sum(term in body for term in terms)/max(1,len(terms)),
+            'coverage':.008*own/total,
+            'window':.03*hit_weights/total,
+            'bigrams':.006*len(own_grams)/max(1,len(grams)),
+            'window_bigrams':.006*len(hit_grams)/max(1,len(grams)),
+            'novelty':.03*new/total,
+            'novel_bigrams':.006*len(new_grams)/max(1,len(grams)),
+            'heading':.004 if any(term in heading for term,_ in pairs) else 0.,
+            'entry':.01 if state['entries'] and row['entry_id'] not in state['entries'] else 0.,
+            'overlap':-.03 if overlapping else 0.,
             'redundancy':-.008 if body in seen_text else -.004 if row['entry_id'] in seen_entries else 0.}
 
 
 def rule_rerank(query,rows,limit):
     remaining=list(rows);selected=[];seen_entries=set();seen_text=set()
+    pairs=_pairs(query);grams=query_bigrams(query);total=sum(weight for _,weight in pairs) or 1
+    state={'terms':set(),'grams':set(),'entries':set(),'ordinals':[]}
     while remaining and len(selected)<limit:
-        scored=[{**row,'rerank':{'version':'rule_v1',**_features(query,row,seen_entries,seen_text)}} for row in remaining]
+        scored=[{**row,'rerank':{'version':'rule_v2',**_features(query,row,seen_entries,seen_text,
+                                                                  pairs,grams,total,state)}} for row in remaining]
         scored=[{**row,'retrieval_score':sum(value for value in row['rerank'].values() if type(value) is float)} for row in scored]
         chosen=min(scored,key=lambda row:(-row['retrieval_score'],row['id']))
-        selected.append(chosen);seen_entries.add(chosen['entry_id']);seen_text.add(chosen['text'].lower())
+        window=_window_text(chosen)
+        state['terms'].update(term for term,_ in pairs if term in window)
+        state['grams'].update(gram for gram in grams if gram in window)
+        state['entries'].add(chosen['entry_id']);state['ordinals'].append((chosen['entry_id'],chosen.get('ordinal')))
+        selected.append({key:value for key,value in chosen.items() if key!='_window_text'})
+        seen_entries.add(chosen['entry_id']);seen_text.add(chosen['text'].lower())
         remaining=[row for row in remaining if row['id']!=chosen['id']]
     return selected
 
@@ -138,7 +187,8 @@ class HybridRetriever:
         identifier=hit.get('id') if isinstance(hit,dict) else None
         if not isinstance(identifier,str) or not re.fullmatch(r'sg_[0-9a-f]{32}',identifier):return None
         try:
-            value=self.store.read_segment(identifier,max_chars=2000,trusted_only=True)['segment']
+            window=self.store.read_segment(identifier,before=2,after=2,max_chars=12000,trusted_only=True)
+            value=window['segment']
             source=self.store.get(value['entry_id']);extraction=source.get('extraction') or {}
             if not _usable(source,scope) or source.get('id')!=value['entry_id']:return None
             if any(value.get(key)!=extraction.get(field) for key,field in [('extraction_id','id'),('generation_id','generation_id')]):return None
@@ -148,6 +198,8 @@ class HybridRetriever:
             public={key:deepcopy(value[key]) for key in _SEGMENT if key in value}
             public['source']={key:deepcopy(source[key]) for key in _SOURCE if key in source}
             public['match_mode']=hit.get('match_mode','segment_terms')
+            public['_window_text']=' '.join(item.get('text','') for item in [value,*window.get('neighbors',[])]
+                                            if isinstance(item.get('text'),str))
             return public
         except Exception:return None
 
@@ -172,7 +224,7 @@ class HybridRetriever:
             'usage':usage,'usage_known':bool(usage_known),
             'retrieval':{'mode':'keyword' if reason else 'hybrid','methods':list(channels),'space_id':vector.get('space_id'),
                 'degraded':bool(reason),'degraded_reason':reason,'partial_scope':True,'usage':usage,
-                'usage_known':bool(usage_known),'reranker':'rule_v1','notice':NOTICE,
+                'usage_known':bool(usage_known),'reranker':'rule_v2','notice':NOTICE,
                 'latency':{'keyword_ms':keyword_ms,'semantic_ms':semantic_ms,
                     'rerank_ms':(time.perf_counter()-rerank_started)*1000,'total_ms':(time.perf_counter()-started)*1000},
                 **({'embedding_latency_ms':vector['latency_ms']} if type(vector.get('latency_ms')) is int else {})}}
