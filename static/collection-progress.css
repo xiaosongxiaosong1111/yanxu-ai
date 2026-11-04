@@ -8,6 +8,6 @@
 .collection-unit-actions a,.collection-unit details a{color:#3657ed;overflow-wrap:anywhere}
 .collection-unit details{margin-top:14px;font-size:14px}
 .collection-unit details li{margin:12px 0}
-.collection-unit details small{display:block;color:#687a99;margin-top:4px}
+.collection-unit details small{display:block;color:#60718e;margin-top:4px}
 .collection-pages{justify-content:flex-start;margin:20px 0}
 @media(max-width:600px){.collection-filters{grid-template-columns:1fr}.collection-unit{padding:14px}.collection-unit-heading{align-items:flex-start;flex-direction:column;gap:4px}}

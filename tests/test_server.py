@@ -84,6 +84,26 @@ class ServerTests(unittest.TestCase):
         self.assertIn('javascript', headers['Content-Type'])
         self.assertNotIn('Python', headers.get('Server', ''))
 
+    def test_static_etag_revalidation_returns_304_without_body(self):
+        status, headers, body = self.request(path='/styles.css')
+        self.assertEqual(status, 200)
+        etag = headers['ETag']
+        self.assertTrue(etag.startswith('"'))
+        status, headers, body = self.request(path='/styles.css', headers={'If-None-Match': etag})
+        self.assertEqual(status, 304)
+        self.assertEqual(body, b'')
+        self.assertNotIn('Content-Length', headers)
+        self.assertEqual(headers['ETag'], etag)
+        status, _, _ = self.request(path='/styles.css', headers={'If-None-Match': '"stale"'})
+        self.assertEqual(status, 200)
+
+    def test_static_etag_changes_when_file_changes(self):
+        _, first, _ = self.request(path='/styles.css')
+        path = self.static / 'styles.css'
+        path.write_text('body{color:white}', encoding='utf-8')
+        _, second, _ = self.request(path='/styles.css')
+        self.assertNotEqual(first['ETag'], second['ETag'])
+
     def test_head_has_length_but_no_body(self):
         status, headers, body = self.request('HEAD')
         self.assertEqual(status, 200)

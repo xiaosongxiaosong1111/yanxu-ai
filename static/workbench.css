@@ -29,7 +29,7 @@
 .wb-field{display:flex;flex-direction:column;gap:7px;font-size:14px;color:var(--muted,#687185);min-width:220px;max-width:100%}
 .wb-field input,.wb-field select{height:47px;padding:10px 12px;border:1px solid #dce1eb;border-radius:7px;background:#fff;color:var(--ink,#172033);font-size:16px;min-width:0;max-width:100%;width:100%}
 .wb-field select{padding-right:34px}
-.wb-field input::placeholder{color:#929cad}
+.wb-field input::placeholder{color:#647085}
 .wb-toolbar>.wb-field{flex:1;max-width:500px}
 .wb-toolbar>.wb-meta{display:flex;flex-wrap:wrap;column-gap:20px;row-gap:7px}
 .wb-empty{text-align:center;background:#fff;border:1px dashed #dce3ef;border-radius:12px;padding:44px 24px;color:var(--muted,#687185)}

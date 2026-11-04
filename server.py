@@ -115,10 +115,11 @@ class AdmissionHandler(BaseHTTPRequestHandler):
         # The development API must not write personal queries or credentials to access logs.
         return
 
-    def _send(self, status, body, content_type='application/json; charset=utf-8', extra=None):
+    def _send(self, status, body, content_type='application/json; charset=utf-8', extra=None, include_length=True):
         self.send_response(status)
         self.send_header('Content-Type', content_type)
-        self.send_header('Content-Length', str(len(body)))
+        if include_length:
+            self.send_header('Content-Length', str(len(body)))
         self.send_header('Cache-Control', 'no-store' if content_type.startswith('application/json') else 'no-cache')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Content-Security-Policy', CSP)
@@ -218,9 +219,22 @@ class AdmissionHandler(BaseHTTPRequestHandler):
         path = (root / ('index.html' if decoded == '/' else decoded.lstrip('/'))).resolve()
         if not path.is_relative_to(root) or not path.is_file() or path.suffix.lower() not in STATIC_TYPES:
             raise ServiceError('not_found', '未找到请求的页面或资源。', 404)
-        try: raw = path.read_bytes()
+        try:
+            stat = path.stat()
+            raw = path.read_bytes()
         except OSError as error: raise ServiceError('not_found', '资源暂不可读取。', 404) from error
-        self._send(200, raw, STATIC_TYPES[path.suffix.lower()])
+        etag = f'"{stat.st_mtime_ns:x}-{stat.st_size:x}"'
+        if self._matches_etag(etag):
+            self._send(304, b'', STATIC_TYPES[path.suffix.lower()], extra={'ETag': etag}, include_length=False)
+            return
+        self._send(200, raw, STATIC_TYPES[path.suffix.lower()], extra={'ETag': etag})
+
+    def _matches_etag(self, etag):
+        header = self.headers.get('If-None-Match')
+        if not header:
+            return False
+        candidates = [part.strip() for part in header.split(',')]
+        return '*' in candidates or etag in candidates or f'W/{etag}' in candidates
 
     def _knowledge_get(self, parsed):
         if parsed.path in READ_ACTIONS:
