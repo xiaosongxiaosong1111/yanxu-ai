@@ -335,7 +335,7 @@ class WorkflowTests(unittest.TestCase):
         task={'query':'计算机','profile':validate_profile({}),'unit_ids':[],'reference_year':2027,'target_year':2028}
         tools=ResearchTools(admission,FakeSettings(),task,self.data,knowledge_store=FakeKnowledge())
         tools.find_candidates({'query':'计算机','unit_id':'2'})
-        self.assertEqual(tools.ensure_algorithms(),['compare_candidates'])
+        self.assertEqual(tools.ensure_algorithms(),['compare_candidates','analyze_decisions'])
         self.assertEqual(tools.algorithm['matching']['summary']['input_count'],2)
         first=tools.usage['algorithm_calls']
         self.assertEqual(tools.ensure_algorithms(),[])
@@ -345,7 +345,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(tools.algorithm['matching']['summary']['input_count'],4)
         self.assertEqual(tools.usage['tool_calls'],0)
         task['profile']=validate_profile({'education':'bachelor'})
-        self.assertEqual(tools.ensure_algorithms(),['compare_candidates'])
+        self.assertEqual(tools.ensure_algorithms(),['compare_candidates','analyze_decisions'])
 
     def test_relative_year_confirmation_is_explicit_and_does_not_mutate_default_year(self):
         task={'query':'想明年考计算机','profile':validate_profile({}),'unit_ids':[],

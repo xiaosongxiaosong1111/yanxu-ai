@@ -38,6 +38,17 @@ class ResearchStoreTests(unittest.TestCase):
         self.assertEqual(self.store.list(1)['tasks'][0]['report']['summary'],'真实任务')
         with self.assertRaises(ResearchError):self.store.list(101)
 
+    def test_delete_removes_task_and_events_but_rejects_unknown_ids(self):
+        row=self.store.create({'query':'408'},'completed');self.store.event(row['id'],'done','完成','可删除。')
+        keep=self.store.create({'query':'计算机'},'completed');kept=self.store.event(keep['id'],'done','保留','不应删除。')
+        self.assertEqual(self.store.delete(row['id']),{'deleted':True,'research_id':row['id']})
+        with self.assertRaises(ResearchError) as error:self.store.get(row['id'])
+        self.assertEqual(error.exception.status,404)
+        self.assertEqual(self.store.get(keep['id'])['events'][0]['id'],kept)
+        self.assertEqual(self.store.list(10)['total'],1)
+        with self.assertRaises(ResearchError):self.store.delete('r_'+'0'*32)
+        with self.assertRaises(ResearchError):self.store.delete('../secret')
+
     def test_event_cursor_does_not_skip_pages_over_two_hundred(self):
         row=self.store.create({'query':'408'},'queued')
         for index in range(203):self.store.event(row['id'],'x','测试事件',str(index))

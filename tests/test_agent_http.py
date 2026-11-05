@@ -71,6 +71,10 @@ class FakeResearch:
         self.calls.append(('continue', payload))
         return {'research_id': payload['research_id'], 'status': 'queued'}
 
+    def delete(self, payload):
+        self.calls.append(('delete', payload))
+        return {'deleted': True, 'research_id': payload['research_id']}
+
     def close(self):
         self.closed = True
 
@@ -134,9 +138,12 @@ class AgentHTTPTests(unittest.TestCase):
         self.assertEqual(status, 200)
         status, _ = self.request('/api/research/continue', {'research_id': 'task-1', 'message': '考虑天津'})
         self.assertEqual(status, 202)
+        status, value = self.request('/api/research/delete', {'research_id': 'task-1'})
+        self.assertEqual(status, 200); self.assertTrue(value['data']['deleted'])
         self.assertEqual(self.research.calls, [('create', {'query': '我想考计算机'}), ('get', 'task-1', 3),
                                               ('list', 4), ('cancel', {'research_id': 'task-1'}),
-                                              ('continue', {'research_id': 'task-1', 'message': '考虑天津'})])
+                                              ('continue', {'research_id': 'task-1', 'message': '考虑天津'}),
+                                              ('delete', {'research_id': 'task-1'})])
 
     def test_unsafe_methods_queries_origins_and_bodies_never_reach_credentials(self):
         for path in ('/api/settings?api_key=secret', '/api/settings/providers?a=1',
@@ -148,7 +155,7 @@ class AgentHTTPTests(unittest.TestCase):
                 status, _ = self.request(path)
                 self.assertEqual(status, 400)
         for path in ('/api/settings/test', '/api/settings/save', '/api/settings/delete', '/api/settings/models',
-                     '/api/research/cancel', '/api/research/continue'):
+                     '/api/research/cancel', '/api/research/continue', '/api/research/delete'):
             status, _ = self.request(path)
             self.assertEqual(status, 405)
         status, _ = self.request('/api/settings/test', {}, headers={'Origin': 'https://outside.example'})

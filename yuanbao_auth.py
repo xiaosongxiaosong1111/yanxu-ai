@@ -53,6 +53,16 @@ def checked_response(value):
             code,message,status='search_unavailable','元宝搜索暂不可用，请检查账号余额及服务状态。',503
         else:code,message,status='provider_request_failed','元宝搜索未接受本次请求，请检查服务状态后重试。',503
         raise TransportError(code,message,status)
-    if not isinstance(body,dict) or not isinstance(body.get('Pages'),list):
+    if not isinstance(body,dict):
+        raise TransportError('invalid_response','元宝搜索响应无法识别，请检查服务权限。',502)
+    if 'Pages' not in body:
+        # SearchPro omits Pages entirely when the index has no hit for the query
+        # (notably with a Site filter). A RequestId plus the echoed Query or
+        # Version identifies that valid empty response without inventing content.
+        empty=(isinstance(body.get('RequestId'),str) and bool(body['RequestId'])
+               and (isinstance(body.get('Query'),str) or isinstance(body.get('Version'),str)))
+        if empty:return {**body,'Pages':[]}
+        raise TransportError('invalid_response','元宝搜索响应无法识别，请检查服务权限。',502)
+    if not isinstance(body.get('Pages'),list):
         raise TransportError('invalid_response','元宝搜索响应无法识别，请检查服务权限。',502)
     return body

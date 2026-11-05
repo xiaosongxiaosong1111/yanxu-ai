@@ -111,6 +111,15 @@ class ResearchStore:
             cursor=connection.execute('INSERT INTO research_events(research_id,payload) VALUES(?,?)',(identifier,encoded))
             return cursor.lastrowid
 
+    def delete(self, identifier):
+        identity(identifier)
+        with self._lock,self._connect() as connection:
+            row=connection.execute('SELECT status FROM research_tasks WHERE id=?',(identifier,)).fetchone()
+            if row is None:raise ResearchError('unknown_research','没有找到这项研究任务。',404)
+            connection.execute('DELETE FROM research_events WHERE research_id=?',(identifier,))
+            connection.execute('DELETE FROM research_tasks WHERE id=?',(identifier,))
+        return {'deleted':True,'research_id':identifier}
+
     def list(self, limit=20):
         if type(limit) is not int or not 1<=limit<=100:
             raise ResearchError('invalid_query','研究列表数量应为1至100。')

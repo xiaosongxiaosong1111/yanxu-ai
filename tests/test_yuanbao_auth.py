@@ -79,7 +79,12 @@ class YuanbaoResponseTests(unittest.TestCase):
         body={'Pages':[],'RequestId':'fixture-request'}
         self.assertEqual(checked_response({'Response':body}),body)
         self.assertEqual(checked_response(body),body)
-        for value in [[],{}, {'Response':[]},{'Response':{'Pages':'bad'}},{'Response':{'Error':'bad'}}]:
+        empty={'RequestId':'fixture-request','Query':'公开查询','Version':'standard'}
+        self.assertEqual(checked_response({'Response':empty}),{**empty,'Pages':[]})
+        self.assertEqual(checked_response(empty),{**empty,'Pages':[]})
+        for value in [[],{}, {'Response':[]},{'Response':{'Pages':'bad'}},
+                      {'Response':{'RequestId':'x'}},{'Response':{'Version':'standard'}},
+                      {'Response':{'Error':'bad'}}]:
             with self.subTest(value=value),self.assertRaises(TransportError):checked_response(value)
 
 

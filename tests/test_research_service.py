@@ -7,6 +7,7 @@ import unittest
 from unittest.mock import Mock
 from unittest.mock import patch
 
+from provider_catalog import TransportError
 from research_service import ResearchService, ResearchError
 
 
@@ -102,6 +103,31 @@ class ResearchServiceTests(unittest.TestCase):
         for payload in ({'query':''},{'query':'x'*4001},{'query':'Bearer secretABCDEF'},{'query':'408','unit_ids':['unregistered']},{'query':'408','unexpected':1}):
             with self.subTest(payload=payload),self.assertRaises(ResearchError):service.create(payload)
 
+    def test_delete_requires_terminal_task_and_valid_payload(self):
+        service,_,_=self.make(enabled=False)
+        task=service.create({'query':'408'})
+        self.assertEqual(service.delete({'research_id':task['id']}),{'deleted':True,'research_id':task['id']})
+        with self.assertRaises(ResearchError) as error:service.get(task['id'])
+        self.assertEqual(error.exception.status,404)
+        for payload in ({},{'research_id':''},{'research_id':'r_'+'0'*32},{'research_id':task['id'],'extra':1}):
+            with self.subTest(payload=payload),self.assertRaises(ResearchError):service.delete(payload)
+
+    def test_delete_refuses_a_task_whose_worker_is_still_active(self):
+        service,ai,_=self.make()
+        entered=threading.Event();release=threading.Event()
+        def block(*args,**kwargs):
+            entered.set();release.wait(2)
+            return {'message':{'role':'assistant','content':'完成','tool_calls':[]}}
+        ai.chat=block
+        task=service.create({'query':'408'});self.assertTrue(entered.wait(1))
+        with self.assertRaises(ResearchError) as error:service.delete({'research_id':task['id']})
+        self.assertEqual((error.exception.code,error.exception.status),('research_running',409))
+        service.cancel({'research_id':task['id']});release.set()
+        for _ in range(100):
+            if task['id'] not in service._controls:break
+            time.sleep(.01)
+        self.assertEqual(service.delete({'research_id':task['id']})['deleted'],True)
+
     def test_polling_never_calls_models_and_exception_text_is_private(self):
         service,ai,_=self.make();ai.chat=Mock(side_effect=RuntimeError('secret-test-not-for-output C:/private'))
         done=wait_done(service,service.create({'query':'408'})['id'])
@@ -109,6 +135,15 @@ class ResearchServiceTests(unittest.TestCase):
         service.get(done['id']);service.list(10)
         self.assertEqual(ai.chat.call_count,before)
         self.assertNotIn('secret-test-not-for-output',str(done));self.assertNotIn('C:/private',str(done))
+
+    def test_recoverable_provider_failure_keeps_partial_results_and_a_safe_reason(self):
+        service,ai,_=self.make()
+        ai.chat=Mock(side_effect=TransportError('provider_unavailable','模型服务暂时不可用，请稍后重试。',503))
+        done=wait_done(service,service.create({'query':'408'})['id'])
+        self.assertEqual(done['status'],'partial')
+        self.assertIsNone(done['error'])
+        self.assertTrue(any('模型服务暂时不可用' in gap for gap in done['report']['gaps']))
+        self.assertNotIn('secret-test-not-for-output',str(done))
 
     def test_cancel_and_immediate_continue_cannot_overlap_the_old_call(self):
         service,ai,_=self.make()

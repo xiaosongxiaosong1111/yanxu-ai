@@ -10,8 +10,10 @@ import socket
 import time
 from urllib.parse import urlsplit
 
+from decision_engine import analyze as decision_analysis
 from evidence import exam_unresolved_reason
-from grad_engine import match_programs, rank_order_key, validate_profile
+from evidence_ledger import audit as evidence_audit
+from grad_engine import EngineValidationError, match_programs, rank_order_key, validate_profile
 from planning_engine import plan_routes, suggest_adjustments
 from public_sources import fetch_official_document, official_source_url, SourceError
 from research_store import ResearchError
@@ -26,7 +28,7 @@ SKILL_CATALOG=(
     ('understand-intent','理解需求',('find_units','find_candidates','propose_profile')),
     ('research-official-sources','研究官方资料',('find_units','find_candidates','search_official_sources','search_knowledge','search_knowledge_segments')),
     ('verify-evidence','核对原文依据',('read_official_source','search_knowledge','search_knowledge_segments','read_knowledge_segment')),
-    ('compare-plans','比较备考方案',('compare_candidates','plan_subject_routes','suggest_adjustments')),
+    ('compare-plans','比较备考方案',('compare_candidates','analyze_decisions','plan_subject_routes','suggest_adjustments')),
     ('assess-transfer-options','复试与调剂研究',('read_knowledge','read_official_source','search_official_sources')),
 )
 _SECRET=re.compile(r'\b(?:sk-[A-Za-z0-9_-]{8,}|Bearer\s+\S{6,}|AKID[A-Za-z0-9]{12,}|'
@@ -142,6 +144,10 @@ TOOLS=[
             {'program_ids':{'type':'array','items':{'type':'string'},'maxItems':12}}),
     _schema('suggest_adjustments','试算最小条件调整，不修改保存的个人条件，不放宽学历等资格；仅分析显式列出的科目数、地区、年费情景。',
             {'allowed_changes':{'type':'object'},'program_ids':{'type':'array','items':{'type':'string'},'maxItems':12}},('allowed_changes',)),
+    _schema('analyze_decisions','在已有候选上计算：先确认哪个未知条件最影响前k名、前k名在显式情景中的稳定性、以及按学校或地区分散的推荐。只使用已填条件和真实候选，不补造字段，不输出录取概率。',
+            {'program_ids':{'type':'array','items':{'type':'string'},'maxItems':12},'top_k':{'type':'integer'},
+             'scenarios':{'type':'array','maxItems':8,'items':{'type':'object','additionalProperties':False,
+                 'properties':{'name':{'type':'string'},'changes':{'type':'object'}},'required':['name','changes']}}}),
     _schema('read_knowledge','读取官方规则知识索引与适用年度，规则和来源链接不能替代具体学校目录。',
             {'topic':{'type':'string','enum':['overview','subjects','evidence','transfer','years']}}),
     _schema('search_knowledge','优先检索本机已积累的公共资料。缓存保留原读取日期与年度，不等于刚联网核验；不能把线索当作已采用事实。',
@@ -169,6 +175,7 @@ class ResearchTools:
         self._knowledge_states={};self._filtered_sources=set()
         self._knowledge_segments={};self._knowledge_invalidated=set();self._trusted_knowledge_ids=set()
         self.loaded_skills=();self.executed_tools=set();self._algorithm_signature=None
+        self._memo={}
         self.usage={'searches':0,'documents':0,'tool_calls':0,'model_calls':0,'rounds':0,'total_tokens':0,
                     'algorithm_calls':0,'embedding_calls':0,'successful_embedding_calls':0,
                     'embedding_input_tokens':0,'embedding_usage_known':True}
@@ -234,20 +241,42 @@ class ResearchTools:
 
     def run(self,name,args):
         self._check_control()
+        key=self._memo_key(name,args)
+        if key is not None and key in self._memo:
+            # The same external call with byte-identical arguments cannot
+            # produce a new answer inside one turn. Reuse the stored result
+            # instead of paying for the same search or document read twice.
+            # Local tools stay uncached: catalog revisions and knowledge
+            # generations can change mid-turn and must be re-read.
+            result=deepcopy(self._memo[key]);result['repeated_call']=True
+            notice='本轮已执行过完全相同的调用，这里直接复用当时的结果，未重复消耗检索或原文读取预算。'
+            result['notice']=(result['notice']+' '+notice) if isinstance(result.get('notice'),str) else notice
+            return result
         if self.usage['tool_calls']>=LIMITS['max_tool_calls']:
             raise ResearchError('research_budget_exceeded','已达到本轮工具调用上限。',409)
         self.usage['tool_calls']+=1
         handlers={'find_units':self.find_units,'find_candidates':self.find_candidates,
                   'search_official_sources':self.search_sources,'read_official_source':self.read_source,
-                  'compare_candidates':self.compare,'plan_subject_routes':self.routes,
+                  'compare_candidates':self.compare,'analyze_decisions':self.analyze_decisions,
+                  'plan_subject_routes':self.routes,
                   'suggest_adjustments':self.adjustments,'read_knowledge':self.knowledge,'propose_profile':self.propose_profile,
                   'search_knowledge':self.search_knowledge,'search_knowledge_segments':self.search_segments,
                   'read_knowledge_segment':self.read_segment}
         if name not in handlers:raise ResearchError('unknown_tool','该操作不在允许的研究工具中。')
         result=handlers[name](args)
         self._check_control()
-        if not isinstance(result,dict) or not result.get('error'):self.executed_tools.add(name)
+        if not isinstance(result,dict) or not result.get('error'):
+            self.executed_tools.add(name)
+            if key is not None:self._memo[key]=deepcopy(result)
         return result
+
+    REPEATABLE_TOOLS=frozenset({'search_official_sources','read_official_source'})
+
+    @classmethod
+    def _memo_key(cls,name,args):
+        if name not in cls.REPEATABLE_TOOLS or not isinstance(args,dict):return None
+        try:return name+'\0'+json.dumps(args,sort_keys=True,ensure_ascii=False,allow_nan=False)
+        except (TypeError,ValueError):return None
 
     def _check_control(self):
         if time.monotonic()>=self.deadline:raise ResearchError('research_budget_exceeded','已达到本轮研究时间上限。',409)
@@ -262,9 +291,24 @@ class ResearchTools:
         return {'units':values[:20],'total':len(values),'truncated':len(values)>20,'scope':'national_unit_index_not_complete_program_catalog'}
 
     def find_candidates(self,args):
-        _object(args,('query','unit_id'));query=text(args.get('query'),120)
+        _object(args,('query','unit_id'));requested=text(args.get('query'),120)
         units,scope_mode=self._candidate_scope(args.get('unit_id'))
-        scan=self._scan_candidates(self._candidate_query(query),units)
+        query=self._candidate_query(requested)
+        scan=self._scan_candidates(query,units)
+        effective,relaxed=query,None
+        if not scan['programs'] and scan['complete'] and scan['interrupted'] is None:
+            # A natural-language query such as "南开大学 计算机 408 考研" is
+            # usually treated as one literal string by the catalog index.
+            # Retry single meaningful terms rather than returning an empty
+            # candidate set; the response records that the query was relaxed.
+            for term in self._relaxed_terms(query,tuple(unit.get('name','') for unit in self.units.values()))[:4]:
+                trial=self._scan_candidates(self._candidate_query(term),units)
+                if trial['interrupted'] is not None:
+                    scan=trial
+                    break
+                if trial['programs']:
+                    scan,effective,relaxed=trial,term,{'requested':query,'effective':term}
+                    break
         for message in scan['warnings']:
             if message not in self.gaps:self.gaps.append(message)
         screened=match_programs(scan['programs'],self.task['profile'])
@@ -276,13 +320,49 @@ class ResearchTools:
         if not scan['complete'] and not any('部分' in gap or '尚未' in gap for gap in self.gaps):
             self.gaps.append('本轮尚未遍历该查询的全部方向；已按实际扫描范围先硬筛再精选，结果标记为部分。')
         self.candidate_metrics=self._candidate_metrics(scan,screened,selected,query_ids,scope_mode,units)
+        notice=self._candidate_notice(scan,units,scope_no_match,self.candidate_metrics['carried_over_count'])
+        if relaxed:
+            notice=f"检索词“{requested}”没有命中，已改用“{effective}”放宽检索；仍只使用已发布目录与条件筛选。"+notice
+        # Keep the relaxation visible in the persisted report, not only in the
+        # tool result the model sees; the UI must not silently change the query.
+        self.candidate_metrics={**self.candidate_metrics,'requested_query':requested,
+                                'effective_query':effective,'query_relaxed':bool(relaxed)}
         result={**self.candidate_metrics,'candidates':[self._candidate(row) for row in selected],
                 'status':'complete' if scan['complete'] else 'partial',
                 'verification_mode':'published_snapshot','national_complete':False,
-                'notice':self._candidate_notice(scan,units,scope_no_match,self.candidate_metrics['carried_over_count'])}
+                'requested_query':requested,'effective_query':effective,'query_relaxed':bool(relaxed),
+                'notice':notice}
         if scan['interrupted'] is not None and scan['interrupted'].code=='cancelled':
             raise scan['interrupted']
         return result
+
+    @staticmethod
+    def _relaxed_terms(query,names=()):
+        stop={'考研','硕士','研究生','招生','专业','目录','考试','科目','备考','真题','参考书','院校','学校'}
+        school={name for name in names if isinstance(name,str) and len(name)>=4}
+        terms,deferred=[],[]
+        def add(term):
+            term=term.strip()
+            if len(term)<2 or term in stop or term in terms or term in deferred:return
+            if term in school:deferred.append(term);return
+            if any(name in term for name in school):return
+            terms.append(term)
+        def add_parts(value):
+            for part in re.findall(r'[一-鿿]+|[A-Za-z]+|\d{3,4}',value):add(part)
+        # Subject codes are the most specific fallback; generic school names
+        # are tried last so a broad school query does not hide the major.
+        for code in re.findall(r'(?<!\d)\d{3}(?!\d)',query):add(code)
+        for name in sorted(school,key=len,reverse=True):
+            if name not in query:continue
+            add(name)
+            rest=query.replace(name,'',1)
+            for word in stop:rest=rest.replace(word,' ')
+            add_parts(rest)
+            break
+        core=query
+        for word in stop:core=core.replace(word,' ')
+        for term in re.split(r'[\s,，、;；/]+',core):add_parts(term)
+        return [*terms,*deferred]
 
     def _candidate_scope(self,uid):
         if uid:
@@ -707,6 +787,19 @@ class ResearchTools:
         self.executed_tools.add('suggest_adjustments')
         return result
 
+    def analyze_decisions(self,args):
+        _object(args,('program_ids','top_k','scenarios'));top_k=args.get('top_k',5);scenarios=args.get('scenarios',[])
+        if type(top_k) is not int or not 1<=top_k<=12:
+            raise ResearchError('invalid_tool_arguments','前k名数量必须为1至12的整数。')
+        if not isinstance(scenarios,list) or len(scenarios)>8:
+            raise ResearchError('invalid_tool_arguments','试算场景必须为最多8项的数组。')
+        try:result=decision_analysis(self._selected(args),self.task['profile'],top_k=top_k,scenarios=scenarios)
+        except EngineValidationError as error:
+            raise ResearchError('invalid_tool_arguments',str(error)) from error
+        self.algorithm['decision_intelligence']=result
+        self.executed_tools.add('analyze_decisions')
+        return result
+
     def ensure_algorithms(self):
         if not self.programs and not (self.candidate_metrics and self.candidate_metrics.get('scanned_count',0)):return []
         stop=self.stop_event
@@ -717,6 +810,7 @@ class ResearchTools:
         if signature==self._algorithm_signature:return []
         self.algorithm.pop('adjustments',None)
         self.compare({});actions=['compare_candidates']
+        self.analyze_decisions({});actions.append('analyze_decisions')
         units={subject.get('exam_unit') for subject in self.task['profile'].get('subjects',[])}
         expected={subject.get('exam_unit') for row in self.programs.values() for subject in row.get('subjects',[])}
         if expected and expected<=units:
@@ -839,6 +933,7 @@ class ResearchTools:
         actual_questions=self.questions()
         if self.profile_proposal:actual_questions=[{'field':'profile_proposal','label':'请确认识别到的备考条件是否准确。','message':'确认后才用于新一轮算法。','options':[]}]
         plan=self.plan(actual_questions)
+        decisions=self.decisions()
         return {'summary':f"本轮整理了{len({row.get('unit_id') for row in candidates})}所学校的{len(candidates)}个已发布候选、{len(self.sources)}份来源或检索线索。",
                 'plan':plan,
                 'assistant_summary':assistant_summary,'questions':actual_questions,'candidates':candidates,
@@ -847,7 +942,9 @@ class ResearchTools:
                 'inheritance':deepcopy(self.inheritance),
                 'field_candidates':deepcopy(self.field_candidates),
                 'field_applications':deepcopy(self.field_applications),
-                'decisions':self.decisions(),
+                'decisions':decisions,
+                'evidence_ledger':evidence_audit(decisions),
+                'decision_intelligence':deepcopy(self.algorithm.get('decision_intelligence')),
                 'skills':self.skills(),'knowledge':{'saved_count':len(self.saved_sources),'cache_hits':len(self.cache_hits),
                     'accepted_count':sum(state=='accepted' for state in self._knowledge_states.values()),
                     'pending_count':sum(state=='pending' for state in self._knowledge_states.values()),'filtered_count':len(self._filtered_sources),

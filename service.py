@@ -383,6 +383,9 @@ class AdmissionService:
     def research_continue(self, payload):
         return self._extension_call('research', 'continue_research', payload)
 
+    def research_delete(self, payload):
+        return self._extension_call('research', 'delete', payload)
+
     def knowledge_get(self, entry_id=None, q='', status='', year=None, unit_id='', page=1, page_size=12, quality='accepted'):
         if entry_id is not None:
             return self._extension_call('knowledge', 'get', _text(entry_id, 100))
@@ -873,6 +876,25 @@ class AdmissionService:
         except (ValueError, TypeError, UnicodeError) as error:
             raise ServiceError('search_invalid_response', '元宝检索返回的数据需要重新核验。', 502) from error
 
+    @staticmethod
+    def _search_pages(body, roots):
+        """Keep only links on an official root domain; count the rest honestly."""
+        results, rejected, malformed = [], 0, 0
+        for page in body['Pages'][:50]:
+            try:
+                item = json.loads(page) if isinstance(page, str) else page
+                parsed = _http_url(item.get('url')) if isinstance(item, dict) else None
+                if not parsed or not any(parsed.hostname == root or parsed.hostname.endswith('.' + root) for root in roots):
+                    rejected += 1
+                    continue
+                results.append({'title': str(item.get('title', ''))[:300], 'url': item['url'],
+                                'published_at': str(item.get('date', ''))[:100],
+                                'summary': str(item.get('content') or item.get('passage') or '')[:2400],
+                                'source_status': 'official_domain_unverified_content'})
+            except (ValueError, TypeError):
+                malformed += 1
+        return results, rejected, malformed
+
     def search(self, payload):
         self._payload(payload, ('unit_id', 'year', 'kind'), ('unit_id', 'year', 'kind'))
         if self._catalog.available():
@@ -901,21 +923,26 @@ class AdmissionService:
             raise ServiceError(error.code, error.message, error.status) from None
         request = Request(url, raw, headers=headers, method='POST')
         body = self._search_response(request)
-        results, rejected, malformed = [], 0, 0
-        for page in body['Pages'][:50]:
+        results, rejected, malformed = self._search_pages(body, roots)
+        site_fallback = False
+        if site and (not body['Pages'] or not results):
+            # SearchPro's Site filter matches exact indexed hosts, so a school
+            # site can miss its own graduate subdomain, and a non-empty page set
+            # can still contain only non-official hosts. Retry once without the
+            # filter; official-domain enforcement below still applies.
+            fallback_body = {key: value for key, value in request_body.items() if key != 'Site'}
             try:
-                item = json.loads(page) if isinstance(page, str) else page
-                parsed = _http_url(item.get('url')) if isinstance(item, dict) else None
-                if not parsed or not any(parsed.hostname == root or parsed.hostname.endswith('.' + root) for root in roots):
-                    rejected += 1
-                    continue
-                results.append({'title': str(item.get('title', ''))[:300], 'url': item['url'],
-                                'published_at': str(item.get('date', ''))[:100],
-                                'summary': str(item.get('content') or item.get('passage') or '')[:2400],
-                                'source_status': 'official_domain_unverified_content'})
-            except (ValueError, TypeError):
-                malformed += 1
+                fallback_url, fallback_raw, fallback_headers = build_request(config, fallback_body)
+            except TransportError as error:
+                raise ServiceError(error.code, error.message, error.status) from None
+            fallback_request = Request(fallback_url, fallback_raw, headers=fallback_headers, method='POST')
+            fallback_result = self._search_response(fallback_request)
+            fallback_rows, fallback_rejected, fallback_malformed = self._search_pages(fallback_result, roots)
+            if fallback_rows or (not body['Pages'] and fallback_result['Pages']):
+                body, site_fallback = fallback_result, True
+                results, rejected, malformed = fallback_rows, fallback_rejected, fallback_malformed
         return {'provider': 'yuanbao_search', 'query': query, 'checked_at': _now(),
                 'request_id': str(body.get('RequestId', ''))[:120], 'results': results,
                 'rejected_count': rejected, 'malformed_count': malformed,
+                'site_fallback': site_fallback,
                 'notice': '检索用于发现来源；官方域名结果仍需核对原文与适用年度，返回结果不是完整目录。'}

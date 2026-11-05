@@ -277,10 +277,10 @@ class AdmissionHandler(BaseHTTPRequestHandler):
                     or 'research_id' not in query and 'after_event' in query):
                 raise ServiceError('invalid_query', '请选择研究任务，或仅指定列表条数。')
             self._json(self.server.service.research_get(**query))
-        elif path.startswith('/api/settings/') or path in {'/api/research/cancel', '/api/research/continue'}:
+        elif path.startswith('/api/settings/') or path in {'/api/research/cancel', '/api/research/continue', '/api/research/delete'}:
             self._query(parsed, ())
             known = {'/api/settings/models', '/api/settings/test', '/api/settings/save', '/api/settings/delete',
-                     '/api/research/cancel', '/api/research/continue'}
+                     '/api/research/cancel', '/api/research/continue', '/api/research/delete'}
             if path not in known:
                 raise ServiceError('not_found', '未找到此接口。', 404)
             raise ServiceError('method_not_allowed', '此接口需要 POST 请求。', 405)
@@ -345,7 +345,8 @@ class AdmissionHandler(BaseHTTPRequestHandler):
         extension_routes = {'/api/settings/models': 'settings_models', '/api/settings/test': 'settings_test',
                             '/api/settings/save': 'settings_save', '/api/settings/delete': 'settings_delete',
                             '/api/research': 'research_create', '/api/research/cancel': 'research_cancel',
-                            '/api/research/continue': 'research_continue'}
+                            '/api/research/continue': 'research_continue',
+                            '/api/research/delete': 'research_delete'}
         if parsed.path in extension_routes:
             self._query(parsed, ())
             if (parsed.path in {'/api/settings/models', '/api/settings/test'}

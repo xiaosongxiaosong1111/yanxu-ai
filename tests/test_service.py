@@ -568,6 +568,63 @@ class ServiceTests(unittest.TestCase):
         self.assertNotIn('test-key', json.dumps(result))
         self.assertEqual(result['results'][0]['source_status'], 'official_domain_unverified_content')
 
+    def test_search_retries_without_site_when_the_site_filter_is_empty(self):
+        bodies, responses = [], [
+            {'Response': {'RequestId': 'req-empty', 'Query': '公开查询', 'Version': 'standard'}},
+            {'Response': {'Pages': [json.dumps({'title': '目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
+                          'RequestId': 'req-wide'}},
+        ]
+        def opener(request, timeout):
+            bodies.append(json.loads(request.data))
+            return Response(json.dumps(responses[len(bodies) - 1]).encode())
+        service = AdmissionService(self.data, engine=self.engine, search_api_key='test-key', search_opener=opener)
+        result = service.search({'unit_id': '123', 'year': 2027, 'kind': 'catalog'})
+        self.assertEqual(len(bodies), 2)
+        self.assertIn('Site', bodies[0])
+        self.assertNotIn('Site', bodies[1])
+        self.assertTrue(result['site_fallback'])
+        self.assertEqual(result['request_id'], 'req-wide')
+        self.assertEqual([row['url'] for row in result['results']], ['https://grad.a.edu.cn/catalog'])
+
+    def test_search_retries_without_site_when_every_site_result_is_rejected(self):
+        bodies, responses = [], [
+            {'Response': {'Pages': [json.dumps({'title': '转载', 'url': 'https://unrelated.example/info'}),
+                                    json.dumps({'title': '伪域名', 'url': 'https://a.edu.cn.evil.example/info'}),
+                                    'not-json'], 'RequestId': 'req-site'}},
+            {'Response': {'Pages': [json.dumps({'title': '目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
+                          'RequestId': 'req-wide'}},
+        ]
+        def opener(request, timeout):
+            bodies.append(json.loads(request.data))
+            return Response(json.dumps(responses[len(bodies) - 1]).encode())
+        service = AdmissionService(self.data, engine=self.engine, search_api_key='test-key', search_opener=opener)
+        result = service.search({'unit_id': '123', 'year': 2027, 'kind': 'catalog'})
+        self.assertEqual(len(bodies), 2)
+        self.assertIn('Site', bodies[0])
+        self.assertNotIn('Site', bodies[1])
+        self.assertTrue(result['site_fallback'])
+        self.assertEqual(result['request_id'], 'req-wide')
+        self.assertEqual([row['url'] for row in result['results']], ['https://grad.a.edu.cn/catalog'])
+        self.assertEqual((result['rejected_count'], result['malformed_count']), (0, 0))
+
+    def test_search_keeps_the_site_result_when_the_retry_finds_nothing_official(self):
+        bodies, responses = [], [
+            {'Response': {'Pages': [json.dumps({'title': '转载', 'url': 'https://unrelated.example/info'})],
+                          'RequestId': 'req-site'}},
+            {'Response': {'Pages': [json.dumps({'title': '同样非官方', 'url': 'https://another.example/info'})],
+                          'RequestId': 'req-wide'}},
+        ]
+        def opener(request, timeout):
+            bodies.append(json.loads(request.data))
+            return Response(json.dumps(responses[len(bodies) - 1]).encode())
+        service = AdmissionService(self.data, engine=self.engine, search_api_key='test-key', search_opener=opener)
+        result = service.search({'unit_id': '123', 'year': 2027, 'kind': 'catalog'})
+        self.assertEqual(len(bodies), 2)
+        self.assertFalse(result['site_fallback'])
+        self.assertEqual(result['request_id'], 'req-site')
+        self.assertEqual(result['results'], [])
+        self.assertEqual(result['rejected_count'], 1)
+
     def test_search_errors_do_not_echo_response_or_key(self):
         for error in [HTTPError('https://x', 429, 'sensitive key', {}, None),
                       HTTPError('https://x', 401, 'sensitive key', {}, None),

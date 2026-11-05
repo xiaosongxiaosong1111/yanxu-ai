@@ -45,6 +45,48 @@ class ResearchToolsTests(unittest.TestCase):
         self.assertEqual(result['verification_mode'],'published_snapshot')
         self.assertEqual(self.tools.report()['coverage']['candidate_count'],1)
 
+    def test_identical_repeated_calls_are_reused_without_extra_budget(self):
+        self.search_response()
+        first=self.tools.run('search_official_sources',{'query':'目录'})
+        calls=self.network.request_json.call_count
+        second=self.tools.run('search_official_sources',{'query':'目录'})
+        self.assertNotIn('repeated_call',first)
+        self.assertTrue(second['repeated_call'])
+        self.assertIn('未重复消耗',second['notice'])
+        self.assertEqual(second['results'],first['results'])
+        self.assertEqual(self.network.request_json.call_count,calls)
+        self.assertEqual(self.tools.usage['searches'],1)
+        other=self.tools.run('search_official_sources',{'query':'招生简章'})
+        self.assertNotIn('repeated_call',other)
+        self.assertEqual(self.network.request_json.call_count,calls+1)
+
+    def test_natural_language_candidate_query_retries_terms_and_labels_the_relaxation(self):
+        class LiteralSpaceAdmission(FakeAdmission):
+            def catalog_programs(self,**query):
+                if ' ' in str(query.get('q','')).strip():
+                    return {'programs':[],'total':0,'revision':'fixture-r1'}
+                return super().catalog_programs(**query)
+        tools=ResearchTools(LiteralSpaceAdmission(),self.settings,self.task,self.data,network=self.network,source_fetcher=self.fetcher)
+        self.assertEqual(ResearchTools._relaxed_terms('南开大学 计算机 408 考研',('南开大学',)),['408','计算机','南开大学'])
+        self.assertEqual(ResearchTools._relaxed_terms('南开大学计算机408考研',('南开大学',))[:3],['408','计算机','南开大学'])
+        result=tools.find_candidates({'query':'计算机 408 考研','unit_id':'123'})
+        self.assertTrue(result['query_relaxed'])
+        self.assertEqual(result['requested_query'],'计算机 408 考研')
+        self.assertEqual(result['effective_query'],'408')
+        self.assertEqual([row['id'] for row in result['candidates']],['p1'])
+        self.assertIn('放宽检索',result['notice'])
+        self.assertTrue(tools.candidate_metrics['query_relaxed'])
+        selection=tools.report()['coverage']['selection']
+        self.assertEqual(selection['requested_query'],'计算机 408 考研')
+        self.assertEqual(selection['effective_query'],'408')
+        national=ResearchTools(LiteralSpaceAdmission(),self.settings,
+                               {**self.task,'unit_ids':[],'profile':{**self.task['profile'],'provinces':[]}},
+                               self.data,network=self.network,source_fetcher=self.fetcher)
+        widened=national.find_candidates({'query':'计算机 408 考研'})
+        self.assertTrue(widened['query_relaxed'])
+        self.assertEqual(widened['scope_mode'],'national_query')
+        self.assertEqual([row['id'] for row in widened['candidates']],['p1'])
+
     def test_scope_and_arguments_do_not_expand_silently(self):
         self.task['unit_ids']=['other']
         for name,args in [('find_candidates',{'query':'408','unit_id':'123'}),('find_candidates',{'query':'x','extra':True}),
@@ -128,6 +170,22 @@ class ResearchToolsTests(unittest.TestCase):
         for changes in ({},{'education':['bachelor']},{'max_subject_changes':[0,1,2,3,4]}):
             with self.subTest(changes=changes),self.assertRaises((ResearchError,ValueError)):
                 self.tools.adjustments({'allowed_changes':changes})
+
+    def test_decision_support_uses_real_candidates_and_stays_bounded(self):
+        self.tools.find_candidates({'query':'408'})
+        result=self.tools.run('analyze_decisions',{'top_k':3})
+        self.assertEqual(result['version'],'decision_v1')
+        self.assertEqual(result['value_of_information']['top_k'],3)
+        self.assertLessEqual(len(result['stability']['scenarios']),8)
+        self.assertIn('decision_intelligence',self.tools.algorithm)
+        report=self.tools.report()
+        self.assertIn('decision_intelligence',report)
+        self.assertEqual(report['evidence_ledger']['version'],'evidence_ledger_v1')
+        self.assertEqual(report['evidence_ledger']['summary']['claim_count'],
+                         sum(len(row['reasons']) for row in report['decisions']))
+        with self.assertRaises(ResearchError):self.tools.run('analyze_decisions',{'top_k':0})
+        with self.assertRaises(ResearchError):self.tools.run('analyze_decisions',{'scenarios':[{'name':'x','changes':{'invented':1}}]})
+        with self.assertRaises(ResearchError):self.tools.run('analyze_decisions',{'scenarios':[{'name':'x','changes':{'provinces':['天津']}}]*9})
 
     def test_unresolved_exam_records_are_excluded_from_computation(self):
         self.admission.rows[0]['exam_matching_supported']=False

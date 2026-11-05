@@ -7,6 +7,7 @@ import threading
 import time
 
 from grad_engine import validate_profile
+from provider_catalog import TransportError
 from research_store import ResearchError, ResearchStore, identity
 from research_tools import LIMITS, TOOLS, ResearchTools, text, _reusable_knowledge
 import research_knowledge
@@ -92,6 +93,15 @@ class ResearchService:
         with self._lock:
             task=self._current_task(self.store.get(research_id,after_event))
             return {**task,'can_continue':task['status'] in _TERMINAL and research_id not in self._controls and not self._stopped.is_set()}
+
+    def delete(self,payload):
+        _payload(payload,('research_id',),('research_id',));identifier=identity(payload['research_id'])
+        with self._lock:
+            task=self.store.get(identifier)
+            if task['status'] not in _TERMINAL or identifier in self._controls:
+                raise ResearchError('research_running','这项研究仍在运行，请稍后重试或先取消。',409)
+            self._controls.pop(identifier,None)
+            return self.store.delete(identifier)
 
     def list(self,limit=20):
         result=self.store.list(limit);cache={}
@@ -346,8 +356,10 @@ class ResearchService:
             explanation='';questions=[]
             for round_index in range(LIMITS['max_rounds']):
                 if stop.is_set() or self._stopped.is_set():status='cancelled';break
-                if time.monotonic()-started>LIMITS['max_seconds'] or tools.usage['total_tokens']>=LIMITS['max_total_tokens']:
-                    tools.gaps.append('本轮达到研究预算，已停止新增调用；可以查看当前成果后继续。');break
+                if time.monotonic()-started>LIMITS['max_seconds']:
+                    tools.gaps.append('已达到本轮研究时间预算，停止新增调用并保留当前成果。');break
+                if tools.usage['total_tokens']>=LIMITS['max_total_tokens']:
+                    tools.gaps.append('已达到本轮模型用量预算，停止新增调用并保留当前成果。');break
                 tools.usage['rounds']=round_index+1;tools.usage['model_calls']+=1
                 response=client.chat(config,deepcopy(self._context(base_messages,messages,tools)),tools=TOOLS,stop_event=combined_stop)
                 if stop.is_set() or self._stopped.is_set():status='cancelled';break
@@ -399,22 +411,27 @@ class ResearchService:
             explanation,questions=self._explanation('',tools)
             self.store.update(identifier,status=status,report=tools.report(explanation,questions),usage=tools.usage,error=None)
             self.store.event(identifier,'finished','本轮研究已结束','可以查看候选、原文、算法结果和待补资料，再调整偏好继续。',event_type=status)
-        except Exception:
+        except Exception as error:
             cancelled=stop.is_set() or self._stopped.is_set()
             exhausted=not cancelled and time.monotonic()-started>=LIMITS['max_seconds']
-            if exhausted and tools:tools.gaps.append('已达到本轮研究时间预算，停止新增调用并保留当前成果。')
+            error_code=getattr(error,'code','') if isinstance(error,TransportError) else ''
+            recoverable=error_code in {'provider_unavailable','provider_timeout','provider_rate_limited',
+                                       'invalid_model_response','response_too_large','request_too_large'}
+            if tools and (exhausted or recoverable):tools.gaps.append(
+                getattr(error,'message','') if recoverable else '已达到本轮研究时间预算，停止新增调用并保留当前成果。')
             if tools and not cancelled:self._compare(identifier,tools)
-            self.store.update(identifier,status='cancelled' if cancelled else 'partial' if exhausted else 'failed',
+            self.store.update(identifier,status='cancelled' if cancelled else 'partial' if exhausted or recoverable else 'failed',
                               report=tools.report() if tools else task.get('report',{}),usage=tools.usage if tools else {},
-                              error=None if cancelled or exhausted else {'code':'research_unavailable','message':'模型或资料服务暂时无法完成研究；已保留现有成果，可以稍后继续。'})
-            self.store.event(identifier,'finished','研究已取消' if cancelled else '研究需要重试',
-                             '已保留此前成果，不会自动重复付费调用。',event_type='cancelled' if cancelled else 'partial' if exhausted else 'failed')
+                              error=None if cancelled or exhausted or recoverable else {'code':'research_unavailable','message':'模型或资料服务暂时无法完成研究；已保留现有成果，可以稍后继续。'})
+            self.store.event(identifier,'finished','研究已取消' if cancelled else '研究已保留部分成果' if exhausted or recoverable else '研究需要重试',
+                             '已保留此前成果，不会自动重复付费调用。',event_type='cancelled' if cancelled else 'partial' if exhausted or recoverable else 'failed')
 
     @staticmethod
     def _tool_label(name):
         return {'find_units':'查找招生单位与官方入口','find_candidates':'整理已发布候选方向',
                 'search_official_sources':'使用元宝寻找官方资料','read_official_source':'读取并保存学校官方原文',
-                'compare_candidates':'计算条件匹配、科目调整与多目标取舍','plan_subject_routes':'比较0/1/2科调整路线',
+                'compare_candidates':'计算条件匹配、科目调整与多目标取舍','analyze_decisions':'判断先确认哪个条件、排名是否稳定',
+                'plan_subject_routes':'比较0/1/2科调整路线',
                 'suggest_adjustments':'试算允许变化的条件情景','read_knowledge':'核对规则与适用年度',
                 'search_knowledge':'复用本机已留档的公共资料','search_knowledge_segments':'定位当前有效的原文条款与表格',
                 'read_knowledge_segment':'精读原文片段、表头与邻接条款','propose_profile':'整理需要你确认的备考条件'}.get(name,'检查工具是否可用')
