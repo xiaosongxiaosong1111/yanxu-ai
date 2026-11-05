@@ -125,3 +125,21 @@ test('saved legacy service keys retain API mode and busy auth switches are disab
  const busy=renderSettings({tab:'yuanbao',yuanbaoAuthMode:'standard',busy:'test',saved:{},draft:{}});
  const radios=[...busy.matchAll(/<input[^>]*name="auth_mode"[^>]*>/g)];assert.equal(radios.length,2);assert.ok(radios.every(row=>row[0].includes('disabled')));
 });
+
+test('settings tabs label required and optional services and use roving focus',()=>{
+ const html=renderSettings({...pickerState,saved:normalizeSettings({ai:{provider:'deepseek',status:'connected',has_key:true},yuanbao:{}})});
+ assert.match(html,/AI 模型<small class="ys-tab-badge">必需<\/small>/);
+ assert.match(html,/元宝搜索<small class="ys-tab-badge">推荐<\/small>/);
+ assert.match(html,/知识检索<small class="ys-tab-badge">可选<\/small>/);
+ assert.match(html,/aria-selected="true" tabindex="0" data-settings-tab="ai"/);
+ assert.match(html,/aria-selected="false" tabindex="-1" data-settings-tab="yuanbao"/);
+ assert.match(html,/先配置 AI 模型即可开始研究/);
+});
+
+test('saved connection removal takes a second explicit confirmation',()=>{
+ const saved=normalizeSettings({ai:{provider:'deepseek',status:'connected',has_key:true},yuanbao:{}});
+ const idle=renderSettings({...pickerState,saved,pendingDelete:''});
+ assert.match(idle,/移除连接<\/button>/);assert.ok(!idle.includes('确认移除连接'));
+ const confirming=renderSettings({...pickerState,saved,pendingDelete:'ai'});
+ assert.match(confirming,/确认移除连接/);assert.match(confirming,/移除后需重新填写凭据/);assert.match(confirming,/data-settings-action="cancel-delete"/);
+});

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {renderKnowledge} from '../static/knowledge.mjs';
+import {renderKnowledge,knowledgeLocation} from '../static/knowledge.mjs';
 
 const entry={id:'k_one',title:'2027 年计算机招生目录',unit_id:'u',unit_name:'样本大学',year:2027,status:'official_original_read',url:'https://grad.example.edu.cn/catalog.pdf',excerpt:'这是学校原文中的摘录。',text:'这是学校原文中的完整提取内容。',original_available:true,field_verification:'not_structured',sha256:'a'.repeat(64),provenance:['r_one','r_two'],version_count:2,first_seen_at:'2026-11-02T00:00:00Z',last_seen_at:'2026-11-02T01:00:00Z'};
 const state={loadStatus:'ready',entries:[entry],total:1,page:1,pageSize:12,summary:{total:1,search_lead:0,official_original_read:1,published_snapshot:0},filters:{q:'',status:'',year:'',unit_id:''},facets:{units:[{unit_id:'u',unit_name:'样本大学'}],years:[2027]}};
@@ -117,4 +117,10 @@ test('excluded quality hides all garbage or personal text while preserving sourc
  for(const value of [blocked.excerpt,blocked.text,blocked.pages[0].text])assert.ok(!html.includes(value));
  assert.match(html,/正文主要是导航片段，已拦截/);assert.match(html,/href="https:\/\/grad.example.edu.cn\/catalog.pdf"/);assert.match(html,/仅保留来源信息/);
  assert.ok(!html.includes('查看页内摘录'));
+});
+
+test('knowledge location keeps filters, page and reader in the shareable hash while omitting defaults',()=>{
+ assert.equal(knowledgeLocation({q:'',status:'',year:'',unit_id:'',quality:'accepted'},1,''),'#/knowledge');
+ assert.equal(knowledgeLocation({q:' 408 ',status:'official_original_read',year:'2027',unit_id:'u',quality:'pending'},3,'k_one'),'#/knowledge?q=408&status=official_original_read&year=2027&unit_id=u&quality=pending&page=3&entry_id=k_one');
+ assert.equal(knowledgeLocation({q:'计算机',quality:'all'},1,''),'#/knowledge?q=%E8%AE%A1%E7%AE%97%E6%9C%BA&quality=all');
 });

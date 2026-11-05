@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { adaptProgram, matchingStatistics, matchingRules, historicalFacts, subjectIdentity, safeHttpUrl, createApi, restoreClientState, createCatalogClient, catalogPageWindow,declaredExamUnits,matchesCatalogQuery,annualUnitOptionLabel,annualUnitCount } from '../static/data.mjs';
 import { renderDetail,renderComparison,renderReasons } from '../static/details.mjs';
-import { parseRoute,paginate } from '../static/view-state.mjs';
+import { parseRoute,paginate,nextTabIndex } from '../static/view-state.mjs';
 import { toggleSaved,toggleCompare,latestLine } from '../static/model.mjs';
 
 test('department display omits contact details while preserving the original record',()=>{
@@ -231,12 +231,13 @@ test('official source rendering escapes untrusted text and rejects executable UR
  assert.doesNotMatch(html,/<script|<img src=x|href="javascript:/);assert.match(html,/偏好匹配分 0/);assert.match(html,/0 元 \/ 年/);assert.match(html,/原始链接待补充/);assert.match(html,/第 3 页/);assert.match(html,/未发现另一候选/);
  const changed=renderDetail({...item,evaluation:{...item.evaluation,status:'excluded',subject_changes:{count:1,added:[{code:'901',name:'专业课'}],uncertain:false}}});assert.match(changed,/存在明确条件冲突/);assert.match(changed,/需要调整 1 门科目/);
  const uncertain=renderComparison([{...item,evaluation:{...item.evaluation,subject_changes:{count:null,uncertain:true}}},adaptProgram({id:'b',unit_id:'u',unit_name:'乙大学',name:'专业',subjects:[],tuition:{amount:40000,period:'total'}})]);assert.match(uncertain,/信息不足/);assert.match(uncertain,/40,000 元 \/ 全程/);
- assert.match(renderComparison([]),/请先选择两个专业/);
+ assert.match(renderComparison([]),/请先选择两个专业/);assert.match(uncertain,/存在差异/);assert.match(uncertain,/蓝色底纹/);
 });
 
 test('routes decode real program IDs and pagination clamps stale pages without mutating saved plans',()=>{
  const id='367949:2027:037:145200:00:全日制';assert.equal(parseRoute('#/program/'+encodeURIComponent(id)+'?tab=history',[id]).id,id);assert.equal(parseRoute('#/program/%E0%A4%A',[id]).page,'discover');assert.equal(parseRoute('#/program/missing',[id]).page,'discover');assert.equal(parseRoute('#/program/'+encodeURIComponent(id)+'?tab=bad',[id]).tab,'overview');assert.equal(parseRoute('#/plan').page,'plan');assert.equal(parseRoute('#/compare').page,'compare');assert.equal(parseRoute('').page,'home');assert.equal(parseRoute('#/bad').page,'discover');
  const rows=[1,2,3,4,5,6,7];assert.deepEqual(paginate(rows,99).items,[7]);assert.equal(paginate(rows,NaN).page,1);assert.equal(paginate([],0).totalPages,1);assert.equal(paginate(rows,1.5).page,1);
+ assert.equal(nextTabIndex('ArrowRight',0,3),1);assert.equal(nextTabIndex('ArrowLeft',0,3),2);assert.equal(nextTabIndex('Home',2,3),0);assert.equal(nextTabIndex('End',0,3),2);assert.equal(nextTabIndex('ArrowRight',-1,3),-1);assert.equal(nextTabIndex('ArrowRight',0,0),-1);assert.equal(nextTabIndex('Enter',0,3),-1);
  const ids=['a'];assert.deepEqual(toggleSaved(ids,'b'),['a','b']);assert.deepEqual(ids,['a']);assert.deepEqual(toggleSaved(ids,'a'),[]);assert.deepEqual(toggleCompare(['a','b','c'],'d'),['a','b','c']);assert.deepEqual(toggleCompare(['a'],'b'),['a','b']);assert.deepEqual(toggleCompare(['a'],'a'),[]);assert.equal(latestLine({scoreLines:[{year:2024},{year:2026},{year:2025}]}).year,2026);assert.equal(latestLine({}),null);
 });
 

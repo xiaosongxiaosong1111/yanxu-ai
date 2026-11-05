@@ -7,3 +7,12 @@ export function parseRoute(hash,knownIds=[]) {
   return fallback;
 }
 export function paginate(items,page=1,size=6) { const totalPages=Math.max(1,Math.ceil(items.length/size)); const current=Number.isInteger(page)&&page>0?Math.min(page,totalPages):1; return {items:items.slice((current-1)*size,current*size),page:current,totalPages,total:items.length}; }
+
+export function nextTabIndex(key,index,length) {
+  if(!Number.isInteger(index)||index<0||!Number.isInteger(length)||length<1) return -1;
+  if(key==='Home') return 0;
+  if(key==='End') return length-1;
+  if(key==='ArrowRight') return (index+1)%length;
+  if(key==='ArrowLeft') return (index-1+length)%length;
+  return -1;
+}

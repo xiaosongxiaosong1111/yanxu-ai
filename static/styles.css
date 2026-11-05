@@ -510,3 +510,25 @@ dialog[open]{animation:pageIn var(--normal) var(--ease)}
   *,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
   .skeleton-block{background:var(--surface-3)}
 }
+
+/* 备份、危险操作与页头帮助入口 */
+.info-backup{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s4)}
+.info-backup h3{font-size:var(--text-base);font-weight:650;margin:0 0 var(--s2);color:var(--ink)}
+.info-backup p{margin:0 0 var(--s3)}
+.info-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s3)}
+.info-actions .btn .icon{width:15px;height:15px}
+.info-danger{margin-top:var(--s4);padding:var(--s4);border:1px solid var(--amber-line);background:var(--amber-soft);border-radius:var(--r-md)}
+.info-danger strong{color:var(--ink)}
+.info-danger p{margin:var(--s2) 0 0;color:var(--amber)}
+@media(max-width:650px){.coverage-link{display:none}}
+/* 窄屏页头：保留设置与帮助入口，避免横向滚动 */
+@media(max-width:460px){
+  .header-inner{gap:8px;padding-left:16px;padding-right:16px}
+  .brand-cn{display:none}
+  .brand img{width:32px;height:32px}
+  .main-nav{gap:4px}
+  .main-nav .nav-link{padding-left:4px;padding-right:4px}
+  .header-right{gap:2px}
+  .header-right .icon-button{width:34px;height:34px}
+}
+@media(max-width:350px){.main-nav .nav-link:first-child{display:none}}

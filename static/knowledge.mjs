@@ -1,5 +1,6 @@
 import {esc} from './workbench-model.mjs';
 import {icon} from './icons.mjs';
+import {nextTabIndex} from './view-state.mjs';
 import {createKnowledgeReader,currentValidity,validityLabel,structuredEntry,readerWorkbench,maintenanceView} from './knowledge-reader.mjs';
 
 const list=value=>Array.isArray(value)?value:[];
@@ -17,6 +18,15 @@ const selected=(a,b)=>String(a??'')===String(b??'')?' selected':'';
 const qualitySections=[['accepted','可复用资料'],['pending','待核线索'],['excluded','已拦截'],['all','全部来源']];
 const qualityLabel=state=>qualitySections.find(([value])=>value===state)?.[1]||'待核线索';
 const qualityFilter=value=>qualitySections.some(([state])=>state===value)?value:'accepted';
+export function knowledgeLocation(filters={},page=1,detailId=''){
+ const params=new URLSearchParams(),query=text(filters.q).trim();
+ if(query)params.set('q',query);
+ for(const key of ['status','year','unit_id'])if(text(filters[key]))params.set(key,text(filters[key]));
+ const quality=qualityFilter(filters.quality);if(quality!=='accepted')params.set('quality',quality);
+ if(Number.isInteger(page)&&page>1)params.set('page',String(page));
+ if(text(detailId))params.set('entry_id',text(detailId));
+ return '#/knowledge'+(params.size?'?'+params.toString():'');
+}
 const hasFilters=filters=>['q','status','year','unit_id'].some(key=>!!filters?.[key]);
 const qualityDescription={accepted:'达到本地准入规则的资料，可供研究复用；具体报考字段仍需逐项核验。',pending:'来源、正文或适用年度仍待补查，暂不供研究自动复用。',excluded:'已拦截无效正文、导航片段或个人名单，仅保留来源与拦截理由。',all:'全部来源按质量分层保存，自动复用只采用已达到准入规则的资料。'};
 
@@ -58,7 +68,7 @@ function admissionDetails(entry,row=false){
 
 function qualityTabs(state){
  const current=qualityFilter(state.filters?.quality),counts=object(state.summary?.quality_counts),allCount=['accepted','pending','excluded'].every(key=>Number.isInteger(counts[key])&&counts[key]>=0)?counts.accepted+counts.pending+counts.excluded:state.summary?.total;
- return `<section class="yk-quality-section"><div class="yk-quality-caption"><span>资料准入</span><small>全库统计</small></div><div class="yk-quality-tabs" role="tablist" aria-label="全库准入分区">${qualitySections.map(([value,label])=>{const amount=value==='all'?allCount:counts[value];return `<button type="button" role="tab" id="yk-quality-${value}" aria-controls="yk-library-results" data-knowledge-quality="${value}" aria-selected="${current===value}"><span>${label}</span><strong>${state.loadStatus==='ready'&&Number.isInteger(amount)&&amount>=0?amount:'—'}</strong></button>`;}).join('')}</div><p class="yk-quality-description">${qualityDescription[current]}</p></section>`;
+ return `<section class="yk-quality-section"><div class="yk-quality-caption"><span>资料准入</span><small>全库统计</small></div><div class="yk-quality-tabs" role="tablist" aria-label="全库准入分区">${qualitySections.map(([value,label])=>{const amount=value==='all'?allCount:counts[value];return `<button type="button" role="tab" id="yk-quality-${value}" aria-controls="yk-library-results" data-knowledge-quality="${value}" aria-selected="${current===value}" tabindex="${current===value?0:-1}"><span>${label}</span><strong>${state.loadStatus==='ready'&&Number.isInteger(amount)&&amount>=0?amount:'—'}</strong></button>`;}).join('')}</div><p class="yk-quality-description">${qualityDescription[current]}</p></section>`;
 }
 
 function emptyLibrary(state){
@@ -122,10 +132,11 @@ function loadStyle(document){
  const readerStyle=document.createElement('link');readerStyle.rel='stylesheet';readerStyle.href=new URL('./knowledge-reader.css',import.meta.url).href;document.head.append(readerStyle);
 }
 
-export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSegmentId='',initialQuery='',initialQuality='accepted'}={}){
+export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSegmentId='',initialQuery='',initialQuality='accepted',initialStatus='',initialYear='',initialUnit='',initialPage=1}={}){
  const document=container.ownerDocument,view=document.defaultView;loadStyle(document);
- let disposed=false,listController,detailController,listGeneration=0,detailGeneration=0,hybridController,hybridGeneration=0,timer,composing=false,renderPending=false,returnPoint={scroll:0,id:''};
- let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:1,pageSize:12,filters:{q:text(initialQuery),status:'',year:'',unit_id:'',quality:qualityFilter(initialQuality)},error:'',detailId:text(initialEntryId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
+ let disposed=false,listController,detailController,listGeneration=0,detailGeneration=0,hybridController,hybridGeneration=0,timer,composing=false,renderPending=false,returnPoint={scroll:0,id:''},detailPushed=false;
+ let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:Math.max(1,Number(initialPage)||1),pageSize:12,filters:{q:text(initialQuery),status:text(initialStatus),year:text(initialYear),unit_id:text(initialUnit),quality:qualityFilter(initialQuality)},error:'',detailId:text(initialEntryId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
+ let listEntryKnown=!text(initialEntryId);
  const render=()=>{
   if(disposed)return;
   if(composing){renderPending=true;return;}
@@ -136,8 +147,15 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
   if(focus?.name&&['q','status','unit_id','year','segment_query','maintenance_reason'].includes(focus.name)){const field=container.querySelector(`[name="${focus.name}"]`);field?.focus({preventScroll:true});if(field&&typeof focus.start==='number'&&(['text','search'].includes(field.type)||field.tagName==='TEXTAREA'))field.setSelectionRange(focus.start,focus.end);}
   else if(focus?.quality)container.querySelector(`[data-knowledge-quality="${qualityFilter(focus.quality)}"]`)?.focus({preventScroll:true});
  };
+ const syncUrl=({push=false}={})=>{
+  const target=knowledgeLocation(state.filters,state.page,state.detailId),history=view?.history;
+  if(!history||view?.location?.hash===target)return false;
+  try{if(push)history.pushState({ykKnowledgeDetail:text(state.detailId)||null},'',target);else history.replaceState(null,'',target);}catch{return false;}
+  return true;
+ };
+ const restoreReturnPoint=()=>{view?.scrollTo?.(0,returnPoint.scroll);[...container.querySelectorAll('[data-knowledge-open]')].find(item=>item.dataset.knowledgeOpen===returnPoint.id)?.focus({preventScroll:true});};
  const readerControl=createKnowledgeReader({api,onChange:(reader,shouldRender)=>{state={...state,reader};if(shouldRender)render();},onEntryReload:async id=>{await openDetail(id,{remember:false,preserveReader:true});await loadList();}});
- const clearDetail=()=>{detailGeneration++;detailController?.abort();readerControl.reset();state={...state,reader:{},detailId:'',detail:null,detailStatus:'none',detailError:''};};
+ const clearDetail=({sync=true}={})=>{detailGeneration++;detailController?.abort();readerControl.reset();detailPushed=false;state={...state,reader:{},detailId:'',detail:null,detailStatus:'none',detailError:''};if(sync)syncUrl();};
  const clearHybrid=()=>{hybridGeneration++;hybridController?.abort();state={...state,hybrid:{status:'idle',result:null,error:'',query:''}};};
  async function hybridSearch(){
   if(disposed)return;const query=text(state.filters.q).trim();
@@ -163,13 +181,16 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
    if(!Array.isArray(result?.entries)||!Number.isInteger(result?.total)||result.total<0)throw new Error('知识库返回的数据格式需要重新检查。');
    const found=object(result.facets),units=new Map([...list(state.facets.units),...list(found.units),...result.entries.filter(entry=>entry.unit_id).map(entry=>({unit_id:entry.unit_id,unit_name:entry.unit_name}))].map(unit=>[unit.unit_id,unit]));
    const years=[...new Set([...list(state.facets.years),...list(found.years),...result.entries.map(entry=>entry.year)].filter(Number.isInteger))];
-   state={...state,loadStatus:'ready',entries:result.entries,total:result.total,page:Number.isInteger(result.page)?result.page:state.page,summary:object(result.summary),facets:{units:[...units.values()],years}};render();
+   state={...state,loadStatus:'ready',entries:result.entries,total:result.total,page:Number.isInteger(result.page)?result.page:state.page,summary:object(result.summary),facets:{units:[...units.values()],years}};syncUrl();render();
   }catch(error){if(disposed||ticket!==listGeneration||error.name==='AbortError')return;state={...state,loadStatus:'error',error:error.message||'本地知识库暂时不可用。'};render();}
  }
- async function openDetail(id,{remember=true,preserveReader=false,segmentId=''}={}){
+ async function openDetail(id,{remember=true,preserveReader=false,segmentId='',fromHistory=false}={}){
   if(remember)returnPoint={scroll:view?.scrollY||0,id};
+  const push=!state.detailId&&!fromHistory;
   detailController?.abort();detailController=new AbortController();const ticket=++detailGeneration;
-  if(!preserveReader)readerControl.reset();state={...state,reader:preserveReader?state.reader:{},detailId:id,detail:null,detailStatus:'loading',detailError:''};render();
+  if(!preserveReader)readerControl.reset();state={...state,reader:preserveReader?state.reader:{},detailId:id,detail:null,detailStatus:'loading',detailError:''};
+  if(!fromHistory){const navigated=syncUrl({push});if(push){detailPushed=navigated;listEntryKnown=true;}}
+  render();
   try{
    const result=await api('/api/knowledge?'+new URLSearchParams({entry_id:id}),{signal:detailController.signal});
    if(disposed||ticket!==detailGeneration)return;
@@ -177,6 +198,29 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
    state={...state,detail,detailStatus:'ready'};readerControl.open(detail);render();if(segmentId){readerControl.read(segmentId);}else if(initialSegmentId&&id===initialEntryId){readerControl.read(initialSegmentId);initialSegmentId='';}container.querySelector('#yk-reader-title')?.focus({preventScroll:true});container.querySelector('.yk-reader')?.scrollIntoView({block:'nearest',behavior:'auto'});
   }catch(error){if(disposed||ticket!==detailGeneration||error.name==='AbortError')return;state={...state,detailStatus:'error',detailError:error.message||'这份资料暂时无法读取。'};render();}
  }
+ const closeDetailView=()=>{const rewoundFromHistory=view?.history?.state?.ykKnowledgeDetail===state.detailId;if((detailPushed||rewoundFromHistory)&&view?.history){detailPushed=false;view.history.back();return;}clearDetail();render();restoreReturnPoint();};
+ const syncFromLocation=()=>{
+  if(disposed)return;
+  const hash=view?.location?.hash||'';
+  if(!(hash==='#/knowledge'||hash.startsWith('#/knowledge?')))return;
+  const query=new URLSearchParams(hash.split('?')[1]||''),entryId=text(query.get('entry_id'));
+  const filters={q:text(query.get('q')),status:text(query.get('status')),year:text(query.get('year')),unit_id:text(query.get('unit_id')),quality:qualityFilter(query.get('quality')||'accepted')};
+  const page=Math.max(1,Number(query.get('page'))||1);
+  const changed=JSON.stringify(filters)!==JSON.stringify(state.filters)||page!==state.page;
+  state={...state,filters,page};
+  if(!entryId){
+   listEntryKnown=true;detailPushed=false;
+   if(state.detailId||state.detail){detailGeneration++;detailController?.abort();readerControl.reset();state={...state,reader:{},detailId:'',detail:null,detailStatus:'none',detailError:''};}
+   render();restoreReturnPoint();
+   if(changed)loadList();
+   return;
+  }
+  if(entryId!==state.detailId){
+   detailPushed=listEntryKnown&&view?.history?.state?.ykKnowledgeDetail===entryId;
+   openDetail(entryId,{remember:false,fromHistory:true});
+  }
+  if(changed)loadList();
+ };
  const updateFilters=filters=>{clearDetail();clearHybrid();state={...state,filters:{...state.filters,...filters},page:1};loadList();};
  const input=event=>{readerControl.input(event.target.name,event.target.value);if(event.target.id!=='yk-query')return;hybridGeneration++;hybridController?.abort();state={...state,filters:{...state.filters,q:event.target.value},page:1,hybrid:{status:'idle',result:null,error:'',query:''}};clearTimeout(timer);listGeneration++;listController?.abort();if(composing||event.isComposing)return;timer=setTimeout(()=>{clearDetail();loadList();},240);};
  const change=event=>{if(['status','year','unit_id'].includes(event.target.name))updateFilters({[event.target.name]:event.target.value});};
@@ -190,7 +234,7 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
   if(action==='back')onBack?.();
   if(action==='retry')loadList();
   if(action==='retry-detail')openDetail(state.detailId,{remember:false});
-  if(action==='close-detail'){clearDetail();render();view?.scrollTo(0,returnPoint.scroll);[...container.querySelectorAll('[data-knowledge-open]')].find(item=>item.dataset.knowledgeOpen===returnPoint.id)?.focus({preventScroll:true});}
+  if(action==='close-detail'){closeDetailView();return;}
   if(action==='reset'){clearDetail();clearHybrid();state={...state,filters:{q:'',status:'',year:'',unit_id:'',quality:state.filters.quality},page:1};loadList();}
   if(action==='next'||action==='previous'){clearDetail();state={...state,page:Math.max(1,state.page+(action==='next'?1:-1))};loadList();container.querySelector('.yk-list-heading')?.scrollIntoView({block:'start'});}
   if(action==='hybrid-search'||action==='hybrid-retry')hybridSearch();
@@ -198,7 +242,8 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
  const compositionStart=()=>{composing=true;clearTimeout(timer);};
  const compositionEnd=event=>{composing=false;input(event);if(renderPending){renderPending=false;render();}};
  const toggle=event=>{if(event.target.matches?.('.yk-maintenance'))readerControl.toggle(event.target.open);};
- container.addEventListener('input',input);container.addEventListener('change',change);container.addEventListener('submit',submit);container.addEventListener('click',click);container.addEventListener('compositionstart',compositionStart);container.addEventListener('compositionend',compositionEnd);container.addEventListener('toggle',toggle,true);
+ const keydown=event=>{const tab=event.target.closest?.('.yk-quality-tabs [role="tab"]');if(!tab||!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const items=[...container.querySelectorAll('.yk-quality-tabs [role="tab"]')],next=nextTabIndex(event.key,items.indexOf(tab),items.length);if(next>=0){items[next].focus({preventScroll:true});items[next].click();}};
+ container.addEventListener('input',input);container.addEventListener('change',change);container.addEventListener('submit',submit);container.addEventListener('click',click);container.addEventListener('keydown',keydown);container.addEventListener('compositionstart',compositionStart);container.addEventListener('compositionend',compositionEnd);container.addEventListener('toggle',toggle,true);view?.addEventListener?.('popstate',syncFromLocation);
  render();loadList();if(initialEntryId)openDetail(initialEntryId,{remember:false});
- return()=>{disposed=true;listGeneration++;detailGeneration++;hybridGeneration++;clearTimeout(timer);listController?.abort();detailController?.abort();hybridController?.abort();readerControl.dispose();container.removeEventListener('input',input);container.removeEventListener('change',change);container.removeEventListener('submit',submit);container.removeEventListener('click',click);container.removeEventListener('compositionstart',compositionStart);container.removeEventListener('compositionend',compositionEnd);container.removeEventListener('toggle',toggle,true);};
+ return()=>{disposed=true;listGeneration++;detailGeneration++;hybridGeneration++;clearTimeout(timer);listController?.abort();detailController?.abort();hybridController?.abort();readerControl.dispose();container.removeEventListener('input',input);container.removeEventListener('change',change);container.removeEventListener('submit',submit);container.removeEventListener('click',click);container.removeEventListener('keydown',keydown);container.removeEventListener('compositionstart',compositionStart);container.removeEventListener('compositionend',compositionEnd);container.removeEventListener('toggle',toggle,true);view?.removeEventListener?.('popstate',syncFromLocation);};
 }

@@ -23,6 +23,46 @@ test('service loading or errors never imply that credentials are missing',()=>{
  assert.match(failed,/连接情况尚不能确认/);assert.match(failed,/重新读取/);assert.ok(!failed.includes('AI 模型待配置'));
 });
 
+test('decision intelligence surfaces the highest-impact unknown and keeps probability wording explicit',()=>{
+ const report={decision_intelligence:{version:'decision_v1',value_of_information:{top_k:3,next_question:{field:'provinces',label:'意向地区',question:'你的意向地区是哪里？'},questions:[{field:'provinces',label:'意向地区',explanation:'2 / 3 个选项会改变前 3 名',impact:{changed_options:2,options_tested:3,example:{option_label:'天津',entered_labels:['甲大学'],left_labels:[]}}}]},stability:{top_k:3,summary:{scenario_count:2,stable_count:1,volatile_count:1,average_jaccard:0.5},scenarios:[{name:'只考虑天津',top_k:['a'],jaccard:0.5}]},diversified:{selected:[{unit_id:'u1',unit_name:'甲大学',name:'计算机',province:'天津',status:'matched'}]}}};
+ const overview=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report},tab:'overview'});
+ assert.match(overview,/先把最影响结果的条件问清楚/);assert.match(overview,/意向地区/);assert.match(overview,/你的意向地区是哪里/);assert.match(overview,/2/);assert.match(overview,/甲大学/);assert.match(overview,/不是录取概率/);
+ const methods=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report},tab:'methods'});
+ assert.match(methods,/决策智能试算/);assert.match(methods,/只考虑天津/);assert.match(methods,/50%/);assert.match(methods,/不是录取概率/);
+});
+
+test('decision intelligence escapes user-visible candidate labels and disappears when absent',()=>{
+ const report={decision_intelligence:{version:'decision_v1',value_of_information:{next_question:{field:'provinces',label:'<img src=x onerror=1>',question:'<script>bad</script>'},questions:[]},stability:{top_k:3,summary:{}},diversified:{basis:'needs_confirmation',note:'当前没有明确匹配的候选；以下仅为待确认候选的分散展示，不代表已通过资格核对。',selected:[{unit_id:'u1',unit_name:'<b>学校</b>',name:'方向',status:'unknown'}]}}};
+ const html=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report},tab:'overview'});
+ assert.ok(!html.includes('<img src=x'));assert.ok(!html.includes('<script>bad</script>'));assert.ok(!html.includes('<b>学校</b>'));assert.match(html,/&lt;b&gt;学校&lt;\/b&gt;/);assert.match(html,/不代表已通过资格核对/);
+ const absent=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report:{}},tab:'overview'});
+ assert.ok(!absent.includes('决策智能 · 程序计算'));
+});
+
+test('decision card falls back to a non-enumerable next question instead of claiming low impact',()=>{
+ const report={questions:[{field:'subjects',label:'已经准备了哪些考试科目？',message:'请按考试单元补充政治、外语、数学或专业基础、业务课。'}],decision_intelligence:{version:'decision_v1',value_of_information:{top_k:3,next_question:null,questions:[]},stability:{top_k:3,summary:{}},diversified:{selected:[]}}};
+ const html=renderAgent({task:{id:'a',status:'awaiting_input',query:'q',events:[],report},tab:'overview'});
+ assert.match(html,/下一步需要你确认/);assert.match(html,/已经准备了哪些考试科目/);assert.match(html,/请按考试单元补充/);
+ assert.ok(!html.includes('影响很小'));
+});
+
+test('evidence ledger shows coverage, duplicate quotes and unsourced reasons without overclaiming',()=>{
+ const report={evidence_ledger:{version:'evidence_ledger_v1',summary:{claim_count:4,sourced_claims:3,corroborated_claims:1,single_source_claims:2,unsourced_claims:1,coverage_ratio:0.75},claims:[{unit_name:'<b>学校</b>',label:'学费<em>',status:'unknown',assessment:'unsourced'}],duplicate_clusters:[{quote_preview:'<script>相同</script>',document_count:2}],note:'覆盖率不是结论真实性证明。'}};
+ const html=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report},tab:'methods'});
+ assert.match(html,/原文依据覆盖/);assert.match(html,/3 \/ 4/);assert.match(html,/75%/);assert.match(html,/重复引文提醒/);assert.match(html,/需要补原文的理由/);assert.match(html,/覆盖率不是结论真实性证明/);
+ assert.ok(!html.includes('<b>学校</b>'));assert.ok(!html.includes('<em>'));assert.ok(!html.includes('<script>相同</script>'));
+ const absent=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report:{}},tab:'methods'});
+ assert.ok(!absent.includes('原文依据覆盖'));
+});
+
+test('relaxed candidate queries are disclosed in the report and never presented silently',()=>{
+ const report={coverage:{selection:{requested_query:'<b>计算机 408 考研</b>',effective_query:'408',query_relaxed:true}},candidates:[]};
+ const html=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report},tab:'overview'});
+ assert.match(html,/放宽检索/);assert.match(html,/408/);assert.ok(!html.includes('<b>计算机 408 考研</b>'));
+ const strict=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report:{coverage:{selection:{requested_query:'408',effective_query:'408',query_relaxed:false}},candidates:[]}},tab:'overview'});
+ assert.ok(!strict.includes('放宽检索'));
+});
+
 test('route and adjustment tool results remain visible without a matching tool result',()=>{
  const html=renderAgent({task:{id:'a',status:'completed',query:'q',events:[],report:{algorithm:{routes:{routes:[{label:'最多调整 1 个考试单元',coverage:{program_count:7},needs_confirmation_count:3,added_ids:['a'],retained_ids:[]}]},adjustments:{suggestions:[{changes:{max_annual_tuition:15000},coverage:{program_count:9},needs_confirmation_count:2,added_ids:['b']}],note:'测试夹具：仅在已授权条件中比较'}}}},tab:'methods'});
  assert.match(html,/科目调整路线/);assert.match(html,/最小条件调整/);assert.match(html,/学费上限 15000 元/);assert.match(html,/>7<\/strong>/);assert.match(html,/>9<\/strong>/);assert.ok(!html.includes('还没有形成可计算结果'));
@@ -207,4 +247,16 @@ test('decision reasons and candidates return to the saved original without unsaf
  assert.match(methods,/学费已由两个原文核对/);assert.match(methods,/class="ya-original-links"/);
  assert.equal((methods.match(/href="https:\/\/example.edu.cn\/original"/g)||[]).length>=2,true);
  assert.ok(!methods.includes('href="javascript:'));
+});
+
+test('recent research exposes more history and requires confirmation before deletion',()=>{
+ const tasks=Array.from({length:5},(_,index)=>({id:'r_'+String(index).repeat(32),query:'研究 '+index,status:'completed',updated_at:'2026-11-04T00:00:00Z'}));
+ const collapsed=renderAgent({recent:tasks,recentTotal:5,recentExpanded:false,pendingDelete:''});
+ assert.match(collapsed,/共 5 项/);assert.match(collapsed,/查看全部 5 项/);assert.match(collapsed,/研究 3/);assert.ok(!collapsed.includes('研究 4'));
+ assert.equal((collapsed.match(/data-agent-delete=/g)||[]).length,4);
+ assert.match(collapsed,/aria-label="删除研究：研究 0"/);
+ const confirming=renderAgent({recent:tasks,recentTotal:5,recentExpanded:false,pendingDelete:tasks[0].id});
+ assert.match(confirming,/删除后无法恢复。/);assert.match(confirming,/确认删除/);assert.match(confirming,/data-agent-action="cancel-delete"/);
+ const expanded=renderAgent({recent:tasks,recentTotal:5,recentExpanded:true,pendingDelete:''});
+ assert.match(expanded,/研究 4/);assert.match(expanded,/收起/);
 });
