@@ -11,6 +11,8 @@ tools/poppler-*/
 
 # Local caches, development artifacts and machine-specific browser captures.
 .pytest_cache/
+.idea/
+.vscode/
 .coverage*
 *.coverage
 *.py[cod]

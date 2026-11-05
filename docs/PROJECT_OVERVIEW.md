@@ -260,7 +260,7 @@ SQLite 继续保存权威状态和本地关键词索引；Milvus Lite 只保存�
 | 来源操作 | `POST /api/search`、`source-proof`、`radar/watch`、`radar/check`；可能读取外部来源或调用元宝，不作默认无成本测试 |
 | 设置状态 | `GET /api/settings`、`settings/providers` |
 | 设置操作 | `POST /api/settings/models`、`test`、`save`、`delete`；测试可能消耗外部额度 |
-| 研究任务 | `POST /api/research`、`research/continue`、`research/cancel`；`GET /api/research` 读列表或任务/增量事件 |
+| 研究任务 | `POST /api/research`、`research/continue`、`research/cancel`、`research/delete`（仅终态任务，连同增量事件删除）；`GET /api/research` 读列表或任务/增量事件 |
 | 知识库 | `GET /api/knowledge`，支持 `quality=accepted/pending/excluded/all`；详情用互斥的 `entry_id` |
 | 精读原文 | `GET /api/knowledge/segments` 与 `knowledge/segment`；固定可信补读，字符预算与同版本邻接限制 |
 | 知识维护 | `GET /api/knowledge/jobs`；`POST knowledge/state`、`knowledge/select-version`、`knowledge/reindex`；同源校验与独立维护限频 |
