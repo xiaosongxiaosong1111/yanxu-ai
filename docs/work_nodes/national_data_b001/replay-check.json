@@ -1,0 +1,40 @@
+{
+  "queue_sha256": "8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86",
+  "batch_queue_sha256": "8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86",
+  "selection_rule_version": "b001-node0-v2",
+  "batch": {
+    "expansion": [
+      "368295",
+      "368049",
+      "688908731",
+      "368146",
+      "368275",
+      "368611",
+      "368142"
+    ],
+    "backfill": [
+      "367929",
+      "368128",
+      "367859"
+    ]
+  },
+  "replay": {
+    "expansion": [
+      "368295",
+      "368049",
+      "688908731",
+      "368146",
+      "368275",
+      "368611",
+      "368142"
+    ],
+    "backfill": [
+      "367929",
+      "368128",
+      "367859"
+    ]
+  },
+  "replay_matches_batch": true,
+  "summary_rejected": true,
+  "summary_rejection": "queue row '367882' missing required fields for replay: original_urls"
+}

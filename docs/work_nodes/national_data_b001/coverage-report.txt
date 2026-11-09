@@ -1,0 +1,7 @@
+# command: python -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q
+# then: python -m coverage report -m
+Name                        Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------
+national_data_baseline.py     359      1    116      1    99%   599
+-----------------------------------------------------------------------
+TOTAL                         359      1    116      1    99%

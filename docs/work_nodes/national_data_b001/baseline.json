@@ -1,8 +1,21 @@
 {
-  "generated_at": "2026-11-09T16:51:52+0800",
+  "generated_at": "2026-11-09T18:17:18+0800",
   "git": {
-    "commit": "ceeff0502de1009b91018a8e5aeb58f9ca07586f",
-    "branch": "data/national-b001"
+    "commit": "9b1c9457a9dbf4c15cbfa7597e2144ecdfb26f8e",
+    "branch": "data/national-b001",
+    "tracked_dirty": false
+  },
+  "module_sha256": "0f89275eace0d540472b000f1f9e5bc01fe57a4163c3fd2f92f15ba828dd123e",
+  "inputs": {
+    "admissions_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
+    "units_sha256": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
+    "annual_registry_sha256": "06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40",
+    "coverage_csv_sha256": "42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e"
+  },
+  "artifacts": {
+    "queue.json": "8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86",
+    "queue-summary.json": "d126d6b3ff01ee6e84aff6c4ff5d5ca634fdb0845e1f0d389a6d74eec875069c",
+    "batch.json": "9ebcc3238d59289f113017d937b4089b6f2f55e18a9d4f699a32245db5e1aca9"
   },
   "package": {
     "catalog_data_zip_sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
@@ -34,7 +47,7 @@
   },
   "annual_rows": 931,
   "coverage_rows": 931,
-  "raw": {
+  "raw_present": {
     "program_count": 22356,
     "ids": 22356,
     "duplicate_ids": 0,
@@ -49,7 +62,7 @@
     "requires_review": 22356,
     "full_qualification": 0
   },
-  "effective_after_enrichment_and_evidence_safety": {
+  "effective_present": {
     "program_count": 22356,
     "ids": 22356,
     "duplicate_ids": 0,
@@ -63,6 +76,20 @@
     "conditions_nonempty": 0,
     "requires_review": 22356,
     "full_qualification": 0
+  },
+  "verified": {
+    "program_count": 22356,
+    "verified_tuition": 912,
+    "verified_duration": 1942,
+    "verified_full_qualification": 0,
+    "verified_computed_total_cost": 907,
+    "tuition_claim_statuses": {
+      "verified": 912
+    },
+    "duration_claim_statuses": {
+      "verified": 1942
+    },
+    "qualification_claim_statuses": {}
   },
   "effective_extra": {
     "enrichment": {
@@ -91,18 +118,33 @@
     "needs_binding": 217,
     "truncated": 105
   },
+  "queue": {
+    "count": 931,
+    "sha256": "8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86",
+    "replayable": true,
+    "summary_path": "queue-summary.json",
+    "summary_replayable": false
+  },
   "queue_gap_counts": {
     "partial_catalog": 84,
     "missing_full_qualification": 135,
-    "missing_tuition": 124,
-    "missing_duration": 119,
+    "missing_tuition": 122,
+    "missing_duration": 117,
     "review_pending": 84,
     "original_pending": 413,
     "missing_catalog": 796,
     "parser_pending": 433,
+    "partial_tuition": 3,
+    "partial_duration": 3,
     "missing_trusted_entry": 2
+  },
+  "expansion_pool": {
+    "candidates": 433,
+    "trusted": 193,
+    "untrusted": 240
   },
   "queue_count": 931,
   "queue_count_mismatch": 0,
+  "effective_count_mismatch": 0,
   "notice": "只读审计：未联网、未调用模型或元宝、未写采用文件、未创建发布索引；非空字段不等于原文已核验，完整资格仍以逐条条款审校为准。"
 }
