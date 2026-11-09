@@ -243,6 +243,9 @@ test('decision reasons and candidates return to the saved original without unsaf
  const overview=renderAgent({task:{id:'a',status:'completed',report}});
  assert.match(overview,/class="ya-candidate-links"/);assert.match(overview,/href="https:\/\/example.edu.cn\/original"/);
  assert.ok(!overview.includes('href="javascript:'));
+ assert.match(overview,/data-agent-save="p1"/);assert.match(overview,/加入我的方案/);
+ const saved=renderAgent({task:{id:'a',status:'completed',report},saved:new Set(['p1'])});
+ assert.match(saved,/data-agent-save="p1" aria-pressed="true"/);assert.match(saved,/已在我的方案/);
  const methods=renderAgent({task:{id:'a',status:'completed',report},tab:'methods'});
  assert.match(methods,/学费已由两个原文核对/);assert.match(methods,/class="ya-original-links"/);
  assert.equal((methods.match(/href="https:\/\/example.edu.cn\/original"/g)||[]).length>=2,true);

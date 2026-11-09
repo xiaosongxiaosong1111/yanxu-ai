@@ -1,5 +1,7 @@
 export const defaultProfile = { target_year:2028, reference_year:2027, education:'unknown', background:'', subjects:[], ranking_mode:'balanced', preferences:{cost:2,subjects:3,location:2} };
-export const defaultPreferences = { query:'', unit_id:'', priority:'balanced', examCount:4 };
+export const defaultPreferences = { query:'', unit_id:'', priority:'balanced', examCount:4, sourceKind:'catalog' };
+export const sourceKinds = [['catalog','招生目录'],['charter','招生章程'],['score','复试分数线'],['retest','复试办法'],['transfer','调剂办法'],['fees','学费与学制'],['enrollment','招生计划'],['change','科目调整']];
+export const sourceKindLabel = value => (sourceKinds.find(([key])=>key===value)||sourceKinds[0])[1];
 const record = value => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
 const text = value => typeof value === 'string' ? value : '';
 export const subjectIdentity = subject => [subject.scope || '',subject.code || '',subject.exam_unit || ''].join('|');
@@ -34,9 +36,47 @@ export function catalogPageWindow(items,total,page=1,size=6) {
   return {items:Array.isArray(items)?items:[],total:count,totalPages,page:Number.isInteger(page)&&page>0?Math.min(page,totalPages):1};
 }
 export const declaredExamUnits=subject=>Array.isArray(subject?.exam_units)?subject.exam_units.filter(value=>Number.isInteger(value)&&value>=1&&value<=4):Number.isInteger(subject?.exam_unit)?[subject.exam_unit]:[];
-export function matchesCatalogQuery(program,query='') {
-  const needle=String(query).trim().toLowerCase();if(!needle)return true;
-  return ['unit_name','department','code','name','direction','province','campus'].map(field=>String(program?.[field]||'')).join(' ').toLowerCase().includes(needle)||(program?.subjects||[]).some(subject=>[subject.code,subject.name].join(' ').toLowerCase().includes(needle));
+export function catalogAliasMap(units=[]) {
+  const map=new Map();
+  for(const unit of Array.isArray(units)?units:[]) {
+    if(!unit||typeof unit.name!=='string'||!unit.name.trim())continue;
+    for(const alias of Array.isArray(unit.aliases)?unit.aliases:[]) {
+      const key=String(alias||'').trim().toLowerCase();
+      if(key)map.set(key,unit.name);
+    }
+  }
+  return map;
+}
+export function expandCatalogQuery(query,aliases=new Map()) {
+  return String(query||'').trim().split(/\s+/).filter(Boolean).map(token=>aliases.get(token.toLowerCase())||token).join(' ');
+}
+export function matchesCatalogQuery(program,query='',aliases=new Map()) {
+  const needles=expandCatalogQuery(query,aliases).toLowerCase().split(/\s+/).filter(Boolean);if(!needles.length)return true;
+  const haystack=['unit_name','department','code','name','direction','province','campus'].map(field=>String(program?.[field]||'')).join(' ').toLowerCase()+' '+(Array.isArray(program?.subjects)?program.subjects:[]).map(subject=>[subject?.code,subject?.name].join(' ')).join(' ').toLowerCase();
+  return needles.every(needle=>haystack.includes(needle));
+}
+// Pick a school only when the query clearly names one. An exact token wins over
+// a name prefix; within the same kind the longest name wins; a tie leaves the
+// selection alone rather than guessing.
+export function inferCatalogUnit(query,units=[]) {
+  const tokens=String(query||'').trim().split(/\s+/).filter(Boolean);
+  if(!tokens.length)return '';
+  const flat=value=>String(value||'').replace(/\s+/g,'').toLowerCase(),needle=flat(query),exact=[],prefix=[];
+  for(const unit of Array.isArray(units)?units:[]) {
+    if(!unit||typeof unit.name!=='string'||!unit.id||unit.annual_status==='not_listed')continue;
+    for(const name of [unit.name,...(Array.isArray(unit.aliases)?unit.aliases:[])]) {
+      const key=flat(name);
+      if(!key)continue;
+      // An exact token outranks a prefix: `中国人民大学 计算机` must not pick
+      // `中国人民大学苏州校区` merely because its name is longer.
+      if(tokens.some(token=>flat(token)===key))exact.push({id:unit.id,length:key.length});
+      else if(needle.startsWith(key))prefix.push({id:unit.id,length:key.length});
+    }
+  }
+  const matched=exact.length?exact:prefix;
+  if(!matched.length)return '';
+  const longest=Math.max(...matched.map(item=>item.length)),best=[...new Set(matched.filter(item=>item.length===longest).map(item=>item.id))];
+  return best.length===1?best[0]:'';
 }
 
 export function createCatalogClient(request) {
@@ -145,5 +185,5 @@ export function restoreClientState(cached) {
   if(Array.isArray(input.provinces)) profile.provinces=input.provinces.filter(value=>typeof value==='string').slice(0,35);
   if(Array.isArray(input.subjects)) profile.subjects=input.subjects.filter(subject=>subject && typeof subject.code==='string' && typeof subject.scope==='string' && subject.scope && Number.isInteger(subject.exam_unit) && subject.exam_unit>=1 && subject.exam_unit<=4).slice(0,4).map(subject=>({code:subject.code.slice(0,20),name:text(subject.name).slice(0,120),scope:subject.scope.slice(0,120),exam_unit:subject.exam_unit}));
   for(const field of ['cost','subjects','location']) if(Number.isFinite(input.preferences?.[field]) && input.preferences[field]>=0 && input.preferences[field]<=5) profile.preferences={...profile.preferences,[field]:input.preferences[field]};
-  return {profile,preferences:{query:text(preferences.query).slice(0,80),unit_id:text(preferences.unit_id).slice(0,120),priority,examCount:[2,3,4].includes(preferences.examCount)?preferences.examCount:4},saved:Array.isArray(source.saved)?[...new Set(source.saved.filter(value=>typeof value==='string').map(value=>value.slice(0,300)))].slice(0,100):[]};
+  return {profile,preferences:{query:text(preferences.query).slice(0,80),unit_id:text(preferences.unit_id).slice(0,120),priority,examCount:[2,3,4].includes(preferences.examCount)?preferences.examCount:4,sourceKind:sourceKinds.some(([key])=>key===preferences.sourceKind)?preferences.sourceKind:'catalog'},saved:Array.isArray(source.saved)?[...new Set(source.saved.filter(value=>typeof value==='string').map(value=>value.slice(0,300)))].slice(0,100):[]};
 }

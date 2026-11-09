@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { adaptProgram, matchingStatistics, matchingRules, historicalFacts, subjectIdentity, safeHttpUrl, createApi, restoreClientState, createCatalogClient, catalogPageWindow,declaredExamUnits,matchesCatalogQuery,annualUnitOptionLabel,annualUnitCount } from '../static/data.mjs';
+import { adaptProgram, matchingStatistics, matchingRules, historicalFacts, subjectIdentity, safeHttpUrl, createApi, restoreClientState, createCatalogClient, catalogPageWindow,declaredExamUnits,matchesCatalogQuery,annualUnitOptionLabel,annualUnitCount,catalogAliasMap,inferCatalogUnit,sourceKinds } from '../static/data.mjs';
 import { renderDetail,renderComparison,renderReasons } from '../static/details.mjs';
 import { parseRoute,paginate,nextTabIndex } from '../static/view-state.mjs';
 import { toggleSaved,toggleCompare,latestLine } from '../static/model.mjs';
@@ -72,6 +72,21 @@ test('server exam units and complete algorithm results do not depend on the six 
  assert.deepEqual(declaredExamUnits({exam_units:[3,4]}),[3,4]);assert.deepEqual(declaredExamUnits({exam_unit:2}),[2]);assert.deepEqual(declaredExamUnits({code:'408'}),[]);
  const all=[{id:'outside-page',name:'计算机科学与技术',subjects:[]},{id:'another',name:'物理学',subjects:[]}];
  assert.deepEqual(all.filter(program=>matchesCatalogQuery(program,'计算机')).map(program=>program.id),['outside-page']);assert.equal(matchesCatalogQuery(all[1],''),true);
+ assert.equal(matchesCatalogQuery(all[1],'物理 数学'),false);
+ assert.equal(matchesCatalogQuery({unit_name:'甲大学',name:'计算机科学与技术',subjects:[{code:'408',name:'计算机学科专业基础'}]},'甲大学 408'),true);
+ assert.equal(matchesCatalogQuery({unit_name:'甲大学',name:'计算机科学与技术',subjects:[{code:'408',name:'计算机学科专业基础'}]},'甲大学 数学'),false);
+ const aliases=catalogAliasMap([{id:'u1',name:'中国社会科学院大学',aliases:['社科大']}]);
+ assert.equal(matchesCatalogQuery({unit_name:'中国社会科学院大学',name:'计算机科学与技术'},'社科大 计算机',aliases),true);
+ assert.equal(catalogAliasMap([{name:'甲大学',aliases:['甲大']}]).get('甲大'),'甲大学');
+ assert.equal(inferCatalogUnit('社科大 计算机',[{id:'u1',name:'中国社会科学院大学',aliases:['社科大']}]),'u1');
+ assert.equal(inferCatalogUnit('北京大学医学部 临床',[{id:'peking',name:'北京大学'},{id:'medical',name:'北京大学医学部'}]),'medical');
+ assert.equal(inferCatalogUnit('北京大学 临床',[{id:'peking',name:'北京大学'},{id:'medical',name:'北京大学医学部'}]),'peking');
+ assert.equal(inferCatalogUnit('中国人民大学 计算机',[{id:'ruc',name:'中国人民大学'},{id:'suzhou',name:'中国人民大学苏州校区'}]),'ruc');
+ assert.equal(inferCatalogUnit('南开大学计算机',[{id:'nankai',name:'南开大学'}]),'nankai');
+ assert.equal(inferCatalogUnit('计算机',[{id:'u1',name:'甲大学'}]),'');
+ assert.equal(restoreClientState({preferences:{sourceKind:'score'}}).preferences.sourceKind,'score');
+ assert.equal(restoreClientState({preferences:{sourceKind:'made-up'}}).preferences.sourceKind,'catalog');
+ assert.equal(sourceKinds.some(([key])=>key==='catalog'),true);
  assert.equal(catalogPageWindow([],0,2).page,1);
 });
 

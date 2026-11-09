@@ -78,8 +78,8 @@ function emptyLibrary(state){
 }
 
 function filtersView(state){
- const filters=object(state.filters),facets=object(state.facets),units=list(facets.units),years=list(facets.years).filter(Number.isInteger);
- return `<form id="yk-search-form" class="yk-search-form" role="search"><div class="yk-search-field"><label class="yk-sr-only" for="yk-query">搜索已保存的研究资料</label>${icon('search')}<input id="yk-query" name="q" type="search" maxlength="240" value="${esc(filters.q||'')}" placeholder="搜索学校、专业、科目或资料标题"><button type="submit">搜索</button><button type="button" class="yk-hybrid-trigger" data-knowledge-action="hybrid-search" ${object(state.hybrid).status==='loading'?'disabled':''}>${object(state.hybrid).status==='loading'?'检索中…':'混合检索'}</button></div><p class="yk-hybrid-hint">“搜索”只读关键词列表；“混合检索”由你主动提交一次，可能使用已保存的向量模型。</p><div class="yk-filters"><label>资料类型<select name="status"><option value="">全部资料</option>${kinds.map(([value,title])=>`<option value="${value}"${selected(filters.status,value)}>${title}</option>`).join('')}</select></label><label>招生单位<select name="unit_id"><option value="">全部已保存单位</option>${units.map(unit=>`<option value="${esc(unit.unit_id)}"${selected(filters.unit_id,unit.unit_id)}>${esc(unit.unit_name||unit.unit_id)}</option>`).join('')}</select></label><label>来源年度<select name="year"><option value="">全部年度</option>${years.sort((a,b)=>b-a).map(value=>`<option value="${value}"${selected(filters.year,value)}>${value} 年</option>`).join('')}</select></label>${hasFilters(filters)?'<button type="button" class="yk-reset" data-knowledge-action="reset">清除筛选</button>':''}</div></form>`;
+ const filters=object(state.filters),facets=object(state.facets),units=list(facets.units),years=list(facets.years).filter(Number.isInteger),expansion=object(state.queryExpansion),expansionNotice=text(expansion.notice),requested=text(expansion.requested),effective=text(expansion.effective);
+ return `<form id="yk-search-form" class="yk-search-form" role="search"><div class="yk-search-field"><label class="yk-sr-only" for="yk-query">搜索已保存的研究资料</label>${icon('search')}<input id="yk-query" name="q" type="search" maxlength="240" value="${esc(filters.q||'')}" placeholder="搜索学校、专业、科目或资料标题"><button type="submit">搜索</button><button type="button" class="yk-hybrid-trigger" data-knowledge-action="hybrid-search" ${object(state.hybrid).status==='loading'?'disabled':''}>${object(state.hybrid).status==='loading'?'检索中…':'混合检索'}</button></div><p class="yk-hybrid-hint">“搜索”只读关键词列表；“混合检索”由你主动提交一次，可能使用已保存的向量模型。</p>${expansionNotice?`<p class="yk-hybrid-hint" role="status">${esc(expansionNotice)}${requested&&effective?`（${esc(requested)} → ${esc(effective)}）`:''}</p>`:''}<div class="yk-filters"><label>资料类型<select name="status"><option value="">全部资料</option>${kinds.map(([value,title])=>`<option value="${value}"${selected(filters.status,value)}>${title}</option>`).join('')}</select></label><label>招生单位<select name="unit_id"><option value="">全部已保存单位</option>${units.map(unit=>`<option value="${esc(unit.unit_id)}"${selected(filters.unit_id,unit.unit_id)}>${esc(unit.unit_name||unit.unit_id)}</option>`).join('')}</select></label><label>来源年度<select name="year"><option value="">全部年度</option>${years.sort((a,b)=>b-a).map(value=>`<option value="${value}"${selected(filters.year,value)}>${value} 年</option>`).join('')}</select></label>${hasFilters(filters)?'<button type="button" class="yk-reset" data-knowledge-action="reset">清除筛选</button>':''}</div></form>`;
 }
 
 function entryView(entry,activeId,query=''){
@@ -135,7 +135,7 @@ function loadStyle(document){
 export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSegmentId='',initialQuery='',initialQuality='accepted',initialStatus='',initialYear='',initialUnit='',initialPage=1}={}){
  const document=container.ownerDocument,view=document.defaultView;loadStyle(document);
  let disposed=false,listController,detailController,listGeneration=0,detailGeneration=0,hybridController,hybridGeneration=0,timer,composing=false,renderPending=false,returnPoint={scroll:0,id:''},detailPushed=false;
- let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:Math.max(1,Number(initialPage)||1),pageSize:12,filters:{q:text(initialQuery),status:text(initialStatus),year:text(initialYear),unit_id:text(initialUnit),quality:qualityFilter(initialQuality)},error:'',detailId:text(initialEntryId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
+ let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:Math.max(1,Number(initialPage)||1),pageSize:12,filters:{q:text(initialQuery),status:text(initialStatus),year:text(initialYear),unit_id:text(initialUnit),quality:qualityFilter(initialQuality)},error:'',queryExpansion:null,detailId:text(initialEntryId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
  let listEntryKnown=!text(initialEntryId);
  const render=()=>{
   if(disposed)return;
@@ -173,7 +173,7 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
  }
  async function loadList(){
   clearTimeout(timer);listController?.abort();listController=new AbortController();const ticket=++listGeneration;
-  state={...state,loadStatus:'loading',error:''};render();
+  state={...state,loadStatus:'loading',error:'',queryExpansion:null};render();
   const params=new URLSearchParams({...state.filters,page:String(state.page),page_size:String(state.pageSize)});
   try{
    const result=await api('/api/knowledge?'+params,{signal:listController.signal});
@@ -181,7 +181,8 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
    if(!Array.isArray(result?.entries)||!Number.isInteger(result?.total)||result.total<0)throw new Error('知识库返回的数据格式需要重新检查。');
    const found=object(result.facets),units=new Map([...list(state.facets.units),...list(found.units),...result.entries.filter(entry=>entry.unit_id).map(entry=>({unit_id:entry.unit_id,unit_name:entry.unit_name}))].map(unit=>[unit.unit_id,unit]));
    const years=[...new Set([...list(state.facets.years),...list(found.years),...result.entries.map(entry=>entry.year)].filter(Number.isInteger))];
-   state={...state,loadStatus:'ready',entries:result.entries,total:result.total,page:Number.isInteger(result.page)?result.page:state.page,summary:object(result.summary),facets:{units:[...units.values()],years}};syncUrl();render();
+   const expansion=object(result.query_expansion),expansionNotice=text(expansion.notice);
+   state={...state,loadStatus:'ready',entries:result.entries,total:result.total,page:Number.isInteger(result.page)?result.page:state.page,summary:object(result.summary),facets:{units:[...units.values()],years},queryExpansion:expansionNotice?expansion:null};syncUrl();render();
   }catch(error){if(disposed||ticket!==listGeneration||error.name==='AbortError')return;state={...state,loadStatus:'error',error:error.message||'本地知识库暂时不可用。'};render();}
  }
  async function openDetail(id,{remember=true,preserveReader=false,segmentId='',fromHistory=false}={}){

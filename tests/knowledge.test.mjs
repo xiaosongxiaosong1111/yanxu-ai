@@ -71,6 +71,15 @@ test('default original rows stay compact while search results and the reader kee
  assert.match(reading,/完整原文保持不变，仍可从详情阅读/);
 });
 
+test('short-name expansion is shown as a query change and never rendered as markup',()=>{
+ const notice='已把学校简称展开为目录中的规范校名；这只是检索词变化，不是新的资料或事实。';
+ const html=renderKnowledge({...state,queryExpansion:{requested:'国科大',effective:'中国科学院大学',notice}});
+ assert.match(html,/只是检索词变化/);assert.match(html,/国科大 → 中国科学院大学/);
+ const unsafe=renderKnowledge({...state,queryExpansion:{requested:'<img src=x>',effective:'"><b>',notice:'<script>bad()</script>'}});
+ assert.match(unsafe,/&lt;img/);assert.ok(!unsafe.includes('<img src=x>'));assert.ok(!unsafe.includes('<script>bad()'));
+ assert.ok(!renderKnowledge({...state,queryExpansion:{requested:'国科大'}}).includes('只是检索词变化'));
+});
+
 test('loading, recoverable failures, empty results and pagination have explicit states',()=>{
  assert.match(renderKnowledge({loadStatus:'loading'}),/正在读取知识库/);
  assert.match(renderKnowledge({...state,loadStatus:'error',error:'本地服务暂不可用'}),/重新读取/);
