@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import json
 import shutil
 import sys
@@ -13,10 +14,29 @@ def write_json(path, payload):
     path.write_text(json.dumps(payload, ensure_ascii=False), 'utf-8')
 
 
+STATEMENT_URL = 'https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3552467248&schCode=10001'
+
+
 def entry_evidence(url='https://a.edu.cn/'):
-    return {'url': 'https://yz.chsi.com.cn/sch/schoolInfo--schId-1.dhtml',
-            'verification': 'saved_original_exact_link',
-            'quote': url, 'linked_url': url}
+    return {'url': STATEMENT_URL,
+            'sha256': 'a' * 64,
+            'verification': 'replayed_from_saved_chsi_official_site_statement',
+            'quote': url, 'linked_url': url, 'relation': 'official_home_link'}
+
+
+def attach_proof(row, status='verified', reason='saved_original_replayed', **overrides):
+    proof = {'status': status, 'reason': reason, 'unit_id': row.get('unit_id'),
+             'year': row.get('year'), 'official_url': row.get('official_url'),
+             'evidence_url': (row.get('official_url_evidence') or {}).get('url', ''),
+             'evidence_sha256': (row.get('official_url_evidence') or {}).get('sha256', ''),
+             'document_id': 'national-u1-2027-aaaabbbbccccdddd-aaaaaaaaaaaa',
+             'document_sha256': 'a' * 64, 'document_path':
+             'snapshots/national/2027/u1/aaaabbbbccccdddd-aaaaaaaaaaaaaaaa.html',
+             'file_sha256': 'a' * 64, 'quote_match': 'literal'}
+    proof.update(overrides)
+    row['entry_verification'] = proof
+    proof['proof_sha256'] = baseline._entry_fingerprint(row)
+    return row
 
 
 class ProfileTests(unittest.TestCase):
@@ -125,22 +145,25 @@ class GapTests(unittest.TestCase):
 
 
 class EntryTests(unittest.TestCase):
-    def test_entry_requires_replayable_ownership_evidence(self):
-        row = {'official_url': 'https://a.edu.cn/', 'gaps': [],
-               'official_url_evidence': entry_evidence()}
-        self.assertTrue(baseline.entry_trusted(row))
+    def test_entry_without_a_replayed_proof_is_untrusted(self):
+        row = {'unit_id': 'u1', 'year': 2027, 'official_url': 'https://a.edu.cn/',
+               'gaps': [], 'official_url_evidence': entry_evidence()}
+        self.assertFalse(baseline.entry_trusted(row))
 
-    def test_entry_evidence_may_link_a_deeper_page_on_the_same_host(self):
-        evidence = entry_evidence('https://a.edu.cn/yjszs/index.htm')
-        row = {'official_url': 'https://a.edu.cn/', 'gaps': [],
-               'official_url_evidence': evidence}
-        self.assertTrue(baseline.entry_trusted(row))
+    def test_metadata_claim_is_not_enough_even_when_hosts_match(self):
+        row = attach_proof({'unit_id': 'u1', 'year': 2027,
+                            'official_url': 'https://a.edu.cn/', 'gaps': [],
+                            'official_url_evidence': entry_evidence()},
+                           status='rejected', reason='no_exact_annual_document')
+        self.assertFalse(baseline.entry_trusted(row))
 
     def test_entry_rejects_unapproved_or_missing_evidence(self):
-        base = {'official_url': 'https://a.edu.cn/', 'gaps': []}
+        base = {'unit_id': 'u1', 'year': 2027, 'official_url': 'https://a.edu.cn/',
+                'gaps': []}
         self.assertFalse(baseline.entry_trusted(base))
-        self.assertFalse(baseline.entry_trusted({**base, 'gaps': ['missing_trusted_entry'],
-                                                 'official_url_evidence': entry_evidence()}))
+        self.assertFalse(baseline.entry_trusted(
+            {**attach_proof({**base, 'official_url_evidence': entry_evidence()}),
+             'gaps': ['missing_trusted_entry']}))
         self.assertFalse(baseline.entry_trusted(
             {**base, 'missing_reason': '尚未核准该单位的官方招生网站入口。',
              'official_url_evidence': entry_evidence()}))
@@ -148,16 +171,225 @@ class EntryTests(unittest.TestCase):
         self.assertFalse(baseline.entry_trusted(
             {**base, 'official_url_evidence': {'verification': '', 'quote': 'https://a.edu.cn/'}}))
 
-    def test_entry_rejects_evidence_for_another_host(self):
-        row = {'official_url': 'https://a.edu.cn/', 'gaps': [],
-               'official_url_evidence': entry_evidence('https://b.edu.cn/')}
-        self.assertFalse(baseline.entry_trusted(row))
-
     def test_entry_handles_malformed_evidence(self):
-        row = {'official_url': 'https://a.edu.cn/', 'gaps': [],
-               'official_url_evidence': {'verification': 'x', 'quote': 'not a url'}}
+        row = attach_proof({'unit_id': 'u1', 'year': 2027,
+                            'official_url': 'https://a.edu.cn/', 'gaps': [],
+                            'official_url_evidence': {'verification': 'x',
+                                                      'quote': 'not a url'}})
         self.assertFalse(baseline.entry_trusted(row))
         self.assertEqual(baseline._host('http://[::1'), '')
+
+
+class EntryProofTests(unittest.TestCase):
+    """R2: the entry gate must replay a real saved original, not metadata."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.data = Path(self.tmp.name)
+        self.saved_bytes = ('<html><p>研究生院网站主页：'
+                            '<a href="http://a.edu.cn/">http://a.edu.cn/</a></p></html>'
+                            ).encode('utf-8')
+        self.sha = hashlib.sha256(self.saved_bytes).hexdigest()
+        self.doc_id = f'national-u1-2027-aaaabbbbccccdddd-{self.sha[:12]}'
+        folder = self.data / 'snapshots' / 'national' / '2027' / 'u1'
+        folder.mkdir(parents=True)
+        (folder / f'aaaabbbbccccdddd-{self.sha[:16]}.html').write_bytes(self.saved_bytes)
+        self.record = {
+            'unit_id': 'u1', 'unit_code': '10001', 'year': 2027,
+            'annual_status': 'confirmed',
+            'evidence': [{'document_id': self.doc_id, 'url': STATEMENT_URL,
+                          'sha256': self.sha, 'kind': 'annual_master_charter',
+                          'quote': '甲大学2027年硕士研究生招生章程'}]}
+        self.unit = {
+            'id': 'u1', 'official_url': 'https://a.edu.cn/',
+            'official_url_evidence': {
+                'url': STATEMENT_URL, 'sha256': self.sha, 'quote': 'http://a.edu.cn/',
+                'link_label': '招生网站', 'relation': 'official_home_link',
+                'linked_url': 'http://a.edu.cn/',
+                'verification': 'replayed_from_saved_chsi_official_site_statement'}}
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def verify(self):
+        return baseline.verify_entry(self.unit, self.record, self.data)
+
+    def rewritten(self, **changes):
+        unit = {**self.unit, 'official_url_evidence': dict(self.unit['official_url_evidence'])}
+        unit['official_url_evidence'].update(changes)
+        return baseline.verify_entry(unit, self.record, self.data)
+
+    def test_correct_saved_original_replays_to_verified(self):
+        proof = self.verify()
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['reason'], 'saved_original_replayed')
+        self.assertEqual(proof['file_sha256'], self.sha)
+        self.assertEqual(proof['quote_match'], 'literal')
+        self.assertIn('snapshots/national/2027/u1/', proof['document_path'])
+
+    def test_zeroed_evidence_sha_is_rejected(self):
+        proof = self.rewritten(sha256='0' * 64)
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'no_exact_annual_document')
+
+    def test_rejected_or_failed_verification_status_is_rejected(self):
+        for value in ('rejected', 'failed'):
+            proof = self.rewritten(verification=value)
+            self.assertEqual(proof['status'], 'rejected')
+            self.assertEqual(proof['reason'], 'unsupported_verification')
+
+    def test_removed_sha_or_original_url_is_rejected(self):
+        unit = {**self.unit, 'official_url_evidence': dict(self.unit['official_url_evidence'])}
+        del unit['official_url_evidence']['sha256']
+        self.assertEqual(baseline.verify_entry(unit, self.record, self.data)['reason'],
+                         'invalid_evidence_sha256')
+        unit = {**self.unit, 'official_url_evidence': dict(self.unit['official_url_evidence'])}
+        del unit['official_url_evidence']['url']
+        self.assertEqual(baseline.verify_entry(unit, self.record, self.data)['reason'],
+                         'no_exact_annual_document')
+
+    def test_replaced_original_bytes_are_rejected(self):
+        folder = self.data / 'snapshots' / 'national' / '2027' / 'u1'
+        (folder / f'aaaabbbbccccdddd-{self.sha[:16]}.html').write_bytes(b'<html>changed</html>')
+        self.assertEqual(self.verify()['reason'], 'saved_original_sha_mismatch')
+
+    def test_wrong_unit_identity_is_rejected(self):
+        self.record['unit_code'] = '19999'
+        self.assertEqual(self.verify()['reason'], 'unit_identity_mismatch')
+
+    def test_source_host_only_evidence_is_rejected(self):
+        proof = self.rewritten(quote='https://yz.chsi.com.cn/')
+        self.assertEqual(proof['reason'], 'quote_host_mismatch')
+
+    def test_quote_absent_from_the_original_is_rejected(self):
+        proof = self.rewritten(quote='http://b.edu.cn/')
+        self.assertEqual(proof['reason'], 'quote_host_mismatch')
+        proof = self.rewritten(quote='http://a.edu.cn/other/')
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
+
+    def test_unsupported_relation_is_rejected(self):
+        proof = self.rewritten(relation='generic_contact_url')
+        self.assertEqual(proof['reason'], 'unsupported_relation')
+
+    def test_missing_saved_original_is_rejected(self):
+        shutil.rmtree(self.data / 'snapshots')
+        self.assertEqual(self.verify()['reason'], 'saved_original_missing')
+
+    def test_ambiguous_saved_original_is_rejected(self):
+        folder = self.data / 'snapshots' / 'national' / '2027' / 'u1'
+        (folder / f'ffffffffffffffff-{self.sha[:16]}.html').write_bytes(self.saved_bytes)
+        self.assertEqual(self.verify()['reason'], 'ambiguous_saved_original')
+
+    def test_missing_entry_payloads_are_rejected(self):
+        proof = baseline.verify_entry({'official_url': 'https://a.edu.cn/'},
+                                      self.record, self.data)
+        self.assertEqual(proof['reason'], 'no_entry_evidence')
+        unit = {**self.unit, 'official_url': ''}
+        self.assertEqual(baseline.verify_entry(unit, self.record, self.data)['reason'],
+                         'missing_official_url')
+
+    def test_linked_url_on_another_host_is_rejected(self):
+        self.assertEqual(self.rewritten(linked_url='https://b.edu.cn/')['reason'],
+                         'linked_host_mismatch')
+
+    def test_unsupported_annual_document_kind_is_rejected(self):
+        self.record['evidence'][0]['kind'] = 'current_master_catalog_entry'
+        self.assertEqual(self.verify()['reason'], 'unsupported_document_kind')
+
+    def test_document_index_and_file_binding_reject_unbound_names(self):
+        self.assertEqual(
+            baseline._document_matches({'evidence': ['skip', {'url': 'x', 'sha256': '0'}]},
+                                       {'url': 'x', 'sha256': '0'})['url'], 'x')
+        self.assertEqual(baseline._saved_original(self.data, 'u1', 2027, self.sha, 'x')[1],
+                         'document_id_unbound')
+        self.assertEqual(baseline._saved_original(
+            self.data, 'u1', 2027, self.sha,
+            f'national-u1-2027-ffffffffffffffff-{self.sha[:12]}')[1],
+            'saved_original_unbound')
+        self.assertEqual(baseline._saved_original(
+            self.data, 'missing', 2027, self.sha, self.doc_id)[1],
+            'saved_original_missing')
+        folder = self.data / 'snapshots' / 'national' / '2027' / 'u1'
+        self.assertEqual(baseline._saved_original(
+            self.data, 'u1', 2027, 'f' * 64, self.doc_id)[1],
+            'saved_original_missing')
+        self.assertEqual(baseline._quote_match(
+            folder / f'aaaabbbbccccdddd-{self.sha[:16]}.html', ''), '')
+
+    def test_identity_can_come_from_structured_fields_or_schid_url(self):
+        record = {'unit_id': 'u1', 'unit_code': '10001'}
+        self.assertTrue(baseline._identity_matches(
+            record, {'structured_fields': {'dwdm': '10001'}}, 'https://x/'))
+        self.assertTrue(baseline._identity_matches(
+            record, {'structured_fields': {'schId': 'u1'}}, 'https://x/'))
+        self.assertTrue(baseline._identity_matches(
+            {'unit_id': 'u1', 'unit_code': ''}, {}, 'https://x/schId-u1.html'))
+        self.assertFalse(baseline._identity_matches(
+            record, {}, 'http://[::1'))
+
+    def test_verify_entries_skips_non_string_unit_ids(self):
+        proofs = baseline.verify_entries(
+            {'units': [self.unit]},
+            {'units': [{'unit_id': 123, 'year': 2027, 'annual_status': 'confirmed'},
+                       self.record]}, self.data)
+        self.assertEqual(list(proofs), ['u1'])
+
+    def test_entry_trusted_rejects_each_tampered_link(self):
+        proofs = baseline.verify_entries({'units': [self.unit]},
+                                         {'units': [self.record]}, self.data)
+        row = baseline.build_queue([], {}, {}, [{
+            'unit_id': 'u1', 'year': 2027, 'annual_status': 'confirmed',
+            'official_url': 'https://a.edu.cn/',
+            'official_url_evidence': self.unit['official_url_evidence']}],
+            entry_proofs=proofs)[0]
+        self.assertTrue(baseline.entry_trusted(row))
+        cases = [
+            {'official_url_evidence': {**row['official_url_evidence'],
+                                       'verification': 'unknown'}},
+            {'official_url_evidence': {**row['official_url_evidence'],
+                                       'relation': 'unknown'}},
+            {'entry_verification': {**row['entry_verification'], 'unit_id': 'u2'}},
+            {'entry_verification': {**row['entry_verification'], 'year': 2028}},
+            {'entry_verification': {**row['entry_verification'],
+                                    'official_url': 'https://b.edu.cn/'}},
+            {'official_url_evidence': {**row['official_url_evidence'], 'quote': ''}},
+            {'entry_verification': {**row['entry_verification'], 'proof_sha256': 'x'}},
+        ]
+        for change in cases:
+            self.assertFalse(baseline.entry_trusted({**row, **change}))
+
+    def test_build_queue_fills_a_missing_proof_year(self):
+        row = baseline.build_queue([], {}, {}, [{
+            'unit_id': 'u1', 'year': 2027, 'annual_status': 'confirmed',
+            'official_url': 'https://a.edu.cn/',
+            'official_url_evidence': self.unit['official_url_evidence']}],
+            entry_proofs={'u1': {'status': 'rejected', 'reason': 'x',
+                                 'unit_id': 'u1'}})[0]
+        self.assertEqual(row['entry_verification']['year'], 2027)
+        self.assertFalse(row['entry_trusted'])
+
+    def test_host_helpers_cover_empty_and_scheme_less_values(self):
+        self.assertEqual(baseline._host(''), '')
+        self.assertEqual(baseline._host('a.edu.cn/'), 'a.edu.cn')
+
+    def test_build_queue_persists_and_binds_the_proof(self):
+        proofs = baseline.verify_entries({'units': [self.unit]},
+                                         {'units': [self.record]}, self.data)
+        row = baseline.build_queue([], {}, {}, [{
+            'unit_id': 'u1', 'unit_code': '10001', 'unit_name': '甲大学',
+            'province': '甲省', 'year': 2027, 'annual_status': 'confirmed',
+            'annual_evidence_count': 1, 'official_url': 'https://a.edu.cn/',
+            'official_url_evidence': self.unit['official_url_evidence']}],
+            entry_proofs=proofs)[0]
+        self.assertEqual(row['entry_verification']['status'], 'verified')
+        self.assertTrue(row['entry_trusted'])
+        self.assertNotIn('missing_trusted_entry', row['gaps'])
+        tampered = {**row, 'official_url_evidence': {
+            **row['official_url_evidence'], 'sha256': '0' * 64}}
+        self.assertFalse(baseline.entry_trusted(tampered))
+        forged = {**row, 'entry_verification': {
+            **row['entry_verification'], 'proof_sha256': 'b' * 64}}
+        self.assertFalse(baseline.entry_trusted(forged))
 
 
 class CountTests(unittest.TestCase):
@@ -375,15 +607,18 @@ class QueueTests(unittest.TestCase):
 
 
 class SelectTests(unittest.TestCase):
-    def expansion_row(self, unit_id='1', url='https://a.edu.cn/', gaps=None, evidence=True):
-        row = {'unit_id': unit_id, 'unit_name': '甲', 'official_url': url,
+    def expansion_row(self, unit_id='1', url='https://a.edu.cn/', gaps=None, evidence=True,
+                      proof_status='verified'):
+        row = {'unit_id': unit_id, 'unit_name': '甲', 'official_url': url, 'year': 2027,
                'catalog_status': 'not_collected', 'collection_status': 'collected',
                'missing_reason': '已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。',
                'original_urls': 'https://a.edu.cn/zsml/2027.htm', 'program_count': 0,
                'gaps': ['missing_catalog', 'parser_pending'] if gaps is None else gaps}
         if evidence:
             row['official_url_evidence'] = entry_evidence(url)
-        return row
+        return attach_proof(row, status=proof_status,
+                            reason=('saved_original_replayed' if proof_status == 'verified'
+                                    else 'no_exact_annual_document'))
 
     def test_expansion_pool_requires_a_trusted_entry(self):
         picks = baseline.select_batch([self.expansion_row(evidence=False)], expansion=1, backfill=0)
@@ -470,9 +705,20 @@ class AuditTests(unittest.TestCase):
         (data / 'bundles').mkdir()
         (data / 'bundles' / 'catalog-data.zip').write_bytes(b'zip-bytes')
         write_json(data / 'bundles' / 'manifest.json', {'files': []})
+        saved = ('<html><p>研究生院网站主页：'
+                 '<a href="https://a.edu.cn/">https://a.edu.cn/</a></p></html>').encode('utf-8')
+        saved_sha = hashlib.sha256(saved).hexdigest()
+        document_id = f'national-u1-2027-aaaabbbbccccdddd-{saved_sha[:12]}'
+        snapshot = data / 'snapshots' / 'national' / '2027' / 'u1'
+        snapshot.mkdir(parents=True)
+        (snapshot / f'aaaabbbbccccdddd-{saved_sha[:16]}.html').write_bytes(saved)
+        u1_evidence = {'url': STATEMENT_URL, 'sha256': saved_sha,
+                       'quote': 'https://a.edu.cn/', 'link_label': '研究生院网站主页',
+                       'relation': 'official_home_link', 'linked_url': 'https://a.edu.cn/',
+                       'verification': 'replayed_from_saved_chsi_official_site_statement'}
         write_json(data / 'units.json', {'units': [
             {'id': 'u1', 'name': '甲大学', 'unit_code': '10001', 'province': '甲省',
-             'official_url': 'https://a.edu.cn/', 'official_url_evidence': entry_evidence()},
+             'official_url': 'https://a.edu.cn/', 'official_url_evidence': u1_evidence},
             {'id': 'u2', 'name': '乙大学', 'unit_code': '10002', 'province': '乙省',
              'official_url': 'https://b.edu.cn/',
              'official_url_evidence': entry_evidence('https://b.edu.cn/')}]})
@@ -490,7 +736,9 @@ class AuditTests(unittest.TestCase):
             'units': [
                 {'unit_id': 'u1', 'unit_code': '10001', 'unit_name': '甲大学',
                  'province': '甲省', 'year': 2027, 'annual_status': 'confirmed',
-                 'evidence': [{'id': 'e1'}]},
+                 'evidence': [{'document_id': document_id, 'url': STATEMENT_URL,
+                               'sha256': saved_sha, 'kind': 'annual_master_charter',
+                               'quote': '甲大学2027年硕士研究生招生章程'}]},
                 {'unit_id': 'u2', 'unit_code': '10002', 'unit_name': '乙大学',
                  'province': '乙省', 'year': 2027, 'annual_status': 'confirmed',
                  'evidence': []},
@@ -560,6 +808,9 @@ class AuditTests(unittest.TestCase):
             self.assertEqual(report['queue']['sha256'], batch['queue_sha256'])
             self.assertEqual(report['expansion_pool'],
                              {'candidates': 1, 'trusted': 1, 'untrusted': 0})
+            self.assertEqual(report['entry_proof']['status'], {'verified': 1, 'rejected': 1})
+            self.assertEqual(queue[0]['entry_verification']['status'], 'verified')
+            self.assertEqual(len(queue[0]['entry_verification']['proof_sha256']), 64)
             self.assertTrue(queue[0]['entry_trusted'])
             self.assertEqual(report['protected_sha256'], baseline.protected_hashes(repo))
             self.assertIn('inputs', report)

@@ -9,14 +9,16 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import html
 import json
 import math
+import re
 import subprocess
 import sys
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 import ijson
 
@@ -28,7 +30,27 @@ PROTECTED_FILES = (
     'collectors/catalog_hit_public.py',
 )
 COLLECTIONS = ('documents', 'programs', 'admitted_statistics', 'score_lines')
-SELECTION_RULE_VERSION = 'b001-node0-v2'
+SELECTION_RULE_VERSION = 'b001-node0-v3'
+SUPPORTED_ENTRY_VERIFICATIONS = frozenset({
+    'replayed_from_saved_chsi_official_site_statement',
+    'saved_visible_original_role_replayed',
+    'saved_declaration_and_own_primary_title_replayed',
+    'saved_original_exact_role_link',
+    'linked_from_saved_unit_profile',
+    'replayed_visible_declaration_and_own_title',
+    'homepage_name_and_admissions_navigation',
+    'saved_original_exact_link',
+    'linked_from_saved_annual_charter',
+    'saved_original_exact_catalog_link',
+})
+SUPPORTED_ENTRY_RELATIONS = frozenset({
+    'official_home_link',
+    'declared_official_site',
+    'own_admissions_publication',
+    'official_home_statement',
+    'official_annual_catalog_link',
+})
+SHA256_HEX = re.compile(r'^[0-9a-f]{64}$')
 NOTICE = ('只读审计：未联网、未调用模型或元宝、未写采用文件、未创建发布索引；'
           '非空字段不等于原文已核验，完整资格仍以逐条条款审校为准。')
 PRESENCE_KEYS = ('program_count', 'ids', 'duplicate_ids', 'units', 'tuition', 'tuition_year',
@@ -39,7 +61,7 @@ VERIFIED_KEYS = ('program_count', 'verified_tuition', 'verified_duration',
                  'tuition_claim_statuses', 'duration_claim_statuses',
                  'qualification_claim_statuses')
 EXPANSION_REQUIRED = ('unit_id', 'program_count', 'official_url', 'collection_status',
-                      'missing_reason', 'original_urls', 'gaps')
+                      'missing_reason', 'original_urls', 'gaps', 'entry_verification')
 SUMMARY_ROW_KEYS = ('unit_id', 'unit_code', 'unit_name', 'province', 'year',
                     'annual_status', 'program_count', 'coverage_program_count',
                     'raw_tuition', 'raw_duration', 'raw_full_qualification',
@@ -108,15 +130,238 @@ def _host(value):
         return ''
 
 
+def _entry_fingerprint(row):
+    """Bind the persisted proof to the exact row evidence it verified."""
+    evidence = row.get('official_url_evidence')
+    proof = row.get('entry_verification')
+    evidence = evidence if isinstance(evidence, dict) else {}
+    proof = proof if isinstance(proof, dict) else {}
+    payload = {
+        'unit_id': str(row.get('unit_id') or ''),
+        'year': str(row.get('year') or ''),
+        'official_url': str(row.get('official_url') or ''),
+        'evidence_url': str(evidence.get('url') or ''),
+        'evidence_sha256': str(evidence.get('sha256') or ''),
+        'evidence_quote': str(evidence.get('quote') or ''),
+        'evidence_linked_url': str(evidence.get('linked_url') or ''),
+        'evidence_relation': str(evidence.get('relation') or ''),
+        'evidence_verification': str(evidence.get('verification') or ''),
+        'proof_unit_id': str(proof.get('unit_id') or ''),
+        'proof_year': str(proof.get('year') or ''),
+        'proof_official_url': str(proof.get('official_url') or ''),
+        'proof_document_id': str(proof.get('document_id') or ''),
+        'proof_document_sha256': str(proof.get('document_sha256') or ''),
+        'proof_file_sha256': str(proof.get('file_sha256') or ''),
+        'proof_document_path': str(proof.get('document_path') or ''),
+        'proof_quote_match': str(proof.get('quote_match') or ''),
+    }
+    canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
+
+
 def entry_trusted(row):
-    """An official entry is usable only with replayed ownership evidence."""
+    """An official entry is usable only with a replayed saved-original proof.
+
+    The selector consumes the proof record produced by :func:`verify_entry`.
+    It does not trust a bare URL, a metadata string, or a manually set flag:
+    the proof fingerprint must equal the fingerprint of the evidence actually
+    stored on this row.
+    """
     gaps = row.get('gaps')
     if isinstance(gaps, list) and 'missing_trusted_entry' in gaps:
         return False
     url = str(row.get('official_url') or '').strip()
     if not url or '尚未核准' in str(row.get('missing_reason') or ''):
         return False
-    return _entry_evidence_ok(row)
+    evidence = row.get('official_url_evidence')
+    proof = row.get('entry_verification')
+    if not isinstance(evidence, dict) or not isinstance(proof, dict):
+        return False
+    if proof.get('status') != 'verified':
+        return False
+    if str(evidence.get('verification') or '') not in SUPPORTED_ENTRY_VERIFICATIONS:
+        return False
+    if str(evidence.get('relation') or '') not in SUPPORTED_ENTRY_RELATIONS:
+        return False
+    if str(proof.get('unit_id') or '') != str(row.get('unit_id') or ''):
+        return False
+    if str(proof.get('year') or '') != str(row.get('year') or ''):
+        return False
+    if str(proof.get('official_url') or '').strip() != url:
+        return False
+    if _host(evidence.get('quote')) != _host(url) or not _host(url):
+        return False
+    if not SHA256_HEX.match(str(proof.get('proof_sha256') or '')):
+        return False
+    return _entry_fingerprint(row) == proof.get('proof_sha256')
+
+
+def _document_matches(record, evidence):
+    """Find the annual document entry with the exact URL and SHA declared."""
+    for item in record.get('evidence') or []:
+        if not isinstance(item, dict):
+            continue
+        if (item.get('url') == evidence.get('url')
+                and str(item.get('sha256') or '').lower()
+                == str(evidence.get('sha256') or '').lower()):
+            return item
+    return None
+
+
+def _identity_matches(record, document, evidence_url):
+    """The saved document must belong to this unit, not just any unit."""
+    unit_id = str(record.get('unit_id') or '')
+    unit_code = str(record.get('unit_code') or '')
+    fields = document.get('structured_fields')
+    if isinstance(fields, dict):
+        if unit_code and str(fields.get('dwdm') or '') == unit_code:
+            return True
+        if unit_id and str(fields.get('schId') or '') == unit_id:
+            return True
+    try:
+        query = parse_qs(urlsplit(str(evidence_url or '')).query)
+    except ValueError:
+        query = {}
+    if unit_code and (query.get('schCode') or [''])[0] == unit_code:
+        return True
+    if unit_id and f'schId-{unit_id}' in str(evidence_url or ''):
+        return True
+    return False
+
+
+def _saved_original(data_dir, unit_id, year, sha256, document_id):
+    """Locate the saved original and bind its filename to the annual document."""
+    folder = Path(data_dir) / 'snapshots' / 'national' / str(year) / str(unit_id)
+    if not folder.is_dir():
+        return None, 'saved_original_missing'
+    prefix = str(sha256 or '').lower()[:16]
+    candidates = sorted(path for path in folder.glob('*.html')
+                        if prefix and prefix in path.name.lower())
+    if not candidates:
+        return None, 'saved_original_missing'
+    if len(candidates) != 1:
+        return None, 'ambiguous_saved_original'
+    path = candidates[0]
+    parts = str(document_id or '').split('-')
+    if len(parts) < 3:
+        return None, 'document_id_unbound'
+    bound = parts[-2].lower() + '-' + parts[-1].lower()
+    if not path.name.lower().startswith(bound):
+        return None, 'saved_original_unbound'
+    return path, ''
+
+
+def _normalized_original_text(path):
+    raw = Path(path).read_bytes()
+    chunks = []
+    for encoding in ('utf-8', 'gb18030'):
+        chunks.append(html.unescape(raw.decode(encoding, 'replace')).replace('\\/', '/'))
+    return '\n'.join(chunks)
+
+
+def _quote_match(path, quote):
+    """The ownership quote must literally occur in the saved original."""
+    quote = str(quote or '').strip()
+    if not quote:
+        return ''
+    return 'literal' if quote in _normalized_original_text(path) else ''
+
+
+def verify_entry(unit, record, data_dir):
+    """Replay one official entry against the real saved original.
+
+    The proof is accepted only when every link in the chain holds: supported
+    verification/relation metadata, exact annual document URL+SHA, unit
+    identity, a saved file bound to that document, matching file bytes, and
+    the ownership quote present in the original. Any missing or mismatched
+    link yields a persisted rejection reason instead of a silent pass.
+    """
+    unit_id = str(record.get('unit_id') or '')
+    official_url = str(unit.get('official_url') or '').strip()
+    proof = {'status': 'rejected', 'reason': '', 'unit_id': unit_id,
+             'year': record.get('year'), 'official_url': official_url,
+             'evidence_url': '', 'evidence_sha256': '', 'document_id': '',
+             'document_sha256': '', 'document_path': '', 'file_sha256': '',
+             'quote_match': ''}
+    evidence = unit.get('official_url_evidence')
+    if not isinstance(evidence, dict):
+        proof['reason'] = 'no_entry_evidence'
+        return proof
+    proof['evidence_url'] = str(evidence.get('url') or '')
+    proof['evidence_sha256'] = str(evidence.get('sha256') or '').lower()
+    if str(evidence.get('verification') or '') not in SUPPORTED_ENTRY_VERIFICATIONS:
+        proof['reason'] = 'unsupported_verification'
+        return proof
+    if str(evidence.get('relation') or '') not in SUPPORTED_ENTRY_RELATIONS:
+        proof['reason'] = 'unsupported_relation'
+        return proof
+    entry_host = _host(official_url)
+    if not entry_host:
+        proof['reason'] = 'missing_official_url'
+        return proof
+    if _host(evidence.get('quote')) != entry_host:
+        proof['reason'] = 'quote_host_mismatch'
+        return proof
+    linked = str(evidence.get('linked_url') or '').strip()
+    if linked and _host(linked) != entry_host:
+        proof['reason'] = 'linked_host_mismatch'
+        return proof
+    if not SHA256_HEX.match(proof['evidence_sha256']):
+        proof['reason'] = 'invalid_evidence_sha256'
+        return proof
+    document = _document_matches(record, evidence)
+    if document is None:
+        proof['reason'] = 'no_exact_annual_document'
+        return proof
+    if document.get('kind') != 'annual_master_charter':
+        proof['reason'] = 'unsupported_document_kind'
+        return proof
+    if str(document.get('sha256') or '').lower() != proof['evidence_sha256']:
+        proof['reason'] = 'document_sha_mismatch'
+        return proof
+    proof['document_id'] = str(document.get('document_id') or '')
+    proof['document_sha256'] = proof['evidence_sha256']
+    if not _identity_matches(record, document, proof['evidence_url']):
+        proof['reason'] = 'unit_identity_mismatch'
+        return proof
+    path, reason = _saved_original(data_dir, unit_id, record.get('year'),
+                                   proof['evidence_sha256'], proof['document_id'])
+    if path is None:
+        proof['reason'] = reason or 'saved_original_missing'
+        return proof
+    try:
+        proof['document_path'] = (path.resolve().relative_to(Path(data_dir).resolve())
+                                  .as_posix())
+    except ValueError:
+        proof['document_path'] = path.as_posix()
+    actual = sha256_file(path)
+    proof['file_sha256'] = actual
+    if actual != proof['evidence_sha256']:
+        proof['reason'] = 'saved_original_sha_mismatch'
+        return proof
+    match = _quote_match(path, evidence.get('quote'))
+    proof['quote_match'] = match
+    if not match:
+        proof['reason'] = 'quote_not_in_original'
+        return proof
+    proof['status'] = 'verified'
+    proof['reason'] = 'saved_original_replayed'
+    return proof
+
+
+def verify_entries(registry, annual, data_dir):
+    """Build one persisted proof record per confirmed annual unit."""
+    units = {unit['id']: unit for unit in registry.get('units', [])
+             if isinstance(unit, dict) and isinstance(unit.get('id'), str)}
+    proofs = {}
+    for record in annual.get('units', []):
+        if record.get('annual_status') != 'confirmed' or type(record.get('year')) is not int:
+            continue
+        unit_id = record.get('unit_id')
+        if not isinstance(unit_id, str) or not unit_id:
+            continue
+        proofs[unit_id] = verify_entry(units.get(unit_id, {}), record, data_dir)
+    return proofs
 
 
 def classify_gaps(row, stats):
@@ -124,7 +369,9 @@ def classify_gaps(row, stats):
     gaps = []
     program_count = int(stats.get('program_count') or 0)
     reason = str(row.get('missing_reason') or '')
-    if not str(row.get('official_url') or '').strip() or '尚未核准' in reason:
+    proof = row.get('entry_verification')
+    if (not str(row.get('official_url') or '').strip() or '尚未核准' in reason
+            or (isinstance(proof, dict) and proof.get('status') != 'verified')):
         gaps.append('missing_trusted_entry')
     if program_count == 0:
         gaps.append('missing_catalog')
@@ -145,22 +392,6 @@ def classify_gaps(row, stats):
     if row.get('catalog_status') == 'partial' and program_count:
         gaps.append('review_pending')
     return gaps
-
-
-def _entry_evidence_ok(row):
-    """True when the entry evidence passes the replayable-ownership gate.
-
-    Rows built without an evidence field stay untrusted; this is intentionally
-    stricter than checking whether the URL string is non-empty.
-    """
-    evidence = row.get('official_url_evidence')
-    if not isinstance(evidence, dict):
-        return False
-    if not str(evidence.get('verification') or '').strip():
-        return False
-    hosts = {_host(evidence.get(key)) for key in ('quote', 'linked_url', 'url')}
-    hosts.discard('')
-    return bool(hosts) and _host(row.get('official_url')) in hosts
 
 
 def _looks_like_expansion(row):
@@ -411,8 +642,10 @@ def _units(registry, annual):
     return rows
 
 
-def build_queue(coverage_rows, raw_per_unit, effective_per_unit, annual_rows):
+def build_queue(coverage_rows, raw_per_unit, effective_per_unit, annual_rows,
+                entry_proofs=None):
     """One replayable row per confirmed annual unit with all three count layers."""
+    proofs = entry_proofs or {}
     by_unit = {row['unit_id']: row for row in coverage_rows}
     queue = []
     for base in annual_rows:
@@ -443,6 +676,18 @@ def build_queue(coverage_rows, raw_per_unit, effective_per_unit, annual_rows):
         row['conditions_nonempty'] = int(raw.get('conditions_nonempty') or 0)
         for field in ('tuition', 'duration', 'full_qualification'):
             row['remaining_' + field] = max(0, program_count - row['verified_' + field])
+        proof = dict(proofs.get(unit_id) or {
+            'status': 'blocked', 'reason': 'proof_not_computed',
+            'unit_id': unit_id, 'year': base.get('year'),
+            'official_url': row['official_url'], 'evidence_url': '',
+            'evidence_sha256': '', 'document_id': '', 'document_sha256': '',
+            'document_path': '', 'file_sha256': '', 'quote_match': ''})
+        proof['unit_id'] = str(proof.get('unit_id') or unit_id)
+        if proof.get('year') is None:
+            proof['year'] = base.get('year')
+        proof['official_url'] = str(proof.get('official_url') or row['official_url'])
+        row['entry_verification'] = proof
+        proof['proof_sha256'] = _entry_fingerprint(row)
         row['gaps'] = classify_gaps(row, {
             'program_count': program_count,
             'verified_tuition': row['verified_tuition'],
@@ -508,7 +753,10 @@ def audit(data_dir, out_dir, *, raw_pdf='', bbox_pdf='', repo_root='.', expansio
     raw = stream_counts(data_dir / 'admissions.json')
     effective = effective_counts(data_dir)
     annual_rows = _units(registry, annual)
-    queue = build_queue(coverage_rows, raw['per_unit'], effective['per_unit'], annual_rows)
+    proofs = verify_entries(registry, annual, data_dir)
+    queue = build_queue(coverage_rows, raw['per_unit'], effective['per_unit'], annual_rows,
+                        entry_proofs=proofs)
+    expansion_units = {row['unit_id'] for row in queue if _looks_like_expansion(row)}
     _write_json(out_dir / 'queue.json', queue)
     queue_sha = sha256_file(out_dir / 'queue.json')
     picks = select_batch(queue, expansion=expansion, backfill=backfill, queue_sha256=queue_sha)
@@ -566,6 +814,13 @@ def audit(data_dir, out_dir, *, raw_pdf='', bbox_pdf='', repo_root='.', expansio
                            and row.get('entry_trusted')),
             'untrusted': sum(1 for row in queue if _looks_like_expansion(row)
                              and not row.get('entry_trusted')),
+        },
+        'entry_proof': {
+            'status': dict(Counter(proof.get('status') for proof in proofs.values())),
+            'reasons': dict(Counter(proof.get('reason') for proof in proofs.values())),
+            'expansion_reasons': dict(Counter(
+                proof.get('reason') for unit_id, proof in proofs.items()
+                if unit_id in expansion_units)),
         },
         'queue_count': len(queue),
         'queue_count_mismatch': sum(1 for row in queue if row['count_mismatch']),
