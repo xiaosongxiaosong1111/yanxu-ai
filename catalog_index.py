@@ -99,6 +99,31 @@ def _like(value):
     return '%' + value.strip().casefold().replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_') + '%'
 
 
+SEARCH_SYNONYMS = {'专硕': '专业学位', '学硕': '学术学位', '非全': '非全日制'}
+
+
+def _search_clause(value):
+    """Require every whitespace-separated term to match the same row.
+
+    A single substring test made the common query `南开大学 计算机` fail: no
+    row's search text contains that exact string even though it contains both
+    parts. AND-ing the terms keeps the parameterized, escaped LIKE semantics
+    (terms are still literals, never SQL) while matching how users actually
+    search. A short colloquial term also matches its catalog wording, but the
+    literal term is kept so the synonym can never hide an exact hit. Empty
+    input already short-circuits before this helper is called.
+    """
+    clauses, parameters = [], []
+    for term in value.strip().split():
+        variants = [term]
+        synonym = SEARCH_SYNONYMS.get(term.casefold())
+        if synonym:
+            variants.append(synonym)
+        clauses.append('(' + ' OR '.join("search_text LIKE ? ESCAPE '\\'" for _ in variants) + ')')
+        parameters.extend(_like(variant) for variant in variants)
+    return clauses, parameters
+
+
 def _validate_subjects(program):
     subjects = program.get('subjects', [])
     if not isinstance(subjects, list) or any(not isinstance(row, dict) for row in subjects):
@@ -313,7 +338,8 @@ class CatalogIndex:
             if not document['kind']: raise CatalogIndexError('文档种类不能为空。')
         for program in programs:
             _validate_subjects(program)
-            for field in ('unit_name', 'department', 'code', 'name', 'direction', 'province', 'campus'):
+            for field in ('unit_name', 'department', 'code', 'name', 'direction', 'province', 'campus',
+                          'study_mode', 'degree_type'):
                 if field in program and program[field] is not None:
                     bounded_text(program[field], 2000, '专业' + field)
         record_rows = []
@@ -340,7 +366,8 @@ class CatalogIndex:
             'verified': states.get(row['id'], {}).get('verified') is True, 'year': reference_year})) for ordinal, row in enumerate(units)]
         program_rows = []
         for ordinal, row in enumerate(programs):
-            search = [str(row.get(field) or '') for field in ('unit_name', 'department', 'code', 'name', 'direction', 'province', 'campus')]
+            search = [str(row.get(field) or '') for field in ('unit_name', 'department', 'code', 'name', 'direction',
+                                                               'province', 'campus', 'study_mode', 'degree_type')]
             search += [str(subject.get('code', '')) + ' ' + str(subject.get('name', ''))
                        for subject in row.get('subjects', []) if isinstance(subject, dict)]
             program_rows.append((row['id'], row['unit_id'], row.get('year'), ordinal, ' '.join(search).casefold(), encoded(row)))
@@ -395,8 +422,9 @@ class CatalogIndex:
             conditions.append('year=?')
             parameters.append(year)
         if q:
-            conditions.append("search_text LIKE ? ESCAPE '\\'")
-            parameters.append(_like(q))
+            clauses, values = _search_clause(q)
+            conditions.extend(clauses)
+            parameters.extend(values)
         where = ' WHERE ' + ' AND '.join(conditions) if conditions else ''
         with self.read_connection() as connection:
             publication = self._publication(connection, revision)
@@ -427,8 +455,9 @@ class CatalogIndex:
                 conditions.append(column + '=?')
                 parameters.append(value)
         if q:
-            conditions.append("search_text LIKE ? ESCAPE '\\'")
-            parameters.append(_like(q))
+            clauses, values = _search_clause(q)
+            conditions.extend(clauses)
+            parameters.extend(values)
         where = ' WHERE ' + ' AND '.join(conditions)
         with self.read_connection() as connection:
             publication = self._publication(connection, revision)
@@ -451,8 +480,9 @@ class CatalogIndex:
             conditions.append('kind=?')
             parameters.append(kind)
         if q:
-            conditions.append("search_text LIKE ? ESCAPE '\\'")
-            parameters.append(_like(q))
+            clauses, values = _search_clause(q)
+            conditions.extend(clauses)
+            parameters.extend(values)
         where = ' WHERE ' + ' AND '.join(conditions) if conditions else ''
         scope_where = ' WHERE ' + ' AND '.join(scope_conditions) if scope_conditions else ''
         with self.read_connection() as connection:

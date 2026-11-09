@@ -23,6 +23,19 @@ class ProtocolTests(unittest.TestCase):
             AITransport(request=request).request_json(config, 'GET', '/models?sub_type=unknown')
         with self.assertRaises(TransportError):
             AITransport(request=request).request_json(config, 'GET', '/models?sub_type=chat&extra=1')
+    def test_yuanbao_valid_empty_response_is_normalized_for_every_caller(self):
+        raw={'Response':{'RequestId':'req-empty','Query':'公开检索','Version':'standard'}}
+        transport=AITransport(request=lambda *args:raw)
+        value=transport.request_json({'provider':'yuanbao','auth_mode':'api_key','api_key':'fixture'},'POST','',{'Query':'公开检索'})
+        self.assertEqual(value['Pages'],[])
+        self.assertEqual(value['RequestId'],'req-empty')
+        self.assertNotIn('Response',value)
+        self.assertEqual(transport.test_yuanbao('fixture')['result_count'],0)
+        for body in [{'RequestId':'x'},{'Pages':'not-a-list'}]:
+            with self.subTest(body=body),self.assertRaises(TransportError):
+                AITransport(request=lambda *args,_body=body:{'Response':_body}).request_json(
+                    {'provider':'yuanbao','auth_mode':'api_key','api_key':'fixture'},'POST','',{'Query':'q'})
+
     def test_anthropic_tool_roundtrip(self):
         captured=[]
         def request(c,method,path,body):
@@ -182,7 +195,12 @@ class NetworkBoundaryTests(unittest.TestCase):
         self.assertEqual(args,('POST','/'))
         self.assertEqual(kwargs['body'],raw)
         self.assertEqual(kwargs['headers'],headers)
-        self.assertEqual(result['Response']['RequestId'],'fixture')
+        # The transport returns the normalized body, not the raw envelope, so a
+        # valid empty SearchPro response (Pages omitted) reaches every caller
+        # with Pages=[] instead of looking unparseable.
+        self.assertEqual(result['RequestId'],'fixture')
+        self.assertEqual(result['Pages'],[])
+        self.assertNotIn('Response',result)
         self.assertTrue(Connection.last.sock.closed.is_set())
 
     def test_standard_yuanbao_http_200_errors_and_bearer_compatibility(self):

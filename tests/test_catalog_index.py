@@ -51,11 +51,22 @@ class CatalogIndexTests(unittest.TestCase):
         page=self.index.query_programs(unit_id='b',year=2027,q='408',limit=10)
         self.assertEqual(page['total'],2)
         self.assertTrue(all(p['unit_id']=='b' for p in page['programs']))
+        self.assertEqual(self.index.query_programs(q='甲大学 408')['total'],3)
+        self.assertEqual(self.index.query_programs(q='甲大学 计算机方向1')['total'],1)
+        self.assertEqual(self.index.query_programs(q='甲大学 数学')['total'],0)
         self.assertEqual(self.index.query_programs(year=2026)['total'],0)
         self.assertEqual(self.index.query_programs(q="' OR 1=1 --")['total'],0)
         self.assertEqual(self.index.query_programs(q='%')['total'],0)
         self.assertEqual(self.index.query_programs(q='_')['total'],0)
         self.assertEqual(self.index.query_programs(unit_id="a' OR 1=1 --")['total'],0)
+
+    def test_colloquial_and_mode_terms_use_the_published_search_text(self):
+        self.programs[0].update({'study_mode': '非全日制', 'degree_type': '专业学位'})
+        self.sync()
+        self.assertEqual([row['id'] for row in self.index.query_programs(q='非全日制')['programs']], ['p0'])
+        self.assertEqual([row['id'] for row in self.index.query_programs(q='专硕')['programs']], ['p0'])
+        self.assertEqual(self.index.query_programs(q='甲大学 专硕')['total'], 1)
+        self.assertEqual(self.index.query_programs(q='学硕')['total'], 0)
 
     def test_document_queries_and_unit_summaries_remain_scope_specific(self):
         self.sync()

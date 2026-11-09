@@ -21,6 +21,7 @@ from document_extraction import OFFICE_TYPES, canonical_document, extract_office
 
 
 MAX_BYTES = 8 * 1024 * 1024
+MAX_LINKS = 200
 _DNS_POOL = ThreadPoolExecutor(max_workers=4, thread_name_prefix='official-source-dns')
 
 
@@ -141,9 +142,32 @@ def _transport(url, target, timeout, guard):
         raise
 
 
-def _official_root(unit):
+def _binding_urls(unit):
+    """Every URL a unit's registry row offers as an official binding.
+
+    A single `official_url` cannot describe a school whose homepage and its
+    graduate admissions site sit on two registered domains. `official_urls`
+    carries additional domains only when each one has its own evidence entry
+    (see unit_bindings); bare hostname guesses are deliberately not accepted
+    here because they would widen what counts as official reading.
+    """
+    values = []
+    single = unit.get('official_url') if isinstance(unit, dict) else None
+    if isinstance(single, str) and single.strip():
+        values.append(single.strip())
+    extra = unit.get('official_urls') if isinstance(unit, dict) else None
+    if isinstance(extra, (list, tuple)):
+        for row in extra:
+            url = row.get('url') if isinstance(row, dict) else row
+            if isinstance(url, str) and url.strip():
+                values.append(url.strip())
+    return values
+
+
+def root_domain(url):
+    """The registrable school domain used for same-site checks, or None."""
     try:
-        _, host, _ = _url_parts(unit.get('official_url'))
+        _, host, _ = _url_parts(url)
     except (DiscoveryError, AttributeError):
         return None
     parts = host.split('.')
@@ -152,6 +176,21 @@ def _official_root(unit):
     if len(parts) >= 3 and parts[-2:] in [['edu', 'cn'], ['ac', 'cn'], ['gov', 'cn'], ['org', 'cn']]:
         return '.'.join(parts[-3:])
     return host.removeprefix('www.')
+
+
+def official_roots(unit):
+    """All evidence-backed official roots for a unit, primary first."""
+    roots = []
+    for url in _binding_urls(unit):
+        root = root_domain(url)
+        if root and root not in {'chsi.com.cn', 'yz.chsi.com.cn'} and root not in roots:
+            roots.append(root)
+    return tuple(roots)
+
+
+def _official_root(unit):
+    roots = official_roots(unit)
+    return roots[0] if roots else None
 
 
 def _chsi_school_ids(url):
@@ -177,9 +216,8 @@ def official_source_url(url, unit):
         unit_codes = _chsi_unit_codes(url)
         return ((not school_ids or school_ids == {str(unit.get('id'))})
                 and (not unit_codes or bool(unit.get('unit_code')) and unit_codes == {str(unit['unit_code'])}))
-    root = _official_root(unit)
-    return bool(root and root not in {'chsi.com.cn', 'yz.chsi.com.cn'}
-        and (host == root or host.endswith('.' + root)))
+    roots = official_roots(unit)
+    return bool(roots) and any(host == root or host.endswith('.' + root) for root in roots)
 
 
 def document_attribution(url, unit, text='', document_title='', document_heading=''):
@@ -212,12 +250,26 @@ class _VisibleHTML(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.stack, self.parts, self.main, self.title, self.heading = [], [], [], [], []
+        # Links are collected even from nav/header/footer: those blocks are
+        # excluded from the *evidence text*, but they are exactly where an
+        # admissions site lists its article and PDF entries. A separate,
+        # bounded link list lets the agent navigate without promoting
+        # navigation wording into document evidence.
+        self.links, self.anchor, self.anchor_parts = [], None, []
 
     def handle_starttag(self, tag, attrs):
         if tag == 'body':
             # Browsers close a misplaced/open head before rendering body content.
             self.handle_endtag('head')
         values = dict(attrs)
+        if tag == 'a':
+            href = values.get('href')
+            if isinstance(href, str) and href.strip():
+                self.anchor, self.anchor_parts = href.strip()[:2048], []
+        elif tag == 'area':
+            href = values.get('href')
+            if isinstance(href, str) and href.strip():
+                self.links.append({'href': href.strip()[:2048], 'label': str(values.get('alt', ''))[:120]})
         style = re.sub(r'\s+', '', values.get('style', '').lower())
         hidden = tag in {'script', 'style', 'nav', 'aside', 'footer', 'header', 'noscript', 'template'}
         hidden = hidden or 'hidden' in values or values.get('aria-hidden', '').lower() == 'true'
@@ -239,6 +291,10 @@ class _VisibleHTML(HTMLParser):
             self.handle_endtag(tag)
 
     def handle_endtag(self, tag):
+        if tag == 'a' and self.anchor is not None:
+            label = re.sub(r'\s+', ' ', ''.join(self.anchor_parts)).strip()
+            self.links.append({'href': self.anchor, 'label': label[:120]})
+            self.anchor, self.anchor_parts = None, []
         for index in range(len(self.stack) - 1, -1, -1):
             if self.stack[index][0] == tag:
                 _, hidden, main = self.stack[index]
@@ -254,6 +310,9 @@ class _VisibleHTML(HTMLParser):
                 self.main.append(data)
 
     def handle_data(self, data):
+        if self.anchor is not None and not any(item[0] in {'script', 'style', 'template', 'noscript'}
+                                             for item in self.stack):
+            self.anchor_parts.append(data)
         if self.stack and self.stack[-1][0] == 'title':
             self.title.append(data)
         elif not any(item[0] in {'head', 'title'} for item in self.stack):
@@ -265,6 +324,29 @@ class _VisibleHTML(HTMLParser):
         text = ''.join(self.main if self.main else self.parts)
         lines = [re.sub(r'[ \t\r\v]+', ' ', line).strip() for line in text.splitlines()]
         return '\n'.join(line for line in lines if line), re.sub(r'\s+', ' ', ''.join(self.title)).strip()
+
+
+def _bounded_links(pairs, base):
+    """Resolve anchors against the fetched URL and keep an honest, bounded list."""
+    links, seen = [], set()
+    for href, label in pairs:
+        try:
+            target = urljoin(base, href)
+            parts = urlsplit(target)
+            port = parts.port
+        except (TypeError, ValueError):
+            continue
+        if (parts.scheme not in {'http', 'https'} or not parts.hostname or parts.username
+                or parts.password or port not in {None, 80, 443}):
+            continue
+        target = urlunsplit((parts.scheme, parts.netloc, parts.path or '/', parts.query, ''))
+        if target in seen:
+            continue
+        seen.add(target)
+        links.append({'url': target, 'label': str(label or '')[:120]})
+        if len(links) >= MAX_LINKS:
+            break
+    return links
 
 
 def _pdf_text(path, timeout):
@@ -302,7 +384,9 @@ def _extract(raw, content_type, cache_dir, pdf_extractor, remaining, url=''):
     parser.feed(rendered_source_html(decode_text(raw, content_type), url))
     parser.close()
     text, title = parser.result()
-    return text, [{'page': 1, 'text': text}], title, re.sub(r'\s+', ' ', ''.join(parser.heading)).strip(), {'format': 'html'}
+    links = _bounded_links(((item['href'], item['label']) for item in parser.links), url)
+    return text, [{'page': 1, 'text': text}], title, re.sub(r'\s+', ' ', ''.join(parser.heading)).strip(), {'format': 'html',
+                                                                                                    'links': links}
 
 
 def _fetched_document(current, unit, raw, content_type, text, pages, title, heading, extraction_info):

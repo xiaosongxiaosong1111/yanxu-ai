@@ -41,8 +41,12 @@ class AITransport:
         if self._request:
             try:
                 value=self._request(config,method,path,body)
-                if config['provider']=='yuanbao':checked_response(value)
-                return value
+                # Every consumer must see the same normalized shape: a valid
+                # empty SearchPro response omits Pages, and checked_response is
+                # the only place that rule lives. Returning the raw value here
+                # made connection tests say "connected" while the agent called
+                # the same response unparseable.
+                return checked_response(value) if config['provider']=='yuanbao' else value
             except TransportError:raise
             except Exception:raise TransportError('provider_unavailable','服务连接失败，请检查网络或稍后重试。',503) from None
         base=config['base_url']
@@ -108,7 +112,7 @@ class AITransport:
                 if len(data)>4*1024*1024:raise TransportError('response_too_large','服务响应超过安全上限。',502)
                 value=_json(data)
                 if not isinstance(value,dict):raise ValueError('shape')
-                if config['provider']=='yuanbao':checked_response(value)
+                if config['provider']=='yuanbao':return checked_response(value)
                 return value
             finally:connection.close()
         except TransportError:raise
