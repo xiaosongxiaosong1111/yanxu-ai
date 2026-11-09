@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-11-09T16:49:05+0800",
+  "git": {
+    "commit": "67d5e243e765876481b3a698759dc07b24ccb385",
+    "branch": "data/national-b001"
+  },
+  "package": {
+    "catalog_data_zip_sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
+    "manifest_sha256": "52655a92d671025e9cfb086e3a528d610d52ed53d09fd2c3f1b9847a87bf1394"
+  },
+  "protected_sha256": {
+    "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+    "collectors/catalog_pdf_variants.py": "76583e49222980947a061fad641742a07fe85103b20a9759194c811384718971",
+    "collectors/catalog_pdf_national.py": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+    "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+    "collectors/catalog_hit_public.py": "e757752d9a707007288d55417318a00d947bbe30c55f124a82742cd8231f5f1e"
+  },
+  "tools": {
+    "raw_pdftotext": {
+      "path": "C:/Program Files/Git/mingw64/bin/pdftotext.exe",
+      "version": "pdftotext version 4.00"
+    },
+    "bbox_pdftotext": {
+      "path": "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe",
+      "version": "pdftotext version 26.07.0"
+    }
+  },
+  "annual": {
+    "year": 2027,
+    "official_total": 931,
+    "indexed_records": 936,
+    "confirmed_units": 931,
+    "not_listed_index_records": 5
+  },
+  "annual_rows": 931,
+  "coverage_rows": 931,
+  "raw": {
+    "program_count": 22356,
+    "ids": 22356,
+    "duplicate_ids": 0,
+    "units": 135,
+    "tuition": 650,
+    "tuition_year": 378,
+    "tuition_full": 272,
+    "tuition_other": 0,
+    "duration": 1680,
+    "computed_total_cost": 645,
+    "conditions_nonempty": 0,
+    "requires_review": 22356,
+    "full_qualification": 0
+  },
+  "effective_after_enrichment_and_evidence_safety": {
+    "program_count": 22356,
+    "ids": 22356,
+    "duplicate_ids": 0,
+    "units": 135,
+    "tuition": 912,
+    "tuition_year": 640,
+    "tuition_full": 272,
+    "tuition_other": 0,
+    "duration": 1942,
+    "computed_total_cost": 907,
+    "conditions_nonempty": 0,
+    "requires_review": 22356,
+    "full_qualification": 0
+  },
+  "effective_extra": {
+    "enrichment": {
+      "applied_count": 262,
+      "invalid_rule_ids": [],
+      "applied_rule_ids": [
+        "zzu-2027-full-time-academic",
+        "nankai-2027-full-time-085400-031",
+        "nankai-2027-full-time-085400-033",
+        "nankai-2027-full-time-085400-035",
+        "nankai-2027-full-time-085400-037",
+        "nankai-2027-full-time-085400-038",
+        "nankai-2027-part-time-software"
+      ],
+      "notice": "仅补齐所列年度白名单的费用和学制，招生资格与下一年度政策仍需核验。"
+    },
+    "suspended_conflicts": 0
+  },
+  "catalog_status": {
+    "partial": 84,
+    "recorded_verified": 51,
+    "not_collected": 796
+  },
+  "collection_status": {
+    "collected": 609,
+    "needs_binding": 217,
+    "truncated": 105
+  },
+  "queue_gap_counts": {
+    "partial_catalog": 84,
+    "missing_full_qualification": 135,
+    "missing_tuition": 124,
+    "missing_duration": 119,
+    "review_pending": 84,
+    "original_pending": 413,
+    "missing_catalog": 796,
+    "parser_pending": 433
+  },
+  "queue_count": 931,
+  "queue_count_mismatch": 0,
+  "notice": "只读审计：未联网、未调用模型或元宝、未写采用文件、未创建发布索引；非空字段不等于原文已核验，完整资格仍以逐条条款审校为准。"
+}
