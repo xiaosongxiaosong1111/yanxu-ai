@@ -3,6 +3,8 @@
 更新：2026-11-09，包含官网发现及报考事实进入算法的实现与最终验收。
 仓库：`https://github.com/xiaosongxiaosong1111/yanxu-ai`。Windows 开发，Python 虚拟环境与前端原生 ES modules。
 
+**当前并行分工：Claude 补全国采用数据，Codex 测官网。** Claude 请先读 [全国数据实施手册](CLAUDE_NATIONAL_DATA_RUNBOOK.md)，按节点0建立独立工作树、核对真实基线，再以每批10校推进；逐批复制 [操作日志模板](work_nodes/NATIONAL_DATA_BATCH_LOG_TEMPLATE.md)。官网发现、共享抓取连接与来源绑定模块由Codex负责，数据分支不要同时修改。全国数据缺口尚未补齐，文档中的任务节点不是完成记录。
+
 最新一轮请先读 [OFFICIAL_DISCOVERY_CLOSURE.md](OFFICIAL_DISCOVERY_CLOSURE.md)：新增可重放的学校官网归属、公开导航发现，以及具体方向的资格/学费/学制原文事实进入现有算法。此前“官方原文→当轮临时候选”见 [ON_DEMAND_CANDIDATES.md](ON_DEMAND_CANDIDATES.md)。其中 B 节的补证闭环现已支持明确范围和有限条件语法，不能据此宣布资格通用解析或全国目录补齐；复杂表格、关联套组及旧的完整语义评测未完成状态继续保留。最终测试数量与评测数以 `VERIFICATION.md` 最新段落和对应原始产物为准。
 
 此前独立验收基线为 Python 121 模块、1,988 项（1,985 通过、3 跳过，ONNX 内存失败的原组 7 项独立复跑通过）、Node 254、隔离浏览器 5；当时 15 个核心及修改模块含分支综合 92.90%。这些是历史基线，不是本轮最终总数。全国库、个人知识库或长期进程的验证不能用隔离结果替代。
