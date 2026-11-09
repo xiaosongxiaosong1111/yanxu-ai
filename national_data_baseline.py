@@ -51,7 +51,7 @@ SUPPORTED_ENTRY_RELATIONS = frozenset({
     'official_home_statement',
     'official_annual_catalog_link',
 })
-ENTRY_ROLE_CATEGORIES = frozenset({'home', 'admissions', 'catalog'})
+ENTRY_ROLE_CATEGORIES = frozenset({'home', 'admissions', 'catalog', 'labeled'})
 _SELF_REFERENCE = re.compile(
     r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院|学校|招生单位|单位|学院)')
 _ROLE_PATTERNS = (
@@ -78,6 +78,14 @@ _PLATFORM_LABEL = re.compile(
     r'中国高等教育学生信息网|学信网(?!址|站|页)|研招网(?!址|站|页))')
 _VISIBLE_URL = re.compile(
     r'https?://[^\s<>"\'`）】。，；、”‘」』]+', re.I)
+_ENTITY_LABEL = re.compile(
+    r'[一-龥A-Za-z]{1,20}(?:大学|学院|学校|研究院|研究所|科学院)')
+_GENERIC_ENTITY = frozenset({
+    '学校', '学院', '大学', '研究生院', '研究生学院', '研究生部', '本校', '我校',
+    '该校', '各学院', '各学校', '详见学校', '所属学院', '校内', '全校',
+})
+_GENERIC_ROLE_WORD = re.compile(
+    r'研究生招生|研招|招生信息|招生办|研究生院|研究生工作')
 SHA256_HEX = re.compile(r'^[0-9a-f]{64}$')
 NOTICE = ('只读审计：未联网、未调用模型或元宝、未写采用文件、未创建发布索引；'
           '非空字段不等于原文已核验，完整资格仍以逐条条款审校为准。')
@@ -510,6 +518,26 @@ def _foreign_name_in(span, unit_name, other_names):
     return ''
 
 
+def _foreign_label_in(label, unit_name):
+    """Entity-like name in a site label that the current unit does not own.
+
+    Applied only to the captured label of a ``labeled`` role, never to a
+    free-text window: Chinese word boundaries are unavailable, so scanning
+    arbitrary preceding words produces false names such as "考生关注学校".
+    """
+    unit_name = str(unit_name or '')
+    for match in _ENTITY_LABEL.finditer(str(label or '')):
+        name = match.group(0)
+        if name in _GENERIC_ENTITY or name.startswith('各'):
+            continue
+        if unit_name and (name in unit_name or unit_name in name):
+            continue
+        if len(_longest_common_substring(name, unit_name)) >= 3:
+            continue
+        return name
+    return ''
+
+
 def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
     """Replay a visible role declaration attached to the URL/link.
 
@@ -546,13 +574,15 @@ def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
     own = bool(unit_name and (unit_name in context or unit_name in text))
     selfref = bool(_SELF_REFERENCE.search(window))
     overlap = _longest_common_substring(context, unit_name or '')
+    label = role_text
     if category == 'labeled':
         label_match = re.match(r'([一-龥A-Za-z]{2,24})', role_text)
         label = label_match.group(1) if label_match else role_text
         owned = (bool(_SELF_REFERENCE.search(label))
                  or bool(unit_name and unit_name in label)
                  or len(_longest_common_substring(label, unit_name or '')) >= 3
-                 or own)
+                 or bool(_GENERIC_ROLE_WORD.search(label))
+                 or bool(unit_name and unit_name in context))
     elif category == 'home':
         institutional = re.match(
             r'(?:研究生院|研究生处|研究生学院|研究生部|研究生教育部|'
@@ -561,6 +591,8 @@ def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
     else:
         owned = selfref or own or len(overlap) >= 3
     foreign = _foreign_name_in(window, unit_name, other_names)
+    if not foreign and category == 'labeled':
+        foreign = _foreign_label_in(label, unit_name)
     if foreign:
         return None, 'foreign_unit_reference'
     if not owned:

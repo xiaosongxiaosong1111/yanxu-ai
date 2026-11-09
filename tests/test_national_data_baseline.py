@@ -696,6 +696,42 @@ class EntryRoleReplayTests(unittest.TestCase):
             unit_name='甲大学', known_names={'甲大学', '乙大学'})
         self.assertEqual(proof['reason'], 'foreign_unit_reference')
 
+    def test_unregistered_foreign_site_label_is_rejected(self):
+        proof = self.make(
+            '甲大学2027年硕士研究生招生章程。'
+            '乙大学官方网站：<a href="https://b.edu.cn/">https://b.edu.cn/</a>。',
+            unit_name='甲大学', official_url='https://b.edu.cn/')
+        self.assertEqual(proof['reason'], 'foreign_unit_reference')
+
+    def test_labeled_own_site_role_is_admitted_and_trusted(self):
+        proof, unit, record = self.make(
+            '山西大同大学官方网站：'
+            '<a href="https://a.edu.cn/">https://a.edu.cn/</a>。',
+            unit_name='山西大同大学', official_url='https://a.edu.cn/',
+            return_context=True)
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'labeled')
+        row = {'unit_id': 'u1', 'year': 2027, 'annual_status': 'confirmed',
+               'official_url': unit['official_url'],
+               'official_url_evidence': unit['official_url_evidence'],
+               'catalog_status': 'not_collected', 'collection_status': 'collected',
+               'missing_reason': '已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。',
+               'original_urls': 'https://a.edu.cn/zsml/2027.htm',
+               'gaps': ['missing_catalog', 'parser_pending']}
+        queue = baseline.build_queue([row], {}, {}, [row],
+                                     entry_proofs={'u1': proof})
+        self.assertTrue(queue[0]['entry_trusted'])
+        picks = baseline.select_batch(queue, expansion=1, backfill=1)
+        self.assertEqual([item['unit_id'] for item in picks['expansion']], ['u1'])
+
+    def test_generic_admissions_label_is_owned_by_the_article(self):
+        proof = self.make(
+            '东北林业大学2027年硕士研究生招生章程。'
+            '研究生招生信息网主页：https://a.edu.cn/',
+            unit_name='东北林业大学', official_url='https://a.edu.cn/')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'labeled')
+
     def test_anchor_target_must_match_the_declared_url(self):
         proof = self.make(
             '我校官方网站：<a href="https://www.chsi.com.cn/">https://a.edu.cn/</a>')
