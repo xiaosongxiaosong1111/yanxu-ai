@@ -1,19 +1,19 @@
 # b001 coverage evidence
 # commands:
-#   python -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q
-#   python -m coverage report -m
-# executed_at: 2026-11-09T20:35:47+08:00
-# runtime: Python 3.13.9, isolated .venv; coverage installed only in this .venv, not in requirements.txt
-# line endings: this file is written with LF only; core.autocrlf=true would rewrite a checkout to CRLF,
-#   so bind by git blob SHA-1 (canonical) and by the SHA-256 of the LF bytes recorded in coverage-evidence.json
+#   ./.venv/Scripts/python.exe -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q
+#   ./.venv/Scripts/python.exe -m coverage report -m
+# executed_at: 2026-11-09T22:45:32+08:00
+# runtime: Python 3.13.9, coverage 7.17.2; isolated .venv; coverage is not added to requirements.txt
+# code: national_data_baseline.py sha256 0bb4d6e6115413fe90cfba9c18d71633af0f90cb0d67c2fa3d339eb1b4189bc1, git blob 83ab47cef8e35d824be30b853948a612403eb19d
+# line endings: this file is LF only; core.autocrlf=true may rewrite a checkout to CRLF, so bind by
+#   git blob SHA-1 (canonical) and by the SHA-256 of these LF bytes recorded in coverage-evidence.json
 # ---- unittest/coverage run tail ----
 
+Ran 97 tests in 0.306s
 OK
-{"out_dir": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\tmpmxiec4yt\\out", "raw_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "effective_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "verified": {"program_count": 1, "verified_tuition": 0, "verified_duration": 0, "verified_full_qualification": 0, "verified_computed_total_cost": 0, "tuition_claim_statuses": {"needs_review": 1}, "duration_claim_statuses": {"needs_review": 1}, "qualification_claim_statuses": {}}, "batch": {"expansion": ["u1"], "backfill": ["u2"]}}
-{"out_dir": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\tmp9u1cw34e\\out", "raw_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "effective_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "verified": {"program_count": 1, "verified_tuition": 0, "verified_duration": 0, "verified_full_qualification": 0, "verified_computed_total_cost": 0, "tuition_claim_statuses": {"needs_review": 1}, "duration_claim_statuses": {"needs_review": 1}, "qualification_claim_statuses": {}}, "batch": {"expansion": ["u1"], "backfill": ["u2"]}}
 # ---- coverage report ----
 Name                        Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------------------
-national_data_baseline.py     527      5    198      3    99%   219->221, 320-321, 335-336, 856
+national_data_baseline.py     829     42    354     30    93%   261->263, 330, 332, 333->exit, 346, 354, 370-374, 379->381, 400-402, 419, 420->422, 426-431, 447-448, 454, 456, 459-460, 482->486, 515, 532, 536, 599, 616->615, 617->615, 628, 646, 654, 666, 672, 697-698, 753-754, 768-769, 793, 796->791, 1310
 -----------------------------------------------------------------------
-TOTAL                         527      5    198      3    99%
+TOTAL                         829     42    354     30    93%

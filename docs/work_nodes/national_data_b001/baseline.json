@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-09T20:35:26+0800",
+  "generated_at": "2026-11-09T22:45:00+0800",
   "git": {
-    "commit": "52e99ff95cabd951f452c78c1902e6193c365c64",
+    "commit": "1dd44aa5390437331bb403380ed3b8d2be1279d5",
     "branch": "data/national-b001",
     "tracked_dirty": false
   },
-  "module_sha256": "ce5c3fb130b8dc4075d6f01e0476860f7f00e014ba2aa1df8b5445d038035bb5",
+  "module_sha256": "0bb4d6e6115413fe90cfba9c18d71633af0f90cb0d67c2fa3d339eb1b4189bc1",
   "inputs": {
     "admissions_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
     "units_sha256": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
@@ -13,9 +13,9 @@
     "coverage_csv_sha256": "42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e"
   },
   "artifacts": {
-    "queue.json": "12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba",
-    "queue-summary.json": "b8ef0d34e9556bea9f469b1c19fbcde357a1fc084df30fd671089087152d388f",
-    "batch.json": "d46809a40bdced7f35f4bccf6230370f9016b462e17f319af40089fa7141a3fb"
+    "queue.json": "da6393ee98bbcbd95a1e0673a8c847909e8af63e0b3d6ee82821c02c61ce3a9f",
+    "queue-summary.json": "db848661b33afdbbabfa84aeba696cf8769e4c5bf01c904169ea97e84d6f6815",
+    "batch.json": "531ce9a4029c0734b280a5cced4eb93dc3a99c5feee0ea6fc80c43f82378a3ce"
   },
   "package": {
     "catalog_data_zip_sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
@@ -120,13 +120,13 @@
   },
   "queue": {
     "count": 931,
-    "sha256": "12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba",
+    "sha256": "da6393ee98bbcbd95a1e0673a8c847909e8af63e0b3d6ee82821c02c61ce3a9f",
     "replayable": true,
     "summary_path": "queue-summary.json",
     "summary_replayable": false
   },
   "queue_gap_counts": {
-    "missing_trusted_entry": 526,
+    "missing_trusted_entry": 528,
     "partial_catalog": 84,
     "missing_full_qualification": 135,
     "missing_tuition": 122,
@@ -140,31 +140,35 @@
   },
   "expansion_pool": {
     "candidates": 433,
-    "trusted": 136,
-    "untrusted": 297
+    "trusted": 133,
+    "untrusted": 300
   },
   "entry_proof": {
     "status": {
-      "rejected": 526,
-      "verified": 405
+      "rejected": 528,
+      "verified": 403
     },
     "reasons": {
       "no_exact_annual_document": 147,
-      "saved_original_replayed": 405,
-      "quote_not_in_original": 19,
+      "saved_original_replayed": 403,
+      "relation_role_mismatch": 11,
       "no_entry_evidence": 293,
       "unsupported_relation": 45,
       "unsupported_verification": 20,
+      "link_target_mismatch": 9,
       "ambiguous_saved_original": 1,
-      "quote_host_mismatch": 1
+      "quote_host_mismatch": 1,
+      "linked_target_mismatch": 1
     },
     "expansion_reasons": {
-      "saved_original_replayed": 136,
+      "saved_original_replayed": 133,
       "no_exact_annual_document": 42,
+      "relation_role_mismatch": 5,
       "no_entry_evidence": 234,
       "unsupported_verification": 6,
       "unsupported_relation": 7,
-      "quote_not_in_original": 8
+      "link_target_mismatch": 5,
+      "linked_target_mismatch": 1
     }
   },
   "queue_count": 931,

@@ -1,19 +1,26 @@
 {
-  "executed_at": "2026-11-09T20:35:47+08:00",
+  "executed_at": "2026-11-09T22:45:32+08:00",
   "python": "3.13.9",
+  "coverage_version": "7.17.2",
   "commands": [
-    "python -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q",
-    "python -m coverage report -m"
+    "./.venv/Scripts/python.exe -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q",
+    "./.venv/Scripts/python.exe -m coverage report -m"
   ],
-  "statement_count": 527,
-  "miss_count": 5,
-  "branch_count": 198,
-  "partial_branch_count": 3,
-  "coverage_percent": 99,
-  "missing": "219->221, 320-321, 335-336, 856",
+  "tests_run": 97,
+  "tests_result": "OK",
+  "code_file": "national_data_baseline.py",
+  "code_sha256": "0bb4d6e6115413fe90cfba9c18d71633af0f90cb0d67c2fa3d339eb1b4189bc1",
+  "code_git_blob_sha1": "83ab47cef8e35d824be30b853948a612403eb19d",
+  "statement_count": 829,
+  "miss_count": 42,
+  "branch_count": 354,
+  "partial_branch_count": 30,
+  "branch_coverage_percent": 91.53,
+  "coverage_percent": 93,
+  "missing": "261->263, 330, 332, 333->exit, 346, 354, 370-374, 379->381, 400-402, 419, 420->422, 426-431, 447-448, 454, 456, 459-460, 482->486, 515, 532, 536, 599, 616->615, 617->615, 628, 646, 654, 666, 672, 697-698, 753-754, 768-769, 793, 796->791, 1310",
   "report_file": "coverage-report.txt",
-  "report_sha256_lf": "2c1d84bb4ab7f776d92066e4f62940e436bdbebd93f41e364ec2d467eec7409a",
-  "report_git_blob_sha1": "94afb7c97dd8be52e12c3c5b0b8eed87b3c876a6",
+  "report_sha256_lf": "a811eef6b2490b282aab8b646b53d434b90af308ba4fcacf5d23b34231c67bc1",
+  "report_git_blob_sha1": "b1ae87713ffb0d98b8430ed49934f32b0ad0fdb2",
   "line_endings": "LF; core.autocrlf=true may rewrite checkouts to CRLF, so verify with git cat-file blob",
   "note": "coverage is installed only in the isolated worktree .venv and is not added to requirements.txt"
 }

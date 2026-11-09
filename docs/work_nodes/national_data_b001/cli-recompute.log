@@ -1,31 +1,13 @@
+# b001 full public-package CLI recompute
+# command:
+#   D:/yx-data-b001/.venv/Scripts/python.exe -X utf8 national_data_baseline.py --data-dir data --out data/batch_runs/b001 --repo-root . --raw-pdf C:/Program Files/Git/mingw64/bin/pdftotext.exe --bbox-pdf E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe
+# cwd: D:\yx-data-b001
+# started: 2026-11-09T22:43:36+08:00
+# ended: 2026-11-09T22:45:00+08:00
+# exit_code: 0
+# wall_seconds: 83.68
+# peak_worker_working_set_bytes: 1386397696
+# peak_sum_all_descendants_bytes: 1397379072 (conservative upper bound; sampled every 200 ms)
+# stderr: empty
+# ---- stdout (public package, no network/model calls) ----
 {"out_dir": "data\\batch_runs\\b001", "raw_present": {"program_count": 22356, "ids": 22356, "duplicate_ids": 0, "units": 135, "tuition": 650, "tuition_year": 378, "tuition_full": 272, "tuition_other": 0, "duration": 1680, "computed_total_cost": 645, "conditions_nonempty": 0, "requires_review": 22356, "full_qualification": 0}, "effective_present": {"program_count": 22356, "ids": 22356, "duplicate_ids": 0, "units": 135, "tuition": 912, "tuition_year": 640, "tuition_full": 272, "tuition_other": 0, "duration": 1942, "computed_total_cost": 907, "conditions_nonempty": 0, "requires_review": 22356, "full_qualification": 0}, "verified": {"program_count": 22356, "verified_tuition": 912, "verified_duration": 1942, "verified_full_qualification": 0, "verified_computed_total_cost": 907, "tuition_claim_statuses": {"verified": 912}, "duration_claim_statuses": {"verified": 1942}, "qualification_claim_statuses": {}}, "batch": {"expansion": ["368295", "368049", "368146", "368275", "368611", "368142", "368436"], "backfill": ["367929", "367859", "368201"]}}
-
-# ---- run metadata ----
-{
-  "command": [
-    "D:/yx-data-b001/.venv/Scripts/python.exe",
-    "-X",
-    "utf8",
-    "national_data_baseline.py",
-    "--data-dir",
-    "data",
-    "--out",
-    "data/batch_runs/b001",
-    "--repo-root",
-    ".",
-    "--raw-pdf",
-    "C:/Program Files/Git/mingw64/bin/pdftotext.exe",
-    "--bbox-pdf",
-    "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe"
-  ],
-  "cwd": "D:\\yx-data-b001",
-  "path_prefix": "C:\\Program Files\\Git\\mingw64\\bin",
-  "started_at": "2026-11-09T20:34:03+08:00",
-  "ended_at": "2026-11-09T20:35:27+08:00",
-  "wall_seconds": 84.381,
-  "exit_code": 0,
-  "peak_working_set_bytes": 1384763392,
-  "measured_worker_pid": 6272,
-  "python": "3.13.9",
-  "log_path": "C:/Users/Administrator/AppData/Local/Temp/b001_cli_recompute.log"
-}

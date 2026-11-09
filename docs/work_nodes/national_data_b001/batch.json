@@ -1,9 +1,9 @@
 {
   "batch_id": "b001",
-  "generated_at": "2026-11-09T20:35:26+0800",
+  "generated_at": "2026-11-09T22:45:00+0800",
   "selection_rule": "完整 queue 确定性排序；不手写学校名；重放必须使用同一 queue SHA",
   "selection_rule_version": "b001-node0-v4",
-  "queue_sha256": "12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba",
+  "queue_sha256": "da6393ee98bbcbd95a1e0673a8c847909e8af63e0b3d6ee82821c02c61ce3a9f",
   "expansion": [
     {
       "unit_id": "368295",
@@ -58,7 +58,9 @@
         "document_path": "snapshots/national/2027/368295/e7f38136a817c2a9-7ee9870ccbdab753.html",
         "file_sha256": "7ee9870ccbdab7530508506881cced042f2b0eb63481df5e75c68577f548bc27",
         "quote_match": "literal",
-        "proof_sha256": "344f56799a84b9c218e755a11c9a7527a82ddde58fee72832f82fb847c83dc46"
+        "role_category": "home",
+        "role_evidence": "研究生处网址",
+        "proof_sha256": "25ff20a62db9bf9a6920e1f3ecb51b561d73125f0a892a6ed162de967b2baf31"
       },
       "gaps": [
         "missing_catalog",
@@ -143,7 +145,9 @@
         "document_path": "snapshots/national/2027/368049/20b97f1c37500e2b-3511c0b9ff15c9b9.html",
         "file_sha256": "3511c0b9ff15c9b9e2a50e033e9ce29a56b70f157daddb4cf8ee60b99945f211",
         "quote_match": "literal",
-        "proof_sha256": "29fc3c1aa5377da948321a11946ccdc9d84615b6221b049899b91b2808f3e548"
+        "role_category": "home",
+        "role_evidence": "学院官方网站",
+        "proof_sha256": "c263d014b7904c92a9013dfe94c6958167ebe05da5cb615bb06051680eb11e31"
       },
       "gaps": [
         "missing_catalog",
@@ -218,7 +222,9 @@
         "document_path": "snapshots/national/2027/368146/325d25a36ef05f1d-dda104ef48adaba4.html",
         "file_sha256": "dda104ef48adaba4369f9f8ebb97d575fadd4789a885ab2103e673e0389b63d8",
         "quote_match": "literal",
-        "proof_sha256": "b5f4227b67f423843b885b8ad9589bfa834e1fd4217e03ee66570ccf76ee5e08"
+        "role_category": "home",
+        "role_evidence": "网址",
+        "proof_sha256": "59be83cec57e471a8df859e7399fb4fec99ec154b1bbc98867444deee82e53f2"
       },
       "gaps": [
         "missing_catalog",
@@ -294,7 +300,9 @@
         "document_path": "snapshots/national/2027/368275/2cc0cbb49a3a760e-6cb0ceb69c37bce2.html",
         "file_sha256": "6cb0ceb69c37bce2effbd36458727fb0483c60704d73a5d449f45a8b2a4bff8b",
         "quote_match": "literal",
-        "proof_sha256": "a1cf19e4235dac42d3dbdbebee1f3e97d01f52bc4c67c1a3dae6282f5bd6e23f"
+        "role_category": "home",
+        "role_evidence": "网址",
+        "proof_sha256": "7552a7e9684a2b1b1af80890567c2970770ee154d9bd1e00de59bbe2dd24c7fc"
       },
       "gaps": [
         "missing_catalog",
@@ -370,7 +378,9 @@
         "document_path": "snapshots/national/2027/368611/348e6624f1fbbb34-0d89f20d6574a556.html",
         "file_sha256": "0d89f20d6574a5562b3fef5f4792751b72835128c558bbbfd3371fdd30116c44",
         "quote_match": "literal",
-        "proof_sha256": "88047ab1850ead90b6cca381cb92b45e393117fa2be6b69dda366335642ce281"
+        "role_category": "home",
+        "role_evidence": "研究生院网站",
+        "proof_sha256": "374c3aa881f1fcce64db7ccc6ba3c559bf97d0d05f2337807c2444bdc15d7ba7"
       },
       "gaps": [
         "missing_catalog",
@@ -445,7 +455,9 @@
         "document_path": "snapshots/national/2027/368142/2d4252c57961d944-5e69afd193952f41.html",
         "file_sha256": "5e69afd193952f418d5995efaa3a11820092e857a4313f98184964e54648d9dd",
         "quote_match": "literal",
-        "proof_sha256": "d486d955d4bf4a98a14f414bf17926560964810de22ee4df1a572d6650e9fdd1"
+        "role_category": "home",
+        "role_evidence": "网址",
+        "proof_sha256": "ee104f3ecf2162f309bdbd67bf91ceef420cf48a2fdac7566ba60b7dedac1bea"
       },
       "gaps": [
         "missing_catalog",
@@ -520,7 +532,9 @@
         "document_path": "snapshots/national/2027/368436/a441079f052799c3-deddd313eaf0e662.html",
         "file_sha256": "deddd313eaf0e662de8dfd0198fcb78bbc213c05928f25bb41eca41f0a3457cd",
         "quote_match": "literal",
-        "proof_sha256": "62e961cb4980a52b48fe6d063a45b3169042509f99403589bcafebbf41c1cc27"
+        "role_category": "home",
+        "role_evidence": "网址",
+        "proof_sha256": "ac9dee097f6ed66ebd20e84b89baeb53fef7a17885b23cbebf0c9d52d0868aae"
       },
       "gaps": [
         "missing_catalog",
@@ -598,7 +612,9 @@
         "document_path": "snapshots/national/2027/367929/340ded81c9e561a6-5946240ca60a7af0.html",
         "file_sha256": "5946240ca60a7af0f98e356bc7abe0c577838814083f2faf77a7e7ac1236125e",
         "quote_match": "literal",
-        "proof_sha256": "0693c3bdb947dd7dccd862d6e4af3f80455ce41de09053365ae877b49e28a9e5"
+        "role_category": "admissions",
+        "role_evidence": "招生信息网",
+        "proof_sha256": "af506308a21695532c1cfe47e38a58d9dece0bab6b6ced697fb159489a54d38e"
       },
       "gaps": [
         "missing_full_qualification",
@@ -665,7 +681,9 @@
         "document_path": "snapshots/national/2027/367859/4d7ed0aed0255569-3d99aee22c39ee6e.html",
         "file_sha256": "3d99aee22c39ee6e4df38007b36a46fb49284a4620bf119ef5fafb3b11a70a9f",
         "quote_match": "literal",
-        "proof_sha256": "0990e95049749809fa6844d5a5eecda3ca50555c6f15b66a20e1ecf99e917d14"
+        "role_category": "admissions",
+        "role_evidence": "研究生招生网",
+        "proof_sha256": "74668641769246a42efada74bd6ffdd0f4ead62d574e4e9383857addedda6040"
       },
       "gaps": [
         "partial_catalog",
@@ -734,7 +752,9 @@
         "document_path": "snapshots/national/2027/368201/8ad81b29b2e84674-8a96ba7409532cd1.html",
         "file_sha256": "8a96ba7409532cd12074d8dcc94368f6193f015824a32b9bf5a3722b0bccdd57",
         "quote_match": "literal",
-        "proof_sha256": "68f14320ce5b81c0d6a7a20e72e6ff0a39b9faf3474c9e071512fc4a9e09d758"
+        "role_category": "admissions",
+        "role_evidence": "研究生招生信息网",
+        "proof_sha256": "fed44e379d5976bb20bcd678693892fb600fb3de6e42c89015c9902ab944c3db"
       },
       "gaps": [
         "missing_full_qualification",

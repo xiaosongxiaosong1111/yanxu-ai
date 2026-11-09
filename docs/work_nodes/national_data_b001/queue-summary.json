@@ -1,7 +1,7 @@
 {
   "replayable": false,
   "note": "摘要仅供阅读；不含 original_urls/official_url_evidence 等选择必需字段，不能用来复算批次。重放请使用 queue.json 及其 SHA。",
-  "queue_sha256": "12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba",
+  "queue_sha256": "da6393ee98bbcbd95a1e0673a8c847909e8af63e0b3d6ee82821c02c61ce3a9f",
   "rows": [
     {
       "unit_id": "367878",
@@ -245,9 +245,8 @@
       "source_count": "74",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://grd.bit.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -426,8 +425,9 @@
       "source_count": "23",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.bift.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -1056,8 +1056,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yz.cuc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1929,8 +1930,9 @@
       "source_count": "13",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://www.bcu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -4643,9 +4645,8 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.iuse.ac.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5789,9 +5790,8 @@
       "source_count": "33",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.tjarts.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6243,8 +6243,9 @@
       "source_count": "32",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.hgu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11831,8 +11832,9 @@
       "source_count": "27",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://gs.sit.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -12810,8 +12812,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.sssri.com/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13750,8 +13753,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjszs.ntu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13992,9 +13996,8 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjszs.njnu.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14413,9 +14416,8 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjszs.yzu.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16054,9 +16056,8 @@
       "source_count": "23",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://graduate.nbu.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -16123,8 +16124,9 @@
       "source_count": "12",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yzw.zjsru.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16706,9 +16708,8 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.ahmu.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17659,8 +17660,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.mju.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -18838,8 +18840,9 @@
       "source_count": "25",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsy.sdust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -19497,9 +19500,8 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.sdua.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -21237,9 +21239,8 @@
       "source_count": "28",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://ysxy.wust.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -22208,9 +22209,8 @@
       "source_count": "23",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.hbue.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24961,9 +24961,8 @@
       "source_count": "23",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yzw.dgut.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25519,9 +25518,8 @@
       "source_count": "23",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.glmu.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25656,8 +25654,9 @@
       "source_count": "54",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://zsb.gxau.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -25690,8 +25689,9 @@
       "source_count": "36",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjs.gxmzu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -27510,8 +27510,9 @@
       "source_count": "8",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjs.sccm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28543,9 +28544,8 @@
       "source_count": "22",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.swugs.ynu.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28646,8 +28646,9 @@
       "source_count": "23",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.kmmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29163,8 +29164,9 @@
       "source_count": "15",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjszs.xzu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -29197,9 +29199,8 @@
       "source_count": "28",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www1.xzmu.edu.cn/",
-      "entry_trusted": false,
+      "entry_trusted": true,
       "gaps": [
-        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -31430,8 +31431,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsy.nwnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
