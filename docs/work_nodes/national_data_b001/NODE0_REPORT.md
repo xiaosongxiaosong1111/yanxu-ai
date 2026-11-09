@@ -224,10 +224,10 @@
 | `queue-summary.json` | 1,077,969 | `d126d6b3ff01ee6e84aff6c4ff5d5ca634fdb0845e1f0d389a6d74eec875069c` | 只读摘要，`replayable=false` |
 | `batch.json` | 48,415 | `9ebcc3238d59289f113017d937b4089b6f2f55e18a9d4f699a32245db5e1aca9` | 7+3 首批；绑定 `queue_sha256` 与 `selection_rule_version=b001-node0-v2` |
 | `coverage-report.txt` | 512 | `ad2d976bd6a6ac0a6d99f123b8f5081621e74d603a52eb0ad0061b1934599b4d` | 覆盖率命令与原始报表 |
-| `replay-check.json` | 878 | `e98b0adc3b2e881863a6b66f08655ad799911ee6bfb309818881a389522d3b98` | 从落盘 queue 重放 batch 的机器可读证据 |
+| `replay-check.json` | 6,780 | `182131d062f1a6221a36dd39cd37d5089f6ddb60df5296c47f6e2b9bdab5d888` | 从落盘 queue 重放 batch 的机器可读证据（含理由/next_step） |
 | `protected-sha256.json` | 813 | `03e68433e45c60c532d48340b56aed727c59f280ba06c11404345c10c20c199f` | 五个保护适配器 SHA |
 
-批次重放验证：读取落盘 `queue.json`，用同一 `queue_sha256` 调 `select_batch`，扩目录/补字段 ID 均与 `batch.json` 一致；摘要重放被显式拒绝。机器可读结果见 `replay-check.json`。
+批次重放验证：读取落盘 `queue.json`，用同一 `queue_sha256` 调 `select_batch`，扩目录/补字段的 ID、角色、理由和 next_step 均与 `batch.json` 一致；摘要重放被显式拒绝。机器可读结果见 `replay-check.json`。
 
 ## H. 失败、边界与下一步
 

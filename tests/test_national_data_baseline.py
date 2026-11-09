@@ -547,6 +547,10 @@ class AuditTests(unittest.TestCase):
                              [row['unit_id'] for row in batch['expansion']])
             self.assertEqual([row['unit_id'] for row in replay['backfill']],
                              [row['unit_id'] for row in batch['backfill']])
+            self.assertEqual([row['reason'] for row in replay['expansion']],
+                             [row['reason'] for row in batch['expansion']])
+            self.assertEqual([row['reason'] for row in replay['backfill']],
+                             [row['reason'] for row in batch['backfill']])
             self.assertFalse(summary['replayable'])
             with self.assertRaisesRegex(ValueError, 'original_urls'):
                 baseline.select_batch(summary['rows'], expansion=1, backfill=0)
