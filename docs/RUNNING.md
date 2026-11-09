@@ -270,7 +270,7 @@ python -X utf8 server.py --port 4180
 
 ```powershell
 python -X utf8 -m unittest discover -s tests -v
-python -X utf8 -m coverage run --branch --source=grad_engine,planning_engine,service,service_verification,server,snapshot_cache,radar,source_proof,public_sources,enrichment,evidence,collection_status,catalog_index,catalog_replay,published_catalog,provider_catalog,ai_transport,secret_store,settings_store,research_service,research_store,research_tools,research_plan,research_fields,knowledge_store,knowledge_quality,knowledge_retrieval,knowledge_vector_store,source_privacy,collectors -m unittest discover -s tests
+python -X utf8 -m coverage run --branch --source=grad_engine,planning_engine,service,service_verification,server,snapshot_cache,radar,source_proof,public_sources,enrichment,evidence,collection_status,catalog_index,catalog_replay,published_catalog,provider_catalog,ai_transport,secret_store,settings_store,research_service,research_store,research_tools,official_search,unit_bindings,research_plan,research_fields,knowledge_store,knowledge_quality,knowledge_retrieval,knowledge_vector_store,source_privacy,collectors -m unittest discover -s tests
 python -X utf8 -m coverage report -m
 node --test tests/*.test.mjs
 python -X utf8 -m unittest tests.test_agent_http tests.test_provider_settings tests.test_research_service tests.test_research_store tests.test_research_tools
