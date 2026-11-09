@@ -9,8 +9,12 @@ from pathlib import Path
 import re
 import threading
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
+
+import official_search
+import unit_bindings
+from official_search import http_url as _http_url
+from public_sources import official_roots
 
 from service_verification import SourceVerifier
 from snapshot_cache import SnapshotCache
@@ -26,10 +30,10 @@ from knowledge_api import checked_request
 
 
 SEARCH_ENDPOINT = 'https://api.wsa.cloud.tencent.com/SearchPro'
-SEARCH_KINDS = {'catalog': '硕士招生专业目录 考试科目', 'charter': '硕士研究生招生章程',
-                'fees': '研究生学费 学制', 'score': '硕士复试分数线',
-                'retest': '硕士复试录取办法', 'transfer': '硕士调剂办法',
-                'change': '硕士招生考试科目调整', 'enrollment': '硕士招生人数 招生计划 推免人数'}
+# The search vocabulary and tiering live in official_search so the page API and
+# the research agent cannot drift apart again.
+SEARCH_KINDS = official_search.SEARCH_KINDS
+SEARCH_SCOPES = official_search.SEARCH_SCOPES
 COLLECTIONS = ('documents', 'programs', 'score_lines', 'retest_rules', 'transfer_rules', 'notices', 'admitted_statistics')
 
 
@@ -60,31 +64,6 @@ def _text(value, limit=120):
     if not isinstance(value, str) or len(value) > limit:
         raise ServiceError('invalid_query', '查询字段格式或长度不正确。')
     return value.strip()
-
-
-def _http_url(value):
-    if not isinstance(value, str) or len(value) > 2048:
-        return None
-    try:
-        parsed = urlsplit(value)
-        if parsed.scheme not in {'http', 'https'} or not parsed.hostname or parsed.username or parsed.password:
-            return None
-        if parsed.port not in {None, 80, 443}:
-            return None
-        return parsed
-    except ValueError:
-        return None
-
-
-def _root_domain(url):
-    parsed = _http_url(url)
-    if not parsed:
-        return None
-    host = parsed.hostname.lower().rstrip('.')
-    parts = host.split('.')
-    if len(parts) >= 3 and parts[-2:] in [['edu', 'cn'], ['ac', 'cn'], ['gov', 'cn'], ['org', 'cn']]:
-        return '.'.join(parts[-3:])
-    return host.removeprefix('www.')
 
 
 def _merge_rows(first, second):
@@ -402,7 +381,22 @@ class AdmissionService:
             if type(value) is not int or not 1<=value<=upper:
                 raise ServiceError('invalid_query', '知识库分页参数格式不正确。')
             pagination[name]=value
-        return self._extension_call('knowledge', 'search', query=q, status=status, year=year, unit_id=unit_id, quality=quality, **pagination)
+        result = self._extension_call('knowledge', 'search', query=q, status=status, year=year,
+                                      unit_id=unit_id, quality=quality, **pagination)
+        # The registry stores full official names, so a short name such as
+        # 国科大 would find nothing even when this school's materials are
+        # already saved. Only retry with an evidence-backed alias when the
+        # original query was empty; this never widens to a different school.
+        expanded = unit_bindings.expand_query(q)
+        if (not result.get('total') and expanded != q and len(expanded) <= 240
+                and pagination['page'] == 1):
+            retried = self._extension_call('knowledge', 'search', query=expanded, status=status, year=year,
+                                           unit_id=unit_id, quality=quality, **pagination)
+            if retried.get('total'):
+                return {**retried, 'query_expansion': {
+                    'requested': q, 'effective': expanded,
+                    'notice': '已把学校简称展开为目录中的规范校名；这只是检索词变化，不是新的资料或事实。'}}
+        return result
 
     def knowledge_request(self, action, payload):
         method, values = checked_request(action, payload, ServiceError)
@@ -548,17 +542,24 @@ class AdmissionService:
 
     def catalog_bootstrap(self):
         result = self._published('bootstrap')
-        return {**result, 'service': {**self._connection_status(),
+        # Merge evidence-backed extra domains and short names (国科大/社科大)
+        # into the same unit rows the page already uses. Only units with a
+        # reviewed binding change; the rest keep an empty official_url and are
+        # still reported as binding-missing by the search pipeline.
+        return {**result, 'units': [unit_bindings.enrich(unit) for unit in result['units']],
+                'service': {**self._connection_status(),
                 'data_revision': result['revision'], 'verification_mode': 'published_snapshot',
                 'radar': self.radar_status()}}
 
     def catalog_programs(self, unit_id=None, year=None, q='', offset=0, limit=20, revision=None):
-        return self._published('page', 'programs', unit_id=unit_id, year=year, q=q,
+        return self._published('page', 'programs', unit_id=unit_id, year=year,
+                               q=unit_bindings.expand_query(q),
                                offset=offset, limit=limit, revision=revision)
 
     def catalog_subjects(self, unit_id=None, year=None, q='', offset=0, limit=50, revision=None,
                          code=None, scope=None, exam_unit=None):
-        return self._published('page', 'subjects', unit_id=unit_id, year=year, q=q,
+        return self._published('page', 'subjects', unit_id=unit_id, year=year,
+                               q=unit_bindings.expand_query(q),
                                offset=offset, limit=limit, revision=revision, code=code, scope=scope, exam_unit=exam_unit)
 
     def catalog_program(self, program_id, revision=None):
@@ -876,30 +877,14 @@ class AdmissionService:
         except (ValueError, TypeError, UnicodeError) as error:
             raise ServiceError('search_invalid_response', '元宝检索返回的数据需要重新核验。', 502) from error
 
-    @staticmethod
-    def _search_pages(body, roots):
-        """Keep only links on an official root domain; count the rest honestly."""
-        results, rejected, malformed = [], 0, 0
-        for page in body['Pages'][:50]:
-            try:
-                item = json.loads(page) if isinstance(page, str) else page
-                parsed = _http_url(item.get('url')) if isinstance(item, dict) else None
-                if not parsed or not any(parsed.hostname == root or parsed.hostname.endswith('.' + root) for root in roots):
-                    rejected += 1
-                    continue
-                results.append({'title': str(item.get('title', ''))[:300], 'url': item['url'],
-                                'published_at': str(item.get('date', ''))[:100],
-                                'summary': str(item.get('content') or item.get('passage') or '')[:2400],
-                                'source_status': 'official_domain_unverified_content'})
-            except (ValueError, TypeError):
-                malformed += 1
-        return results, rejected, malformed
-
     def search(self, payload):
-        self._payload(payload, ('unit_id', 'year', 'kind'), ('unit_id', 'year', 'kind'))
+        self._payload(payload, ('unit_id', 'year', 'kind'), ('unit_id', 'year', 'kind', 'scope'))
+        scope = payload.get('scope', 'official')
+        if scope not in SEARCH_SCOPES:
+            raise ServiceError('invalid_scope', '检索范围只支持 official 或 extended。')
         if self._catalog.available():
-            state=self._published('scope',[_text(payload['unit_id'],100)])
-            registry,admissions=state['registry'],state['admissions']
+            state = self._published('scope', [_text(payload['unit_id'], 100)])
+            registry, admissions = state['registry'], state['admissions']
         else:
             registry, admissions = self._snapshot()
         unit_id, year, _ = self._query(registry, admissions, payload['unit_id'], payload['year'])
@@ -908,41 +893,49 @@ class AdmissionService:
         config = self._search_config()
         if not config:
             raise ServiceError('not_configured', '平台尚未配置元宝检索服务，现有资料与规则筛选仍可使用。', 503)
-        unit = next(unit for unit in registry['units'] if unit['id'] == unit_id)
-        roots = {'yz.chsi.com.cn'}
-        roots.update(root for root in [_root_domain(unit.get('official_url'))] if root)
-        query = f"{year}年 {unit['name']} {SEARCH_KINDS[payload['kind']]}"
-        request_body = {'Query': query}
-        site = _root_domain(unit.get('official_url'))
-        if site: request_body['Site'] = site
+        # Extra official domains exist only when a reviewed binding proves them
+        # (see unit_bindings); a missing binding is reported as such instead of
+        # being turned into "the official site has no material".
+        unit = unit_bindings.enrich(next(unit for unit in registry['units'] if unit['id'] == unit_id))
+        roots = official_roots(unit)
+        site = roots[0] if roots else None
+        variants = official_search.search_variants(unit['name'], year, payload['kind'])
         from yuanbao_auth import build_request
         from provider_catalog import TransportError
-        try:
-            url, raw, headers = build_request(config, request_body)
-        except TransportError as error:
-            raise ServiceError(error.code, error.message, error.status) from None
-        request = Request(url, raw, headers=headers, method='POST')
-        body = self._search_response(request)
-        results, rejected, malformed = self._search_pages(body, roots)
-        site_fallback = False
-        if site and (not body['Pages'] or not results):
-            # SearchPro's Site filter matches exact indexed hosts, so a school
-            # site can miss its own graduate subdomain, and a non-empty page set
-            # can still contain only non-official hosts. Retry once without the
-            # filter; official-domain enforcement below still applies.
-            fallback_body = {key: value for key, value in request_body.items() if key != 'Site'}
+
+        def call(request_body):
             try:
-                fallback_url, fallback_raw, fallback_headers = build_request(config, fallback_body)
+                url, raw, headers = build_request(config, request_body)
             except TransportError as error:
                 raise ServiceError(error.code, error.message, error.status) from None
-            fallback_request = Request(fallback_url, fallback_raw, headers=fallback_headers, method='POST')
-            fallback_result = self._search_response(fallback_request)
-            fallback_rows, fallback_rejected, fallback_malformed = self._search_pages(fallback_result, roots)
-            if fallback_rows or (not body['Pages'] and fallback_result['Pages']):
-                body, site_fallback = fallback_result, True
-                results, rejected, malformed = fallback_rows, fallback_rejected, fallback_malformed
-        return {'provider': 'yuanbao_search', 'query': query, 'checked_at': _now(),
-                'request_id': str(body.get('RequestId', ''))[:120], 'results': results,
-                'rejected_count': rejected, 'malformed_count': malformed,
-                'site_fallback': site_fallback,
-                'notice': '检索用于发现来源；官方域名结果仍需核对原文与适用年度，返回结果不是完整目录。'}
+            return self._search_response(Request(url, raw, headers=headers, method='POST'))
+
+        def is_official(url):
+            parsed = _http_url(url)
+            host = parsed.hostname.lower().rstrip('.') if parsed else ''
+            return bool(host) and official_search.host_matches(host, ('yz.chsi.com.cn', *roots))
+
+        binding_missing = not roots
+        result = official_search.run_ladder(
+            call, queries=variants, is_official=is_official, unit_name=unit['name'], roots=roots,
+            candidate_enabled=binding_missing, site=site, include_third=scope == 'extended',
+            third_query=f"{unit['name']} 考研 经验 报录比 参考书" if scope == 'extended' else None)
+        official_results = result['official_results']
+        candidates = result['candidate_results']
+        third_results = result['third_results']
+        outcome = ('official_results' if official_results else
+                   'official_domain_candidates' if candidates else
+                   'extended_reference' if third_results else 'no_official_results')
+        stage = official_search.failure_stage(official_results, candidates, third_results,
+                                              result['rejected_count'], binding_missing)
+        return {'provider': 'yuanbao_search', 'query': variants[0], 'queries_tried': result['queries_tried'],
+                'scope': scope, 'outcome': outcome, 'third_party_count': len(third_results),
+                'candidate_count': result['candidate_count'], 'candidate_hosts': result['candidate_hosts'],
+                'checked_at': _now(), 'request_id': result['request_id'],
+                'results': result['results'], 'rejected_count': result['rejected_count'],
+                'malformed_count': result['malformed_count'], 'site_fallback': result['site_fallback'],
+                'request_count': result['request_count'], 'failure_stage': stage,
+                'binding_status': 'missing' if binding_missing else 'bound',
+                'binding_domains': list(roots),
+                'notice': official_search.notice(official_results, candidates, third_results,
+                                                 len(result['queries_tried']), binding_missing=binding_missing)}

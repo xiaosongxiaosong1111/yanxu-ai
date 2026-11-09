@@ -84,6 +84,24 @@ class PlanTests(unittest.TestCase):
                          'sha256': 'a' * 64}}
         self.assertTrue({row['id']: row for row in self.build(sources=strong, executed_tools=('search_knowledge_segments',))['skills']}['verify-evidence']['checked'])
 
+    def test_search_leads_alone_never_mark_official_sources_checked(self):
+        lead = {'s1': {'id': 's1', 'unit_id': 'u1', 'status': 'search_lead',
+                       'year': 2027, 'url': 'https://grad.example.edu.cn/'}}
+        lead_plan = self.build(sources=lead, executed_tools=('search_official_sources',))
+        lead_skill = {row['id']: row for row in lead_plan['skills']}['research-official-sources']
+        self.assertFalse(lead_skill['checked'])
+        self.assertEqual(lead_skill['status'], 'executed')
+        self.assertIn('尚未取得带实际年度', lead_skill['reason'])
+        undated = {'s1': {'id': 's1', 'unit_id': 'u1', 'status': 'official_original_read',
+                          'year': None, 'sha256': 'a' * 64}}
+        self.assertFalse({row['id']: row for row in self.build(
+            sources=undated, executed_tools=('search_official_sources',))['skills']}['research-official-sources']['checked'])
+        for status in ('official_original_read', 'published_snapshot'):
+            strong = {'s1': {'id': 's1', 'unit_id': 'u1', 'status': status, 'year': 2027,
+                             'sha256': 'a' * 64 if status == 'official_original_read' else None}}
+            self.assertTrue({row['id']: row for row in self.build(
+                sources=strong, executed_tools=('search_official_sources',))['skills']}['research-official-sources']['checked'])
+
     def test_previous_report_carries_candidate_and_evidence_versions_for_inheritance(self):
         previous = {'candidates': [{'id': 'p1'}], 'evidence': [{'id': 's1'}, {'id': 's2'}]}
         task = {'id': 'r_2', 'target_year': 2028, 'reference_year': 2027,

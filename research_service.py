@@ -289,10 +289,18 @@ class ResearchService:
 
     def _reuse_knowledge(self,identifier,tools):
         import re
-        query=self.store.get(identifier)['query']
-        query=next((word for word in ('计算机','软件工程','人工智能','电子信息','408','经济学','法学','医学','教育学') if word in query),query[:120])
+        original=self.store.get(identifier)['query']
+        query=next((word for word in ('计算机','软件工程','人工智能','电子信息','408','经济学','法学','医学','教育学') if word in original),original[:120])
         if re.search(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|(?<!\d)1[3-9]\d{9}(?!\d)',query):return
-        result=tools.search_knowledge({'query':query})
+        request={'query':query}
+        # When the user names exactly one school, keep the prefetch inside
+        # that school; otherwise a query about 国科大 would show other
+        # schools' cached material as if it were related. An inferred unit
+        # outside an explicitly selected scope is not used.
+        scope=tools.infer_unit(original)
+        if scope and (not tools.task.get('unit_ids') or scope in tools.task['unit_ids']):
+            request['unit_id']=scope
+        result=tools.search_knowledge(request)
         if not result.get('error'):tools.executed_tools.add('search_knowledge')
         self.store.event(identifier,'knowledge','检查本机已有资料',
                          f"本轮复用了{len(result.get('results',[]))}份留档或线索；未重新联网核验。" if not result.get('error') else result['error']['message'],

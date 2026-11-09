@@ -124,6 +124,12 @@ def _skill_contracts(loaded, executed, sources, algorithm, programs, questions, 
     result = []
     official = [source for source in sources.values() if source.get('status') == 'official_original_read']
     verified = [source for source in official if type(source.get('year')) is int and source.get('sha256')]
+    # A search lead has a URL but no actual year or readable original, so it
+    # cannot satisfy the "source with an actual year" contract. Only official
+    # text or a published snapshot may mark this Skill as checked.
+    dated = [source for source in sources.values()
+             if source.get('status') in {'official_original_read', 'published_snapshot'}
+             and type(source.get('year')) is int]
     for name, contract in SKILL_CONTRACTS.items():
         is_loaded = name in (loaded or ())
         used = sorted(tool for tool in contract['tools'] if tool in (executed or ()))
@@ -133,8 +139,9 @@ def _skill_contracts(loaded, executed, sources, algorithm, programs, questions, 
                 checked = bool(programs or questions)
                 reason = '已有候选或可执行的关键问题。' if checked else '尚未形成候选或关键问题。'
             elif name == 'research-official-sources':
-                checked = bool(sources)
-                reason = '已有保留年度和来源身份的来源账本。' if checked else '尚未取得可核对的来源。'
+                checked = bool(dated)
+                reason = ('已有带实际年度的官方原文或已发布来源。' if checked
+                          else '尚未取得带实际年度的官方原文或已发布来源。')
             elif name == 'verify-evidence':
                 checked = bool(verified)
                 reason = '已有带实际年度和 SHA 的官方原文。' if checked else '尚未读到带实际年度和 SHA 的官方原文。'

@@ -76,6 +76,33 @@ class KnowledgeRetrievalRegressionTests(unittest.TestCase):
         with self.assertRaises(ResearchError):
             self.tools.search_knowledge({'query': '计算机', 'unit_id': '999'})
 
+    def test_reference_year_miss_reports_stored_years_without_returning_history(self):
+        saved = self.published('history-only', year=2026)
+        result = self.tools.search_knowledge({'query': '计算机', 'year': 2027})
+        self.assertEqual(result['results'], [])
+        self.assertEqual(result['stored_years'], [2026])
+        self.assertIn('2026', result['notice'])
+        self.assertIn('不能把历史年度当作目标年度', result['notice'])
+        self.assertNotIn(saved['id'], str(result))
+
+    def test_short_school_name_is_expanded_only_after_the_first_query_misses(self):
+        saved = self.store.save_source({
+            'url': 'https://grad.example.edu.cn/fixture/ucas/alias',
+            'title': '2026年中国科学院大学计算机招生专业目录', 'unit_id': '123',
+            'unit_name': '中国科学院大学', 'year': 2026, 'requested_year': 2028,
+            'status': 'published_snapshot',
+            'excerpt': '081200 计算机科学与技术，初试科目101、201、301、408。',
+            'checked_at': '2026-11-03'})
+        self.assertEqual(saved['quality']['state'], 'accepted')
+        result = self.tools.search_knowledge({'query': '国科大 计算机', 'year': 2026})
+        self.assertEqual(result['requested_query'], '国科大 计算机')
+        self.assertEqual(result['effective_query'], '中国科学院大学 计算机')
+        self.assertTrue(result['alias_expanded'])
+        self.assertIn(saved['id'], {item['knowledge_id'] for item in result['results']})
+        self.assertIn('只是检索词变化', result['notice'])
+        direct = self.tools.search_knowledge({'query': '计算机', 'year': 2026})
+        self.assertNotIn('alias_expanded', direct)
+
     def read_pdf(self, text, search_title='2028年计算机招生目录', metadata=None):
         raw = b'%PDF-1.4\nN1 isolated fetcher fixture'
         url = 'https://grad.example.edu.cn/catalog.pdf'

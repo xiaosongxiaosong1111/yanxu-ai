@@ -15,7 +15,9 @@ from evidence import exam_unresolved_reason
 from evidence_ledger import audit as evidence_audit
 from grad_engine import EngineValidationError, match_programs, rank_order_key, validate_profile
 from planning_engine import plan_routes, suggest_adjustments
-from public_sources import fetch_official_document, official_source_url, SourceError
+import official_search
+import unit_bindings
+from public_sources import fetch_official_document, official_roots, official_source_url, SourceError
 from research_store import ResearchError
 from source_privacy import contains_personal_roster
 import research_knowledge
@@ -23,7 +25,8 @@ import research_fields
 from research_plan import build_plan
 
 LIMITS={'max_rounds':8,'max_searches':4,'max_documents':4,'max_model_calls':8,
-        'max_tool_calls':20,'max_seconds':180,'max_total_tokens':40000,'max_candidates':12}
+        'max_tool_calls':20,'max_seconds':180,'max_total_tokens':40000,'max_candidates':12,
+        'max_discoveries':2,'max_navigation_fetches':4,'max_links':20}
 SKILL_CATALOG=(
     ('understand-intent','理解需求',('find_units','find_candidates','propose_profile')),
     ('research-official-sources','研究官方资料',('find_units','find_candidates','search_official_sources','search_knowledge','search_knowledge_segments')),
@@ -131,13 +134,16 @@ def gated_resolver(host,*args,**kwargs):
 
 
 TOOLS=[
-    _schema('find_units','查询全国招生单位索引，未入库专业不等于学校不招生。',{'query':{'type':'string'},'province':{'type':'string'}}),
+    _schema('find_units','查询全国招生单位索引，未入库专业不等于学校不招生。支持常用简称；已登记的可信官网会作为可读入口返回 official_source_id，尚未登记官网的单位会明确标出。',
+            {'query':{'type':'string'},'province':{'type':'string'}}),
     _schema('find_candidates','查询已发布核验快照的有限候选。可以用专业词或408等科目查询；返回范围不代表全国全集。',
             {'query':{'type':'string'},'unit_id':{'type':'string'}},('query',)),
-    _schema('search_official_sources','使用元宝搜索查公共学校、专业、年度资料。不得发送姓名、电话、成绩单、API Key等个人信息。搜索结果仅为线索。',
+    _schema('search_official_sources','使用元宝搜索查公共学校、专业、年度资料。不得发送姓名、电话、成绩单、API Key等个人信息。搜索结果仅为线索；未登记官网的单位会返回归属待确认的疑似官方页面。',
             {'query':{'type':'string'},'unit_id':{'type':'string'},'year':{'type':'integer'}},('query',)),
-    _schema('read_official_source','按已发现的source_id读取已确认学校官网原文；不能读取任意URL，研招网门禁保持不请求。',
+    _schema('read_official_source','按已发现的source_id读取已确认学校官网原文；不能读取任意URL，研招网门禁保持不请求。返回结果同时列出同站官方文章与PDF入口的source_id。',
             {'source_id':{'type':'string'},'unit_id':{'type':'string'}},('source_id','unit_id')),
+    _schema('discover_official_links','从已读取的官方页面继续发现同站文章、栏目和PDF入口。只访问已核准官方域名，受深度、数量、时间与原文读取预算限制；返回的入口仍需逐个读取核验。',
+            {'source_id':{'type':'string'},'unit_id':{'type':'string'},'depth':{'type':'integer'},'limit':{'type':'integer'}},('source_id','unit_id')),
     _schema('compare_candidates','对已经发现的本地核验候选调用资格三态、科目距离、偏好排序和Pareto算法，只使用用户已填条件。',
             {'program_ids':{'type':'array','items':{'type':'string'},'maxItems':12}}),
     _schema('plan_subject_routes','比较0/1/2个考试单元调整的路线；未知科目不当作零换科。',
@@ -178,9 +184,14 @@ class ResearchTools:
         self._memo={}
         self.usage={'searches':0,'documents':0,'tool_calls':0,'model_calls':0,'rounds':0,'total_tokens':0,
                     'algorithm_calls':0,'embedding_calls':0,'successful_embedding_calls':0,
-                    'embedding_input_tokens':0,'embedding_usage_known':True}
+                    'embedding_input_tokens':0,'embedding_usage_known':True,
+                    'discoveries':0,'navigation_fetches':0}
         self.bootstrap=admission.catalog_bootstrap()
-        self.units={row['id']:row for row in self.bootstrap.get('units',[]) if isinstance(row,dict) and isinstance(row.get('id'),str)}
+        # Evidence-backed extra domains and short names are merged in one
+        # place so search, filtering and reading all agree on what counts as
+        # this unit's official site.
+        self.units={row['id']:unit_bindings.enrich({**row,'id':row['id']})
+                    for row in self.bootstrap.get('units',[]) if isinstance(row,dict) and isinstance(row.get('id'),str)}
         self.revision=self.bootstrap.get('revision')
         self.field_candidates=[];self.field_applications={'applied':[],'paused':[]}
         self.inheritance=self._inherit(task.get('previous_report'))
@@ -257,6 +268,7 @@ class ResearchTools:
         self.usage['tool_calls']+=1
         handlers={'find_units':self.find_units,'find_candidates':self.find_candidates,
                   'search_official_sources':self.search_sources,'read_official_source':self.read_source,
+                  'discover_official_links':self.discover_links,
                   'compare_candidates':self.compare,'analyze_decisions':self.analyze_decisions,
                   'plan_subject_routes':self.routes,
                   'suggest_adjustments':self.adjustments,'read_knowledge':self.knowledge,'propose_profile':self.propose_profile,
@@ -282,13 +294,92 @@ class ResearchTools:
         if time.monotonic()>=self.deadline:raise ResearchError('research_budget_exceeded','已达到本轮研究时间上限。',409)
         if self.stop_event is not None and self.stop_event.is_set():raise ResearchError('cancelled','研究已取消。',409)
 
+    def infer_unit(self,query):
+        """Return the one catalog unit named in the query, or '' when unclear.
+
+        The system knowledge prefetch used to keep only the subject keyword
+        (计算机), so a question about 国科大 could be answered with other
+        schools' cached material. Only exact registered names and reviewed
+        aliases count; nested names keep the longest match (北京大学医学部
+        before 北京大学), and two units at the same length stay ambiguous so
+        the prefetch is never silently narrowed to the wrong school.
+        """
+        value=unit_bindings.normalize_name(query)
+        if not value:return ''
+        matches={}
+        for unit in self.units.values():
+            names=[unit_bindings.normalize_name(unit.get('name'))]
+            names.extend(unit_bindings.normalize_name(alias) for alias in unit.get('aliases') or ())
+            for name in names:
+                if name and name in value:
+                    matches[unit['id']]=max(len(name),matches.get(unit['id'],0))
+        if not matches:return ''
+        longest=max(matches.values())
+        winners=[identifier for identifier,length in matches.items() if length==longest]
+        return winners[0] if len(winners)==1 else ''
+
     def find_units(self,args):
-        _object(args,('query','province'));query=text(args.get('query',''),120,True).casefold()
+        _object(args,('query','province'));raw=text(args.get('query',''),120,True)
+        query=raw.casefold()
         province=text(args.get('province',''),40,True)
-        values=[{key:unit.get(key) for key in ('id','name','province','official_url','unit_code','program_count','annual_status')}
-                for unit in self.units.values() if (not query or query in (unit['name']+' '+str(unit.get('unit_code',''))).casefold())
-                and (not province or unit.get('province')==province)]
-        return {'units':values[:20],'total':len(values),'truncated':len(values)>20,'scope':'national_unit_index_not_complete_program_catalog'}
+        # Short names such as 国科大 / 社科大 are resolved by a reviewed alias
+        # table, not by asking the model to guess. A name that cannot be
+        # resolved returns an explicit reason instead of an empty list.
+        resolution=unit_bindings.resolve_query(raw) if raw else None
+        alias=resolution.get('alias') if resolution else None
+        canonical=resolution.get('canonical') if resolution else None
+        matched=[]
+        for unit in self.units.values():
+            name=unit['name'].casefold()
+            code=str(unit.get('unit_code') or '').casefold()
+            aliases=' '.join(unit.get('aliases') or ()).casefold()
+            by=[]
+            if raw:
+                if query and query in name:by.append('name')
+                if query and query in (name+' '+code) and 'name' not in by:by.append('unit_code')
+                if alias and (alias.casefold() in aliases or (canonical and canonical.casefold() in name)):by.append('alias')
+                if not by:continue
+            if province and unit.get('province')!=province:continue
+            row={key:unit.get(key) for key in ('id','name','province','official_url','unit_code','program_count','annual_status')}
+            row['binding_status']='bound' if unit.get('official_url') else 'missing'
+            domains=[item['url'] for item in unit.get('official_urls') or [] if isinstance(item,dict) and item.get('url')]
+            if domains:row['official_domains']=list(dict.fromkeys(domains))
+            if unit.get('official_binding'):row['official_binding']=unit['official_binding']
+            row['matched_by']=by or ['scope']
+            if unit.get('aliases'):row['aliases']=list(unit['aliases'])
+            matched.append((row,unit))
+        if canonical:
+            matched.sort(key=lambda item:(0 if item[1]['name']==canonical else 1))
+        missing=sum(row['binding_status']=='missing' for row,_ in matched)
+        result={'units':[row for row,_ in matched[:20]],'total':len(matched),'truncated':len(matched)>20,
+                'scope':'national_unit_index_not_complete_program_catalog','binding_missing_count':missing}
+        if alias:
+            result['alias_resolution']={'alias':alias,'canonical':canonical}
+        # A single unambiguous unit can hand back its verified official entry as
+        # a readable source: knowing the URL must not require a paid search hit
+        # first. Broad queries only list rows so one school's entry is never
+        # silently attached to another.
+        for row,unit in matched[:20]:
+            if row['binding_status']=='bound' and (len(matched)==1 or (canonical and unit['name']==canonical)):
+                identifier=self._official_entry(unit)
+                if identifier:row['official_source_id']=identifier
+        if not matched:
+            result['reason']='alias_resolved_without_index_match' if alias else 'index_no_match'
+            result['notice']=(f'简称“{alias}”已解析为{canonical}，但全国单位索引中没有匹配条目；索引覆盖不完整不代表学校不存在。'
+                              if alias else '全国单位索引中没有与查询匹配的单位；索引覆盖不完整不代表学校不存在。')
+        elif missing:
+            result['notice']=f'其中{missing}个单位尚未登记可信官网域名，检索结果无法按官网归属过滤；这不代表官网没有资料。'
+        return result
+
+    def _official_entry(self,unit):
+        """Register the unit's verified official entry as a controlled source."""
+        url=unit.get('official_url')
+        if not isinstance(url,str) or not url:
+            return None
+        return self._source({'url':url,'title':f"{unit['name']}官网入口",'unit_id':unit['id'],
+                             'unit_name':unit['name'],'year':None,'status':'official_entry',
+                             'source_type':'official_entry','checked_at':None,'excerpt':'',
+                             'notice':'单位索引登记的官网入口，不是招生原文；读取后仍需核对年度与字段。'})
 
     def find_candidates(self,args):
         _object(args,('query','unit_id'));requested=text(args.get('query'),120)
@@ -584,7 +675,8 @@ class ResearchTools:
         metadata={key:deepcopy(record[key]) for key in (*_SOURCE_METADATA,'excerpt') if key in record and key!='id'}
         reusable=_reusable_knowledge(record)
         if reusable:self.cache_hits.add(record['id'])
-        return _public_source({**metadata,'id':source['id'],'requested_year':source.get('requested_year',record.get('requested_year')),
+        return _public_source({**metadata,'id':source['id'],'links':source.get('links',[]),
+            'requested_year':source.get('requested_year',record.get('requested_year')),
             'source_type':'knowledge_cache','knowledge_reused':True,'cache_hit':reusable,'cached_at':record.get('checked_at'),
             'notice':'本次发现的链接对应既有留档，采用留档的实际年度、摘录与原读取日期；未重新读取原文，招生字段仍须审校。'})
 
@@ -610,18 +702,27 @@ class ResearchTools:
         if uid:self._unit(uid)
         year=args.get('year',self.task['reference_year'])
         if type(year) is not int or not 2020<=year<=self.task['target_year']:raise ResearchError('invalid_year','知识库检索年份不正确。')
-        try:
+        units=[uid] if uid else self.task['unit_ids'] or ['']
+        def collect(search_query):
             groups=[];query_total=0
-            for selected in ([uid] if uid else self.task['unit_ids'] or ['']):
-                entries=[];total=0
+            for selected in units:
+                entries=[]
                 for page in range(1,5):
-                    batch=self._knowledge().search(query=query,year=year,unit_id=selected,page=page,page_size=12,quality='accepted')
+                    batch=self._knowledge().search(query=search_query,year=year,unit_id=selected,page=page,page_size=12,quality='accepted')
                     total=batch.get('total',0)
                     entries.extend(entry for entry in batch.get('entries',[]) if _reusable_knowledge(entry) and
                                    entry.get('year')==year and (not selected or entry.get('unit_id')==selected))
                     if len(entries)>=8 or page*12>=total:break
                 groups.append(entries);query_total+=total
-            entries=[entry for group in zip_longest(*groups) for entry in group if entry is not None]
+            return [entry for group in zip_longest(*groups) for entry in group if entry is not None],query_total
+        requested,effective=query,query
+        try:
+            entries,query_total=collect(query)
+            expanded=unit_bindings.expand_query(query)
+            if not entries and expanded!=query and len(expanded)<=240:
+                attempt,total=collect(expanded)
+                if attempt:
+                    entries,query_total,effective=attempt,total,expanded
         except Exception:
             message='本机知识库暂时无法读取；可继续使用已发布目录或主动检索。'
             self.knowledge_errors.append(message);self.gaps.append(message)
@@ -640,8 +741,22 @@ class ResearchTools:
             if sid and self.sources[sid].get('knowledge_quality',{}).get('state')=='accepted' and self.sources[sid].get('knowledge_quality',{}).get('reusable') is True:
                 self._trusted_knowledge_ids.add(entry['id'])
                 self.cache_hits.add(entry.get('id') or sid);results.append(deepcopy(self.sources[sid]))
-        return {'results':results,'total':len(results),'query_total':query_total,
-                'notice':'仅复用通过知识准入的资料；待核摘要和过滤来源不作为跨轮知识缓存。缓存也不等于实时验证或新增招生事实。'}
+        response={'results':results,'total':len(results),'query_total':query_total,
+                  'notice':'仅复用通过知识准入的资料；待核摘要和过滤来源不作为跨轮知识缓存。缓存也不等于实时验证或新增招生事实。'}
+        if effective!=requested:
+            response.update({'requested_query':requested,'effective_query':effective,'alias_expanded':True})
+            response['notice']+=' 学校简称已按已复核别名表展开为规范校名；这只是检索词变化，不是新的资料或事实。'
+        if not results:
+            try:
+                years=sorted({value for selected in units
+                              for value in self._knowledge().stored_years(unit_id=selected,quality='accepted')},
+                             reverse=True)[:10]
+            except Exception:
+                years=[]
+            if years:
+                response['stored_years']=years
+                response['notice']+=' 知识库保存资料的实际年度为 '+'、'.join(str(value) for value in years)+' 年；若问题涉及历史年度，可按实际年度重新检索，不能把历史年度当作目标年度。'
+        return response
 
     def refresh_knowledge(self):
         return research_knowledge.refresh_sources(self,_reusable_knowledge)
@@ -655,7 +770,19 @@ class ResearchTools:
         if type(year) is not int or not 2020<=year<=self.task['target_year']:raise ResearchError('invalid_year','知识库检索年份不正确。')
         if entry_id is not None and (not isinstance(entry_id,str) or not re.fullmatch(r'k_[0-9a-f]{24}',entry_id)):
             raise ResearchError('invalid_knowledge_entry','请选择实际发现的知识条目。')
-        return research_knowledge.search_segments(self,query,uid,year,entry_id,_reusable_knowledge)
+        result=research_knowledge.search_segments(self,query,uid,year,entry_id,_reusable_knowledge)
+        expanded=unit_bindings.expand_query(query)
+        if not result.get('segments') and expanded!=query and len(expanded)<=240:
+            retry=research_knowledge.search_segments(self,expanded,uid,year,entry_id,_reusable_knowledge)
+            combined=result.get('query_total',0)+retry.get('query_total',0)
+            if retry.get('segments'):
+                retry['query_total']=combined
+                retry['requested_query']=query;retry['effective_query']=expanded;retry['alias_expanded']=True
+                retry['notice']=str(retry.get('notice') or '')+' 学校简称已展开为知识库中的规范校名；这只是检索词变化，不是新的资料或事实。'
+                return retry
+            result['query_total']=combined
+            result['alias_attempted']=True
+        return result
 
     def read_segment(self,args):
         _object(args,('segment_id','before','after','max_chars'));identifier=text(args.get('segment_id'),100)
@@ -685,51 +812,95 @@ class ResearchTools:
         if not config:raise ResearchError('search_not_configured','元宝搜索尚未配置；已发布资料仍可研究。',503)
         if self.usage['searches']>=LIMITS['max_searches']:
             raise ResearchError('research_budget_exceeded','已达到本轮元宝检索上限。',409)
-        self.usage['searches']+=1
-        body={'Query':f"{year}年 {unit['name']+' ' if unit else ''}{query}"}
-        if unit:
-            host=urlsplit(unit.get('official_url') or '').hostname
-            if host:body['Site']=host
-            self.searched_units.add(unit['id'])
         if self.network is None:
             from ai_transport import AITransport
             self.network=AITransport()
-        raw=self.network.request_json(config,'POST','',body,stop_event=self.stop_event)
-        self._check_control()
-        payload=raw.get('Response',raw) if isinstance(raw,dict) else None
-        if not isinstance(payload,dict) or not isinstance(payload.get('Pages'),list) or payload.get('Error'):
-            raise ResearchError('search_invalid_response','元宝返回内容无法解析。',502)
-        results=[]
-        for encoded in payload['Pages'][:50]:
-            try:
-                row=json.loads(encoded) if isinstance(encoded,str) else encoded
-                if not isinstance(row,dict):continue
-                parsed=urlsplit(row.get('url',''));host=parsed.hostname or ''
-                if unit and not official_source_url(row.get('url'),unit):continue
-                if not unit and not host.endswith(('.edu.cn','.ac.cn','.gov.cn','.chsi.com.cn')):continue
-                value={'url':row['url'],'title':str(row.get('title') or '待核验的检索结果')[:300],
-                       'unit_id':unit['id'] if unit else None,'unit_name':unit['name'] if unit else None,'year':None,'requested_year':year,
-                       'status':'search_lead','source_type':'yuanbao_search','checked_at':None,
-                       'excerpt':str(row.get('content') or row.get('passage') or '')[:1800]}
-                sid=self._source(value)
-                if sid:
-                    self._save_source(sid,query=body['Query']);results.append(deepcopy(self.sources[sid]))
-            except (ValueError,TypeError,KeyError):continue
-        return {'provider':'yuanbao_search','query':body['Query'],'request_id':str(payload.get('RequestId',''))[:120],
-                'results':results,'notice':'检索片段不是完整原文；年度与字段尚未核验，不能直接用于资格或数值判断。'}
+        from provider_catalog import TransportError
+        from yuanbao_auth import checked_response
+        errors={'provider_rate_limited':'search_rate_limited','provider_auth_failed':'search_auth_failed',
+                'provider_permission_denied':'search_auth_failed','signature_expired':'search_auth_failed',
+                'search_not_enabled':'search_unavailable','search_unavailable':'search_unavailable',
+                'provider_request_failed':'search_unavailable'}
 
-    def read_source(self,args):
+        def call(body):
+            # Budget counts real provider requests, not tool calls: a Site
+            # fallback or a wider rewrite is another paid request.
+            if self.usage['searches']>=LIMITS['max_searches']:
+                raise ResearchError('research_budget_exceeded','已达到本轮元宝检索上限。',409)
+            self.usage['searches']+=1
+            try:
+                raw=self.network.request_json(config,'POST','',body,stop_event=self.stop_event)
+            except TransportError as error:
+                code=errors.get(error.code,'search_unavailable')
+                raise ResearchError(code,error.message,429 if code=='search_rate_limited' else error.status) from None
+            self._check_control()
+            try:return checked_response(raw)
+            except TransportError:
+                raise ResearchError('search_invalid_response','元宝返回内容无法解析。',502) from None
+
+        roots=official_roots(unit) if unit else ()
+        site=roots[0] if roots else ''
+        if unit:
+            primary=f"{year}年 {unit['name']} {query}"
+            wider=f"{unit['name']} 研究生院 {year} {query}"
+            queries=[primary] if wider==primary else [primary,wider]
+            def is_official(url):return bool(official_source_url(url,unit))
+        else:
+            queries=[f"{year}年 {query}"]
+            def is_official(url):
+                host=(urlsplit(url).hostname or '').lower().rstrip('.')
+                return host.endswith(('.edu.cn','.ac.cn','.gov.cn','.chsi.com.cn'))
+        binding_missing=bool(unit) and not roots
+        result=official_search.run_ladder(call,queries=queries,is_official=is_official,
+            unit_name=unit['name'] if unit else '',roots=roots,candidate_enabled=binding_missing,site=site,
+            collect_third=True,
+            can_call=lambda:self.usage['searches']<LIMITS['max_searches'])
+        if unit:self.searched_units.add(unit['id'])
+        results=[]
+        for row in result['results']:
+            value={'url':row['url'],'title':row['title'] or '待核验的检索结果',
+                   'unit_id':unit['id'] if unit else None,'unit_name':unit['name'] if unit else None,
+                   'year':None,'requested_year':year,'status':'search_lead','source_type':'yuanbao_search',
+                   'checked_at':None,'excerpt':row['summary'],
+                   'source_tier':row['source_tier'],'source_status':row['source_status']}
+            sid=self._source(value)
+            if sid:
+                self._save_source(sid,query=queries[0]);results.append(deepcopy(self.sources[sid]))
+        official_results=[row for row in result['results'] if row['source_tier']=='official']
+        candidates=[row for row in result['results'] if row['source_tier']=='official_domain_candidate']
+        third=[row for row in result['results'] if row['source_tier']=='third_party_reference']
+        outcome=('official_results' if official_results else
+                 'official_domain_candidates' if candidates else
+                 'extended_reference' if third else 'no_official_results')
+        stage=official_search.failure_stage(official_results,candidates,third,result['rejected_count'],binding_missing)
+        notice=official_search.notice(official_results,candidates,third,len(result['queries_tried']),
+                                      binding_missing=binding_missing)
+        if result['budget_exhausted']:notice+=' 本轮检索额度已用完，后续请求已停止。'
+        return {'provider':'yuanbao_search','query':queries[0],'queries_tried':result['queries_tried'],
+                'request_count':result['request_count'],'request_id':result['request_id'],
+                'results':results,'outcome':outcome,'failure_stage':stage,
+                'binding_status':'missing' if binding_missing else 'bound' if unit else 'not_applicable',
+                'binding_domains':list(roots),
+                'rejected_count':result['rejected_count'],'malformed_count':result['malformed_count'],
+                'site_fallback':result['site_fallback'],'budget_exhausted':result['budget_exhausted'],
+                'third_party_count':len(third),
+                'candidate_count':result['candidate_count'],'candidate_hosts':result['candidate_hosts'],
+                'notice':notice}
+
+    def read_source(self,args,*,refresh=False):
         self._check_control()
         _object(args,('source_id','unit_id'));source_id=text(args.get('source_id'),100)
         self.refresh_knowledge()
         source=self.sources.get(source_id);unit=self._unit(args.get('unit_id'))
-        if source is None:raise ResearchError('unknown_source','请先通过检索或已发布目录发现这份来源。')
+        if source is None:raise ResearchError('unknown_source','请先通过检索、单位索引或已发布目录发现这份来源。')
         if source.get('knowledge_current') is False and source.get('knowledge_id') in self._trusted_knowledge_ids:
             raise ResearchError('knowledge_not_current','该来源当前不可可信复用，请重新检索有效原文。',409)
         if urlsplit(source['url']).hostname=='yz.chsi.com.cn':
             raise ResearchError('source_restricted','研招网访问门禁保持生效；可查看已保存依据，不发起新请求。',409)
+        if source.get('unit_id') and source['unit_id']!=unit['id']:
+            raise ResearchError('wrong_unit','来源登记在其他学校名下，不能在本次学校范围内读取。')
         if not official_source_url(source['url'],unit):raise ResearchError('wrong_unit','来源不属于该学校的已核准官网。')
-        if source.get('status')=='official_original_read':return deepcopy(source)
+        if source.get('status')=='official_original_read' and not refresh:return deepcopy(source)
         if self.usage['documents']>=LIMITS['max_documents']:
             raise ResearchError('research_budget_exceeded','已达到本轮官方原文读取上限。',409)
         self.usage['documents']+=1
@@ -742,14 +913,122 @@ class ResearchTools:
                 or urlsplit(doc['url']).hostname=='yz.chsi.com.cn'):
             raise ResearchError('source_needs_review','原文归属或完整性需要复核，未作为已核验来源采用。',409)
         heading,year=_document_scope(doc)
+        links=self._link_sources(doc.get('links'),unit)
         value={**source,'unit_id':unit['id'],'unit_name':unit['name'],'title':heading or source['title'],
                'url':doc['url'],'year':year,'checked_at':doc.get('checked_at'),
                'sha256':digest,'status':'official_original_read','source_type':'official_original',
                'excerpt':str(doc.get('text',''))[:12000],'page_count':len(doc.get('pages',[])),
-               'field_verification':'not_structured','notice':'已读取并保存官方原文；其中具体数值、范围和年度仍需逐字段核验，不自动写入招生库。'}
+               'links':links,'field_verification':'not_structured',
+               'notice':'已读取并保存官方原文；其中具体数值、范围和年度仍需逐字段核验，不自动写入招生库。'}
         self.sources[source_id]=_public_source(value)
         self._save_source(source_id,document=doc)
         return deepcopy(self.sources[source_id])
+
+    def _link_sources(self,links,unit):
+        """Register official same-site links found on a already-readable page.
+
+        Navigation wording is not evidence, but the links themselves are what
+        turns a homepage into a usable entry. Only links that pass the school's
+        official-domain check are registered; third-party or foreign-school
+        links are not offered as readable sources.
+        """
+        offered=[]
+        for item in (links or [])[:80]:
+            if not isinstance(item,dict) or not isinstance(item.get('url'),str):continue
+            url=item['url'].split('#',1)[0]
+            try:host=urlsplit(url).hostname or ''
+            except ValueError:continue
+            if host=='yz.chsi.com.cn' or not official_source_url(url,unit):continue
+            row={'url':url,'title':str(item.get('label') or '')[:120]}
+            sid=self._source({'url':url,'title':row['title'] or '官方页面入口','unit_id':unit['id'],
+                              'unit_name':unit['name'],'year':None,'status':'official_link',
+                              'source_type':'official_link','checked_at':None,'excerpt':''})
+            if sid:row['source_id']=sid
+            offered.append(row)
+            if len(offered)>=LIMITS['max_links']:break
+        return offered
+
+    # Link text and URL hints are ranking aids only; the page itself still has
+    # to be read and attributed before any fact may use it.
+    LINK_MARKERS=('招生简章','招生章程','招生目录','专业目录','招生信息','硕士','研究生','复试',
+                  '分数','调剂','推免','考试科目','录取','附件','名单')
+    SYSTEM_MARKERS=('登录','报名系统','统一身份','财务','就业','旧版','english','en.jsp')
+
+    def _rank_links(self,links,unit,limit):
+        scored=[]
+        for row in links or []:
+            if not isinstance(row,dict) or not isinstance(row.get('url'),str):continue
+            if not official_source_url(row['url'],unit):continue
+            label=str(row.get('title') or '')
+            lowered=(label+' '+row['url']).lower()
+            if any(word in lowered for word in self.SYSTEM_MARKERS):continue
+            score=0
+            score+=3 if urlsplit(row['url']).path.lower().endswith('.pdf') else 0
+            score+=2 if any(word in label for word in self.LINK_MARKERS) else 0
+            score+=1 if any(part in row['url'].lower() for part in ('/info/','/zs','/sszs','/yjs','/news','/tzgg')) else 0
+            scored.append((score,row))
+        scored.sort(key=lambda item:(-item[0],item[1]['url']))
+        return [{**row,'kind':'pdf' if urlsplit(row['url']).path.lower().endswith('.pdf') else 'page'}
+                for _,row in scored[:limit]]
+
+    def discover_links(self,args):
+        self._check_control()
+        _object(args,('source_id','unit_id','depth','limit'))
+        source_id=text(args.get('source_id'),100);unit=self._unit(args.get('unit_id'))
+        depth=args.get('depth',1);limit=args.get('limit',10)
+        if type(depth) is not int or not 1<=depth<=2:
+            raise ResearchError('invalid_depth','站内发现深度只能为 1 或 2。')
+        if type(limit) is not int or not 1<=limit<=LIMITS['max_links']:
+            raise ResearchError('invalid_limit',f'站内发现数量必须是1至{LIMITS["max_links"]}。')
+        if self.usage['discoveries']>=LIMITS['max_discoveries']:
+            raise ResearchError('research_budget_exceeded','已达到本轮站内发现次数上限。',409)
+        source=self.sources.get(source_id)
+        if source is None:raise ResearchError('unknown_source','请先读取这份官方页面，再进行站内发现。')
+        if source.get('unit_id') and source['unit_id']!=unit['id']:
+            raise ResearchError('wrong_unit','来源登记在其他学校名下，不能在本轮范围内继续发现。')
+        if not official_source_url(source['url'],unit):
+            raise ResearchError('wrong_unit','来源不属于该学校的已核准官网。')
+        if source.get('status')!='official_original_read' or not isinstance(source.get('links'),list):
+            if self.usage['navigation_fetches']>=LIMITS['max_navigation_fetches']:
+                raise ResearchError('research_budget_exceeded','已达到本轮站内导航读取上限。',409)
+            before=self.usage['documents']
+            missing_links=not isinstance(source.get('links'),list)
+            self.usage['navigation_fetches']+=1
+            source=self.read_source({'source_id':source_id,'unit_id':unit['id']},refresh=missing_links)
+            parent_requests=1 if self.usage['documents']>before else 0
+        else:
+            parent_requests=0
+        self.usage['discoveries']+=1
+        rows=self._rank_links(source.get('links'),unit,limit)
+        result={'source_id':source_id,'url':source['url'],'depth':depth,'links':rows,
+                'deeper_links':[],'errors':[],'request_count':parent_requests,
+                'notice':'只列出同站官方入口；读取每个入口仍会消耗原文读取预算并重新核验归属。'}
+        if depth==2:
+            for row in rows:
+                if len(result['deeper_links'])>=limit:break
+                if self.usage['documents']>=LIMITS['max_documents'] or time.monotonic()>=self.deadline:break
+                if row.get('kind')!='page' or not row.get('source_id'):continue
+                child=self.sources.get(row['source_id'])
+                missing_links=bool(child and child.get('status')=='official_original_read'
+                                   and not isinstance(child.get('links'),list))
+                will_fetch=missing_links or not (child and child.get('status')=='official_original_read')
+                if will_fetch:
+                    if self.usage['navigation_fetches']>=LIMITS['max_navigation_fetches']:break
+                    self.usage['navigation_fetches']+=1
+                before=self.usage['documents']
+                try:
+                    deeper=self.read_source({'source_id':row['source_id'],'unit_id':unit['id']},
+                                            refresh=missing_links)
+                    if self.usage['documents']>before:result['request_count']+=1
+                    for child_link in self._rank_links(deeper.get('links'),unit,limit-len(result['deeper_links'])):
+                        result['deeper_links'].append({**child_link,'parent_url':row['url']})
+                        if len(result['deeper_links'])>=limit:break
+                except ResearchError as error:
+                    if self.usage['documents']>before:result['request_count']+=1
+                    result['errors'].append({'url':row['url'],'code':error.code,'message':error.message})
+        if result['request_count']==0:
+            result['notice']='本次只列出已读页面上的入口，没有新增原文请求；读取入口请用 read_official_source。'
+        return result
 
     def _selected(self,args):
         self._apply_fields()

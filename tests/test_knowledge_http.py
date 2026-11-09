@@ -105,6 +105,29 @@ class KnowledgeHTTPTests(unittest.TestCase):
             with self.subTest(quality=quality), self.assertRaises(ServiceError):
                 self.service.knowledge_get(quality=quality)
 
+    def test_short_school_name_retries_once_with_the_reviewed_canonical_name(self):
+        def search(**query):
+            self.knowledge.calls.append(('search', query))
+            hit = query['query'] == '中国科学院大学'
+            return {'entries': [{'id': 'k_ucas', 'status': 'published_snapshot'}] if hit else [],
+                    'total': 1 if hit else 0, 'page': query['page'], 'page_size': query['page_size'],
+                    'summary': {'total': 1 if hit else 0}}
+        self.knowledge.search = search
+        status, value = self.request('/api/knowledge?q=%E5%9B%BD%E7%A7%91%E5%A4%A7')
+        self.assertEqual(status, 200)
+        self.assertEqual([call[1]['query'] for call in self.knowledge.calls], ['国科大', '中国科学院大学'])
+        expansion = value['data']['query_expansion']
+        self.assertEqual((expansion['requested'], expansion['effective']), ('国科大', '中国科学院大学'))
+        self.assertIn('只是检索词变化', expansion['notice'])
+        self.knowledge.calls.clear()
+        self.request('/api/knowledge?q=%E5%9B%BD%E7%A7%91%E5%A4%A7&page=2')
+        self.assertEqual([call[1]['query'] for call in self.knowledge.calls], ['国科大'])
+        self.knowledge.calls.clear()
+        self.knowledge.search = search
+        self.request('/api/knowledge?q=408')
+        self.assertEqual([call[1]['query'] for call in self.knowledge.calls], ['408'])
+        self.assertEqual(self.knowledge.calls[0][1]['quality'], 'accepted')
+
     def test_missing_entries_and_read_only_method_are_explicit(self):
         self.assertEqual(self.request('/api/knowledge?entry_id=missing')[0], 404)
         status, value = self.request('/api/knowledge', 'POST')

@@ -9,6 +9,8 @@ description: Find official graduate admissions sources with Yuanbao and a finite
 
 搜索词仅含公开学校、专业、科目、年度、材料类型；不发送个人姓名、电话、证件、Key或完整个人档案。搜索结果是线索，摘要和排名都不代表原文已核验。通过read_official_source读取允许学校域名的原文；不要自行访问未绑定URL或研招网门禁。
 
+检索响应里的 `failure_stage` 只说明本次停在哪一步：`binding_missing` 表示该校尚未登记可信官网，`attribution_unverified` 表示只找到归属待确认的候选域名，`third_party_only` 表示只有第三方线索，`domain_mismatch` 表示本次返回域名与已登记官网不符，`index_no_hit` 表示上游索引本次没有命中。这些都不等于“官网没有资料”，只能如实说“本次没有取得可展示的官方来源”，并给出核对已登记官网、更换资料类型或年份、改用本机知识库的下一步。`official_domain_candidate` 与 `third_party_reference` 永远只是线索，不能写成官方招生事实，也不能据此把某个域名登记为官网。响应中的 `request_count` 与 `queries_tried` 是真实外部请求，回退或换词发生过就要如实说明，不能包装成一次完成。
+
 广泛需求用有限批次形成可调整的候选，不把前几条搜索结果称为全国最优或完整招生全集。达到搜索、原文、时间或轮次预算时返回已有成果和缺口，连续失败不重复无限搜索。
 
 优先遵守用户已确认的地区与学校范围。首批候选尽量覆盖多个学校，不用一所学校的多个相近方向填满全部名额。必要时先find_units按省份确认学校，再分校find_candidates。

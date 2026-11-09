@@ -108,6 +108,44 @@ class KnowledgeAgentToolTests(unittest.TestCase):
         self.store.entry['unit_id'] = '456'
         self.assertEqual(self.discover()['segments'], [])
 
+    def test_short_school_name_expands_for_segment_search_only_after_a_miss(self):
+        calls = []
+        def search(**kwargs):
+            calls.append(kwargs['query'])
+            hit = kwargs['query'] == '中国科学院大学 加试'
+            return {'segments': [{**deepcopy(self.store.segment), 'source': deepcopy(self.store.entry)}] if hit else [],
+                    'total': 1 if hit else 0}
+        self.store.search_segments = search
+        result = self.tools.run('search_knowledge_segments', {'query': '国科大 加试'})
+        self.assertEqual(calls, ['国科大 加试', '中国科学院大学 加试'])
+        self.assertTrue(result['alias_expanded'])
+        self.assertEqual((result['requested_query'], result['effective_query']), ('国科大 加试', '中国科学院大学 加试'))
+        self.assertIn('只是检索词变化', result['notice'])
+        self.assertEqual(len(result['segments']), 1)
+        calls.clear()
+        self.store.search_segments = lambda **kwargs: (calls.append(kwargs['query']) or
+            {'segments': [{**deepcopy(self.store.segment), 'source': deepcopy(self.store.entry)}], 'total': 1})
+        direct = self.tools.run('search_knowledge_segments', {'query': '国科大 加试'})
+        self.assertEqual(calls, ['国科大 加试'])
+        self.assertNotIn('alias_expanded', direct)
+
+    def test_inferred_unit_keeps_a_prefetch_inside_one_named_school(self):
+        self.assertEqual(self.tools.infer_unit('测试大学 计算机 408'), '123')
+        self.assertEqual(self.tools.infer_unit('他校计算机'), '456')
+        self.assertEqual(self.tools.infer_unit('计算机 408'), '')
+        self.assertEqual(self.tools.infer_unit('测试大学 他校 计算机'), '123')
+        admission = FakeAdmission()
+        admission.units = [{'id': '367929', 'name': '中国科学院大学', 'official_url': 'https://admission.ucas.ac.cn'},
+                           {'id': '367930', 'name': '北京大学', 'official_url': ''},
+                           {'id': '367931', 'name': '北京大学医学部', 'official_url': ''},
+                           {'id': '367932', 'name': '甲大学', 'official_url': ''},
+                           {'id': '367933', 'name': '乙大学', 'official_url': ''}]
+        tools = ResearchTools(admission, FakeSettings(), dict(self.task), self.data, knowledge_store=CurrentKnowledge())
+        self.assertEqual(tools.infer_unit('国科大 计算机 2027 招生目录'), '367929')
+        self.assertEqual(tools.infer_unit('北京大学医学部 计算机'), '367931')
+        self.assertEqual(tools.infer_unit('北京大学 计算机'), '367930')
+        self.assertEqual(tools.infer_unit('甲大学 乙大学 计算机'), '')
+
     def test_unusable_and_forged_entries_are_not_discovered(self):
         cases = [{'validity': 'revoked'}, {'validity': 'conflict'}, {'validity': 'superseded'},
                  {'usable': False}, {'year': 2026}, {'status': 'search_lead'},

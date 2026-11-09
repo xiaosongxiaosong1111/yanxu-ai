@@ -89,6 +89,37 @@ class ResearchServiceTests(unittest.TestCase):
         self.assertEqual(task['status'],'partial');self.assertEqual(len(ai.calls),2)
         self.assertTrue(any(e['type']=='tool_error' for e in task['events']))
 
+    def test_skill_texts_name_every_search_failure_stage_and_keep_files_bounded(self):
+        from research_service import _skills
+        base=Path(__file__).resolve().parent.parent/'skills'
+        stages=('binding_missing','attribution_unverified','third_party_only','domain_mismatch','index_no_hit')
+        names,_=_skills('408')
+        self.assertEqual(names,('understand-intent','research-official-sources','verify-evidence','compare-plans'))
+        official=(base/'research-official-sources'/'SKILL.md').read_text('utf-8')
+        verify=(base/'verify-evidence'/'SKILL.md').read_text('utf-8')
+        for body,name in ((official,'research-official-sources'),(verify,'verify-evidence')):
+            for stage in stages:
+                self.assertIn(stage,body,msg=name)
+            self.assertIn('官网没有资料',body,msg=name)
+        transfer_names,_=_skills('准备调剂')
+        self.assertEqual(transfer_names[-1],'assess-transfer-options')
+        for name in transfer_names:
+            self.assertLessEqual((base/name/'SKILL.md').stat().st_size,20000)
+
+    def test_system_knowledge_prefetch_stays_inside_the_named_school(self):
+        service,_,_=self.make(enabled=False)
+        task=service.create({'query':'国科大 计算机 2027 招生目录'})
+        tools=Mock();tools.task={'unit_ids':[]};tools.infer_unit.return_value='367929'
+        tools.search_knowledge.return_value={'results':[]}
+        service._reuse_knowledge(task['id'],tools)
+        tools.search_knowledge.assert_called_once_with({'query':'计算机','unit_id':'367929'})
+        tools.search_knowledge.reset_mock();tools.task={'unit_ids':['123']}
+        service._reuse_knowledge(task['id'],tools)
+        tools.search_knowledge.assert_called_once_with({'query':'计算机'})
+        tools.search_knowledge.reset_mock();tools.task={'unit_ids':['367929']}
+        service._reuse_knowledge(task['id'],tools)
+        tools.search_knowledge.assert_called_once_with({'query':'计算机','unit_id':'367929'})
+
     def test_continue_after_configuration_preserves_query(self):
         service,_,settings=self.make([{'role':'assistant','content':'请补充意向地区。','tool_calls':[]}],enabled=False)
         task=service.create({'query':'考计算机'});settings.enabled=True

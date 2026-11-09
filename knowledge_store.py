@@ -451,6 +451,29 @@ class KnowledgeStore:
             years=[r[0] for r in connection.execute('SELECT DISTINCT year FROM knowledge_entries WHERE year IS NOT NULL'+facet_clause+' ORDER BY year DESC',facet_args)]
             return {'entries':entries,'total':total,'page':page,'page_size':page_size,'summary':summary,'facets':{'units':units,'years':years}}
 
+    def stored_years(self,unit_id='',quality='accepted'):
+        """Actual years present in the store for one unit, as an inventory hint.
+
+        This is deliberately not a claim that a query has a hit in those years:
+        callers retry with the real year before reusing anything. Revoked
+        source states are excluded so the hint cannot send a caller to a year
+        that only contains invalid versions.
+        """
+        unit_id=_text(unit_id,100)
+        if quality not in ('all',*QUALITY_STATES):
+            raise KnowledgeError('invalid_knowledge_query','知识库质量筛选参数不正确。')
+        if not self.path.is_file():return []
+        with self._lock,self._connection() as connection:
+            quality_column=self._quality_column(connection)
+            where=['year IS NOT NULL'];values=[]
+            if unit_id:where.append('unit_id=?');values.append(unit_id)
+            if quality!='all':where.append(quality_column+'=?');values.append(quality)
+            if quality=='accepted' and segments.available(connection):
+                where.append("id NOT IN (SELECT entry_id FROM knowledge_entry_state WHERE validity<>'active')")
+            rows=connection.execute('SELECT DISTINCT year FROM knowledge_entries WHERE '+' AND '.join(where)+
+                                    ' ORDER BY year DESC',values).fetchall()
+            return [row[0] for row in rows if type(row[0]) is int]
+
     def reassess(self):
         counts={'total':0,'accepted':0,'pending':0,'excluded':0,'changed':0}
         if not self.path.is_file():return counts
