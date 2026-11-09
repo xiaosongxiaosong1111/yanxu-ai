@@ -3,7 +3,7 @@
 状态：`baseline_ready_resubmitted`（工作状态，不等于任何学校目录或资格已完成）
 生成时间：2026-11-09（本机时区 UTC+8）
 执行者：Claude（数据）；独立验收：Codex（上一轮未通过，本轮重交）
-审查对象：`data/national-b001`，base `67d5e24`，代码提交 `9b1c945`（全量 `9b1c9457a9dbf4c15cbfa7597e2144ecdfb26f8e`）
+审查对象：`data/national-b001`，base `67d5e24`，基线生成代码提交 `9b1c945`，分支 HEAD `b69963d`（后续提交仅补测试断言与证据文件）
 手册：[CLAUDE_NATIONAL_DATA_RUNBOOK](../../CLAUDE_NATIONAL_DATA_RUNBOOK.md)（已在本分支仓库内）
 
 ## 0. 本轮针对审查意见的修正摘要
@@ -22,7 +22,7 @@
 | 字段 | 实际值 |
 | --- | --- |
 | 仓库 / 分支 / base SHA | `https://github.com/xiaosongxiaosong1111/yanxu-ai`，`data/national-b001`，`67d5e24` |
-| 本次代码提交 | `9b1c945`（生成基线时工作树 tracked 干净，`tracked_dirty=false`） |
+| 本次代码提交 | 基线生成提交 `9b1c945`（生成时 tracked 干净，`tracked_dirty=false`）；分支 HEAD `b69963d` |
 | 独立工作树 | `D:/yx-data-b001`（短路径；未复用 `E:/PythonSpace/yanxu-ai`，未碰 `D:/CodexRuntime`） |
 | 数据根 / 产物根 | `D:/yx-data-b001` / `D:/yx-data-b001/data/batch_runs/b001` |
 | 用户 runtime / Key | 未读取、未复制、未覆盖；本工作树没有 `data/runtime/` 发布库 |
@@ -242,7 +242,7 @@
 
 ```text
 批次/节点/分支/base：b001 / 节点0 重交 / data/national-b001 / 67d5e24
-代码提交：9b1c945（生成基线时 tracked_dirty=false）
+代码提交：基线生成 9b1c945（tracked_dirty=false）；分支 HEAD b69963d（仅测试/证据补强）
 实际处理：0/10 采集；931/931 队列已建立；首批 10 校入队（7 扩目录 + 3 补字段）
 三口径：raw 650 学费（378 年费/272 全程）、1,680 学制、645 可算全程
         effective-present 912（640/272）、1,942、907
