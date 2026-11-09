@@ -1,7 +1,7 @@
 {
   "replayable": false,
   "note": "摘要仅供阅读；不含 original_urls/official_url_evidence 等选择必需字段，不能用来复算批次。重放请使用 queue.json 及其 SHA。",
-  "queue_sha256": "8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86",
+  "queue_sha256": "f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd",
   "rows": [
     {
       "unit_id": "367878",
@@ -30,8 +30,9 @@
       "source_count": "161",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://yjsy.bjmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -67,8 +68,9 @@
       "source_count": "140",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "http://pgs.ruc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -103,8 +105,9 @@
       "source_count": "19",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yz.tsinghua.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -207,8 +210,9 @@
       "source_count": "15",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "http://yzb.buaa.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition"
       ],
@@ -241,8 +245,9 @@
       "source_count": "74",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://grd.bit.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -277,8 +282,9 @@
       "source_count": "11",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://yzxc.ustb.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -488,8 +494,9 @@
       "source_count": "16",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://gs.bigc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -522,8 +529,9 @@
       "source_count": "22",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsy.bucea.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -769,8 +777,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsh.ccmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1115,8 +1124,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://gs.uibe.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1260,6 +1270,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367870.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1294,6 +1305,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367871.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1360,8 +1372,9 @@
       "source_count": "8",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.ccom.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -1498,6 +1511,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367915.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1564,8 +1578,9 @@
       "source_count": "14",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.bda.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1598,8 +1613,9 @@
       "source_count": "37",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "http://grs.muc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -1702,8 +1718,9 @@
       "source_count": "47",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.cwu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -1736,8 +1753,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yanjiusheng.bistu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -1772,6 +1790,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367923.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -1806,6 +1825,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367916.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2049,6 +2069,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367930.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2081,8 +2102,9 @@
       "source_count": "11",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.nai.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -2117,6 +2139,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367931.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2149,8 +2172,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsb.icafs.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -2185,6 +2209,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367918.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2219,6 +2244,7 @@
       "official_url": "http://gs.caas.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -2257,6 +2283,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367898.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "review_pending"
@@ -2326,6 +2353,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367900.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2360,6 +2388,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367901.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2428,6 +2457,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367903.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2462,6 +2492,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367904.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2496,6 +2527,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367907.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2564,6 +2596,7 @@
       "official_url": "http://www.cisri.com.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2598,6 +2631,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367908.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2632,6 +2666,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367909.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2664,8 +2699,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.hwi.com.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2700,6 +2736,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367911.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2734,6 +2771,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367912.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -2769,8 +2807,9 @@
       "source_count": "12",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://grs.caams.org.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -2808,6 +2847,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367850.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -2845,6 +2885,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367914.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2879,6 +2920,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367857.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2913,6 +2955,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367869.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -2947,6 +2990,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367848.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -2981,6 +3025,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-679452.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3015,6 +3060,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367798.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -3052,6 +3098,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367799.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -3086,6 +3133,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367800.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3120,6 +3168,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367801.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3154,6 +3203,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367795.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3188,6 +3238,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-683178.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3222,6 +3273,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367805.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3256,6 +3308,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367809.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3290,6 +3343,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367811.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3324,6 +3378,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367812.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3358,6 +3413,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367814.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3426,6 +3482,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367807.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3460,6 +3517,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-788359951.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3494,6 +3552,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367781.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3526,8 +3585,9 @@
       "source_count": "6",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://brici.sinopec.com/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -3564,6 +3624,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367783.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3598,6 +3659,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367784.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3632,6 +3694,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367785.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3666,6 +3729,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367780.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -3737,6 +3801,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367788.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -3773,6 +3838,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367789.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3942,8 +4008,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.nidc.org.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -3978,6 +4045,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367793.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -4015,6 +4083,7 @@
       "official_url": "https://www.zryhyy.com.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4049,6 +4118,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367847.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -4086,6 +4156,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2107934856.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4120,6 +4191,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367838.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4154,6 +4226,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367839.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4188,6 +4261,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367840.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4324,8 +4398,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.ninhm.ac.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4360,6 +4435,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367856.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4392,8 +4468,9 @@
       "source_count": "8",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.casm.ac.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4428,6 +4505,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-50084393.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4462,6 +4540,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367837.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4496,6 +4575,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367818.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4530,6 +4610,7 @@
       "official_url": "https://www.grinm.com/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4562,8 +4643,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.iuse.ac.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4598,6 +4680,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367851.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4632,6 +4715,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367852.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4700,6 +4784,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367854.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4734,6 +4819,7 @@
       "official_url": "https://www.jst-hosp.com.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -4800,8 +4886,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjs.bac.gov.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4834,8 +4921,9 @@
       "source_count": "9",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.ckgsb.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -4870,6 +4958,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3092428604.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4904,6 +4993,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367819.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4938,6 +5028,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688910089.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -4972,6 +5063,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367820.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5006,6 +5098,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367826.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5040,6 +5133,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367824.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5074,6 +5168,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367817.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5108,6 +5203,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367823.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5142,6 +5238,7 @@
       "official_url": "https://www.nankai.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "partial_tuition",
         "partial_duration"
@@ -5175,8 +5272,9 @@
       "source_count": "4",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yzb.tju.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -5243,8 +5341,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsb.tiangong.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5311,8 +5410,9 @@
       "source_count": "58",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjs.tjut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -5587,6 +5687,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367958.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5655,6 +5756,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367945.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5687,8 +5789,9 @@
       "source_count": "33",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.tjarts.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -5791,6 +5894,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367940.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5825,6 +5929,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367941.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5859,6 +5964,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367942.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5893,6 +5999,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367943.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5927,6 +6034,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367947.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5961,6 +6069,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-1864277803.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -5995,6 +6104,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688912256.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6029,6 +6139,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688912355.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6063,6 +6174,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367977.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6167,6 +6279,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367976.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6199,8 +6312,9 @@
       "source_count": "37",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.hebut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6338,6 +6452,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367968.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6372,6 +6487,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367961.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6404,8 +6520,9 @@
       "source_count": "16",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjs.hebeinu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6438,8 +6555,9 @@
       "source_count": "15",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://yjs.cdmc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -6509,6 +6627,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3274440611.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6543,6 +6662,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367983.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6609,8 +6729,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsc.hevttc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6643,8 +6764,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.ncist.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6745,8 +6867,9 @@
       "source_count": "15",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsb.nciae.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6813,8 +6936,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.cicp.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -6847,8 +6971,9 @@
       "source_count": "12",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.hebic.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -6917,6 +7042,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367971.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -7053,6 +7179,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367994.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -7085,8 +7212,9 @@
       "source_count": "20",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://grs.sxau.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7119,8 +7247,9 @@
       "source_count": "49",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.sxmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7187,8 +7316,9 @@
       "source_count": "44",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://grc.sxnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7324,8 +7454,9 @@
       "source_count": "14",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjs.sxufe.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7360,6 +7491,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-8243981.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -7428,6 +7560,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367989.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -7460,8 +7593,9 @@
       "source_count": "6",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "https://www.ridci.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_duration",
@@ -7498,6 +7632,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367988.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "review_pending"
@@ -7531,8 +7666,9 @@
       "source_count": "49",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://gs.imu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -7567,8 +7703,9 @@
       "source_count": "76",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsc.bttc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7603,6 +7740,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368004.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -7635,8 +7773,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsy.imau.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7703,8 +7842,9 @@
       "source_count": "13",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjsc.imnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7737,8 +7877,9 @@
       "source_count": "10",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsy.imun.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -7810,6 +7951,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-677501.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -7950,6 +8092,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368000.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -7984,6 +8127,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368032.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8016,8 +8160,9 @@
       "source_count": "23",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://yjszs.dlut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -8051,8 +8196,9 @@
       "source_count": "10",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjsxy.sut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -8085,8 +8231,9 @@
       "source_count": "14",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjs.sau.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -8121,6 +8268,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368036.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8155,6 +8303,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368037.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8187,8 +8336,9 @@
       "source_count": "33",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "http://www.ustl.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -8225,6 +8375,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368039.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8291,8 +8442,9 @@
       "source_count": "8",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://grszs.syuct.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8359,8 +8511,9 @@
       "source_count": "51",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://grs.dlmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -8427,8 +8580,9 @@
       "source_count": "73",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://grs.sjzu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -8500,6 +8654,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368050.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8532,8 +8687,9 @@
       "source_count": "15",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://master.dlou.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -8570,6 +8726,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368048.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8602,8 +8759,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsc.jzmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -8638,6 +8796,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368046.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8670,8 +8829,9 @@
       "source_count": "80",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjs.lnutcm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -8706,6 +8866,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368044.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8738,8 +8899,9 @@
       "source_count": "18",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsjy.symc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8774,6 +8936,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368043.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8808,6 +8971,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368031.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8840,8 +9004,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjszsxxw.bhu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8874,8 +9039,9 @@
       "source_count": "18",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.asnc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -8944,6 +9110,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368015.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -8976,8 +9143,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.cipuc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9012,6 +9180,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368013.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9044,8 +9213,9 @@
       "source_count": "23",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.sycm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9078,8 +9248,9 @@
       "source_count": "10",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.lumei.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -9146,8 +9317,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.dlu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9180,8 +9352,9 @@
       "source_count": "16",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsb.sie.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -9250,6 +9423,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368020.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9284,6 +9458,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368014.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9318,6 +9493,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368021.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9352,6 +9528,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368022.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9384,8 +9561,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.syrici.com.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9420,6 +9598,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368025.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9454,6 +9633,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368026.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9488,6 +9668,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368027.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9554,8 +9735,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://grad.ybu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -9588,8 +9770,9 @@
       "source_count": "49",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yzb.cust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -9692,6 +9875,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368062.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9726,6 +9910,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688908505.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9760,6 +9945,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368061.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -9826,8 +10012,9 @@
       "source_count": "14",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yz.nenu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -10064,8 +10251,9 @@
       "source_count": "34",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjs.jlart.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -10098,8 +10286,9 @@
       "source_count": "16",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjsy.jisu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -10132,8 +10321,9 @@
       "source_count": "15",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "https://yjsgzc.ccit.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -10205,6 +10395,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368072.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -10239,6 +10430,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-679653.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -10271,8 +10463,9 @@
       "source_count": "63",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsy.hlju.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -10307,6 +10500,7 @@
       "official_url": "https://yzb.hit.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -10374,8 +10568,9 @@
       "source_count": "142",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yzb.hrbeu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -10408,8 +10603,9 @@
       "source_count": "23",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://gs.usth.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -10444,6 +10640,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368093.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -10646,8 +10843,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsy.hljucm.net/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -10716,6 +10914,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368077.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -10923,6 +11122,7 @@
       "official_url": "https://www.qmu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -11025,8 +11225,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.hrbcm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11061,6 +11262,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368080.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -11098,6 +11300,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368081.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -11130,8 +11333,9 @@
       "source_count": "7",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://www.iem.ac.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -11169,6 +11373,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368082.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -11203,6 +11408,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368088.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -11235,8 +11441,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.hlass.org.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -11269,8 +11476,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.hipc.org.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -11375,8 +11583,9 @@
       "source_count": "73",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://yz.tongji.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -11480,8 +11689,9 @@
       "source_count": "31",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yz.usst.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11583,8 +11793,9 @@
       "source_count": "19",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "https://yjsc.shiep.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -11690,6 +11901,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368136.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11722,8 +11934,9 @@
       "source_count": "5",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://yjszs.ecnu.edu.cn",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification"
       ],
       "count_mismatch": false
@@ -11755,8 +11968,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsc.shnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -11791,6 +12005,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368139.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11825,6 +12040,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368143.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11859,6 +12075,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368151.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11891,8 +12108,9 @@
       "source_count": "92",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsc.shcc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -11927,6 +12145,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368150.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -11995,6 +12214,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368148.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12029,6 +12249,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368147.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12097,6 +12318,7 @@
       "official_url": "https://ge.sues.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -12163,8 +12385,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.sdju.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12301,6 +12524,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2807891793.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -12370,8 +12594,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.snai.edu/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -12406,6 +12631,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368107.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12440,6 +12666,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368104.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12474,6 +12701,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368103.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -12511,6 +12739,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368101.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -12548,6 +12777,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368099.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12616,6 +12846,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368113.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12650,6 +12881,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368114.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12684,6 +12916,7 @@
       "official_url": "https://www.csipi.com.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -12718,6 +12951,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368116.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12752,6 +12986,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368125.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12786,6 +13021,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368118.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12820,6 +13056,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368110.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -12854,6 +13091,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368120.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -12888,6 +13126,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368121.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -12920,8 +13159,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.sdx.sh.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -12956,6 +13196,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368117.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -13024,6 +13265,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368179.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13092,6 +13334,7 @@
       "official_url": "https://www.graduate.nuaa.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -13125,8 +13368,9 @@
       "source_count": "7",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.njust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13159,8 +13403,9 @@
       "source_count": "17",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "http://www.just.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -13194,8 +13439,9 @@
       "source_count": "43",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yz.cumt.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -13366,6 +13612,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368189.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13433,8 +13680,9 @@
       "source_count": "40",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yz.ujs.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -13467,8 +13715,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yzb.nuist.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13571,6 +13820,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368198.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13707,8 +13957,9 @@
       "source_count": "14",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjszs.cpu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -13741,8 +13992,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjszs.njnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -13949,8 +14201,9 @@
       "source_count": "6",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "https://www.nsi.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -13986,8 +14239,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://grad.nua.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14124,8 +14378,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsc.czu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -14158,8 +14413,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjszs.yzu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14192,8 +14448,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://grad.njit.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14328,8 +14585,9 @@
       "source_count": "17",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yz.jou.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14396,8 +14654,9 @@
       "source_count": "7",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.njpu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -14466,6 +14725,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368154.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14500,6 +14760,7 @@
       "official_url": "http://yjs.nhri.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14534,6 +14795,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368334.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14568,6 +14830,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368169.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -14605,6 +14868,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368165.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14637,8 +14901,9 @@
       "source_count": "5",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "https://www.jib.ac.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -14745,6 +15010,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368168.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14779,6 +15045,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368162.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -14813,6 +15080,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368173.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14847,6 +15115,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368174.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14881,6 +15150,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368175.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -14949,8 +15219,9 @@
       "source_count": "14",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://grs.hdu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -15061,6 +15332,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-677911.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -15093,8 +15365,9 @@
       "source_count": "12",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjszs.zafu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -15232,6 +15505,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368214.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -15366,8 +15640,9 @@
       "source_count": "32",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.wzu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -15468,8 +15743,9 @@
       "source_count": "19",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yzw.zjxu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -15502,8 +15778,9 @@
       "source_count": "14",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://zb.caa.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -15536,8 +15813,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsy.cjlu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -15674,6 +15952,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368206.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -15708,6 +15987,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2807891134.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -15774,8 +16054,9 @@
       "source_count": "23",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://graduate.nbu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -16014,6 +16295,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3274412069.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16116,6 +16398,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368212.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16287,6 +16570,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368234.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16389,6 +16673,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368241.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16421,8 +16706,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.ahmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16457,6 +16743,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368243.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16491,6 +16778,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368244.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16525,6 +16813,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368245.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16557,8 +16846,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yz.ahnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -16591,8 +16881,9 @@
       "source_count": "73",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.fynu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16625,8 +16916,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://grad.aqnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16773,6 +17065,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368232.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -16977,6 +17270,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368226.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -17014,6 +17308,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3416382502.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17046,8 +17341,9 @@
       "source_count": "13",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://zs.xmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -17080,8 +17376,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjszs.hqu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17116,6 +17413,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368254.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17184,6 +17482,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368253.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17218,6 +17517,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368249.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -17252,6 +17552,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368252.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -17286,6 +17587,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368251.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17320,6 +17622,7 @@
       "official_url": "http://yjsy.fjnu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -17492,8 +17795,9 @@
       "source_count": "9",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjsy.mnnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -17526,8 +17830,9 @@
       "source_count": "50",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://zs.xmut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -17598,6 +17903,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3274411999.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17698,8 +18004,9 @@
       "source_count": "21",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://mpacc.xnai.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -17734,6 +18041,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368247.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17766,8 +18074,9 @@
       "source_count": "41",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "https://gsas.ncu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "partial_duration",
@@ -17836,8 +18145,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsy.ecut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -17906,6 +18216,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368264.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -18074,8 +18385,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yz.jxnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -18142,8 +18454,9 @@
       "source_count": "20",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsc.jxycu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -18176,8 +18489,9 @@
       "source_count": "9",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjs.gnnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -18212,6 +18526,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-302962123.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -18244,8 +18559,9 @@
       "source_count": "26",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://grs.jxufe.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -18386,6 +18702,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368257.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -18420,6 +18737,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688910183.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -18694,8 +19012,9 @@
       "source_count": "14",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.sdjzu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -18728,8 +19047,9 @@
       "source_count": "21",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjszs.qlu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -18764,6 +19084,7 @@
       "official_url": "https://yjsh.sdut.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -18866,6 +19187,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368297.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -19038,8 +19360,9 @@
       "source_count": "38",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.yjszs.sdnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -19174,8 +19497,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.sdua.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -19449,8 +19773,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.sdada.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -19693,6 +20018,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368281.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -19762,8 +20088,9 @@
       "source_count": "21",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.sddx.gov.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -19798,6 +20125,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368272.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -19832,6 +20160,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368270.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -19900,6 +20229,7 @@
       "official_url": "https://www.zzu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "partial_tuition",
         "partial_duration"
@@ -20039,8 +20369,9 @@
       "source_count": "25",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsc.haust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -20141,8 +20472,9 @@
       "source_count": "103",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsc.hist.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -20413,8 +20745,9 @@
       "source_count": "13",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.lynu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -20585,6 +20918,7 @@
       "official_url": "http://www.zrime.com.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -20622,6 +20956,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368307.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -20656,6 +20991,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368303.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -20690,6 +21026,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368314.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -20724,6 +21061,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368309.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -20758,6 +21096,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368310.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -20792,6 +21131,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368312.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -20858,8 +21198,9 @@
       "source_count": "45",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "https://www.hust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -20896,8 +21237,9 @@
       "source_count": "28",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://ysxy.wust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -20932,6 +21274,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368360.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -21000,6 +21343,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368369.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21032,8 +21376,9 @@
       "source_count": "18",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://gs.wtu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21102,6 +21447,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368363.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -21168,8 +21514,9 @@
       "source_count": "25",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjs.hzau.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21202,8 +21549,9 @@
       "source_count": "17",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjs.hbucm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21236,8 +21584,9 @@
       "source_count": "76",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://gs.ccnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21272,6 +21621,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368377.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -21440,8 +21790,9 @@
       "source_count": "4",
       "missing_reason": "本轮尚未找到可核验的专业目录原文，不能认定该校未招生。",
       "official_url": "http://yzb.zuel.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21542,8 +21893,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.scuec.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21612,6 +21964,7 @@
       "official_url": "https://ygc.hbeu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21680,6 +22033,7 @@
       "official_url": "http://yjsc.hbust.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21714,6 +22068,7 @@
       "official_url": "https://yjsy.hbmu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -21748,6 +22103,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368345.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -21817,8 +22173,9 @@
       "source_count": "46",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.whcm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21851,8 +22208,9 @@
       "source_count": "23",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjs.hbue.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21885,8 +22243,9 @@
       "source_count": "8",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.crsri.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -21958,6 +22317,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368333.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -21995,6 +22355,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368339.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22029,6 +22390,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368332.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22063,6 +22425,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368331.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -22100,6 +22463,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368330.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -22168,6 +22532,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368336.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22202,6 +22567,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368340.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22236,6 +22602,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368341.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22270,6 +22637,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368342.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22304,6 +22672,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368343.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22338,6 +22707,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368353.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -22372,6 +22742,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368337.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22440,6 +22811,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368349.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22474,6 +22846,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368350.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22508,6 +22881,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368335.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22542,6 +22916,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3416382837.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22710,8 +23085,9 @@
       "source_count": "42",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.hnust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -22780,6 +23156,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368392.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22812,8 +23189,9 @@
       "source_count": "24",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjsy.csuft.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -22916,6 +23294,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688909092.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -22953,6 +23332,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2125728184.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -22987,6 +23367,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-302965637.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23087,8 +23468,9 @@
       "source_count": "26",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://www.huhst.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -23124,8 +23506,9 @@
       "source_count": "17",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://gra.hutb.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23158,8 +23541,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjs.usc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23194,6 +23578,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3274413879.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -23262,6 +23647,7 @@
       "official_url": "http://yjsc.hncu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23330,6 +23716,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368387.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -23362,8 +23749,9 @@
       "source_count": "9",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://xkc.hnfnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -23432,6 +23820,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368384.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -23500,6 +23889,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368382.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -23568,6 +23958,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368388.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -23600,8 +23991,9 @@
       "source_count": "22",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://graduate.sysu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23634,8 +24026,9 @@
       "source_count": "120",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yz.jnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23808,8 +24201,9 @@
       "source_count": "30",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjs.gzhmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23876,8 +24270,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsy.gzucm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23944,8 +24339,9 @@
       "source_count": "6",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsy.scnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -23978,8 +24374,9 @@
       "source_count": "47",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.sgu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24116,6 +24513,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2807891252.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24148,8 +24546,9 @@
       "source_count": "18",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yjs.jyu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24216,8 +24615,9 @@
       "source_count": "30",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://zs.gzarts.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24284,8 +24684,9 @@
       "source_count": "28",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjsc.gpnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24390,6 +24791,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368423.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24456,8 +24858,9 @@
       "source_count": "32",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.wyu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24558,8 +24961,9 @@
       "source_count": "23",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://yzw.dgut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24592,8 +24996,9 @@
       "source_count": "54",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yzw.gdut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -24628,6 +25033,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368415.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24696,6 +25102,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368409.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24728,8 +25135,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://gs.sustech.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24798,6 +25206,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368405.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24832,6 +25241,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368406.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24898,8 +25308,9 @@
       "source_count": "23",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.gxust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -24932,8 +25343,9 @@
       "source_count": "194",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.guet.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25072,8 +25484,9 @@
       "source_count": "7",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.gxtcmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -25106,8 +25519,9 @@
       "source_count": "23",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.glmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25312,6 +25726,7 @@
       "official_url": "https://www.gxufe.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25417,6 +25832,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368412.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -25451,6 +25867,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368439.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25689,8 +26106,9 @@
       "source_count": "21",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjszs.cqjtu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25723,8 +26141,9 @@
       "source_count": "46",
       "missing_reason": "本轮尚未找到可核验的专业目录原文，不能认定该校未招生。",
       "official_url": "http://yjszs.cqmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25791,8 +26210,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://graduate.cqnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25827,6 +26247,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2807892330.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25898,6 +26319,7 @@
       "official_url": "https://sszt.yznu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25930,8 +26352,9 @@
       "source_count": "68",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://graduate.sisu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -26000,6 +26423,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368445.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26032,8 +26456,9 @@
       "source_count": "14",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "https://yjs.cqust.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "original_pending",
@@ -26068,8 +26493,9 @@
       "source_count": "7",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsy.cqut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26102,8 +26528,9 @@
       "source_count": "51",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.ctbu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -26138,6 +26565,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3416382379.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26209,6 +26637,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368456.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26243,6 +26672,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3416382896.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26345,8 +26775,9 @@
       "source_count": "17",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "http://yz.uestc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration",
@@ -26383,6 +26814,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368476.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26451,6 +26883,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368482.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26483,8 +26916,9 @@
       "source_count": "75",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://gs.cuit.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -26517,8 +26951,9 @@
       "source_count": "14",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://webadm.suse.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -26722,8 +27157,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://zyd.cdutcm.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -26756,8 +27192,9 @@
       "source_count": "38",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.nsmc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -26824,8 +27261,9 @@
       "source_count": "41",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.cwnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -27002,8 +27440,9 @@
       "source_count": "13",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.swufe.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -27038,6 +27477,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368492.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27106,6 +27546,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368477.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27208,8 +27649,9 @@
       "source_count": "9",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.scpolicec.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -27278,6 +27720,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368464.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -27315,6 +27758,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368478.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27349,6 +27793,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368460.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27383,6 +27828,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368466.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27417,6 +27863,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368468.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -27451,6 +27898,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368469.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -27485,6 +27933,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368475.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -27522,6 +27971,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368459.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27556,6 +28006,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368471.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -27593,6 +28044,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368502.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27625,8 +28077,9 @@
       "source_count": "24",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsxy.gmc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27659,8 +28112,9 @@
       "source_count": "24",
       "missing_reason": "已有部分专业资料，全校目录及全部考试科目尚未对账完整。",
       "official_url": "http://grs.zmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -27733,6 +28187,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368495.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -27767,6 +28222,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3274413086.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -27802,8 +28258,9 @@
       "source_count": "11",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.gztrc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -27941,6 +28398,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2125733175.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -27978,6 +28436,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3274414450.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -28015,6 +28474,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368496.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -28083,8 +28543,9 @@
       "source_count": "22",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.swugs.ynu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28391,6 +28852,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368511.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28459,6 +28921,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368510.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28527,6 +28990,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-499721975.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28561,6 +29025,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2125725192.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28595,6 +29060,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368506.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28629,6 +29095,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368505.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28661,8 +29128,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.xza.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -28729,8 +29197,9 @@
       "source_count": "28",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www1.xzmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -28763,8 +29232,9 @@
       "source_count": "14",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://www.ttmc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -28797,8 +29267,9 @@
       "source_count": "74",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjs.nwu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -28867,6 +29338,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368555.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29069,8 +29541,9 @@
       "source_count": "8",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjszs.xsyu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -29139,6 +29612,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368563.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29173,6 +29647,7 @@
       "official_url": "http://yzb.chd.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29205,8 +29680,9 @@
       "source_count": "17",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yz.nwsuaf.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -29273,8 +29749,9 @@
       "source_count": "27",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yz.snnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -29307,8 +29784,9 @@
       "source_count": "49",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjsy.yau.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -29481,8 +29959,9 @@
       "source_count": "5",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://grs.nwupl.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29586,8 +30065,9 @@
       "source_count": "32",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://zhshch.xafa.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -29759,8 +30239,9 @@
       "source_count": "61",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.xaufe.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -29897,6 +30378,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368570.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29931,6 +30413,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368553.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29965,6 +30448,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368536.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -29999,6 +30483,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368535.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30033,6 +30518,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368524.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30067,6 +30553,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368533.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30101,6 +30588,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368537.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30135,6 +30623,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368531.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -30172,6 +30661,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368530.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30206,6 +30696,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368529.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30240,6 +30731,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368528.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30274,6 +30766,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368527.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30308,6 +30801,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368526.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30342,6 +30836,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368525.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30376,6 +30871,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368532.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30410,6 +30906,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368538.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30444,6 +30941,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368539.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30478,6 +30976,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368534.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30512,6 +31011,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368542.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30546,6 +31046,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368543.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "partial_catalog",
         "missing_full_qualification",
         "missing_tuition",
@@ -30583,6 +31084,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368547.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30617,6 +31119,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368546.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30651,6 +31154,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368548.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30685,6 +31189,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368540.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30719,6 +31224,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368549.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -30753,6 +31259,7 @@
       "official_url": "http://ge.lzu.edu.cn/",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -30853,8 +31360,9 @@
       "source_count": "32",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://yjsy.gsau.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -30887,8 +31395,9 @@
       "source_count": "24",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsc.gszy.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31195,6 +31704,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368582.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31229,6 +31739,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368581.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31263,6 +31774,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368586.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31297,6 +31809,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368580.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31329,8 +31842,9 @@
       "source_count": "24",
       "missing_reason": "上次入库已完成该校目录对账；报考仍需核对目标年度和具体资格。",
       "official_url": "http://yjs.qhu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_full_qualification",
         "missing_tuition",
         "missing_duration"
@@ -31366,6 +31880,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368596.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31432,8 +31947,9 @@
       "source_count": "30",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://graduate.nxu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31466,8 +31982,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "http://www.nxmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -31502,6 +32019,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-499722211.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31568,8 +32086,9 @@
       "source_count": "14",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://www.nxist.com/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -31602,8 +32121,9 @@
       "source_count": "24",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://gs.xju.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -31738,8 +32258,9 @@
       "source_count": "11",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsxy.xjmu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31842,6 +32363,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-678715.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31914,6 +32436,7 @@
       "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688909475.dhtml",
       "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31980,8 +32503,9 @@
       "source_count": "12",
       "missing_reason": "来源要求登录或限制访问，尚未完成公开原文采集。",
       "official_url": "https://www.cjc.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],

@@ -1,7 +1,7 @@
 {
-  "queue_sha256": "8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86",
-  "batch_queue_sha256": "8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86",
-  "selection_rule_version": "b001-node0-v2",
+  "queue_sha256": "f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd",
+  "batch_queue_sha256": "f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd",
+  "selection_rule_version": "b001-node0-v4",
   "batch": {
     "expansion": [
       {
@@ -12,12 +12,6 @@
       },
       {
         "unit_id": "368049",
-        "role": "expand_catalog",
-        "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
-        "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
-      },
-      {
-        "unit_id": "688908731",
         "role": "expand_catalog",
         "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
         "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
@@ -45,6 +39,12 @@
         "role": "expand_catalog",
         "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
         "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
+      },
+      {
+        "unit_id": "368436",
+        "role": "expand_catalog",
+        "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
+        "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
       }
     ],
     "backfill": [
@@ -55,13 +55,13 @@
         "next_step": "在既有目录校内选真实章程/简章补齐剩余方向的费用与学制逐项证据"
       },
       {
-        "unit_id": "368128",
+        "unit_id": "367859",
         "role": "backfill_fields",
         "reason": "已有采用方向但仍有未核验的费用/学制方向；只补剩余缺口，不重复计算既有覆盖，也不改完整资格标志。",
         "next_step": "在既有目录校内选真实章程/简章补齐剩余方向的费用与学制逐项证据"
       },
       {
-        "unit_id": "367859",
+        "unit_id": "368201",
         "role": "backfill_fields",
         "reason": "已有采用方向但仍有未核验的费用/学制方向；只补剩余缺口，不重复计算既有覆盖，也不改完整资格标志。",
         "next_step": "在既有目录校内选真实章程/简章补齐剩余方向的费用与学制逐项证据"
@@ -83,12 +83,6 @@
         "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
       },
       {
-        "unit_id": "688908731",
-        "role": "expand_catalog",
-        "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
-        "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
-      },
-      {
         "unit_id": "368146",
         "role": "expand_catalog",
         "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
@@ -111,6 +105,12 @@
         "role": "expand_catalog",
         "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
         "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
+      },
+      {
+        "unit_id": "368436",
+        "role": "expand_catalog",
+        "reason": "已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。",
+        "next_step": "建立原件清单与目录全集对账，再按格式选择适配器"
       }
     ],
     "backfill": [
@@ -121,13 +121,13 @@
         "next_step": "在既有目录校内选真实章程/简章补齐剩余方向的费用与学制逐项证据"
       },
       {
-        "unit_id": "368128",
+        "unit_id": "367859",
         "role": "backfill_fields",
         "reason": "已有采用方向但仍有未核验的费用/学制方向；只补剩余缺口，不重复计算既有覆盖，也不改完整资格标志。",
         "next_step": "在既有目录校内选真实章程/简章补齐剩余方向的费用与学制逐项证据"
       },
       {
-        "unit_id": "367859",
+        "unit_id": "368201",
         "role": "backfill_fields",
         "reason": "已有采用方向但仍有未核验的费用/学制方向；只补剩余缺口，不重复计算既有覆盖，也不改完整资格标志。",
         "next_step": "在既有目录校内选真实章程/简章补齐剩余方向的费用与学制逐项证据"
@@ -136,5 +136,63 @@
   },
   "replay_matches_batch": true,
   "summary_rejected": true,
-  "summary_rejection": "queue row '367882' missing required fields for replay: original_urls"
+  "summary_rejection": "queue row '367882' missing required fields for replay: original_urls, entry_verification",
+  "expansion_entry_trusted": {
+    "368295": true,
+    "368049": true,
+    "368146": true,
+    "368275": true,
+    "368611": true,
+    "368142": true,
+    "368436": true
+  },
+  "expansion_proof": {
+    "368295": {
+      "status": "verified",
+      "reason": "saved_original_replayed",
+      "document_path": "snapshots/national/2027/368295/e7f38136a817c2a9-7ee9870ccbdab753.html",
+      "file_sha256": "7ee9870ccbdab7530508506881cced042f2b0eb63481df5e75c68577f548bc27"
+    },
+    "368049": {
+      "status": "verified",
+      "reason": "saved_original_replayed",
+      "document_path": "snapshots/national/2027/368049/20b97f1c37500e2b-3511c0b9ff15c9b9.html",
+      "file_sha256": "3511c0b9ff15c9b9e2a50e033e9ce29a56b70f157daddb4cf8ee60b99945f211"
+    },
+    "368146": {
+      "status": "verified",
+      "reason": "saved_original_replayed",
+      "document_path": "snapshots/national/2027/368146/325d25a36ef05f1d-dda104ef48adaba4.html",
+      "file_sha256": "dda104ef48adaba4369f9f8ebb97d575fadd4789a885ab2103e673e0389b63d8"
+    },
+    "368275": {
+      "status": "verified",
+      "reason": "saved_original_replayed",
+      "document_path": "snapshots/national/2027/368275/2cc0cbb49a3a760e-6cb0ceb69c37bce2.html",
+      "file_sha256": "6cb0ceb69c37bce2effbd36458727fb0483c60704d73a5d449f45a8b2a4bff8b"
+    },
+    "368611": {
+      "status": "verified",
+      "reason": "saved_original_replayed",
+      "document_path": "snapshots/national/2027/368611/348e6624f1fbbb34-0d89f20d6574a556.html",
+      "file_sha256": "0d89f20d6574a5562b3fef5f4792751b72835128c558bbbfd3371fdd30116c44"
+    },
+    "368142": {
+      "status": "verified",
+      "reason": "saved_original_replayed",
+      "document_path": "snapshots/national/2027/368142/2d4252c57961d944-5e69afd193952f41.html",
+      "file_sha256": "5e69afd193952f418d5995efaa3a11820092e857a4313f98184964e54648d9dd"
+    },
+    "368436": {
+      "status": "verified",
+      "reason": "saved_original_replayed",
+      "document_path": "snapshots/national/2027/368436/a441079f052799c3-deddd313eaf0e662.html",
+      "file_sha256": "deddd313eaf0e662de8dfd0198fcb78bbc213c05928f25bb41eca41f0a3457cd"
+    }
+  },
+  "backfill_entry_trusted": {
+    "367929": true,
+    "367859": true,
+    "368201": true
+  }
 }

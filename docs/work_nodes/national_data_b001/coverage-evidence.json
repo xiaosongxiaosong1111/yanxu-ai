@@ -1,0 +1,19 @@
+{
+  "executed_at": "2026-11-09T20:29:20+08:00",
+  "python": "3.13.9",
+  "commands": [
+    "python -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q",
+    "python -m coverage report -m"
+  ],
+  "statement_count": 527,
+  "miss_count": 5,
+  "branch_count": 198,
+  "partial_branch_count": 3,
+  "coverage_percent": 99,
+  "missing": "219->221, 320-321, 335-336, 856",
+  "report_file": "coverage-report.txt",
+  "report_sha256_lf": "9f8c75d125ec531656e00dde74b124d7b855fc1d04d1cecb8d2ddc28e2990b83",
+  "report_git_blob_sha1": "36266660960c1a032fd7252583cb22b150bd3ea2",
+  "line_endings": "LF; core.autocrlf=true may rewrite checkouts to CRLF, so verify with git cat-file blob",
+  "note": "coverage is installed only in the isolated worktree .venv and is not added to requirements.txt"
+}

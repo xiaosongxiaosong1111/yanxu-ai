@@ -1,40 +1,45 @@
-# 全国采用数据 · 节点0报告（b001，R1—R4 补证后重交）
+# 全国采用数据 · 节点0报告（b001，R2 真实原件核验重交）
 
-状态：`baseline_ready_resubmitted`（工作状态，不等于任何学校目录或资格已完成）
+状态：`baseline_ready_r2_resubmitted`（工作状态，不等于任何学校目录或资格已完成）
 生成时间：2026-11-09（本机时区 UTC+8）
-执行者：Claude（数据）；独立验收：Codex（上一轮未通过，本轮重交）
-审查对象：`data/national-b001`，base `67d5e24`，基线生成代码提交 `9b1c945`，分支 HEAD `b69963d`（后续提交仅补测试断言与证据文件）
+执行者：Claude（数据）；独立验收：Codex
+审查对象：`data/national-b001`，base `67d5e24`；被审查 HEAD `598bb09`
+R2 修复代码提交：`256327e`（生成基线时 `tracked_dirty=false`）
+证据提交：包含本文件与全部产物的 `data/national-b001` 分支 HEAD（SHA 见交付消息；不把提交自身 SHA 写进提交内容）
 手册：[CLAUDE_NATIONAL_DATA_RUNBOOK](../../CLAUDE_NATIONAL_DATA_RUNBOOK.md)（已在本分支仓库内）
 
-## 0. 本轮针对审查意见的修正摘要
+## 0. 本轮修正摘要（只补 R2 与文档小修）
 
 | 审查项 | 修正 | 可复核位置 |
 | --- | --- | --- |
-| R1 部分覆盖消失 | 缺口按 `verified` 条数与 `program_count` 比较，新增 `partial_tuition/partial_duration/partial_full_qualification`，队列保留 `remaining_*` 条数 | `classify_gaps`、`build_queue`；`GapTests`、`QueueTests` |
-| R2 未核准入口仍入选 | 扩目录选择必须通过 `entry_trusted`：非空入口、无“尚未核准”、且 `official_url_evidence` 的 verification/引文/链接 host 与入口 host 一致；已判 `missing_trusted_entry` 直接排除 | `entry_trusted`、`select_batch`；`EntryTests`、`SelectTests` |
-| R3 有效统计冒充 verified | 新增 `verified_counts`，逐条调用现有 `EvidenceIndex._claim(..., verified=True)`，并校验金额有限正数、计费周期、学制正数、完整资格条件非空且无 review；有效 presence 与 verified 分列 | `verified_counts`、`effective_counts`、`audit`；`VerifiedCountTests`、`EffectiveCountTests` |
-| R4 queue 不可复算 batch | 提交生成器原样 `queue.json`（含 `original_urls/official_url_evidence/annual_evidence_count/conditions_nonempty` 等）及其 SHA；batch 绑定 queue SHA 与选择规则版本；摘要另存并明确 `replayable=false`；缺字段/摘要重放显式报错 | `select_batch`、`audit`；`AuditTests` 集成用例 |
-| 覆盖率不足 | 新增模块含分支覆盖 **99%**（359 语句，仅 `if __name__` 1 行未执行；116 分支，1 分支部分） | `coverage report -m` |
-| 报告口径 | 全文改为 raw / effective-present / verified 三列；修正阜阳师范大学代码说明、测试数、手册在库状态、source_count 与原件数区别 | 本文件 |
+| R2 入口证据只查非空元数据 | 新增真实原件重放链：年度原件 URL+SHA 精确匹配、`annual_master_charter` 类型、单位身份、落盘原件文件名绑定、文件实际字节 SHA、引文在原件中逐字出现；结果作为持久化 `entry_verification` 证明写入队列，`entry_trusted` 只认指纹一致的证明 | `verify_entry`、`_entry_fingerprint`、`entry_trusted`、`_saved_original`、`_identity_matches`；`EntryProofTests` |
+| 零 SHA / `rejected` / `failed` / 删字段仍入选 | 分别落为 `invalid_evidence_sha256`、`unsupported_verification`、`no_exact_annual_document`、`no_entry_evidence`；换原件字节落为 `saved_original_sha_mismatch`；全部为 `rejected`，不再返回 true | `verify_entry` 原因码顺序；`EntryProofTests`、`SelectTests` |
+| 只有扩目录池有门禁 | 扩目录池与补字段池都要求 `entry_trusted`；补字段池新增 RED/GREEN（未核验入口不得入选） | `select_batch`；`test_backfill_pool_requires_a_trusted_entry` |
+| 文档：`then` 语法不存在 | E1 改为现有引擎语法：`when` 是守卫，后果字段与 `when` 同级，不再写 `then` | 本文件 E1；`grad_engine._condition` |
+| 文档：覆盖率证据不可绑定 | 覆盖率报表改为 LF 字节 + Git blob SHA-1 双绑定，并说明 `core.autocrlf` 的 512 字节差异来源 | `coverage-evidence.json`；`coverage-report.txt` 头部 |
+| 文档：HEAD 表述混用 | 全文区分“被审查 HEAD `598bb09`”“R2 修复/生成提交 `256327e`”“证据提交（本文件所在提交）” | 本文件头、A、I |
+
+**未重做**：R1 部分覆盖、R3 verified 逐条重放、R4 queue→batch 重放、费用/学制逻辑均未改；三口径数字与上一轮完全一致。选择规则版本因补字段门禁升级为 `b001-node0-v4`，队列内容未变（queue SHA 不变）。
 
 ## A. 身份与隔离
 
 | 字段 | 实际值 |
 | --- | --- |
 | 仓库 / 分支 / base SHA | `https://github.com/xiaosongxiaosong1111/yanxu-ai`，`data/national-b001`，`67d5e24` |
-| 本次代码提交 | 基线生成提交 `9b1c945`（生成时 tracked 干净，`tracked_dirty=false`）；分支 HEAD `b69963d` |
+| 被审查 HEAD | `598bb09`（Codex 验收不通过的提交） |
+| R2 修复代码提交 | `256327e`（`fix: gate backfill selection on replayed entry proof`） |
+| 生成时工作区 | `tracked_dirty=false`；`baseline.json.git.commit=256327e` |
 | 独立工作树 | `D:/yx-data-b001`（短路径；未复用 `E:/PythonSpace/yanxu-ai`，未碰 `D:/CodexRuntime`） |
 | 数据根 / 产物根 | `D:/yx-data-b001` / `D:/yx-data-b001/data/batch_runs/b001` |
 | 用户 runtime / Key | 未读取、未复制、未覆盖；本工作树没有 `data/runtime/` 发布库 |
-| Python | 3.13.9（工作树 `.venv`，`requirements.txt` 已装：ijson 3.4.0.post0、pdfplumber 0.11.10、xlrd 2.0.2；另仅在隔离 venv 安装 coverage 用于测量） |
+| Python | 3.13.9（工作树 `.venv`；requirements 已装 ijson 3.4.0.post0、pdfplumber 0.11.10、xlrd 2.0.2；coverage 只装在隔离 venv） |
 | 原文提取器 | `C:/Program Files/Git/mingw64/bin/pdftotext.exe` → `pdftotext version 4.00` |
-| 坐标提取器 | `E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe` → `pdftotext version 26.07.0`；同目录 `pdftocairo.exe` 存在；未加入 PATH |
+| 坐标提取器 | `E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe` → `pdftotext version 26.07.0`；未加入 PATH |
 | 公开包 | `data/bundles/catalog-data.zip` SHA256 `637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478`；manifest SHA256 `52655a92d671025e9cfb086e3a528d610d52ed53d09fd2c3f1b9847a87bf1394` |
 | 恢复结果 | `prepare_data.py` 离线恢复 6,521 个文件，`published=false` |
 | 付费搜索 / 模型调用 | 0 次；未读取任何 Key，未访问 4180 |
-| 符号链接 | 工作树为普通 Git 工作树；未发现指向原项目运行目录的链接 |
 
-五个受保护 PDF 适配器字节在节点0前后一致（SHA 见 `protected-sha256.json`，与 base `67d5e24` 相同）：
+五个受保护 PDF 适配器字节与 base `67d5e24` 及上一轮一致（SHA 见 `protected-sha256.json`）：
 
 | 文件 | SHA256 |
 | --- | --- |
@@ -69,30 +74,70 @@
 
 口径解释：
 
+- 本轮代码提交只改了入口证明与选择门禁，三口径逐项与上一轮相同：650/912/912、1,680/1,942/1,942、645/907/907、完整资格 0。
 - `912 − 650 = 262` 全部来自既有白名单补充（郑州大学 252、南开大学 10；7 条规则全部有效，`invalid_rule_ids=[]`）。既有 650 条在有效数据中仍逐条重放为 verified，未因补充被降级。
 - 本次 `verified` 的 claim 状态计数：学费 `{verified: 912}`、学制 `{verified: 1,942}`、资格 claim `{}`（无任何条件原句）。没有 `needs_review`/`conflict` 被算入 verified。
 - 完整资格仍为 **0**：22,356 条 `conditions` 均为空。`eligibility_evidence_complete=true` 单独出现不会计数，本轮也未改写任何标志。
-- 与手册基线逐项一致：135/931、22,356、0、650（378/272）、912（640/272）、1,942、907；包 SHA 未变。
+- 目录状态：`recorded_verified` 51、`partial` 84、`not_collected` 796。
+- 采集状态：`collected` 609、`needs_binding` 217、`truncated` 105。
+- 覆盖 CSV 的 `program_count` 与 raw 流式统计逐校一致（931 行，0 个不一致）；effective 计数也 0 个不一致。
 
-目录状态：`recorded_verified` 51、`partial` 84、`not_collected` 796。
-采集状态：`collected` 609、`needs_binding` 217、`truncated` 105。
-覆盖 CSV 的 `program_count` 与 raw 流式统计逐校一致（931 行，0 个不一致）；effective 计数也 0 个不一致。
+**复现注意**：既有补充规则内部调用 `shutil.which("pdftotext")`；CLI 运行时必须让 `pdftotext` 在 PATH 上（本机为 `C:\Program Files\Git\mingw64\bin` 前缀），否则 effective 会退化为 650/1,932 且出现 6 条 `invalid_rule_ids`。`--raw-pdf` 只指定审计所记录的路径，不能替代 PATH。本轮成功日志已记录该前缀。
 
-## C. 931 单位完整队列（可重放）
+## C. 931 单位完整队列（可重放）与入口证明
 
-`queue.json` 是生成器原样输出，931 行，2,429,312 字节，SHA256 `8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86`。每行保留：
+`queue.json` 是生成器原样输出，931 行，3,113,334 字节，SHA256 `f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd`。每行保留身份、原始与采用、入口证据与证明、三层计数、剩余缺口、`gaps/count_mismatch/effective_count_mismatch`。
 
-- 身份：`unit_id/unit_code/unit_name/province/year/annual_status/annual_evidence_count`
-- 原始与采用：`source_count/missing_reason/original_urls/catalog_status/collection_status`
-- 入口：`official_url/official_url_evidence/entry_trusted`
-- 三层计数：`program_count/raw_*/effective_*/verified_*`
-- 剩余缺口：`remaining_tuition/remaining_duration/remaining_full_qualification`
-- 判定：`gaps/count_mismatch/effective_count_mismatch`
+每行新增持久化字段 `entry_verification`，由 `verify_entry` 产生：
 
-`queue-summary.json` 只供阅读，明确 `replayable=false`，不含 `original_urls/official_url_evidence` 等选择必需字段；对摘要调用 `select_batch` 会显式报 `missing required fields ... original_urls`，不会静默产生不同批次。
+```json
+{"status": "verified|rejected", "reason": "...", "unit_id": "...", "year": 2027,
+ "official_url": "...", "evidence_url": "...", "evidence_sha256": "...",
+ "document_id": "...", "document_sha256": "...", "document_path": "snapshots/national/2027/...",
+ "file_sha256": "...", "quote_match": "literal|", "proof_sha256": "<64 hex>"}
+```
+
+`proof_sha256` 是对“行上实际保存的入口证据 + 证明字段”的规范化指纹。`entry_trusted` 要求：无 `missing_trusted_entry`、入口 URL 非空且不含“尚未核准”、`status=verified`、verification/relation 在支持集合内、证明的 unit/year/official_url 与行一致、引文 host 与入口 host 一致、`proof_sha256` 为 64 位十六进制且**重新计算的指纹与它完全相等**。任何一处被篡改，选择器都不再信任。
+
+### C1. 整库证明结果
+
+| 状态 | 单位数 |
+| --- | ---: |
+| `verified`（`saved_original_replayed`） | 405 |
+| `rejected` | 526 |
+| 合计 | 931 |
+
+拒绝原因（互斥主因，按代码判定顺序取第一个失败）：
+
+| 原因码 | 单位数 | 含义 |
+| --- | ---: | --- |
+| `no_entry_evidence` | 293 | 单位没有 `official_url_evidence` 字典 |
+| `no_exact_annual_document` | 147 | 年度登记中没有与证据 URL+SHA 完全一致的原件 |
+| `unsupported_relation` | 45 | relation 不在支持的入站关系集合 |
+| `unsupported_verification` | 20 | verification 为 rejected/failed/未知值 |
+| `quote_not_in_original` | 19 | 引文未在落盘原件中逐字出现 |
+| `ambiguous_saved_original` | 1 | 同目录下多个文件匹配 SHA 前缀 |
+| `quote_host_mismatch` | 1 | 引文 host 不是入口 host |
+| 合计 | 526 | |
+
+因此 `missing_trusted_entry` 现在是 **526**，不是上一轮报告里的 2。上一轮只检查非空元数据，2 是“没有网址/明写尚未核准”的数量；现在按真实原件重放，405 个单位有可重放入口，其余 526 个必须补证。这是更严格也更诚实的结果，不能当作退步掩盖。
+
+### C2. 扩目录池
+
+`program_count=0`、`collection_status=collected`、原因含“待解析”的单位共 **433** 个：
+
+| 入口证明 | 单位数 |
+| --- | ---: |
+| `entry_trusted=true` | 136 |
+| `entry_trusted=false` | 297 |
+
+297 个被排除单位的证明原因：`no_entry_evidence` 234、`no_exact_annual_document` 42、`quote_not_in_original` 8、`unsupported_relation` 7、`unsupported_verification` 6。它们不是静默跳过：每个都在 `queue.json` 有 `entry_verification`，并在 `baseline.json.entry_proof` 计数。
+
+### C3. 缺口频次
 
 | 缺口 | 单位数 | 含义与下一步 |
 | --- | ---: | --- |
+| `missing_trusted_entry` | 526 | 入口证明未通过重放；交 Codex 补证，本批两池都不选 |
 | `missing_catalog` | 796 | 尚未采用任何 2027 方向；不等于未招生 |
 | `parser_pending` | 433 | 已保存公开原文、但尚无采用方向；节点1/2 解析并做目录全集对账 |
 | `original_pending` | 413 | 来源受限、截断或尚未取得可核验原文 |
@@ -100,12 +145,11 @@
 | `missing_tuition` | 122 | 已有方向但 verified 学费为 0 |
 | `missing_duration` | 117 | 已有方向但 verified 学制为 0 |
 | `partial_catalog` | 84 | 已有部分专业资料，全校目录未对账完整 |
+| `review_pending` | 84 | 部分目录待独立审校 |
 | `partial_tuition` | 3 | 部分方向已有 verified 学费，仍有剩余方向 |
 | `partial_duration` | 3 | 部分方向已有 verified 学制，仍有剩余方向 |
-| `review_pending` | 84 | 部分目录待独立审校 |
-| `missing_trusted_entry` | 2 | 官方入口未核准；交 Codex 补证，本批跳过该单位 |
 
-部分覆盖单位（供节点1/2 直接定位，不再从队列消失）：
+一个单位可以同时有多个缺口，所以上表不能相加得到 931。部分覆盖单位仍保留在队列：
 
 | 单位 | 方向 | verified 学费 | verified 学制 | 剩余方向 |
 | --- | ---: | ---: | ---: | --- |
@@ -114,31 +158,51 @@
 | 南昌大学 `368259` | 663 | 0 | 638 | 学费 663 / 学制 25 |
 | 郑州大学 `368317` | 438 | 252 | 252 | 学费/学制各 186 |
 
-郑州大学是 R3 的直接反例来源：提交队列现在分列 `raw_tuition=0`、`effective_tuition=252`、`verified_tuition=252`、`remaining_tuition=186`；缺口为 `partial_tuition/partial_duration`，不再是 `missing_*`，避免把既有 252 条白名单覆盖重复算成本批增长。
+郑州大学仍是 R3 的直接反例来源：队列分列 `raw_tuition=0`、`effective_tuition=252`、`verified_tuition=252`、`remaining_tuition=186`，缺口为 `partial_tuition/partial_duration`，不是 `missing_*`。
 
-入口门禁：433 个扩目录形态单位中，193 个 `entry_trusted=true`，240 个因缺少可重放归属证据被排除（不是静默跳过，已计数并写入 `baseline.json.expansion_pool`）。本批只从 193 个可信入口中按规则选取。
+`queue-summary.json` 只供阅读，明确 `replayable=false`，不含 `original_urls/official_url_evidence/entry_verification`；对摘要重放会显式报 `queue row '367882' missing required fields for replay: original_urls, entry_verification`，不会静默产生不同批次。
 
 ## D. 首批 10 校（由完整队列确定性选出）
 
-选择规则已写成代码并有测试：
+选择规则版本 `b001-node0-v4`：
 
-- 扩目录池：`program_count=0`、`collection_status=collected`、原因含“待解析”、通过 `entry_trusted`、`original_urls` 非空；按“目录型 URL 数 → PDF 数 → URL 总数 → unit_id”排序。
-- 补字段池：已有方向且 `remaining_tuition>0` 或 `remaining_duration>0`；先选费用与学制均未覆盖的单位，再按剩余方向总数降序、unit_id 升序。**部分覆盖单位保留在池中**。
+- **扩目录池**：`program_count=0`、`collection_status=collected`、原因含“待解析”、`entry_trusted=true`、`original_urls` 非空；按“目录型 URL 数 → PDF 数 → URL 总数 → unit_id”排序。
+- **补字段池**：已有方向且 `remaining_tuition>0` 或 `remaining_duration>0`，**且 `entry_trusted=true`**；先选费用与学制均未覆盖的单位，再按剩余方向总数降序、unit_id 升序。部分覆盖单位保留在池中。
 
-| 角色 | unit_id | 代码 | 名称 | 省份 | 方向 | source_count | raw 学费/学制 | effective 学费/学制 | verified 学费/学制 | 剩余 学费/学制 | 选入理由 / 下一步 |
-| --- | --- | --- | --- | --- | ---: | ---: | --- | --- | --- | --- | --- |
-| 扩目录 | 368295 | 10434 | 山东农业大学 | 山东 | 0 | 1001 | 0/0 | 0/0 | 0/0 | — | 本地 `original_urls` 40 条（目录型 38、PDF 0）；source_count 不是已下载原件数 |
-| 扩目录 | 368049 | 10152 | 大连工业大学 | 辽宁 | 0 | 40 | 0/0 | 0/0 | 0/0 | — | 本地 40 条 URL（目录型 37）；确认学院/分页/附件差集 |
-| 扩目录 | 688908731 | 10371 | 阜阳师范大学 | 安徽 | 0 | 73 | 0/0 | 0/0 | 0/0 | — | unit_code 是 5 位 `10371`；9 位 `688908731` 是研招网 unit_id，两者不同 |
-| 扩目录 | 368146 | 10280 | 上海大学 | 上海 | 0 | 61 | 0/0 | 0/0 | 0/0 | — | 本地 40 条 URL（目录型 36）；多学院目录全集对账 |
-| 扩目录 | 368275 | 10458 | 山东艺术学院 | 山东 | 0 | 66 | 0/0 | 0/0 | 0/0 | — | 本地 40 条 URL（目录型 36）；艺术类方向单独核对 |
-| 扩目录 | 368611 | 10758 | 新疆农业大学 | 新疆 | 0 | 46 | 0/0 | 0/0 | 0/0 | — | 本地 40 条 URL（目录型 36）；历史材料不得计入 2027 |
-| 扩目录 | 368142 | 10251 | 华东理工大学 | 上海 | 0 | 58 | 0/0 | 0/0 | 0/0 | — | 本地 40 条 URL（目录型 35、PDF 10）；确认是否只取得首屏 |
-| 补字段 | 367929 | 14430 | 中国科学院大学 | 北京 | 5,165 | 34 | 0/0 | 0/0 | 0/0 | 5,165/5,165 | 方向最多且原文已收集；补费用/学制原文依据，不改完整资格标志 |
-| 补字段 | 368128 | 10247 | 同济大学 | 上海 | 700 | 73 | 0/0 | 0/0 | 0/0 | 700/700 | 原文已收集；费用/学制均缺 |
-| 补字段 | 367859 | 10027 | 北京师范大学 | 北京 | 463 | 20 | 0/0 | 0/0 | 0/0 | 463/463 | 保留 `partial_catalog/review_pending`；不勾整校完成 |
+| 角色 | unit_id | 代码 | 名称 | 省份 | 方向 | source_count | URL 型/PDF/总数 | 入口证明 | 剩余 学费/学制 | 选入理由 / 下一步 |
+| --- | --- | --- | --- | --- | ---: | ---: | --- | --- | --- | --- |
+| 扩目录 | 368295 | 10434 | 山东农业大学 | 山东 | 0 | 1001 | 38/0/40 | verified | — | 目录型 URL 最多；`source_count` 不是已下载原件数 |
+| 扩目录 | 368049 | 10152 | 大连工业大学 | 辽宁 | 0 | 40 | 37/0/40 | verified | — | 确认学院/分页/附件差集 |
+| 扩目录 | 368146 | 10280 | 上海大学 | 上海 | 0 | 61 | 36/0/40 | verified | — | 多学院目录全集对账 |
+| 扩目录 | 368275 | 10458 | 山东艺术学院 | 山东 | 0 | 66 | 36/0/40 | verified | — | 艺术类方向单独核对 |
+| 扩目录 | 368611 | 10758 | 新疆农业大学 | 新疆 | 0 | 46 | 36/0/40 | verified | — | 历史材料不得计入 2027 |
+| 扩目录 | 368142 | 10251 | 华东理工大学 | 上海 | 0 | 58 | 35/10/40 | verified | — | 确认是否只取得首屏 |
+| 扩目录 | 368436 | 10593 | 广西大学 | 广西 | 0 | 40 | 35/0/40 | verified | — | 顶替未通过重放的阜阳师范大学 |
+| 补字段 | 367929 | 14430 | 中国科学院大学 | 北京 | 5,165 | 34 | 4/0/34 | verified | 5,165/5,165 | 方向最多；补费用/学制原文依据，不改完整资格标志 |
+| 补字段 | 367859 | 10027 | 北京师范大学 | 北京 | 463 | 20 | 4/1/20 | verified | 463/463 | 保留 `partial_catalog/review_pending`；不勾整校完成 |
+| 补字段 | 368201 | 10298 | 南京林业大学 | 江苏 | 305 | 14 | 8/0/14 | verified | 305/305 | 顶替入口证明未通过的同济大学 |
 
-首批结论只能写“10 校已入队”，不能写“10 校目录完成”或“10 校资格完成”。节点1 结束时才判断每校终态或阻塞。`source_count` 是公开包累计来源数；`original_urls` 的 40 条也可能包含同一目录的分页/导航变体，URL 数不等于独立原件数，节点1 必须按最终 URL、MIME、SHA、真实年度和目录内容对账。
+两处替换均是确定性结果，不是手写学校名：
+
+- **阜阳师范大学 `688908731`（10371）**：扩目录排序本在其位；但其入口证据无法在年度登记中找到精确原件（无 `document_id`、无落盘快照），证明为 `rejected / no_exact_annual_document`，因此不入池。按排序顺延为 **广西大学 `368436`**。
+- **同济大学 `368128`（10247）**：补字段池中方向数仅次于国科大，但入口证明为 `rejected / no_exact_annual_document`（年度登记没有与入口证据 URL+SHA 完全一致的原件），按 R2 门禁排除，顺延为 **南京林业大学 `368201`**。上一轮把它选入是元数据门禁的遗留问题，本轮不再重犯。
+
+首批 10 校的入口原件证明（均为 `saved_original_replayed`；路径相对 `data/`）：
+
+| unit_id | 名称 | document_path | file_sha256 |
+| --- | --- | --- | --- |
+| 368295 | 山东农业大学 | `snapshots/national/2027/368295/e7f38136a817c2a9-7ee9870ccbdab753.html` | `7ee9870ccbdab7530508506881cced042f2b0eb63481df5e75c68577f548bc27` |
+| 368049 | 大连工业大学 | `snapshots/national/2027/368049/20b97f1c37500e2b-3511c0b9ff15c9b9.html` | `3511c0b9ff15c9b9e2a50e033e9ce29a56b70f157daddb4cf8ee60b99945f211` |
+| 368146 | 上海大学 | `snapshots/national/2027/368146/325d25a36ef05f1d-dda104ef48adaba4.html` | `dda104ef48adaba4369f9f8ebb97d575fadd4789a885ab2103e673e0389b63d8` |
+| 368275 | 山东艺术学院 | `snapshots/national/2027/368275/2cc0cbb49a3a760e-6cb0ceb69c37bce2.html` | `6cb0ceb69c37bce2effbd36458727fb0483c60704d73a5d449f45a8b2a4bff8b` |
+| 368611 | 新疆农业大学 | `snapshots/national/2027/368611/348e6624f1fbbb34-0d89f20d6574a556.html` | `0d89f20d6574a5562b3fef5f4792751b72835128c558bbbfd3371fdd30116c44` |
+| 368142 | 华东理工大学 | `snapshots/national/2027/368142/2d4252c57961d944-5e69afd193952f41.html` | `5e69afd193952f418d5995efaa3a11820092e857a4313f98184964e54648d9dd` |
+| 368436 | 广西大学 | `snapshots/national/2027/368436/a441079f052799c3-deddd313eaf0e662.html` | `deddd313eaf0e662de8dfd0198fcb78bbc213c05928f25bb41eca41f0a3457cd` |
+| 367929 | 中国科学院大学 | `snapshots/national/2027/367929/340ded81c9e561a6-5946240ca60a7af0.html` | `5946240ca60a7af0f98e356bc7abe0c577838814083f2faf77a7e7ac1236125e` |
+| 367859 | 北京师范大学 | `snapshots/national/2027/367859/4d7ed0aed0255569-3d99aee22c39ee6e.html` | `3d99aee22c39ee6e4df38007b36a46fb49284a4620bf119ef5fafb3b11a70a9f` |
+| 368201 | 南京林业大学 | `snapshots/national/2027/368201/8ad81b29b2e84674-8a96ba7409532cd1.html` | `8a96ba7409532cd12074d8dcc94368f6193f015824a32b9bf5a3722b0bccdd57` |
+
+首批结论只能写“10 校已入队且入口证明通过重放”，不能写“10 校目录完成”或“10 校资格完成”。节点1 结束时才判断每校终态或阻塞。`source_count` 是公开包累计来源数；URL 数不等于独立原件数，节点1 必须按最终 URL、MIME、SHA、真实年度和目录内容对账。
 
 ## E. 资格持久化最小方案（节点3 实现，本节点只设计）
 
@@ -146,15 +210,18 @@
 
 ### E1. AST 必须复用现有语法
 
-不要引入 `{"op":"and","args":[...]}` 这类当前引擎不认识的语法。现有 `grad_engine.py:365-395` 只接受：
+不要引入 `{"op":"and","args":[...]}` 或 `{"when": ..., "then": ...}` 这类当前引擎不认识的语法。`grad_engine._condition` 只接受 `all/any/when/field/op/value/evidence`；`when` 是**守卫**，其后果必须写在同一个对象的其余字段（或同一对象的 `all/any`），不存在 `then` 键：
 
 ```json
-{"all": [{"field": "...", "op": "...", "value": "...", "evidence": "..."},
-         {"any": [...]},
-         {"when": {...}, "then": {...}}]}
+{"all": [
+  {"field": "degree_type", "op": "eq", "value": "bachelor", "evidence": "..."},
+  {"any": [{"field": "major", "op": "in", "value": ["0812"], "evidence": "..."}]},
+  {"when": {"field": "study_mode", "op": "eq", "value": "part_time", "evidence": "..."},
+   "field": "work_years", "op": "gte", "value": 2, "evidence": "..."}
+]}
 ```
 
-持久化 AST 必须使用 `all/any/when/field/op/value/evidence`。字段白名单以现有 `grad_engine.PROFILE_FIELDS` 为上限（学历、工作年限、有限本科专业等）；当前档案输入不含毕业时间、专项、境外学历、加试，因此这些条件只能保留完整原句并进入 `unknown`，不能仅凭 AST 非空设置完整资格。若确需扩展，必须同步扩展档案输入、校验、解释输出和三态反例，不能只扩 JSON 字段。
+引擎语义：守卫 `excluded` 时该条件视为“不适用”（matched）；守卫 `unknown` 且后果未 matched 时整体 unknown；守卫 matched 时按同级后果判断。持久化 AST 必须使用上述键；字段白名单以现有 `grad_engine.PROFILE_FIELDS` 为上限（学历、工作年限、有限本科专业等）。当前档案输入不含毕业时间、专项、境外学历、加试，因此这些条件只能保留完整原句并进入 `unknown`，不能仅凭 AST 非空设置完整资格。若确需扩展，必须同步扩展档案输入、校验、解释输出和三态反例，不能只扩 JSON 字段。
 
 ### E2. 目录证明与资格证明分层
 
@@ -187,21 +254,24 @@
 
 在节点3 实现前，本方案只是设计，不产生任何资格增长；本轮未写 `admissions.json`、未改任何完整资格标志或 `requires_review`。
 
-## F. 测试、覆盖率与保护项
+## F. 测试、覆盖率、CLI 与资源边界
 
 ```powershell
 # 本轮实际执行（工作树 .venv）
 ./.venv/Scripts/python.exe -m unittest tests.test_national_data_baseline -v
 ./.venv/Scripts/python.exe -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q
 ./.venv/Scripts/python.exe -m coverage report -m
+# CLI 必须前置 pdftotext 所在目录到 PATH（本机为 Git 的 mingw64/bin）
+$env:PATH = 'C:\Program Files\Git\mingw64\bin;' + $env:PATH
 ./.venv/Scripts/python.exe -X utf8 national_data_baseline.py --data-dir data --out data/batch_runs/b001 --repo-root . --raw-pdf "C:/Program Files/Git/mingw64/bin/pdftotext.exe" --bbox-pdf "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe"
 ```
 
-- 测试：**49 项通过**（先 RED 后 GREEN；上一轮 11 项）。
-- 含分支覆盖：**99%**，359 语句仅 `if __name__` 1 行未执行；116 分支仅 1 个部分分支。
-- 关键闭环用例：部分覆盖不消失；未核准入口不能入选；`needs_review`/无效数值不算 verified；从落盘 `queue.json` 重放得到与 `batch.json` 相同的 7+3 单位；摘要重放显式报错。
+- 测试：**70 项通过**（上一轮 49 项）。先 RED 后 GREEN；R2 的新失败用例覆盖：零 SHA、`verification=rejected/failed`、删 SHA/URL、替换原件字节、错误单位、引文不在原件、来源 host 冒充、缺/多/未绑定原件、错误 document kind、被篡改的证明指纹、补字段池未核验入口。
+- 含分支覆盖：**99%**，527 语句仅 5 行未执行，198 分支仅 3 个部分分支；缺失行 `219->221, 320-321, 335-336, 856`。
+- 覆盖率证据绑定：`coverage-report.txt` 以 LF 字节写入，SHA256(LF) `9f8c75d125ec531656e00dde74b124d7b855fc1d04d1cecb8d2ddc28e2990b83`，Git blob SHA-1 `36266660960c1a032fd7252583cb22b150bd3ea2`；`coverage-evidence.json` 同时记录两者。由于仓库 `core.autocrlf=true`，用编辑器另存或重新 checkout 可能变成 CRLF，导致文件 SHA256 与仓库内记录不同（512 字节差异来自换行数）；**以 Git blob 为准**，需要字节级核验时用 `git cat-file blob` 读取。
+- 完整公开包 CLI：`cli-recompute.log` 记录命令、PATH 前缀、stdout/stderr 与运行元数据；`cli-run.json` 机器可读。结果 **exit 0，84.973 秒，峰值工作集 1,384,775,680 字节（约 1.29 GiB）**，三口径与 10 校批次均与产物一致。
+- **资源边界（明确保留）**：`effective_counts` 仍完整 `json.load` 大 `admissions.json` 并构造内存视图，未做上限或分块；1.29 GiB 只是本机实测峰值，不能据此声称整套重算有界内存，也不能保证在更小内存环境一定成功。这是扩规模前必须解决的实测限制，Codex 可按此边界验收。
 - 本节点未运行全库测试（只改新增模块），未改五个保护文件、未改旧金标/阈值、未改采用数据。
-- 保护适配器 SHA 与 base `67d5e24` 及上一轮一致，见 `protected-sha256.json`。
 
 ## G. 产物与 SHA 绑定
 
@@ -213,46 +283,61 @@
 | `data/units.json` | `91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb` |
 | `data/annual_registry_2027.json` | `06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40` |
 | `data/catalog_coverage_2027.csv` | `42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e` |
-| `national_data_baseline.py` | `0f89275eace0d540472b000f1f9e5bc01fe57a4163c3fd2f92f15ba828dd123e` |
+| `national_data_baseline.py`（工作字节） | `6b3f0fafae63f9ccad774d9f921725910a537642785e9ed491207dd0d45e6230` |
+| `national_data_baseline.py`（Git blob `256327e:...`） | `38c8e685e9757e8a4f85ad356a345c4bfe1790eb`（SHA-1） |
 
 产物（`docs/work_nodes/national_data_b001/`）：
 
 | 文件 | 字节 | SHA256 | 说明 |
 | --- | ---: | --- | --- |
-| `baseline.json` | 5,171 | `d1c356f4c2f70e52374187eb692bb41c19069ae862cb8122140d2f23967e26df` | 三口径汇总、输入/产物 SHA、入口池、缺口频次 |
-| `queue.json` | 2,429,312 | `8cfdc263b1bfd917a7462cac783e99dfd54208f0b052e0b5c41590eeaf0dfb86` | 生成器原样 931 行，可重放 |
-| `queue-summary.json` | 1,077,969 | `d126d6b3ff01ee6e84aff6c4ff5d5ca634fdb0845e1f0d389a6d74eec875069c` | 只读摘要，`replayable=false` |
-| `batch.json` | 48,415 | `9ebcc3238d59289f113017d937b4089b6f2f55e18a9d4f699a32245db5e1aca9` | 7+3 首批；绑定 `queue_sha256` 与 `selection_rule_version=b001-node0-v2` |
-| `coverage-report.txt` | 512 | `ad2d976bd6a6ac0a6d99f123b8f5081621e74d603a52eb0ad0061b1934599b4d` | 覆盖率命令与原始报表 |
-| `replay-check.json` | 6,780 | `182131d062f1a6221a36dd39cd37d5089f6ddb60df5296c47f6e2b9bdab5d888` | 从落盘 queue 重放 batch 的机器可读证据（含理由/next_step） |
+| `baseline.json` | 5,841 | `95738851233fc8659d95456c3a98f10370c80e355f91ef3bfd74edb53c790616` | 三口径、输入/产物 SHA、入口池、证明状态与原因、缺口频次 |
+| `queue.json` | 3,113,334 | `f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd` | 生成器原样 931 行，含 `entry_verification`，可重放 |
+| `queue-summary.json` | 1,095,994 | `f5e8cf46a243b60a272637e74ba11c5e71d60ba5919591abd1508b0bd3080232` | 只读摘要，`replayable=false` |
+| `batch.json` | 56,308 | `9979acd022f16a8eb2ca839b5830af842ca8ddc57450f96a46b25a5d139d1cc2` | 7+3 首批；绑定 `queue_sha256` 与 `selection_rule_version=b001-node0-v4` |
+| `replay-check.json` | 9,096 | `124b39269796ec20cfccf0260395ad89b2a885141c5a389ce45b6a3f4fb3d997` | 从落盘 queue 重放 batch；含 10 校证明路径/文件 SHA |
+| `coverage-report.txt` | 2,882 | `9f8c75d125ec531656e00dde74b124d7b855fc1d04d1cecb8d2ddc28e2990b83`（LF；blob `3626666...`） | 覆盖率命令、测试尾部与原始报表 |
+| `coverage-evidence.json` | 853 | `2d590e52d0e82066d7018e73c0cfbaa97366527066238e42cc2636f76de07ecb` | 覆盖率机器可读证据与换行绑定 |
+| `cli-recompute.log` | 1,852 | `b6c153f48e0633168cab508ec591d41ffbbf06f60449fd5c9105142b590d32ac` | 完整 CLI 成功日志与运行元数据 |
+| `cli-run.json` | 784 | `439594baefb33c60702c08acf4b21725a998bbd571aee718dafc889c6efb851f` | exit 0、84.973s、峰值 1.29GiB |
 | `protected-sha256.json` | 813 | `03e68433e45c60c532d48340b56aed727c59f280ba06c11404345c10c20c199f` | 五个保护适配器 SHA |
 
-批次重放验证：读取落盘 `queue.json`，用同一 `queue_sha256` 调 `select_batch`，扩目录/补字段的 ID、角色、理由和 next_step 均与 `batch.json` 一致；摘要重放被显式拒绝。机器可读结果见 `replay-check.json`。
+批次重放验证：读取落盘 `queue.json`，用同一 `queue_sha256` 和 `b001-node0-v4` 调 `select_batch`，7 扩目录 + 3 补字段的 ID、角色、理由、next_step 全部与 `batch.json` 一致；摘要重放被显式拒绝。机器可读结果见 `replay-check.json`（`replay_matches_batch=true`，`summary_rejected=true`）。
 
 ## H. 失败、边界与下一步
 
 - 未联网采集、未解析任何新原件、未采用任何方向、未发布 SQLite、未构建新包；本报告不得被当作目录或资格增长。
-- `effective_counts` 仍完整 `json.load` 大 admissions 并构造内存视图；只有 raw `stream_counts` 是流式。峰值内存本轮未测，不能说整套重算有界内存；这是扩规模前需补的实测限制。
-- 240 个扩目录形态单位缺可重放归属证据，已计数并排除，不是静默丢弃；若其中确为合法入口，需要 Codex 补证或后续结构化阻塞，本批不自行扩绑定。
-- 明确归为 `missing_trusted_entry` 的仍是 **河北建筑工程学院（688908263 / 10084）** 与 **复旦大学（368127 / 10246）**：覆盖文件写“尚未核准该单位的官方招生网站入口”，即使字符串里有网址也不当作已核准入口。
+- **526 个单位入口未通过真实原件重放**，其中 293 个单位根本没有入口证据字典；这些单位已写入队列和 `baseline.json`，不是静默丢弃。Codex 若确认其中某入口合法，需要补一份可重放的年度原件/归属声明；在补证前本批两池都不选。
+- 两个具名结构化阻塞：**阜阳师范大学 `688908731 / 10371`** 和 **同济大学 `368128 / 10247`**，原因均为 `no_exact_annual_document`（年度登记没有与入口证据 URL+SHA 完全一致的原件）。阜阳被广西大学顶替，同济被南京林业大学顶替；不是把未核验单位留在批次里。
+- `effective_counts` 非有界内存，实测峰值 1.29 GiB；不是“已验证有界”，扩规模前需改为分块/流式或明确上限。
 - `source_count` 与本地 `original_urls` 数量不同（如山东农业大学 1001 vs 40）；本地 40 条也可能含分页/导航变体，节点1 必须按最终原件对账。
-- 下一步（节点1）：对首批 10 校建立原件清单与目录全集对账；每校保留 `document_id / URL / 标题 / 年份 / SHA / 路径 / 状态`，失败按互斥主因分类。做完一批即报，不静默长跑。
+- 下一步（节点1，尚未开始）：对首批 10 校建立原件清单与目录全集对账；每校保留 `document_id / URL / 标题 / 年份 / SHA / 路径 / 状态`，失败按互斥主因分类。做完一批即报，不静默长跑；不碰任何完整资格标志。
 
 ## I. 发给 Codex 的节点简报
 
 ```text
-批次/节点/分支/base：b001 / 节点0 重交 / data/national-b001 / 67d5e24
-代码提交：基线生成 9b1c945（tracked_dirty=false）；分支 HEAD b69963d（仅测试/证据补强）
-实际处理：0/10 采集；931/931 队列已建立；首批 10 校入队（7 扩目录 + 3 补字段）
+批次/节点/分支/base：b001 / 节点0 R2 重交 / data/national-b001 / 67d5e24
+被审查 HEAD：598bb09
+R2 修复代码提交：256327e（生成时 tracked_dirty=false）；证据提交=本文件所在分支 HEAD
+实际处理：0/10 采集；931/931 队列已建立；首批 10 校入队（7 扩目录+3 补字段）
 三口径：raw 650 学费（378 年费/272 全程）、1,680 学制、645 可算全程
         effective-present 912（640/272）、1,942、907
         verified 912、1,942、907；完整资格 0；冲突暂停 0
-入口门禁：433 扩目录形态 → 193 entry_trusted，240 排除；missing_trusted_entry 2
-R1—R4：partial 缺口与 remaining_*、入口证据门禁、verified 逐条重放、完整 queue+SHA 重放均已实现
-测试：49 项通过；新增模块含分支覆盖 99%（359 语句/116 分支）
-产物：baseline.json d1c356f4…、queue.json 8cfdc263…（2,429,312 B）、
-      queue-summary.json d126d6b3…（replayable=false）、batch.json 9ebcc323…
+入口证明：931 个单位全部持久化 proof；verified 405 / rejected 526
+          reasons: no_entry_evidence 293、no_exact_annual_document 147、
+          unsupported_relation 45、unsupported_verification 20、
+          quote_not_in_original 19、ambiguous_saved_original 1、quote_host_mismatch 1
+扩目录池：433 → trusted 136 / untrusted 297
+R2：真实原件 URL+SHA、kind、单位身份、文件名绑定、文件字节 SHA、引文逐字出现、证明指纹全部通过才 entry_trusted；
+    扩目录池与补字段池都门禁；零 SHA/rejected/failed/删字段/换字节均 rejected；RED/GREEN 已补
+R1/R3/R4：未重做，数字与上一轮一致；queue SHA 不变，batch 按 v4 重算
+测试：70 项通过；分支覆盖 99%（527 语句/198 分支/3 部分）
+覆盖率绑定：coverage-report.txt SHA256(LF) 9f8c75d1…，git blob 3626666…；autocrlf 只影响 checkout
+CLI：exit 0，84.973s，峰值 1,384,775,680 B（约 1.29GiB）；PATH 需前置 Git mingw64/bin
+     成功日志 cli-recompute.log b6c153f4…，元数据 cli-run.json 439594ba…
+产物：baseline.json 95738851…、queue.json f19cfcf1…（3,113,334 B）、
+      queue-summary.json f5e8cf46…（replayable=false）、batch.json 9979acd0…（v4）、
+      replay-check.json 124b3926…（replay_matches_batch=true，summary_rejected=true）
 保护：五个 PDF 适配器 SHA 与 base 一致；未改采用数据/发布库/runtime/Key
-未解项：未采集/解析/采用/发布；effective 重算非有界内存；240 个入口待补证
+未解项：未采集/解析/采用/发布；526 个单位入口需补证；effective 重算非有界内存
 下一节点：节点1 首批 10 校原件与目录全集清单（不碰完整资格标志）
 ```
