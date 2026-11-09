@@ -19,6 +19,7 @@
 @media(max-width:560px){.ys-auth-modes>div{grid-template-columns:1fr}.ys-auth-option{padding:13px 14px}.ys-auth-option strong,.ys-auth-option small{font-size:14px}.ys-auth-option>span{display:flex;flex-wrap:wrap;column-gap:12px;row-gap:2px;align-items:baseline}.ys-auth-option small{margin-top:0}}
 .ys-tab-badge{display:inline-block;margin-left:6px;padding:1px 5px;border:1px solid var(--line);border-radius:999px;font-size:10px;font-weight:600;line-height:1.5;color:var(--muted);vertical-align:middle}
 .ys-settings-tabs button[aria-selected=true] .ys-tab-badge{border-color:var(--brand);color:var(--brand)}
+@media(max-width:420px){.ys-settings-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.ys-settings-tabs button{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 4px}.ys-settings-tabs .ys-tab-badge{margin-left:0}}
 .ys-delete-note{font-size:13px;line-height:1.6;color:var(--amber)}
 .ys-form-actions .ys-delete-button{padding:6px 2px}
 .ys-form-actions .ys-delete-button[data-settings-action="delete"]{color:var(--red);font-weight:600}

@@ -13,7 +13,7 @@ function ancestors(node,root){
 export function preserveSettingsInput(container,html,field){
  if(!field?.name||!container.contains(field))return false;
  const template=container.ownerDocument.createElement('template');template.innerHTML=html;
- const nextField=[...template.content.querySelectorAll('input,textarea,select')].find(node=>node.name===field.name);
+ const nextField=[...template.content.querySelectorAll('input,textarea,select')].find(node=>node.name===field.name&&(!['radio','checkbox'].includes(field.type)||node.type===field.type&&node.value===field.value));
  if(!nextField)return false;
  const current=ancestors(field,container),next=ancestors(nextField,template.content);
  if(current.length!==next.length||current.some((node,index)=>index&&node.nodeName!==next[index].nodeName))return false;

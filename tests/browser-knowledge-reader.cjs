@@ -84,6 +84,10 @@ async function run(){
   await page.locator('[data-agent-knowledge-segment="'+sid+'"]').click();await page.locator('.yk-focused-quote').waitFor();
   const params=new URLSearchParams((await page.evaluate(()=>location.hash)).split('?')[1]);assert.equal(params.get('entry_id'),id);assert.equal(params.get('segment_id'),sid);
   assert.equal(requests.filter(item=>item.path==='/api/knowledge/segment').at(-1).query.segment_id,sid);assert.match(await page.locator('.yk-focused-quote').innerText(),/第 21 页/);
+  await page.reload();await page.locator('.yk-focused-quote').waitFor();assert.match(await page.locator('.yk-focused-quote').innerText(),/第 21 页/);
+  await page.locator('[data-knowledge-segment="'+otherId+'"]').click();await page.locator('.yk-focused-quote').filter({hasText:'NEXT_POSITION_CANARY'}).waitFor();
+  assert.equal(new URLSearchParams((await page.evaluate(()=>location.hash)).split('?')[1]).get('segment_id'),otherId);
+  await page.reload();await page.locator('.yk-focused-quote').filter({hasText:'NEXT_POSITION_CANARY'}).waitFor();
   await page.goto(base+'/app#/knowledge?entry_id='+id+'&segment_id='+sid);await page.locator('.yk-focused-quote').waitFor();assert.match(await page.locator('.yk-focused-quote').innerText(),/第 21 页/);
  });
  await check('HTML originals have semantic positions without invented PDF anchors',async()=>{

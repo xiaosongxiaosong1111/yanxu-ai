@@ -18,13 +18,15 @@ const selected=(a,b)=>String(a??'')===String(b??'')?' selected':'';
 const qualitySections=[['accepted','可复用资料'],['pending','待核线索'],['excluded','已拦截'],['all','全部来源']];
 const qualityLabel=state=>qualitySections.find(([value])=>value===state)?.[1]||'待核线索';
 const qualityFilter=value=>qualitySections.some(([state])=>state===value)?value:'accepted';
-export function knowledgeLocation(filters={},page=1,detailId=''){
+const validSegment=value=>/^sg_[a-f0-9]{32}$/.test(text(value))?value:'';
+export function knowledgeLocation(filters={},page=1,detailId='',segmentId=''){
  const params=new URLSearchParams(),query=text(filters.q).trim();
  if(query)params.set('q',query);
  for(const key of ['status','year','unit_id'])if(text(filters[key]))params.set(key,text(filters[key]));
  const quality=qualityFilter(filters.quality);if(quality!=='accepted')params.set('quality',quality);
  if(Number.isInteger(page)&&page>1)params.set('page',String(page));
  if(text(detailId))params.set('entry_id',text(detailId));
+ if(text(detailId)&&validSegment(segmentId))params.set('segment_id',segmentId);
  return '#/knowledge'+(params.size?'?'+params.toString():'');
 }
 const hasFilters=filters=>['q','status','year','unit_id'].some(key=>!!filters?.[key]);
@@ -135,7 +137,7 @@ function loadStyle(document){
 export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSegmentId='',initialQuery='',initialQuality='accepted',initialStatus='',initialYear='',initialUnit='',initialPage=1}={}){
  const document=container.ownerDocument,view=document.defaultView;loadStyle(document);
  let disposed=false,listController,detailController,listGeneration=0,detailGeneration=0,hybridController,hybridGeneration=0,timer,composing=false,renderPending=false,returnPoint={scroll:0,id:''},detailPushed=false;
- let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:Math.max(1,Number(initialPage)||1),pageSize:12,filters:{q:text(initialQuery),status:text(initialStatus),year:text(initialYear),unit_id:text(initialUnit),quality:qualityFilter(initialQuality)},error:'',queryExpansion:null,detailId:text(initialEntryId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
+ let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:Math.max(1,Number(initialPage)||1),pageSize:12,filters:{q:text(initialQuery),status:text(initialStatus),year:text(initialYear),unit_id:text(initialUnit),quality:qualityFilter(initialQuality)},error:'',queryExpansion:null,detailId:text(initialEntryId),detailSegmentId:validSegment(initialSegmentId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
  let listEntryKnown=!text(initialEntryId);
  const render=()=>{
   if(disposed)return;
@@ -148,14 +150,14 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
   else if(focus?.quality)container.querySelector(`[data-knowledge-quality="${qualityFilter(focus.quality)}"]`)?.focus({preventScroll:true});
  };
  const syncUrl=({push=false}={})=>{
-  const target=knowledgeLocation(state.filters,state.page,state.detailId),history=view?.history;
+  const target=knowledgeLocation(state.filters,state.page,state.detailId,state.detailSegmentId),history=view?.history;
   if(!history||view?.location?.hash===target)return false;
-  try{if(push)history.pushState({ykKnowledgeDetail:text(state.detailId)||null},'',target);else history.replaceState(null,'',target);}catch{return false;}
+  try{if(push)history.pushState({ykKnowledgeDetail:text(state.detailId)||null},'',target);else history.replaceState(history.state,'',target);}catch{return false;}
   return true;
  };
  const restoreReturnPoint=()=>{view?.scrollTo?.(0,returnPoint.scroll);[...container.querySelectorAll('[data-knowledge-open]')].find(item=>item.dataset.knowledgeOpen===returnPoint.id)?.focus({preventScroll:true});};
- const readerControl=createKnowledgeReader({api,onChange:(reader,shouldRender)=>{state={...state,reader};if(shouldRender)render();},onEntryReload:async id=>{await openDetail(id,{remember:false,preserveReader:true});await loadList();}});
- const clearDetail=({sync=true}={})=>{detailGeneration++;detailController?.abort();readerControl.reset();detailPushed=false;state={...state,reader:{},detailId:'',detail:null,detailStatus:'none',detailError:''};if(sync)syncUrl();};
+ const readerControl=createKnowledgeReader({api,onChange:(reader,shouldRender)=>{state={...state,reader,...(state.detailStatus==='ready'?{detailSegmentId:reader.readStatus==='none'?'':validSegment(reader.readId||reader.read?.segment?.id)}:{})};if(state.detailStatus==='ready')syncUrl();if(shouldRender)render();},onEntryReload:async id=>{await openDetail(id,{remember:false,preserveReader:true});await loadList();}});
+ const clearDetail=({sync=true}={})=>{detailGeneration++;detailController?.abort();detailPushed=false;state={...state,reader:{},detailId:'',detailSegmentId:'',detail:null,detailStatus:'none',detailError:''};readerControl.reset();if(sync)syncUrl();};
  const clearHybrid=()=>{hybridGeneration++;hybridController?.abort();state={...state,hybrid:{status:'idle',result:null,error:'',query:''}};};
  async function hybridSearch(){
   if(disposed)return;const query=text(state.filters.q).trim();
@@ -188,15 +190,16 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
  async function openDetail(id,{remember=true,preserveReader=false,segmentId='',fromHistory=false}={}){
   if(remember)returnPoint={scroll:view?.scrollY||0,id};
   const push=!state.detailId&&!fromHistory;
+  const requestedSegment=validSegment(segmentId)||(preserveReader?state.detailSegmentId:id===initialEntryId?validSegment(initialSegmentId):'');
   detailController?.abort();detailController=new AbortController();const ticket=++detailGeneration;
-  if(!preserveReader)readerControl.reset();state={...state,reader:preserveReader?state.reader:{},detailId:id,detail:null,detailStatus:'loading',detailError:''};
+  state={...state,reader:preserveReader?state.reader:{},detailId:id,detailSegmentId:requestedSegment,detail:null,detailStatus:'loading',detailError:''};if(!preserveReader)readerControl.reset();
   if(!fromHistory){const navigated=syncUrl({push});if(push){detailPushed=navigated;listEntryKnown=true;}}
   render();
   try{
    const result=await api('/api/knowledge?'+new URLSearchParams({entry_id:id}),{signal:detailController.signal});
    if(disposed||ticket!==detailGeneration)return;
    const detail=object(result?.entry||result);if(detail.id!==id)throw new Error('返回的资料与当前选择不一致，请重新读取。');
-   state={...state,detail,detailStatus:'ready'};readerControl.open(detail);render();if(segmentId){readerControl.read(segmentId);}else if(initialSegmentId&&id===initialEntryId){readerControl.read(initialSegmentId);initialSegmentId='';}container.querySelector('#yk-reader-title')?.focus({preventScroll:true});container.querySelector('.yk-reader')?.scrollIntoView({block:'nearest',behavior:'auto'});
+   state={...state,detail,detailStatus:'ready'};readerControl.open(detail);render();if(requestedSegment)readerControl.read(requestedSegment);if(id===initialEntryId)initialSegmentId='';container.querySelector('#yk-reader-title')?.focus({preventScroll:true});container.querySelector('.yk-reader')?.scrollIntoView({block:'nearest',behavior:'auto'});
   }catch(error){if(disposed||ticket!==detailGeneration||error.name==='AbortError')return;state={...state,detailStatus:'error',detailError:error.message||'这份资料暂时无法读取。'};render();}
  }
  const closeDetailView=()=>{const rewoundFromHistory=view?.history?.state?.ykKnowledgeDetail===state.detailId;if((detailPushed||rewoundFromHistory)&&view?.history){detailPushed=false;view.history.back();return;}clearDetail();render();restoreReturnPoint();};
@@ -204,21 +207,21 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
   if(disposed)return;
   const hash=view?.location?.hash||'';
   if(!(hash==='#/knowledge'||hash.startsWith('#/knowledge?')))return;
-  const query=new URLSearchParams(hash.split('?')[1]||''),entryId=text(query.get('entry_id'));
+  const query=new URLSearchParams(hash.split('?')[1]||''),entryId=text(query.get('entry_id')),segmentId=validSegment(query.get('segment_id'));
   const filters={q:text(query.get('q')),status:text(query.get('status')),year:text(query.get('year')),unit_id:text(query.get('unit_id')),quality:qualityFilter(query.get('quality')||'accepted')};
   const page=Math.max(1,Number(query.get('page'))||1);
   const changed=JSON.stringify(filters)!==JSON.stringify(state.filters)||page!==state.page;
   state={...state,filters,page};
   if(!entryId){
    listEntryKnown=true;detailPushed=false;
-   if(state.detailId||state.detail){detailGeneration++;detailController?.abort();readerControl.reset();state={...state,reader:{},detailId:'',detail:null,detailStatus:'none',detailError:''};}
+   if(state.detailId||state.detail){detailGeneration++;detailController?.abort();state={...state,reader:{},detailId:'',detailSegmentId:'',detail:null,detailStatus:'none',detailError:''};readerControl.reset();}
    render();restoreReturnPoint();
    if(changed)loadList();
    return;
   }
-  if(entryId!==state.detailId){
+  if(entryId!==state.detailId||segmentId!==state.detailSegmentId){
    detailPushed=listEntryKnown&&view?.history?.state?.ykKnowledgeDetail===entryId;
-   openDetail(entryId,{remember:false,fromHistory:true});
+   openDetail(entryId,{remember:false,fromHistory:true,segmentId});
   }
   if(changed)loadList();
  };

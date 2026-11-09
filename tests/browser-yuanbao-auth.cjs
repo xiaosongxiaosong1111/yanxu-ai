@@ -12,7 +12,11 @@ const FIXTURE_YUANBAO_SECRET_KEY='YUANBAO-SECRET-BROWSER-FIXTURE';
 const FIXTURE_YUANBAO_API_KEY='YUANBAO-API-BROWSER-FIXTURE';
 const id=FIXTURE_YUANBAO_SECRET_ID,key=FIXTURE_YUANBAO_SECRET_KEY,apiKey=FIXTURE_YUANBAO_API_KEY;
 const mode=page=>page.locator('[name="auth_mode"]:checked').inputValue();
-const setMode=(page,value)=>page.locator(`[name="auth_mode"][value="${value}"]`).check();
+const setMode=async(page,value)=>{
+ await page.locator(`[name="auth_mode"][value="${value}"]`).check();
+ assert.deepEqual(await page.locator('[name="auth_mode"]').evaluateAll(rows=>rows.map(node=>node.value)),['standard','api_key']);
+ assert.equal(await mode(page),value);
+};
 let browser;
 async function fixture(savedYuanbao={},options={}){
  const page=await browser.newPage({viewport:{width:1440,height:1100}});page.setDefaultTimeout(6000);

@@ -133,3 +133,10 @@ test('knowledge location keeps filters, page and reader in the shareable hash wh
  assert.equal(knowledgeLocation({q:' 408 ',status:'official_original_read',year:'2027',unit_id:'u',quality:'pending'},3,'k_one'),'#/knowledge?q=408&status=official_original_read&year=2027&unit_id=u&quality=pending&page=3&entry_id=k_one');
  assert.equal(knowledgeLocation({q:'计算机',quality:'all'},1,''),'#/knowledge?q=%E8%AE%A1%E7%AE%97%E6%9C%BA&quality=all');
 });
+
+test('knowledge location preserves only a legal segment attached to an open entry',()=>{
+ const segment='sg_'+'b'.repeat(32);
+ assert.equal(knowledgeLocation({q:'408',year:'2027'},2,'k_one',segment),`#/knowledge?q=408&year=2027&page=2&entry_id=k_one&segment_id=${segment}`);
+ assert.equal(knowledgeLocation({},1,'',segment),'#/knowledge');
+ for(const value of ['../private','sg_bad','',null])assert.equal(knowledgeLocation({},1,'k_one',value),'#/knowledge?entry_id=k_one');
+});
