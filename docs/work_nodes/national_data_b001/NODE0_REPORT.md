@@ -4,7 +4,7 @@
 生成时间：2026-11-09（本机时区 UTC+8）
 执行者：Claude（数据）；独立验收：Codex
 审查对象：`data/national-b001`，base `67d5e24`；被审查 HEAD `598bb09`
-R2 修复代码提交：`256327e`（生成基线时 `tracked_dirty=false`）
+R2 门禁修复代码提交：`256327e`；生成提交（含 LF 绑定修复）：`52e99ff`（生成基线时 `tracked_dirty=false`）
 证据提交：包含本文件与全部产物的 `data/national-b001` 分支 HEAD（SHA 见交付消息；不把提交自身 SHA 写进提交内容）
 手册：[CLAUDE_NATIONAL_DATA_RUNBOOK](../../CLAUDE_NATIONAL_DATA_RUNBOOK.md)（已在本分支仓库内）
 
@@ -17,9 +17,9 @@ R2 修复代码提交：`256327e`（生成基线时 `tracked_dirty=false`）
 | 只有扩目录池有门禁 | 扩目录池与补字段池都要求 `entry_trusted`；补字段池新增 RED/GREEN（未核验入口不得入选） | `select_batch`；`test_backfill_pool_requires_a_trusted_entry` |
 | 文档：`then` 语法不存在 | E1 改为现有引擎语法：`when` 是守卫，后果字段与 `when` 同级，不再写 `then` | 本文件 E1；`grad_engine._condition` |
 | 文档：覆盖率证据不可绑定 | 覆盖率报表改为 LF 字节 + Git blob SHA-1 双绑定，并说明 `core.autocrlf` 的 512 字节差异来源 | `coverage-evidence.json`；`coverage-report.txt` 头部 |
-| 文档：HEAD 表述混用 | 全文区分“被审查 HEAD `598bb09`”“R2 修复/生成提交 `256327e`”“证据提交（本文件所在提交）” | 本文件头、A、I |
+| 文档：HEAD 表述混用 | 全文区分“被审查 HEAD `598bb09`”“R2 门禁提交 `256327e`”“生成提交 `52e99ff`”“证据提交（本文件所在提交）” | 本文件头、A、I |
 
-**未重做**：R1 部分覆盖、R3 verified 逐条重放、R4 queue→batch 重放、费用/学制逻辑均未改；三口径数字与上一轮完全一致。选择规则版本因补字段门禁升级为 `b001-node0-v4`，队列内容未变（queue SHA 不变）。
+**未重做**：R1 部分覆盖、R3 verified 逐条重放、R4 queue→batch 重放、费用/学制逻辑均未改；三口径数字与上一轮完全一致。选择规则版本因补字段门禁升级为 `b001-node0-v4`；队列内容未变，规范 LF 字节绑定后 queue SHA 为 `12dd9489…`（此前报告记录的是 Windows CRLF 工作字节 SHA `f19cfcf1…`，两者内容相同、换行不同）。
 
 ## A. 身份与隔离
 
@@ -27,8 +27,9 @@ R2 修复代码提交：`256327e`（生成基线时 `tracked_dirty=false`）
 | --- | --- |
 | 仓库 / 分支 / base SHA | `https://github.com/xiaosongxiaosong1111/yanxu-ai`，`data/national-b001`，`67d5e24` |
 | 被审查 HEAD | `598bb09`（Codex 验收不通过的提交） |
-| R2 修复代码提交 | `256327e`（`fix: gate backfill selection on replayed entry proof`） |
-| 生成时工作区 | `tracked_dirty=false`；`baseline.json.git.commit=256327e` |
+| R2 门禁修复代码提交 | `256327e`（`fix: gate backfill selection on replayed entry proof`） |
+| 生成提交 / LF 绑定修复 | `52e99ff`（`fix: write generated JSON with canonical LF bytes`） |
+| 生成时工作区 | `tracked_dirty=false`；`baseline.json.git.commit=52e99ff` |
 | 独立工作树 | `D:/yx-data-b001`（短路径；未复用 `E:/PythonSpace/yanxu-ai`，未碰 `D:/CodexRuntime`） |
 | 数据根 / 产物根 | `D:/yx-data-b001` / `D:/yx-data-b001/data/batch_runs/b001` |
 | 用户 runtime / Key | 未读取、未复制、未覆盖；本工作树没有 `data/runtime/` 发布库 |
@@ -86,7 +87,7 @@ R2 修复代码提交：`256327e`（生成基线时 `tracked_dirty=false`）
 
 ## C. 931 单位完整队列（可重放）与入口证明
 
-`queue.json` 是生成器原样输出，931 行，3,113,334 字节，SHA256 `f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd`。每行保留身份、原始与采用、入口证据与证明、三层计数、剩余缺口、`gaps/count_mismatch/effective_count_mismatch`。
+`queue.json` 是生成器原样输出，931 行，3,054,725 字节，SHA256 `12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba`（LF 规范字节，等于 Git blob）。每行保留身份、原始与采用、入口证据与证明、三层计数、剩余缺口、`gaps/count_mismatch/effective_count_mismatch`。
 
 每行新增持久化字段 `entry_verification`，由 `verify_entry` 产生：
 
@@ -266,10 +267,10 @@ $env:PATH = 'C:\Program Files\Git\mingw64\bin;' + $env:PATH
 ./.venv/Scripts/python.exe -X utf8 national_data_baseline.py --data-dir data --out data/batch_runs/b001 --repo-root . --raw-pdf "C:/Program Files/Git/mingw64/bin/pdftotext.exe" --bbox-pdf "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe"
 ```
 
-- 测试：**70 项通过**（上一轮 49 项）。先 RED 后 GREEN；R2 的新失败用例覆盖：零 SHA、`verification=rejected/failed`、删 SHA/URL、替换原件字节、错误单位、引文不在原件、来源 host 冒充、缺/多/未绑定原件、错误 document kind、被篡改的证明指纹、补字段池未核验入口。
+- 测试：**71 项通过**（上一轮 49 项）。先 RED 后 GREEN；R2 的新失败用例覆盖：零 SHA、`verification=rejected/failed`、删 SHA/URL、替换原件字节、错误单位、引文不在原件、来源 host 冒充、缺/多/未绑定原件、错误 document kind、被篡改的证明指纹、补字段池未核验入口；另含生成 JSON 必须写 LF 字节的回归，保证记录 SHA 与 Git blob 一致。
 - 含分支覆盖：**99%**，527 语句仅 5 行未执行，198 分支仅 3 个部分分支；缺失行 `219->221, 320-321, 335-336, 856`。
-- 覆盖率证据绑定：`coverage-report.txt` 以 LF 字节写入，SHA256(LF) `9f8c75d125ec531656e00dde74b124d7b855fc1d04d1cecb8d2ddc28e2990b83`，Git blob SHA-1 `36266660960c1a032fd7252583cb22b150bd3ea2`；`coverage-evidence.json` 同时记录两者。由于仓库 `core.autocrlf=true`，用编辑器另存或重新 checkout 可能变成 CRLF，导致文件 SHA256 与仓库内记录不同（512 字节差异来自换行数）；**以 Git blob 为准**，需要字节级核验时用 `git cat-file blob` 读取。
-- 完整公开包 CLI：`cli-recompute.log` 记录命令、PATH 前缀、stdout/stderr 与运行元数据；`cli-run.json` 机器可读。结果 **exit 0，84.973 秒，峰值工作集 1,384,775,680 字节（约 1.29 GiB）**，三口径与 10 校批次均与产物一致。
+- 覆盖率证据绑定：`coverage-report.txt` 以 LF 字节写入，SHA256(LF) `2c1d84bb4ab7f776d92066e4f62940e436bdbebd93f41e364ec2d467eec7409a`，Git blob SHA-1 `94afb7c97dd8be52e12c3c5b0b8eed87b3c876a6`；`coverage-evidence.json` 同时记录两者。由于仓库 `core.autocrlf=true`，用编辑器另存或重新 checkout 可能变成 CRLF，导致文件 SHA256 与仓库内记录不同；**以 Git blob 为准**，需要字节级核验时用 `git cat-file blob` 读取。
+- 完整公开包 CLI：`cli-recompute.log` 记录命令、PATH 前缀、stdout/stderr 与运行元数据；`cli-run.json` 机器可读。结果 **exit 0，84.381 秒，峰值工作集 1,384,763,392 字节（约 1.29 GiB）**，三口径与 10 校批次均与产物一致。
 - **资源边界（明确保留）**：`effective_counts` 仍完整 `json.load` 大 `admissions.json` 并构造内存视图，未做上限或分块；1.29 GiB 只是本机实测峰值，不能据此声称整套重算有界内存，也不能保证在更小内存环境一定成功。这是扩规模前必须解决的实测限制，Codex 可按此边界验收。
 - 本节点未运行全库测试（只改新增模块），未改五个保护文件、未改旧金标/阈值、未改采用数据。
 
@@ -283,23 +284,23 @@ $env:PATH = 'C:\Program Files\Git\mingw64\bin;' + $env:PATH
 | `data/units.json` | `91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb` |
 | `data/annual_registry_2027.json` | `06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40` |
 | `data/catalog_coverage_2027.csv` | `42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e` |
-| `national_data_baseline.py`（工作字节） | `6b3f0fafae63f9ccad774d9f921725910a537642785e9ed491207dd0d45e6230` |
-| `national_data_baseline.py`（Git blob `256327e:...`） | `38c8e685e9757e8a4f85ad356a345c4bfe1790eb`（SHA-1） |
+| `national_data_baseline.py`（工作字节） | `ce5c3fb130b8dc4075d6f01e0476860f7f00e014ba2aa1df8b5445d038035bb5` |
+| `national_data_baseline.py`（Git blob `52e99ff:...`） | `25d02145743e42f8270aa65ab456559d08311434`（SHA-1） |
 
 产物（`docs/work_nodes/national_data_b001/`）：
 
 | 文件 | 字节 | SHA256 | 说明 |
 | --- | ---: | --- | --- |
-| `baseline.json` | 5,841 | `95738851233fc8659d95456c3a98f10370c80e355f91ef3bfd74edb53c790616` | 三口径、输入/产物 SHA、入口池、证明状态与原因、缺口频次 |
-| `queue.json` | 3,113,334 | `f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd` | 生成器原样 931 行，含 `entry_verification`，可重放 |
-| `queue-summary.json` | 1,095,994 | `f5e8cf46a243b60a272637e74ba11c5e71d60ba5919591abd1508b0bd3080232` | 只读摘要，`replayable=false` |
-| `batch.json` | 56,308 | `9979acd022f16a8eb2ca839b5830af842ca8ddc57450f96a46b25a5d139d1cc2` | 7+3 首批；绑定 `queue_sha256` 与 `selection_rule_version=b001-node0-v4` |
-| `replay-check.json` | 9,096 | `124b39269796ec20cfccf0260395ad89b2a885141c5a389ce45b6a3f4fb3d997` | 从落盘 queue 重放 batch；含 10 校证明路径/文件 SHA |
-| `coverage-report.txt` | 2,882 | `9f8c75d125ec531656e00dde74b124d7b855fc1d04d1cecb8d2ddc28e2990b83`（LF；blob `3626666...`） | 覆盖率命令、测试尾部与原始报表 |
-| `coverage-evidence.json` | 853 | `2d590e52d0e82066d7018e73c0cfbaa97366527066238e42cc2636f76de07ecb` | 覆盖率机器可读证据与换行绑定 |
-| `cli-recompute.log` | 1,852 | `b6c153f48e0633168cab508ec591d41ffbbf06f60449fd5c9105142b590d32ac` | 完整 CLI 成功日志与运行元数据 |
-| `cli-run.json` | 784 | `439594baefb33c60702c08acf4b21725a998bbd571aee718dafc889c6efb851f` | exit 0、84.973s、峰值 1.29GiB |
-| `protected-sha256.json` | 813 | `03e68433e45c60c532d48340b56aed727c59f280ba06c11404345c10c20c199f` | 五个保护适配器 SHA |
+| `baseline.json` | 5,668 | `2698ea68be0083a45025eeda97c5bd8d072e1f52e557c9ff13e7ba349509afff` | 三口径、输入/产物 SHA、入口池、证明状态与原因、缺口频次 |
+| `queue.json` | 3,054,725 | `12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba` | 生成器原样 931 行，含 `entry_verification`，可重放 |
+| `queue-summary.json` | 1,063,480 | `b8ef0d34e9556bea9f469b1c19fbcde357a1fc084df30fd671089087152d388f` | 只读摘要，`replayable=false` |
+| `batch.json` | 55,556 | `d46809a40bdced7f35f4bccf6230370f9016b462e17f319af40089fa7141a3fb` | 7+3 首批；绑定 `queue_sha256` 与 `selection_rule_version=b001-node0-v4` |
+| `replay-check.json` | 8,898 | `871f3d159dbcdfdeca247ea5a520771bba5ef03caa5e97e122877ca5a40f7d06` | 从落盘 queue 重放 batch；含 10 校证明路径/文件 SHA |
+| `coverage-report.txt` | 2,882 | `2c1d84bb4ab7f776d92066e4f62940e436bdbebd93f41e364ec2d467eec7409a`（LF；blob `94afb7c9...`） | 覆盖率命令、测试尾部与原始报表 |
+| `coverage-evidence.json` | 834 | `be6d2d528e5ec82ba8d21dc747d5aeb4370b66e1fdcf86c9bb8cd668a879b6c3` | 覆盖率机器可读证据与换行绑定 |
+| `cli-recompute.log` | 1,846 | `18748e2e3ab2a7644913d0bbb02d0b798e5f6008c3eab671bb8240257eb443b3` | 完整 CLI 成功日志与运行元数据（LF） |
+| `cli-run.json` | 755 | `8223b62fa409924d34abf489487a9cf97694a7c55448c1c8f35661cff08e2411` | exit 0、84.381s、峰值 1.29GiB |
+| `protected-sha256.json` | 802 | `28ad3468bf2648d7678dd06d148a3dffe4b84f615621b2549f2a9c53f7c2b2dd` | 五个保护适配器 SHA（LF） |
 
 批次重放验证：读取落盘 `queue.json`，用同一 `queue_sha256` 和 `b001-node0-v4` 调 `select_batch`，7 扩目录 + 3 补字段的 ID、角色、理由、next_step 全部与 `batch.json` 一致；摘要重放被显式拒绝。机器可读结果见 `replay-check.json`（`replay_matches_batch=true`，`summary_rejected=true`）。
 
@@ -317,7 +318,7 @@ $env:PATH = 'C:\Program Files\Git\mingw64\bin;' + $env:PATH
 ```text
 批次/节点/分支/base：b001 / 节点0 R2 重交 / data/national-b001 / 67d5e24
 被审查 HEAD：598bb09
-R2 修复代码提交：256327e（生成时 tracked_dirty=false）；证据提交=本文件所在分支 HEAD
+R2 门禁提交：256327e；生成提交：52e99ff（生成时 tracked_dirty=false）；证据提交=本文件所在分支 HEAD
 实际处理：0/10 采集；931/931 队列已建立；首批 10 校入队（7 扩目录+3 补字段）
 三口径：raw 650 学费（378 年费/272 全程）、1,680 学制、645 可算全程
         effective-present 912（640/272）、1,942、907
@@ -329,14 +330,14 @@ R2 修复代码提交：256327e（生成时 tracked_dirty=false）；证据提�
 扩目录池：433 → trusted 136 / untrusted 297
 R2：真实原件 URL+SHA、kind、单位身份、文件名绑定、文件字节 SHA、引文逐字出现、证明指纹全部通过才 entry_trusted；
     扩目录池与补字段池都门禁；零 SHA/rejected/failed/删字段/换字节均 rejected；RED/GREEN 已补
-R1/R3/R4：未重做，数字与上一轮一致；queue SHA 不变，batch 按 v4 重算
-测试：70 项通过；分支覆盖 99%（527 语句/198 分支/3 部分）
-覆盖率绑定：coverage-report.txt SHA256(LF) 9f8c75d1…，git blob 3626666…；autocrlf 只影响 checkout
-CLI：exit 0，84.973s，峰值 1,384,775,680 B（约 1.29GiB）；PATH 需前置 Git mingw64/bin
-     成功日志 cli-recompute.log b6c153f4…，元数据 cli-run.json 439594ba…
-产物：baseline.json 95738851…、queue.json f19cfcf1…（3,113,334 B）、
-      queue-summary.json f5e8cf46…（replayable=false）、batch.json 9979acd0…（v4）、
-      replay-check.json 124b3926…（replay_matches_batch=true，summary_rejected=true）
+R1/R3/R4：未重做，数字与上一轮一致；队列内容未变，规范 LF 绑定后 queue SHA=12dd9489…，batch 按 v4 重算
+测试：71 项通过；分支覆盖 99%（527 语句/198 分支/3 部分）
+覆盖率绑定：coverage-report.txt SHA256(LF) 2c1d84bb…，git blob 94afb7c9…；autocrlf 只影响 checkout
+CLI：exit 0，84.381s，峰值 1,384,763,392 B（约 1.29GiB）；PATH 需前置 Git mingw64/bin
+     成功日志 cli-recompute.log 18748e2e…，元数据 cli-run.json 8223b62f…
+产物：baseline.json 2698ea68…、queue.json 12dd9489…（3,054,725 B）、
+      queue-summary.json b8ef0d34…（replayable=false）、batch.json d46809a4…（v4）、
+      replay-check.json 871f3d15…（replay_matches_batch=true，summary_rejected=true）
 保护：五个 PDF 适配器 SHA 与 base 一致；未改采用数据/发布库/runtime/Key
 未解项：未采集/解析/采用/发布；526 个单位入口需补证；effective 重算非有界内存
 下一节点：节点1 首批 10 校原件与目录全集清单（不碰完整资格标志）

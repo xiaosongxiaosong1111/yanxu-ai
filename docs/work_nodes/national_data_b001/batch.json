@@ -1,9 +1,9 @@
 {
   "batch_id": "b001",
-  "generated_at": "2026-11-09T20:28:58+0800",
+  "generated_at": "2026-11-09T20:35:26+0800",
   "selection_rule": "完整 queue 确定性排序；不手写学校名；重放必须使用同一 queue SHA",
   "selection_rule_version": "b001-node0-v4",
-  "queue_sha256": "f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd",
+  "queue_sha256": "12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba",
   "expansion": [
     {
       "unit_id": "368295",

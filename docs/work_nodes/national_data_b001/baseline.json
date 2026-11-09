@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-09T20:28:58+0800",
+  "generated_at": "2026-11-09T20:35:26+0800",
   "git": {
-    "commit": "256327e89bf817912a6dbfb32ee593d286d368cd",
+    "commit": "52e99ff95cabd951f452c78c1902e6193c365c64",
     "branch": "data/national-b001",
     "tracked_dirty": false
   },
-  "module_sha256": "6b3f0fafae63f9ccad774d9f921725910a537642785e9ed491207dd0d45e6230",
+  "module_sha256": "ce5c3fb130b8dc4075d6f01e0476860f7f00e014ba2aa1df8b5445d038035bb5",
   "inputs": {
     "admissions_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
     "units_sha256": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
@@ -13,9 +13,9 @@
     "coverage_csv_sha256": "42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e"
   },
   "artifacts": {
-    "queue.json": "f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd",
-    "queue-summary.json": "f5e8cf46a243b60a272637e74ba11c5e71d60ba5919591abd1508b0bd3080232",
-    "batch.json": "9979acd022f16a8eb2ca839b5830af842ca8ddc57450f96a46b25a5d139d1cc2"
+    "queue.json": "12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba",
+    "queue-summary.json": "b8ef0d34e9556bea9f469b1c19fbcde357a1fc084df30fd671089087152d388f",
+    "batch.json": "d46809a40bdced7f35f4bccf6230370f9016b462e17f319af40089fa7141a3fb"
   },
   "package": {
     "catalog_data_zip_sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
@@ -120,7 +120,7 @@
   },
   "queue": {
     "count": 931,
-    "sha256": "f19cfcf1d4c954532494740d9620dcc9a299cc61f88bb293046b64766d85b9dd",
+    "sha256": "12dd9489c2d55afcc1b38c65627ee956af41bd93be8eea458edeb5855ddc55ba",
     "replayable": true,
     "summary_path": "queue-summary.json",
     "summary_replayable": false

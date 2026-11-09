@@ -17,12 +17,12 @@
   ],
   "cwd": "D:\\yx-data-b001",
   "path_prefix": "C:\\Program Files\\Git\\mingw64\\bin",
-  "started_at": "2026-11-09T20:27:33+08:00",
-  "ended_at": "2026-11-09T20:28:58+08:00",
-  "wall_seconds": 84.973,
+  "started_at": "2026-11-09T20:34:03+08:00",
+  "ended_at": "2026-11-09T20:35:27+08:00",
+  "wall_seconds": 84.381,
   "exit_code": 0,
-  "peak_working_set_bytes": 1384775680,
-  "measured_worker_pid": 24032,
+  "peak_working_set_bytes": 1384763392,
+  "measured_worker_pid": 6272,
   "python": "3.13.9",
   "log_path": "docs/work_nodes/national_data_b001/cli-recompute.log"
 }
