@@ -90,6 +90,33 @@ test('server exam units and complete algorithm results do not depend on the six 
  assert.equal(catalogPageWindow([],0,2).page,1);
 });
 
+test('analysis preserves catalog hits for degree and study-mode search terms',()=>{
+ const professional={id:'p0',unit_name:'甲大学',name:'计算机技术',department:'计算机学院',study_mode:'非全日制',degree_type:'专业学位',subjects:[{code:'408',name:'计算机学科专业基础'}]};
+ const academic={...professional,id:'p1',study_mode:'全日制',degree_type:'学术学位'};
+ for(const query of ['非全日制','非全','专业学位','专硕','甲大学 专硕','甲大学 非全 408']){
+  assert.deepEqual([professional,academic].filter(program=>matchesCatalogQuery(program,query)).map(program=>program.id),['p0'],query);
+ }
+ assert.deepEqual([professional,academic].filter(program=>matchesCatalogQuery(program,'甲大学 学硕')).map(program=>program.id),['p1']);
+ assert.equal(matchesCatalogQuery(professional,'甲大学 学硕'),false);
+ assert.equal(matchesCatalogQuery(professional,'甲大学 专硕 数学'),false);
+ assert.equal(matchesCatalogQuery({...academic,name:'专硕改革试点'},'专硕'),true,'a synonym also retains the exact literal match');
+ const aliases=catalogAliasMap([{name:'甲大学',aliases:['甲大']}]);
+ assert.equal(matchesCatalogQuery(professional,'甲大 专硕',aliases),true);
+});
+
+test('continuing in Agent keeps the selected official material and reference year',async()=>{
+ const {sourceResearchSeed}=await import('../static/data.mjs');
+ assert.equal(typeof sourceResearchSeed,'function');
+ for(const [kind,label] of sourceKinds){
+  const seed=sourceResearchSeed({name:'甲大学'},kind,2027);
+  assert.equal(seed,`甲大学 2027年${label}${kind==='catalog'?' 考试科目':''}`);
+ }
+ assert.equal(sourceResearchSeed({name:'甲大学'},'fees',null),'甲大学 学费与学制');
+ assert.equal(sourceResearchSeed({name:'甲大学'},'fees','2027'),'甲大学 学费与学制');
+ assert.equal(sourceResearchSeed({name:'甲大学'},'made-up',2027),'甲大学 2027年招生目录 考试科目');
+ assert.equal(sourceResearchSeed(null,'transfer',2027),'');
+});
+
 test('real programs retain missing admission statistics and scoped subjects', () => {
   const value = {id:'real-1',unit_id:'367949',unit_name:'南开大学',year:2027,name:'计算机科学与技术',code:'081200',subjects:[{code:'408',name:'计算机学科专业基础',scope:'national',exam_unit:4}],tuition:null};
   const item = adaptProgram(value, [{unit_id:'367949',program_code:'081200',year:2026,kind:'program',total:330,evidence_status:'verified'}],null,[],2026);

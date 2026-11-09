@@ -4,13 +4,14 @@ import hashlib
 import json
 from pathlib import Path
 import tempfile
+import threading
 import unittest
 from unittest.mock import Mock
 
 from grad_engine import validate_profile
 from research_service import ResearchService
 from research_store import ResearchError
-from research_tools import ResearchTools, TOOLS, _document_scope
+from research_tools import LIMITS, ResearchTools, TOOLS, _document_scope
 from tests.test_research_service import FakeAdmission, FakeSettings
 
 
@@ -133,7 +134,7 @@ class KnowledgeAgentToolTests(unittest.TestCase):
         self.assertEqual(self.tools.infer_unit('测试大学 计算机 408'), '123')
         self.assertEqual(self.tools.infer_unit('他校计算机'), '456')
         self.assertEqual(self.tools.infer_unit('计算机 408'), '')
-        self.assertEqual(self.tools.infer_unit('测试大学 他校 计算机'), '123')
+        self.assertEqual(self.tools.infer_unit('测试大学 他校 计算机'), '')
         admission = FakeAdmission()
         admission.units = [{'id': '367929', 'name': '中国科学院大学', 'official_url': 'https://admission.ucas.ac.cn'},
                            {'id': '367930', 'name': '北京大学', 'official_url': ''},
@@ -145,6 +146,90 @@ class KnowledgeAgentToolTests(unittest.TestCase):
         self.assertEqual(tools.infer_unit('北京大学医学部 计算机'), '367931')
         self.assertEqual(tools.infer_unit('北京大学 计算机'), '367930')
         self.assertEqual(tools.infer_unit('甲大学 乙大学 计算机'), '')
+
+    def test_multiple_school_mentions_are_not_resolved_by_global_name_length(self):
+        admission = FakeAdmission()
+        admission.units = [
+            {'id': 'nankai', 'name': '南开大学'},
+            {'id': 'ucas', 'name': '中国科学院大学'},
+            {'id': 'pku', 'name': '北京大学'},
+            {'id': 'pku-med', 'name': '北京大学医学部'},
+        ]
+        tools = ResearchTools(admission, FakeSettings(), deepcopy(self.task), self.data,
+                              knowledge_store=CurrentKnowledge())
+        for query in ('南开大学和中国科学院大学计算机哪个好', '南开大学和国科大计算机比较',
+                      '北京大学医学部与北京大学比较', '北京大学和北京大学医学部哪个好'):
+            with self.subTest(query=query):
+                self.assertEqual(tools.infer_unit(query), '')
+        self.assertEqual(tools.infer_unit('北京大学医学部临床医学'), 'pku-med')
+        self.assertEqual(tools.infer_unit('国科大计算机，国科大软件工程'), 'ucas')
+
+    def cached_original_for_discovery(self, *, links=None, stop_event=None):
+        store = CurrentKnowledge()
+        store.entry = {**store.entry, 'url': 'https://grad.example.edu.cn/catalog.html',
+                       'extraction': {**store.entry['extraction'], 'format': 'html', 'page_kind': 'logical'}}
+        raw = b'<html><body>Offline official document fixture.</body></html>'
+        attachment = 'https://grad.example.edu.cn/2027-catalog.pdf'
+        fetcher = Mock(return_value={
+            'url': store.entry['url'], 'raw': raw, 'sha256': hashlib.sha256(raw).hexdigest(),
+            'attribution_status': 'verified', 'checked_at': '2026-11-09',
+            'document_title': '2027年硕士研究生招生专业目录',
+            'document_heading': '2027年硕士研究生招生专业目录',
+            'text': '2027年硕士研究生招生专业目录\n081200计算机，初试科目101、201、301、408。',
+            'pages': [], 'links': [{'url': attachment, 'label': '2027年硕士研究生招生专业目录附件'}],
+        })
+        tools = ResearchTools(FakeAdmission(), FakeSettings(), deepcopy(self.task), self.data,
+                              knowledge_store=store, source_fetcher=fetcher, stop_event=stop_event)
+        source = {'url': store.entry['url'], 'title': '2027招生目录', 'unit_id': '123',
+                  'year': None, 'status': 'search_lead', 'excerpt': '搜索线索'}
+        if links is not None:
+            source = {**source, 'links': deepcopy(links)}
+        source_id = tools._source(source)
+        tools._save_source(source_id)
+        return tools, source_id, fetcher, attachment
+
+    def test_cached_original_with_unknown_links_is_refreshed_once_for_discovery(self):
+        tools, source_id, fetcher, attachment = self.cached_original_for_discovery()
+        result = tools.discover_links({'source_id': source_id, 'unit_id': '123'})
+        self.assertEqual(result['request_count'], 1)
+        self.assertEqual([row['url'] for row in result['links']], [attachment])
+        self.assertEqual(fetcher.call_count, 1)
+        repeated = tools.discover_links({'source_id': source_id, 'unit_id': '123'})
+        self.assertEqual(repeated['request_count'], 0)
+        self.assertEqual(fetcher.call_count, 1)
+
+    def test_cached_original_with_known_empty_or_saved_links_does_not_refetch(self):
+        saved_links = [{'url': 'https://grad.example.edu.cn/2027-catalog.pdf', 'title': '招生目录附件'}]
+        for links in ([], saved_links):
+            with self.subTest(links=links):
+                tools, source_id, fetcher, _ = self.cached_original_for_discovery(links=links)
+                result = tools.discover_links({'source_id': source_id, 'unit_id': '123'})
+                self.assertEqual(result['request_count'], 0)
+                self.assertEqual([row['url'] for row in result['links']], [row['url'] for row in links])
+                fetcher.assert_not_called()
+
+    def test_cached_original_discovery_refresh_keeps_budget_scope_and_cancel_checks(self):
+        for budget in ('documents', 'navigation_fetches'):
+            with self.subTest(budget=budget):
+                tools, source_id, fetcher, _ = self.cached_original_for_discovery()
+                tools.usage[budget] = LIMITS['max_' + budget]
+                with self.assertRaises(ResearchError) as caught:
+                    tools.discover_links({'source_id': source_id, 'unit_id': '123'})
+                self.assertEqual(caught.exception.code, 'research_budget_exceeded')
+                fetcher.assert_not_called()
+        stop = threading.Event()
+        tools, source_id, fetcher, _ = self.cached_original_for_discovery(stop_event=stop)
+        stop.set()
+        with self.assertRaises(ResearchError) as caught:
+            tools.discover_links({'source_id': source_id, 'unit_id': '123'})
+        self.assertEqual(caught.exception.code, 'cancelled')
+        fetcher.assert_not_called()
+        tools, source_id, fetcher, _ = self.cached_original_for_discovery()
+        tools.task = {**tools.task, 'unit_ids': ['456']}
+        with self.assertRaises(ResearchError) as caught:
+            tools.discover_links({'source_id': source_id, 'unit_id': '123'})
+        self.assertEqual(caught.exception.code, 'outside_research_scope')
+        fetcher.assert_not_called()
 
     def test_unusable_and_forged_entries_are_not_discovered(self):
         cases = [{'validity': 'revoked'}, {'validity': 'conflict'}, {'validity': 'superseded'},

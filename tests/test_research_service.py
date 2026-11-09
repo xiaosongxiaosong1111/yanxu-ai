@@ -120,6 +120,23 @@ class ResearchServiceTests(unittest.TestCase):
         service._reuse_knowledge(task['id'],tools)
         tools.search_knowledge.assert_called_once_with({'query':'计算机','unit_id':'367929'})
 
+    def test_system_prefetch_keeps_multi_school_comparisons_ambiguous(self):
+        from research_tools import ResearchTools
+        service, _, _ = self.make(enabled=False)
+        admission = FakeAdmission()
+        admission.units = [{'id': 'nankai', 'name': '南开大学'},
+                           {'id': 'ucas', 'name': '中国科学院大学'}]
+        service.admission = admission
+        for query, selected in (('南开大学和中国科学院大学计算机哪个好', []),
+                                ('南开大学和国科大计算机比较', []),
+                                ('南开大学和国科大计算机比较', ['nankai'])):
+            with self.subTest(query=query, selected=selected):
+                task = service.create({'query': query, 'unit_ids': selected})
+                tools = ResearchTools(admission, FakeSettings(), task, self.data)
+                tools.search_knowledge = Mock(return_value={'results': []})
+                service._reuse_knowledge(task['id'], tools)
+                tools.search_knowledge.assert_called_once_with({'query': '计算机'})
+
     def test_continue_after_configuration_preserves_query(self):
         service,_,settings=self.make([{'role':'assistant','content':'请补充意向地区。','tool_calls':[]}],enabled=False)
         task=service.create({'query':'考计算机'});settings.enabled=True

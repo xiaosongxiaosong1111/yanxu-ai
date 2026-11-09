@@ -115,10 +115,13 @@ def _checked_domain(row):
 def _checked_row(row):
     if not isinstance(row, dict) or not isinstance(row.get('name'), str) or not row['name'].strip():
         return None
-    domains = tuple(value for value in (_checked_domain(item) for item in row.get('domains') or []) if value)
+    domain_rows, alias_rows = row.get('domains'), row.get('aliases', ())
+    if not isinstance(domain_rows, (list, tuple)) or not isinstance(alias_rows, (list, tuple)):
+        return None
+    domains = tuple(value for value in (_checked_domain(item) for item in domain_rows) if value)
     if not domains:
         return None
-    aliases = tuple(value.strip() for value in row.get('aliases') or []
+    aliases = tuple(value.strip() for value in alias_rows
                     if isinstance(value, str) and 1 < len(value.strip()) <= 20)
     unit_code = row.get('unit_code')
     return {'name': row['name'].strip()[:80], 'aliases': aliases[:8],

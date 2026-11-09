@@ -286,6 +286,7 @@ node tests/browser-agent-ime.cjs
 node tests/browser-knowledge.cjs
 node tests/browser-knowledge-hybrid.cjs
 node tests/browser-agent-decisions.cjs
+node tests/browser-catalog-review.cjs
 ```
 
 `coverage`与Playwright为测试依赖，不是应用运行时依赖。浏览器脚本优先读取已安装的`playwright`；可用`FORMAL_PLAYWRIGHT_PATH`指定模块路径，`FORMAL_BROWSER_PATH`指定可执行文件，或用`FORMAL_BROWSER_CHANNEL`选择本机Edge等浏览器。本开发机保留已有安装路径作为回退。迁移机器需准备对应浏览器环境，不能把未运行的浏览器测试视为通过。`FORMAL_FILTER`仅用于故障定位；最终验收须不设置该过滤器。

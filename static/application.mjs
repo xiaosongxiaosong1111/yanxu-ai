@@ -1,4 +1,4 @@
-import { api,adaptProgram,matchingRules,historicalFacts,defaultProfile,defaultPreferences,restoreClientState,subjectIdentity,safeHttpUrl,createCatalogClient,catalogPageWindow,declaredExamUnits,matchesCatalogQuery,annualUnitOptionLabel,annualUnitCount,catalogAliasMap,inferCatalogUnit,sourceKinds,sourceKindLabel } from './data.mjs';
+import { api,adaptProgram,matchingRules,historicalFacts,defaultProfile,defaultPreferences,restoreClientState,subjectIdentity,safeHttpUrl,createCatalogClient,catalogPageWindow,declaredExamUnits,matchesCatalogQuery,annualUnitOptionLabel,annualUnitCount,catalogAliasMap,inferCatalogUnit,sourceKinds,sourceKindLabel,sourceResearchSeed } from './data.mjs';
 import { toggleSaved,toggleCompare,latestLine } from './model.mjs';
 import { renderDetail,renderComparison,renderReasons,escapeHtml as esc } from './details.mjs';
 import { parseRoute,paginate,nextTabIndex } from './view-state.mjs';
@@ -235,7 +235,7 @@ async function runHistoricalMatch(form){
 const sourceHost=value=>{try{return new URL(value).hostname}catch{return ''}};
 const sourceStageHints={binding_missing:'该校尚未登记可信官网域名；这不代表官网没有资料。',attribution_unverified:'发现疑似官方页面，但域名归属尚未确认，不能作为报考依据。',third_party_only:'本次只有第三方线索，不能作为报考依据。',domain_mismatch:'检索到的页面不在已登记官方域名内，未当作该校资料。',index_no_hit:'已登记官方域名内本次没有可展示来源，不代表资料不存在。'};
 function registeredOfficialLinks(){const unit=selectedUnit(),urls=[...(Array.isArray(unit?.official_urls)?unit.official_urls:[]).map(item=>typeof item==='string'?item:item?.url),unit?.official_url].map(safeHttpUrl).filter(Boolean);return [...new Set(urls)].slice(0,4);}
-function seedResearch(){const unit=selectedUnit();researchSeed=unit?.name?unit.name+' 招生目录 考试科目':'';closeDialog(document,'info-dialog');navigate('/research');}
+function seedResearch(){researchSeed=sourceResearchSeed(selectedUnit(),state.preferences.sourceKind,referenceYear());closeDialog(document,'info-dialog');navigate('/research');}
 async function runSourceSearch(button,scope='official'){
  if(!state.preferences.unit_id)return;
  const kind=state.preferences.sourceKind||'catalog',kindLabel=sourceKindLabel(kind);

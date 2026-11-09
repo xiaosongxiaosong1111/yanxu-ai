@@ -5,6 +5,7 @@ import tempfile
 import threading
 import unittest
 from unittest.mock import Mock
+from urllib.parse import urlencode
 
 from server import create_server
 from service import AdmissionService, ServiceError
@@ -121,12 +122,50 @@ class KnowledgeHTTPTests(unittest.TestCase):
         self.assertIn('只是检索词变化', expansion['notice'])
         self.knowledge.calls.clear()
         self.request('/api/knowledge?q=%E5%9B%BD%E7%A7%91%E5%A4%A7&page=2')
-        self.assertEqual([call[1]['query'] for call in self.knowledge.calls], ['国科大'])
+        self.assertEqual([call[1]['query'] for call in self.knowledge.calls], ['国科大', '中国科学院大学'])
         self.knowledge.calls.clear()
         self.knowledge.search = search
         self.request('/api/knowledge?q=408')
         self.assertEqual([call[1]['query'] for call in self.knowledge.calls], ['408'])
         self.assertEqual(self.knowledge.calls[0][1]['quality'], 'accepted')
+
+    def test_alias_pages_keep_the_same_query_scope_total_and_expansion(self):
+        def search(**query):
+            self.knowledge.calls.append(('search', query))
+            hit = (query['query'] == '中国科学院大学' and query['unit_id'] == 'ucas'
+                   and query['year'] == 2027 and query['status'] == 'published_snapshot'
+                   and query['quality'] == 'accepted')
+            rows = [{'id': 'k_' + str(index)} for index in range(13)] if hit else []
+            start = (query['page'] - 1) * query['page_size']
+            return {'entries': rows[start:start + query['page_size']], 'total': len(rows),
+                    'page': query['page'], 'page_size': query['page_size']}
+        self.knowledge.search = search
+        filters = {'q': '国科大', 'unit_id': 'ucas', 'year': 2027, 'status': 'published_snapshot',
+                   'quality': 'accepted', 'page_size': 12}
+        # Direct page-2 navigation works before there is any prior request/session.
+        for page, ids in ((2, ['k_12']), (1, ['k_' + str(index) for index in range(12)]), (3, [])):
+            with self.subTest(page=page):
+                status, response = self.request('/api/knowledge?' + urlencode({**filters, 'page': page}))
+                self.assertEqual(status, 200)
+                result = response['data']
+                self.assertEqual(result['total'], 13)
+                self.assertEqual([row['id'] for row in result['entries']], ids)
+                self.assertEqual(result['query_expansion']['requested'], '国科大')
+                self.assertEqual(result['query_expansion']['effective'], '中国科学院大学')
+                self.assertEqual(self.knowledge.calls[-1][1], {
+                    'query': '中国科学院大学', 'unit_id': 'ucas', 'year': 2027,
+                    'status': 'published_snapshot', 'quality': 'accepted', 'page': page, 'page_size': 12})
+        for changed in ({'year': 2026}, {'unit_id': 'other'}):
+            status, response = self.request('/api/knowledge?' + urlencode({**filters, **changed, 'page': 2}))
+            self.assertEqual(status, 200)
+            self.assertEqual(response['data']['total'], 0)
+
+    def test_alias_with_original_query_hits_is_not_expanded_on_later_pages(self):
+        self.knowledge.search = Mock(return_value={'entries': [], 'total': 13, 'page': 2, 'page_size': 12})
+        result = self.service.knowledge_get(q='国科大', page=2)
+        self.assertEqual(self.knowledge.search.call_count, 1)
+        self.assertEqual(self.knowledge.search.call_args.kwargs['query'], '国科大')
+        self.assertNotIn('query_expansion', result)
 
     def test_missing_entries_and_read_only_method_are_explicit(self):
         self.assertEqual(self.request('/api/knowledge?entry_id=missing')[0], 404)

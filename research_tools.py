@@ -297,26 +297,23 @@ class ResearchTools:
     def infer_unit(self,query):
         """Return the one catalog unit named in the query, or '' when unclear.
 
-        The system knowledge prefetch used to keep only the subject keyword
-        (计算机), so a question about 国科大 could be answered with other
-        schools' cached material. Only exact registered names and reviewed
-        aliases count; nested names keep the longest match (北京大学医学部
-        before 北京大学), and two units at the same length stay ambiguous so
-        the prefetch is never silently narrowed to the wrong school.
+        A longer name only shadows names inside the same mention, such as
+        北京大学 inside 北京大学医学部. Separate school mentions remain ambiguous.
         """
         value=unit_bindings.normalize_name(query)
         if not value:return ''
-        matches={}
+        matches=set()
         for unit in self.units.values():
             names=[unit_bindings.normalize_name(unit.get('name'))]
             names.extend(unit_bindings.normalize_name(alias) for alias in unit.get('aliases') or ())
             for name in names:
-                if name and name in value:
-                    matches[unit['id']]=max(len(name),matches.get(unit['id'],0))
-        if not matches:return ''
-        longest=max(matches.values())
-        winners=[identifier for identifier,length in matches.items() if length==longest]
-        return winners[0] if len(winners)==1 else ''
+                if name:
+                    matches.update((unit['id'],match.start(),match.end())
+                                   for match in re.finditer(re.escape(name),value))
+        winners={identifier for identifier,start,end in matches if not any(
+            left<=start and end<=right and (left<start or end<right)
+            for _,left,right in matches)}
+        return next(iter(winners)) if len(winners)==1 else ''
 
     def find_units(self,args):
         _object(args,('query','province'));raw=text(args.get('query',''),120,True)
@@ -675,7 +672,8 @@ class ResearchTools:
         metadata={key:deepcopy(record[key]) for key in (*_SOURCE_METADATA,'excerpt') if key in record and key!='id'}
         reusable=_reusable_knowledge(record)
         if reusable:self.cache_hits.add(record['id'])
-        return _public_source({**metadata,'id':source['id'],'links':source.get('links',[]),
+        return _public_source({**metadata,'id':source['id'],
+            **({'links':deepcopy(source['links'])} if 'links' in source else {}),
             'requested_year':source.get('requested_year',record.get('requested_year')),
             'source_type':'knowledge_cache','knowledge_reused':True,'cache_hit':reusable,'cached_at':record.get('checked_at'),
             'notice':'本次发现的链接对应既有留档，采用留档的实际年度、摘录与原读取日期；未重新读取原文，招生字段仍须审校。'})

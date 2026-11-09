@@ -14,7 +14,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 import official_search
 import unit_bindings
 from official_search import http_url as _http_url
-from public_sources import official_roots
+from public_sources import official_roots, official_source_url
 
 from service_verification import SourceVerifier
 from snapshot_cache import SnapshotCache
@@ -388,8 +388,7 @@ class AdmissionService:
         # already saved. Only retry with an evidence-backed alias when the
         # original query was empty; this never widens to a different school.
         expanded = unit_bindings.expand_query(q)
-        if (not result.get('total') and expanded != q and len(expanded) <= 240
-                and pagination['page'] == 1):
+        if not result.get('total') and expanded != q and len(expanded) <= 240:
             retried = self._extension_call('knowledge', 'search', query=expanded, status=status, year=year,
                                            unit_id=unit_id, quality=quality, **pagination)
             if retried.get('total'):
@@ -911,9 +910,7 @@ class AdmissionService:
             return self._search_response(Request(url, raw, headers=headers, method='POST'))
 
         def is_official(url):
-            parsed = _http_url(url)
-            host = parsed.hostname.lower().rstrip('.') if parsed else ''
-            return bool(host) and official_search.host_matches(host, ('yz.chsi.com.cn', *roots))
+            return official_source_url(url, unit)
 
         binding_missing = not roots
         result = official_search.run_ladder(

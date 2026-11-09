@@ -2,6 +2,12 @@ export const defaultProfile = { target_year:2028, reference_year:2027, education
 export const defaultPreferences = { query:'', unit_id:'', priority:'balanced', examCount:4, sourceKind:'catalog' };
 export const sourceKinds = [['catalog','招生目录'],['charter','招生章程'],['score','复试分数线'],['retest','复试办法'],['transfer','调剂办法'],['fees','学费与学制'],['enrollment','招生计划'],['change','科目调整']];
 export const sourceKindLabel = value => (sourceKinds.find(([key])=>key===value)||sourceKinds[0])[1];
+export function sourceResearchSeed(unit,kind='catalog',year=null) {
+  if(typeof unit?.name!=='string'||!unit.name.trim())return '';
+  const selected=sourceKinds.some(([value])=>value===kind)?kind:'catalog';
+  const annual=Number.isInteger(year)&&year>=2000&&year<=2100?`${year}年`:'';
+  return `${unit.name.trim()} ${annual}${sourceKindLabel(selected)}${selected==='catalog'?' 考试科目':''}`;
+}
 const record = value => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
 const text = value => typeof value === 'string' ? value : '';
 export const subjectIdentity = subject => [subject.scope || '',subject.code || '',subject.exam_unit || ''].join('|');
@@ -52,8 +58,10 @@ export function expandCatalogQuery(query,aliases=new Map()) {
 }
 export function matchesCatalogQuery(program,query='',aliases=new Map()) {
   const needles=expandCatalogQuery(query,aliases).toLowerCase().split(/\s+/).filter(Boolean);if(!needles.length)return true;
-  const haystack=['unit_name','department','code','name','direction','province','campus'].map(field=>String(program?.[field]||'')).join(' ').toLowerCase()+' '+(Array.isArray(program?.subjects)?program.subjects:[]).map(subject=>[subject?.code,subject?.name].join(' ')).join(' ').toLowerCase();
-  return needles.every(needle=>haystack.includes(needle));
+  // Keep fields and literal-or-synonym terms aligned with CatalogIndex search.
+  const synonyms={'专硕':'专业学位','学硕':'学术学位','非全':'非全日制'};
+  const haystack=['unit_name','department','code','name','direction','province','campus','study_mode','degree_type'].map(field=>String(program?.[field]||'')).join(' ').toLowerCase()+' '+(Array.isArray(program?.subjects)?program.subjects:[]).map(subject=>[subject?.code,subject?.name].join(' ')).join(' ').toLowerCase();
+  return needles.every(needle=>haystack.includes(needle)||(Object.hasOwn(synonyms,needle)&&haystack.includes(synonyms[needle])));
 }
 // Pick a school only when the query clearly names one. An exact token wins over
 // a name prefix; within the same kind the longest name wins; a tie leaves the

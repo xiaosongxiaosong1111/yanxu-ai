@@ -42,6 +42,61 @@ class DiscoveryAdmission(FakeAdmission):
 
 
 class LadderTests(unittest.TestCase):
+    def test_later_empty_responses_preserve_prior_rejections_and_malformed_items(self):
+        responses = iter([
+            _pages(_page('转载', 'https://unrelated.example/info'),
+                   _page('非法链接', 'javascript:alert(1)')),
+            _pages(),
+            _pages(),
+        ])
+        result = official_search.run_ladder(
+            lambda body: next(responses), queries=['q', 'wider'],
+            is_official=lambda url: False, site='a.edu.cn')
+        self.assertEqual(result['request_count'], 3)
+        self.assertEqual((result['rejected_count'], result['malformed_count']), (1, 1))
+        self.assertEqual(official_search.failure_stage([], [], [], result['rejected_count'], False),
+                         'domain_mismatch')
+
+    def test_unselected_site_fallback_and_rewrite_are_both_counted(self):
+        responses = iter([
+            _pages(_page('第一份转载', 'https://unrelated.example/info')),
+            _pages(_page('重复转载', 'https://unrelated.example/info'), 'not-json'),
+            _pages(_page('官方目录', 'https://grad.a.edu.cn/catalog')),
+        ])
+        result = official_search.run_ladder(
+            lambda body: next(responses), queries=['q', 'wider'], site='a.edu.cn',
+            is_official=lambda url: url.startswith('https://grad.a.edu.cn/'))
+        self.assertFalse(result['site_fallback'])
+        self.assertEqual(result['request_count'], 3)
+        self.assertEqual((result['rejected_count'], result['malformed_count']), (2, 1))
+        self.assertEqual([row['url'] for row in result['official_results']],
+                         ['https://grad.a.edu.cn/catalog'])
+
+    def test_dedicated_third_party_query_adds_its_counts_once(self):
+        responses = iter([
+            _pages(_page('转载', 'https://unrelated.example/info'), 'not-json'),
+            _pages(_page('重复转载', 'https://unrelated.example/info')),
+            _pages(_page('目录', 'https://grad.a.edu.cn/catalog')),
+            _pages(_page('经验', 'https://www.offcn.com/guide'),
+                   _page('其他页面', 'https://another.example/info'), 'not-json'),
+        ])
+        result = official_search.run_ladder(
+            lambda body: next(responses), queries=['q', 'wider'], site='a.edu.cn',
+            is_official=lambda url: url.startswith('https://grad.a.edu.cn/'),
+            include_third=True, third_query='guide')
+        self.assertEqual(result['request_count'], 4)
+        self.assertEqual((result['rejected_count'], result['malformed_count']), (3, 2))
+        self.assertEqual([row['url'] for row in result['third_results']],
+                         ['https://www.offcn.com/guide'])
+
+    def test_collecting_third_party_rows_does_not_double_count_rejections(self):
+        result = official_search.run_ladder(
+            lambda body: _pages(_page('经验', 'https://www.offcn.com/guide'), 'not-json'),
+            queries=['q'], is_official=lambda url: False, collect_third=True)
+        self.assertEqual(result['request_count'], 1)
+        self.assertEqual((result['rejected_count'], result['malformed_count']), (1, 1))
+        self.assertEqual(len(result['third_results']), 1)
+
     def test_site_filter_falls_back_once_and_counts_real_requests(self):
         bodies, calls = [], []
 
@@ -103,6 +158,24 @@ class LadderTests(unittest.TestCase):
 
 
 class BindingTests(unittest.TestCase):
+    def test_malformed_collection_rows_do_not_discard_valid_overlay_neighbors(self):
+        for field in ('domains', 'aliases'):
+            for invalid in (12, 'invalid', {'invalid': 'shape'}, None):
+                with self.subTest(field=field, invalid=invalid), tempfile.TemporaryDirectory() as temp:
+                    path = Path(temp) / 'official_bindings.json'
+                    valid = {'name': '前方有效大学', 'aliases': ['前方大学'], 'domains': [
+                        {'url': 'https://zs.test.edu.cn/', 'evidence': 'https://www.test.edu.cn/'}]}
+                    malformed = {**valid, 'name': '错误大学', field: invalid}
+                    following = {**valid, 'name': '后方有效大学', 'aliases': ['后方大学']}
+                    path.write_text(json.dumps({'units': [valid, malformed, following]},
+                                               ensure_ascii=False), encoding='utf-8')
+                    names = [row['name'] for row in unit_bindings.rows(path)]
+                    self.assertIn('前方有效大学', names)
+                    self.assertIn('后方有效大学', names)
+                    self.assertNotIn('错误大学', names)
+                    self.assertEqual(unit_bindings.resolve_query('后方大学', path)['canonical'],
+                                     '后方有效大学')
+
     def test_reviewed_binding_covers_both_registered_domains(self):
         unit = unit_bindings.enrich({'id': 'ucas', 'name': '中国科学院大学', 'official_url': ''})
         self.assertEqual(official_roots(unit), ('ucas.edu.cn', 'ucas.ac.cn'))

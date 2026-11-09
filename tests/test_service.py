@@ -596,6 +596,31 @@ class ServiceTests(unittest.TestCase):
                 self.assertEqual([row['url'] for row in result['results']], [page_url])
                 self.assertEqual(result['results'][0]['source_tier'], 'official')
 
+    def test_page_search_obeys_the_same_school_attribution_as_the_agent(self):
+        self.registry['units'][0]['unit_code'] = '10001'
+        self.write()
+        fixture_key = 'test-key'
+        self.service._search_config = lambda: {'provider': 'yuanbao', 'auth_mode': 'api_key',
+                                               'api_key': fixture_key}
+        cases = [
+            ('https://yz.chsi.com.cn/sch/showYzZyjs--schId-456.dhtml', False),
+            ('https://yz.chsi.com.cn/sch?schId=456', False),
+            ('https://yz.chsi.com.cn/sch?schCode=10002', False),
+            ('https://other.yz.chsi.com.cn/sch?schId=123', False),
+            ('https://yz.chsi.com.cn/sch/showYzZyjs--schId-123.dhtml', True),
+            ('https://yz.chsi.com.cn/sch?schCode=10001', True),
+            ('https://grad.a.edu.cn/catalog', True),
+        ]
+        for url, accepted in cases:
+            with self.subTest(url=url):
+                self.service._search_response = Mock(return_value={
+                    'Pages': [{'title': '招生目录', 'url': url}], 'RequestId': 'offline-fixture'})
+                result = self.service.search({'unit_id': '123', 'year': 2027, 'kind': 'catalog'})
+                official = [row['url'] for row in result['results'] if row['source_tier'] == 'official']
+                self.assertEqual(official, [url] if accepted else [])
+                self.assertEqual(result['failure_stage'], 'official_found' if accepted else 'domain_mismatch')
+                self.assertEqual(result['request_count'], 1 if accepted else 3)
+
     def test_search_retries_without_site_when_the_site_filter_is_empty(self):
         bodies, responses = [], [
             {'Response': {'RequestId': 'req-empty', 'Query': '公开查询', 'Version': 'standard'}},
@@ -633,7 +658,7 @@ class ServiceTests(unittest.TestCase):
         self.assertTrue(result['site_fallback'])
         self.assertEqual(result['request_id'], 'req-wide')
         self.assertEqual([row['url'] for row in result['results']], ['https://grad.a.edu.cn/catalog'])
-        self.assertEqual((result['rejected_count'], result['malformed_count']), (0, 0))
+        self.assertEqual((result['rejected_count'], result['malformed_count']), (2, 1))
 
     def test_search_keeps_the_site_result_when_the_retry_finds_nothing_official(self):
         bodies, responses = [], [
@@ -658,7 +683,7 @@ class ServiceTests(unittest.TestCase):
         self.assertIn('研究生院', bodies[2]['Query'])
         self.assertFalse(result['site_fallback'])
         self.assertEqual(result['results'], [])
-        self.assertEqual(result['rejected_count'], 1)
+        self.assertEqual(result['rejected_count'], 3)
 
     def test_search_tries_the_wider_graduate_school_query_before_giving_up(self):
         bodies, responses = [], [

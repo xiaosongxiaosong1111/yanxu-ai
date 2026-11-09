@@ -280,8 +280,9 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
         body = call(request_body)
         request_count += 1
         items, bad = parse_pages(body)
-        results, rejected = official_rows(items, is_official)
-        malformed = bad
+        results, request_rejected = official_rows(items, is_official)
+        rejected += request_rejected
+        malformed += bad
         if collect_third:
             third_pages.extend(third_party_rows(items)[0])
         if site and index == 0 and (not body.get('Pages') or not results):
@@ -300,9 +301,11 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
             if collect_third:
                 third_pages.extend(third_party_rows(fallback_items)[0])
             fallback_rows, fallback_rejected = official_rows(fallback_items, is_official)
+            rejected += fallback_rejected
+            malformed += fallback_bad
             if fallback_rows or (not body.get('Pages') and fallback.get('Pages')):
                 body, site_fallback = fallback, True
-                results, rejected, malformed = fallback_rows, fallback_rejected, fallback_bad
+                results = fallback_rows
         if candidate_enabled:
             candidate_pages.extend(candidate_rows(parse_pages(body)[0], unit_name, roots))
         results = dedupe(results)
