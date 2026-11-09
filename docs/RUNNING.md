@@ -289,6 +289,8 @@ node tests/browser-agent-decisions.cjs
 node tests/browser-catalog-review.cjs
 ```
 
+内存紧张时，Node 可用 `node --test --test-concurrency=1 tests/*.test.mjs` 顺序执行。Python 可按 `tests/test_*.py` 文件逐个运行 `python -m unittest discover -s tests -p <文件名>`，务必遍历全部文件并汇总失败和跳过，不将资源错误归为通过。本次整体审计的实际结果及未完成项见 [系统审计](SYSTEM_AUDIT_20261109.md)。
+
 `coverage`与Playwright为测试依赖，不是应用运行时依赖。浏览器脚本优先读取已安装的`playwright`；可用`FORMAL_PLAYWRIGHT_PATH`指定模块路径，`FORMAL_BROWSER_PATH`指定可执行文件，或用`FORMAL_BROWSER_CHANNEL`选择本机Edge等浏览器。本开发机保留已有安装路径作为回退。迁移机器需准备对应浏览器环境，不能把未运行的浏览器测试视为通过。`FORMAL_FILTER`仅用于故障定位；最终验收须不设置该过滤器。
 
 PDF重新解析依赖见文首。已有真实快照时，可离线重放原有两校专业目录解析：

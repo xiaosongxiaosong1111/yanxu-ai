@@ -249,6 +249,7 @@ python -X utf8 server.py --port 4180
 | [Agent 与知识系统升级任务表](docs/AGENT_ROADMAP.md) | 查看待开发任务、实施依赖和阶段验收；与当前已实现能力分开阅读 |
 | [Claude 实施与 Codex 验收节点](docs/CLAUDE_WORK_NODES.md) | 七个执行节点、交付报告和逐节点检查；N4 已接入 Milvus Lite，N5–N7 待 Codex 复查 |
 | [项目介绍与 AI 接手地图](docs/PROJECT_OVERVIEW.md) | 了解模块职责、调用链、存储、API、算法入口及改动顺序 |
+| [整体测试与深度优化审计](docs/SYSTEM_AUDIT_20261109.md) | 2026-11-09 独立算法对照、公开数据复算、信任依赖修复、浏览器实测和下一阶段优先级 |
 | [运行说明](docs/RUNNING.md) | 安装、数据恢复与发布、配置、开发和测试 |
 | [Agent 实现契约](docs/AGENT_UPGRADE_PLAN.md) | 工具白名单、任务轮次、条件确认、Skill、预算和取消语义 |
 | [实际验证记录](docs/VERIFICATION.md) | 区分本地原文、算法、接口夹具与真实服务调用的验证范围 |
