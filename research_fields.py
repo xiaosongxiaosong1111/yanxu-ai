@@ -34,6 +34,13 @@ def _source_ok(source):
         return False
     if source.get('status') != 'official_original_read':
         return False
+    if (source.get('knowledge_current') is False or source.get('usable') is False
+            or source.get('validity', 'active') != 'active'):
+        return False
+    quality = source.get('knowledge_quality', source.get('quality'))
+    if quality is not None and (not isinstance(quality, dict)
+            or quality.get('state') != 'accepted' or quality.get('reusable') is not True):
+        return False
     if source.get('field_verification') == 'published_snapshot':
         return False
     if type(source.get('year')) is not int or not 2020 <= source['year'] <= 2100:
@@ -269,9 +276,92 @@ def _scoped_to_program(row, program):
     return not mode or str(program.get('study_mode') or '') == mode
 
 
+def _remember_base(program, field):
+    state = deepcopy(program.get('_research_field_state') or {})
+    if field not in state:
+        state[field] = {'present': field in program, 'value': deepcopy(program.get(field))}
+    program['_research_field_state'] = state
+
+
+def _restore_base(program, field, state):
+    original = state[field]
+    if original['present']:
+        program[field] = deepcopy(original['value'])
+    else:
+        program.pop(field, None)
+
+
+def _restore_owned_fields(program):
+    """Rebuild our derived overlay; published facts and foreign conflicts stay intact."""
+    state = program.pop('_research_field_state', {})
+    tuition = program.get('tuition')
+    owned = (isinstance(tuition, dict) and tuition.get('verified_by') == 'two_source_agreement'
+             and isinstance(tuition.get('field_candidate_id'), str)
+             and re.fullmatch(r'fc_[0-9a-f]{20}', tuition['field_candidate_id']))
+    if owned:
+        if 'tuition' in state:
+            _restore_base(program, 'tuition', state)
+        else:
+            # Legacy overlays have no original snapshot; an unknown amount is safest.
+            program['tuition'] = None
+    conflicts = program.get('field_conflicts')
+    if isinstance(conflicts, list):
+        remaining = [row for row in conflicts if not (
+            isinstance(row, dict) and row.get('origin') == 'research_fields')]
+        if remaining != conflicts:
+            if remaining or state.get('field_conflicts', {}).get('present'):
+                program['field_conflicts'] = remaining
+            else:
+                program.pop('field_conflicts', None)
+        if ('requires_review' in state and program.get('requires_review') is True
+                and not any(isinstance(row, dict) and row.get('paused') for row in remaining)):
+            _restore_base(program, 'requires_review', state)
+
+
+def _apply_current_fields(program, rows):
+    conflicts = [row for row in rows if row.get('status') == 'conflict']
+    if conflicts:
+        value = {'field': 'tuition', 'message': conflicts[0].get('notice'),
+                 'candidate_id': conflicts[0].get('id'), 'paused': True,
+                 'origin': 'research_fields'}
+        existing = program.get('field_conflicts') if isinstance(program.get('field_conflicts'), list) else []
+        if not any(item.get('candidate_id') == value['candidate_id'] for item in existing if isinstance(item, dict)):
+            _remember_base(program, 'field_conflicts')
+            _remember_base(program, 'requires_review')
+            program['field_conflicts'] = [*existing, value]
+            program['requires_review'] = True
+            return [], [{'program_id': program.get('id'), **value}]
+        return [], []
+    if _known_tuition(program):
+        return [], []
+    ordered = sorted((row for row in rows if row.get('status') == 'verified'),
+                     key=lambda item: (item.get('scope_basis') != 'program_code',
+                                       -item.get('source_count', 0)))
+    for row in ordered:
+        if row.get('period') != 'year' or row.get('scope_basis') not in {'program_code', 'university_wide'}:
+            continue
+        evidence = [{'url': item.get('url'), 'title': item.get('title'), 'year': item.get('year'),
+                     'sha256': item.get('sha256'), 'source_id': item.get('source_id'),
+                     'knowledge_id': item.get('knowledge_id'), 'quote': item.get('quote'),
+                     'excerpt_start': item.get('excerpt_start'), 'excerpt_end': item.get('excerpt_end')}
+                    for item in row.get('values', [])]
+        _remember_base(program, 'tuition')
+        program['tuition'] = {'amount': row.get('value'), 'period': 'year', 'evidence': evidence,
+                              'verified_by': 'two_source_agreement', 'field_candidate_id': row.get('id')}
+        return [{'program_id': program.get('id'), 'candidate_id': row.get('id'),
+                 'amount': row.get('value'), 'period': 'year'}], []
+    return [], []
+
+
+def _overlay_state(program):
+    # Our writes replace these values, so shallow snapshots never clone full catalog rows.
+    return tuple((key in program, program.get(key)) for key in (
+        'tuition', 'field_conflicts', 'requires_review', '_research_field_state'))
+
+
 def apply_field_candidates(programs, merged):
-    """Apply only verified, year-scoped tuition; conflicts pause the matching scope."""
-    applied, paused = [], []
+    """Rebuild derived fields and report whether their effective values changed."""
+    applied, paused, changed = [], [], False
     by_unit = {}
     for candidate in merged:
         if candidate.get('field') == 'tuition':
@@ -280,37 +370,15 @@ def apply_field_candidates(programs, merged):
     for program in values:
         if not isinstance(program, dict):
             continue
+        before = _overlay_state(program)
+        _restore_owned_fields(program)
         rows = [row for row in by_unit.get((program.get('unit_id'), program.get('year')), [])
                 if _scoped_to_program(row, program)]
-        conflicts = [row for row in rows if row.get('status') == 'conflict']
-        if conflicts:
-            value = {'field': 'tuition', 'message': conflicts[0].get('notice'),
-                     'candidate_id': conflicts[0].get('id'), 'paused': True}
-            existing = program.get('field_conflicts') if isinstance(program.get('field_conflicts'), list) else []
-            if not any(item.get('candidate_id') == value['candidate_id'] for item in existing if isinstance(item, dict)):
-                program['field_conflicts'] = [*existing, value]
-                program['requires_review'] = True
-                paused.append({'program_id': program.get('id'), **value})
-            continue
-        if _known_tuition(program):
-            continue
-        ordered = sorted((row for row in rows if row.get('status') == 'verified'),
-                         key=lambda item: (item.get('scope_basis') != 'program_code',
-                                           -item.get('source_count', 0)))
-        for row in ordered:
-            if row.get('period') != 'year' or row.get('scope_basis') not in {'program_code', 'university_wide'}:
-                continue
-            evidence = [{'url': item.get('url'), 'title': item.get('title'), 'year': item.get('year'),
-                         'sha256': item.get('sha256'), 'source_id': item.get('source_id'),
-                         'knowledge_id': item.get('knowledge_id'), 'quote': item.get('quote'),
-                         'excerpt_start': item.get('excerpt_start'), 'excerpt_end': item.get('excerpt_end')}
-                        for item in row.get('values', [])]
-            program['tuition'] = {'amount': row.get('value'), 'period': 'year', 'evidence': evidence,
-                                  'verified_by': 'two_source_agreement', 'field_candidate_id': row.get('id')}
-            applied.append({'program_id': program.get('id'), 'candidate_id': row.get('id'),
-                            'amount': row.get('value'), 'period': 'year'})
-            break
-    return {'applied': applied, 'paused': paused}
+        adopted, blocked = _apply_current_fields(program, rows)
+        applied.extend(adopted)
+        paused.extend(blocked)
+        changed = changed or before != _overlay_state(program)
+    return {'applied': applied, 'paused': paused, 'changed': changed}
 
 
 def field_candidates(programs, sources):

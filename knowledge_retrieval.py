@@ -1,5 +1,6 @@
 """Finite RRF retrieval over current evidence; ANN payload is never original text."""
 from copy import deepcopy
+from contextlib import nullcontext
 import math
 import re
 import time
@@ -214,8 +215,34 @@ class HybridRetriever:
             return public
         except Exception:return None
 
+    def _validation_scope(self):
+        factory=getattr(self.store,'validation_scope',None)
+        return factory() if callable(factory) else nullcontext()
+
+    def _fresh_results(self,results,scope):
+        sources={};verified=[]
+        # A separate scope forces fresh SHA checks after retrieval and reranking.
+        with self._validation_scope():
+            for row in results:
+                identifier=row['entry_id']
+                if identifier not in sources:
+                    try:sources[identifier]=self.store.get(identifier)
+                    except Exception:sources[identifier]=None
+                source=sources[identifier];previous=row['source']
+                if not _usable(source,scope) or source.get('id')!=identifier:continue
+                if any(source.get(key)!=previous.get(key) for key in ('sha256','url','unit_id','year')):continue
+                extraction=source.get('extraction') or {}
+                if any(row.get(key)!=extraction.get(field) for key,field in
+                       [('extraction_id','id'),('generation_id','generation_id')]):continue
+                verified.append({**row,'source':{key:deepcopy(source[key]) for key in _SOURCE if key in source}})
+        return verified
+
     def retrieve(self,query,*,unit_id='',year=None,entry_id=None,limit=8,allow_remote=False,stop_event=None):
         query,scope=_parameters(query,unit_id,year,entry_id,limit,allow_remote);self._check(stop_event)
+        with self._validation_scope():
+            return self._retrieve(query,scope,limit,allow_remote,stop_event)
+
+    def _retrieve(self,query,scope,limit,allow_remote,stop_event):
         started=time.perf_counter();keyword=self.store.search_segments(query=query,**scope,page=1,page_size=40,quality='accepted')
         keyword_ms=(time.perf_counter()-started)*1000;semantic_started=time.perf_counter()
         semantic,vector,reason=self._semantic(query,scope,allow_remote,stop_event)
@@ -229,6 +256,7 @@ class HybridRetriever:
             mode=hits[rank['id']].get('match_mode','semantic' if rank['methods']==['semantic'] else 'segment_terms')
             hydrated.append({**row,'match_mode':mode,'rrf_score':rank['rrf_score'],'retrieval_methods':rank['methods'],'retrieval_ranks':rank['ranks']})
         results=rule_rerank(query,hydrated,limit);self._check(stop_event)
+        results=self._fresh_results(results,scope);self._check(stop_event)
         usage=dict(vector.get('usage') or {})
         usage_known=vector.get('usage_known',not reason)
         return {'segments':results,'returned_count':len(results),'candidate_count':len(hydrated),

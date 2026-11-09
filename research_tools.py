@@ -175,6 +175,7 @@ class ResearchTools:
         self.data_dir=Path(data_dir).resolve();self.network=network;self.source_fetcher=source_fetcher
         self.stop_event=stop_event;self.deadline=deadline if deadline is not None else time.monotonic()+LIMITS['max_seconds']
         self.programs={};self.sources={};self.algorithm={};self.gaps=[];self.searched_units=set()
+        self._research_pool={};self._research_scans=[];self._research_pool_version=0
         self.profile_proposal=None;self.candidate_metrics=None
         self._knowledge_store=knowledge_store;self._hybrid_retriever_instance=retriever
         self.knowledge_errors=[];self._knowledge_failures={};self.saved_sources=set();self.cache_hits=set()
@@ -204,14 +205,31 @@ class ResearchTools:
               'scope_changed':self.task.get('unit_scope_changed') is True,'reused':False}
         if not isinstance(previous,dict):return info
         evidence=previous.get('evidence') if isinstance(previous.get('evidence'),list) else []
+        selected=set(self.task['unit_ids'])
+        inferred=self.infer_unit(self.task.get('query','')) if not selected else ''
+        if inferred:selected.add(inferred)
         for row in evidence[:60]:
             if not isinstance(row,dict):continue
             identifier,url=row.get('id'),row.get('url')
             if not isinstance(identifier,str) or not re.fullmatch(r's_[0-9a-f]{20}',identifier):continue
             if row.get('status') not in {'official_original_read','published_snapshot'}:continue
             if row.get('knowledge_filtered') is True or row.get('usable') is False:continue
-            parsed=urlsplit(str(url or ''))
-            if parsed.scheme not in {'https','http'} or not parsed.hostname:continue
+            unit=self.units.get(row.get('unit_id'))
+            if (unit is None or row.get('year')!=self.task['reference_year']
+                    or selected and row.get('unit_id') not in selected
+                    or not official_source_url(str(url or ''),unit)):
+                info['stale_source_ids'].append(identifier);continue
+            knowledge_id=row.get('knowledge_id')
+            if knowledge_id:
+                try:current=self._knowledge().get(knowledge_id)
+                except Exception:current=None
+                if (not _reusable_knowledge(current) or current.get('id')!=knowledge_id
+                        or any(current.get(key)!=row.get(key) for key in ('unit_id','year','sha256'))):
+                    info['stale_source_ids'].append(identifier);continue
+                row={**row,**{key:deepcopy(current[key]) for key in (*_SOURCE_METADATA,'excerpt')
+                             if key in current and key!='id'},
+                     'knowledge_quality':deepcopy(current['quality']),'knowledge_current':True}
+                self._trusted_knowledge_ids.add(knowledge_id)
             if identifier in self.sources:continue
             self.sources[identifier]=_public_source({**deepcopy(row),'inherited':True,
                                                      'inherited_from_turn':info['previous_turn_id']})
@@ -227,16 +245,23 @@ class ResearchTools:
             program=bundle.get('program') if isinstance(bundle,dict) and isinstance(bundle.get('program'),dict) else bundle
             stale=(not isinstance(program,dict) or program.get('id')!=identifier
                    or program.get('year')!=self.task['reference_year']
-                   or bool(self.task['unit_ids']) and program.get('unit_id') not in self.task['unit_ids'])
+                   or program.get('unit_id') not in self.units
+                   or selected and program.get('unit_id') not in selected)
             if stale:
                 info['stale_candidate_ids'].append(identifier);continue
             self.programs[identifier]={**deepcopy(program),'inherited_from_turn':info['previous_turn_id']}
             info['candidate_ids'].append(identifier)
+        self._remember_research_pool(list(self.programs.values()))
         info['reused']=bool(self.programs or self.sources)
         return info
 
     def _apply_fields(self):
+        previous=deepcopy(self.programs)
         result=research_fields.field_candidates(self.programs,self.sources)
+        pool=research_fields.field_candidates(self._research_pool,self.sources)
+        if pool.get('changed'):self._research_pool_version+=1
+        if previous!=self.programs or pool.get('changed'):
+            self.algorithm.clear();self._algorithm_signature=None
         self.field_candidates=result['candidates'];self.field_applications=result
         for row in result.get('paused',[]):
             message='部分来源的收费口径互相冲突，相关候选已暂停推荐；请回到原文核对。'
@@ -254,12 +279,8 @@ class ResearchTools:
         self._check_control()
         key=self._memo_key(name,args)
         if key is not None and key in self._memo:
-            # The same external call with byte-identical arguments cannot
-            # produce a new answer inside one turn. Reuse the stored result
-            # instead of paying for the same search or document read twice.
-            # Local tools stay uncached: catalog revisions and knowledge
-            # generations can change mid-turn and must be re-read.
-            result=deepcopy(self._memo[key]);result['repeated_call']=True
+            # Avoid another paid request, but recheck mutable local trust first.
+            result=self._current_memo(name,args,self._memo[key]);result['repeated_call']=True
             notice='本轮已执行过完全相同的调用，这里直接复用当时的结果，未重复消耗检索或原文读取预算。'
             result['notice']=(result['notice']+' '+notice) if isinstance(result.get('notice'),str) else notice
             return result
@@ -282,6 +303,43 @@ class ResearchTools:
             if key is not None:self._memo[key]=deepcopy(result)
         return result
 
+    def _current_memo(self,name,args,cached):
+        self.refresh_knowledge();self._apply_fields()
+        if args.get('unit_id'):self._unit(args['unit_id'])
+        if name=='read_official_source':
+            current=self.sources.get(args.get('source_id'))
+            changed=bool(cached.get('knowledge_id')) and (current is None or any(
+                current.get(key)!=cached.get(key) for key in ('knowledge_id','unit_id','year','sha256'))
+                or (current.get('extraction') or {}).get('generation_id')!=
+                   (cached.get('extraction') or {}).get('generation_id'))
+            if current is None or changed or self._source_unavailable(current):
+                raise ResearchError('knowledge_not_current','该来源状态或版本已变化，不能复用旧原文。',409)
+            return deepcopy(current)
+        def refresh(value):
+            if isinstance(value,list):return [refresh(item) for item in value]
+            if not isinstance(value,dict):return deepcopy(value)
+            if value.get('knowledge_id'):
+                current=deepcopy(self.sources.get(value.get('id')) or value)
+                if value.get('id') not in self.sources or self._source_unavailable(current):
+                    current={**current,'excerpt':'','text':'','pages':[],'segments':[],'links':[],
+                             'usable':False,'knowledge_current':False,'notice':research_knowledge.CURRENT_NOTICE}
+                elif (value.get('status')==current.get('status')=='search_lead'
+                      and (value.get('knowledge_quality') or {}).get('state')==
+                          (current.get('knowledge_quality') or {}).get('state')=='pending'):
+                    return deepcopy(value)
+                return current
+            return {key:refresh(item) for key,item in value.items()}
+        return refresh(cached)
+
+    def _source_unavailable(self,source):
+        quality=source.get('knowledge_quality') or {}
+        return bool(source.get('knowledge_id')) and (
+            source.get('validity','active')!='active' or source.get('snapshot_status')=='missing_or_changed'
+            or quality.get('state')=='excluded'
+            or source.get('knowledge_current') is False and (
+                source.get('knowledge_id') in self._trusted_knowledge_ids
+                or source.get('notice')==research_knowledge.CURRENT_NOTICE))
+
     REPEATABLE_TOOLS=frozenset({'search_official_sources','read_official_source'})
 
     @classmethod
@@ -301,7 +359,7 @@ class ResearchTools:
         北京大学 inside 北京大学医学部. Separate school mentions remain ambiguous.
         """
         value=unit_bindings.normalize_name(query)
-        if not value:return ''
+        if not value or re.search(r'除了|除去',value):return ''
         matches=set()
         for unit in self.units.values():
             names=[unit_bindings.normalize_name(unit.get('name'))]
@@ -310,10 +368,24 @@ class ResearchTools:
                 if name:
                     matches.update((unit['id'],match.start(),match.end())
                                    for match in re.finditer(re.escape(name),value))
-        winners={identifier for identifier,start,end in matches if not any(
-            left<=start and end<=right and (left<start or end<right)
-            for _,left,right in matches)}
+        mentions=[row for row in matches if not any(
+            left<=row[1] and row[2]<=right and (left<row[1] or row[2]<right)
+            for _,left,right in matches)]
+        rejected={identifier for identifier,start,end in mentions if self._negated_unit_mention(value,start,end)}
+        winners={identifier for identifier,start,end in mentions if identifier not in rejected}
         return next(iter(winners)) if len(winners)==1 else ''
+
+    @staticmethod
+    def _negated_unit_mention(value,start,end):
+        # Only explicit local intent markers affect this hint; subject negatives
+        # do not cross a clause or a later positive school-intent marker.
+        prefix=re.split(r'[，,。；;！？!?\n]',value[:start])[-1]
+        cues=re.findall(r'不(?:再|太)?(?:想|打算|准备|愿意)?(?:考虑|选择|报考|就读|喜欢|去|读|考)'
+                        r'|不要(?:考虑|选择|报考|去|读|考)?|排除(?:掉)?|避开|不是|不选|不包括|不包含'
+                        r'|(?:想|打算|准备|愿意)?(?:考虑|选择|报考|就读|去|读|考)',prefix)
+        before=bool(cues) and cues[-1].startswith(('不','排除','避开'))
+        after=bool(re.match(r'(?:我|也|就|暂时)?(?:不考虑|不选|不去|不读|不报考|不要)',value[end:]))
+        return before or after
 
     def find_units(self,args):
         _object(args,('query','province'));raw=text(args.get('query',''),120,True)
@@ -415,6 +487,7 @@ class ResearchTools:
         # tool result the model sees; the UI must not silently change the query.
         self.candidate_metrics={**self.candidate_metrics,'requested_query':requested,
                                 'effective_query':effective,'query_relaxed':bool(relaxed)}
+        self._record_research_scan(effective,units,scan)
         result={**self.candidate_metrics,'candidates':[self._candidate(row) for row in selected],
                 'status':'complete' if scan['complete'] else 'partial',
                 'verification_mode':'published_snapshot','national_complete':False,
@@ -548,6 +621,7 @@ class ResearchTools:
         return [entry['program'] for entry in selected]
 
     def _select_and_store(self,scanned):
+        self._remember_research_pool(scanned)
         previous=deepcopy(self.programs)
         query_ids={row['id'] for row in scanned}
         union={row['id']:deepcopy(row) for row in scanned}
@@ -559,6 +633,61 @@ class ResearchTools:
             self.algorithm.clear();self._algorithm_signature=None
         self._save_candidate_sources(selected)
         return selected,query_ids
+
+    def _remember_research_pool(self,rows):
+        allowed=set(self.task['unit_ids'])
+        current={row['id']:deepcopy(row) for row in rows if isinstance(row,dict)
+                 and isinstance(row.get('id'),str) and row.get('year')==self.task['reference_year']
+                 and row.get('unit_id') in self.units and (not allowed or row['unit_id'] in allowed)}
+        updated={**self._research_pool,**current}
+        if updated!=self._research_pool:
+            self._research_pool=updated;self._research_pool_version+=1
+            self.algorithm.clear();self._algorithm_signature=None
+
+    def _record_research_scan(self,query,units,scan):
+        value={'query':query,'unit_ids':None if units is None else list(units),
+               'scan_complete':bool(scan['complete'] and scan['total_complete']),
+               'revision':self.revision}
+        self._research_scans=[row for row in self._research_scans
+                              if (row['query'],row['unit_ids'])!=(query,value['unit_ids'])]+[value]
+
+    def _counterfactual_rows(self,args):
+        if 'program_ids' in args:return self._selected(args)
+        self._apply_fields()
+        rows=list(self._research_pool.values()) if self._research_pool else self._selected(args)
+        return [row for row in rows if not exam_unresolved_reason(row)]
+
+    def _expand_research_pool(self,changes):
+        if not changes.get('provinces') or not self._research_scans:return
+        queries=list(dict.fromkeys(row['query'] for row in self._research_scans))
+        for provinces in changes['provinces']:
+            if provinces==self.task['profile']['provinces']:continue
+            units=(list(self.task['unit_ids']) if self.task['unit_ids'] else
+                   [unit['id'] for unit in self.units.values() if unit.get('province') in provinces]
+                   if provinces else None)
+            for query in queries:
+                complete=[row for row in self._research_scans if row['query']==query and row['scan_complete']]
+                if any(row['unit_ids'] is None for row in complete):continue
+                covered={identifier for row in complete for identifier in row['unit_ids']}
+                pending=[identifier for identifier in units if identifier not in covered] if units is not None else None
+                if pending==[]:continue
+                scan=self._scan_candidates(query,pending)
+                self._remember_research_pool(scan['programs']);self._record_research_scan(query,pending,scan)
+                for warning in scan['warnings']:
+                    if warning not in self.gaps:self.gaps.append(warning)
+                if scan['interrupted'] is not None:
+                    if scan['interrupted'].code=='cancelled':raise scan['interrupted']
+                    return
+
+    def _counterfactual_scope(self,args,rows):
+        explicit='program_ids' in args
+        complete=explicit or bool(self._research_scans) and all(row['scan_complete'] for row in self._research_scans)
+        return {'pool_count':len(rows),'scan_complete':complete,'revision':self.revision,
+                'queries':deepcopy(self._research_scans),'national_complete':False,
+                'mode':'selected_candidates' if explicit else 'published_query_pool',
+                'notice':'只比较明确指定的候选。' if explicit else
+                         '按本轮已扫描的发布目录查询范围试算，不代表全国全部选择。' if complete else
+                         '仅对本轮已取得的部分目录范围试算，未取得资料的方向不计为不存在。'}
 
     def _save_candidate_sources(self,selected):
         for row in selected:
@@ -971,6 +1100,7 @@ class ResearchTools:
 
     def discover_links(self,args):
         self._check_control()
+        self.refresh_knowledge();self._apply_fields()
         _object(args,('source_id','unit_id','depth','limit'))
         source_id=text(args.get('source_id'),100);unit=self._unit(args.get('unit_id'))
         depth=args.get('depth',1);limit=args.get('limit',10)
@@ -982,6 +1112,8 @@ class ResearchTools:
             raise ResearchError('research_budget_exceeded','已达到本轮站内发现次数上限。',409)
         source=self.sources.get(source_id)
         if source is None:raise ResearchError('unknown_source','请先读取这份官方页面，再进行站内发现。')
+        if self._source_unavailable(source):
+            raise ResearchError('knowledge_not_current','该来源当前不可复用，不能继续使用旧页面入口。',409)
         if source.get('unit_id') and source['unit_id']!=unit['id']:
             raise ResearchError('wrong_unit','来源登记在其他学校名下，不能在本轮范围内继续发现。')
         if not official_source_url(source['url'],unit):
@@ -1048,7 +1180,8 @@ class ResearchTools:
         return result
 
     def routes(self,args):
-        _object(args,('program_ids',));result=plan_routes(self._selected(args),self.task['profile'])
+        _object(args,('program_ids',));rows=self._counterfactual_rows(args)
+        result={**plan_routes(rows,self.task['profile']),'research_scope':self._counterfactual_scope(args,rows)}
         self.algorithm['routes']=result
         self.executed_tools.add('plan_subject_routes')
         return result
@@ -1059,7 +1192,12 @@ class ResearchTools:
             raise ResearchError('invalid_adjustment','请选择有限的条件试算情景。')
         if any(not isinstance(values,list) or len(values)>4 for values in changes.values()):
             raise ResearchError('invalid_adjustment','每项条件最多试算四个值。')
-        result=suggest_adjustments(self._selected(args),self.task['profile'],changes)
+        # Validate every user-authorized combination before an extra local catalog read.
+        suggest_adjustments([],self.task['profile'],changes)
+        if 'program_ids' not in args:self._expand_research_pool(changes)
+        rows=self._counterfactual_rows(args)
+        result={**suggest_adjustments(rows,self.task['profile'],changes),
+                'research_scope':self._counterfactual_scope(args,rows)}
         self.algorithm['adjustments']=result
         self.executed_tools.add('suggest_adjustments')
         return result
@@ -1078,18 +1216,20 @@ class ResearchTools:
         return result
 
     def ensure_algorithms(self):
-        if not self.programs and not (self.candidate_metrics and self.candidate_metrics.get('scanned_count',0)):return []
+        if not self.programs and not self._research_pool and not (self.candidate_metrics and self.candidate_metrics.get('scanned_count',0)):return []
+        self.refresh_knowledge();self._apply_fields()
         stop=self.stop_event
         if stop is not None:
             cancelled=stop.user_stop.is_set() or stop.service_stop.is_set() if hasattr(stop,'user_stop') else stop.is_set()
             if cancelled:return []
-        signature=hashlib.sha256(json.dumps([self.programs,self.task['profile']],sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+        signature=hashlib.sha256(json.dumps([self.programs,self.task['profile'],self._research_pool_version],sort_keys=True,ensure_ascii=False).encode()).hexdigest()
         if signature==self._algorithm_signature:return []
         self.algorithm.pop('adjustments',None)
         self.compare({});actions=['compare_candidates']
         self.analyze_decisions({});actions.append('analyze_decisions')
         units={subject.get('exam_unit') for subject in self.task['profile'].get('subjects',[])}
-        expected={subject.get('exam_unit') for row in self.programs.values() for subject in row.get('subjects',[])}
+        pool=self._research_pool or self.programs
+        expected={subject.get('exam_unit') for row in pool.values() for subject in row.get('subjects',[])}
         if expected and expected<=units:
             self.routes({});actions.append('plan_subject_routes')
         else:self.algorithm.pop('routes',None)

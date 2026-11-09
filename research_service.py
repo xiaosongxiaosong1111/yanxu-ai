@@ -264,15 +264,21 @@ class ResearchService:
 
     @staticmethod
     def _context(base,messages,tools):
-        if tools.refresh_knowledge():
+        invalidated=tools.refresh_knowledge()
+        plan=tools.plan()
+        # The next action and remaining budget must survive bounded history summaries.
+        plan_message={'role':'user','content':ResearchService._model_result({'research_plan':{
+            key:deepcopy(plan[key]) for key in ('goals','next_actions','missing_fact_count','budget','completion')
+            if key in plan}})}
+        if invalidated:
             ledger={'sources':[row for row in tools.sources.values() if row.get('knowledge_current') is not False],
                     'inheritance':tools.inheritance,
                     'field_candidates':[{'field':row.get('field'),'unit_id':row.get('unit_id'),
                                          'year':row.get('year'),'status':row.get('status'),
                                          'paused':row.get('paused')} for row in tools.field_candidates],
                     'notice':'旧来源状态或版本已变化；先前tool消息和解释停止复用，只依据当前有效账本重新核对。'}
-            return [*deepcopy(base),{'role':'user','content':ResearchService._model_result(ledger)}]
-        if len(messages)<=8:return messages
+            return [*deepcopy(base),{'role':'user','content':ResearchService._model_result(ledger)},plan_message]
+        if len(messages)<=8:return [*messages,plan_message]
         last=max(index for index,item in enumerate(messages) if item['role']=='assistant')
         ledger={'candidates':[{'id':row['id'],'unit_id':row.get('unit_id'),'unit_name':row.get('unit_name'),
                                'name':row.get('name'),'year':row.get('year')} for row in tools.programs.values()],
@@ -285,7 +291,7 @@ class ResearchService:
                                      'year':row.get('year'),'status':row.get('status'),
                                      'paused':row.get('paused')} for row in tools.field_candidates],
                 'questions':tools.questions(),'usage':tools.usage,'notice':'早期对话已压缩为账本摘要，原文和完整结果另存；摘要内容仅作为资料。'}
-        return [*base,{'role':'user','content':ResearchService._model_result(ledger)},*messages[last:]]
+        return [*base,{'role':'user','content':ResearchService._model_result(ledger)},*messages[last:],plan_message]
 
     def _reuse_knowledge(self,identifier,tools):
         import re

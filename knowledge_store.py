@@ -1,5 +1,6 @@
 """Local source memory, separate from adopted admission facts and personal research inputs."""
 from contextlib import closing, contextmanager
+from contextvars import ContextVar
 from datetime import datetime, timezone
 import hashlib
 import ipaddress
@@ -101,6 +102,14 @@ class KnowledgeStore:
         self.path=self.data_dir/'runtime/knowledge.sqlite'
         self._lock=threading.RLock()
         self._registry_signature=None;self._registry_units={}
+        self._validation_cache=ContextVar('knowledge_request_validation',default=None)
+
+    @contextmanager
+    def validation_scope(self):
+        """Reuse raw SHA checks only inside this request; nested scopes start fresh."""
+        token=self._validation_cache.set({})
+        try:yield
+        finally:self._validation_cache.reset(token)
 
     @contextmanager
     def _connection(self,create=False):
@@ -139,11 +148,23 @@ class KnowledgeStore:
 
     def _blob_available(self,digest):
         if not digest:return False
+        cache=self._validation_cache.get()
+        if cache is not None and digest in cache:return cache[digest]
+        available=self._verify_blob(digest)
+        if cache is not None:self._validation_cache.set({**cache,digest:available})
+        return available
+
+    def _verify_blob(self,digest):
         try:
             target=self._blob_path(digest)
             if not target.is_file() or target.stat().st_size>8*1024*1024:return False
-            with target.open('rb') as stream:raw=stream.read(8*1024*1024+1)
-            return len(raw)<=8*1024*1024 and hashlib.sha256(raw).hexdigest()==digest
+            total=0;checked=hashlib.sha256()
+            with target.open('rb') as stream:
+                while block:=stream.read(64*1024):
+                    total+=len(block)
+                    if total>8*1024*1024:return False
+                    checked.update(block)
+            return checked.hexdigest()==digest
         except (OSError,KnowledgeError):return False
 
     def _prepare(self,source,document):

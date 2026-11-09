@@ -1,5 +1,6 @@
 """Deterministic research workflow regression; all stores and models are local fixtures."""
 from copy import deepcopy
+import json
 import hashlib
 import tempfile
 import threading
@@ -368,7 +369,8 @@ class WorkflowTests(unittest.TestCase):
             history.extend([{'role':'assistant','tool_calls':[{'id':str(index)}]},
                             {'role':'tool','tool_call_id':str(index),'content':'资料摘要'}])
         compressed=service._context(base,history,tools)
-        self.assertEqual(compressed[-2:],history[-2:])
+        self.assertEqual(compressed[-3:-1],history[-2:])
+        self.assertIn('next_actions',json.loads(compressed[-1]['content'])['research_plan'])
         self.assertLess(len(compressed),len(history))
         self.assertLessEqual(len(service._model_result({'text':'原文'*20000,'rows':[{'text':'条目'*900}]*50})),6000)
         self.assertIn('截断',service._model_result({'text':'原文'*20000}))
