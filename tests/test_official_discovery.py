@@ -277,7 +277,7 @@ class AgentSearchTests(unittest.TestCase):
 
     def test_search_accepts_the_cross_domain_admissions_site(self):
         self.network.request_json.return_value = _raw(
-            _page('招生目录', 'https://admission.ucas.ac.cn/zsml'))
+            _page('中国科学院大学2027年硕士招生专业目录', 'https://admission.ucas.ac.cn/zsml'))
         result = self.tools.search_sources({'query': '硕士招生专业目录', 'unit_id': 'ucas'})
         self.assertEqual(len(self.request_bodies()), 1)
         self.assertEqual(self.request_bodies()[0]['Site'], 'ucas.edu.cn')
@@ -334,9 +334,24 @@ class AgentSearchTests(unittest.TestCase):
         self.network.request_json.return_value = {'RequestId': 'empty', 'Query': 'q'}
         result = self.tools.search_sources({'query': '目录', 'unit_id': 'ucas'})
         self.assertEqual(result['failure_stage'], 'index_no_hit')
-        self.assertEqual(result['request_count'], 3)
+        self.assertEqual(result['request_count'], 2)
         self.assertIn('不代表资料不存在', result['notice'])
         self.assertFalse(result['budget_exhausted'])
+        self.assertTrue(result['unit_budget_exhausted'])
+        self.assertEqual(result['searches_remaining'], LIMITS['max_searches']-2)
+        self.assertEqual(result['next_action']['tool'], 'discover_official_entry')
+        self.assertNotIn('本轮检索额度已用完', result['notice'])
+
+    def test_a_second_school_keeps_its_search_budget_after_the_first_has_no_hit(self):
+        self.network.request_json.return_value = {'RequestId': 'empty', 'Query': 'q'}
+        first = self.tools.search_sources({'query': '目录', 'unit_id': 'ucas'})
+        repeated = self.tools.search_sources({'query': '招生章程', 'unit_id': 'ucas'})
+        second = self.tools.search_sources({'query': '目录', 'unit_id': 'ucass'})
+        self.assertFalse(first['budget_exhausted'])
+        self.assertEqual(repeated['request_count'], 0)
+        self.assertTrue(repeated['unit_budget_exhausted'])
+        self.assertEqual((first['request_count'], second['request_count']), (2, 2))
+        self.assertTrue(second['budget_exhausted'])
 
     def test_search_budget_stops_before_the_next_paid_request(self):
         self.tools.usage['searches'] = LIMITS['max_searches'] - 1

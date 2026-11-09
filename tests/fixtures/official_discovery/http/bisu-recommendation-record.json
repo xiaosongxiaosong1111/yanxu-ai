@@ -1,0 +1,26 @@
+{
+  "purpose": "negative competing recommendation-only document; not default unified-exam charter",
+  "records": [
+    {
+      "url": "https://yanzhao.bisu.edu.cn/content/WS6aaf298ccf1e7b21db96ea40.html",
+      "checked_at": "2026-11-09T07:08:48+00:00",
+      "pid": 26032,
+      "pinned_addresses": [
+        "58.211.15.211",
+        "121.228.190.68",
+        "240e:979:1406:700::56",
+        "240e:978:6404::e"
+      ],
+      "status": 200,
+      "complete": true,
+      "headers": {
+        "Content-Type": "text/html;charset=UTF-8",
+        "Location": ""
+      },
+      "sha256": "539baa225fffc159946e8468388fe9f572f1ceeae62861304c25e05ff8ff7f22",
+      "response_bytes": 44636,
+      "raw_path": "539baa225fffc159946e8468388fe9f572f1ceeae62861304c25e05ff8ff7f22.bin",
+      "integrity_verified": true
+    }
+  ]
+}

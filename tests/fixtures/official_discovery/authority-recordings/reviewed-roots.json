@@ -1,0 +1,180 @@
+{
+  "roots": [
+    {
+      "unit_id": "368127",
+      "name": "复旦大学",
+      "url": "https://www.fudan.edu.cn/516/list.htm",
+      "error": "fetch_error",
+      "message": "官方原文暂时无法读取。",
+      "alternate_raw": {
+        "url": "https://www.fudan.edu.cn/516/list.htm",
+        "sha256": "668215c4dee7271c18187a13255dbbf2c944a7eb6f0497c1f38af9b9ad3da6fa",
+        "content_type": "text/html",
+        "status": 200,
+        "transport": "stdlib_urllib_no_proxy",
+        "production_fetcher_status": "fetch_error",
+        "raw_path": "authority-recordings/668215c4dee7271c18187a13255dbbf2c944a7eb6f0497c1f38af9b9ad3da6fa.bin",
+        "checked_at": "2026-11-09T07:28:29+00:00",
+        "next_links": [
+          {
+            "url": "http://www.gsao.fudan.edu.cn/",
+            "label": "研究生招生",
+            "kind": "page",
+            "role": "anchor",
+            "evidence": [
+              {
+                "source_url": "https://www.fudan.edu.cn/516/list.htm",
+                "start": 35172,
+                "end": 35230,
+                "snippet": "<a class=\"link_icon\" href=\"http://www.gsao.fudan.edu.cn/\">"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "unit_id": "368596",
+      "name": "青海师范大学",
+      "reviewed_root": {
+        "url": "https://www.qhnu.edu.cn/",
+        "sha256": "4fdb0d6e73d0fb8427f1da485220f502597ad2cd9d697631e8e1b58aa2caa507",
+        "checked_at": "2026-11-09T07:26:51+00:00",
+        "content_type": "text/html"
+      },
+      "raw_path": "authority-recordings/4fdb0d6e73d0fb8427f1da485220f502597ad2cd9d697631e8e1b58aa2caa507.bin",
+      "status": "public_raw_captured_pending_root_trust_decision",
+      "root_provenance": "Exact official_homepage_navigation URL in prior candidate review, not a guessed domain.",
+      "prior_review_file": "candidates/official_candidates_11.json",
+      "next_links": [
+        {
+          "url": "https://yjsb.qhnu.edu.cn/",
+          "label": "研究生招生",
+          "kind": "page",
+          "role": "anchor",
+          "evidence": [
+            {
+              "source_url": "https://www.qhnu.edu.cn/",
+              "start": 4901,
+              "end": 4953,
+              "snippet": "<a href=\"https://yjsb.qhnu.edu.cn/\" target=\"_blank\">"
+            }
+          ]
+        },
+        {
+          "url": "https://www.qhnu.edu.cn/info/1037/22887.htm",
+          "label": "马克思主义学院研究生在2026年全国“田家炳杯”教学技能大赛决赛中喜获佳绩 2026.11.06",
+          "kind": "page",
+          "role": "anchor",
+          "evidence": [
+            {
+              "source_url": "https://www.qhnu.edu.cn/",
+              "start": 22640,
+              "end": 22682,
+              "snippet": "<a href=\"info/1037/22887.htm\" class=\"con\">"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "unit_id": "8243981",
+      "name": "山西中医药大学",
+      "reviewed_root": {
+        "url": "https://www.sxtcm.edu.cn/",
+        "sha256": "181dd11039cc1f7a93a39b78a26cc630ab9891042699f27ac772fc22fa941334",
+        "checked_at": "2026-11-09T07:26:51+00:00",
+        "content_type": "text/html"
+      },
+      "raw_path": "authority-recordings/181dd11039cc1f7a93a39b78a26cc630ab9891042699f27ac772fc22fa941334.bin",
+      "status": "public_raw_captured_pending_root_trust_decision",
+      "root_provenance": "Exact official_homepage_navigation URL in prior candidate review, not a guessed domain.",
+      "prior_review_file": "candidates/official_candidates_11.json",
+      "next_links": [
+        {
+          "url": "https://yjsb.sxtcm.edu.cn/",
+          "label": "研究生教育",
+          "kind": "page",
+          "role": "anchor",
+          "evidence": [
+            {
+              "source_url": "https://www.sxtcm.edu.cn/",
+              "start": 6237,
+              "end": 6304,
+              "snippet": "<a href=\"https://yjsb.sxtcm.edu.cn/\" target=\"_blank\" title=\"研究生教育\">"
+            }
+          ]
+        },
+        {
+          "url": "https://yjsb.sxtcm.edu.cn/xkjs.htm",
+          "label": "政策文件",
+          "kind": "page",
+          "role": "anchor",
+          "evidence": [
+            {
+              "source_url": "https://www.sxtcm.edu.cn/",
+              "start": 7046,
+              "end": 7120,
+              "snippet": "<a href=\"https://yjsb.sxtcm.edu.cn/xkjs.htm\" target=\"_blank\" title=\"政策文件\">"
+            }
+          ]
+        },
+        {
+          "url": "http://news.sxtcm.edu.cn/info/1013/20325.htm",
+          "label": "162026.09 公开招聘领导组办公室 山西中医药大学2026年第二批公开招聘博士研究生拟聘用人员公示",
+          "kind": "page",
+          "role": "anchor",
+          "evidence": [
+            {
+              "source_url": "https://www.sxtcm.edu.cn/",
+              "start": 23618,
+              "end": 23729,
+              "snippet": "<a href=\"http://news.sxtcm.edu.cn/info/1013/20325.htm\" target=\"_blank\" title=\"山西中医药大学2026年第二批公开招聘博士研究生拟聘用人员公示\">"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "xjart_recordings": [
+    {
+      "url": "https://bkzs.xjart.edu.cn/",
+      "checked_at": "2026-11-09T07:09:18+00:00",
+      "pid": 26032,
+      "pinned_addresses": [
+        "218.195.180.1",
+        "2001:250:1812:65::ff01"
+      ],
+      "status": 200,
+      "complete": true,
+      "headers": {
+        "Content-Type": "text/html",
+        "Location": ""
+      },
+      "sha256": "de57a5d7f32eba9ea5ec9521d90b160606fb1cbfe3a060ef44f409bc3ddcb443",
+      "response_bytes": 32254,
+      "raw_path": "authority-recordings/de57a5d7f32eba9ea5ec9521d90b160606fb1cbfe3a060ef44f409bc3ddcb443.bin",
+      "integrity_verified": true
+    },
+    {
+      "url": "https://bkzs.xjart.edu.cn/yjszsjz.htm",
+      "checked_at": "2026-11-09T07:09:20+00:00",
+      "pid": 26032,
+      "pinned_addresses": [
+        "218.195.180.1",
+        "2001:250:1812:65::ff01"
+      ],
+      "status": 200,
+      "complete": true,
+      "headers": {
+        "Content-Type": "text/html",
+        "Location": ""
+      },
+      "sha256": "36605b54ccbcc6b89ff71ec1faca8486a8fd602f6bf4eb4aba30f99f711c0eb5",
+      "response_bytes": 17662,
+      "raw_path": "authority-recordings/36605b54ccbcc6b89ff71ec1faca8486a8fd602f6bf4eb4aba30f99f711c0eb5.bin",
+      "integrity_verified": true
+    }
+  ],
+  "root_trust_automatically_changed": false
+}

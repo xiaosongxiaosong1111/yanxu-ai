@@ -5,20 +5,27 @@ missing and whether a Skill has actually produced a checkable result. It never t
 model prose into admission facts.
 """
 from copy import deepcopy
+from itertools import zip_longest
+import json
+from math import isfinite
 from evidence import exam_unresolved_reason
 from grad_engine import _subject_units
+from official_search import target_matches
 
 FACT_LABELS = {
     'eligibility': '报考资格与适用范围',
     'subjects': '考试科目与命题范围',
     'tuition': '学费与收费口径',
+    'duration_years': '基本学制与适用范围',
 }
 FACT_QUERIES = {
     'eligibility': '招生简章 报考条件 学历 专业范围',
     'subjects': '招生专业目录 考试科目 命题范围',
     'tuition': '学费 收费标准 收费公示',
+    'duration_years': '学制 修业年限 基本学制',
 }
-FACT_ORDER = ('eligibility', 'subjects', 'tuition')
+FACT_ORDER = ('eligibility', 'subjects', 'tuition', 'duration_years')
+FACT_KINDS = {'eligibility': 'charter', 'subjects': 'catalog', 'tuition': 'fees', 'duration_years': 'fees'}
 
 SKILL_CONTRACTS = {
     'understand-intent': {
@@ -29,13 +36,14 @@ SKILL_CONTRACTS = {
     'research-official-sources': {
         'input': '学校、真实参考年度与有限检索预算',
         'tools': ('find_units', 'find_candidates', 'search_official_sources', 'search_knowledge',
-                  'search_knowledge_segments', 'propose_source_candidates'),
+                  'discover_official_entry', 'discover_official_links', 'read_official_source',
+                  'search_knowledge_segments', 'propose_source_candidates', 'propose_admission_facts'),
         'output': '可回到学校官网或本机留档的来源，保留实际年度与读取范围',
     },
     'verify-evidence': {
         'input': '本轮发现的来源与原文片段',
         'tools': ('read_official_source', 'search_knowledge', 'search_knowledge_segments',
-                  'read_knowledge_segment', 'propose_source_candidates'),
+                  'read_knowledge_segment', 'propose_source_candidates', 'propose_admission_facts'),
         'output': '带来源、年度、范围和原文位置的证据；未读到时保持未知',
     },
     'compare-plans': {
@@ -52,13 +60,14 @@ SKILL_CONTRACTS = {
 
 
 def _number(value):
-    return isinstance(value, (int, float)) and not isinstance(value, bool) and value > 0
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and isfinite(value) and value > 0
 
 
 def _candidate_fact(program, fact):
     identifier = program.get('id')
     if fact == 'eligibility':
-        complete = program.get('eligibility_evidence_complete') is True
+        complete = (program.get('eligibility_evidence_complete') is True
+                    and not program.get('requires_review') and not program.get('unparsed_condition_notes'))
         return {
             'candidate_id': identifier, 'fact': fact, 'label': FACT_LABELS[fact],
             'status': 'known' if complete else 'unknown',
@@ -90,10 +99,16 @@ def _candidate_fact(program, fact):
                 'completion': '在官方目录中找到科目组合与命题范围；否则不参与换科计算。',
             },
         }
+    if fact == 'duration_years':
+        duration = program.get('duration_years')
+        known = _number(duration)
+        return {'candidate_id': identifier, 'fact': fact, 'label': FACT_LABELS[fact],
+                'status': 'known' if known else 'unknown', 'value': duration if known else None,
+                'evidence': deepcopy(program.get('duration_evidence') or []), 'next_action': None}
     raw = program.get('tuition')
     amount = raw.get('amount') if isinstance(raw, dict) else raw
     period = raw.get('period') if isinstance(raw, dict) else None
-    known = _number(amount)
+    known = _number(amount) and period in {'year', 'total'}
     return {
         'candidate_id': identifier, 'fact': fact, 'label': FACT_LABELS[fact],
         'status': 'known' if known else 'unknown',
@@ -110,10 +125,12 @@ def _candidate_fact(program, fact):
     }
 
 
-def _source_evidence(sources, unit_id):
+def _source_evidence(sources, unit_id, year):
     rows = []
     for source in sources.values():
-        if unit_id and source.get('unit_id') not in (None, unit_id):
+        if source.get('unit_id') != unit_id or source.get('year') != year:
+            continue
+        if source.get('knowledge_current') is False or source.get('usable') is False:
             continue
         if source.get('status') not in {'official_original_read', 'published_snapshot'}:
             continue
@@ -122,6 +139,103 @@ def _source_evidence(sources, unit_id):
                      'knowledge_id': source.get('knowledge_id'),
                      'current': source.get('knowledge_current') is not False})
     return rows
+
+
+def _current_original(source, program):
+    quality = source.get('knowledge_quality', source.get('quality'))
+    return (source.get('unit_id') == program.get('unit_id') and source.get('year') == program.get('year')
+            and source.get('status') == 'official_original_read' and source.get('knowledge_current') is not False
+            and source.get('usable') is not False and source.get('validity', 'active') == 'active'
+            and (quality is None or isinstance(quality, dict)
+                 and quality.get('state') == 'accepted' and quality.get('reusable') is True))
+
+
+def _discovery_rows(value):
+    if isinstance(value, dict) and 'unit_id' in value:
+        return [value]
+    return list(value.values()) if isinstance(value, dict) else list(value or ())
+
+
+def _discovery_action(unit_id, year, kind):
+    return {'tool': 'discover_official_entry', 'args': {'unit_id': unit_id, 'year': year, 'kind': kind},
+            'reason': '尚未取得该校实际参考年度和目标文种，先从已核官网或权威声明发现入口。',
+            'completion': '分别核对入口归属、目标公告和正文；验证码、OCR及缺失材料继续保留未知。'}
+
+
+def _read_confirmed(receipt, source, segment):
+    extraction = source.get('extraction') or {}
+    start, end = receipt.get('char_start'), receipt.get('char_end')
+    return (isinstance(extraction.get('id'), str) and bool(extraction['id'])
+            and isinstance(extraction.get('generation_id'), str) and bool(extraction['generation_id'])
+            and type(segment.get('char_start')) is int and type(segment.get('char_end')) is int
+            and receipt.get('source_id') == source.get('id') and receipt.get('segment_id') == segment.get('id')
+            and receipt.get('entry_id') == source.get('knowledge_id')
+            and receipt.get('sha256') == source.get('sha256')
+            and receipt.get('unit_id') == source.get('unit_id') and receipt.get('year') == source.get('year')
+            and receipt.get('generation_id') == extraction.get('generation_id')
+            and receipt.get('extraction_id') == extraction.get('id')
+            and isinstance(receipt.get('text_sha256'), str) and len(receipt['text_sha256']) == 64
+            and not receipt.get('content_truncated') and type(start) is int and type(end) is int
+            and start <= segment.get('char_start', -1) < segment.get('char_end', -1) <= end)
+
+
+def _source_action(program, fact, source, receipts, audit):
+    used = {(row.get('proof') or {}).get('draft', {}).get('citation', {}).get('segment_id')
+            for row in audit if isinstance(row, dict) and row.get('program_id') == program.get('id') and row.get('field') == fact}
+    segments = [row for row in source.get('segments') or [] if isinstance(row, dict)
+                and isinstance(row.get('id'), str) and row['id'] not in used]
+    if not segments:
+        return {'tool': 'search_knowledge_segments', 'args': {'query': FACT_QUERIES[fact],
+                'entry_id': source.get('knowledge_id'), 'unit_id': program.get('unit_id'), 'year': program.get('year')},
+                'reason': '已取得对应官方原文，先定位完整条款、表格及范围，不能用摘要填写字段。',
+                'completion': '取得当前版本真实片段ID，再精读完整块及其表头和限定条款。'} if not source.get('segments') else None
+    segment = segments[0]
+    if fact != 'subjects' and any(_read_confirmed(row, source, segment) for row in receipts if isinstance(row, dict)):
+        return {'tool': 'propose_admission_facts', 'args': {'program_id': program['id']},
+                'fields': [fact], 'source_id': source['id'], 'segment_id': segment['id'], 'needs_input': ['drafts'],
+                'reason': '仅提交已完整送达阅读的条款引用；金额、周期、学制和条件由确定性验证器推导。',
+                'completion': '补齐最多六条{field,citation}草案；不提交数值、条件AST或资格完整结论。'}
+    return {'tool': 'read_knowledge_segment', 'args': {'segment_id': segment['id'], 'before': 1, 'after': 1, 'max_chars': 3200},
+            'reason': '精读完整条款及表头、例外和适用范围；片段命中尚不等于已送达阅读。',
+            'completion': '完成有界原文阅读后再提交逐字引用；截断或缺失的上下文不能参与事实核验。'}
+
+
+def _fact_action(program, fact, sources, discovery, receipts, audit, searched, usage):
+    kind, year, unit_id = FACT_KINDS[fact], program.get('year'), program.get('unit_id')
+    for source in sources.values():
+        if not _current_original(source, program) or not target_matches(source, year, kind):
+            continue
+        action = _source_action(program, fact, source, receipts, audit)
+        if action:
+            return action
+    attempted = any(isinstance(row, dict) and row.get('unit_id') == unit_id
+                    and row.get('year') == year and row.get('kind') == kind for row in discovery)
+    if not attempted:
+        return _discovery_action(unit_id, year, kind)
+    if unit_id not in searched and usage.get('searches', 0) < 4:
+        return {'tool': 'search_official_sources', 'args': {'query': FACT_QUERIES[fact], 'unit_id': unit_id, 'year': year},
+                'reason': '公开入口发现尚未取得所需材料，再为该校安排一次有限搜索；为其他学校保留请求额度。',
+                'completion': '搜索只提供线索，仍须核验原文；本校已搜索后不继续变词耗尽全局预算。'}
+    return None
+
+
+def _rotate_actions(actions):
+    groups, seen, paid = {}, {}, set()
+    for action in actions:
+        unit = action.get('unit_id') or action['args'].get('unit_id') or action['args'].get('program_id')
+        if action['tool'] == 'search_official_sources':
+            if unit in paid:
+                continue
+            paid.add(unit)
+        key = json.dumps([action['tool'], action['args'], action.get('source_id'), action.get('segment_id')], sort_keys=True)
+        if key in seen:
+            seen[key]['fields'] = sorted(set(seen[key].get('fields', [])) | set(action.get('fields', [])))
+            continue
+        current = deepcopy(action)
+        seen[key] = current
+        groups.setdefault(unit, []).append(current)
+    rows = [action for level in zip_longest(*groups.values()) for action in level if action is not None]
+    return [{**row, 'priority': index + 1} for index, row in enumerate(rows[:8])]
 
 
 def _skill_contracts(loaded, executed, sources, algorithm, programs, questions, gaps):
@@ -166,10 +280,15 @@ def _skill_contracts(loaded, executed, sources, algorithm, programs, questions, 
 
 
 def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=(), executed_tools=(),
-               questions=(), previous_report=None, inheritance=None, field_candidates=()):
+               questions=(), previous_report=None, inheritance=None, field_candidates=(),
+               official_discovery=(), read_receipts=(), admission_facts=None, searched_units=()):
     """Return a JSON-safe plan. Missing facts remain unknown, never zero or confirmed."""
     programs = programs or {}
     algorithm = algorithm or {}
+    sources = sources or {}
+    usage = usage if isinstance(usage, dict) else {}
+    discovery = _discovery_rows(official_discovery)
+    audit = admission_facts.get('facts', []) if isinstance(admission_facts, dict) else []
     if previous_report is None and isinstance(task, dict):
         previous_report = task.get('previous_report')
     facts = []
@@ -177,17 +296,16 @@ def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=()
         for fact in FACT_ORDER:
             value = _candidate_fact(program, fact)
             if not value.get('evidence'):
-                value['evidence'] = _source_evidence(sources, program.get('unit_id'))
+                value['evidence'] = _source_evidence(sources, program.get('unit_id'), program.get('year'))
+            if value['status'] == 'unknown':
+                action = _fact_action(program, fact, sources, discovery, read_receipts, audit, searched_units, usage)
+                value['next_action'] = {**action, 'unit_id': program.get('unit_id')} if action else None
+                if action is None:
+                    value['pending_reason'] = '当前已读材料或本轮剩余额度不足以补齐该事实，保留未知并继续其他学校。'
             facts.append(value)
     missing = [row for row in facts if row['status'] == 'unknown']
     actions = [row['next_action'] for row in missing if row.get('next_action')]
-    unique, seen = [], set()
-    for action in actions:
-        key = (action['args'].get('unit_id'), action['args'].get('query'))
-        if key in seen:
-            continue
-        seen.add(key)
-        unique.append({'priority': len(unique) + 1, **deepcopy(action)})
+    unique = _rotate_actions(actions)
     if not programs:
         for source in sources.values():
             if source.get('seeded') and source.get('status') == 'search_lead':
@@ -218,11 +336,15 @@ def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=()
                  'reason': '精读后按完整行和科目逐字引用构造最多六个草案，再交确定性校验生成临时方向。',
                  'completion': '只采用工具校验通过的临时方向；学校和年度由来源推导，资格仍未知。'}])
             break
+        if not unique:
+            unique = [_discovery_action(unit_id, task.get('reference_year'), 'catalog')
+                      for unit_id in task.get('unit_ids', [])]
+    unique = _rotate_actions(unique)
     goals = [
         {'id': 'scope', 'label': '确定可研究的合理范围', 'status': 'done' if programs else 'open',
          'completion': '取得有限、可解释的候选，并标明不是全国全集。'},
         {'id': 'evidence', 'label': '补齐关键事实', 'status': 'done' if not missing else 'partial',
-         'completion': '资格、科目与费用有真实年度和原文位置；没有资料时保持 unknown。'},
+         'completion': '资格、科目、学费与学制有真实年度和原文位置；没有资料时保持 unknown。'},
         {'id': 'algorithm', 'label': '用确定性算法比较', 'status': 'done' if algorithm.get('matching') else 'open',
          'completion': '匹配、路线和调整试算只来自程序，不由模型文本替代。'},
         {'id': 'report', 'label': '形成可追溯成果',

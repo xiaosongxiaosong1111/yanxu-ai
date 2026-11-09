@@ -1,0 +1,691 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    
+    
+<link type="text/css" href="dfiles/14592/_css/_system/system.css" rel="stylesheet" />
+<link type="text/css" href="dfiles/14592/_upload/site/1/style/1/1.css" rel="stylesheet" />
+<link type="text/css" href="dfiles/14592/_upload/site/00/3d/61/style/84/84.css" rel="stylesheet" />
+<link type="text/css" href="dfiles/14592/_js/_portletplugs/simplenews/css/simplenews.css" rel="stylesheet" />
+
+
+<link href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/iconfont/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/tem6-ytvc/c/jui.css" />
+
+  <link rel="stylesheet" href="style/slick-theme.css">
+  <link rel="stylesheet" href="style/slick.css">
+  <script src="js/jquery.min.js"></script>
+<script src="js/slick.min.js"></script>
+<style type="text/css">
+/*<![CDATA[*/
+.aui_main .aui_content{ max-height: 200px; overflow-y: auto;}
+/*]]>*/
+.wp_article_list_table{line-height:35px;}
+.wp_article_list_table .news_title
+{
+    font-size:14px;
+    color: #000;}
+.wp_article_list_table .news_meta
+{
+    font-size:14px;
+    color: #555;
+    float: right;
+    margin-right: 5px;}
+.wp_article_list_table .icon-tubiao {
+  font-size: 12px;
+  margin-right:3px;}
+</style>
+
+
+<title>招生网</title><meta name="pageType" content="1">
+<meta name="pageTitle" content="招生网">
+<META Name="keywords" Content="招生网,首页" />
+
+    <link rel="stylesheet" type="text/css" href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/color/tem6blue-ytvc.css" />
+    <link href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/tem6-ytvc/c/css.css" rel="stylesheet">
+    <link href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/iconfont/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/tem6-ytvc/c/royalslider.css">
+    <link rel="stylesheet" href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/tem6-ytvc/c/skins/minimal-white/rs-minimal-white.css">
+    <script src="dfiles/14592/_upload/tpl/00/aa/170/template170/static/tem6-ytvc/j/jquery.royalslider.min.js"></script>
+
+<!--Announced by Visual SiteBuilder 9-->
+<script language="javascript" src="_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:77656262657232307876475c50575742000500034551 -->
+<link rel="stylesheet" type="text/css" href="index.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1001,'/index.jsp',-1,2131694552)</script>
+</head>
+
+<body>
+<div class="css-wrapper">
+        <div class="css-logo">
+            <div class="container">
+<!-- 网站logo图片地址请在本组件"内容配置-网站logo"处填写 -->
+<a href="index.htm">
+<img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/logo.jpg" alt="新疆艺术学院招生网">
+</a></div>
+        </div>
+        
+        <div class="css-main">
+            <script>
+                $(function() {
+                    $(".css-newslist,.css-links").each(function() {
+                        var context = $(this).find(".css-title").next();
+                        $(this).find(".css-tab li a").each(function(index, el) {
+                            $(this).mouseover(function(event) {
+                                $(this).parents('li').addClass('current')
+                                    .siblings('li').removeClass('current');
+
+                                $(context).children("ul").eq(index).removeClass('css-hide')
+                                    .siblings("ul").addClass('css-hide');
+                                event.preventDefault();
+                            });
+
+                        }).eq(0).mouseover().mouseout();
+                    });
+                });
+            </script>        <!-- 2级导航-->
+        
+                        
+<!--图片轮番区域-->
+  <div class="wrapper mbanner" id="banner">
+    <div class="inner clearfix">    <script language="javascript" src="/system/resource/js/dynclicks.js"></script>   <div class="banner">
+      <div class="slick">
+              <div>
+          <a href="#" onclick="_addDynClicks(&#34;wbimage&#34;, 2131694552, 1005)">
+            <img src="images/4.jpg">
+          </a>
+        </div>
+        <div>
+          <a href="#" onclick="_addDynClicks(&#34;wbimage&#34;, 2131694552, 1004)">
+            <img src="images/5.jpg">
+          </a>
+        </div>
+        <div>
+          <a href="#" onclick="_addDynClicks(&#34;wbimage&#34;, 2131694552, 1006)">
+            <img src="images/1.jpg">
+          </a>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(".banner .slick").slick({
+  autoplay: true,
+  dots: true,
+  //arrows: true,
+  accessibility: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  pauseOnHover: false,
+});
+      </script></div>
+  </div>
+<!--图片轮番区域结束-->
+  
+<!--导航区域-->
+
+<div class="css-navbar">
+    <div class="container"> 
+      <ul class="css-navlist">        <li>
+            <a href="https://www.xjart.edu.cn/" title="学校主页">学校主页
+            <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/./static/tem6-ytvc/i/down.jpg" alt="本站主页">
+            </a>
+        </li>
+        <li>
+            <a href="index.htm" title="本站主页">本站主页
+            <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/./static/tem6-ytvc/i/down.jpg" alt="本站主页">
+            </a>
+        </li>
+</ul>
+        <!-- 3.1.3版本 -->
+
+
+
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/vue/vue.js"></script><script language="javascript" src="/system/resource/vue/bluebird.min.js"></script><script language="javascript" src="/system/resource/vue/axios.js"></script><script language="javascript" src="/system/resource/vue/polyfill.js"></script><script language="javascript" src="/system/resource/vue/token.js"></script><LINK href="/system/resource/vue/static/element/index.css" type="text/css" rel="stylesheet"><script language="javascript" src="/system/resource/vue/static/element/index.js"></script><script language="javascript" src="/system/resource/vue/static/public.js"></script><script language="javascript" src="/system/resource/openapp/search/js/containsHtmlTags.js"></script><script language="javascript" src="/system/resource/openapp/search/layui/layui.js"></script>
+
+
+<div id="divu3"></div>
+<script type="text/html" id="htmlu3">
+    <div id="appu3" class="jdjs_app searchbox">
+        <ul>
+          <li>
+            <input type="text" name="title" class="qwss" placeholder="站内搜索" value="" onkeyup="keyUpFunu3(event)">
+          </li>
+          <li class="submit"><input type="submit" class="tj" id="submit" value="" onclick="onSubmitu3()"></li>
+        </ul>    
+    </div>
+</script>
+
+<script>
+   var appElementu3 = document.querySelector("#appu3");
+   if (appElementu3 && appElementu3.__vue__) {
+
+   } else {
+      $("#divu3").html($("#htmlu3").text());
+      var appOwner = "2131694552";   
+      var urlPrefix = "/aop_component/";
+      var ifLogin="";
+      var token = ifLogin=='true'?gettoken(10, true).trim():'tourist';
+      if (containsHtmlTags(token) || !token) { 
+         token = 'tourist';
+      }
+      jQuery.support.cors = true;
+      $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+      });
+      var queryInfou3 = {
+        query: {
+            keyWord: "",//搜索关键词
+            owner: appOwner,
+            token: token,
+            urlPrefix: urlPrefix,
+            lang:"i18n_zh_CN"
+        },
+        isError: false
+      };
+      function keyUpFunu3(e){
+        var theEvent = e || window.event;
+        var keyCode = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if(keyCode == 13){
+          onSubmitu3();
+        }
+      };
+
+      function onSubmitu3(e) {
+        queryInfou3.query.keyWord= $("#appu3  .qwss").val();
+        
+        var url = "/aop_views/search/modules/resultpc/soso.html";      
+        if ("10" == "1" || "10" == "2") {
+           url = "" + url;
+        }
+        var query = queryInfou3.query;
+        if (url.indexOf("?") > -1) {
+            url = url.split("?")[0];
+        }
+        if (query.keyWord) {
+            var query = new Base64().encode(JSON.stringify(query));
+            window.open(url + "?query=" + query);
+        } else {
+            alert("请填写搜索内容")
+        }
+      };
+   }
+</script>
+      <script type="text/javascript">
+        $('#submit').click(function() {
+          var val = $('input[name="title"]').val();
+          if (val) {
+            location.href = 'job/search?title_type=1&title=' + val;
+          }
+        })
+      </script>
+    </div>
+</div>
+
+<!--导航区域结束-->
+  
+<!--主题区域-->
+<div class="container">
+  <div class="css-maincontent">
+    <!--服务导航模块-->
+    <div class="css-textcon">
+      <div class="css-about">
+        <div class="css-title blod">招生导航</div>
+        <div class="css-content"><script language="javascript" src="/system/resource/js/openlink.js"></script><table width="315" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2" height="10"></td>
+    </tr>
+  <tr height="60">
+    <td width="120" align="right">
+        <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/kaoshi.jpg" width="50" height="51" style="padding-right:20px;">
+        
+        
+        
+    </td>
+    <td class="zhaosheng"><a href="http://user.artstudent.cn/" target="_blank" title="专业考试报名(本)" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1003)">专业考试报名(本)</a></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="5"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+  <tr height="60">
+    <td width="120" align="right">
+        
+        <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/chengji.jpg" width="50" height="50" style="padding-right:20px;">
+        
+        
+    </td>
+    <td class="zhaosheng"><a href="https://zscj.xjart.edu.cn/xiaokao/" target="_blank" title="专业成绩查询(本)" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1004)">专业成绩查询(本)</a></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="5"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+  <tr height="60">
+    <td width="120" align="right">
+        
+        
+        <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/luqu.jpg" width="50" height="50" style="padding-right:20px;">
+        
+    </td>
+    <td class="zhaosheng"><a href="https://zscj.xjart.edu.cn/luqu/" target="_blank" title="录取结果查询(本)" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1005)">录取结果查询(本)</a></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="5"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+  <tr height="60">
+    <td width="120" align="right">
+        
+        
+        
+        <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/lianxi.jpg" width="50" height="49" style="padding-right:20px;">
+    </td>
+    <td class="zhaosheng"><a href="https://yz.chsi.com.cn/" target="_blank" title="研招在线报名(研)" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1006)">研招在线报名(研)</a></td>
+  </tr>
+  <tr>
+    <td colspan="2" height="5"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+</table></div>
+      </div>
+    </div>
+    
+    <!--第一块能切换的列表模块-->
+    <div class="css-newslist">
+         <div class="css-title">
+                <!--a href="" class="css-more"><i class="iconfont icon-Rightarrow"></i></a>-->
+                <ul class="css-tab css-tab3">
+                  <li><a href="bkzsgg.htm">本科招生公告</a></li>
+                  <li><a href="bkzsjz.htm">本科招生简章</a></li>
+                  <li><a href="bkzszc.htm">本科招生章程</a></li>
+                  <li><a href="lnfsx.htm">历年分数线</a></li>                
+                </ul>
+         </div>
+         <div class="css-content" frag="面板11">
+            <ul class="css-con1">
+
+<script language="javascript" src="/system/resource/js/centerCutImg.js"></script><script language="javascript" src="/system/resource/js/ajax.js"></script><div frag="窗口11">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table">
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2591.htm" target="_blank" title="新疆艺术学院2027年艺术类本科统考专业与省级统考子科类对照关系表">新疆艺术学院2027年艺术类本科统考专业与省级统考子科类对照关系表</a></span>
+                <span class="news_meta">2026-10-30</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2551.htm" target="_blank" title="新疆艺术学院2027年艺术类本科校考专业与省级统考子科类对照关系表">新疆艺术学院2027年艺术类本科校考专业与省级统考子科类对照关系表</a></span>
+                <span class="news_meta">2026-10-10</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2521.htm" target="_blank" title="新疆艺术学院2026年普通本科分专业招生计划">新疆艺术学院2026年普通本科分专业招生计划</a></span>
+                <span class="news_meta">2026-06-16</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2501.htm" target="_blank" title="新疆艺术学院2026年普通本科招生简章">新疆艺术学院2026年普通本科招生简章</a></span>
+                <span class="news_meta">2026-05-15</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2391.htm" target="_blank" title="新疆艺术学院2026年普通本科艺术类专业考试成绩查询公告">新疆艺术学院2026年普通本科艺术类专业考试成绩查询公告</a></span>
+                <span class="news_meta">2026-04-13</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2241.htm" target="_blank" title="新疆艺术学院2026年普通本科校考专业线上考试说明">新疆艺术学院2026年普通本科校考专业线上考试说明</a></span>
+                <span class="news_meta">2026-02-03</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2231.htm" target="_blank" title="新疆艺术学院2026年普通本科校考专业线上考试操作流程">新疆艺术学院2026年普通本科校考专业线上考试操作流程</a></span>
+                <span class="news_meta">2026-02-03</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1002/2211.htm" target="_blank" title="新疆艺术学院2026年作曲与作曲技术理论专业在线笔试操作说明">新疆艺术学院2026年作曲与作曲技术理论专业在线笔试操作说明</a></span>
+                <span class="news_meta">2026-02-03</span></td>
+</tr>
+</table>
+                </div>
+
+<script>_showDynClickBatch(['dynclicks_u5_2591','dynclicks_u5_2551','dynclicks_u5_2521','dynclicks_u5_2501','dynclicks_u5_2391','dynclicks_u5_2241','dynclicks_u5_2231','dynclicks_u5_2211'],[2591,2551,2521,2501,2391,2241,2231,2211],"wbnews", 2131694552)</script>
+</ul>
+            <ul class="css-con2">
+
+<div frag="窗口12">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table">
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/2481.htm" target="_blank" title="新疆艺术学院2026年普通本科招生简章">新疆艺术学院2026年普通本科招生简章</a></span>
+                <span class="news_meta">2026-05-15</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/2511.htm" target="_blank" title="新疆艺术学院2026年普通高等教育专升本招生简章">新疆艺术学院2026年普通高等教育专升本招生简章</a></span>
+                <span class="news_meta">2026-06-12</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/2161.htm" target="_blank" title="新疆艺术学院2026年普通本科校考专业招生简章">新疆艺术学院2026年普通本科校考专业招生简章</a></span>
+                <span class="news_meta">2026-01-14</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/1092.htm" target="_blank" title="新疆艺术学院2025年普通高等教育专升本招生简章">新疆艺术学院2025年普通高等教育专升本招生简章</a></span>
+                <span class="news_meta">2025-06-20</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/1091.htm" target="_blank" title="新疆艺术学院2025年第二学士学位招生简章">新疆艺术学院2025年第二学士学位招生简章</a></span>
+                <span class="news_meta">2025-06-03</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/1093.htm" target="_blank" title="新疆艺术学院2025年普通本科招生简章">新疆艺术学院2025年普通本科招生简章</a></span>
+                <span class="news_meta">2025-01-11</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/1090.htm" target="_blank" title="新疆艺术学院2024年普通高等教育专升本招生简章">新疆艺术学院2024年普通高等教育专升本招生简章</a></span>
+                <span class="news_meta">2024-06-21</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1003/1089.htm" target="_blank" title="新疆艺术学院2024年普通本科招生简章">新疆艺术学院2024年普通本科招生简章</a></span>
+                <span class="news_meta">2024-02-07</span></td>
+</tr>
+</table>
+                </div>
+
+<script>_showDynClickBatch(['dynclicks_u6_2481','dynclicks_u6_2511','dynclicks_u6_2161','dynclicks_u6_1092','dynclicks_u6_1091','dynclicks_u6_1093','dynclicks_u6_1090','dynclicks_u6_1089'],[2481,2511,2161,1092,1091,1093,1090,1089],"wbnews", 2131694552)</script>
+</ul>
+            <ul class="css-con2">
+
+<div frag="窗口13">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table">
+<tr>
+<td>
+<span class="news_title"><a href="info/1004/2491.htm" target="_blank" title="新疆艺术学院2026年普通本科招生章程">新疆艺术学院2026年普通本科招生章程</a></span>
+                <span class="news_meta">2026-05-15</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1004/1069.htm" target="_blank" title="新疆艺术学院2025年普通本科招生章程">新疆艺术学院2025年普通本科招生章程</a></span>
+                <span class="news_meta">2025-04-27</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1004/1068.htm" target="_blank" title="新疆艺术学院2024年普通本科招生章程">新疆艺术学院2024年普通本科招生章程</a></span>
+                <span class="news_meta">2024-05-14</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1004/1067.htm" target="_blank" title="新疆艺术学院2023年普通本科招生章程">新疆艺术学院2023年普通本科招生章程</a></span>
+                <span class="news_meta">2023-06-06</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1004/1066.htm" target="_blank" title="新疆艺术学院2022年普通本科招生章程">新疆艺术学院2022年普通本科招生章程</a></span>
+                <span class="news_meta">2022-06-10</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1004/1065.htm" target="_blank" title="新疆艺术学院2021年普通本科招生章程">新疆艺术学院2021年普通本科招生章程</a></span>
+                <span class="news_meta">2021-06-01</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1004/1064.htm" target="_blank" title="新疆艺术学院2020年普通本科、高职（专科）招生章程">新疆艺术学院2020年普通本科、高职（专科）招生章程</a></span>
+                <span class="news_meta">2019-12-31</span></td>
+</tr>
+</table>
+                </div>
+
+<script>_showDynClickBatch(['dynclicks_u7_2491','dynclicks_u7_1069','dynclicks_u7_1068','dynclicks_u7_1067','dynclicks_u7_1066','dynclicks_u7_1065','dynclicks_u7_1064'],[2491,1069,1068,1067,1066,1065,1064],"wbnews", 2131694552)</script>
+</ul>
+            <ul class="css-con2">
+                <div frag="窗口14">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table">
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/2541.htm" target="_blank" title="新疆艺术学院2026年普通本科各专业录取分数线">新疆艺术学院2026年普通本科各专业录取分数线</a></span>
+                <span class="news_meta">2026-07-16</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/2531.htm" target="_blank" title="新疆艺术学院2026年普通高等教育专升本考试录取分数统计">新疆艺术学院2026年普通高等教育专升本考试录取分数统计</a></span>
+                <span class="news_meta">2026-07-06</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/1112.htm" target="_blank" title="新疆艺术学院2025年普通本科各专业录取分数线">新疆艺术学院2025年普通本科各专业录取分数线</a></span>
+                <span class="news_meta">2025-07-12</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/1111.htm" target="_blank" title="新疆艺术学院2025年普通高等教育专升本考试录取分数统计">新疆艺术学院2025年普通高等教育专升本考试录取分数统计</a></span>
+                <span class="news_meta">2025-07-07</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/1110.htm" target="_blank" title="新疆艺术学院2024年普通本科各专业录取分数线">新疆艺术学院2024年普通本科各专业录取分数线</a></span>
+                <span class="news_meta">2024-07-14</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/1109.htm" target="_blank" title="新疆艺术学院2024年普通高等教育专升本考试录取最低分统计">新疆艺术学院2024年普通高等教育专升本考试录取最低分统计</a></span>
+                <span class="news_meta">2024-07-11</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/1108.htm" target="_blank" title="新疆艺术学院2023年普通高等教育专升本考试录取最低分统计">新疆艺术学院2023年普通高等教育专升本考试录取最低分统计</a></span>
+                <span class="news_meta">2023-07-11</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1005/1107.htm" target="_blank" title="新疆艺术学院2023年普通本科各专业录取分数线">新疆艺术学院2023年普通本科各专业录取分数线</a></span>
+                <span class="news_meta">2023-07-11</span></td>
+</tr>
+</table>
+   
+<script>_showDynClickBatch(['dynclicks_u8_2541','dynclicks_u8_2531','dynclicks_u8_1112','dynclicks_u8_1111','dynclicks_u8_1110','dynclicks_u8_1109','dynclicks_u8_1108','dynclicks_u8_1107'],[2541,2531,1112,1111,1110,1109,1108,1107],"wbnews", 2131694552)</script>
+</div> 
+            </ul>
+                
+         </div>
+    </div>
+            
+    <div class="clearfix"></div>
+    
+    <!--校内应用模块-->
+    <div class="css-textcon">
+      <div class="css-about">
+        <div class="css-title blod">招生联系方式</div>
+        <div class="css-content">
+
+<table width="315" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2" height="10"></td>
+    </tr>
+    <script language="javascript" src="/system/resource/js/news/mp4video.js"></script>
+<tr height="25">
+    <td align="left" class="jiuye">本科生招生电话：0991-2554104</td>   
+  </tr>
+  <tr>
+    <td height="2"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+  <tr height="25">
+    <td align="left" class="jiuye">&#12288;&#12288;&#12288;咨询邮箱：xjart_zb@163.com</td>
+  </tr>
+    <tr>
+    <td height="2"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+  <tr height="25">
+    <td align="left" class="jiuye">研究生招生电话：0991-2575210</td>
+   
+  </tr>
+  <tr>
+    <td height="2"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+  <tr height="25">
+    <td align="left" class="jiuye">&#12288;&#12288;&#12288;咨询邮箱：xjartyjs@163.com</td>
+  </tr>
+  <tr>
+    <td height="2"><hr style="border:1px dotted #dedece"></td>
+  </tr>
+  <tr height="150">
+    <td align="center" style="top:0px;">    <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/2wm.jpg" width="140" height="140" alt="新疆艺术学院招生网二维码" style="top:0px;">
+</td>
+  </tr>
+</table> 
+        </div>
+      </div>
+    </div>
+
+<!--第二块能切换的列表模块-->
+    <div class="css-newslist">
+         <div class="css-title">
+                <!--a href="" class="css-more"><i class="iconfont icon-Rightarrow"></i></a>-->
+                <ul class="css-tab css-tab3">
+                
+                  <li><a href="yjszsgg.htm">研究生招生公告</a></li>
+                  <li><a href="yjszsjz.htm">研究生招生简章</a></li>
+                </ul>
+         </div>
+         
+         <div class="css-content" frag="面板12">
+                <ul class="css-con1">
+
+<div frag="窗口16">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table">
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2561.htm" target="_blank" title="新疆艺术学院2027年硕士研究生招生章程">新疆艺术学院2027年硕士研究生招生章程</a></span>
+                <span class="news_meta">2026-10-03</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2581.htm" target="_blank" title="2027年全国硕士研究生招生考试新疆艺术学院报考点公告">2027年全国硕士研究生招生考试新疆艺术学院报考点公告</a></span>
+                <span class="news_meta">2026-10-09</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2371.htm" target="_blank" title="新疆艺术学院2026年硕士研究生招生考试调剂考生复试实施细则">新疆艺术学院2026年硕士研究生招生考试调剂考生复试实施细则</a></span>
+                <span class="news_meta">2026-04-07</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2361.htm" target="_blank" title="新疆艺术学院2026年硕士研究生招生调剂公告">新疆艺术学院2026年硕士研究生招生调剂公告</a></span>
+                <span class="news_meta">2026-04-02</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2341.htm" target="_blank" title="新疆艺术学院2026年硕士研究生招生考试一志愿考生复试实施细则">新疆艺术学院2026年硕士研究生招生考试一志愿考生复试实施细则</a></span>
+                <span class="news_meta">2026-03-25</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2291.htm" target="_blank" title="新疆艺术学院2026年硕士研究生招生复试录取工作方案">新疆艺术学院2026年硕士研究生招生复试录取工作方案</a></span>
+                <span class="news_meta">2026-03-25</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2271.htm" target="_blank" title="新疆艺术学院2026年硕士研究生招生考试考生进入复试的初试成绩基本要求">新疆艺术学院2026年硕士研究生招生考试考生进入复试的初试成绩基本要求</a></span>
+                <span class="news_meta">2026-03-23</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1006/2261.htm" target="_blank" title="新疆艺术学院2026年全国硕士研究生招生考试初试成绩复核结果公告">新疆艺术学院2026年全国硕士研究生招生考试初试成绩复核结果公告</a></span>
+                <span class="news_meta">2026-03-06</span></td>
+</tr>
+</table>
+                </div>
+
+<script>_showDynClickBatch(['dynclicks_u11_2561','dynclicks_u11_2581','dynclicks_u11_2371','dynclicks_u11_2361','dynclicks_u11_2341','dynclicks_u11_2291','dynclicks_u11_2271','dynclicks_u11_2261'],[2561,2581,2371,2361,2341,2291,2271,2261],"wbnews", 2131694552)</script>
+</ul>
+                
+                <ul class="css-con2">
+
+<div frag="窗口17">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="wp_article_list_table">
+<tr>
+<td>
+<span class="news_title"><a href="info/1007/2571.htm" target="_blank" title="新疆艺术学院2027年硕士研究生招生章程">新疆艺术学院2027年硕士研究生招生章程</a></span>
+                <span class="news_meta">2026-10-03</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1007/1082.htm" target="_blank" title="新疆艺术学院2026年硕士学位研究生招生简章">新疆艺术学院2026年硕士学位研究生招生简章</a></span>
+                <span class="news_meta">2025-09-30</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1007/1079.htm" target="_blank" title="新疆艺术学院2025年硕士学位研究生招生简章">新疆艺术学院2025年硕士学位研究生招生简章</a></span>
+                <span class="news_meta">2024-09-30</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1007/1077.htm" target="_blank" title="新疆艺术学院2024年硕士学位研究生招生简章">新疆艺术学院2024年硕士学位研究生招生简章</a></span>
+                <span class="news_meta">2023-09-21</span></td>
+</tr>
+<tr>
+<td>
+<span class="news_title"><a href="info/1007/1075.htm" target="_blank" title="新疆艺术学院2023年硕士学位研究生招生简章">新疆艺术学院2023年硕士学位研究生招生简章</a></span>
+                <span class="news_meta">2022-09-21</span></td>
+</tr>
+</table>
+                </div>
+
+<script>_showDynClickBatch(['dynclicks_u12_2571','dynclicks_u12_1082','dynclicks_u12_1079','dynclicks_u12_1077','dynclicks_u12_1075'],[2571,1082,1079,1077,1075],"wbnews", 2131694552)</script>
+</ul>
+
+         </div>
+    </div>
+            
+    <div class="clearfix"></div>  
+    
+  </div>
+</div>
+<!--主题区域结束-->
+
+            
+
+</div>
+</div>
+    <!--网站底部-->
+    <div class="css-footer"><!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+<p><br /></p><p style="text-align: center;"><span class="bottomfont">学校地址:新疆乌鲁木齐市天山区团结路734号&nbsp; &nbsp;邮政编码：830049 &nbsp;&nbsp;联系电话:0991-2554104 &nbsp;&nbsp;电子邮箱:xjart_zb@163.com<br /><a href="https://beian.miit.gov.cn/" target="_blank">新ICP备 05001454</a>&nbsp;&nbsp; <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=65010202000137" target="_blank"><img src="dfiles/12950/_upload/tpl/00/40/64/template64/images/batb.jpg" />新公网安备 65010202000137号 </a></span></p></div>
+    </body>
+    <script>
+        var cssfooterHeight = $(".css-footer").height();
+        $(".css-main").css({
+            "padding-bottom": cssfooterHeight
+        });
+        $(".css-footer").css({
+            "margin-top": -(cssfooterHeight)
+        });
+    </script>
+      
+      
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

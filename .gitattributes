@@ -12,3 +12,8 @@ collectors/catalog_hit_public.py -text
 # Official originals are immutable byte snapshots, including source whitespace.
 # Preserve SHA across Windows checkouts and avoid text normalization/merging.
 tests/fixtures/source_candidates/bift2027/*.html binary
+
+# Navigation and ownership tests replay the downloaded original bytes.
+tests/fixtures/official_discovery/**/*.html binary
+tests/fixtures/official_discovery/**/*.js binary
+tests/fixtures/official_discovery/**/*.bin binary

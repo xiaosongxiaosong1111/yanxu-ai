@@ -47,7 +47,7 @@ class YuanbaoIntegrationTests(unittest.TestCase):
         self.settings=Settings(STANDARD)
         self.requests=[]
         self.upstream={'Response':{'Pages':[
-            {'title':'官方目录','url':'https://grad.example.edu.cn/catalog','passage':'2027目录'}],
+            {'title':'2027年硕士研究生招生专业目录','url':'https://grad.example.edu.cn/catalog','passage':'2027目录'}],
             'RequestId':'fixture-request-id'}}
         environment=patch.dict('os.environ',{'GRAD_SEARCH_API_KEY':''},clear=True)
         environment.start();self.addCleanup(environment.stop)
@@ -140,6 +140,8 @@ class YuanbaoIntegrationTests(unittest.TestCase):
         tools,network=self.tools()
         with patch.dict('os.environ',{'GRAD_SEARCH_API_KEY':'fixture-env-api-key'}):
             result=tools.search_sources({'query':'招生目录','unit_id':'123'})
+        network.request_json.assert_called_once()
+        self.assertEqual(result['target_status'],'found')
         config=network.request_json.call_args.args[0]
         self.assertEqual(set(network.request_json.call_args.args[3]),{'Query','Site'})
         self.assertEqual(config['auth_mode'],'standard')

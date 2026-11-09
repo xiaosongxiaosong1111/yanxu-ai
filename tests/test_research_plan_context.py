@@ -42,7 +42,7 @@ class ResearchPlanContextTests(unittest.TestCase):
         self.assertEqual(len(second), 1)
         self.assertIn('scope', first[0]['completion']['remaining_goals'])
         self.assertEqual(second[0]['next_actions'], task['report']['plan']['next_actions'])
-        self.assertTrue(any(action['args']['query'] == '学费 收费标准 收费公示'
+        self.assertTrue(any(action['tool'] == 'discover_official_entry' and action['args'].get('kind') == 'fees'
                             for action in second[0]['next_actions']))
         self.assertEqual(first[0]['budget']['used']['tool_calls'], 0)
         self.assertEqual(second[0]['budget']['used']['tool_calls'], 1)

@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    
+    
+<link type="text/css" href="dfiles/14592/_css/_system/system.css" rel="stylesheet" />
+<link type="text/css" href="dfiles/14592/_upload/site/1/style/1/1.css" rel="stylesheet" />
+<link type="text/css" href="dfiles/14592/_upload/site/00/3d/61/style/84/84.css" rel="stylesheet" />
+
+<link type="text/css" href="dfiles/14592/_js/_portletplugs/simplenews/css/simplenews.css" rel="stylesheet" />
+
+<script language="javascript" src="dfiles/14592/_js/jquery.min.js"></script>
+
+<link href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/iconfont/iconfont.css" rel="stylesheet">
+    <title>研究生招生简章-招生网</title><meta name="pageType" content="2">
+<meta name="pageTitle" content="研究生招生简章">
+<META Name="keywords" Content="招生网,研究生招生简章" />
+
+    <link rel="stylesheet" type="text/css" href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/color/tem6blue-ytvc.css" />
+    <link rel="stylesheet" type="text/css" href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/color/common-1200.css" />
+    <link href="dfiles/14592/_upload/tpl/00/aa/170/template170/static/tem6-ytvc/c/css.css" rel="stylesheet">
+<!--Announced by Visual SiteBuilder 9-->
+<script language="javascript" src="_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:77656262657232307876475c50575742000500034551 -->
+<link rel="stylesheet" type="text/css" href="list.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1007,'/list.jsp',-1,2131694552)</script>
+</head>
+
+<body>
+    <div class="css-wrapper">
+        <div class="css-logo">
+            <div class="container">
+<!-- 网站logo图片地址请在本组件"内容配置-网站logo"处填写 -->
+<a href="index.htm">
+<img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/logo.jpg" alt="新疆艺术学院招生网">
+</a></div>
+        </div>
+        <div class="css-main">
+<!--导航区域-->
+<div class="css-navbar">
+    <div class="container">
+      <!-- 3.1.3版本 -->
+
+
+
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/vue/vue.js"></script><script language="javascript" src="/system/resource/vue/bluebird.min.js"></script><script language="javascript" src="/system/resource/vue/axios.js"></script><script language="javascript" src="/system/resource/vue/polyfill.js"></script><script language="javascript" src="/system/resource/vue/token.js"></script><LINK href="/system/resource/vue/static/element/index.css" type="text/css" rel="stylesheet"><script language="javascript" src="/system/resource/vue/static/element/index.js"></script><script language="javascript" src="/system/resource/vue/static/public.js"></script><script language="javascript" src="/system/resource/openapp/search/js/containsHtmlTags.js"></script><script language="javascript" src="/system/resource/openapp/search/layui/layui.js"></script>
+
+
+<div id="divu1"></div>
+<script type="text/html" id="htmlu1">
+    <div id="appu1" class="jdjs_app searchbox">
+        <ul>
+          <li>
+            <input type="text" name="title" class="qwss" placeholder="站内搜索" value="" onkeyup="keyUpFunu1(event)">
+          </li>
+          <li class="submit"><input type="submit" class="tj" id="submit" value="" onclick="onSubmitu1()"></li>
+        </ul>    
+    </div>
+</script>
+
+<script>
+   var appElementu1 = document.querySelector("#appu1");
+   if (appElementu1 && appElementu1.__vue__) {
+
+   } else {
+      $("#divu1").html($("#htmlu1").text());
+      var appOwner = "2131694552";   
+      var urlPrefix = "/aop_component/";
+      var ifLogin="";
+      var token = ifLogin=='true'?gettoken(10, true).trim():'tourist';
+      if (containsHtmlTags(token) || !token) { 
+         token = 'tourist';
+      }
+      jQuery.support.cors = true;
+      $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+      });
+      var queryInfou1 = {
+        query: {
+            keyWord: "",//搜索关键词
+            owner: appOwner,
+            token: token,
+            urlPrefix: urlPrefix,
+            lang:"i18n_zh_CN"
+        },
+        isError: false
+      };
+      function keyUpFunu1(e){
+        var theEvent = e || window.event;
+        var keyCode = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if(keyCode == 13){
+          onSubmitu1();
+        }
+      };
+
+      function onSubmitu1(e) {
+        queryInfou1.query.keyWord= $("#appu1  .qwss").val();
+        
+        var url = "/aop_views/search/modules/resultpc/soso.html";      
+        if ("10" == "1" || "10" == "2") {
+           url = "" + url;
+        }
+        var query = queryInfou1.query;
+        if (url.indexOf("?") > -1) {
+            url = url.split("?")[0];
+        }
+        if (query.keyWord) {
+            var query = new Base64().encode(JSON.stringify(query));
+            window.open(url + "?query=" + query);
+        } else {
+            alert("请填写搜索内容")
+        }
+      };
+   }
+</script>
+      <script type="text/javascript">
+        $('#submit').click(function() {
+          var val = $('input[name="title"]').val();
+          if (val) {
+            location.href = 'job/search?title_type=1&title=' + val;
+          }
+        })
+      </script>
+
+      <ul class="css-navlist">        <li>
+            <a href="https://www.xjart.edu.cn/" title="学校主页">学校主页
+            <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/./static/tem6-ytvc/i/down.jpg" alt="本站主页">
+            </a>
+        </li>
+        <li>
+            <a href="index.htm" title="本站主页">本站主页
+            <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/./static/tem6-ytvc/i/down.jpg" alt="本站主页">
+            </a>
+        </li>
+</ul>
+
+    </div>
+</div>
+<!--导航区域结束-->
+<script>
+$(function() {
+    $(".css-newslist,.css-links").each(function() {
+         var context = $(this).find(".css-title").next();
+         $(this).find(".css-tab li a").each(function(index, el) {
+               $(this).mouseover(function(event) {
+                     $(this).parents('li').addClass('current')
+                     .siblings('li').removeClass('current');
+
+                      $(context).children("ul").eq(index).removeClass('css-hide')
+                      .siblings("ul").addClass('css-hide');
+                      event.preventDefault();
+                });
+
+         }).eq(0).mouseover().mouseout();
+    });
+});
+</script> <!-- 2级导航-->
+        
+                        
+<style type="text/css">
+.subNav li {}
+.cuur {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-top: 2px solid #379BE9;
+    display: block;
+    height: 33px;
+    left: 0;
+    position: absolute;
+    top: -1px;
+    width: 100%;}
+</style>
+
+<div id="nav" frag="面板4">
+    <div class="container css-common-subnav show-me-please" frag="窗口4"><ul class="subNav" style="clear: both;">
+            <li><div id="wp_nav_w4"> 
+
+ 
+<ul class="wp_nav" data-nav-config="{drop_v: 'down', drop_w: 'right', dir: 'y', opacity_main: '-1', opacity_sub: '-1', dWidth: '0'}">
+         <li class="nav-item i3 "> 
+             <a href="bkzsgg.htm" title="本科招生公告"><span class="item-name">本科招生公告</span></a><i class="mark"></i> 
+              
+         </li>
+         <li class="nav-item i4 "> 
+             <a href="bkzsjz.htm" title="本科招生简章"><span class="item-name">本科招生简章</span></a><i class="mark"></i> 
+              
+         </li>
+         <li class="nav-item i5 "> 
+             <a href="bkzszc.htm" title="本科招生章程"><span class="item-name">本科招生章程</span></a><i class="mark"></i> 
+              
+         </li>
+         <li class="nav-item i6 "> 
+             <a href="lnfsx.htm" title="历年分数线"><span class="item-name">历年分数线</span></a><i class="mark"></i> 
+              
+         </li>
+         <li class="nav-item i7 "> 
+             <a href="yjszsgg.htm" title="研究生招生公告"><span class="item-name">研究生招生公告</span></a><i class="mark"></i> 
+              
+         </li>
+         <li class="nav-item i8 "> 
+             <a href="yjszsjz.htm" title="研究生招生简章"><span class="item-name">研究生招生简章</span></a><i class="mark"></i> 
+              
+         </li>
+</ul> 
+ 
+ 
+ </div></li>
+        </ul></div>
+</div>
+
+
+<div class="container cl" frag="面板6">
+    <div class="xTit mTit" frag="窗口5">        
+                <a href="index.htm"> 首页</a>
+
+               <span class="possplit">&nbsp;&nbsp;</span>
+                <a href="yjszsjz.htm"> 研究生招生简章</a>
+</div>
+    <div class="newsBox" frag="窗口6" portletmode="simpleList">
+
+
+<script language="javascript" src="/system/resource/js/centerCutImg.js"></script><script language="javascript" src="/system/resource/js/dynclicks.js"></script><script language="javascript" src="/system/resource/js/ajax.js"></script><div id="wp_news_w6">
+<ul class="wp_article_list">
+     <li class="list_item i1">
+         <div class="fields pr_fields">
+             <span class="Article_Index">1</span>
+             <span class="Article_Title"><a href="info/1007/2571.htm" target="_blank" title="新疆艺术学院2027年硕士研究生招生章程">新疆艺术学院2027年硕士研究生招生章程</a></span>
+         </div>
+         <div class="fields ex_fields">
+             <span class="Article_PublishDate">2026-10-03</span>
+         </div>
+     </li>
+     <li class="list_item i2">
+         <div class="fields pr_fields">
+             <span class="Article_Index">2</span>
+             <span class="Article_Title"><a href="info/1007/1082.htm" target="_blank" title="新疆艺术学院2026年硕士学位研究生招生简章">新疆艺术学院2026年硕士学位研究生招生简章</a></span>
+         </div>
+         <div class="fields ex_fields">
+             <span class="Article_PublishDate">2025-09-30</span>
+         </div>
+     </li>
+     <li class="list_item i3">
+         <div class="fields pr_fields">
+             <span class="Article_Index">3</span>
+             <span class="Article_Title"><a href="info/1007/1079.htm" target="_blank" title="新疆艺术学院2025年硕士学位研究生招生简章">新疆艺术学院2025年硕士学位研究生招生简章</a></span>
+         </div>
+         <div class="fields ex_fields">
+             <span class="Article_PublishDate">2024-09-30</span>
+         </div>
+     </li>
+     <li class="list_item i4">
+         <div class="fields pr_fields">
+             <span class="Article_Index">4</span>
+             <span class="Article_Title"><a href="info/1007/1077.htm" target="_blank" title="新疆艺术学院2024年硕士学位研究生招生简章">新疆艺术学院2024年硕士学位研究生招生简章</a></span>
+         </div>
+         <div class="fields ex_fields">
+             <span class="Article_PublishDate">2023-09-21</span>
+         </div>
+     </li>
+     <li class="list_item i5">
+         <div class="fields pr_fields">
+             <span class="Article_Index">5</span>
+             <span class="Article_Title"><a href="info/1007/1075.htm" target="_blank" title="新疆艺术学院2023年硕士学位研究生招生简章">新疆艺术学院2023年硕士学位研究生招生简章</a></span>
+         </div>
+         <div class="fields ex_fields">
+             <span class="Article_PublishDate">2022-09-21</span>
+         </div>
+     </li>
+</ul>
+</div>
+<link rel="stylesheet" Content-type="text/css" href="/system/resource/css/pagedown/sys.css"><div class="pb_sys_common pb_sys_normal pb_sys_style2" style="margin-top:10px;text-align:right;"><span class="p_t">共5条</span> <span class="p_pages"><span class="p_first_d p_fun_d">首页</span><span class="p_prev_d p_fun_d">上页</span><span class="p_no_d">1</span><span class="p_next_d p_fun_d">下页</span><span class="p_last_d p_fun_d">尾页</span></span> <span class="p_t">1/1</span> <span class="p_t">到第</span><span class="p_goto"><script language="javascript" src="/system/resource/js/gotopage.js"></script><input type="text" class="p_goto_input" maxlength="10" id="u5_goto" onkeydown="if(event.keyCode==13){_simple_list_gotopage_fun(1,&quot;u5_goto&quot;,2)}" spellcheck="false"></span><span class="p_t">页</span> <span class="p_goto"><a href="javascript:;" onclick="_simple_list_gotopage_fun(1,&quot;u5_goto&quot;,2)">跳转</a></span></div>
+
+<script>_showDynClickBatch(['dynclicks_u5_2571','dynclicks_u5_1082','dynclicks_u5_1079','dynclicks_u5_1077','dynclicks_u5_1075'],[2571,1082,1079,1077,1075],"wbnews", 2131694552)</script></div>
+</div>
+</div>
+        </div>
+    </div>
+        <!--网站底部-->
+    <div class="css-footer">
+        <div class="container">
+            <div class="flink">
+                 <script language="javascript" src="/system/resource/js/openlink.js"></script><select onchange="javascript:this.value!=''?window.open(this.value):'';" style="width: 100px;">
+    <option value="">招生网站</option>
+    </select>
+
+
+                 <select onchange="javascript:this.value!=''?window.open(this.value):'';" style="width: 100px;">
+    <option value="">就业网站</option>
+            <option value="http://www.xjrc365.com/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1007)">中国新疆人才网</option>
+        <option value="https://www.xjhr.com/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1008)">新疆人才网</option>
+        <option value="http://www.tianshanrc.com/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1009)">天山人才网</option>
+</select>
+
+
+                  <select onchange="javascript:this.value!=''?window.open(this.value):'';" style="width: 100px;">
+    <option value="">校内链接</option>
+        <option value="http://www.xjart.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 1010)" target="">学校主页</option>
+    <option value="https://yjsc.xjart.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112924)" target="">研究生处</option>
+</select>
+
+
+                  <select onchange="javascript:this.value!=''?window.open(this.value):'';" style="width: 100px;">
+    <option value="">友情链接</option>
+            <option value="http://www.cuc.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112925)" target="">中国传媒大学</option>
+        <option value="https://www.ccom.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112926)" target="">中央音乐学院</option>
+        <option value="https://www.cafa.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112927)" target="">中央美术学院</option>
+        <option value="https://www.nacta.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112928)" target="">中国戏曲学院</option>
+        <option value="https://www.nua.edu.cn/main.htm" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112929)" target="">南京艺术学院</option>
+        <option value="https://www.jlart.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112930)" target="">吉林艺术学院</option>
+        <option value="https://www.sdca.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112931)" target="">山东艺术学院</option>
+        <option value="https://www.gxau.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112932)" target="">广西艺术学院</option>
+        <option value="https://www.ynart.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112933)" target="">云南艺术学院</option>
+        <option value="https://www.imac.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112934)" target="">内蒙古艺术学院</option>
+        <option value="https://www.ahua.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2131694552, 112935)" target="">安徽艺术学院</option>
+</select>
+
+
+            </div>
+        </div>
+        <div style="margin:0 auto; width:560px; text-align:center">
+<table width="650" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left" width="420" class="nybq"><script language="javascript" src="/system/resource/js/news/mp4video.js"></script>
+<p><span style="font-family:'微软雅黑',sans-serif;font-size: 13px; line-height:30px;">学校地址：新疆乌鲁木齐市天山区团结路734号<br>邮政编码：830049<br>网站备案号：<a href="https://beian.miit.gov.cn/" target="_blank">新ICP备 05001454</a></span></p></td>
+    <td width="10">&nbsp;</td>
+    <td align="right" width="140">    <img src="dfiles/14592/_upload/tpl/00/aa/170/template170/images/2wm.jpg" width="89" height="89" alt="二维码">
+</td>
+  </tr>
+</table></div>
+    </div>
+    </body>
+    <script>
+        var cssfooterHeight = $(".css-footer").height();
+        $(".css-main").css({
+            "padding-bottom": cssfooterHeight
+        });
+        $(".css-footer").css({
+            "margin-top": -(cssfooterHeight)
+        });
+    </script>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

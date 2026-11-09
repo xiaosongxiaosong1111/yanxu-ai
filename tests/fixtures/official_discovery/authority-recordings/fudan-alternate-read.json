@@ -1,0 +1,26 @@
+{
+  "url": "https://www.fudan.edu.cn/516/list.htm",
+  "sha256": "668215c4dee7271c18187a13255dbbf2c944a7eb6f0497c1f38af9b9ad3da6fa",
+  "content_type": "text/html",
+  "status": 200,
+  "transport": "stdlib_urllib_no_proxy",
+  "production_fetcher_status": "fetch_error",
+  "raw_path": "authority-recordings/668215c4dee7271c18187a13255dbbf2c944a7eb6f0497c1f38af9b9ad3da6fa.bin",
+  "checked_at": "2026-11-09T07:28:29+00:00",
+  "next_links": [
+    {
+      "url": "http://www.gsao.fudan.edu.cn/",
+      "label": "研究生招生",
+      "kind": "page",
+      "role": "anchor",
+      "evidence": [
+        {
+          "source_url": "https://www.fudan.edu.cn/516/list.htm",
+          "start": 35172,
+          "end": 35230,
+          "snippet": "<a class=\"link_icon\" href=\"http://www.gsao.fudan.edu.cn/\">"
+        }
+      ]
+    }
+  ]
+}

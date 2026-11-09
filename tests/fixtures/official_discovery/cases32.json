@@ -1,0 +1,1641 @@
+{
+  "version": 1,
+  "source_review": "D:\\CodexRuntime\\yanxu-official-discovery-review-20261109\\official-discovery-32.json",
+  "source_review_sha256": "e2c77db489578ccb7f9ee9c9e959b124b19649b74da54eb8f6f0b96e5cb8c180",
+  "human_review_checked_at": "2026-11-09T06:24:18.776111+00:00",
+  "seed_policy": "Expected article URLs are scoring answers only, never trusted seeds. Registered URL coverage and previously unbound authority recovery are separate cohorts.",
+  "cases": [
+    {
+      "case_id": "regression-368389",
+      "cohort": "regression32",
+      "unit": {
+        "name": "湖南中医药大学",
+        "id": "368389",
+        "unit_code": "10541",
+        "province": "湖南",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368389.dhtml",
+        "official_url": "http://yjsy.hnucm.edu.cn/",
+        "chsi_id": "368389",
+        "checked_at": "2026-10-28T10:19:43+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=660",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549411091&schCode=10541",
+          "sha256": "641d4e71631ecbc05066f7e02e74e5b4fbd2234d64421d5d264a24fbef3851d1",
+          "quote": "http://yjsy.hnucm.edu.cn/",
+          "link_label": "本单位研究生招生网站声明",
+          "relation": "official_home_link",
+          "linked_url": "http://yjsy.hnucm.edu.cn/",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549411091&schCode=10541",
+          "sha256": "641d4e71631ecbc05066f7e02e74e5b4fbd2234d64421d5d264a24fbef3851d1",
+          "unit_id": "368389",
+          "raw_path": "declarations/368389-641d4e71631ecbc0.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:35:58+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yjsy.hnucm.edu.cn/zsxx/zsjz.htm"
+      ],
+      "expected": {
+        "entry": "https://yjsy.hnucm.edu.cn/zsxx/zsjz.htm",
+        "article": "https://yjsy.hnucm.edu.cn/info/1093/6723.htm",
+        "title": "湖南中医药大学2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "official_2027_page_and_pdf_first_page_verified",
+        "human_read_status": "HTML title/date read; official embedded PDF downloaded HTTP200; rendered first page visually confirms full title/year and charter body. Full 11-page policy was not audited.",
+        "limitations": [
+          "HTML article body embeds PDF through showVsbpdfIframe; plain visible-text extraction sees title/date/attachments but no charter body",
+          "pdftotext extracted numerals but lost most Chinese glyphs; visual PDF first-page review succeeded. This is a text-extraction barrier, not lack of official content."
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368089",
+      "cohort": "regression32",
+      "unit": {
+        "name": "哈尔滨医科大学",
+        "id": "368089",
+        "unit_code": "10226",
+        "province": "黑龙江",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368089.dhtml",
+        "official_url": "http://yjsy.hrbmu.edu.cn/",
+        "chsi_id": "368089",
+        "checked_at": "2026-10-28T10:19:26+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=300",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557846158&schCode=10226",
+          "sha256": "701c1edabc2b194334bc68ceb29b4d91ca72e330e1531cb9cfebb0708c2d4927",
+          "quote": "http://yjsy.hrbmu.edu.cn/",
+          "link_label": "本单位研究生招生网站声明",
+          "relation": "official_home_link",
+          "linked_url": "http://yjsy.hrbmu.edu.cn/",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/sch/viewZszc--infoId-3298623809,categoryId-10461164,schId-368089,mindex-12.dhtml",
+          "sha256": "5af4381ff122ffb2d90adbdd5a7fbbb1f6fe8d80f92cc33068d618d2b828f07c",
+          "unit_id": "368089",
+          "raw_path": "declarations/368089-5af4381ff122ffb2.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-28T10:27:53+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        },
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557846158&schCode=10226",
+          "sha256": "701c1edabc2b194334bc68ceb29b4d91ca72e330e1531cb9cfebb0708c2d4927",
+          "unit_id": "368089",
+          "raw_path": "declarations/368089-701c1edabc2b1943.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:27:44+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yjsy.hrbmu.edu.cn/zsgz/sszs.htm"
+      ],
+      "expected": {
+        "entry": "https://yjsy.hrbmu.edu.cn/zsgz/sszs.htm",
+        "article": "https://yjsy.hrbmu.edu.cn/info/1024/3545.htm",
+        "title": "哈尔滨医科大学2027年硕士研究生招生简章（专业目录已更新）",
+        "actual_year": 2027,
+        "human_state": "official_2027_body_read_via_http",
+        "human_read_status": "Official title/date and charter content read by ordinary HTTP GET200; root current project fetch_official_document also succeeded with attribution=verified, 6026 text characters.",
+        "limitations": [
+          "web open returned HTTP403 in one attempt; ordinary HTTP200 and current project fetch success show this is tool-vantage behavior and must not be reported as a project fetch failure.",
+          "Registered domain remains active. Getting the correct URL succeeds; original search domain_mismatch is a discovery issue per root project verification."
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-367863",
+      "cohort": "regression32",
+      "unit": {
+        "name": "北京第二外国语学院",
+        "id": "367863",
+        "unit_code": "10031",
+        "province": "北京",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367863.dhtml",
+        "official_url": "http://yanzhao.bisu.edu.cn/",
+        "chsi_id": "367863",
+        "checked_at": "2026-10-28T10:19:13+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=20",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549141282&schCode=10031",
+          "sha256": "95192f2413191d91df348d6b63b12b600bdfa0ffc5124f62091b3549c843747c",
+          "quote": "http://yanzhao.bisu.edu.cn",
+          "link_label": "本单位研究生招生网站声明",
+          "relation": "official_home_link",
+          "linked_url": "http://yanzhao.bisu.edu.cn/",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549141282&schCode=10031",
+          "sha256": "95192f2413191d91df348d6b63b12b600bdfa0ffc5124f62091b3549c843747c",
+          "unit_id": "367863",
+          "raw_path": "declarations/367863-95192f2413191d91.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:29:25+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yanzhao.bisu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yanzhao.bisu.edu.cn/",
+        "article": "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html",
+        "title": "北京第二外国语学院2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "official_2027_body_read_via_http",
+        "human_read_status": "Official title/date and charter body read by ordinary HTTP200; root current project fetch succeeded with attribution=verified, 7018 text characters.",
+        "limitations": [
+          "Homepage latest announcements use div onclick=showStory(this) and data-id; article URL requires following official action.js rule /content/ + storyId + .html",
+          "web open refused exact article URL but ordinary HTTP GET returned200 and full body",
+          "The 当前最新公告 section contains 2027 items while 小研推荐/招生简章 section still displays 2025/2024 titles. Restricting discovery to the latter section can select stale content."
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368112",
+      "cohort": "regression32",
+      "unit": {
+        "name": "上海船舶运输科学研究所",
+        "id": "368112",
+        "unit_code": "83901",
+        "province": "上海",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368112.dhtml",
+        "official_url": "https://www.sssri.com/",
+        "chsi_id": "368112",
+        "checked_at": "2026-10-28T10:19:29+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=360",
+        "annual_year": 2027,
+        "annual_status": "confirmed",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3545927981&schCode=83901",
+          "sha256": "6ee6cd355d4fc883d8eab32b7a1a685f3bf2cb16dd1da6b7641074578bd594f5",
+          "quote": "www.sssri.com",
+          "link_label": "",
+          "context": "我所复试采取差额复试。以面试为主，辅以专业笔试和英语测试，原则上按不低于1:1.2的比例确定复试人数，具体比例将根据各专业的生源情况确定。复试形式和内容由各专业根据各自的培养要求并适当结合其它知识和能力的考核，经统筹安排后确定，并在复试前通过我所企业网站的研究生教育栏目（网址：www.sssri.com）向考生公布。复试成绩计入总分，复试成绩不及格者不予录取。复试时间、地点及所需确认材料在初试成绩公布后另行通知，请留意我所企业网站研究生教育栏目的招生信息。",
+          "relation": "declared_official_site",
+          "verification": "saved_declaration_and_own_primary_title_replayed",
+          "linked_url": "https://www.sssri.com/",
+          "target_evidence": {
+            "url": "https://www.sssri.com/",
+            "sha256": "b1df114d7c1d0eccaee9a67e4eead41128aa5558f9bff1775e8e7e2850dcc0de",
+            "quote": "上海船舶运输科学研究所",
+            "relation": "own_primary_homepage_title"
+          }
+        }
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3545927981&schCode=83901",
+          "sha256": "6ee6cd355d4fc883d8eab32b7a1a685f3bf2cb16dd1da6b7641074578bd594f5",
+          "unit_id": "368112",
+          "raw_path": "declarations/368112-6ee6cd355d4fc883.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:33:00+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://www.sssri.com/col/col2121/index.html"
+      ],
+      "expected": {
+        "entry": "https://www.sssri.com/col/col2121/index.html",
+        "article": "https://yz.chsi.com.cn/sch/tjzc--method-viewPub,infoId-3541444737,categoryId-671243,schId-368112,mindex-11.dhtml",
+        "title": "上海船舶运输科学研究所2026年硕士研究生招生调剂信息",
+        "actual_year": 2026,
+        "human_state": "official_entry_and_genuine_2026_chsi_admissions_body_verified",
+        "human_read_status": "Full public CHSI school publication readable by web and HTTP. School index dates this 2026-03-27. It is 2026 adjustment/admissions information, not a 2027 charter.",
+        "limitations": [
+          "Homepage navigation is emitted by JavaScript and includes iframe menus; a static a/area parser does not see those injected links.",
+          "Graduate entry requires two JavaScript redirects; no HTTP3xx redirect is supplied.",
+          "Own current linked page is an overview. The genuine2026 admission notice is on the school CHSI publication surface. This does not prove an own-site2027 notice is absent.",
+          "Third-party2027 headline https://www.chinakaoyan.com/info/article/id/680839.shtml explicitly says expected publication and contains no charter; excluded.",
+          "Historical CHSI2017 charter has visible www.sssri.com text but href www.csipi.com.cn; do not trust visible label as ownership proof."
+        ],
+        "classification": "historical_or_department_only",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368435",
+      "cohort": "regression32",
+      "unit": {
+        "name": "桂林电子科技大学",
+        "id": "368435",
+        "unit_code": "10595",
+        "province": "广西",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368435.dhtml",
+        "official_url": "http://www.guet.edu.cn/",
+        "chsi_id": "368435",
+        "checked_at": "2026-10-28T10:19:45+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=720",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368435,categoryId-459916.dhtml",
+          "sha256": "07d9aa15057ae5a9f5dffd9388e2922138386467df8fef9ac34dc00681fd0d84",
+          "quote": "http://www.guet.edu.cn",
+          "link_label": "正文声明招生网址",
+          "relation": "official_home_link",
+          "linked_url": "http://www.guet.edu.cn/",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/sch/viewZszc--infoId-3549433541,categoryId-10461603,schId-368435,mindex-12.dhtml",
+          "sha256": "0daa85d7b7c570f2c436cae8bc429352aa12797d00e789fd966b67602758eb51",
+          "unit_id": "368435",
+          "raw_path": "declarations/368435-0daa85d7b7c570f2.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-28T10:30:20+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        },
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557828790&schCode=10595",
+          "sha256": "34732da0d3bb0cfb792a834cb69fa3f390c4fe88322074df166ff87ec031f179",
+          "unit_id": "368435",
+          "raw_path": "declarations/368435-34732da0d3bb0cfb.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:27:01+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://www.guet.edu.cn/yjszs/"
+      ],
+      "expected": {
+        "entry": "https://www.guet.edu.cn/yjszs/",
+        "article": "https://www.guet.edu.cn/yjszs/2026/0910/c4230a159433/page.htm",
+        "title": "桂林电子科技大学2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "official_2027_body_read",
+        "human_read_status": "Title/date and charter body read through web and HTTP200.",
+        "limitations": [
+          "University root fetch timed out; /yjszs/ entry and exact article readable",
+          "Article URL contains /0910/ while visible publication date is 2026-09-30; use page date"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368318",
+      "cohort": "regression32",
+      "unit": {
+        "name": "河南理工大学",
+        "id": "368318",
+        "unit_code": "10460",
+        "province": "河南",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368318.dhtml",
+        "official_url": "http://adge.hpu.edu.cn/",
+        "chsi_id": "368318",
+        "checked_at": "2026-10-28T10:19:39+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=580",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549431530&schCode=10460",
+          "sha256": "1f376d5a94bab046a89b486f5d02da490d7533ecbeff7984704197fccb462937",
+          "quote": "http://adge.hpu.edu.cn",
+          "link_label": "本单位研究生招生网站声明",
+          "relation": "official_home_link",
+          "linked_url": "http://adge.hpu.edu.cn/",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549431530&schCode=10460",
+          "sha256": "1f376d5a94bab046a89b486f5d02da490d7533ecbeff7984704197fccb462937",
+          "unit_id": "368318",
+          "raw_path": "declarations/368318-1f376d5a94bab046.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:35:06+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://adge.hpu.edu.cn/zsgz2/sszs.htm"
+      ],
+      "expected": {
+        "entry": "https://adge.hpu.edu.cn/zsgz2/sszs.htm",
+        "article": "https://adge.hpu.edu.cn/info/1031/14541.htm",
+        "title": "河南理工大学2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "official_2027_body_read",
+        "human_read_status": "Title/date and charter body read through web. A later ordinary HTTP replay returned403; these observations are separate.",
+        "limitations": [
+          "Same registered domain and exact official2027 page remain verified. One direct HTTP replay403 contrasts with successful web body read; project fetch for this school was not run by this subagent. Original discovery mismatch root cause unproven."
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368452",
+      "cohort": "regression32",
+      "unit": {
+        "name": "重庆医科大学",
+        "id": "368452",
+        "unit_code": "10631",
+        "province": "重庆",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368452.dhtml",
+        "official_url": "http://yjszs.cqmu.edu.cn/",
+        "chsi_id": "368452",
+        "checked_at": "2026-10-28T10:19:46+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=740",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557829747&schCode=10631",
+          "sha256": "cc038629260dc91234ac463fc23f2433499f2a4a1bbee44a1733c5054f2e9b29",
+          "quote": "http://yjszs.cqmu.edu.cn",
+          "link_label": "本单位研究生招生网站声明",
+          "relation": "official_home_link",
+          "linked_url": "http://yjszs.cqmu.edu.cn/",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [],
+      "unconfirmed_candidates": [
+        "https://yjszs.cqmu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yjszs.cqmu.edu.cn/",
+        "article": "https://yjszs.cqmu.edu.cn/info/1119/2882.htm",
+        "title": "重庆医科大学二〇二七年硕士研究生招生章程及专业目录",
+        "actual_year": 2027,
+        "human_state": "official_domain_confirmed_2027_link_not_body_read",
+        "human_read_status": "Exact official-domain URL obtained by following EOL official-entry link. Official body and title not directly read; third-party title/date are explicitly clues only.",
+        "limitations": [
+          "web returned timeout/not accessible for own domain; ordinary requests failed with ProxyError / RemoteDisconnected before obtaining an HTTP status. This does not establish website outage or wrong binding.",
+          "Official school CHSI 信息发布平台 explicitly endorses original domain; no domain change proven.",
+          "2027 original URL clue exists; neither absence nor full content is concluded from this fetch failure."
+        ],
+        "classification": "target_original_unread",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-678514",
+      "cohort": "regression32",
+      "unit": {
+        "name": "川北医学院",
+        "id": "678514",
+        "unit_code": "10634",
+        "province": "四川",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-678514.dhtml",
+        "official_url": "https://www.nsmc.edu.cn/",
+        "chsi_id": "678514",
+        "checked_at": "2026-10-28T10:19:48+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=780",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3547197658&schCode=10634",
+          "sha256": "8da7c9cc9a08719d0f264a15e8d0373747f14ad6da852cf6692a57984ac22239",
+          "quote": "https://www.nsmc.edu.cn/dwyjsgzb/info/1322/70618.htm",
+          "link_label": "本单位研究生招生网站声明",
+          "relation": "official_home_link",
+          "linked_url": "https://www.nsmc.edu.cn/dwyjsgzb/info/1322/70618.htm",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [],
+      "unconfirmed_candidates": [
+        "https://www.nsmc.edu.cn/dwyjsgzb/index.htm"
+      ],
+      "expected": {
+        "entry": "https://www.nsmc.edu.cn/dwyjsgzb/index.htm",
+        "article": "https://www.nsmc.edu.cn/dwyjsgzb/info/1322/70948.htm",
+        "title": "川北医学院二〇二七年硕士研究生招生简章与专业目录",
+        "actual_year": 2027,
+        "human_state": "official_2027_page_title_date_attachment_verified_pdf_captcha",
+        "human_read_status": "Ordinary HTTP200; title/date and official PDF filename read. PDF body not read: attachment endpoint HTTP200 returns a CAPTCHA HTML page, not application/pdf.",
+        "limitations": [
+          "web tool refuses current entry/article URLs; ordinary HTTP200 title/date/attachment confirms pages are accessible in this environment through ordinary requests.",
+          "PDF endpoint HTTP200 content-type text/html;charset=UTF-8 displays 请输入验证码下载附件; no PDF body was obtained or claimed.",
+          "2024 CHSI public Q&A pointed to /gs; current school navigation and CHSI contact now use /dwyjsgzb. Same www.nsmc.edu.cn host; this is a path-level entry update."
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368034",
+      "cohort": "regression32",
+      "unit": {
+        "name": "沈阳工业大学",
+        "id": "368034",
+        "unit_code": "10142",
+        "province": "辽宁",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368034.dhtml",
+        "official_url": "http://yjsxy.sut.edu.cn/",
+        "chsi_id": "368034",
+        "checked_at": "2026-10-28T10:19:23+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=220",
+        "official_url_evidence": {
+          "url": "https://yz.chsi.com.cn/sch/viewZszc--infoId-3555732172,categoryId-10461044,schId-368034,mindex-12.dhtml",
+          "sha256": "2ea81c69aca69507122dd970dfe89218f5df8c0f64d6a5b0b1cda91b0352ffcf",
+          "quote": "http://yjsxy.sut.edu.cn/",
+          "link_label": "本单位研究生招生网站声明",
+          "relation": "official_home_link",
+          "linked_url": "http://yjsxy.sut.edu.cn/",
+          "verification": "replayed_from_saved_chsi_official_site_statement"
+        },
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "registered_homepage",
+      "saved_declarations": [],
+      "unconfirmed_candidates": [
+        "https://yjsxy.sut.edu.cn/zsgz/sszs.htm"
+      ],
+      "expected": {
+        "entry": "https://yjsxy.sut.edu.cn/zsgz/sszs.htm",
+        "article": "https://yjsxy.sut.edu.cn/info/1311/10911.htm",
+        "title": "沈阳工业大学2027年全国硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "official_2027_body_read",
+        "human_read_status": "Official title/date and charter body read through web and ordinary HTTP200.",
+        "limitations": [
+          "No current-domain failure seen; original mismatch cause unproven"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "mismatch/mismatch-review.json"
+      }
+    },
+    {
+      "case_id": "regression-367900",
+      "cohort": "regression32",
+      "unit": {
+        "name": "中国水利水电科学研究院",
+        "id": "367900",
+        "unit_code": "82301",
+        "province": "北京",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367900.dhtml",
+        "official_url": null,
+        "chsi_id": "367900",
+        "checked_at": "2026-10-28T10:19:15+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=60",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549198841&schCode=82301",
+          "sha256": "9aea9b0bc5a5da69762d12af9508dc0211a4a30966f9da60b16a4b6604998351",
+          "unit_id": "367900",
+          "raw_path": "declarations/367900-9aea9b0bc5a5da69.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:30:13+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "http://gs.iwhr.com/skyyjsy/zsgz/jzml/A060202index_1.htm"
+      ],
+      "expected": {
+        "entry": "http://gs.iwhr.com/skyyjsy/zsgz/jzml/A060202index_1.htm",
+        "article": "http://gs.iwhr.com/skyyjsy/zsgz/jzml/webinfo/2026/10/1792028351849976.htm",
+        "title": "中国水利水电科学研究院2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "specific_original_found",
+        "human_read_status": "raw_http_200_full_html_body_read; web_tool_https_fetch_failed",
+        "limitations": [
+          "web工具将HTTP升级HTTPS后无法访问；公开HTTP以标准浏览器User-Agent返回200，已读正文且招生类别、计划、报名内容均明确2027。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-688910183",
+      "cohort": "regression32",
+      "unit": {
+        "name": "陆军步兵学院",
+        "id": "688910183",
+        "unit_code": "92006",
+        "province": "江西",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688910183.dhtml",
+        "official_url": null,
+        "chsi_id": "688910183",
+        "checked_at": "2026-10-28T10:19:37+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=540",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688910183.dhtml",
+          "sha256": "6a360a33044648ff184768dbe8a1b25a0f47938f20c1f4e5fbea7eb372894e38",
+          "unit_id": "688910183",
+          "raw_path": "declarations/688910183-6a360a33044648ff.html",
+          "content_type": "text/html",
+          "checked_at": "2026-11-09",
+          "provenance": "unchanged_public_CHSI_snapshot_from_32_case_review"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yz.chsi.com.cn/sch/schoolInfo--schId-688910183.dhtml"
+      ],
+      "expected": {
+        "entry": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688910183.dhtml",
+        "article": "https://www.81.cn/jx_208569/10192294.html?big=fan",
+        "title": "陆军步兵学院2023年军事硕士专业学位研究生招生简章",
+        "actual_year": 2023,
+        "human_state": "specific_official_republication_found",
+        "human_read_status": "raw_http_200_full_html_body_read; web_search_index_read; web_open_redirect_loop",
+        "limitations": [
+          "未查到可核验的2026或2027硕士简章原件；聚合站2026条目和文职/军官招聘不能替代硕士招生公告。",
+          "未确认学校独立互联网招生官网；不要把中国军网院校介绍页标成学校首页。",
+          "2023公告部分招生专业目录为图片，未提取图片表格。"
+        ],
+        "classification": "historical_or_department_only",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368439",
+      "cohort": "regression32",
+      "unit": {
+        "name": "海南大学",
+        "id": "368439",
+        "unit_code": "10589",
+        "province": "海南",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368439.dhtml",
+        "official_url": null,
+        "chsi_id": "368439",
+        "checked_at": "2026-10-28T10:19:46+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=740",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557827843&schCode=10589",
+          "sha256": "efc6bcddc1f28827797f5867778b781cbafa90ad4b43c08f60c4e76dcf60a9a3",
+          "unit_id": "368439",
+          "raw_path": "declarations/368439-efc6bcddc1f28827.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:36:46+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://gs.hainanu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://gs.hainanu.edu.cn/",
+        "article": "https://gs.hainanu.edu.cn/info/1024/9032.htm",
+        "title": "海南大学2027年硕士研究生招生简章",
+        "actual_year": 2027,
+        "human_state": "found_specific_original",
+        "human_read_status": "web_title_date_and_article_text_read",
+        "limitations": [],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-788359951",
+      "cohort": "regression32",
+      "unit": {
+        "name": "煤炭科学研究总院",
+        "id": "788359951",
+        "unit_code": "83301",
+        "province": "北京",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-788359951.dhtml",
+        "official_url": null,
+        "chsi_id": "788359951",
+        "checked_at": "2026-10-28T10:19:17+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=100",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3547301964&schCode=83301",
+          "sha256": "2476ced30ff7b256a3ee45c891dc8cf4755772d3042fa2a53299a5148e633ab1",
+          "unit_id": "788359951",
+          "raw_path": "declarations/788359951-2476ced30ff7b256.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:30:30+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        },
+        {
+          "url": "https://yz.chsi.com.cn/sch/tjzc--method-viewPub,infoId-3541444977,categoryId-788360033,schId-788359951,mindex-11.dhtml",
+          "sha256": "a8949eb4cd70bd1a228c834172ca503dc1d901174121c2a44860969091f5ba0c",
+          "unit_id": "788359951",
+          "raw_path": "declarations/788359951-a8949eb4cd70bd1a.html",
+          "content_type": "text/html",
+          "checked_at": "2026-11-09",
+          "provenance": "unchanged_public_CHSI_snapshot_from_32_case_review"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "http://125.34.90.207:8088/#/"
+      ],
+      "expected": {
+        "entry": "http://125.34.90.207:8088/#/",
+        "article": "http://125.34.90.207:8088/#/articleDetail/114",
+        "title": "煤炭科学研究总院2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "specific_original_found",
+        "human_read_status": "raw_http_200_public_javascript_shell_and_public_CMS_article_full_body_read",
+        "limitations": [
+          "首页为JavaScript应用，单读HTML只有应用壳；本次沿首页公开JS中正常调用的无鉴权CMS GET接口读取公告，无登录、无用户数据接口。",
+          "入口使用HTTP公网IP及8088端口，需要作为已核实的特例处理，不可凭通用域名规则拒绝或自动替换成第三方。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368511",
+      "cohort": "regression32",
+      "unit": {
+        "name": "云南财经大学",
+        "id": "368511",
+        "unit_code": "10689",
+        "province": "云南",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368511.dhtml",
+        "official_url": null,
+        "chsi_id": "368511",
+        "checked_at": "2026-10-28T10:19:50+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=820",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3553014767&schCode=10689",
+          "sha256": "6f3bec63507985ba8eb4a73534db73077bf1494b6f6b3e52c7b3dd9c09e3aa5a",
+          "unit_id": "368511",
+          "raw_path": "declarations/368511-6f3bec63507985ba.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:37:42+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://www.ynufe.edu.cn/yjsy/zs/sszs.htm"
+      ],
+      "expected": {
+        "entry": "https://www.ynufe.edu.cn/yjsy/zs/sszs.htm",
+        "article": "https://www.ynufe.edu.cn/yjsy/info/1010/6011.htm",
+        "title": "云南财经大学2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "found_specific_original",
+        "human_read_status": "web_article_shell_read_and_raw_pdf_first_two_pages_text_verified",
+        "limitations": [
+          "Web文章解析器只显示标题、日期；正文为showVsbpdfIframe嵌入PDF，非空文章。Web PDF抓取超时；Python公开GET已取回PDF200且pdftotext前两页核实2027、2026年9月。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-2807892330",
+      "cohort": "regression32",
+      "unit": {
+        "name": "重庆文理学院",
+        "id": "2807892330",
+        "unit_code": "10642",
+        "province": "重庆",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2807892330.dhtml",
+        "official_url": null,
+        "chsi_id": "2807892330",
+        "checked_at": "2026-10-28T10:19:46+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=740",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549356356&schCode=10642",
+          "sha256": "8cf3262b9835bafbc99781d4c5f2446be88e4cc068dddbd0b973feb0adbeddc1",
+          "unit_id": "2807892330",
+          "raw_path": "declarations/2807892330-8cf3262b9835bafb.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:36:54+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yjszs.cqwu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yjszs.cqwu.edu.cn/",
+        "article": "https://yjszs.cqwu.edu.cn/article_434346.html",
+        "title": "重庆文理学院2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "found_specific_original",
+        "human_read_status": "web_article_attachment_link_read_and_raw_pdf_cover_visually_verified",
+        "limitations": [
+          "部分搜索结果把2027标题写作简章，已按官网入口和PDF封面使用章程。PDF为扫描/图形页面，pdftotext无可提取正文；12,819,980字节超出Web抓取限制。Python公开GET200，已渲染并目视核实封面2027硕士研究生招生章程；未声称OCR读完全文。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368369",
+      "cohort": "regression32",
+      "unit": {
+        "name": "中国地质大学(武汉)",
+        "id": "368369",
+        "unit_code": "10491",
+        "province": "湖北",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368369.dhtml",
+        "official_url": null,
+        "chsi_id": "368369",
+        "checked_at": "2026-10-28T10:19:40+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=600",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3547128116&schCode=10491",
+          "sha256": "67f3fc5cf312508e54c7ae7232bcf3164f3e07e7300672b487137b4f49ced7a3",
+          "unit_id": "368369",
+          "raw_path": "declarations/368369-67f3fc5cf312508e.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:35:23+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yz.cug.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yz.cug.edu.cn/",
+        "article": "https://yz.cug.edu.cn/page/detail/PVKZRL/892/66288",
+        "title": "中国地质大学（武汉）2027年招收攻读硕士学位研究生招生章程及专业目录",
+        "actual_year": 2027,
+        "human_state": "found_specific_original",
+        "human_read_status": "web_fetch_failed_but_raw_official_html_get200_read_and_pdf_first_two_pages_text_verified",
+        "limitations": [
+          "Web浏览器多次超时或not_accessible；Python公开GET主页和精确文章均200，已读具体原件HTML，并下载官网正文所链PDF，pdftotext前2页核实2027。Web失败与原始HTTP可读取分别记录。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368198",
+      "cohort": "regression32",
+      "unit": {
+        "name": "南京农业大学",
+        "id": "368198",
+        "unit_code": "10307",
+        "province": "江苏",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368198.dhtml",
+        "official_url": null,
+        "chsi_id": "368198",
+        "checked_at": "2026-10-28T10:19:30+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=380",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3548458545&schCode=10307",
+          "sha256": "05cf9f43e375148f35e7ae075e2712ee6e107f19f50c8c4187a153070bebc78d",
+          "unit_id": "368198",
+          "raw_path": "declarations/368198-05cf9f43e375148f.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:33:19+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://zsgz.njau.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://zsgz.njau.edu.cn/",
+        "article": "https://zsgz.njau.edu.cn/info/1007/1746.htm",
+        "title": "南京农业大学2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "found_specific_original",
+        "human_read_status": "web_title_date_and_article_text_read",
+        "limitations": [],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368099",
+      "cohort": "regression32",
+      "unit": {
+        "name": "上海化工研究院",
+        "id": "368099",
+        "unit_code": "83502",
+        "province": "上海",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368099.dhtml",
+        "official_url": null,
+        "chsi_id": "368099",
+        "checked_at": "2026-10-28T10:19:29+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=360",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368099.dhtml",
+          "sha256": "c57807f1449083d1167b59be999eea485746eeb77def3dc2d07d9bf605c77a81",
+          "unit_id": "368099",
+          "raw_path": "declarations/368099-c57807f1449083d1.html",
+          "content_type": "text/html",
+          "checked_at": "2026-11-09",
+          "provenance": "unchanged_public_CHSI_snapshot_from_32_case_review"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yz.chsi.com.cn/sch/schoolInfo--schId-368099.dhtml"
+      ],
+      "expected": {
+        "entry": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368099.dhtml",
+        "article": "https://yz.chsi.com.cn/sch/viewZszc--infoId-3417672800,categoryId-10462381,schId-368099,mindex-12.dhtml",
+        "title": "2026年上海化工研究院硕士研究生招生简章",
+        "actual_year": 2026,
+        "human_state": "specific_original_found",
+        "human_read_status": "web_tool_and_raw_http_200_full_html_body_read",
+        "limitations": [
+          "未查到2027统考简章；当前官方账号简章栏目仅2026，2027拟录取公示不代替招生简章。",
+          "srici.com主页返回412，本次未确认独立院网招生栏目；合法正式入口可使用研招网本校账号。"
+        ],
+        "classification": "historical_or_department_only",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-368162",
+      "cohort": "regression32",
+      "unit": {
+        "name": "陆军工程大学",
+        "id": "368162",
+        "unit_code": "92004",
+        "province": "江苏",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368162.dhtml",
+        "official_url": null,
+        "chsi_id": "368162",
+        "checked_at": "2026-10-28T10:19:32+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=420",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549428192&schCode=92004",
+          "sha256": "a0e2f45dfcdb09748aaa25d11fe33de6b3c6bfc93c26258d22afcc7edf737c5a",
+          "unit_id": "368162",
+          "raw_path": "declarations/368162-a0e2f45dfcdb0974.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:28:00+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        },
+        {
+          "url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368162,categoryId-465406.dhtml",
+          "sha256": "26d1a6a67ac1e606574cfff43b2d6adb5c40b1cfb7ea88c4cc42d0bef473c7ef",
+          "unit_id": "368162",
+          "raw_path": "declarations/368162-26d1a6a67ac1e606.html",
+          "content_type": "text/html",
+          "checked_at": "2026-11-09",
+          "provenance": "unchanged_public_CHSI_snapshot_from_32_case_review"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yz.chsi.com.cn/sch/schoolInfo--schId-368162.dhtml"
+      ],
+      "expected": {
+        "entry": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368162.dhtml",
+        "article": "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552041553,categoryId-10462633,schId-368162,mindex-12.dhtml",
+        "title": "【硕士】2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "specific_original_notice_found_attachment_unread",
+        "human_read_status": "web_tool_and_raw_http_200_official_article_HTML_read; linked_attachment_only_not_opened",
+        "limitations": [
+          "2027具体公告HTML只有标题与“2027年硕士研究生招生简章”百度网盘下载链接；未读取附件正文，不能声称已校验招生条款。",
+          "当前aeu.edu.cn/1726/list.htm可HTTP200但未列公告；应使用明确声明的研招网正式发布入口。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-2807891252",
+      "cohort": "regression32",
+      "unit": {
+        "name": "肇庆学院",
+        "id": "2807891252",
+        "unit_code": "10580",
+        "province": "广东",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-2807891252.dhtml",
+        "official_url": null,
+        "chsi_id": "2807891252",
+        "checked_at": "2026-10-28T10:19:44+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=700",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549202158&schCode=10580",
+          "sha256": "c81466cadbed45e457861a6c120a2cc82d5daf17977b2bb4bd92351e0b685955",
+          "unit_id": "2807891252",
+          "raw_path": "declarations/2807891252-c81466cadbed45e4.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:36:22+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yjsc.zqu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yjsc.zqu.edu.cn/",
+        "article": "https://www.zqu.edu.cn/info/1321/144531.htm",
+        "title": "肇庆学院2027年硕士研究生招生简章",
+        "actual_year": 2027,
+        "human_state": "found_specific_original",
+        "human_read_status": "web_title_date_and_article_text_read",
+        "limitations": [
+          "研究生院首页在search-index曾列2027简章，当前Web find未匹配该标题；采用已直接读取全文的学校主站原文，不据搜索索引断定研究生院镜像正文可读。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-367940",
+      "cohort": "regression32",
+      "unit": {
+        "name": "核工业理化工程研究院",
+        "id": "367940",
+        "unit_code": "82804",
+        "province": "天津",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367940.dhtml",
+        "official_url": null,
+        "chsi_id": "367940",
+        "checked_at": "2026-10-28T10:19:20+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=160",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557867020&schCode=82804",
+          "sha256": "137bb9ed9c9a7c410f3b2cec1db022588562d2eb49c3fc2d03f1b23496fa13a7",
+          "unit_id": "367940",
+          "raw_path": "declarations/367940-137bb9ed9c9a7c41.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:27:25+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yz.chsi.com.cn/sch/schoolInfo--schId-367940.dhtml"
+      ],
+      "expected": {
+        "entry": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367940.dhtml",
+        "article": "https://yz.chsi.com.cn/sch/viewZszc--infoId-3555578440,categoryId-10462203,schId-367940,mindex-12.dhtml",
+        "title": "核工业理化工程研究院2027年硕士研究生招生简章",
+        "actual_year": 2027,
+        "human_state": "found_specific_original",
+        "human_read_status": "web_full_chsi_institution_article_read",
+        "limitations": [
+          "未证实独立单位主页/独立研究生站，homepage置null；合法正式发布渠道是研招网本校账号，不标为独立官网。"
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "unbound/unbound-review.json"
+      }
+    },
+    {
+      "case_id": "regression-3274413879",
+      "cohort": "regression32",
+      "unit": {
+        "name": "长沙学院",
+        "id": "3274413879",
+        "unit_code": "11077",
+        "province": "湖南",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-3274413879.dhtml",
+        "official_url": null,
+        "chsi_id": "3274413879",
+        "checked_at": "2026-10-28T10:19:43+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=660",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549772530&schCode=11077",
+          "sha256": "9c6aaf8f073a70734ab6e99060d1c8b1d963354dd4a9dcd741e64e58cd088f55",
+          "unit_id": "3274413879",
+          "raw_path": "declarations/3274413879-9c6aaf8f073a7073.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:36:03+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yjsxy.ccsu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yjsxy.ccsu.cn/",
+        "article": "https://www.ccsu.cn/info/1046/188064.htm",
+        "title": "长沙学院2026年硕士研究生招生简章",
+        "actual_year": 2026,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "web_fetch_timeout; initial urllib_http_200_then_one_403",
+          "article": "web_fetch_timeout; urllib_http_200; substantive_HTML_body_read_9832_text_characters"
+        },
+        "limitations": [
+          "web工具超时；本机只读HTTP成功返回校首页和具体简章，已读正文。研究生学院入口本机一次200、后续一次403，说明访问不稳定。",
+          "未找到可实读的2027原文，不把2026简章改标2027。"
+        ],
+        "classification": "historical_or_department_only",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-688909475",
+      "cohort": "regression32",
+      "unit": {
+        "name": "新疆艺术学院",
+        "id": "688909475",
+        "unit_code": "10768",
+        "province": "新疆",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688909475.dhtml",
+        "official_url": null,
+        "chsi_id": "688909475",
+        "checked_at": "2026-10-28T10:19:54+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=920",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3548296639&schCode=10768",
+          "sha256": "923b8233c2588aee41cca8ab0511486788385301698a1a3483fe78f00713c412",
+          "unit_id": "688909475",
+          "raw_path": "declarations/688909475-923b8233c2588aee.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:38:29+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://bkzs.xjart.edu.cn/yjszsjz.htm"
+      ],
+      "expected": {
+        "entry": "https://bkzs.xjart.edu.cn/yjszsjz.htm",
+        "article": "https://bkzs.xjart.edu.cn/info/1007/2571.htm",
+        "title": "新疆艺术学院2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read; lists 2027章程 and actual 2026/2025/2024/2023简章",
+          "article": "opened_read; title/date and substantive admissions body available",
+          "landing": "https://bkzs.xjart.edu.cn/ timed out; specific list and original article opened"
+        },
+        "limitations": [
+          "根首页本轮超时，但研究生简章列表及2027具体原文均可读，不影响本条原文验证。",
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-678715",
+      "cohort": "regression32",
+      "unit": {
+        "name": "伊犁师范大学",
+        "id": "678715",
+        "unit_code": "10764",
+        "province": "新疆",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-678715.dhtml",
+        "official_url": null,
+        "chsi_id": "678715",
+        "checked_at": "2026-10-28T10:19:54+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=920",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549226082&schCode=10764",
+          "sha256": "1f52c1b0406f767f461a23f7dbf740b80fbb4d3892c63a7f42c5fd4baca31ae1",
+          "unit_id": "678715",
+          "raw_path": "declarations/678715-1f52c1b0406f767f.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:38:28+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yjsc.ylnu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yjsc.ylnu.edu.cn/",
+        "article": "https://yjsc.ylnu.edu.cn/info/1421/3821.htm",
+        "title": "伊犁师范大学2026年全国硕士研究生招生调剂工作通知",
+        "actual_year": 2026,
+        "human_state": "official_entry_verified_specific_original_unread",
+        "human_read_status": {
+          "entry": "fetch_timeout",
+          "article": "tool_not_accessible; original_body_not_read",
+          "official_chsi_notice": "opened_read; contains short pointer rather than full original school-domain notice"
+        },
+        "limitations": [
+          "学校主站及研究生处入口超时，具体校域原文也未读到；不得据第三方转载声称已验证2027或2026校域全文。",
+          ""
+        ],
+        "classification": "target_original_unread",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-8243981",
+      "cohort": "regression32",
+      "unit": {
+        "name": "山西中医药大学",
+        "id": "8243981",
+        "unit_code": "10809",
+        "province": "山西",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-8243981.dhtml",
+        "official_url": null,
+        "chsi_id": "8243981",
+        "checked_at": "2026-10-28T10:19:22+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=200",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "unconfirmed_search_candidate",
+      "saved_declarations": [],
+      "unconfirmed_candidates": [
+        "https://yjsb.sxtcm.edu.cn/zsjy/zsxx.htm"
+      ],
+      "expected": {
+        "entry": "https://yjsb.sxtcm.edu.cn/zsjy/zsxx.htm",
+        "article": "https://yjsb.sxtcm.edu.cn/info/1100/4996.htm",
+        "title": "山西中医药大学2027年攻读硕士学位研究生招生章程(专业目录）",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read",
+          "article": "opened_read; title and substantive admissions body available"
+        },
+        "limitations": [
+          null,
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-368477",
+      "cohort": "regression32",
+      "unit": {
+        "name": "西南民族大学",
+        "id": "368477",
+        "unit_code": "10656",
+        "province": "四川",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368477.dhtml",
+        "official_url": null,
+        "chsi_id": "368477",
+        "checked_at": "2026-10-28T10:19:48+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=780",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549422203&schCode=10656",
+          "sha256": "76ea6de2308cda8598a22ba7306a20f51ef7a842b0287e2418b1176e536333b0",
+          "unit_id": "368477",
+          "raw_path": "declarations/368477-76ea6de2308cda85.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:37:19+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yjsglxt.swun.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yjsglxt.swun.edu.cn/",
+        "article": "https://cjxy.swun.edu.cn/__local/B/6F/D2/58F9F041A52218AD2CB4C453006_7984B3DD_345CB.pdf",
+        "title": "西南民族大学建筑学院2025年硕士研究生调剂复试通知",
+        "actual_year": 2025,
+        "human_state": "verified_department_original_central_entry_blocked",
+        "human_read_status": {
+          "entry": "web_and_urllib_http_412",
+          "article": "opened_read_pdf_5_pages",
+          "central_2026_directory_pdf": "search_index_only_then_open_timeout",
+          "central_2027_directory_candidate": "not_read"
+        },
+        "limitations": [
+          "校主页、研究生院入口及学院根首页返回412；不得宣称校级2027原文已读。校内PDF交叉指认增强归属证据，但校主页/CHSI对中央域名的直接交叉链接仍需人工复核。",
+          ""
+        ],
+        "classification": "historical_or_department_only",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-368502",
+      "cohort": "regression32",
+      "unit": {
+        "name": "贵州大学",
+        "id": "368502",
+        "unit_code": "10657",
+        "province": "贵州",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368502.dhtml",
+        "official_url": null,
+        "chsi_id": "368502",
+        "checked_at": "2026-10-28T10:19:49+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=800",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557850206&schCode=10657",
+          "sha256": "38c0e63dffc466d9883f349b6d21becc097156019e3449edd9d095550d838c83",
+          "unit_id": "368502",
+          "raw_path": "declarations/368502-38c0e63dffc466d9.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:37:28+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://gs.gzu.edu.cn/sszs/listm.htm"
+      ],
+      "expected": {
+        "entry": "https://gs.gzu.edu.cn/sszs/listm.htm",
+        "article": "https://gs.gzu.edu.cn/2026/1008/c11835a280219/page.htm",
+        "title": "贵州大学2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read; 2027章程 listed",
+          "article": "opened_read; substantive admissions body available"
+        },
+        "limitations": [
+          "学校根首页web抓取超时，本机只读HTTP200已核对导航。硕士栏目和具体章程web工具均可读。",
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-368127",
+      "cohort": "regression32",
+      "unit": {
+        "name": "复旦大学",
+        "id": "368127",
+        "unit_code": "10246",
+        "province": "上海",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368127.dhtml",
+        "official_url": null,
+        "chsi_id": "368127",
+        "checked_at": "2026-10-28T10:19:27+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=320",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "unconfirmed_search_candidate",
+      "saved_declarations": [],
+      "unconfirmed_candidates": [
+        "https://gsao.fudan.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://gsao.fudan.edu.cn/",
+        "article": "https://gsao.fudan.edu.cn/19/62/c15015a792930/page.htm",
+        "title": "复旦大学2027年招收攻读硕士学位研究生章程",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read",
+          "article": "opened_read_wrapper; body embedded PDF",
+          "article_content": "opened_read_pdf_12_pages; substantive admissions body available"
+        },
+        "limitations": [
+          "HTML解析只显示标题，正文为wp_pdf_player嵌入PDF；已从原始HTML pdfsrc提取并实读同域12页PDF。",
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-368596",
+      "cohort": "regression32",
+      "unit": {
+        "name": "青海师范大学",
+        "id": "368596",
+        "unit_code": "10746",
+        "province": "青海",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368596.dhtml",
+        "official_url": null,
+        "chsi_id": "368596",
+        "checked_at": "2026-10-28T10:19:54+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=900",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "unconfirmed_search_candidate",
+      "saved_declarations": [],
+      "unconfirmed_candidates": [
+        "https://yjsb.qhnu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yjsb.qhnu.edu.cn/",
+        "article": "https://yjsb.qhnu.edu.cn/info/1060/2903.htm",
+        "title": "青海师范大学2027年招收攻读硕士学位研究生简章",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read",
+          "article": "opened_read; substantive admissions body available"
+        },
+        "limitations": [
+          null,
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-368563",
+      "cohort": "regression32",
+      "unit": {
+        "name": "西安工程大学",
+        "id": "368563",
+        "unit_code": "10709",
+        "province": "陕西",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368563.dhtml",
+        "official_url": null,
+        "chsi_id": "368563",
+        "checked_at": "2026-10-28T10:19:51+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=840",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3552052204&schCode=10709",
+          "sha256": "41be056f335b99199eabc25d03389bea07965bb7d7ee1e2e9761cc2779fc6a7c",
+          "unit_id": "368563",
+          "raw_path": "declarations/368563-41be056f335b9919.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:37:53+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yzw.xpu.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yzw.xpu.edu.cn/",
+        "article": "https://yzw.xpu.edu.cn/info/1033/2911.htm",
+        "title": "西安工程大学2027年硕士研究生招生简章",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read",
+          "article": "opened_read; substantive admissions body available"
+        },
+        "limitations": [
+          null,
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-368264",
+      "cohort": "regression32",
+      "unit": {
+        "name": "江西理工大学",
+        "id": "368264",
+        "unit_code": "10407",
+        "province": "江西",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368264.dhtml",
+        "official_url": null,
+        "chsi_id": "368264",
+        "checked_at": "2026-10-28T10:19:36+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=520",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557829697&schCode=10407",
+          "sha256": "a123c44fe2abed0dcef8a5dffb21016f9455413c1156b946d8a93d1fe17b61c5",
+          "unit_id": "368264",
+          "raw_path": "declarations/368264-a123c44fe2abed0d.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:28:11+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://yz.jxust.edu.cn/"
+      ],
+      "expected": {
+        "entry": "https://yz.jxust.edu.cn/",
+        "article": "https://yz.jxust.edu.cn/info/2733/2767.htm",
+        "title": "江西理工大学2027年硕士研究生招生简章",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read",
+          "article": "opened_read; substantive admissions body available"
+        },
+        "limitations": [
+          "校根首页web工具超时，本机只读HTTP200已核对导航；具体招生简章web工具可读。",
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    },
+    {
+      "case_id": "regression-499721975",
+      "cohort": "regression32",
+      "unit": {
+        "name": "云南警官学院",
+        "id": "499721975",
+        "unit_code": "11392",
+        "province": "云南",
+        "source_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-499721975.dhtml",
+        "official_url": null,
+        "chsi_id": "499721975",
+        "checked_at": "2026-10-28T10:19:50+00:00",
+        "index_source_url": "https://yz.chsi.com.cn/sch/?start=820",
+        "annual_year": 2027,
+        "annual_status": "confirmed"
+      },
+      "requested_year": 2027,
+      "kind": "charter",
+      "starting_condition": "cached_CHSI_pointer",
+      "saved_declarations": [
+        {
+          "url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3557829687&schCode=11392",
+          "sha256": "67d8580553998a0bda6131012c2dca23d9394efaa56c8d23d8d502ebfaff5fe7",
+          "unit_id": "499721975",
+          "raw_path": "declarations/499721975-67d8580553998a0b.html",
+          "content_type": "text/html",
+          "checked_at": "2026-10-30T01:37:44+00:00",
+          "provenance": "unchanged_public_CHSI_snapshot_from_prior_dataset"
+        }
+      ],
+      "unconfirmed_candidates": [
+        "https://www.ynpc.edu.cn/cnPc/yjszs.html"
+      ],
+      "expected": {
+        "entry": "https://www.ynpc.edu.cn/cnPc/yjszs.html",
+        "article": "https://www.ynpc.edu.cn/cnPc/yjszs/10210.html",
+        "title": "云南警官学院2027年硕士研究生招生章程",
+        "actual_year": 2027,
+        "human_state": "verified_specific_original",
+        "human_read_status": {
+          "entry": "opened_read; 2027 article is first list item",
+          "article": "opened_read; title/date and substantive chapters available",
+          "landing": "root https://www.ynpc.edu.cn/ timed out; recruitment list and original article opened"
+        },
+        "limitations": [
+          "根首页本轮超时，研究生招生列表及2027具体原文均可读。",
+          ""
+        ],
+        "classification": "2027_publication_located_not_full_text_pass",
+        "proof_file": "candidates/official_candidates_11.json"
+      }
+    }
+  ]
+}

@@ -121,12 +121,20 @@ class ResearchService:
 
     def _current_task(self,task,cache=None):
         task=research_knowledge.refresh_saved_task(task,self._knowledge_entry,_reusable_knowledge,cache)
+        from research_official_tools import refresh_saved_discovery
+        task=refresh_saved_discovery(task,self.admission,self.data_dir)
         if any((task.get(key) or {}).get('research_candidates') for key in ('report','previous_report')):
             from research_candidate_tools import refresh_saved_candidates
             if self._knowledge_store is None:
                 from knowledge_store import KnowledgeStore
                 self._knowledge_store=KnowledgeStore(self.data_dir)
-            return refresh_saved_candidates(task,self.admission,self._knowledge_store,self.data_dir)
+            task=refresh_saved_candidates(task,self.admission,self._knowledge_store,self.data_dir)
+        if any((task.get(key) or {}).get('admission_facts') for key in ('report','previous_report')):
+            from research_admission_tools import refresh_saved_facts
+            if self._knowledge_store is None:
+                from knowledge_store import KnowledgeStore
+                self._knowledge_store=KnowledgeStore(self.data_dir)
+            task=refresh_saved_facts(task,self.admission,self._knowledge_store,self.data_dir)
         return task
 
     def cancel(self,payload):
@@ -373,11 +381,16 @@ class ResearchService:
                     'source_context仅是用户选择补证的来源线索，状态待核时不得当作可信原文；须按工具重新核验。'
                     '已出现关键问题时尽早结束本轮等用户确认。'
                     '按计划账本的next_actions优先补齐资格、科目和费用；缺资格先查招生简章，缺费用先查收费公示；'
+                    '元宝没有找到目标年度文种、缺官网绑定或检索未配置时，调用discover_official_entry，'
+                    '由程序从登记入口和已保存权威声明导航，不把首页命中当作目录已找到。'
+                    '已精读到具体学费、学制、资格完整条款后用propose_admission_facts只提交逐字引用，'
+                    '由程序推导字段并复算；不完整资格保留待核，禁止直接填写金额或资格判断。'
                     '工具失败或预算结束时保留成果并列出待补证项，不能把模型自称完成当作完成。'
                     '本轮若继承上轮候选或来源，不重复检索未变化内容；条件变化只更新受影响范围。'
                     '新资料中的收费、资格等字段只是带出处的草案：只有来源一致且年度范围匹配才参与推荐，'
                     '冲突字段暂停，不能把未知资格写成已知。'
-                    '每轮至多4个工具调用，总轮次8，最多4次搜索和4份原文；接近上限时返回部分成果。\n\n'+instructions)
+                    '每轮至多4个工具调用，总轮次8，最多4次元宝请求和4份普通原文读取；'
+                    '官网导航另有每校8次、整轮12次公开读取预算，不能无限重试；接近上限时返回部分成果。\n\n'+instructions)
             request={'query':task['query'],'follow_ups':task.get('follow_ups',[]),'user_profile':task['profile'],
                      'selected_units':task['unit_ids'],'budgets':LIMITS}
             if task.get('source_context'):
@@ -469,6 +482,9 @@ class ResearchService:
     def _tool_label(name):
         return {'find_units':'查找招生单位与官方入口','find_candidates':'整理已发布候选方向',
                 'search_official_sources':'使用元宝寻找官方资料','read_official_source':'读取并保存学校官方原文',
+                'discover_official_entry':'核验官方入口并定位目标年度资料',
+                'discover_official_links':'沿官网继续核对栏目与附件',
+                'propose_admission_facts':'按原文核验费用、学制与资格条款',
                 'compare_candidates':'计算条件匹配、科目调整与多目标取舍','analyze_decisions':'判断先确认哪个条件、排名是否稳定',
                 'plan_subject_routes':'比较0/1/2科调整路线',
                 'suggest_adjustments':'试算允许变化的条件情景','read_knowledge':'核对规则与适用年度',

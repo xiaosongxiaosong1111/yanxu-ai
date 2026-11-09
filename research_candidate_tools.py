@@ -2,6 +2,7 @@
 from copy import deepcopy
 import hashlib
 import json
+from math import isfinite
 
 from public_sources import official_source_url
 from research_store import ResearchError
@@ -232,6 +233,18 @@ def _public_program(tools, program):
 
 def reason_refs(program, field):
     """A row/subject proof cannot stand in for unknown eligibility or fees."""
+    facts = [deepcopy(ref) for ref in program.get('evidence_refs', [])
+             if ref.get('origin') == 'admission_facts']
+    if field in {'tuition','max_annual_tuition','max_total_tuition','duration_years'}:
+        wanted={'duration_years'} if field=='duration_years' else {'tuition'}
+        tuition=program['tuition'] if isinstance(program.get('tuition'),dict) else {}
+        if (field=='max_total_tuition' and tuition.get('period')=='year' and program.get('duration_years')
+                and not (isinstance(tuition.get('total'),(int,float)) and not isinstance(tuition.get('total'),bool)
+                         and isfinite(tuition['total']) and tuition['total']>=0)):
+            wanted.add('duration_years')
+        return [ref for ref in facts if ref.get('field') in wanted]
+    if field in {'eligibility','education','background','work_years'}:
+        return [ref for ref in facts if ref.get('field')=='eligibility']
     if field in {'subjects', 'excluded_subjects', 'max_subject_changes'}:
         return [deepcopy(ref) for ref in program.get('evidence_refs', [])
                 if ref.get('field') in {'exams', 'politics'}]

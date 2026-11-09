@@ -34,11 +34,11 @@ class PlanTests(unittest.TestCase):
         self.assertEqual(facts[('p1', 'tuition')]['status'], 'unknown')
         self.assertIsNone(facts[('p1', 'tuition')]['value'])
         self.assertEqual(facts[('p1', 'subjects')]['status'], 'known')
-        queries = [row['args']['query'] for row in plan['next_actions']]
-        self.assertTrue(any('报考条件' in query for query in queries))
-        self.assertTrue(any('学费' in query for query in queries))
+        self.assertEqual({row['tool'] for row in plan['next_actions']}, {'discover_official_entry'})
+        self.assertEqual({row['args']['kind'] for row in plan['next_actions']}, {'charter', 'fees'})
         self.assertEqual([row['priority'] for row in plan['next_actions']], [1, 2])
-        self.assertEqual(plan['missing_fact_count'], 2)
+        self.assertEqual(plan['missing_fact_count'], 3)
+        self.assertEqual(facts[('p1', 'duration_years')]['status'], 'unknown')
         self.assertEqual(plan['goals'][1]['status'], 'partial')
         self.assertIn('unknown', plan['goals'][1]['completion'])
 
@@ -47,7 +47,7 @@ class PlanTests(unittest.TestCase):
         tuition = next(row for row in plan['facts'] if row['fact'] == 'tuition')
         self.assertEqual(tuition['status'], 'unknown')
         self.assertIsNone(tuition['value'])
-        self.assertIn('学费', ''.join(row['args']['query'] for row in plan['next_actions']))
+        self.assertTrue(any(row['args'].get('kind') == 'fees' for row in plan['next_actions']))
 
     def test_completion_is_not_claimed_when_candidates_or_algorithm_are_missing(self):
         no_algorithm = self.build(algorithm={})
@@ -113,6 +113,93 @@ class PlanTests(unittest.TestCase):
         self.assertEqual(plan['previous']['candidate_ids'], ['p1'])
         self.assertEqual(plan['previous']['evidence_ids'], ['s1', 's2'])
         self.assertIn('只重算受影响', plan['previous']['inherit'])
+
+    def source(self, **changes):
+        return {'id': 's1', 'unit_id': 'u1', 'year': 2027, 'status': 'official_original_read',
+                'title': '测试大学2027年硕士研究生学费与学制公示', 'sha256': 'a' * 64,
+                'knowledge_id': 'k1', 'usable': True, 'knowledge_current': True,
+                'quality': {'state': 'accepted', 'reusable': True},
+                'extraction': {'id': 'ex1', 'generation_id': 'kg1'}, **changes}
+
+    def test_original_to_segment_read_and_fact_proposal_never_invents_values_or_quotes(self):
+        source = self.source()
+        plan = self.build(sources={'s1': source})
+        tuition = next(row for row in plan['facts'] if row['fact'] == 'tuition')
+        self.assertEqual(tuition['next_action']['tool'], 'search_knowledge_segments')
+        self.assertEqual(tuition['next_action']['args']['entry_id'], 'k1')
+        source['segments'] = [{'id': 'sg1', 'char_start': 10, 'char_end': 30}]
+        plan = self.build(sources={'s1': source})
+        tuition = next(row for row in plan['facts'] if row['fact'] == 'tuition')
+        self.assertEqual(tuition['next_action']['tool'], 'read_knowledge_segment')
+        receipt = {'segment_id': 'sg1', 'source_id': 's1', 'entry_id': 'k1',
+                   'char_start': 10, 'char_end': 30, 'year': 2027, 'unit_id': 'u1',
+                   'sha256': 'a' * 64, 'text_sha256': 'b' * 64,
+                   'extraction_id': 'ex1', 'generation_id': 'kg1'}
+        plan = self.build(sources={'s1': source}, read_receipts=[receipt])
+        action = next(row for row in plan['facts'] if row['fact'] == 'tuition')['next_action']
+        self.assertEqual(action['tool'], 'propose_admission_facts')
+        self.assertEqual(action['args'], {'program_id': 'p1'})
+        self.assertEqual(action['needs_input'], ['drafts'])
+        self.assertNotIn('quote', action['args'])
+        self.assertNotIn('value', action['args'])
+
+    def test_wrong_source_year_unit_quality_or_read_generation_does_not_advance_fact(self):
+        for change in ({'year': 2026}, {'unit_id': 'other'}, {'usable': False},
+                       {'knowledge_current': False}, {'quality': {'state': 'pending', 'reusable': False}}):
+            with self.subTest(change=change):
+                plan = self.build(sources={'s1': self.source(**change)})
+                action = next(row for row in plan['facts'] if row['fact'] == 'tuition')['next_action']
+                self.assertEqual(action['tool'], 'discover_official_entry')
+        source = self.source(segments=[{'id': 'sg1', 'char_start': 10, 'char_end': 30}])
+        plan = self.build(sources={'s1': source}, read_receipts=[{'segment_id': 'sg1', 'source_id': 's1',
+            'entry_id': 'k1', 'generation_id': 'old', 'char_start': 10, 'char_end': 30}])
+        self.assertEqual(next(row for row in plan['facts'] if row['fact'] == 'tuition')['next_action']['tool'],
+                         'read_knowledge_segment')
+
+    def test_snapshot_must_match_unit_year_and_kind_before_paid_fallback(self):
+        current = {'unit_id': 'u1', 'year': 2027, 'kind': 'fees', 'stage': 'entry_verified',
+                   'document_sources': []}
+        for change in ({'unit_id': 'other'}, {'year': 2026}, {'kind': 'charter'}):
+            with self.subTest(change=change):
+                plan = self.build(official_discovery=[{**current, **change}])
+                self.assertEqual(next(row for row in plan['facts'] if row['fact'] == 'tuition')
+                                 ['next_action']['tool'], 'discover_official_entry')
+        plan = self.build(official_discovery=[current])
+        self.assertEqual(next(row for row in plan['facts'] if row['fact'] == 'tuition')
+                         ['next_action']['tool'], 'search_official_sources')
+        plan = self.build(official_discovery=[current], searched_units=['u1'])
+        self.assertFalse(any(row['tool'] == 'search_official_sources' for row in plan['next_actions']))
+
+    def test_actions_rotate_schools_and_fee_duration_share_one_discovery(self):
+        programs = {f'p{i}': candidate(id=f'p{i}', unit_id=f'u{i}') for i in range(1, 11)}
+        plan = self.build(programs)
+        self.assertEqual(len(plan['next_actions']), 8)
+        self.assertEqual(len({row['args']['unit_id'] for row in plan['next_actions']}), 8)
+        plan = self.build()
+        self.assertEqual(sum(row['args'].get('kind') == 'fees' for row in plan['next_actions']), 1)
+
+    def test_applied_partial_or_pending_fact_does_not_repeat_its_read_or_claim_complete(self):
+        source = self.source(segments=[{'id': 'sg1', 'char_start': 10, 'char_end': 30}])
+        audit = {'facts': [{'program_id': 'p1', 'field': 'tuition', 'state': 'needs_review',
+                            'proof': {'draft': {'citation': {'segment_id': 'sg1'}}}}]}
+        plan = self.build(sources={'s1': source}, admission_facts=audit)
+        action = next(row for row in plan['facts'] if row['fact'] == 'tuition')['next_action']
+        self.assertNotEqual(action.get('tool'), 'read_knowledge_segment')
+        program = candidate(eligibility_evidence_complete=True, requires_review=True)
+        plan = self.build({'p1': program})
+        self.assertEqual(next(row for row in plan['facts'] if row['fact'] == 'eligibility')['status'], 'unknown')
+
+    def test_missing_scope_candidates_can_start_public_catalog_discovery(self):
+        plan = self.build(programs={}, task={'reference_year': 2027, 'target_year': 2028, 'unit_ids': ['u1', 'u2']})
+        self.assertEqual([row['args']['unit_id'] for row in plan['next_actions']], ['u1', 'u2'])
+        self.assertEqual({row['args']['kind'] for row in plan['next_actions']}, {'catalog'})
+
+    def test_nonfinite_fees_missing_period_or_duration_remain_unknown(self):
+        for fee in ({'amount': float('inf'), 'period': 'year'}, {'amount': 12000, 'period': None}):
+            with self.subTest(fee=fee):
+                plan = self.build({'p1': candidate(tuition=fee, duration_years=float('inf'))})
+                self.assertEqual(next(row for row in plan['facts'] if row['fact'] == 'tuition')['status'], 'unknown')
+                self.assertEqual(next(row for row in plan['facts'] if row['fact'] == 'duration_years')['status'], 'unknown')
 
 
 if __name__ == '__main__':

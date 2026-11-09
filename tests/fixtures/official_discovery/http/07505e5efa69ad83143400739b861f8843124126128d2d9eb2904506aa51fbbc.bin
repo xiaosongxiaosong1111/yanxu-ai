@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+  <meta charset="utf-8"/>
+  <title>
+  	北京第二外国语学院2027年硕士研究生招生章程
+  </title>
+  <link rel="icon" type="image/png" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/erwai_logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css -->
+    <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/bg.css" />
+    <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/index.css" />
+	 <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/detail.css" />
+
+    <!-- jquery插件库 -->
+    <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/jquery.min.js"></script>
+    <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/action.js"></script>
+		<script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/rem.js"></script>
+
+<script type="text/javascript">
+  function handleScroll () {
+    // 获取滚动的垂直距离
+    const scrollTop = document.getElementsByClassName('home-content')[0].scrollTop;
+    if(scrollTop > 300) {
+      $('.refresh_top').show()
+    }else{
+      $('.refresh_top').hide()
+    }
+  }
+</script>
+</head>
+<body>
+  <div class="data-list-content-box-010" id="home_body">
+    <div class="home-content" onscroll="handleScroll()" id="home-content">
+      <!-- 首页导航 -->
+      <div class="nav-list-box">
+      		<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+  <div class="header-content-001">
+   	<!-- 左侧 -->
+    <div class="header-logo-left">
+      <img class="header-logo default-type-01" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/nav-logo.png" />
+      <div class="header-001-text header-001-logo-text1">
+        <div class="comTitle">
+          您好！欢迎报考北京第二外国语学院！
+        </div>
+        <div class="searchInput">
+          <form method="get" target="_blank" action="https://www.bisu.edu.cn/web/globalSearch/#/search" name="userForm">
+        		<input type="text" id="q" name="q" value="" placeholder="请输入关键字" />
+            	<input type="hidden" name="pagemode" value="result" />
+					<input name="webid" type="hidden" value="25" />
+					<input type="hidden" name="appid" value="1" />
+					<input type="hidden" name="style" value="1" />
+					<input type="hidden" name="ck" value="0" />
+					<input id="pos" type="hidden" name="pos" value="title,content" />
+            <button type="submit" name="imageField" id="submit" class="search-icon">
+              <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/search-icon.png" />
+            </button>
+    		 </form>
+        </div>
+      </div>
+    </div>
+	 <div class="header-line"></div>
+    <!-- 右侧 -->
+    <div class="header-logo-right">
+    	<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div id="headerTopBox01" class="nav-list-001">
+      <div class="data_list_001">
+        <a class="nav_head" href="/">
+          <span class="home_web_jc">招生首页</span>
+        </a>
+        <a class="nav_head" href="https://www.bisu.edu.cn/#/xxDetail?id=0" target="_blank">
+          <span class="home_web_jc">学校概况</span>
+        </a>
+        <div class="nav_head" onclick="goUnits()">
+          <span class="home_web_jc">培养单位</span>
+        </div>
+        <a class="nav_head" href="https://yjsy.bisu.edu.cn/" target="_blank">
+          <span class="home_web_jc">人才培养</span>
+        </a>
+        <a class="nav_head" href="https://www.bisu.edu.cn/#/cooperation?id=0" target="_blank">
+          <span class="home_web_jc">国际交流</span>
+        </a>
+        <a class="nav_head" href="https://yjsy.bisu.edu.cn/mixmedia/6777bb3fcf1e6138de7c5e84/6777bccbcf1e6138de7c5e9c/6777bd71cf1e6138de7c5eae" target="_blank">
+          <span class="home_web_jc">导师信息</span>
+        </a>
+        
+        <cms:storylist
+            style="height: .6rem;width: 100%;" channelId="yz" type="column" columnId="67595383cf1e66a18c75f36a" count="1" pageNo="0"
+          >
+                
+                    <a class="nav_head" href="https://yanzhao.bisu.edu.cn/mixmedia/a/202502/17/WS676b80accf1e66a18c75f51a.html" target="_blank">
+                  <span class="home_web_jc">常见问题</span>
+                </a>
+              
+          </cms:storylist>
+      </div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  function goUnits() {
+    $('#home-content').animate({
+      scrollTop: document.getElementsByClassName('units')[0].offsetTop-150
+    },500)
+  }
+</script>
+    </div>
+  </div>
+</body>
+</html>
+      </div>
+      <!-- 正文内容 -->
+      <div class="content-box-heqwe-06">
+        <div class="content-center-box" style="background:#fff;">
+          <!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      strong {
+        font-size: inherit
+      }</style>
+  </head>
+  <body>
+    <div id="main">
+<ul class="fixed-list">
+<li class="fixed-item">
+<img class="icon" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/wx.png" />
+<div>
+<img class="icon" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/ewm1.png" />
+</div>
+</li>
+<li class="fixed-item">
+<img class="icon" alt="" onclick="shareQQ()" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/qq.png" />
+</li>
+<li class="fixed-item">
+<img class="icon" alt="" onclick="shareWB()" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/wb.png" />
+</li>
+<li class="fixed-item">
+<img class="icon" alt="" onclick="shareQQKJ()" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/qqkj.png" />
+</li>
+</ul>
+      <!-- 标题 -->
+      <div class="banner">
+        <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/banner2.png" />
+        <div class="w1366">
+          <cms:column>
+            <p>最新公告</p>
+        </cms:column>
+        </div>
+      </div>
+
+      <div class="w1366 content-box">
+        <!-- 文章详情 -->
+        <h1 class="Title">北京第二外国语学院2027年硕士研究生招生章程</h1>
+        <div class="msg">
+          <p>
+            时间：<span
+            >2026-10-02</span>
+          </p>
+        </div>
+        <div class="detail-content"><html>
+ <head></head>
+ <body>
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">北京第二外国语学院是由文化和旅游部与北京市人民政府共建的高水平特色大学，是一所以外语为主体、旅游为特色，多学科协同发展的著名高校。学校是周恩来总理亲自提议于1964年10月成立。建校以来，学校始终秉承“中外人文交流”使命，以服务国家战略和首都发展为己任，以“融中外、兼知行”为办学理念，坚持内涵发展，强化交叉融合，致力于培养“多语种复语、跨专业复合”、具有家国情怀、国际视野的复合型人才。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学校现有硕士学位一级学科授予点6个、专业硕士学位授予点7个、联合培养博士项目4个、博士后科研工作站1个（与社会科学文献出版社共建）。北京高校高精尖学科2个（旅游管理、外国语言文学），北京市重点建设学科4个（外国语言文学、旅游管理、企业管理、国际贸易）。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学校充分发挥多语种优势，大力开展国际交流与合作，具有鲜明国际化特色。学校与全球50多个国家、地区的240余所高校和教育机构建立了全方位、多层次的交流与合作，每年选派众多教师出国进修、访学、合作科研、从事对外汉语教学等，年均来校执教或交流的外籍教师或访问学者100余人，年均赴外留学学生500余人，年均接收外国留学生1500余人次。学校与墨西哥奇瓦瓦自治大学、英国中央兰开夏大学、摩洛哥穆罕默德五世大学、法国克莱蒙费朗市、葡萄牙科英布拉大学、巴拿马大学、突尼斯苏斯大学合作共建了7所孔子学院和1个孔子课堂。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">欢迎全国广大考生报考北京第二外国语学院。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>一、招生计划</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">北京第二外国语学院2027年硕士研究生拟招生计划为761人（含推免以及专项计划），其中全日制拟招生计划627人，非全日制拟招生计划134人，本年度招生计划以上级部门正式下达的计划为准。学校招收“退役大学生士兵计划”考生3人。各专业拟招收人数请参阅《北京第二外国语学院2027年攻读硕士学位研究生招生专业目录》（详见附件）。各专业招收推免生人数以最终录取推免生人数为准，各专业最终录取人数将根据上级部门正式招生计划下达数、生源情况、社会需求和学校发展需要进行适当调整。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>二、报考条件</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.拥护中国共产党的领导，遵守中华人民共和国宪法和法律，诚实守信。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.身体健康状况符合国家和招生单位规定的体检要求。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">3.考生学业水平必须符合下列条件之一：</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（1）国家承认学历的应届本科毕业生（含普通高校、成人高校、普通高校举办的成人高等学历教育等应届本科毕业生）及自学考试和网络教育届时可毕业本科生。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（2）具有国家承认的本科毕业学历的人员。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（3）获得国家承认的高职（专科）毕业学历后满2年及以上人员（如无特别说明，本章程涉及年限要求均指毕业后到录取当年入学前）或国家承认学历的本科结业生，按本科毕业同等学力身份报考。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（4）已获硕士、博士研究生学历或学位的人员。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（5）在读研究生（须在报名前征得所在培养单位同意）。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">4.不存在其他法律法规或规章规定的不得报考硕士研究生的情形。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">因违反国家教育考试规定，被给予暂停参加国家教育考试处理且在停考期内的人员，不得报考硕士研究生。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">5.报名参加工商管理和旅游管理专业学位硕士研究生人员，须符合下列条件：</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（1）第1、2、4各项的要求。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（2）本科毕业后有3年以上工作经验的人员；或获得国家承认的高职（专科）毕业学历或本科结业后，达到本科毕业同等学力并有5年以上工作经验的人员；或获得硕士、博士研究生学历或学位后有2年以上工作经验的人员。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">工商管理硕士专业学位研究生相关考试招生政策同时按照《教育部关于进一步规范工商管理硕士专业学位研究生教育的意见》（教研〔2016〕2号）有关规定执行。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">6.在国（境）外教育机构取得合法学历学位的报考人员，应于2027年复试资格审查时向学校研招办提交经相关专业机构认证的《国（境）外学历学位认证书》。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>三、报考程序</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（一）报名</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.网上报名时间</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">网上预报名时间：2026年10月9日至10月12日，每日9:00—22:00。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">网上报名时间：2026年10月15日至10月24日，每日9:00—22:00。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.网上报名要求</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（1）考生应在规定时间登录“中国研究生招生信息网”（网址：https://yz.chsi.com.cn，以下简称“研招网”）浏览报考须知，并按省级教育招生考试机构、报考点以及报考招生单位的网上公告要求报名。报名期间，考生可进行网上报名信息修改或重新填报，但每位考生只能保留一条有效报名信息。逾期不得修改或重新填报网上报名信息。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（2）考生报名时只能填报一个招生单位的一个专业。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（3）考生应按要求如实填写学习情况并提供真实材料，学校收集考生个人信息仅用于硕士研究生招生报名、资格审查、考试录取等环节。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（4）考生要如实填写本人所受奖惩情况，特别是在参加普通和成人高等学校招生考试、全国硕士研究生招生考试、高等教育自学考试等国家教育考试过程中因违纪、作弊所受处罚情况。对弄虚作假者，将按照《国家教育考试违规处理办法》《普通高等学校招生违规行为处理暂行办法》严肃处理。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（5）报名期间将对考生学历（学籍）信息进行网上校验，考生可上网查看学历（学籍）校验结果。考生可在报名前或报名期间自行登录“中国高等教育学生信息网”（网址：https://www.chsi.com.cn）查询本人学历（学籍）信息。未能通过学历（学籍）网上校验的考生，须将认证报告交报考点核验。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（6）符合教育部规定条件并申请享受初试加分政策的考生，须在报名时按要求填报相关信息。未按规定申报或审核（含复审）未通过的，不享受相应的加分。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（7）报考“退役大学生士兵计划”的考生，应为高校学生应征入伍退出现役者，并达到全国硕士研究生招生考试报考条件。〔退役大学生士兵，即高校学生应征入伍退出现役者，其中，高校学生指全日制普通本专科（含高职）、研究生、第二学士学位的应（往）届毕业生、在校生和入学新生，以及成人高校招收的普通本专科（含高职）应（往）届毕业生、在校生和入学新生，下同。〕</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">申请报考“退役大学生士兵计划”和申请享受退役大学生士兵初试加分的考生，应按要求填报本人入伍前的入学信息以及入伍、退役等相关信息，复试前须向学校研招办提供《入伍批准书》和《退出现役证》（限士兵）进行复核。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（8）考生应当认真了解并严格按照报考条件及相关政策要求填报志愿并选择报考点。因不符合报考条件或者相关政策要求、网报信息填写错误、提交虚假材料及未按要求提交所需材料造成后续不能考试（含初试、复试）或录取的，后果由考生本人承担。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（9）考生网上报名成功后，应通过查阅省级教育招生考试机构、报考点、招生单位官方网站等方式，主动了解考试安排及注意事项等，积极配合完成相关工作。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（10）考生应当按规定缴纳报考费。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（11）所有考生须按要求如实填写报名信息并提供真实材料，积极配合签署《考生诚信考试承诺书》并遵守相关约定，认真核对并确认本人报名信息，根据审核工作安排按时提交补充材料，逾期不得补办。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（12）考生应配合采集本人图像等相关电子信息，通过学信网APP在线拍摄并上传本人照片。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（13）学校根据相关规定，对考生报考信息材料进行全面审核，确定考生的考试资格。考生填报的报名信息与报考条件不符的，不得准予考试、录取。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（二）打印准考证</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">考生应当在考前十天左右（具体时间以研招网通知为准），凭网报用户名和密码登录研招网自行下载打印准考证。准考证使用A4幅面白纸打印，正、反两面在使用期间不得涂改或书写。考生凭下载打印的准考证及有效居民身份证参加初试和复试。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>四、初试</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.2027年全国硕士研究生招生考试初试时间为2026年12月19日至20日（每日8:30—11:30，14:00—17:00），初试方式均为笔试，具体科目详见《北京第二外国语学院2027年攻读硕士学位研究生招生专业目录》。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.考试时，考生按考点要求携带考试所用文具，学校所有初试科目均不得使用任何类型计算器。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">3.初试成绩查询时间和办法，预计将在2027年2月中下旬对外公布（具体时间以学校研招网通知为准）。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>五、复试录取</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（一）复试及调剂</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.复试是硕士研究生录取的必要环节，复试不合格者不予录取。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.学校将按照教育部、北京教育考试院有关规定，根据本单位招生计划、复试录取办法以及考生初试和复试成绩、思想政治表现、身心健康状况等择优确定拟录取名单。复试时间、地点、办法和程序将在学校研招网公布。全部复试工作一般在2027年4月底前完成。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">3.学校实行差额复试。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">4.学校外语类专业复试包含《习近平谈治国理政》多语种版本考核内容，相关内容可参考已出版的《习近平谈治国理政》（多语种版本）。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">5.翻译硕士复试过程中，外国语水平测试的语种与报考专业语种相同。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">6.复试前须对考生的居民身份证、学历学位证书、学历学籍核验结果、学生证等报名材料原件及考生资格进行严格审查，不符合规定者不予复试。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">7.以同等学力参加复试的考生，在复试中须加试至少两门与报考专业相关的本科主干课程。加试方式为笔试，加试科目不得与初试科目相同，加试不合格者不予录取。跨学科专业报考的考生无须加试。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">8.学校将在工商管理、会计、旅游管理3个专业学位复试中组织思想政治理论考试，成绩计入复试总成绩。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">9.学校在第一志愿合格生源不足时，组织开展调剂工作。接收所有调剂考生（含报考“退役大学生士兵计划”与普通计划之间调剂的考生等）均须通过教育部“全国硕士生招生复试调剂服务系统”进行。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">10.学校将按照教育部、北京市相关政策科学、规范制订调剂工作办法，并在“全国硕士生招生复试调剂服务系统”和学校研招网公布接受考生调剂的时间、基本要求（含考生第一志愿专业范围、初试科目、初试成绩要求等，其中初试成绩含加分）、工作程序、复试录取办法（含考生进入复试的遴选规则）、咨询渠道等信息。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（二）体检</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学校将复试体检与新生入学体检合并进行，具体时间另行通知。体检标准参照教育部、原卫生部、中国残联印发的《普通高等学校招生体检工作指导意见》（教学﹝2003﹞3号）要求，按照《教育部办公厅卫生部办公厅关于普通高等学校招生学生入学身体检查取消乙肝项目检测有关问题的通知》（教学厅﹝2010﹞2号）等相关文件规定执行。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（三）录取</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学校在研究生招生工作委员会的统一领导下，按照教育部、北京教育考试院有关规定，根据本单位招生计划、复试录取办法以及考生初试和复试成绩、思想政治和品德情况、身心健康状况等择优确定拟录取名单。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.所有考生均须参加复试方能被录取。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.复试成绩均合格的，按考生初、复试的综合成绩排序录取。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">3.学校要对考生的思想政治和品德情况进行考核，主要考核考生在政治态度、遵纪守法、道德品质、诚实守信等方面的现实表现。考试诚信状况将作为考生思想品德考核的重要内容和录取的重要依据，对于思想政治素质和品德考核不通过者，不予录取。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">4.“退役大学生士兵计划”考生复试成绩和总成绩计算方法与普通计划相同专业（方向）考生相同，全校该专项计划所有参加复试考生按总成绩高低单独排名，确定录取名单，以国家下达的招生计划为限，复试成绩不及格的考生不予录取。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">5.定向就业硕士研究生档案不转入我校，录取前须与学校、定向就业单位三方签订定向就业协议，毕业后须按协议回定向单位就业；非定向硕士研究生档案必须转入我校。一经录取后，不得变更录取信息中的就业方式，因未按规定签订定向协议或擅自变更就业方式导致的录取资格取消等责任由考生自行承担。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">6.学校对符合攻读学校硕士学位研究生招收要求的已录取考生发放录取通知书。发放时间预计为2027年6月上旬，具体视工作进程而定。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学校具体复试录取工作安排和实施办法将另行通知。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>六、学习方式与学制</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学习方式：专业学位工商管理、旅游管理为非全日制，专业学位会计包含全日制和非全日制，其他专业均为全日制。全日制和非全日制研究生考试招生依据国家统一要求，执行相同的政策和标准。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学制：学术学位学制一般为3年，其中中阿文旅研究为2年。专业学位学制一般为2年，其中国际中文教育、英语口译（中英西复语、中英法复语方向）为3年。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>七、学费及奖助政策</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.学费</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">学术学位研究生：8000元/年/人；</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">专业学位研究生：翻译13500元/年/人；国际中文教育15000元/年/人；金融、国际商务26000元/年/人；旅游管理、工商管理40000元/年/人；会计（全日制）30000元/年/人，会计（非全日制）40000元/年/人。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.住宿费</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">全日制硕士研究生：1500元/年/人（住宿费用根据实际住宿情况，按照相应标准收费）。全日制硕士研究生统一安排住宿，非全日制硕士研究生原则上不安排住宿。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">3.奖助学金</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（1）研究生奖学金：面向学校在校全日制研究生，目前分为国家奖学金、学业奖学金、社会奖学金等，奖学金的等级划分及奖励金额标准详见《学生手册》。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（2）研究生国家助学金：用于资助学校全日制在校研究生（有固定工资收入的除外），补助研究生基本生活支出。补助标准为硕士研究生每生每月700元，按10个月发放。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（3）通过热水补贴、临时困难补助、新生入学“绿色通道”和减免学费等多种方式，加大对家庭经济困难研究生的资助帮扶力度。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">（4）非全日制专业的奖励政策以相关培养单位制定和发布为准。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>八、毕业就业</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">研究生在规定年限内完成培养方案规定内容，符合毕业及学位授予条件的，颁发毕业证书和学位证书。学校近年来研究生毕业生保持高质量充分就业，总体去向落实率稳定在96%以上。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>九、违规处理</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.考生应自觉树立遵章守纪、诚实考试的意识。对在研究生考试招生中违反考试管理规定和考场纪律，影响考试公平、公正的考生、考试工作人员及其他相关人员，一律按《中华人民共和国刑法》《中华人民共和国教育法》《最高人民法院 最高人民检察院关于办理组织考试作弊等刑事案件适用法律若干问题的解释》及《国家教育考试违规处理办法》（教育部令第33号）严肃处理。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.凡存在学术不端行为、违反考试纪律、弄虚作假等方面问题者，一经查实，即按有关规定取消报考资格、不予录取、取消录取资格或取消学籍。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>十、其他事宜</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.学校不举办任何形式的考研辅导班。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.考生因报考硕士研究生与所在单位产生的问题由考生自行处理。若因此造成考生不能复试或无法录取，招生单位不承担责任。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">3.学校将按照教育部等上级部门和相关文件精神，执行信息公开公示制度。在考生初试、复试录取等各个阶段相关信息，将通过中国研究生招生信息网和学校研招网及时公布公示。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">4.本章程其他未尽事宜以教育部印发的《2027年全国硕士研究生招生工作管理规定》为准。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">5.请考生在报名前认真阅读《2027年全国硕士研究生招生工作管理规定》（网址：http://www.moe.gov.cn/srcsite/A15/moe_778/s3261/202609/t20260923_1451734.html）。</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><strong>十一、联系方式</strong></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">1.学校研招网网址：http://yanzhao.bisu.edu.cn</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">2.学校地址：北京市朝阳区定福庄南里1号</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">3.考生咨询电话：</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">北京第二外国语学院研究生招生办：010-65773331</p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;">各培养单位咨询电话：</p> 
+  <table border="0" cellspacing="0" style="width: 523px; margin: 0px auto; border: none;"> 
+   <tbody> 
+    <tr style="height:6px" class="firstRow"> 
+     <td width="200" valign="top" nowrap style="width: 200px; padding: 0px 7px; border-width: 1px; border-color: rgb(0, 0, 0); word-break: break-all;"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">培养单位</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top-width: 1px;border-top-color: rgb(0, 0, 0);border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">咨询电话</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top-width: 1px;border-top-color: rgb(0, 0, 0);border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">联系人</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">英语学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778963</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">邢老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">日语学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778438</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">王</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">亚洲学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778549</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">孙老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">欧洲学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778056</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">李老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">中东学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778152</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">张老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">高级翻译学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778339</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">巩老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">旅游科学学院</span></p><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">（学硕）</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778253</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">李老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">旅游科学学院</span></p><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">（专硕旅游管理）</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778472</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">谭老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">商学院</span></p><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">（学硕）</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778379</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">张老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">商学院</span></p><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">（专硕会计）</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65772180</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">马老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">商学院</span></p><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">（专硕工商管理）</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65771324</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">王</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">经济学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778441</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">潘老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">区域国别学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65773951</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">张</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">文化与传播学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778347</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">杨</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">人工智能与语言</span></p><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">科学学院</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">65778273</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">骆</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">老师</span></p></td> 
+    </tr> 
+    <tr style="height:6px"> 
+     <td width="200" valign="top" nowrap style="width: 200px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">中阿文化和旅游</span></p><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">合作研究中心</span></p></td> 
+     <td width="169" valign="center" nowrap style="width: 170px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">6577</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">5477</span></p></td> 
+     <td width="152" valign="center" nowrap style="width: 153px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="margin-top:5px;margin-right:0;margin-bottom:5px;margin-left:0;text-align:center;line-height:37px"><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">吴</span><span style="font-family: 微软雅黑;letter-spacing: 0;font-size: 16px">老师</span></p></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+  <p class="" style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;</span></p> 
+  <p class="" style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">&nbsp;&nbsp; 附件：</span></p> 
+  <p class="" style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1.<a class="excel" href="https://www.bisu.edu.cn/bucketeducation/6abca615e4b04132ecb50a27.zip" data-mce-href="https://www.bisu.edu.cn/bucketeducation/6abca615e4b04132ecb50a27.zip">北京第二外国语学院2027年攻读硕士学位研究生招生专业目录</a></span></p> 
+  <p class="lastPadding" style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2.<a class="excel" href="https://www.bisu.edu.cn/bucketeducation/6abca629e4b04132ecb50a28.zip" data-mce-href="https://www.bisu.edu.cn/bucketeducation/6abca629e4b04132ecb50a28.zip">北京第二外国语学院2027年自命题科目考试大纲</a></span></p>
+ </body>
+</html></div>
+      </div>
+      <div class="guess">
+        <div class="w1366">
+          <div class="g-title">
+            <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/jt8.png" />
+            <p>你想了解的</p>
+          </div>
+          <ul>
+            <cms:storylist
+              class="story-detail" channelId="yz" type="column" columnId="676e1022cf1e66a18c75f75e" count="5" pageNo="0"
+            >
+              
+                <li class="g-item">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202409/27/WS676b80adcf1e66a18c75f51c.html">
+                    <span
+                    >2024-09-27</span>
+                    <p class="yh">北京第二外国语学院2025年接收推荐免试攻读硕士学位研究生招生简章</p>
+                  </a>
+                </li>
+              
+                <li class="g-item">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202409/19/WS676b80adcf1e66a18c75f51d.html">
+                    <span
+                    >2024-09-19</span>
+                    <p class="yh">各培养单位2025年接收推免生复试安排</p>
+                  </a>
+                </li>
+              
+                <li class="g-item">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202406/20/WS676b80aecf1e66a18c75f520.html">
+                    <span
+                    >2024-06-20</span>
+                    <p class="yh">北京第二外国语学院关于举办“2024年全国优秀大学生研学夏令营”的通知</p>
+                  </a>
+                </li>
+              
+            </cms:storylist>
+          </ul>
+        </div>
+      </div>
+      <div class="preview-dialog">
+      <div class="close-preview">
+        ×
+      </div>
+      <img class="preview-img" style="cursor:zoom-in" src="" />
+    </div>
+    </div>
+  </body>
+</html>
+<script>
+  		$('.preview-dialog').hide()
+    $('.content-box img').on('click', function(event) {
+      event.preventDefault();
+      console.log($(this))
+    	$('.preview-img').attr('src', $(this)[0].currentSrc)
+      $('.preview-dialog').show()
+    });
+$('.preview-img').on('click', function(event) {
+    const img = $(this)[0]
+    const cursor = img.style.cursor
+    if(cursor === 'zoom-in') {
+      img.style.cursor='zoom-out';
+      img.style.width='100%'
+      img.style.height='auto'
+      img.style.maxHeight='unset'
+      $('.preview-dialog')[0].style.overflow='auto'
+    } else {
+      img.style.cursor='zoom-in';
+      img.style.width='unset'
+      img.style.height='unset'
+      img.style.maxHeight='100%'
+      $('.preview-dialog')[0].style.overflow='unset'
+    }
+    })
+  $('.close-preview').on('click', function(event) {
+     $('.preview-dialog').hide()
+    $('.preview-img').attr('src', '')
+    })
+</script>
+        </div>
+      </div>
+      
+    <!-- 刷新 置顶 -->
+    <!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+  <!-- 刷新 置顶 -->
+    <div class="refresh_top" onclick="scrollToTop()">
+      <div style="cursor: pointer;">
+        <img
+          class="list_top_icon"
+          alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-top.png"
+        />
+        TOP
+      </div>
+    </div>
+</body>
+</html>
+<script>
+  function refreshPage() {
+    window.open(window.location.href,'_self')
+  }
+  function scrollToTop() {
+    $('#home-content').animate({
+      scrollTop: 0
+    },500)
+  }
+</script>
+      <!-- 底部 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+  <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/vue.js"></script>
+  <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/element.js"></script>
+  <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/element.css" />
+</head>
+<body>
+  <div id="footContentBox" class="footer-content-box">
+    <div class="footer-bottom-content">
+      <div class="link-list">
+        <div class="footer-label">
+          相关链接
+        </div>
+        <a class="nav_head" href="https://www.bjeea.cn/" target="_blank">
+          <span class="home_web_jc">北京教育考试院</span>
+        </a>
+        <a class="nav_head" href="https://yz.chsi.com.cn/" target="_blank">
+          <span class="home_web_jc">中国研究生招生信息网</span>
+        </a>
+        <a class="nav_head" href="http://www.bisu.edu.cn/" target="_blank">
+          <span class="home_web_jc">北京第二外国语学院网站</span>
+        </a>
+      </div>
+      <div class="contact-information">
+        <div class="footer-label">
+          联系方式
+        </div>
+        <div class="contact-info">
+          研招办电话：<p>
+          65773331
+          </p>
+        </div>
+        <div class="contact-info">
+          地址： <p>
+          		北京市朝阳区定福庄南里1号北京第二外国语学院 明德楼211办公室
+          </p>
+        </div>
+      </div>
+      <div class="erwai-gzh">
+        <div class="gzh-info">
+          <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-wb.png" />
+          二外微博
+        </div>
+        <div class="gzh-info">
+          <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-wx.png" />
+          二外微信
+        </div>
+      </div>
+    </div>
+    
+	 <div class="footer-line"></div>
+    <div class="footer-bottom-content1">
+      <div class="content-center-box">
+        <div class="footer-bottom-001-top footer-bottom-001-bottom">
+          <span style="font-weight: 400;color: #ffff;margin: 0 auto;">
+            <ul>
+              <li>@版权所有：北京第二外国语学院</li>
+              <li>京ICP备:05067963号</li>
+              <li>文保网安备案号:110402430076</li>
+              <li>Copyright 2001-2010 B.I.S.U. all rights reserved</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+  // 初始化 Vue 实例
+  new Vue({
+    el: '#footContentBox',
+    data() {
+      return{
+
+      }
+    }
+  })
+</script>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+</script>

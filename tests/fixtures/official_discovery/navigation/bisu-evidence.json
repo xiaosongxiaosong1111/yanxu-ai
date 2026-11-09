@@ -1,0 +1,42 @@
+{
+  "school": "北京第二外国语学院",
+  "school_id": 367863,
+  "purpose": "Minimal original public-page evidence: no student roster fetched",
+  "retrieved_at": "2026-11-09T14:16:13.530714+08:00",
+  "sources": {
+    "homepage": {
+      "requested_url": "https://yanzhao.bisu.edu.cn/",
+      "final_url": "https://yanzhao.bisu.edu.cn/",
+      "http_status": 200,
+      "response_bytes": 51763,
+      "response_sha256": "e20f784b69a46779995f5b0603abbebb76d27695f8d3bcdba064ccb1fd3a78fe",
+      "raw_snippet": "<div class=\"left-info\" onclick=\"showStory(this)\" data-id=\"WS6abf29facf1e7b21db96eb68\">\n              <div class=\"left-title\">北京第二外国语学院2027年硕士研究生招生章程</div>\n              <div class=\"left-time\">2026.10.02</div>",
+      "mapping": {
+        "title": "北京第二外国语学院2027年硕士研究生招生章程",
+        "onclick": "showStory(this)",
+        "data_id": "WS6abf29facf1e7b21db96eb68",
+        "derived_url": "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html"
+      }
+    },
+    "script": {
+      "requested_url": "https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/action.js",
+      "final_url": "https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/action.js",
+      "http_status": 200,
+      "response_bytes": 13513,
+      "response_sha256": "a19f417b61552d5696aeb0b76510816e5f8158304cac2a9641d668c521f28634",
+      "raw_snippet": "function showStory(ele, fileName) {\n  let storyId = $(ele).attr('data-id');\n  let url = '/content/' + storyId + '.html';\n  window.location.href = url;\n}"
+    },
+    "article": {
+      "requested_url": "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html",
+      "final_url": "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html",
+      "http_status": 200,
+      "response_bytes": 67174,
+      "response_sha256": "07505e5efa69ad83143400739b861f8843124126128d2d9eb2904506aa51fbbc",
+      "raw_snippets": [
+        "章程</h1>\n        <div class=\"msg\">\n          <p>\n            时间：<span\n            >2026-10-02</span>\n          </p>\n        </div>\n        <div class=\"detail-content\"><html>\n <head></head>\n <body>\n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">北京第二外国语学院是由文化和旅游部与北京市人民政府共建的高水平特色大学，是一所以外语为主体、旅游为特色，多学科协同发展的著名高校。学校是周恩来总理亲自提议于1964年10月成立。建校以来，学校始终秉承“中外人文交流”使命，以服务国家战略和首都发展为己任，以“融中外、兼知行”为办学理念，坚持内涵发展，强化交叉融合，致力于培养“多语种复语、跨专业复合”、具有家国情怀、国际视野的复合型人才。</p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">学校现有硕士学位一级学科授予点6个、专业硕士学位授予点7个、联合培养博士项目4个、博士后科研工作站1个（与社会科学文献出版社共建）。北京高校高精尖学科2个（旅游管理、外",
+        "margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">北京第二外国语学院2027年硕士研究生拟招生计划为761人（含推免以及专项计划），其中全日制拟招生计划627人，非全日制拟招生计划134人，本年度招生计划以上级部门正式下达的计划为准。学校招收“退役大学生士兵计划”考生3人。各专业拟招收人数请参阅《北京第二外国语学院2027年攻读硕士学位研究生招生专业目录》（详见附件）。各专业招收推免生人数以最终录取推免生人数为准，各专业最终录取人数将根据上级部门正式招生计划下达数、生源情况、社会需求和学校发展需要进行适当调整。</p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\"><strong>二、报考条件</strong></p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">1.拥护中国共产党的领导，遵守中华人民共和国宪法和法律，诚实守信。</p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">2.身体健康状况符合国家和招生单位规定的体检要",
+        "rgin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">1.学校研招网网址：http://yanzhao.bisu.edu.cn</p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">2.学校地址：北京市朝阳区定福庄南里1号</p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">3.考生咨询电话：</p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">北京第二外国语学院研究生招生办：010-65773331</p> \n  <p style=\"text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;\">各培养单位咨询电话：</p> \n  <table border=\"0\" cellspacing=\"0\" style=\"width: 523px; margin: 0px auto; border: none;\"> \n   <tbody> \n    <"
+      ]
+    }
+  }
+}

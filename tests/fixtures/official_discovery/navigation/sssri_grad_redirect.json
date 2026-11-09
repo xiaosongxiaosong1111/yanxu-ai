@@ -1,0 +1,22 @@
+{
+  "key": "sssri_grad_redirect",
+  "requested_url": "https://www.sssri.com/col/col2121/index.html",
+  "retrieved_at": "2026-11-09T14:18:44.681168+08:00",
+  "method": "Python requests GET (no credentials)",
+  "final_url": "https://www.sssri.com/col/col2121/index.html",
+  "http_status": 200,
+  "response_bytes": 5772,
+  "response_sha256": "ddfe998f64c83a4d761595915ce0c09c9915979a3316d62a1c625128bfdd21cf",
+  "content_type": "text/html",
+  "title": null,
+  "snippets": [
+    {
+      "needle": "location.href",
+      "found": 1,
+      "raw_html_snippets": [
+        "vascript\" src=\"/TSPD/08384258a8ab2000690b329f9e9f3b60fc08daa8a74bbb9c2f657f220e541166799c695d369f633f?type=9\"></script>\r\n<script> location.href=\"/col2121/art/2015/art_2121_36941.html\";</script></body></html>"
+      ]
+    }
+  ],
+  "read_result": "response_read"
+}

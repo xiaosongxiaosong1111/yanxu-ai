@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+  <meta charset="utf-8"/>
+  <title>
+  	北京第二外国语学院2027年接收推荐免试攻读硕士学位研究生招生简章
+  </title>
+  <link rel="icon" type="image/png" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/erwai_logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css -->
+    <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/bg.css" />
+    <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/index.css" />
+	 <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/detail.css" />
+
+    <!-- jquery插件库 -->
+    <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/jquery.min.js"></script>
+    <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/action.js"></script>
+		<script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/rem.js"></script>
+
+<script type="text/javascript">
+  function handleScroll () {
+    // 获取滚动的垂直距离
+    const scrollTop = document.getElementsByClassName('home-content')[0].scrollTop;
+    if(scrollTop > 300) {
+      $('.refresh_top').show()
+    }else{
+      $('.refresh_top').hide()
+    }
+  }
+</script>
+</head>
+<body>
+  <div class="data-list-content-box-010" id="home_body">
+    <div class="home-content" onscroll="handleScroll()" id="home-content">
+      <!-- 首页导航 -->
+      <div class="nav-list-box">
+      		<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+  <div class="header-content-001">
+   	<!-- 左侧 -->
+    <div class="header-logo-left">
+      <img class="header-logo default-type-01" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/nav-logo.png" />
+      <div class="header-001-text header-001-logo-text1">
+        <div class="comTitle">
+          您好！欢迎报考北京第二外国语学院！
+        </div>
+        <div class="searchInput">
+          <form method="get" target="_blank" action="https://www.bisu.edu.cn/web/globalSearch/#/search" name="userForm">
+        		<input type="text" id="q" name="q" value="" placeholder="请输入关键字" />
+            	<input type="hidden" name="pagemode" value="result" />
+					<input name="webid" type="hidden" value="25" />
+					<input type="hidden" name="appid" value="1" />
+					<input type="hidden" name="style" value="1" />
+					<input type="hidden" name="ck" value="0" />
+					<input id="pos" type="hidden" name="pos" value="title,content" />
+            <button type="submit" name="imageField" id="submit" class="search-icon">
+              <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/search-icon.png" />
+            </button>
+    		 </form>
+        </div>
+      </div>
+    </div>
+	 <div class="header-line"></div>
+    <!-- 右侧 -->
+    <div class="header-logo-right">
+    	<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div id="headerTopBox01" class="nav-list-001">
+      <div class="data_list_001">
+        <a class="nav_head" href="/">
+          <span class="home_web_jc">招生首页</span>
+        </a>
+        <a class="nav_head" href="https://www.bisu.edu.cn/#/xxDetail?id=0" target="_blank">
+          <span class="home_web_jc">学校概况</span>
+        </a>
+        <div class="nav_head" onclick="goUnits()">
+          <span class="home_web_jc">培养单位</span>
+        </div>
+        <a class="nav_head" href="https://yjsy.bisu.edu.cn/" target="_blank">
+          <span class="home_web_jc">人才培养</span>
+        </a>
+        <a class="nav_head" href="https://www.bisu.edu.cn/#/cooperation?id=0" target="_blank">
+          <span class="home_web_jc">国际交流</span>
+        </a>
+        <a class="nav_head" href="https://yjsy.bisu.edu.cn/mixmedia/6777bb3fcf1e6138de7c5e84/6777bccbcf1e6138de7c5e9c/6777bd71cf1e6138de7c5eae" target="_blank">
+          <span class="home_web_jc">导师信息</span>
+        </a>
+        
+        <cms:storylist
+            style="height: .6rem;width: 100%;" channelId="yz" type="column" columnId="67595383cf1e66a18c75f36a" count="1" pageNo="0"
+          >
+                
+                    <a class="nav_head" href="https://yanzhao.bisu.edu.cn/mixmedia/a/202502/17/WS676b80accf1e66a18c75f51a.html" target="_blank">
+                  <span class="home_web_jc">常见问题</span>
+                </a>
+              
+          </cms:storylist>
+      </div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  function goUnits() {
+    $('#home-content').animate({
+      scrollTop: document.getElementsByClassName('units')[0].offsetTop-150
+    },500)
+  }
+</script>
+    </div>
+  </div>
+</body>
+</html>
+      </div>
+      <!-- 正文内容 -->
+      <div class="content-box-heqwe-06">
+        <div class="content-center-box" style="background:#fff;">
+          <!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      strong {
+        font-size: inherit
+      }</style>
+  </head>
+  <body>
+    <div id="main">
+<ul class="fixed-list">
+<li class="fixed-item">
+<img class="icon" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/wx.png" />
+<div>
+<img class="icon" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/ewm1.png" />
+</div>
+</li>
+<li class="fixed-item">
+<img class="icon" alt="" onclick="shareQQ()" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/qq.png" />
+</li>
+<li class="fixed-item">
+<img class="icon" alt="" onclick="shareWB()" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/wb.png" />
+</li>
+<li class="fixed-item">
+<img class="icon" alt="" onclick="shareQQKJ()" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/qqkj.png" />
+</li>
+</ul>
+      <!-- 标题 -->
+      <div class="banner">
+        <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/banner2.png" />
+        <div class="w1366">
+          <cms:column>
+            <p>最新公告</p>
+        </cms:column>
+        </div>
+      </div>
+
+      <div class="w1366 content-box">
+        <!-- 文章详情 -->
+        <h1 class="Title">北京第二外国语学院2027年接收推荐免试攻读硕士学位研究生招生简章</h1>
+        <div class="msg">
+          <p>
+            时间：<span
+            >2026-09-20</span>
+          </p>
+        </div>
+        <div class="detail-content"><html>
+ <head></head>
+ <body>
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span id="_baidu_bookmark_start_4" style="display: none; line-height: 0px;">‍</span><span style="font-size: 16px;"><span id="_baidu_bookmark_start_18" style="display: none; line-height: 0px;">‍</span>为全面落实全国教育大会精神，紧紧围绕立德树人根本任务，加强拔尖创新人才选拔、提高研究生招生质量，我校根据教育部、北京市有关推免生工作要求，结合我校实际情况，特制定本章程。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;"><strong>一、申请条件</strong><strong></strong></span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">1.拥护中国共产党的领导，品德良好，遵纪守法，身心健康。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">2.申请人必须是具有推荐免试授权高校的应届本科毕业生，以及其他符合相关规定的考生，并获得推荐免试资格，推荐手续完备，材料齐全。　</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">3.本科期间学习成绩优秀，综合排名在本专业同年级学生数的前列。本科阶段有论文公开发表、或有科研成果、或在全国重大竞赛中获奖等学术专长的，同等条件下将优先录取。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">4.2027年入学前获得本科毕业证书。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;"><strong>二、接收专业、人数</strong><strong></strong></span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">我校接收推免生的专业（领域）、人数请参阅《北京第二外国语学院2027年接收推荐免试攻读硕士学位研究生专业目录》，具体接收人数根据实际生源情况适当调整。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;"><strong>三、申请与选拔考核程序</strong><strong></strong></span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">根据教育部相关精神，2027年我校接收推荐免试攻读硕士学位研究生的基本程序如下：</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">1.考生登录我校研究生推免招生系统进行预报名，各培养单位于复试报到2日前通知同意复试的考生。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">2.考生参加复试。同意参加我校2027年推免生复试的申请人请及时关注我校研招网（http://yanzhao.bisu.edu.cn）上公布的复试安排（复试时间拟定于9月中下旬，具体时间以网站公布为准）。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">3.考生应当在规定时间内提交以下材料，包括：</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（1）第二代身份证、学生证（身份证提供正反面，学生证提供学生信息和注册情况）；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（2）历年在校学习成绩单原件1份，并加盖推荐院校教务处公章；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（3）北京第二外国语学院接收推免生攻读硕士学位研究生申请表1份，此表由申请人在我校研招网下载后填写信息并打印，确认无误后签字，由所在院系及学校教务部门签字盖章；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（4）专家推荐信2封，表格在我校研招网下载，由两位与申请学科相关的副教授以上职称的专家填写；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（5）个人自述1份，表格在我校研招网下载，可正反面填写；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（6）国家英语四、六级考试成绩、TOEFL成绩或GRE成绩等体现自身英语水平的证明1份。若参加学校学位英语水平考试，须由学校教务部门提供所得成绩证明，并注明学位英语考试满分分值；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（7）各类获奖证书和发表的学术论文；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（8）申请人认为有必要提交的可以证明综合素质、学术潜力的其它材料;</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（9）承诺书；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（10）北京第二外国语学院推免生复试考生诚信承诺书。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">4.办理拟录取手续。学院拟录取名单上报学校研究生招生办公室后，拟录取学生需在规定时间内登录“全国推荐免试攻读研究生（免初试、转段）信息公开管理服务系统”（网址：https://yz.chsi.com.cn/tm）按要求及时接受待录取通知。确认待录取后，学校不接受考生取消待录取，请考生谨慎确认。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">5.上报北京教育考试院审核与公示。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;"><strong>四、学费与奖助学金</strong><strong></strong></span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">1.学费</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">学术学位研究生：8000元/年/人；</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">专业学位研究生:翻译13500元/年/人；国际中文教育15000元/年/人；金融、国际商务26000/年/人；会计（全日制）30000元/年/人。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">2.住宿费</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">全日制硕士研究生：1500元/年/人（住宿费用以实际安排住宿情况，按照相应标准收费）。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">3.奖助学金</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（1）研究生奖学金：面向我校全日制在校研究生，目前分为国家奖学金、学业奖学金、社会奖学金等，奖学金的等级划分及奖励金额标准详见《学生手册》。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（2）研究生国家助学金：用于资助我校全日制在校研究生（有固定工资收入的除外），补助研究生基本生活支出。补助标准为硕士研究生每生每月700元，每年按10个月发放。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">（3）通过热水补贴、临时困难补助、新生入学“绿色通道”和减免学费等多种方式，加大对家庭经济困难研究生的资助帮扶力度。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;"><strong>五、其他事项</strong><strong></strong></span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">1.申请人必须保证所提交申请材料的真实性和准确性。我校将在复试结束后对拟录取的推免生公示，若申请人提交的信息不真实或不准确，我校不予录取。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">2.我校确定接收的推免生，在入学报到时未获得毕业证书者，学校将取消其录取资格。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">3.已被接收的推免生无须再参加全国硕士研究生入学考试。否则，将取消推免生资格，列为统考生。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">4.如本简章与当年教育部下达的推荐优秀应届本科毕业生免试攻读研究生政策有不符之处，以教育部政策为准。</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">5.联系方式：</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">北京第二外国语学院研究生招生办：010—65773331</span></p> 
+  <p style="text-indent: 2em; margin: 0px 0px 20px; font-size: 20px; line-height: 1.5em;"><span style="font-size: 16px;">各培养单位咨询电话：<span id="_baidu_bookmark_end_19" style="display: none; line-height: 0px;">‍</span><span id="_baidu_bookmark_end_19" style="display: none; line-height: 0px;"></span></span></p> 
+  <span id="_baidu_bookmark_end_5" style="display: none; line-height: 0px;">‍</span> 
+  <p class=""></p> 
+  <table border="0" cellspacing="0" style="width: 519px; border: none; margin: 0px auto;"> 
+   <tbody> 
+    <tr style="height:25px" class="firstRow"> 
+     <td width="264" valign="center" nowrap style="width: 264px; padding: 0px 7px; border-width: 1px; border-color: rgb(0, 0, 0); word-break: break-all;"><span style="font-size: 16px;">​&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong style="text-align: center; text-indent: 2em;"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 19px;">培养单位</span></strong></span></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top-width: 1px;border-top-color: rgb(0, 0, 0);border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-size: 16px;"><strong><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 19px;">咨询电话</span></strong></span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top-width: 1px;border-top-color: rgb(0, 0, 0);border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-size: 16px;"><strong><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 19px;">联系人</span></strong></span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">英语学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778963</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">邢老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">日语学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778438</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">王老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">亚洲学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778549</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">孙老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">欧洲学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778056</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">李老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">中东学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778152</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">张老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">高级翻译学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 宋体; line-height: 150%; font-size: 16px;">65778339</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">巩老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">旅游科学学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778253</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">李老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">商学院（学硕）</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778379</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">张老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">商学院（专硕）</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65772180</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">马老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">经济学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778441</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">潘老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">区域国别学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65773951</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">张老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">文化与传播学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778347</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">杨老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">人工智能与语言科学学院</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65778273</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">骆老师</span></p></td> 
+    </tr> 
+    <tr style="height:25px"> 
+     <td width="264" valign="center" nowrap style="width: 264px;padding: 0 7px;border-left-width: 1px;border-left-color: rgb(0, 0, 0);border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">中阿文化和旅游合作研究中心</span></p></td> 
+     <td width="134" valign="center" nowrap style="width: 134px;padding: 0 7px;border-left: none;border-right-width: 1px;border-right-color: rgb(0, 0, 0);border-top: none;border-bottom-width: 1px;border-bottom-color: rgb(0, 0, 0)"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">65775477</span></p></td> 
+     <td width="120" valign="center" nowrap style="width: 121px; padding: 0px 7px; border-left: none; border-right-width: 1px; border-right-color: rgb(0, 0, 0); border-top: none; border-bottom-width: 1px; border-bottom-color: rgb(0, 0, 0); word-break: break-all;"><p style="text-align:center;line-height:150%"><span style="font-family: 仿宋; line-height: 150%; color: rgb(0, 0, 0); font-size: 16px;">吴老师</span></p></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+  <br> 
+  <p></p> 
+  <p class=""><br></p> 
+  <p class=""><br></p> 
+  <p class=""><br></p> 
+  <p class=""><br></p> 
+  <p class=""><span style="font-size: 16px;">附件：</span></p> 
+  <p class=""><a class="excel" href="https://www.bisu.edu.cn/bucketeducation/6aaf28cfe4b04132ecb50837.pdf" data-mce-href="https://www.bisu.edu.cn/bucketeducation/6aaf28cfe4b04132ecb50837.pdf" style="font-size: 16px; text-decoration: underline;"><span style="font-size: 16px;">1.北京第二外国语学院2027年接收推荐免试攻读硕士学位研究生专业目录</span></a></p> 
+  <p class="lastPadding"><a class="excel" href="https://www.bisu.edu.cn/bucketeducation/6aa27149e4b04132ecb506ca.zip" data-mce-href="https://www.bisu.edu.cn/bucketeducation/6aa27149e4b04132ecb506ca.zip" style="font-size: 16px; text-decoration: underline;"><span style="font-size: 16px;">2.表格模版</span></a>​</p>
+ </body>
+</html></div>
+      </div>
+      <div class="guess">
+        <div class="w1366">
+          <div class="g-title">
+            <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/jt8.png" />
+            <p>你想了解的</p>
+          </div>
+          <ul>
+            <cms:storylist
+              class="story-detail" channelId="yz" type="column" columnId="676e1022cf1e66a18c75f75e" count="5" pageNo="0"
+            >
+              
+                <li class="g-item">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202409/27/WS676b80adcf1e66a18c75f51c.html">
+                    <span
+                    >2024-09-27</span>
+                    <p class="yh">北京第二外国语学院2025年接收推荐免试攻读硕士学位研究生招生简章</p>
+                  </a>
+                </li>
+              
+                <li class="g-item">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202409/19/WS676b80adcf1e66a18c75f51d.html">
+                    <span
+                    >2024-09-19</span>
+                    <p class="yh">各培养单位2025年接收推免生复试安排</p>
+                  </a>
+                </li>
+              
+                <li class="g-item">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202406/20/WS676b80aecf1e66a18c75f520.html">
+                    <span
+                    >2024-06-20</span>
+                    <p class="yh">北京第二外国语学院关于举办“2024年全国优秀大学生研学夏令营”的通知</p>
+                  </a>
+                </li>
+              
+            </cms:storylist>
+          </ul>
+        </div>
+      </div>
+      <div class="preview-dialog">
+      <div class="close-preview">
+        ×
+      </div>
+      <img class="preview-img" style="cursor:zoom-in" src="" />
+    </div>
+    </div>
+  </body>
+</html>
+<script>
+  		$('.preview-dialog').hide()
+    $('.content-box img').on('click', function(event) {
+      event.preventDefault();
+      console.log($(this))
+    	$('.preview-img').attr('src', $(this)[0].currentSrc)
+      $('.preview-dialog').show()
+    });
+$('.preview-img').on('click', function(event) {
+    const img = $(this)[0]
+    const cursor = img.style.cursor
+    if(cursor === 'zoom-in') {
+      img.style.cursor='zoom-out';
+      img.style.width='100%'
+      img.style.height='auto'
+      img.style.maxHeight='unset'
+      $('.preview-dialog')[0].style.overflow='auto'
+    } else {
+      img.style.cursor='zoom-in';
+      img.style.width='unset'
+      img.style.height='unset'
+      img.style.maxHeight='100%'
+      $('.preview-dialog')[0].style.overflow='unset'
+    }
+    })
+  $('.close-preview').on('click', function(event) {
+     $('.preview-dialog').hide()
+    $('.preview-img').attr('src', '')
+    })
+</script>
+        </div>
+      </div>
+      
+    <!-- 刷新 置顶 -->
+    <!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+  <!-- 刷新 置顶 -->
+    <div class="refresh_top" onclick="scrollToTop()">
+      <div style="cursor: pointer;">
+        <img
+          class="list_top_icon"
+          alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-top.png"
+        />
+        TOP
+      </div>
+    </div>
+</body>
+</html>
+<script>
+  function refreshPage() {
+    window.open(window.location.href,'_self')
+  }
+  function scrollToTop() {
+    $('#home-content').animate({
+      scrollTop: 0
+    },500)
+  }
+</script>
+      <!-- 底部 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+  <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/vue.js"></script>
+  <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/element.js"></script>
+  <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/element.css" />
+</head>
+<body>
+  <div id="footContentBox" class="footer-content-box">
+    <div class="footer-bottom-content">
+      <div class="link-list">
+        <div class="footer-label">
+          相关链接
+        </div>
+        <a class="nav_head" href="https://www.bjeea.cn/" target="_blank">
+          <span class="home_web_jc">北京教育考试院</span>
+        </a>
+        <a class="nav_head" href="https://yz.chsi.com.cn/" target="_blank">
+          <span class="home_web_jc">中国研究生招生信息网</span>
+        </a>
+        <a class="nav_head" href="http://www.bisu.edu.cn/" target="_blank">
+          <span class="home_web_jc">北京第二外国语学院网站</span>
+        </a>
+      </div>
+      <div class="contact-information">
+        <div class="footer-label">
+          联系方式
+        </div>
+        <div class="contact-info">
+          研招办电话：<p>
+          65773331
+          </p>
+        </div>
+        <div class="contact-info">
+          地址： <p>
+          		北京市朝阳区定福庄南里1号北京第二外国语学院 明德楼211办公室
+          </p>
+        </div>
+      </div>
+      <div class="erwai-gzh">
+        <div class="gzh-info">
+          <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-wb.png" />
+          二外微博
+        </div>
+        <div class="gzh-info">
+          <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-wx.png" />
+          二外微信
+        </div>
+      </div>
+    </div>
+    
+	 <div class="footer-line"></div>
+    <div class="footer-bottom-content1">
+      <div class="content-center-box">
+        <div class="footer-bottom-001-top footer-bottom-001-bottom">
+          <span style="font-weight: 400;color: #ffff;margin: 0 auto;">
+            <ul>
+              <li>@版权所有：北京第二外国语学院</li>
+              <li>京ICP备:05067963号</li>
+              <li>文保网安备案号:110402430076</li>
+              <li>Copyright 2001-2010 B.I.S.U. all rights reserved</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+  // 初始化 Vue 实例
+  new Vue({
+    el: '#footContentBox',
+    data() {
+      return{
+
+      }
+    }
+  })
+</script>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+</script>

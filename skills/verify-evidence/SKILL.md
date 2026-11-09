@@ -29,6 +29,12 @@ search_knowledge只复用accepted且reusable=true的资料，不能把搜索线�
 
 match_mode=document_terms表示复合关键词分散在同一份当前原文中，单个命中片段未必同时满足全部条件；须分别精读其适用范围和上下文，不能据此合并事实或推断同一专业同时符合这些条件。
 
-质量accepted还须validity=active、usable=true且原文SHA与当前提取代次可核验。revoked、conflict、superseded、质量降级或留档失效时，旧摘录、旧tool消息和旧推断停止复用；重新检索当前有效版本。工具提示来源变化时报告资料缺口，不继续照搬先前解释；新文本必须经propose_source_candidates逐字段校验，或既有正式发布审校路径，才能参与确定性招生算法。
+质量accepted还须validity=active、usable=true且原文SHA与当前提取代次可核验。revoked、conflict、superseded、质量降级或留档失效时，旧摘录、旧tool消息和旧推断停止复用；重新检索当前有效版本。工具提示来源变化时报告资料缺口，不继续照搬先前解释；新文本必须经propose_source_candidates、propose_admission_facts各自的逐字段校验，或既有正式发布审校路径，才能参与确定性招生算法。
+
+propose_admission_facts({program_id,drafts})每批至多六条。draft仅含field（eligibility/tuition/duration_years）和citation:{segment_id,char_start,char_end,quote}。引用必须是本轮已经完整送达的规范块和实际绝对区间，不能裁掉例外、OR分支或限定；依赖表头/章节的字段须先精读其真实上下文。相同学校、实际年度、专业、学习方式和学位类型必须同时适用，禁止跨专业、跨年度拼接费用与学制。
+
+程序从条款或完整表格行推导数值与条件；模型不得提交value、金额、AST或eligibility_evidence_complete。单一明确官方收费原文可以核验；同SHA的两个URL不构成双来源。年费与学制均已核验才推导全程费用，并同时保留两项依据；明确发布的全程费用优先保留。部分学历或工作年限条款可以支持相应排除，但未知附加条件、健康条款、专业例外或复杂分支未解时，完整资格继续unknown。事实待核或冲突时停止相关比较，不把“已保存”“已精读”或“单条已核验”说成全部符合报考条件。
+
+官网派生权限也有生命周期：证明过期、撤销或原始字节改变后，其原文与派生事实停止可信复用。历史报告和下一轮继承都会重新校验；保留原始审计不等于继续采用旧字段。
 
 可能含逐人录取或复试名单的材料只向研究对话提供来源与版本信息，不把姓名、考号或原始名单传给模型。完整工具原文与报告另存，模型上下文只收到明确标记的有界摘要，不得假装模型已通读全部材料。

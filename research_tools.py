@@ -23,15 +23,17 @@ from source_privacy import contains_personal_roster
 import research_knowledge
 import research_fields
 import research_candidate_tools
+import research_official_tools
+import research_admission_tools
 from research_plan import build_plan
 
 LIMITS={'max_rounds':8,'max_searches':4,'max_documents':4,'max_model_calls':8,
         'max_tool_calls':20,'max_seconds':180,'max_total_tokens':40000,'max_candidates':12,
-        'max_discoveries':2,'max_navigation_fetches':4,'max_links':20}
+        'max_discoveries':2,'max_navigation_fetches':12,'max_links':20}
 SKILL_CATALOG=(
     ('understand-intent','理解需求',('find_units','find_candidates','propose_profile')),
-    ('research-official-sources','研究官方资料',('find_units','find_candidates','search_official_sources','search_knowledge','search_knowledge_segments','propose_source_candidates')),
-    ('verify-evidence','核对原文依据',('read_official_source','search_knowledge','search_knowledge_segments','read_knowledge_segment','propose_source_candidates')),
+    ('research-official-sources','研究官方资料',('find_units','find_candidates','search_official_sources','discover_official_entry','discover_official_links','search_knowledge','search_knowledge_segments','propose_source_candidates')),
+    ('verify-evidence','核对原文依据',('read_official_source','search_knowledge','search_knowledge_segments','read_knowledge_segment','propose_source_candidates','propose_admission_facts')),
     ('compare-plans','比较备考方案',('compare_candidates','analyze_decisions','plan_subject_routes','suggest_adjustments')),
     ('assess-transfer-options','复试与调剂研究',('read_knowledge','read_official_source','search_official_sources')),
 )
@@ -40,7 +42,8 @@ _SECRET=re.compile(r'\b(?:sk-[A-Za-z0-9_-]{8,}|Bearer\s+\S{6,}|AKID[A-Za-z0-9]{1
 _PII=re.compile(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|(?<!\d)1[3-9]\d{9}(?!\d)|(?<!\d)\d{17}[\dXx](?!\d)')
 _SOURCE_METADATA=('id','url','title','unit_id','unit_name','year','requested_year','status','source_type','checked_at',
                   'sha256','page_count','field_verification','original_available','text_origin','text_truncated',
-                  'snapshot_status','content_notice','cached_at','cache_hit','validity','usable','extraction','source_group','index_state')
+                  'snapshot_status','content_notice','cached_at','cache_hit','validity','usable','extraction','source_group','index_state',
+                  'authority_id','source_role')
 
 
 def _public_source(value):
@@ -185,10 +188,22 @@ TOOLS=[
                 'field':{'type':'string'},'quote':{'type':'string'}},'required':['field','quote'],'additionalProperties':False}}},('updates','evidence')),
 ]
 
+TOOLS.extend([
+    _schema('discover_official_entry','从登记官网或已留档权威声明发现研究生招生入口，核验新增入口归属并查目标年度公告；元宝未命中或未配置时仍可使用。分开报告官网、公告和正文状态。',
+        {'unit_id':{'type':'string'},'year':{'type':'integer'},'kind':{'type':'string','enum':list(official_search.SEARCH_KINDS)}},('unit_id',)),
+    _schema('propose_admission_facts','把本轮已精读完整条款的逐字引用提交程序核验学费、学制或资格。不得提交金额或条件判断；不完整资格仍待核，冲突或失效事实停止参与算法。',
+        {'program_id':{'type':'string'},'drafts':{'type':'array','minItems':1,'maxItems':6,'items':{
+            'type':'object','additionalProperties':False,'properties':{'field':{'type':'string','enum':['tuition','duration_years','eligibility']},
+            'citation':{'type':'object','additionalProperties':False,'properties':{
+                'segment_id':{'type':'string'},'char_start':{'type':'integer'},'char_end':{'type':'integer'},'quote':{'type':'string'}},
+                'required':['segment_id','char_start','char_end','quote']}},'required':['field','citation']}}},('program_id','drafts')),
+])
+
 
 class ResearchTools:
     def __init__(self, admission, settings, task, data_dir, *, network=None, source_fetcher=fetch_official_document,
-                 stop_event=None,deadline=None,knowledge_store=None,retriever=None):
+                 stop_event=None,deadline=None,knowledge_store=None,retriever=None,
+                 navigation_fetcher=None,saved_declarations=None):
         self.admission,self.settings,self.task=admission,settings,task
         self.data_dir=Path(data_dir).resolve();self.network=network;self.source_fetcher=source_fetcher
         self.stop_event=stop_event;self.deadline=deadline if deadline is not None else time.monotonic()+LIMITS['max_seconds']
@@ -214,6 +229,8 @@ class ResearchTools:
         self.revision=self.bootstrap.get('revision')
         self.field_candidates=[];self.field_applications={'applied':[],'paused':[]}
         research_candidate_tools.initialize(self)
+        research_official_tools.initialize(self,navigation_fetcher,saved_declarations)
+        research_admission_tools.initialize(self)
         self.inheritance=self._inherit(task.get('previous_report'))
         research_candidate_tools.seed_source(self)
 
@@ -234,7 +251,8 @@ class ResearchTools:
             if not isinstance(identifier,str) or not re.fullmatch(r's_[0-9a-f]{20}',identifier):continue
             if row.get('status') not in {'official_original_read','published_snapshot'}:continue
             if row.get('knowledge_filtered') is True or row.get('usable') is False:continue
-            unit=self.units.get(row.get('unit_id'))
+            unit=(research_official_tools.current_unit(self,row['unit_id'])
+                  if row.get('unit_id') in self.units else None)
             if (unit is None or row.get('year')!=self.task['reference_year']
                     or selected and row.get('unit_id') not in selected
                     or not official_source_url(str(url or ''),unit)):
@@ -273,11 +291,14 @@ class ResearchTools:
             self.programs[identifier]={**deepcopy(program),'inherited_from_turn':info['previous_turn_id']}
             info['candidate_ids'].append(identifier)
         self._remember_research_pool(list(self.programs.values()))
+        research_official_tools.inherit(self,previous)
         research_candidate_tools.inherit(self,previous,info)
+        research_admission_tools.inherit(self,previous,info)
         info['reused']=bool(self.programs or self.sources)
         return info
 
     def _apply_fields(self):
+        research_admission_tools.restore(self)
         research_candidate_tools.refresh(self)
         previous=deepcopy(self.programs)
         result=research_fields.field_candidates(self.programs,self.sources)
@@ -286,17 +307,24 @@ class ResearchTools:
         if previous!=self.programs or pool.get('changed'):
             self.algorithm.clear();self._algorithm_signature=None
         self.field_candidates=result['candidates'];self.field_applications=result
+        research_admission_tools.refresh(self)
         for row in result.get('paused',[]):
             message='部分来源的收费口径互相冲突，相关候选已暂停推荐；请回到原文核对。'
             if message not in self.gaps:self.gaps.append(message)
         return result
+
+    def discover_entry(self,args):
+        return research_official_tools.discover(self,args)
+
+    def propose_admission_facts(self,args):
+        return research_admission_tools.propose(self,args)
 
     def _unit(self,identifier):
         if not isinstance(identifier,str) or identifier not in self.units:
             raise ResearchError('unknown_unit','请先从全国单位索引确认学校身份。')
         if self.task['unit_ids'] and identifier not in self.task['unit_ids']:
             raise ResearchError('outside_research_scope','该学校不在本轮选定研究范围内。')
-        return self.units[identifier]
+        return research_official_tools.current_unit(self,identifier)
 
     def run(self,name,args):
         self._check_control()
@@ -313,6 +341,7 @@ class ResearchTools:
         handlers={'find_units':self.find_units,'find_candidates':self.find_candidates,
                   'search_official_sources':self.search_sources,'read_official_source':self.read_source,
                   'discover_official_links':self.discover_links,
+                  'discover_official_entry':self.discover_entry,'propose_admission_facts':self.propose_admission_facts,
                   'compare_candidates':self.compare,'analyze_decisions':self.analyze_decisions,
                   'plan_subject_routes':self.routes,
                   'suggest_adjustments':self.adjustments,'read_knowledge':self.knowledge,'propose_profile':self.propose_profile,
@@ -759,7 +788,8 @@ class ResearchTools:
     def _candidate(row):
         keys=('id','unit_id','unit_name','name','code','department','direction','study_mode','degree_type','year',
               'subjects','tuition','duration_years','eligibility_evidence_complete','requires_review','notes',
-              'field_conflicts','candidate_origin','candidate_ref','validation','evidence_refs')
+              'field_conflicts','candidate_origin','candidate_ref','validation','evidence_refs',
+              'conditions','duration_evidence')
         result={key:deepcopy(row.get(key)) for key in keys if key in row}
         return {**result,'verification_mode':row.get('verification_mode','published_snapshot'),
                 'exam_unresolved_reason':exam_unresolved_reason(row)}
@@ -830,6 +860,7 @@ class ResearchTools:
         reusable=_reusable_knowledge(record)
         if reusable:self.cache_hits.add(record['id'])
         return _public_source({**metadata,'id':source['id'],
+            **{key:deepcopy(source[key]) for key in ('authority_id','source_role') if key in source},
             **({'links':deepcopy(source['links'])} if 'links' in source else {}),
             'requested_year':source.get('requested_year',record.get('requested_year')),
             'source_type':'knowledge_cache','knowledge_reused':True,'cache_hit':reusable,'cached_at':record.get('checked_at'),
@@ -914,8 +945,11 @@ class ResearchTools:
         return response
 
     def refresh_knowledge(self):
+        research_admission_tools.restore(self)
         result=research_knowledge.refresh_sources(self,_reusable_knowledge)
+        research_official_tools.refresh(self)
         research_candidate_tools.refresh(self)
+        research_admission_tools.refresh(self)
         return result
 
     def search_segments(self,args):
@@ -1016,11 +1050,19 @@ class ResearchTools:
                 host=(urlsplit(url).hostname or '').lower().rstrip('.')
                 return host.endswith(('.edu.cn','.ac.cn','.gov.cn','.chsi.com.cn'))
         binding_missing=bool(unit) and not roots
+        kind=official_search.infer_kind(query)
+        start_requests=self.usage['searches']
+        per_unit_limit=LIMITS['max_searches'] if len(self.task['unit_ids'])==1 else 2
+        unit_requests=self._official_unit_requests.get(unit['id'],0) if unit else 0
         result=official_search.run_ladder(call,queries=queries,is_official=is_official,
-            unit_name=unit['name'] if unit else '',roots=roots,candidate_enabled=binding_missing,site=site,
+            unit_name=unit['name'] if unit else '',roots=roots,candidate_enabled=bool(unit),site=site,
+            target_match=lambda row:official_search.target_matches(row,year,kind),
             collect_third=True,
-            can_call=lambda:self.usage['searches']<LIMITS['max_searches'])
-        if unit:self.searched_units.add(unit['id'])
+            can_call=lambda:self.usage['searches']<LIMITS['max_searches']
+                and unit_requests+self.usage['searches']-start_requests<per_unit_limit)
+        if unit:
+            self.searched_units.add(unit['id'])
+            self._official_unit_requests[unit['id']]=unit_requests+self.usage['searches']-start_requests
         results=[]
         for row in result['results']:
             value={'url':row['url'],'title':row['title'] or '待核验的检索结果',
@@ -1040,16 +1082,23 @@ class ResearchTools:
         stage=official_search.failure_stage(official_results,candidates,third,result['rejected_count'],binding_missing)
         notice=official_search.notice(official_results,candidates,third,len(result['queries_tried']),
                                       binding_missing=binding_missing)
-        if result['budget_exhausted']:notice+=' 本轮检索额度已用完，后续请求已停止。'
+        global_exhausted=self.usage['searches']>=LIMITS['max_searches']
+        unit_exhausted=result['budget_exhausted'] and not global_exhausted
+        if global_exhausted:notice+=' 本轮检索额度已用完，后续请求已停止；仍可沿官网核验。'
+        elif unit_exhausted:notice+=' 该校本次元宝检索额度已用完，其他学校仍可检索；接下来沿官网核验。'
         return {'provider':'yuanbao_search','query':queries[0],'queries_tried':result['queries_tried'],
                 'request_count':result['request_count'],'request_id':result['request_id'],
                 'results':results,'outcome':outcome,'failure_stage':stage,
                 'binding_status':'missing' if binding_missing else 'bound' if unit else 'not_applicable',
                 'binding_domains':list(roots),
                 'rejected_count':result['rejected_count'],'malformed_count':result['malformed_count'],
-                'site_fallback':result['site_fallback'],'budget_exhausted':result['budget_exhausted'],
+                'site_fallback':result['site_fallback'],'budget_exhausted':global_exhausted,
+                'unit_budget_exhausted':unit_exhausted,'searches_remaining':max(0,LIMITS['max_searches']-self.usage['searches']),
                 'third_party_count':len(third),
                 'candidate_count':result['candidate_count'],'candidate_hosts':result['candidate_hosts'],
+                'target_status':result['target_status'],
+                'next_action':({'tool':'discover_official_entry','args':{'unit_id':unit['id'],'year':year,'kind':kind}}
+                    if unit and result['target_status']!='found' else None),
                 'notice':notice}
 
     def read_source(self,args,*,refresh=False):
@@ -1097,20 +1146,22 @@ class ResearchTools:
         official-domain check are registered; third-party or foreign-school
         links are not offered as readable sources.
         """
-        offered=[]
-        for item in (links or [])[:80]:
+        offered=[];candidates=[]
+        for item in (links or [])[:200]:
             if not isinstance(item,dict) or not isinstance(item.get('url'),str):continue
             url=item['url'].split('#',1)[0]
             try:host=urlsplit(url).hostname or ''
             except ValueError:continue
             if host=='yz.chsi.com.cn' or not official_source_url(url,unit):continue
-            row={'url':url,'title':str(item.get('label') or '')[:120]}
+            row={'url':url,'title':str(item.get('label') or item.get('title') or '')[:120]}
+            candidates.append(row)
+        for row in self._rank_links(candidates,unit,LIMITS['max_links']):
+            url=row['url']
             sid=self._source({'url':url,'title':row['title'] or '官方页面入口','unit_id':unit['id'],
                               'unit_name':unit['name'],'year':None,'status':'official_link',
                               'source_type':'official_link','checked_at':None,'excerpt':''})
             if sid:row['source_id']=sid
             offered.append(row)
-            if len(offered)>=LIMITS['max_links']:break
         return offered
 
     # Link text and URL hints are ranking aids only; the page itself still has
@@ -1125,6 +1176,7 @@ class ResearchTools:
             if not isinstance(row,dict) or not isinstance(row.get('url'),str):continue
             if not official_source_url(row['url'],unit):continue
             label=str(row.get('title') or '')
+            if contains_personal_roster(label):continue
             lowered=(label+' '+row['url']).lower()
             if any(word in lowered for word in self.SYSTEM_MARKERS):continue
             score=0
@@ -1341,7 +1393,11 @@ class ResearchTools:
         return build_plan(self.task,self.programs,self.sources,self.algorithm,self.gaps,self.usage,
                           self.loaded_skills,self.executed_tools,self.questions() if questions is None else questions,
                           self.task.get('previous_report'),inheritance=self.inheritance,
-                          field_candidates=self.field_candidates)
+                          field_candidates=self.field_candidates,
+                          official_discovery=list(self._official_discovery.values()),
+                          read_receipts=research_admission_tools._receipts(self),
+                          admission_facts=research_admission_tools.snapshot(self),
+                          searched_units=self.searched_units)
 
     def decisions(self):
         """Deterministic recommendation rows whose reasons and sources stay traceable."""
@@ -1402,6 +1458,8 @@ class ResearchTools:
                 'plan':plan,
                 'assistant_summary':assistant_summary,'questions':actual_questions,'candidates':candidates,
                 'research_candidates':research_candidate_tools.snapshot(self),
+                'official_discovery':list(deepcopy(self._official_discovery).values()),
+                'admission_facts':research_admission_tools.snapshot(self),
                 'evidence':list(deepcopy(self.sources).values()),'algorithm':deepcopy(self.algorithm),'gaps':gaps,
                 'profile_proposal':deepcopy(self.profile_proposal),
                 'inheritance':deepcopy(self.inheritance),

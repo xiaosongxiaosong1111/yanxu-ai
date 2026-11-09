@@ -1,0 +1,2200 @@
+{
+  "checked_at": "2026-11-09T08:03:53+00:00",
+  "code_head": "eced43eb5fd5beed3b4db5baf158cc0fac7300f7",
+  "scope": "2027 regular master admissions charters",
+  "total_cases": 72,
+  "live32_summary": {
+    "regression32": {
+      "total": 32,
+      "metrics": {
+        "entry_verified": 32,
+        "requested_document_located": 13,
+        "requested_body_read": 7,
+        "source_evidence_complete": 7,
+        "expected_article_discovered": 10
+      },
+      "scope": "32 researched failures; annual/body/evidence outcomes separate",
+      "denominators": {
+        "entry_verified": 32,
+        "requested_document_located": 32,
+        "requested_body_read": 32,
+        "source_evidence_complete": 32,
+        "expected_article_discovered": 32
+      },
+      "starting_conditions": {
+        "cached_CHSI_pointer": {
+          "total": 20,
+          "metrics": {
+            "entry_verified": 20,
+            "requested_document_located": 3,
+            "requested_body_read": 2,
+            "source_evidence_complete": 2,
+            "expected_article_discovered": 2
+          }
+        },
+        "registered_homepage": {
+          "total": 9,
+          "metrics": {
+            "entry_verified": 9,
+            "requested_document_located": 8,
+            "requested_body_read": 4,
+            "source_evidence_complete": 4,
+            "expected_article_discovered": 6
+          }
+        },
+        "reviewed_curated_root": {
+          "total": 3,
+          "metrics": {
+            "entry_verified": 3,
+            "requested_document_located": 2,
+            "requested_body_read": 1,
+            "source_evidence_complete": 1,
+            "expected_article_discovered": 2
+          }
+        }
+      }
+    }
+  },
+  "cohorts": {
+    "regression32": {
+      "total": 32,
+      "metrics": {
+        "entry_verified": 32,
+        "requested_document_located": 13,
+        "requested_body_read": 7,
+        "source_evidence_complete": 7,
+        "expected_article_discovered": 10
+      },
+      "scope": "32 researched failures; annual/body/evidence outcomes separate",
+      "denominators": {
+        "entry_verified": 32,
+        "requested_document_located": 32,
+        "requested_body_read": 32,
+        "source_evidence_complete": 32,
+        "expected_article_discovered": 32
+      },
+      "starting_conditions": {
+        "cached_CHSI_pointer": {
+          "total": 20,
+          "metrics": {
+            "entry_verified": 20,
+            "requested_document_located": 3,
+            "requested_body_read": 2,
+            "source_evidence_complete": 2,
+            "expected_article_discovered": 2
+          }
+        },
+        "registered_homepage": {
+          "total": 9,
+          "metrics": {
+            "entry_verified": 9,
+            "requested_document_located": 8,
+            "requested_body_read": 4,
+            "source_evidence_complete": 4,
+            "expected_article_discovered": 6
+          }
+        },
+        "reviewed_curated_root": {
+          "total": 3,
+          "metrics": {
+            "entry_verified": 3,
+            "requested_document_located": 2,
+            "requested_body_read": 1,
+            "source_evidence_complete": 1,
+            "expected_article_discovered": 2
+          }
+        }
+      }
+    },
+    "heldout_registered": {
+      "total": 40,
+      "metrics": {
+        "entry_verified": 40,
+        "requested_document_located": 18,
+        "requested_body_read": 15,
+        "source_evidence_complete": 15,
+        "expected_article_discovered": 0
+      },
+      "scope": "registered public URL coverage; not autonomous unbound proof finding",
+      "denominators": {
+        "entry_verified": 40,
+        "requested_document_located": 40,
+        "requested_body_read": 40,
+        "source_evidence_complete": 40,
+        "expected_article_discovered": 0
+      },
+      "starting_conditions": {
+        "registered_homepage": {
+          "total": 40,
+          "metrics": {
+            "entry_verified": 40,
+            "requested_document_located": 18,
+            "requested_body_read": 15,
+            "source_evidence_complete": 15,
+            "expected_article_discovered": 0
+          }
+        }
+      }
+    }
+  },
+  "mode_boundary": "32 fresh public live cases plus frozen replay; 40 registered-homepage cases replay earlier public responses. No national coverage claim.",
+  "manual_corrections": {
+    "count": 3,
+    "unit_ids": [
+      "368127",
+      "368596",
+      "8243981"
+    ],
+    "evidence_manifest": "reviewed_roots/manifest.json",
+    "autonomous_discovery_credit": false
+  },
+  "test_module": {
+    "tests": 27,
+    "passed": 27,
+    "statement_coverage": 91.69329073482429
+  },
+  "paid_calls": 0,
+  "user_databases_opened": 0,
+  "new_CHSI_requests": 0,
+  "source_sha256": {
+    "research_tools.py": "f53f7b10e017e66109e49a19a12f433700eac52b6dd6f91d7c42ac0b378eb89d",
+    "research_official_tools.py": "bd8db33c5e93cfb5d33b1ffb0e0f0068ad28e6699ae24a7afb297fe2b6c0702d",
+    "official_search.py": "ba4a1fa0721a1090a6bea131b8e2decffcabf2e92989f855abf22b398f7b1621",
+    "official_authority.py": "975f9c005a0dffebe428bcb82027b24cbbb0bcb28b978b06d322bf0912a97f65",
+    "unit_bindings.py": "0491fd88d0aca1f15c6098cd2dfc949b7b2027da4493189dcae8cd5d1fa56e8b",
+    "public_navigation.py": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef",
+    "public_sources.py": "e467682830eae4c1313f6bd48d37d7ebad4e06af8d97818160daa5062efbc180",
+    "tools/evaluate_official_discovery.py": "cd349c470de3e44c471826498149dda9940689e54e69416893e94a0b1cb9631f"
+  },
+  "source_changed_during_replays": {
+    "regression32": false,
+    "heldout_registered": false
+  },
+  "source_hashes_match_between_replays": true,
+  "artifact_reports": {
+    "regression32": "D:\\CodexRuntime\\yanxu-closure-upgrade-20261109\\coverage\\final-accepted-replay32\\report.json",
+    "heldout_registered": "D:\\CodexRuntime\\yanxu-closure-upgrade-20261109\\coverage\\final-accepted-replay40\\report.json"
+  },
+  "cases": [
+    {
+      "unit_id": "2807891252",
+      "name": "肇庆学院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "2807892330",
+      "name": "重庆文理学院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate",
+          "ownership_unproven",
+          "recorded_incomplete"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "3274413879",
+      "name": "长沙学院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "http://yjsxy.ccsu.cn/info/1912/30142.htm"
+        ],
+        "read_urls": [
+          "http://yjsxy.ccsu.cn/info/1912/30142.htm"
+        ]
+      },
+      "public_reads": 7,
+      "accepted_body_evidence": [
+        {
+          "url": "http://yjsxy.ccsu.cn/info/1912/30142.htm",
+          "title": "长沙学院2027年硕士研究生招生简章-长沙学院研究生学院",
+          "sha256": "df3275130ddae343d553de70e9ffb7b8b9091880f87410e417ba1b25bc48905c",
+          "checked_at": "2026-11-09T07:59:57+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_1b557e830c534a7eafd98d56",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "367863",
+      "name": "北京第二外国语学院",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html"
+        ],
+        "read_urls": [
+          "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html"
+        ]
+      },
+      "public_reads": 4,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html",
+          "title": "北京第二外国语学院2027年硕士研究生招生章程",
+          "sha256": "07505e5efa69ad83143400739b861f8843124126128d2d9eb2904506aa51fbbc",
+          "checked_at": "2026-11-09T07:59:36+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_ff4de5365b324520bf794270",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "367900",
+      "name": "中国水利水电科学研究院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven",
+          "target_identity_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "367940",
+      "name": "核工业理化工程研究院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368034",
+      "name": "沈阳工业大学",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjsxy.sut.edu.cn/info/1311/10911.htm"
+        ],
+        "read_urls": [
+          "https://yjsxy.sut.edu.cn/info/1311/10911.htm"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjsxy.sut.edu.cn/info/1311/10911.htm",
+          "title": "沈阳工业大学2027年全国硕士研究生招生章程",
+          "sha256": "eea624948a0e152ff1a26649cf7d4a5bb3a98e9a5fd33838d6b91f6c08c1c2bb",
+          "checked_at": "2026-11-09T07:59:41+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_d485dc775a7c470f8c675331",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368089",
+      "name": "哈尔滨医科大学",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yz.chsi.com.cn/sch/viewZszc--infoId-3298623809,categoryId-10461164,schId-368089,mindex-12.dhtml",
+          "http://yjsy.hrbmu.edu.cn/info/1024/3545.htm"
+        ],
+        "read_urls": [
+          "http://yjsy.hrbmu.edu.cn/info/1024/3545.htm"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "http://yjsy.hrbmu.edu.cn/info/1024/3545.htm",
+          "title": "哈尔滨医科大学2027年硕士研究生招生简章（专业目录已更新）-哈尔滨医科大学研究生院",
+          "sha256": "aebe6585f031aa651a449895f467dc2a370604a15597913c700566da9addefcd",
+          "checked_at": "2026-11-09T07:59:36+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_7388d5ff158440a0a4bca4b5",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368099",
+      "name": "上海化工研究院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368112",
+      "name": "上海船舶运输科学研究所",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "account_scope_missing",
+          "fetch_error",
+          "navigation_budget_exceeded",
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368127",
+      "name": "复旦大学",
+      "cohort": "regression32",
+      "starting_condition": "reviewed_curated_root",
+      "original_starting_condition": "unconfirmed_search_candidate",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "fetch_error"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368162",
+      "name": "陆军工程大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368198",
+      "name": "南京农业大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368264",
+      "name": "江西理工大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368318",
+      "name": "河南理工大学",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "http://adge.hpu.edu.cn/info/1031/14541.htm"
+        ],
+        "read_urls": [
+          "http://adge.hpu.edu.cn/info/1031/14541.htm"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "http://adge.hpu.edu.cn/info/1031/14541.htm",
+          "title": "河南理工大学2027年硕士研究生招生章程-河南理工大学研究生院-研究生工作部",
+          "sha256": "74d0799fbbb8402b5d0ba9ef5835579330ae2a44c34d788835dfec17255cca75",
+          "checked_at": "2026-11-09T07:59:39+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_0500cfe7890d446e82739631",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368369",
+      "name": "中国地质大学(武汉)",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "document_found",
+        "error_codes": [
+          "navigation_budget_exceeded",
+          "ownership_unproven",
+          "target_identity_missing",
+          "unsupported_type"
+        ],
+        "matching_urls": [
+          "https://yz.cug.edu.cn/page/detail/PVKZRL/892/66288"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368389",
+      "name": "湖南中医药大学",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "document_found",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjsy.hnucm.edu.cn/info/1093/6723.htm"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368435",
+      "name": "桂林电子科技大学",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "document_found",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yz.chsi.com.cn/sch/viewZszc--infoId-3549433541,categoryId-10461603,schId-368435,mindex-12.dhtml"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368439",
+      "name": "海南大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven",
+          "target_identity_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368452",
+      "name": "重庆医科大学",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "document_found",
+        "error_codes": [
+          "invalid_candidate",
+          "unsupported_type"
+        ],
+        "matching_urls": [
+          "https://yjszs.cqmu.edu.cn/info/1104/2883.htm"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368477",
+      "name": "西南民族大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "http_error",
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368502",
+      "name": "贵州大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "http_error",
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368511",
+      "name": "云南财经大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368563",
+      "name": "西安工程大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368596",
+      "name": "青海师范大学",
+      "cohort": "regression32",
+      "starting_condition": "reviewed_curated_root",
+      "original_starting_condition": "unconfirmed_search_candidate",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "document_found",
+        "error_codes": [
+          "restricted"
+        ],
+        "matching_urls": [
+          "https://yjsb.qhnu.edu.cn/info/1060/2903.htm"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "499721975",
+      "name": "云南警官学院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "678514",
+      "name": "川北医学院",
+      "cohort": "regression32",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "document_found",
+        "error_codes": [],
+        "matching_urls": [
+          "https://www.nsmc.edu.cn/dwyjsgzb/info/1322/70948.htm"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "678715",
+      "name": "伊犁师范大学",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "target_identity_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "688909475",
+      "name": "新疆艺术学院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://bkzs.xjart.edu.cn/info/1006/2561.htm"
+        ],
+        "read_urls": [
+          "https://bkzs.xjart.edu.cn/info/1006/2561.htm"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "https://bkzs.xjart.edu.cn/info/1006/2561.htm",
+          "title": "新疆艺术学院2027年硕士研究生招生章程-招生网",
+          "sha256": "3d5b2fea648d0210cb1a6391c4b6edbcc2742626e07d2d1c20618827db19089a",
+          "checked_at": "2026-11-09T07:59:57+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_32a01e85d28043eb9bef4a5d",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "688910183",
+      "name": "陆军步兵学院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 0,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "788359951",
+      "name": "煤炭科学研究总院",
+      "cohort": "regression32",
+      "starting_condition": "cached_CHSI_pointer",
+      "original_starting_condition": "cached_CHSI_pointer",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": true,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "entry_verified",
+        "error_codes": [],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "8243981",
+      "name": "山西中医药大学",
+      "cohort": "regression32",
+      "starting_condition": "reviewed_curated_root",
+      "original_starting_condition": "unconfirmed_search_candidate",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": true,
+        "expected_article_discovered": true,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjsb.sxtcm.edu.cn/info/1100/4996.htm"
+        ],
+        "read_urls": [
+          "https://yjsb.sxtcm.edu.cn/info/1100/4996.htm"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjsb.sxtcm.edu.cn/info/1100/4996.htm",
+          "title": "山西中医药大学2027年攻读硕士学位研究生招生章程(专业目录）-山西中医药大学研究生学院",
+          "sha256": "a305900a37b9282f94b40c36d0c9a81aefc26e162a2cfa8b4bd5f27053d75c12",
+          "checked_at": "2026-11-09T08:00:00+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_05e6964b37d545968f114be0",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "2125710548",
+      "name": "山西大同大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "2807891911",
+      "name": "三亚学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "http_error"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "2807892094",
+      "name": "呼伦贝尔学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "http://yjs.hlbec.edu.cn/info/1045/1752.htm"
+        ],
+        "read_urls": [
+          "http://yjs.hlbec.edu.cn/info/1045/1752.htm"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "http://yjs.hlbec.edu.cn/info/1045/1752.htm",
+          "title": "呼伦贝尔学院2027年硕士研究生招生章程-研究生处",
+          "sha256": "a67e3440399e1637f6fcc350eff7fb87bb996952d2680fc62754974032c7743b",
+          "checked_at": "2026-11-09T08:03:34+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_b15d0672ac854e8ba05ac534",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "302965003",
+      "name": "南阳师范学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "302975686",
+      "name": "广西财经学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "restricted"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "302975907",
+      "name": "重庆科技大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjs.cqust.edu.cn/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1014&wbnewsid=2996"
+        ],
+        "read_urls": [
+          "https://yjs.cqust.edu.cn/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1014&wbnewsid=2996"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjs.cqust.edu.cn/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1014&wbnewsid=2996",
+          "title": "重庆科技大学2027年硕士研究生招生章程-重庆科技大学研究生院",
+          "sha256": "1aaca87163817d967b11a2f387675ad1daa2cccc82dae010051740360277762c",
+          "checked_at": "2026-11-09T08:03:23+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_e98c135770e14ac481ebc144",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "302982619",
+      "name": "合肥师范学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjsc.hfnu.edu.cn/info/1181/21171.htm"
+        ],
+        "read_urls": [
+          "https://yjsc.hfnu.edu.cn/info/1181/21171.htm"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjsc.hfnu.edu.cn/info/1181/21171.htm",
+          "title": "合肥师范学院2027年硕士研究生招生章程-研究生院（党委研究生工作部）",
+          "sha256": "e199266baa3c13d02816de46bcb331defe2b8ea3e93094a5d3a0ffdeb2b5a9f6",
+          "checked_at": "2026-11-09T08:03:27+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_046bac960c234610ad1eab9a",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "3274412776",
+      "name": "惠州学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "http_error"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 2,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "3274413229",
+      "name": "红河学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [
+          "recorded_incomplete"
+        ],
+        "matching_urls": [
+          "https://www.uoh.edu.cn/info/1096/99737.htm"
+        ],
+        "read_urls": [
+          "https://www.uoh.edu.cn/info/1096/99737.htm"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "https://www.uoh.edu.cn/info/1096/99737.htm",
+          "title": "红河学院2027年硕士研究生招生章程",
+          "sha256": "b49777c597d12f28a3bd11ba911b01b22203f810a8adfe6e2af6051583dde773",
+          "checked_at": "2026-11-09T08:03:35+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_f024fef33a1d4e57b3f6441c",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "3274440551",
+      "name": "皖西学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjs.wxc.edu.cn/2026/0930/c7190a216908/page.htm"
+        ],
+        "read_urls": [
+          "https://yjs.wxc.edu.cn/2026/0930/c7190a216908/page.htm"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjs.wxc.edu.cn/2026/0930/c7190a216908/page.htm",
+          "title": "皖西学院2027年硕士研究生招生简章",
+          "sha256": "e17df7cf17af12bba6714513fef015ac0bafac71d80d067622bd36a3e73090d6",
+          "checked_at": "2026-11-09T08:03:47+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_2e7768f1e5e547328d2bcdd5",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "3416382139",
+      "name": "浙江树人学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate",
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "367803",
+      "name": "北京市科学技术研究院城市安全与环境科学研究所",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "367865",
+      "name": "首都医科大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "recorded_incomplete",
+          "recording_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 2,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "367938",
+      "name": "天津医科大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [
+          "recorded_incomplete"
+        ],
+        "matching_urls": [
+          "https://gs.tmu.edu.cn/2026/0930/c3145a90183/page.htm"
+        ],
+        "read_urls": [
+          "https://gs.tmu.edu.cn/2026/0930/c3145a90183/page.htm"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "https://gs.tmu.edu.cn/2026/0930/c3145a90183/page.htm",
+          "title": "天津医科大学2027年硕士研究生招生章程",
+          "sha256": "10047c5231e68a2dad140f86fdf2a44f7d20f9504dc1666b84499f3df23a837f",
+          "checked_at": "2026-11-09T08:03:48+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_5f81918b6e564243b09d8e35",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "367948",
+      "name": "天津工业大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "http_error"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 2,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "367981",
+      "name": "承德医学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [
+          "recording_missing"
+        ],
+        "matching_urls": [
+          "https://yjs.cdmc.edu.cn/art/2026/9/30/art_145_105464.html"
+        ],
+        "read_urls": [
+          "https://yjs.cdmc.edu.cn/art/2026/9/30/art_145_105464.html"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjs.cdmc.edu.cn/art/2026/9/30/art_145_105464.html",
+          "title": "研究生院 信息发布 承德医学院2027年招收攻读硕士学位研究生招生章程",
+          "sha256": "e2f8118e86d67221946179e199ac8653a2bc69d3eaa8b28337437472cab2ac35",
+          "checked_at": "2026-11-09T08:03:38+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_614039f2e3d84ad383b868b2",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "367987",
+      "name": "山西财经大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "recorded_incomplete",
+          "recording_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 2,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368011",
+      "name": "鲁迅美术学院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "document_found",
+        "error_codes": [
+          "restricted"
+        ],
+        "matching_urls": [
+          "https://www.lumei.edu.cn/info/1208/65415.htm"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368063",
+      "name": "长春工业大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368085",
+      "name": "中国地震局工程力学研究所",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "http://www.iem.ac.cn/rcpys/info?id=4418"
+        ],
+        "read_urls": [
+          "http://www.iem.ac.cn/rcpys/info?id=4418"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "http://www.iem.ac.cn/rcpys/info?id=4418",
+          "title": "中国地震局工程力学研究所2027年硕士研究生招生简章 中国地震局工程力学研究所",
+          "sha256": "6546920f3cf1a523efca02192c7f239593d4bc2f795e3afda6cebd5f3302cfed",
+          "checked_at": "2026-11-09T08:03:23+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_79f74151debd4badb71de3d4",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368115",
+      "name": "中国医药工业研究总院",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "restricted"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 1,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368190",
+      "name": "南京中医药大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "entry_verified",
+        "error_codes": [],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368215",
+      "name": "浙江中医药大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "recording_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 2,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368256",
+      "name": "厦门大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate",
+          "target_identity_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368296",
+      "name": "青岛农业大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "entry_verified",
+        "error_codes": [
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368298",
+      "name": "山东第一医科大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yz.sdfmu.edu.cn/info/1102/6425.htm"
+        ],
+        "read_urls": [
+          "https://yz.sdfmu.edu.cn/info/1102/6425.htm"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yz.sdfmu.edu.cn/info/1102/6425.htm",
+          "title": "山东第一医科大学2027年硕士研究生招生章程",
+          "sha256": "898a4ce9bf9d591400fb0181546fa3afb0f36f0ca16ad5b226b0903d486300eb",
+          "checked_at": "2026-11-09T08:03:51+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_5b7d9a5a139b42259b9134f4",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368365",
+      "name": "华中农业大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjs.hzau.edu.cn/2027sszsjz.pdf"
+        ],
+        "read_urls": [
+          "https://yjs.hzau.edu.cn/2027sszsjz.pdf"
+        ]
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjs.hzau.edu.cn/2027sszsjz.pdf",
+          "title": "华中农业大学 2027 年硕士研究生招生简章",
+          "sha256": "d42b22de5a8dcc781646e315ba2c41cff771283c8cf9ef46f8333254ee08e1d9",
+          "checked_at": "2026-11-09T08:03:52+00:00",
+          "source_type": "knowledge_cache",
+          "knowledge_id": "k_74f26bab30f549ed9deeafc9",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368397",
+      "name": "长沙理工大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [
+          "navigation_budget_exceeded"
+        ],
+        "matching_urls": [
+          "https://www.csust.edu.cn/yjsy/info/1113/11847.htm"
+        ],
+        "read_urls": [
+          "https://www.csust.edu.cn/yjsy/info/1113/11847.htm"
+        ]
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": [
+        {
+          "url": "https://www.csust.edu.cn/yjsy/info/1113/11847.htm",
+          "title": "长沙理工大学2027年硕士研究生招生简章-研究生院",
+          "sha256": "5c8906a7e2cf96839f9337996ce4502fed7d63d88184d48769117d928d0ca59d",
+          "checked_at": "2026-11-09T08:03:45+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_2862abb3c47447be9905f147",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368419",
+      "name": "广州医科大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjs.gzhmu.edu.cn/info/1003/39972.htm"
+        ],
+        "read_urls": [
+          "https://yjs.gzhmu.edu.cn/info/1003/39972.htm"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjs.gzhmu.edu.cn/info/1003/39972.htm",
+          "title": "广州医科大学2027年硕士研究生招生简章-广州医科大学研究生院",
+          "sha256": "b678f2e7098faadb13d8ee3137d190cb0dc4a95b80684d2c9364a9348e7fd6fd",
+          "checked_at": "2026-11-09T08:03:47+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_3e9d794087f9429b99bcaca2",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368449",
+      "name": "西南政法大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "http_error",
+          "ownership_unproven"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368487",
+      "name": "西南医科大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "recording_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368499",
+      "name": "遵义医科大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "http://grs.zmu.edu.cn/info/1068/6810.htm"
+        ],
+        "read_urls": [
+          "http://grs.zmu.edu.cn/info/1068/6810.htm"
+        ]
+      },
+      "public_reads": 5,
+      "accepted_body_evidence": [
+        {
+          "url": "http://grs.zmu.edu.cn/info/1068/6810.htm",
+          "title": "遵义医科大学2027年全日制硕士研究生招生章程",
+          "sha256": "663642e8acab6b0531d54c9829d174e65fb62f3011f21fb255ed6bcf8508a84e",
+          "checked_at": "2026-11-09T08:03:38+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_efb1ffe0c732468a8e07c96a",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368523",
+      "name": "西藏藏医药大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": true,
+        "stage": "entry_verified",
+        "error_codes": [],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368556",
+      "name": "西安理工大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "document_found",
+        "error_codes": [
+          "restricted"
+        ],
+        "matching_urls": [
+          "https://yjsy.xaut.edu.cn/info/1064/5071.htm"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368560",
+      "name": "西安科技大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjs.xust.edu.cn/info/1200/7729.htm"
+        ],
+        "read_urls": [
+          "https://yjs.xust.edu.cn/info/1200/7729.htm"
+        ]
+      },
+      "public_reads": 4,
+      "accepted_body_evidence": [
+        {
+          "url": "https://yjs.xust.edu.cn/info/1200/7729.htm",
+          "title": "西安科技大学2027年硕士研究生招生章程-西安科技大学研究生院",
+          "sha256": "446e08e50b10aa7fde11c2a25b31f1418fe13e51c407bb13b73bc50f3b7a517e",
+          "checked_at": "2026-11-09T08:03:25+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_e43cd38d99f04d54a6a90ea0",
+          "original_available": true
+        }
+      ]
+    },
+    {
+      "unit_id": "368600",
+      "name": "青海大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "document_found",
+        "error_codes": [],
+        "matching_urls": [
+          "https://yjs.qhu.edu.cn/tzgg1/7d7788a3d42242a9a9d487556f367724.htm"
+        ],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368603",
+      "name": "宁夏医科大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "navigation_budget_exceeded"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "368613",
+      "name": "新疆大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "invalid_candidate"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 8,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "499722082",
+      "name": "天水师范大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": false,
+        "requested_body_read": false,
+        "source_evidence_complete": false,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "entry_verified",
+        "error_codes": [
+          "recorded_incomplete",
+          "recording_missing"
+        ],
+        "matching_urls": [],
+        "read_urls": []
+      },
+      "public_reads": 2,
+      "accepted_body_evidence": []
+    },
+    {
+      "unit_id": "678983",
+      "name": "江西科技师范大学",
+      "cohort": "heldout_registered",
+      "starting_condition": "registered_homepage",
+      "original_starting_condition": "registered_homepage",
+      "metrics": {
+        "entry_verified": true,
+        "requested_document_located": true,
+        "requested_body_read": true,
+        "source_evidence_complete": true,
+        "expected_article_applicable": false,
+        "expected_article_discovered": false,
+        "historical_document_observed": false,
+        "stage": "body_read",
+        "error_codes": [],
+        "matching_urls": [
+          "http://yjs.jxstnu.edu.cn/info/1020/4975.htm"
+        ],
+        "read_urls": [
+          "http://yjs.jxstnu.edu.cn/info/1020/4975.htm"
+        ]
+      },
+      "public_reads": 6,
+      "accepted_body_evidence": [
+        {
+          "url": "http://yjs.jxstnu.edu.cn/info/1020/4975.htm",
+          "title": "江西科技师范大学2027年硕士研究生招生简章",
+          "sha256": "8926130c729a0b2e5d6b03aff53df452ce03ea72638edc68cb13802632e5f206",
+          "checked_at": "2026-11-09T08:03:21+00:00",
+          "source_type": "official_original",
+          "knowledge_id": "k_d9c48ccd4cc4456db5e1e341",
+          "original_available": true
+        }
+      ]
+    }
+  ]
+}

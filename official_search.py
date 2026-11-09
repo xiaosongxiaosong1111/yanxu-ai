@@ -204,6 +204,34 @@ def search_variants(unit_name, year, kind):
     return [primary] if wider == primary else [primary, wider]
 
 
+def target_matches(row, year, kind):
+    """Discovery relevance only: neither URL dates nor summaries prove a cohort."""
+    title = unicodedata.normalize('NFKC', str(row.get('title') or ''))
+    title = title.translate(str.maketrans('〇零一二三四五六七八九', '00123456789'))
+    if re.search(r'预计|尚未|暂未|未发布|未公布|等待公布|敬请期待|模板|范文|历史|往年', title):
+        return False
+    ordinary = re.sub(r'[（(]含[^)）]{0,20}推免[^)）]{0,10}[)）]', '', title)
+    if re.search(r'推免|推荐免试|夏令营|港澳台|留学生', ordinary):
+        return False
+    if not re.search(r'(?<!\d)' + str(year) + r'(?!\d)\s*年?', title):
+        return False
+    if re.search(r'本科|博士|留学生', title) and '硕士' not in title:return False
+    markers = {'catalog': r'专业目录|招生目录|考试科目', 'charter': r'招生章程|招生简章|硕士.{0,24}(?:章程|简章)',
+               'fees': r'学费|收费|学制', 'score': r'分数线|成绩基本要求|复试基本要求',
+               'retest': r'复试.*(?:办法|细则|方案)', 'transfer': r'调剂',
+               'change': r'科目.*调整|调整.*科目', 'enrollment': r'招生计划|招生人数|推免人数'}
+    return bool(re.search(markers.get(kind, markers['catalog']), title))
+
+
+def infer_kind(query):
+    for kind, pattern in (('fees', '学费|收费|学制'), ('transfer', '调剂'),
+                          ('score', '分数线|复试线'), ('retest', '复试'),
+                          ('charter', '章程|简章|报考条件'), ('change', '调整'),
+                          ('enrollment', '人数|计划')):
+        if re.search(pattern, query):return kind
+    return 'catalog'
+
+
 def failure_stage(official, candidates, third, rejected, binding_missing):
     """Which stage actually failed, so a zero result is never over-claimed."""
     if official:
@@ -248,7 +276,7 @@ def notice(official, candidates, third, queries_count, *, binding_missing=False,
 
 def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_enabled=False,
                site='', include_third=False, collect_third=False, third_query=None,
-               third_only_without_official=False, can_call=None):
+               third_only_without_official=False, can_call=None, target_match=None):
     """Run the bounded query ladder and return tiered, deduplicated rows.
 
     ``call(body)`` performs one external request and returns a normalized
@@ -268,7 +296,7 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
     official, body = [], {'Pages': []}
     rejected = malformed = request_count = 0
     site_fallback = budget_exhausted = False
-    results = []
+    results, official_seen = [], []
     for index, query in enumerate(queries):
         if not allowed():
             budget_exhausted = True
@@ -281,11 +309,13 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
         request_count += 1
         items, bad = parse_pages(body)
         results, request_rejected = official_rows(items, is_official)
+        official_seen.extend(results)
         rejected += request_rejected
         malformed += bad
         if collect_third:
             third_pages.extend(third_party_rows(items)[0])
-        if site and index == 0 and (not body.get('Pages') or not results):
+        if site and index == 0 and (not body.get('Pages') or not results or
+                                    target_match is not None and not any(target_match(row) for row in results)):
             # SearchPro's Site filter matches exact indexed hosts, so a school
             # site can miss its own graduate subdomain, and a non-empty page
             # set can still contain only non-official hosts. Retry once without
@@ -301,6 +331,7 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
             if collect_third:
                 third_pages.extend(third_party_rows(fallback_items)[0])
             fallback_rows, fallback_rejected = official_rows(fallback_items, is_official)
+            official_seen.extend(fallback_rows)
             rejected += fallback_rejected
             malformed += fallback_bad
             if fallback_rows or (not body.get('Pages') and fallback.get('Pages')):
@@ -309,9 +340,9 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
         if candidate_enabled:
             candidate_pages.extend(candidate_rows(parse_pages(body)[0], unit_name, roots))
         results = dedupe(results)
-        if results:
+        if results and (target_match is None or any(target_match(row) for row in results)):
             break
-    official_results = list(results)
+    official_results = dedupe(official_seen) if target_match is not None else list(results)
     third = list(third_pages)
     wants_third = include_third and (not third_only_without_official or not official_results)
     if wants_third and third_query:
@@ -327,7 +358,7 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
             budget_exhausted = True
     known = {row['url'].split('#', 1)[0] for row in official_results}
     candidates = []
-    if candidate_enabled and not official_results:
+    if candidate_enabled:
         for row in dedupe(candidate_pages):
             key = row['url'].split('#', 1)[0]
             if key in known:
@@ -341,7 +372,12 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
             continue
         known.add(key)
         third_results.append(row)
+    targets = [row for row in official_results if target_match(row)] if target_match else []
+    navigation = [row for row in official_results if row not in targets]
     return {'queries_tried': queries_tried, 'official_results': official_results,
+            'target_results': targets, 'navigation_results': navigation,
+            'target_status': 'not_requested' if target_match is None else 'found' if targets else
+                             'navigation_only' if official_results else 'not_found',
             'candidate_results': candidates, 'third_results': third_results,
             'results': [*official_results, *candidates, *third_results],
             'rejected_count': rejected, 'malformed_count': malformed,

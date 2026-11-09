@@ -1,0 +1,30 @@
+{
+  "school": "煤炭科学研究总院",
+  "unitid": "788359951",
+  "homepage": "https://www.ccteg.cn/zh/",
+  "entry": "http://125.34.90.207:8088/#/",
+  "articleURL": "http://125.34.90.207:8088/#/articleDetail/114",
+  "title": "煤炭科学研究总院2027年硕士研究生招生章程",
+  "actualyear": 2027,
+  "publishedAt": "2026-10-08 17:58:02",
+  "ownershipURL": "https://yz.chsi.com.cn/sch/tjzc--method-viewPub,infoId-3541444977,categoryId-788360033,schId-788359951,mindex-11.dhtml",
+  "ownershipEvidence": "研招网煤科总院本校账号发布的2026调剂工作办法第六部分明确：所有招生考试相关工作通过煤科总院招生网站公布，地址 http://125.34.90.207:8088/#/。该站公开首页JS调用CMS文章列表与详情，列表和114正文均明确2027章程。",
+  "verificationStatus": "specific_original_found",
+  "originalFound": true,
+  "is2027Verified": true,
+  "officialArticlePlatform": "institution_public_cms",
+  "readstatus": "raw_http_200_public_javascript_shell_and_public_CMS_article_full_body_read",
+  "publicArticleAPI": "http://125.34.90.207:8088/api/doctorRecruit/cms/getArticle/114",
+  "barriers": [
+    "首页为JavaScript应用，单读HTML只有应用壳；本次沿首页公开JS中正常调用的无鉴权CMS GET接口读取公告，无登录、无用户数据接口。",
+    "入口使用HTTP公网IP及8088端口，需要作为已核实的特例处理，不可凭通用域名规则拒绝或自动替换成第三方。"
+  ],
+  "evidenceFiles": [
+    "D:\\CodexRuntime\\yanxu-official-discovery-review-20261109\\unbound\\institutes\\evidence\\coal-chsi-2026-ownership.html",
+    "D:\\CodexRuntime\\yanxu-official-discovery-review-20261109\\unbound\\institutes\\evidence\\coal-public-cms-2027-list.json",
+    "D:\\CodexRuntime\\yanxu-official-discovery-review-20261109\\unbound\\institutes\\evidence\\coal-public-cms-2027-master-charter.json"
+  ],
+  "originalAnyYearFound": true,
+  "homepageVerified": false,
+  "homepageReadStatus": "group_homepage_HTTP_200_but_group_to_specific_school_crosslink_not_verified; specific_CMS_entry_has_CHSI_official_ownership_proof"
+}

@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="utf-8" />
+    <title>二外研招网</title>
+    <link rel="icon" type="image/png" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/erwai_logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css -->
+    <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/bg.css" />
+    <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/index.css" />
+    <!-- jquery插件库 -->
+    <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/jquery.min.js"></script>
+    <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/action.js"></script>
+		<script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/rem.js"></script>
+
+<script type="text/javascript">
+  function handleScroll () {
+    // 获取滚动的垂直距离
+    const scrollTop = document.getElementsByClassName('home-content')[0].scrollTop;
+    if(scrollTop > 300) {
+      $('.refresh_top').show()
+    }else{
+      $('.refresh_top').hide()
+    }
+  }
+</script>
+  </head>
+  <body id="home_body">
+    <div class="home-content" onscroll="handleScroll()" id="home-content">
+      <!-- 首页导航 -->
+      <div class="nav-list-box">
+      		<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+  <div class="header-content-001">
+   	<!-- 左侧 -->
+    <div class="header-logo-left">
+      <img class="header-logo default-type-01" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/nav-logo.png" />
+      <div class="header-001-text header-001-logo-text1">
+        <div class="comTitle">
+          您好！欢迎报考北京第二外国语学院！
+        </div>
+        <div class="searchInput">
+          <form method="get" target="_blank" action="https://www.bisu.edu.cn/web/globalSearch/#/search" name="userForm">
+        		<input type="text" id="q" name="q" value="" placeholder="请输入关键字" />
+            	<input type="hidden" name="pagemode" value="result" />
+					<input name="webid" type="hidden" value="25" />
+					<input type="hidden" name="appid" value="1" />
+					<input type="hidden" name="style" value="1" />
+					<input type="hidden" name="ck" value="0" />
+					<input id="pos" type="hidden" name="pos" value="title,content" />
+            <button type="submit" name="imageField" id="submit" class="search-icon">
+              <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/search-icon.png" />
+            </button>
+    		 </form>
+        </div>
+      </div>
+    </div>
+	 <div class="header-line"></div>
+    <!-- 右侧 -->
+    <div class="header-logo-right">
+    	<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div id="headerTopBox01" class="nav-list-001">
+      <div class="data_list_001">
+        <a class="nav_head" href="/">
+          <span class="home_web_jc">招生首页</span>
+        </a>
+        <a class="nav_head" href="https://www.bisu.edu.cn/#/xxDetail?id=0" target="_blank">
+          <span class="home_web_jc">学校概况</span>
+        </a>
+        <div class="nav_head" onclick="goUnits()">
+          <span class="home_web_jc">培养单位</span>
+        </div>
+        <a class="nav_head" href="https://yjsy.bisu.edu.cn/" target="_blank">
+          <span class="home_web_jc">人才培养</span>
+        </a>
+        <a class="nav_head" href="https://www.bisu.edu.cn/#/cooperation?id=0" target="_blank">
+          <span class="home_web_jc">国际交流</span>
+        </a>
+        <a class="nav_head" href="https://yjsy.bisu.edu.cn/mixmedia/6777bb3fcf1e6138de7c5e84/6777bccbcf1e6138de7c5e9c/6777bd71cf1e6138de7c5eae" target="_blank">
+          <span class="home_web_jc">导师信息</span>
+        </a>
+        
+        <cms:storylist
+            style="height: .6rem;width: 100%;" channelId="yz" type="column" columnId="67595383cf1e66a18c75f36a" count="1" pageNo="0"
+          >
+                
+                    <a class="nav_head" href="https://yanzhao.bisu.edu.cn/mixmedia/a/202502/17/WS676b80accf1e66a18c75f51a.html" target="_blank">
+                  <span class="home_web_jc">常见问题</span>
+                </a>
+              
+          </cms:storylist>
+      </div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  function goUnits() {
+    $('#home-content').animate({
+      scrollTop: document.getElementsByClassName('units')[0].offsetTop-150
+    },500)
+  }
+</script>
+    </div>
+  </div>
+</body>
+</html>
+      </div>
+      <!-- 轮播图 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      .llTemSwiper {
+        width: 13.66rem;
+        height: 5rem;
+        margin: 0 auto;
+      }
+      .llTemSwiper-cms {
+        width: 13.66rem;
+      }
+      .ll_list {
+        position: relative;
+      }
+      .ll_title {
+        position: absolute;
+        width: 13.66rem;
+        padding: 0 100px 0 16px;
+        bottom: 0;
+        left: 0;
+        font-size: 18px;
+        color: #ffffff;
+        line-height: 23px;
+        height: 62px;
+        line-height: 62px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          #00000086 100%
+        );
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-right: 100px;
+        box-sizing: border-box;
+      }
+      .llTemSwiper ol {
+        // display: none !important;
+      }
+      .ll_list_num {
+        position: absolute;
+        right: 50px;
+        bottom: 20px;
+        display: none !important;
+      }
+      .ll_list_num span {
+        font-size: 12px;
+        color: #ffffff;
+      }
+      .ll_list_num #current_num {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .llTemSwiper .lb_l {
+        left: .3rem;
+        background-color: rgba(0, 0, 0, .7);
+        position: absolute;
+        top: calc(50% - .32rem);
+        width: .4rem;
+        height: .64rem;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+      }
+      .llTemSwiper .lb_r {
+        right: .3rem;
+        background-color: rgba(0, 0, 0, .7);
+        position: absolute;
+        top: calc(50% - .32rem);
+        width: .4rem;
+        height: .64rem;
+        z-index: 2;
+        text-align: center;
+        cursor: pointer;
+      }
+      .llTemSwiper .lb_r img {        
+        transform: rotate(180deg);
+      }
+      .llTemSwiper .lb_r img, .llTemSwiper .lb_l img{
+        width: .12rem;
+    		height: .2rem;
+    	margin-top: .22rem;
+      }
+      .llTemSwiper .lb_:hoverl {
+        background-color: rgba(149, 21, 0, .7);
+      }
+      .llTemSwiper .lb_r:hover {
+        background-color: rgba(149, 21, 0, .7);
+      }
+      .ll_list {
+        overflow: hidden;
+        position: relative;
+      }
+      .ll_list img {
+        width: 100%;
+        height: 100%;
+        transition: transform 1s, filter 1s;
+      }
+      /*--.ll_list:hover img {
+      transform: scale(1.2);
+      filter: brightness(0.7);  可选：降低亮度以突出放大效果 
+      cursor: pointer;
+      } */
+      .ll_list:hover::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        // background: rgba(0, 0, 0, 0.5); /* 可选：添加半透明遮罩以突出图片 */
+        top: 0;
+        left: 0;
+      }
+      .ll_list a {
+        display: block;
+        width: 100%;
+        height: 65rem;
+      }
+      .home-swiper ol {
+        left: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home-swiper">
+      <cms:storylist
+        class="llTemSwiper-cms" channelId="yz" type="column" columnId="67595349cf1e66a18c75f35e" count="10" pageNo="0"
+      >
+        <div class="llTemSwiper">
+          <ul>
+            
+              <li
+                class="ll_list"
+                index="1" id="https://yanzhao.bisu.edu.cn/mixmedia/a/202308/28/WS676b80a8cf1e66a18c75f50a.html"
+              >
+                <img
+                  src="https://www.bisu.edu.cn/bucketeducation/677605eae4b02d48d8982728.png"
+                />
+              </li>
+            
+              <li
+                class="ll_list"
+                index="2" id="https://yanzhao.bisu.edu.cn/mixmedia/a/202308/16/WS676b80a8cf1e66a18c75f509.html"
+              >
+                <img
+                  src="https://www.bisu.edu.cn/bucketeducation/67760621e4b02d48d898272a.png"
+                />
+              </li>
+            
+          </ul>
+          <ol></ol>
+          <div>
+            <span class="lb_l" onclick="leftClick()"><img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/swiper-left.png" /></span>
+            <span class="lb_r" onclick="rightClick()"><img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/swiper-right.png" /></span>
+          </div>
+          <div class="ll_list_num" style="display: none">
+            <span id="current_num">1</span>
+            <span>/</span>
+            <span id="total_num">10</span>
+          </div>
+        </div>
+      </cms:storylist>
+    </div>
+  </body>
+</html>
+<script>
+  function liclick(ele) {
+    window.location = ele.id;
+  }
+    var llTemSwiper = $(".llTemSwiper");
+  var unit = "px"; // 单位
+  var focusWidth = "13.33rem"; // 轮播图的宽
+  var focusHeight = "650" + unit; // 轮播图的高
+  var focusOlLeft = "12" + unit; // 小点距左边框距离
+  var focusOlTop = "24" + unit; // 小点距右边框距离
+  var rotation_Speed = 3000; // 轮播图自动播放速度 毫秒
+  var focusUlSize = 150 * $(".llTemSwiper>ul>li").length + "%";
+  // 轮播
+  var yidongjl = "13.66rem"; // 移动距离
+  var num = 0; // 点击计数
+  var flag = true; // 节流阀
+  // 自动添加小圆点
+  var index = 0; // 下标
+  var indexLength = 0;
+  var ul = $(".llTemSwiper>ul");
+  var imgLi = $(".llTemSwiper>ul>li");
+  var lb_l = $(".lb_l");
+  var lb_r = $(".lb_r");
+  indexLength = imgLi.length
+  // 右箭头
+  function rightClick() {
+    console.log('rrrrr')
+    if (num == imgLi.length) {
+          num = 0;
+        }
+        if(num > indexLength) {
+          num = 0
+        }
+    move(ul[0], -num * 13.66 + "rem");
+        num++;
+  }
+  function leftClick() {
+    console.log('lllll')
+    if (num == 0) {
+          num = imgLi.length;
+        }
+        num--;
+    move(ul[0], -num * 13.66 + "rem");
+  }
+
+  // $(".llTemSwiper>ul>li").each(function(i, element) {
+  //   var li = $("<li></li>");
+  //   li.attr("index", index++);
+  //   li.css({
+  //     "list-style-type": "none",
+  //     "float": "left",
+  //     "width": 10 + unit,
+  //     "height": 10 + unit,
+  //     "margin": "0 3" + unit,
+  //     "border-radius": 5 + unit,
+  //     "background": "#fff",
+  //     "cursor": "pointer",
+  //     "width": "48px",
+  //     "height": "6px",
+  //     "background": "rgba(255,255,255,0.6)",
+  //     "border-radius": "0px 0px 0px 0px",
+  //   });
+  //   $(".llTemSwiper>ol").append(li);
+  // })
+  // $(".llTemSwiper>ol>li")[0].style.background = "#FFFFFF";
+
+  // var llTemSwiper = $(".llTemSwiper");
+  // var ul = $(".llTemSwiper>ul");
+  // var imgLi = $(".llTemSwiper>ul>li");
+  // var element = document.getElementById("total_num");
+  // element.textContent = imgLi.length
+  // indexLength = imgLi.length
+  // var lb_l = $(".lb_l");
+  // var lb_r = $(".lb_r");
+  // var ol = $(".llTemSwiper>ol");
+  // var yuanLi = $(".llTemSwiper>ol>li");
+
+  // // 复制第一个图像
+  // $(imgLi[0]).clone().appendTo($(ul[0]));
+
+  // 样式部分
+  $("li").css("list-style-type", "none");
+  $(".llTemSwiper").css({
+    position: "relative",
+    width: "13.66rem",
+    height: "5rem",
+    overflow: "hidden",
+    "box-sizing": "border-box",
+  });
+  $(".llTemSwiper>ul").css({
+    position: "absolute",
+    left: 0,
+    width: focusUlSize,
+    cursor: "pointer",
+    overflow: "hidden",
+  });
+
+  $(".llTemSwiper>ul>li").css({
+    float: "left",
+  });
+  $(".llTemSwiper>ul>li>img").css({
+    width: "13.66rem",
+    height: "5rem",
+  });
+  $(".llTemSwiper>ol").css({
+    position: "absolute",
+    right: focusOlLeft,
+    bottom: focusOlTop,
+  });
+
+  function lj() {
+    yuanLi.css({
+      background: "rgba(255,255,255,0.6)",
+    });
+    var p = num > imgLi.length - 1 ? 0 : num;
+    yuanLi[p].style.backgroundColor = "#ffffff";
+  }
+  var timer = setInterval(function () {   
+     lb_r.click();
+  }, rotation_Speed);
+  // 轮播
+    llTemSwiper.mouseenter(function() {
+      clearInterval(timer);
+    })
+
+    llTemSwiper.mouseleave(function() {
+      timer = setInterval(function() {
+        lb_r.click();
+      }, 3000);
+    });
+
+  // 动画
+  function move(obj, target, callback) {
+    $(obj).css("left", target);
+  }
+  function addNum(numShow) {
+    let seNum = numShow;
+    var element = document.getElementById("current_num");
+    element.textContent = seNum;
+  }
+</script>
+
+
+      <!-- 最新公告 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+  <div class="notice-home">
+    <div class="notice-title">
+      <div class="notice-title-left">
+        <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-notice.png" />
+        <p>最新公告</p>
+      </div>
+      <div class="more">
+        <cms:columnlist class="seeMore" channelId="yz" columnId="675953b3cf1e66a18c75f36c">
+          
+            <a href="https://yanzhao.bisu.edu.cn/mixmedia/675953b3cf1e66a18c75f36c" target="_blank">
+              <p>更多</p>
+              <div class="moreimg"></div>
+            </a>
+          
+        </cms:columnlist> 
+</div>
+    </div>
+	<div class="notice-list">
+     <div class="notice-left">
+          <cms:storylist
+            class="notice-news" channelId="yz" type="column" columnId="675953b3cf1e66a18c75f36c" count="15" pageNo="0"
+          >
+                
+            <div class="left-info" onclick="showStory(this)" data-id="WS6ac7139ccf1e7b21db96eb7e">
+              <div class="left-title">北京第二外国语学院区域国别学院继续接收2027年推免生工作安排</div>
+              <div class="left-time">2026.10.08</div>
+              <div class="left-summary">我校区域国别学院继续接收2027年推免生复试具体安排如下：</div>
+            </div>
+              
+            <div class="left-info" onclick="showStory(this)" data-id="WS6ac6f04ccf1e7b21db96eb72">
+              <div class="left-title">2027年全国硕士研究生招生考试北京第二外国语学院（1131）报考点网报公告</div>
+              <div class="left-time">2026.10.08</div>
+              <div class="left-summary">按照全国硕士研究生招生考试报名流程，所有参加全国硕士研究生招生考试的考生均须在规定时间内进行网上报名、网上缴费，并按要求上传相关材料。请考生仔细阅读《2027年全国硕士研究生招生工作管理规定》以及《北京市2027年全国硕士研究生招生考试网上报名公告》，符合规定并满足以下条件后，方可选择我校为报考点。</div>
+            </div>
+              
+            <div class="left-info" onclick="showStory(this)" data-id="WS6abf29facf1e7b21db96eb68">
+              <div class="left-title">北京第二外国语学院2027年硕士研究生招生章程</div>
+              <div class="left-time">2026.10.02</div>
+              <div class="left-summary">北京第二外国语学院是由文化和旅游部与北京市人民政府共建的高水平特色大学，是一所以外语为主体、旅游为特色，多学科协同发展的著名高校。学校是周恩来总理亲自提议于1964年10月成立。建校以来，学校始终秉承“中外人文交流”使命，以服务国家战略和首都发展为己任，以“融中外、兼知行”为办学理念，坚持内涵发展，强化交叉融合，致力于培养“多语种复语、跨专业复合”、具有家国情怀、国际视野的复合型人才。</div>
+            </div>
+              
+            <div class="left-info" onclick="showStory(this)" data-id="WS6aaf298ccf1e7b21db96ea40">
+              <div class="left-title">北京第二外国语学院2027年接收推荐免试攻读硕士学位研究生招生简章</div>
+              <div class="left-time">2026.09.20</div>
+              <div class="left-summary">‍‍为全面落实全国教育大会精神，紧紧围绕立德树人根本任务，加强拔尖创新人才选拔、提高研究生招生质量，我校根据教育部、北京市有关推免生工作要求，结合我校实际情况，特制定本章程。</div>
+            </div>
+              
+            <div class="left-info" onclick="showStory(this)" data-id="WS6aa4a7e0cf1efc5625c74229">
+              <div class="left-title">各培养单位2027年接收推免生复试安排</div>
+              <div class="left-time">2026.09.12</div>
+              <div class="left-summary">各位考生：</div>
+            </div>
+              
+          </cms:storylist>
+        </div>
+        <div class="notice-right">
+          <cms:storylist
+            class="notice-news" channelId="yz" type="column" columnId="675953b3cf1e66a18c75f36c" count="15" pageNo="0"
+          >
+                
+            <div class="right-info" onclick="showStory(this)" data-id="WS6aa34863cf1efc5625c74219">
+              <div class="right-time">
+                <div class="right-day">11</div>
+                <div class="right-month">2026.09</div>
+					</div>
+              <div class="right-title">北京第二外国语学院2027年接收推免生工作安排</div>
+            </div>
+              
+            <div class="right-info" onclick="showStory(this)" data-id="WS6a544113cf1efc5625c740cd">
+              <div class="right-time">
+                <div class="right-day">13</div>
+                <div class="right-month">2026.07</div>
+					</div>
+              <div class="right-title">北京第二外国语学院2026级研究生新生入学须知</div>
+            </div>
+              
+            <div class="right-info" onclick="showStory(this)" data-id="WS6a39deb6cf1efc5625c73f1e">
+              <div class="right-time">
+                <div class="right-day">23</div>
+                <div class="right-month">2026.06</div>
+					</div>
+              <div class="right-title">北京第二外国语学院关于举办“2026年全国优秀大学生研学夏令营”的通知</div>
+            </div>
+              
+            <div class="right-info" onclick="showStory(this)" data-id="WS6a0c245bcf1efc5625c73c74">
+              <div class="right-time">
+                <div class="right-day">19</div>
+                <div class="right-month">2026.05</div>
+					</div>
+              <div class="right-title">北京第二外国语学院关于2026年硕士研究生拟录取考生后期事宜的通知</div>
+            </div>
+              
+            <div class="right-info" onclick="showStory(this)" data-id="WS69cf729fcf1efc5625c739cd">
+              <div class="right-time">
+                <div class="right-day">03</div>
+                <div class="right-month">2026.04</div>
+					</div>
+              <div class="right-title">北京第二外国语学院2026年硕士研究生调剂复试工作安排</div>
+            </div>
+              
+            <div class="right-info" onclick="showStory(this)" data-id="WS69ca3d08cf1efc5625c73997">
+              <div class="right-time">
+                <div class="right-day">30</div>
+                <div class="right-month">2026.03</div>
+					</div>
+              <div class="right-title">北京第二外国语学院2026年硕士研究生招生考试调剂公告</div>
+            </div>
+              
+          </cms:storylist>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
+      
+       <!-- 培养单位 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <style></style>
+  </head>
+  <body>
+    <div class="units" id="units">
+      <div class="unit-title">
+        <div class="units-name">
+          <p>培养单位</p>
+          <span>CULTRUE&nbsp;UNIT</span>
+        </div>
+        <div class="more">
+          <a href="https://www.bisu.edu.cn/#/schoolSet" target="_blank">
+            <p>更多</p>
+            <div class="moreimg"></div>
+          </a>
+        </div>
+      </div>
+
+      <cms:storylist
+        class="llTemSwiper-cms" channelId="yz" type="column" columnId="6759535ccf1e66a18c75f362" count="30" pageNo="0"
+      >
+        <div class="unit-list">
+          <div class="swiper swiper2">
+            <div class="swiper-wrapper">
+              
+                <div class="swiper-slide unit-item">
+                  <a href="http://mta.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/67760650e4b02d48d898272c.png"
+                    />
+                    <h1>MTA/MBA教育中心</h1>
+                    <p class="dh">MTA/MBA教育中心是北京第二外国语学院针对MTA/MBA教育和管理而设立的专门机构。MTA/MBA项目秉承了北二外严谨的学风，MBA以外语和现代服务管理为特色，为广大学员提供最具多元化与竞争力的MBA教育。MTA是北二外的特色学科，课程借鉴洛桑MHA课程设计，强化服务精神培养，突出领导艺术。致力于培养未来旅游界的产业领袖，打造中国MTA教育第一品牌。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="http://nicdnews.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/6776066de4b02d48d898272e.png"
+                    />
+                    <h1>中国服务贸易研究院、国家文化发展国际战略研究院</h1>
+                    <p class="dh">国家文化发展国际战略研究院承担中央宣传部对外文化交流（文化贸易）研究基地秘书处、国家文化贸易学术研究平台秘书处、首都国际服务贸易与文化贸易研究基地办公室、对外文化贸易与文化交流协同创新中心秘书处工作以及中国国际贸易学会服务贸易专业委员会工作。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="http://obor.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/676d0dd5e4b02d48d898268f.png"
+                    />
+                    <h1>中国“一带一路”战略研究院</h1>
+                    <p class="dh">北京第二外国语学院2014年在国内首创中国“一带一路”战略研究院。中国“一带一路”战略研究院目前是一带一路智库合作联盟秘书处单位（中联部）、金砖国家智库合作中方理事会秘书处单位（中联部）、中国-中东欧国家智库交流与合作网络理事单位（外交部）、一带一路国际智库合作委员会成员（新华社）、国家外文局全球舆情监测与传播研究基地。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="http://biirs.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/6776067ee4b02d48d8982730.jpg"
+                    />
+                    <h1>区域国别学院</h1>
+                    <p class="dh">区域国别学院（中国区域国别高等研究院）以学校“十四五”规划中提出的学科建设目标与思路为根本发展宗旨，即以外语和旅游为优势特色学科，做精外语做强旅游，促进在国别与区域、翻译等新领域的新突破，充分发挥和持续提升学校高精尖学科优势及其在科学研究、人才培养、社会服务等方面的卓越影响力。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="http://hanyu.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/67760692e4b02d48d8982732.png"
+                    />
+                    <h1>汉语学院</h1>
+                    <p class="dh">汉语学院是北京第二外国语学院专门从事外国留学生汉语教育教学的二级学院。汉语学院是中国国家汉办在全球正式设立的首批HSK考点之一。为了帮助留学生备考，我院定期为考生举办HSK考前培训班。由资深教师主讲，效果很好。汉语学院教学设备先进。有现代化多媒体教室，配置先进的计算机教室，有藏书丰富的专业资料室以及独立的小班教室，各教室均配备了先进的多媒体教学设备，教师可以随时方便地利用多媒体辅助教学。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://whycb.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677606a5e4b02d48d8982734.png"
+                    />
+                    <h1>文化与传播学院</h1>
+                    <p class="dh">文化与传播学院是在融合了中国语言文学、哲学、新闻传播学三个一级学科基础上，于2018年成立的。设立汉语言文学系、汉语国际教育系、新闻系、哲学教研室。学院设有中华文化研究院、中国文艺评论基地、哲学研究中心、希腊研究中心等科研平台，与中国社会科学文献出版社共建中国语言文学博士后工作站。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://jingji.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677606b8e4b02d48d8982736.png"
+                    />
+                    <h1>经济学院</h1>
+                    <p class="dh">经济学院最早起源于1981年外经贸部在全国外语院校中第一个设立的“对外经济合作”专业，后经多次专业和院系调整，形成了目前以应用经济学为基础学科，以高端服务业为主要研究领域，以国际化水平高、多学科融合发展、实践应用能力强为人才培养定位的教学科研单位。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://shang.bisu.edu.cn" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677606cbe4b02d48d8982738.png"
+                    />
+                    <h1>商学院</h1>
+                    <p class="dh">商学院遵从本校“明德、勤学、求是、竞先”的办学理念，注重“国际化”和“商务实践性”这两个特点，秉承“知学求道，修德习商”院训，以“运筹天下生意之策，传授商业成功之道，创造服务管理新知，培养高素质全球化服务业职业经理人”为使命，不断优化师资队伍结构和质量，探索国际化经营管理人才的培养规律，致力于建设中国具有最强外语背景的国际化一流的特色商学院，使学生成为具备国际化视野的，拥有很强知识应用能力和...</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://lykx.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677606e0e4b02d48d898273a.png"
+                    />
+                    <h1>旅游科学学院</h1>
+                    <p class="dh">北京第二外国语学院旅游科学学院源于1979年成立的旅游干部培训班，是全国最早开设旅游专业的四大院校之一，是唯一曾隶属原国家旅游局的高校，是全国旅游管理高校中少数保持专业规模传承并大力发展的院校。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://gjfy.bisu.edu.cn" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677606f2e4b02d48d898273c.png"
+                    />
+                    <h1>高级翻译学院</h1>
+                    <p class="dh">北京第二外国语学院翻译学科历史悠久，成效显著，师资力量雄厚。新中国早期资深翻译家李越然、苏琦、李传松、董乐山、管震湖、王志佑、王文炯等先生，著名翻译理论家刘宓庆、鲍刚先生等都曾在学校任教。 高级翻译学院是为适应我国经济、文化诸行业发展对高级翻译人才的需求于2006 年成立的教学机构。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://zhongdong.bisu.edu.cn" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677b803ae4b02d48d89827ae.png"
+                    />
+                    <h1>中东学院</h1>
+                    <p class="dh">中东学院现有阿拉伯语、波斯语、希伯来语、土耳其语四个专业，前身为1964年设立的阿拉伯语专业，是教育部最早确定的七个阿拉伯语专业教学单位之一。阿拉伯语专业是北京市品牌专业、教育部首批国家级特色专业、国家级一流本科专业。波斯语专业是北京市一流本科专业、国家级一流本科专业。2012年，学院获批实体建设教育部国别和区域研究培养基地阿拉伯研究中心，与中东学院合署办公。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://ouzhou.bisu.edu.cn" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677b8054e4b02d48d89827b0.png"
+                    />
+                    <h1>欧洲学院</h1>
+                    <p class="dh">欧洲学院成立于2018年12月，在原西欧语学院、中欧语学院和俄语系基础上整合而建，现有4个硕士学位二级学科授权点、4个翻译专业硕士学位方向、18个本科专业、12个中东欧语种的北京市贯通培养试验项目，并设有白俄罗斯研究中心、秘鲁文化研究中心、波兰研究中心、匈牙利研究中心、奥地利研究中心、陀思妥耶夫斯基研究中心等研究机构。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="https://yazhou.bisu.edu.cn" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677b806be4b02d48d89827b2.png"
+                    />
+                    <h1>亚洲学院</h1>
+                    <p class="dh">亚洲学院成立于2018年，在原东方语学院基础上建立，设有朝鲜语系、南亚东南亚语系两个系。现开设朝鲜语、印地语、泰语、越南语、印度尼西亚语5个专业。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="http://riyu.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677b8081e4b02d48d89827b4.png"
+                    />
+                    <h1>日语学院</h1>
+                    <p class="dh">日语专业创建于1964年，2020年入选国家级一流本科专业“双万计划”，是教育部第一批特色专业建设点、北京市特色专业建设点、重点建设学科和品牌专业。现有教师41名，其中特聘教授1名，教授8名，副教授17名（含外籍专任1名），讲师12名（含外籍专任1名），外聘日籍专家3名。杰出校友从专家、学者到国务委员、部长、大使等遍及海内外各个领域。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+                <div class="swiper-slide unit-item">
+                  <a href="http://yingyu.bisu.edu.cn/" target="_blank">
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/677b8098e4b02d48d89827b6.png"
+                    />
+                    <h1>英语学院</h1>
+                    <p class="dh">英语学院（前身是英语系）创建于1964年，是北京第二外国语学院的创校院系，拥有本科和研究生两个办学层次，现下设七个系。</p>
+                    <img
+                      class="jt"
+                      alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-unit-go.png"
+                    />
+                  </a>
+                </div>
+              
+            </div>
+          </div>
+				<div class="swiper-prev2" tabindex="0" role="button" aria-label="Previous slide"></div>
+          <div class="swiper-next2" tabindex="0" role="button" aria-label="Next slide"></div>
+        </div>
+      </cms:storylist>
+    </div>
+  </body>
+</html>
+<script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/swiper-bundle.min.js"></script>
+<script>
+  var mySwiper = new Swiper(".swiper2", {
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 26,
+    loop: true, // 循环模式选项
+    autoplay: {
+      disableOnInteraction: false,
+      delay: 3000,
+      pauseOnMouseEnter: true,
+    },
+    // 前进后退按钮
+    navigation: {
+      nextEl: ".swiper-next2",
+      prevEl: ".swiper-prev2",
+    },
+  });
+</script>
+
+      
+       <!-- 往年录取 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div class="enroll w1366">
+      <div class="title">
+        <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-wnlq-logo.png" />
+        <p>往年录取</p>
+      </div>
+      <div class="more">
+        <cms:columnlist class="seeMore" channelId="yz" columnId="675953b8cf1e66a18c75f36e">
+          
+            <a href="https://yanzhao.bisu.edu.cn/mixmedia/675953b8cf1e66a18c75f36e" target="_blank">
+              <p>更多</p>
+              <div class="moreimg"></div>
+            </a>
+          
+        </cms:columnlist>
+      </div>
+      <ul class="enroll-list">
+        <cms:storylist
+            class="wnlq-table" channelId="yz" type="column" columnId="675953b8cf1e66a18c75f36e" count="6" pageNo="0"
+          >
+          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+            <tr>
+          		
+                <td>
+                  <li class="enroll-item" style="width: 100%">
+                    <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202510/15/WS68ef1077cf1efc5625c72926.html">
+                      <div>
+                        <p>15</p>
+                        <span>2025.10</span>
+                      </div>
+                      <h3>2025年硕士研究生各专业复试分数线</h3>
+                    </a>
+                  </li>
+                </td>
+              
+                <td>
+                  <li class="enroll-item" style="width: 100%">
+                    <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202407/02/WS676b80f8cf1e66a18c75f5f1.html">
+                      <div>
+                        <p>02</p>
+                        <span>2024.07</span>
+                      </div>
+                      <h3>2024年各专业招生人数及录取分数线</h3>
+                    </a>
+                  </li>
+                </td>
+              
+                <td>
+                  <li class="enroll-item" style="width: 100%">
+                    <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202310/08/WS676b80f8cf1e66a18c75f5f2.html">
+                      <div>
+                        <p>08</p>
+                        <span>2023.10</span>
+                      </div>
+                      <h3>2023年各专业招生人数及录取分数线</h3>
+                    </a>
+                  </li>
+                </td>
+              
+            </tr>
+            <tr>
+              
+                <td>
+                  <li class="enroll-item" style="width: 100%">
+                    <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/202207/04/WS676b80f8cf1e66a18c75f5f3.html">
+                      <div>
+                        <p>04</p>
+                        <span>2022.07</span>
+                      </div>
+                      <h3>2020—2022年各专业招生录取人数及复试分数线</h3>
+                    </a>
+                  </li>
+                </td>
+              
+                <td>
+                  <li class="enroll-item" style="width: 100%">
+                    <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/201909/17/WS676b80f8cf1e66a18c75f5f4.html">
+                      <div>
+                        <p>17</p>
+                        <span>2019.09</span>
+                      </div>
+                      <h3>2017—2019年各专业招生录取人数及复试分数线</h3>
+                    </a>
+                  </li>
+                </td>
+              
+                <td>
+                  <li class="enroll-item" style="width: 100%">
+                    <a href="https://yanzhao.bisu.edu.cn/mixmedia/a/201805/15/WS676b80f9cf1e66a18c75f5f5.html">
+                      <div>
+                        <p>15</p>
+                        <span>2018.05</span>
+                      </div>
+                      <h3>2016年—2018年硕士研究生分专业录取情况表</h3>
+                    </a>
+                  </li>
+                </td>
+              
+            </tr>
+          </tbody>
+        </table>
+        </cms:storylist>
+        
+      </ul>
+    </div>
+  </body>
+</html>
+
+      
+       <!-- 小研推荐 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div class="yan">
+      <div class="yan-box w1366">
+        <div class="title">
+          <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/icon3.png" />
+          <p>小研推荐</p>
+        </div>
+        <div class="yan-list">
+          <div class="yan-item yan1 type1">
+            <div class="name">招生简章</div>
+            <cms:storylist
+              class="zsjz-list" channelId="yz" type="column" columnId="675953f0cf1e66a18c75f370" count="4" pageNo="0"
+            >
+              <ul>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS67b7d600cf1e6138de7c6ab7"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2025年攻读硕士学位研究生招生简章</p>
+                    </a>
+                  </li>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS676b8100cf1e66a18c75f5ff"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2024年攻读硕士学位研究生招生简章</p>
+                    </a>
+                  </li>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS676b8101cf1e66a18c75f600"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2023年攻读硕士学位研究生招生简章</p>
+                    </a>
+                  </li>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS676b8101cf1e66a18c75f601"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2022年攻读硕士学位研究生招生简章</p>
+                    </a>
+                  </li>
+                
+              </ul>
+              <cms:column columnId="675953f0cf1e66a18c75f370">
+                <div class="jtimg">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/675953f0cf1e66a18c75f370" target="_blank"> </a>
+                </div>
+              </cms:column>
+            </cms:storylist>
+          </div>
+          <div class="yan-item yan2 type1">
+            <div class="name">专业目录</div>
+            <cms:storylist
+              class="zyml-list" channelId="yz" type="column" columnId="675953f5cf1e66a18c75f372" count="4" pageNo="0"
+            >
+              <ul>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS67b7d7cccf1e6138de7c6aba"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2025年攻读硕士学位研究生招生专业目录及自命题科目考试大纲</p>
+                    </a>
+                  </li>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS676b8106cf1e66a18c75f611"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2024年攻读硕士学位研究生招生专业目录及自命题科目考试大纲</p>
+                    </a>
+                  </li>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS676b8106cf1e66a18c75f612"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2023年攻读硕士学位研究生招生专业目录及自命题科目考试大纲</p>
+                    </a>
+                  </li>
+                
+                  <li
+                    onclick="showStory(this)" data-id="WS676b8107cf1e66a18c75f613"
+                  >
+                    <div></div>
+                    <a class="dh">
+                      <p>北京第二外国语学院2022年攻读硕士学位研究生招生专业目录及自命题科目考试大纲</p>
+                    </a>
+                  </li>
+                
+              </ul>
+
+              <cms:column columnId="675953f5cf1e66a18c75f372">
+                <div class="jtimg">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/675953f5cf1e66a18c75f372" target="_blank"> </a>
+                </div>
+              </cms:column>
+            </cms:storylist>
+          </div>
+
+          <div class="yan-item yan3 type2">
+            <div class="name">人才培养</div>
+            <cms:storylist
+              class="rcpy-list" channelId="yz" type="column" columnId="6759540dcf1e66a18c75f374" count="3" pageNo="0"
+            >
+              
+                <div
+                  class="cover"
+                  onclick="showStory(this)" data-id="WS676b810bcf1e66a18c75f623"
+                >
+                  <a>
+                    <img
+                      src="https://www.bisu.edu.cn/bucketeducation/676b810be4b08265b641bcc3.jpeg"
+                    />
+                    <div>
+                      <p class="dh">研究生翔宇学术大讲堂2023年第7期：史学闻述现代文学的几种叙述</p>
+                      <span>2023-06-07</span>
+                    </div>
+                  </a>
+                </div>
+              
+              <ul>
+                
+                  <li
+                    class="yan3-item"
+                    onclick="showStory(this)" data-id="WS676b8111cf1e66a18c75f624"
+                  >
+                    <a>
+                      <div>
+                        <span
+                        >07</span>
+                        <p
+                        >2023.06</p>
+                      </div>
+                      <h3 class="dh">研究生翔宇学术大讲堂2023年第8期：《庄子·养生主》首章辨析</h3>
+                    </a>
+                  </li>
+                
+                  <li
+                    class="yan3-item"
+                    onclick="showStory(this)" data-id="WS676b8112cf1e66a18c75f625"
+                  >
+                    <a>
+                      <div>
+                        <span
+                        >07</span>
+                        <p
+                        >2023.06</p>
+                      </div>
+                      <h3 class="dh">研究生翔宁学术大讲堂2023年第9期：俄罗斯区域学的 学科理念与学科定位</h3>
+                    </a>
+                  </li>
+                
+              </ul>
+
+              <cms:column columnId="6759540dcf1e66a18c75f374">
+                <div class="jtimg">
+                  <a href="https://yanzhao.bisu.edu.cn/mixmedia/6759540dcf1e66a18c75f374" target="_blank"> </a>
+                </div>
+              </cms:column>
+            </cms:storylist>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+      <!-- 底部 -->
+      <!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+  <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/vue.js"></script>
+  <script src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/element.js"></script>
+  <link rel="stylesheet" href="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/css/element.css" />
+</head>
+<body>
+  <div id="footContentBox" class="footer-content-box">
+    <div class="footer-bottom-content">
+      <div class="link-list">
+        <div class="footer-label">
+          相关链接
+        </div>
+        <a class="nav_head" href="https://www.bjeea.cn/" target="_blank">
+          <span class="home_web_jc">北京教育考试院</span>
+        </a>
+        <a class="nav_head" href="https://yz.chsi.com.cn/" target="_blank">
+          <span class="home_web_jc">中国研究生招生信息网</span>
+        </a>
+        <a class="nav_head" href="http://www.bisu.edu.cn/" target="_blank">
+          <span class="home_web_jc">北京第二外国语学院网站</span>
+        </a>
+      </div>
+      <div class="contact-information">
+        <div class="footer-label">
+          联系方式
+        </div>
+        <div class="contact-info">
+          研招办电话：<p>
+          65773331
+          </p>
+        </div>
+        <div class="contact-info">
+          地址： <p>
+          		北京市朝阳区定福庄南里1号北京第二外国语学院 明德楼211办公室
+          </p>
+        </div>
+      </div>
+      <div class="erwai-gzh">
+        <div class="gzh-info">
+          <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-wb.png" />
+          二外微博
+        </div>
+        <div class="gzh-info">
+          <img src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-wx.png" />
+          二外微信
+        </div>
+      </div>
+    </div>
+    
+	 <div class="footer-line"></div>
+    <div class="footer-bottom-content1">
+      <div class="content-center-box">
+        <div class="footer-bottom-001-top footer-bottom-001-bottom">
+          <span style="font-weight: 400;color: #ffff;margin: 0 auto;">
+            <ul>
+              <li>@版权所有：北京第二外国语学院</li>
+              <li>京ICP备:05067963号</li>
+              <li>文保网安备案号:110402430076</li>
+              <li>Copyright 2001-2010 B.I.S.U. all rights reserved</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+  // 初始化 Vue 实例
+  new Vue({
+    el: '#footContentBox',
+    data() {
+      return{
+
+      }
+    }
+  })
+</script>
+
+    </div>
+    <!-- 刷新 置顶 -->
+    <!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+  <!-- 刷新 置顶 -->
+    <div class="refresh_top" onclick="scrollToTop()">
+      <div style="cursor: pointer;">
+        <img
+          class="list_top_icon"
+          alt="" src="https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/img/yzw-top.png"
+        />
+        TOP
+      </div>
+    </div>
+</body>
+</html>
+<script>
+  function refreshPage() {
+    window.open(window.location.href,'_self')
+  }
+  function scrollToTop() {
+    $('#home-content').animate({
+      scrollTop: 0
+    },500)
+  }
+</script>
+  </body>
+</html>

@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeout
 import hashlib
 from html.parser import HTMLParser
 import http.client
+import ipaddress
 from pathlib import Path
 import re
 import shutil
@@ -18,6 +19,7 @@ from urllib.parse import unquote, urljoin, urlsplit, urlunsplit
 from collectors.discovery import DiscoveryError, USER_AGENT, _LIMITS, _PinnedConnection, _Response, _url_parts, public_target
 from collectors.documents import decode_text
 from document_extraction import OFFICE_TYPES, canonical_document, extract_office_document, validate_media
+from public_navigation import extract_navigation
 
 
 MAX_BYTES = 8 * 1024 * 1024
@@ -207,6 +209,9 @@ def _chsi_unit_codes(url):
 
 def official_source_url(url, unit):
     """Check allowed endpoints; unscoped CHSI content still needs attribution."""
+    if isinstance(unit, dict) and 'official_authorities' in unit:
+        from official_authority import scope_allows
+        return any(scope_allows(url, scope) for scope in _official_scopes(unit))
     try:
         _, host, _ = _url_parts(url)
     except DiscoveryError:
@@ -220,6 +225,27 @@ def official_source_url(url, unit):
     return bool(roots) and any(host == root or host.endswith('.' + root) for root in roots)
 
 
+def _official_scopes(unit):
+    """Only the selected unit's active, replayed authority rows can grant reads."""
+    scopes = []
+    for row in unit.get('official_authorities') or []:
+        if (not isinstance(row, dict) or row.get('state') != 'verified'
+                or row.get('replay_verified') is not True or str(row.get('unit_id')) != str(unit.get('id'))):
+            continue
+        expiry = row.get('expires_at')
+        if expiry:
+            try:
+                expires = datetime.fromisoformat(expiry.replace('Z', '+00:00'))
+                if expires.tzinfo is None or expires <= datetime.now(timezone.utc):
+                    continue
+            except (ValueError, TypeError, AttributeError):
+                continue
+        scope = row.get('scope')
+        if isinstance(scope, dict) and scope not in scopes:
+            scopes.append(scope)
+    return tuple(scopes)
+
+
 def document_attribution(url, unit, text='', document_title='', document_heading=''):
     """A shared CHSI host alone cannot establish which school's document this is."""
     if not official_source_url(url, unit):
@@ -228,9 +254,18 @@ def document_attribution(url, unit, text='', document_title='', document_heading
     name = normalized(unit.get('name') or '')
     first_line = next((line.strip() for line in text.splitlines() if line.strip()), '')
     headings = [normalized(value) for value in (document_heading, document_title, first_line) if value]
-    if name and any(name not in heading and re.search(r'大学|研究院|研究所|党校', heading) for heading in headings):
+    chsi = urlsplit(url).hostname.lower().rstrip('.') == 'yz.chsi.com.cn'
+    qualified = 'official_authorities' in unit and not chsi
+    def own_heading(heading):
+        if name in heading:
+            return True
+        if qualified:
+            from official_authority import qualified_title_matches
+            return qualified_title_matches(unit, heading, text)
+        return False
+    if name and any(not own_heading(heading) and re.search(r'大学|研究院|研究所|党校', heading) for heading in headings):
         return {'status': 'wrong_unit', 'reason': '原文主标题明确指向其他招生单位。'}
-    if urlsplit(url).hostname.lower().rstrip('.') != 'yz.chsi.com.cn':
+    if not chsi:
         return {'status': 'verified', 'reason': '来源属于所选招生单位的官方域名。'}
     if _chsi_school_ids(url) == {str(unit.get('id'))}:
         return {'status': 'verified', 'reason': '研招网URL的招生单位标识一致。'}
@@ -250,6 +285,8 @@ class _VisibleHTML(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.stack, self.parts, self.main, self.title, self.heading = [], [], [], [], []
+        self.heading_active, self.heading_done = False, False
+        self.gate_control = False
         # Links are collected even from nav/header/footer: those blocks are
         # excluded from the *evidence text*, but they are exactly where an
         # admissions site lists its article and PDF entries. A separate,
@@ -262,6 +299,11 @@ class _VisibleHTML(HTMLParser):
             # Browsers close a misplaced/open head before rendering body content.
             self.handle_endtag('head')
         values = dict(attrs)
+        if tag in {'input', 'textarea'}:
+            control = re.sub(r'[-_\s]+', '', str(values.get('name') or values.get('id') or '')).lower()
+            self.gate_control = self.gate_control or values.get('type', '').lower() == 'password'
+            self.gate_control = self.gate_control or bool(re.fullmatch(
+                r'captcha(?:code|response)?|grecaptcharesponse|codevalue|verifycode|verificationcode|checkcode|vcode|validatecode', control))
         if tag == 'a':
             href = values.get('href')
             if isinstance(href, str) and href.strip():
@@ -277,6 +319,8 @@ class _VisibleHTML(HTMLParser):
         hidden = hidden or values.get('role') == 'tooltip'
         hidden = hidden or bool(re.search(r'(?:^|\s)(?:tooltip(?:-[\w-]+)?|popover(?:-[\w-]+)?|hidden|d-none|hide)(?:$|\s)', values.get('class', ''), re.I))
         inherited = bool(self.stack and self.stack[-1][1])
+        if tag == 'h1' and not (hidden or inherited or self.heading_done):
+            self.heading_active, self.heading = True, []
         main = tag in {'main', 'article'} or values.get('role') == 'main' or bool(self.stack and self.stack[-1][2])
         if tag in self.BLOCK:
             self._append('\n', inherited or hidden, main, boundary=tag in {'tr','table'})
@@ -291,6 +335,9 @@ class _VisibleHTML(HTMLParser):
             self.handle_endtag(tag)
 
     def handle_endtag(self, tag):
+        if tag == 'h1' and self.heading_active:
+            self.heading_active = False
+            self.heading_done = bool(''.join(self.heading).strip())
         if tag == 'a' and self.anchor is not None:
             label = re.sub(r'\s+', ' ', ''.join(self.anchor_parts)).strip()
             self.links.append({'href': self.anchor, 'label': label[:120]})
@@ -323,7 +370,7 @@ class _VisibleHTML(HTMLParser):
             self.title.append(data)
         elif not any(item[0] in {'head', 'title'} for item in self.stack):
             self._append(data, bool(self.stack and self.stack[-1][1]), bool(self.stack and self.stack[-1][2]))
-            if any(item[0] == 'h1' for item in self.stack) and not (self.stack and self.stack[-1][1]):
+            if self.heading_active and not (self.stack and self.stack[-1][1]):
                 self.heading.append(data)
 
     def result(self):
@@ -365,10 +412,35 @@ def _pdf_text(path, timeout):
     return result.stdout.decode('utf-8')
 
 
+def _html_access_gate(parser, text, title):
+    """Require a primary challenge heading/prompt, not policy prose or footer links."""
+    title = re.sub(r'\s+', ' ', title).strip()
+    heading = re.sub(r'\s+', ' ', ''.join(parser.heading)).strip()
+    gate_title = re.fullmatch(
+        r'访问验证|安全验证|人机验证|验证码|请先登录|用户登录|统一身份认证|访问异常|访问受限|系统维护|'
+        r'Access Denied|403 Forbidden|Security Verification|Human Verification|'
+        r'Verify (?:You Are Human|Your Identity)|Just a moment[.!…]*|Sign[ -]?In|Log[ -]?In',
+        title, re.I)
+    if gate_title and (len(text) <= 1200 or parser.gate_control):
+        return True
+    prompt = re.compile(
+        r'^(?:请(?:先登录|输入.{0,8}验证码|填写.{0,8}验证码|完成.{0,8}(?:验证|验证码))|'
+        r'Please (?:complete (?:the )?verification|verify (?:your identity|you are human)|log in|sign in)|'
+        r'Checking your browser|Access Denied|403 Forbidden)', re.I)
+    return bool(parser.gate_control and (prompt.match(heading) or prompt.match(text.strip())))
+
+
 def _extract(raw, content_type, cache_dir, pdf_extractor, remaining, url=''):
     media_type = content_type.split(';', 1)[0].strip().lower()
     if media_type == 'application/pdf':
         if not raw.startswith(b'%PDF-'):
+            if re.match(br'\s*<(?:!doctype|html|head|title|body|form|h1|div|input)\b', raw[:500], re.I):
+                parser = _VisibleHTML()
+                parser.feed(decode_text(raw, 'text/html'))
+                parser.close()
+                text, title = parser.result()
+                if _html_access_gate(parser, text, title):
+                    raise SourceError('restricted', '官方附件返回验证码或登录验证页面，尚未取得原文。')
             raise SourceError('invalid_pdf', '来源声明为PDF，但原始文件不是PDF。')
         if cache_dir is not None:
             Path(cache_dir).mkdir(parents=True, exist_ok=True)
@@ -387,13 +459,19 @@ def _extract(raw, content_type, cache_dir, pdf_extractor, remaining, url=''):
         return office['text'], office['pages'], '', '', {'format': office['format'], 'extraction_state': office['extraction_state']}
     if media_type not in {'text/html', 'application/xhtml+xml'}:
         raise SourceError('unsupported_type', '只读取支持的官方HTML、PDF或Office原文。')
+    html = rendered_source_html(decode_text(raw, content_type), url)
     parser = _VisibleHTML()
-    parser.feed(rendered_source_html(decode_text(raw, content_type), url))
+    parser.feed(html)
     parser.close()
     text, title = parser.result()
-    links = _bounded_links(((item['href'], item['label']) for item in parser.links), url)
+    if _html_access_gate(parser, text, title):
+        raise SourceError('restricted', '官方页面要求验证码、登录或访问验证，尚未取得招生原文。')
+    navigation = extract_navigation(html, url)
+    pairs = [(item['href'], item['label']) for item in parser.links]
+    pairs.extend((item['url'], item['label']) for item in navigation if item['kind'] != 'script')
+    links = _bounded_links(pairs, url)
     return text, [{'page': 1, 'text': text}], title, re.sub(r'\s+', ' ', ''.join(parser.heading)).strip(), {'format': 'html',
-                                                                                                    'links': links}
+                                                                                                    'links': links, 'navigation': navigation}
 
 
 def _fetched_document(current, unit, raw, content_type, text, pages, title, heading, extraction_info):
@@ -402,6 +480,7 @@ def _fetched_document(current, unit, raw, content_type, text, pages, title, head
         raise SourceError('wrong_unit', attribution['reason'])
     document = {'url': current, 'text': text, 'pages': pages, 'raw': raw,
                 'sha256': hashlib.sha256(raw).hexdigest(), 'content_type': content_type,
+                'network_verified': True,
                 'checked_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
                 'document_title': title, 'document_heading': heading,
                 'attribution_status': attribution['status'], 'attribution_reason': attribution['reason'],
@@ -460,6 +539,39 @@ def extract_saved_document(raw, content_type='', url='', *, timeout=15, pdf_extr
 def fetch_official_document(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
                             resolver=socket.getaddrinfo, transport=_transport,
                             cache_dir=None, pdf_extractor=None):
+    return _fetch_official_resource(url, unit, timeout=timeout, max_bytes=max_bytes,
+        resolver=resolver, transport=transport, cache_dir=cache_dir, pdf_extractor=pdf_extractor)
+
+
+def fetch_navigation_resource(url, unit=None, *, timeout=10, max_bytes=MAX_BYTES,
+                              resolver=socket.getaddrinfo, transport=_transport,
+                              authority_scope=None, include_json=False):
+    """Quarantined HTML/JS (or explicitly scoped public JSON), never document facts."""
+    if type(include_json) is not bool or include_json and authority_scope is None:
+        raise SourceError('invalid_limit', '公开JSON读取必须明确提供已审查的访问范围。')
+    return _fetch_official_resource(url, unit, timeout=timeout, max_bytes=max_bytes,
+        resolver=resolver, transport=transport, _navigation=True,
+        _authority_scope=authority_scope, _include_json=include_json)
+
+
+def _scoped_target(url, resolver, scope):
+    """Only an explicit scope can permit the recorded CMS's public IP port."""
+    if scope and scope.get('public_ip_exception') is True:
+        from official_authority import scope_allows
+        try:
+            parts = urlsplit(url)
+            address = ipaddress.ip_address(parts.hostname or '')
+            if parts.port == 8088 and address.is_global and scope_allows(url, scope):
+                return parts.hostname, 8088, (str(address),)
+        except (ValueError, TypeError):
+            pass
+    return public_target(url, resolver)
+
+
+def _fetch_official_resource(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
+                             resolver=socket.getaddrinfo, transport=_transport,
+                             cache_dir=None, pdf_extractor=None, _navigation=False,
+                             _authority_scope=None, _include_json=False):
     """Validate ownership before every hop and connect only to validated IPs."""
     if isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or not 0 < timeout <= 60:
         raise SourceError('invalid_limit', '读取超时必须在0至60秒之间。')
@@ -476,9 +588,18 @@ def fetch_official_document(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
     current = url
     try:
         for hop in range(4):
-            if not official_source_url(current, unit):
+            if _authority_scope is not None:
+                from official_authority import scope_allows
+                allowed = scope_allows(current, _authority_scope)
+            else:
+                allowed = isinstance(unit, dict) and official_source_url(current, unit)
+            if not allowed:
                 raise SourceError('wrong_unit', '来源或重定向不属于所选招生单位。')
-            lookup = _DNS_POOL.submit(public_target, current, resolver)
+            scope = _authority_scope
+            if scope is None and isinstance(unit, dict) and 'official_authorities' in unit:
+                from official_authority import scope_allows
+                scope = next((entry for entry in _official_scopes(unit) if scope_allows(current, entry)), None)
+            lookup = _DNS_POOL.submit(_scoped_target, current, resolver, scope)
             try:
                 target = lookup.result(timeout=remaining())
             except FutureTimeout as error:
@@ -505,6 +626,8 @@ def fetch_official_document(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
                     raise SourceError('restricted', f'官方来源限制访问（HTTP {response.status}）。')
                 if response.status < 200 or response.status >= 300:
                     raise SourceError('http_error', f'官方来源读取失败（HTTP {response.status}）。')
+                if not _navigation and response.getheader('cf-mitigated', '').strip().lower() == 'challenge':
+                    raise SourceError('restricted', '官方来源返回访问挑战页面，尚未取得招生原文。')
                 content_type = response.getheader('Content-Type', '')
                 length = response.getheader('Content-Length', '')
                 if length.isdigit() and int(length) > max_bytes:
@@ -531,6 +654,21 @@ def fetch_official_document(url, unit, *, timeout=10, max_bytes=MAX_BYTES,
                         response.close()
                 finally:
                     semaphore.release()
+            if _navigation:
+                media = content_type.split(';', 1)[0].strip().lower()
+                allowed_media = {'text/html', 'application/xhtml+xml', 'application/javascript',
+                                 'text/javascript', 'application/x-javascript', 'text/plain'}
+                if _include_json:
+                    allowed_media.add('application/json')
+                if media not in allowed_media:
+                    raise SourceError('unsupported_type', '导航资料只读取公开HTML、JavaScript或明确授权的JSON。')
+                text = decode_text(raw, content_type)
+                remaining()
+                return {'url': current, 'raw': raw, 'text': text,
+                        'network_verified': True,
+                        'sha256': hashlib.sha256(raw).hexdigest(), 'content_type': content_type,
+                        'checked_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
+                        'navigation_only': True}
             try:
                 text, pages, title, heading, extraction_info = _extract(raw, content_type, cache_dir, pdf_extractor, remaining, current)
             except SourceError:

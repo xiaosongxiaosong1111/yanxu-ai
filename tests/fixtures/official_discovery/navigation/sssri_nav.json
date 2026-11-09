@@ -1,0 +1,29 @@
+{
+  "key": "sssri_nav",
+  "requested_url": "https://www.sssri.com/cms_files/jcms1/web10/site/script/0/1508071635173033.js",
+  "retrieved_at": "2026-11-09T14:18:44.679704+08:00",
+  "method": "Python requests GET (no credentials)",
+  "final_url": "https://www.sssri.com/cms_files/jcms1/web10/site/script/0/1508071635173033.js",
+  "http_status": 200,
+  "response_bytes": 7806,
+  "response_sha256": "b3259168ca271f27cc44770d451d685122c3b77014341cccaec7e46cdff27743",
+  "content_type": "application/javascript",
+  "title": null,
+  "snippets": [
+    {
+      "needle": "人力资源",
+      "found": 1,
+      "raw_html_snippets": [
+        "       <li><a href=\\\"/col/col2084/index.html\\\">科技创新</a></li>\");\ndocument.writeln(\"        <li><a href=\\\"/col/col2085/index.html\\\">人力资源</a></li>\");\ndocument.writeln(\"        <li><a href=\\\"/col/col2086/index.html\\\">党群工作</a></li>\");\ndocument.writeln(\"      </ul>\");\ndocument.writeln(\"    </div>\");\ndocument.writeln(\"    <div class=\\\"box\\\" id=\\\"naavbox\\\" style=\\\"height:0px;opacity:0;overflow:hidden;\\\">\");\ndocument.writeln(\"      <div class=\\\"cont\\\" style=\\\"display:none;height:0px;\\\"></div>\");\ndocument.writeln(\"      <div class=\\\"cont\\\" style=\\\"display:none;width:120px;margin-left:50p"
+      ]
+    },
+    {
+      "needle": "col4322",
+      "found": 1,
+      "raw_html_snippets": [
+        "\\\"display:none;width:120px;margin-left:350px;\\\">\");\ndocument.writeln(\"      \t<iframe height=\\\"35\\\"  marginheight=\\\"0\\\" src=\\\"/col/col4322/index.html\\\" frameborder=\\\"0\\\"   allowtransparency=\\\"allowtransparency\\\" marginwidth=\\\"0\\\" scrolling=\\\"no\\\"></iframe>\");\ndocument.writeln(\"      </div>\");\ndocument.writeln(\"      <div class=\\\"cont\\\" style=\\\"display:none;width:120px;margin-left:450px;\\\">\");\ndocument.writeln(\"      \t<iframe height=\\\"125\\\"  marginheight=\\\"0\\\" src=\\\"/col/col4323/index.html\\\" frameborder=\\\"0\\\"   allowtransparency=\\\"allowtransparency\\\" marginwidth=\\\"0\\\" scrolling=\\\"no"
+      ]
+    }
+  ],
+  "read_result": "response_read"
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "url": "https://www.sxtcm.edu.cn/",
+    "checked_at": "2026-11-09T07:26:51+00:00",
+    "pid": 6324,
+    "pinned_addresses": [
+      "219.243.131.108",
+      "2001:250:c24:1::12"
+    ],
+    "status": 200,
+    "complete": true,
+    "headers": {
+      "Content-Type": "text/html",
+      "Location": ""
+    },
+    "sha256": "181dd11039cc1f7a93a39b78a26cc630ab9891042699f27ac772fc22fa941334",
+    "response_bytes": 77788,
+    "raw_path": "181dd11039cc1f7a93a39b78a26cc630ab9891042699f27ac772fc22fa941334.bin",
+    "integrity_verified": true
+  },
+  {
+    "url": "https://www.fudan.edu.cn/516/list.htm",
+    "checked_at": "2026-11-09T07:26:51+00:00",
+    "pid": 6324,
+    "status": 0,
+    "complete": false,
+    "error_code": "fetch_error",
+    "error_message": "Recorded connection failed: RemoteDisconnected",
+    "headers": {},
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "response_bytes": 0,
+    "raw_path": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.bin",
+    "integrity_verified": true
+  },
+  {
+    "url": "https://www.qhnu.edu.cn/",
+    "checked_at": "2026-11-09T07:26:51+00:00",
+    "pid": 6324,
+    "pinned_addresses": [
+      "210.27.144.28",
+      "2001:250:1e00:2::144:28"
+    ],
+    "status": 200,
+    "complete": true,
+    "headers": {
+      "Content-Type": "text/html",
+      "Location": ""
+    },
+    "sha256": "4fdb0d6e73d0fb8427f1da485220f502597ad2cd9d697631e8e1b58aa2caa507",
+    "response_bytes": 100279,
+    "raw_path": "4fdb0d6e73d0fb8427f1da485220f502597ad2cd9d697631e8e1b58aa2caa507.bin",
+    "integrity_verified": true
+  }
+]

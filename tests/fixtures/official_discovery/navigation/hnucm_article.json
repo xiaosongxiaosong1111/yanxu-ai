@@ -1,0 +1,37 @@
+{
+  "key": "hnucm_article",
+  "requested_url": "https://yjsy.hnucm.edu.cn/info/1093/6723.htm",
+  "retrieved_at": "2026-11-09T14:18:44.678999+08:00",
+  "method": "Python requests GET (no credentials)",
+  "final_url": "https://yjsy.hnucm.edu.cn/info/1093/6723.htm",
+  "http_status": 200,
+  "response_bytes": 16082,
+  "response_sha256": "589d70745d204511cf082debfe838fc482d3575deb4c30c89d3cf7595044a3a1",
+  "content_type": "text/html",
+  "title": "湖南中医药大学2027年硕士研究生招生章程-湖南中医药大学研究生院",
+  "snippets": [
+    {
+      "needle": "湖南中医药大学2027年硕士研究生招生章程",
+      "found": 2,
+      "raw_html_snippets": [
+        "\">\r\n<link rel=\"stylesheet\" href=\"../../news/css/public.css\" />\r\n<link rel=\"stylesheet\" href=\"../../news/css/style.css\" />\r\n<title>湖南中医药大学2027年硕士研究生招生章程-湖南中医药大学研究生院</title><META Name=\"keywords\" Content=\"湖南中医药大学研究生院,招生简章,湖南,南中,中医药,中医,医药,大学,2027,20,27,硕士研究生,硕士,研究生,研究,招生,章程\" />\r\n\r\n<!--Announced by Visual SiteBuilder 9-->\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../_sitegray/_sitegray_d.css\" />\r\n<script language=\"javascript\" src=\"../../_sitegray/_sitegray.js\"></script>\r\n<!-- CustomerNO:7765626265723230747a475353525742000100004e50 -->\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"../../conten",
+        "pt\" src=\"/system/resource/js/jquery/jquery-latest.min.js\"></script>\r\n<div class=\"content\">\r\n    <h1 align=\"center\" class=\"titles\">湖南中医药大学2027年硕士研究生招生章程</h1>\r\n    <div align=\"center\" class=\"label\">2026年09月30日 17:21&nbsp;&nbsp;点击：[<script>_showDynClicks(\"wbnews\", 1305969438, 6723)</script>] </div>\r\n\r\n    <div id=\"vsb_content\"><div class=\"v_news_content\">\r\n<p style=\"text-indent: 0\">\r\n <script>var vsb_pdf_image_data = [\"/__local/8/A5/67/63B216E152BFA91650C2D0E77A4_903F7BE4_35BA3.jpg\",\"/__local/C/7A/62/9967CC4EEB6BC631DF09AFF8292_A2F25C7C_2BDA6.jpg\",\"/__local/1/10/19/F9CBBC7DC2FBFF6DF05BCC391FD_F3A9"
+      ]
+    },
+    {
+      "needle": "2026年09月30日",
+      "found": 1,
+      "raw_html_snippets": [
+        ">\r\n<div class=\"content\">\r\n    <h1 align=\"center\" class=\"titles\">湖南中医药大学2027年硕士研究生招生章程</h1>\r\n    <div align=\"center\" class=\"label\">2026年09月30日 17:21&nbsp;&nbsp;点击：[<script>_showDynClicks(\"wbnews\", 1305969438, 6723)</script>] </div>\r\n\r\n    <div id=\"vsb_content\"><div class=\"v_news_content\">\r\n<p style=\"text-indent: 0\">\r\n <script>var vsb_pdf_image_data = [\"/__local/8/A5/67/63B216E152BFA91650C2D0E77A4_903F7BE4_35BA3.jpg\",\"/__local/C/7A/62/9967CC4EEB6BC631DF09AFF8292_A2F25C7C_2BDA6.jpg\",\"/__local/1/10/19/F9CBBC7DC2FBFF6DF05BCC391FD_F3A9B15E_3781E.jpg\",\"/__local/7/3E/91/96D8624B17EA41332D9421"
+      ]
+    },
+    {
+      "needle": "showVsbpdfIframe",
+      "found": 1,
+      "raw_html_snippets": [
+        "__local/4/85/A5/166CAC609FD294871B0A4FC4AE6_582BC988_2C0AF.jpg\",\"/__local/4/63/2C/47D07788D990E96275C592066CE_C47C50C8_F280.jpg\"];showVsbpdfIframe(\"/__local/9/B6/0C/4E68EC0D8303646DF91EAC60F67_0E05D953_348BD.pdf\",\"100%\",\"600\",\"11\",\"border:1px solid #DDDDDD\",vsb_pdf_image_data);</script></p>\r\n<p><br></p>\r\n</div></div><div id=\"div_vote_id\"></div>\r\n    \r\n    <p>\r\n        <UL style=\"list-style-type:none;\"> \r\n            <li>附件【<a href=\"/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1305969438&wbfileid=17918073\" target=\"_blank\">湖南中医药大学2027年硕士研究生招生专业目录（挂网）.pdf</a>】已下载<span id"
+      ]
+    }
+  ],
+  "read_result": "response_read"
+}

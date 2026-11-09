@@ -915,7 +915,8 @@ class AdmissionService:
         binding_missing = not roots
         result = official_search.run_ladder(
             call, queries=variants, is_official=is_official, unit_name=unit['name'], roots=roots,
-            candidate_enabled=binding_missing, site=site, include_third=scope == 'extended',
+            candidate_enabled=True, site=site, include_third=scope == 'extended',
+            target_match=lambda row:official_search.target_matches(row,year,payload['kind']),
             third_query=f"{unit['name']} 考研 经验 报录比 参考书" if scope == 'extended' else None)
         official_results = result['official_results']
         candidates = result['candidate_results']
@@ -934,5 +935,7 @@ class AdmissionService:
                 'request_count': result['request_count'], 'failure_stage': stage,
                 'binding_status': 'missing' if binding_missing else 'bound',
                 'binding_domains': list(roots),
+                'target_status':result['target_status'],'target_results':result['target_results'],
+                'navigation_results':result['navigation_results'],
                 'notice': official_search.notice(official_results, candidates, third_results,
                                                  len(result['queries_tried']), binding_missing=binding_missing)}

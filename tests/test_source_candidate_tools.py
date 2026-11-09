@@ -303,7 +303,7 @@ class SourceCandidateToolTests(unittest.TestCase):
                 fact = next(row for row in plan['facts'] if row['fact'] == 'subjects')
                 self.assertEqual(fact['status'], 'unknown')
                 self.assertIsNone(fact['value'])
-                self.assertEqual(fact['next_action']['tool'], 'search_official_sources')
+                self.assertEqual(fact['next_action']['tool'], 'discover_official_entry')
         for subjects in (complete, complete[:3], complete[:2],
                          [{key: value for key, value in item.items() if key != 'exam_unit'} for item in complete]):
             with self.subTest(complete=subjects):

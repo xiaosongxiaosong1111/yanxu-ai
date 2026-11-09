@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-11-09",
+  "documents": [
+    {
+      "url": "https://www.fudan.edu.cn/2025/1009/c24a146881/page.htm",
+      "requested_url": "https://www.fudan.edu.cn/2025/1009/c24a146881/page.htm",
+      "status": 200,
+      "content_type": "text/html",
+      "sha256": "6e84fa22ed0c2d8d203a9939f0da81a3bbf1513d43e2973e198a1b26e8e13a97",
+      "checked_at": "2026-11-09T07:53:20.931690+00:00",
+      "bytes": 97275,
+      "unit_name": "复旦大学",
+      "unit_code": "10246",
+      "official_url": "https://gsao.fudan.edu.cn/",
+      "quote": "招生网址：https://gsao.fudan.edu.cn",
+      "raw_path": "fudan.html",
+      "review_type": "manually_reviewed_official_publication",
+      "boundary": "Official entry only. This does not establish any 2027 admissions fact or autonomous discovery success."
+    },
+    {
+      "url": "https://www.qhnu.edu.cn/",
+      "requested_url": "https://www.qhnu.edu.cn/",
+      "status": 200,
+      "content_type": "text/html",
+      "sha256": "4fdb0d6e73d0fb8427f1da485220f502597ad2cd9d697631e8e1b58aa2caa507",
+      "checked_at": "2026-11-09T07:53:20.839750+00:00",
+      "bytes": 100279,
+      "unit_name": "青海师范大学",
+      "unit_code": "10746",
+      "official_url": "https://yjsb.qhnu.edu.cn/",
+      "quote": "研究生招生",
+      "raw_path": "qhnu.html",
+      "review_type": "manually_reviewed_official_publication",
+      "boundary": "Official entry only. This does not establish any 2027 admissions fact or autonomous discovery success."
+    },
+    {
+      "url": "https://www.sxtcm.edu.cn/",
+      "requested_url": "https://www.sxtcm.edu.cn/",
+      "status": 200,
+      "content_type": "text/html",
+      "sha256": "181dd11039cc1f7a93a39b78a26cc630ab9891042699f27ac772fc22fa941334",
+      "checked_at": "2026-11-09T07:53:20.775504+00:00",
+      "bytes": 77788,
+      "unit_name": "山西中医药大学",
+      "unit_code": "10809",
+      "official_url": "https://yjsb.sxtcm.edu.cn/",
+      "quote": "研究生招生",
+      "raw_path": "sxtcm.html",
+      "review_type": "manually_reviewed_official_publication",
+      "boundary": "Official entry only. This does not establish any 2027 admissions fact or autonomous discovery success."
+    }
+  ]
+}

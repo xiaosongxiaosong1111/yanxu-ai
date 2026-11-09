@@ -29,6 +29,27 @@ EXTERNAL_PATH = PROJECT_ROOT / 'data' / 'official_bindings.json'
 # machine-readable reason a reviewer can replay; `evidence` must be an
 # official page that was actually read. `checked_at` is the review date.
 CURATED = (
+    # Reviewed raw originals and their SHA256 live in fixtures/official_discovery/reviewed_roots.
+    # These are entry bindings, never proof of a requested year's admissions facts.
+    {
+        'name': '复旦大学', 'aliases': (), 'unit_code': '10246',
+        'domains': ({'url': 'https://gsao.fudan.edu.cn/', 'role': 'admissions_site',
+            'relation': 'institution_publication_names_admissions_site',
+            'evidence': 'https://www.fudan.edu.cn/2025/1009/c24a146881/page.htm',
+            'evidence_quote': '招生网址：https://gsao.fudan.edu.cn', 'checked_at': '2026-11-09'},),
+    },
+    {
+        'name': '青海师范大学', 'aliases': (), 'unit_code': '10746',
+        'domains': ({'url': 'https://yjsb.qhnu.edu.cn/', 'role': 'admissions_site',
+            'relation': 'linked_from_institution_homepage', 'evidence': 'https://www.qhnu.edu.cn/',
+            'evidence_quote': '研究生招生 → https://yjsb.qhnu.edu.cn/', 'checked_at': '2026-11-09'},),
+    },
+    {
+        'name': '山西中医药大学', 'aliases': (), 'unit_code': '10809',
+        'domains': ({'url': 'https://yjsb.sxtcm.edu.cn/', 'role': 'admissions_site',
+            'relation': 'linked_from_institution_homepage', 'evidence': 'https://www.sxtcm.edu.cn/',
+            'evidence_quote': '研究生招生 → https://yjsb.sxtcm.edu.cn/', 'checked_at': '2026-11-09'},),
+    },
     {
         'name': '中国科学院大学',
         'aliases': ('国科大',),

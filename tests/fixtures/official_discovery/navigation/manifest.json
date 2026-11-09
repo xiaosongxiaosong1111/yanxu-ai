@@ -1,0 +1,75 @@
+[
+  {
+    "file": "cug-index.html",
+    "url": "https://yz.cug.edu.cn/",
+    "sha256": "ca3af6fbdcc9fc90be5a8fe7955d33102740ad1ea54fc7d215b8cba4e1cc5754",
+    "recorded_source": "D:\\CodexRuntime\\yanxu-official-discovery-review-20261109\\unbound\\raw\\cug-index.html",
+    "type": "complete_original_html"
+  },
+  {
+    "file": "ynufe-2027.html",
+    "url": "https://www.ynufe.edu.cn/yjsy/info/1010/6011.htm",
+    "sha256": "681a3996f3c4d66174c88f07996e2dcaefbd0d5222eb30464746fd0d2401d1b2",
+    "recorded_source": "D:\\CodexRuntime\\yanxu-official-discovery-review-20261109\\unbound\\raw\\ynufe-2027.html",
+    "type": "complete_original_html"
+  },
+  {
+    "file": "sssri_nav.json",
+    "url": "https://www.sssri.com/cms_files/jcms1/web10/site/script/0/1508071635173033.js",
+    "response_sha256": "b3259168ca271f27cc44770d451d685122c3b77014341cccaec7e46cdff27743",
+    "type": "immutable_original_recorded_snippets"
+  },
+  {
+    "file": "sssri_hr.json",
+    "url": "https://www.sssri.com/col/col2085/index.html",
+    "response_sha256": "7497a62d1950688fcab4804ceac56f4d36f7f70c16efb2f8682566f4783dbe53",
+    "type": "immutable_original_recorded_snippets"
+  },
+  {
+    "file": "sssri_grad_redirect.json",
+    "url": "https://www.sssri.com/col/col2121/index.html",
+    "response_sha256": "ddfe998f64c83a4d761595915ce0c09c9915979a3316d62a1c625128bfdd21cf",
+    "type": "immutable_original_recorded_snippets"
+  },
+  {
+    "file": "hnucm_article.json",
+    "url": "https://yjsy.hnucm.edu.cn/info/1093/6723.htm",
+    "response_sha256": "589d70745d204511cf082debfe838fc482d3575deb4c30c89d3cf7595044a3a1",
+    "type": "immutable_original_recorded_snippets"
+  },
+  {
+    "file": "coal-cms-record.json",
+    "url": "http://125.34.90.207:8088/#/",
+    "type": "recorded_public_nonstandard_port_requires_scoped_authorization"
+  },
+  {
+    "file": "bisu-homepage.html",
+    "url": "https://yanzhao.bisu.edu.cn/",
+    "sha256": "e20f784b69a46779995f5b0603abbebb76d27695f8d3bcdba064ccb1fd3a78fe",
+    "checked_at": "2026-11-09T06:44:12+00:00",
+    "type": "complete_original_safe_public_get"
+  },
+  {
+    "file": "bisu-action.js",
+    "url": "https://caibian.bisu.edu.cn:443/mixmedia/static/yjszsw/statics/js/action.js",
+    "sha256": "a19f417b61552d5696aeb0b76510816e5f8158304cac2a9641d668c521f28634",
+    "checked_at": "2026-11-09T06:44:11+00:00",
+    "type": "complete_original_safe_public_get"
+  },
+  {
+    "file": "sssri-navigation.js",
+    "url": "https://www.sssri.com/cms_files/jcms1/web10/site/script/0/1508071635173033.js",
+    "sha256": "b3259168ca271f27cc44770d451d685122c3b77014341cccaec7e46cdff27743",
+    "checked_at": "2026-11-09T06:38:12+00:00",
+    "type": "complete_original_safe_public_get"
+  },
+  {
+    "file": "nsmc-download-captcha.html",
+    "url": "https://www.nsmc.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1998980164&wbfileid=2E5581C91F14EBB44C814F5C68FC4D2E",
+    "sha256": "7794657ae1e088dd13ad9f5950c235580d07b0da68c5f73b6bb345dca16b01ab",
+    "response_sha256": "89e199c25520033dfcefcc8dbee4f947ca54618eec1fb50bff62cde057b926a7",
+    "checked_at": "2026-11-09T14:17:09.782063+08:00",
+    "type": "existing_saved_public_challenge_html",
+    "note": "Saved text copy preserves the original public challenge content; saved-file hash differs from HTTP response hash due to prior text-save newline conversion."
+  }
+]

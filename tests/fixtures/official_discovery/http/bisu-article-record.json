@@ -1,0 +1,25 @@
+{
+  "purpose": "expected-response fixture only; never a discovery seed",
+  "records": [
+    {
+      "url": "https://yanzhao.bisu.edu.cn/content/WS6abf29facf1e7b21db96eb68.html",
+      "checked_at": "2026-11-09T06:46:19+00:00",
+      "pid": 26268,
+      "pinned_addresses": [
+        "121.228.190.68",
+        "58.211.15.211",
+        "240e:978:6404::e",
+        "240e:979:1406:700::56"
+      ],
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/html;charset=UTF-8",
+        "Location": ""
+      },
+      "sha256": "07505e5efa69ad83143400739b861f8843124126128d2d9eb2904506aa51fbbc",
+      "response_bytes": 67174,
+      "raw_path": "07505e5efa69ad83143400739b861f8843124126128d2d9eb2904506aa51fbbc.bin",
+      "integrity_verified": true
+    }
+  ]
+}

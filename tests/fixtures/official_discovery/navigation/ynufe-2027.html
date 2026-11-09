@@ -1,0 +1,540 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>云南财经大学2027年硕士研究生招生章程-云南财经大学-研究生院</title><meta name="pageType" content="3">
+<meta name="pageTitle" content="云南财经大学2027年硕士研究生招生章程">
+<META Name="keywords" Content="云南财经大学-研究生院,硕士招生,研究生,招生,硕士,财经大学,云南,章程" />
+
+    <link rel="stylesheet" type="text/css" href="../../dfiles/12888/pub/yjsyxz/css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../dfiles/12888/pub/yjsyxz/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../../dfiles/12888/pub/yjsyxz/css/bootstrap.min.css" />
+
+      <script type="text/javascript" src="../../dfiles/12888/pub/yjsyxz/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../dfiles/12888/pub/yjsyxz/js/base.js"></script>
+    <script type="text/javascript" src="../../dfiles/12888/pub/yjsyxz/js/jquery.superslide.js"></script>
+
+    <script type="text/javascript" src="../../dfiles/12888/pub/yjsyxz/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../../dfiles/12888/pub/yjsyxz/js/jquery-migrate.min.js"></script>
+          <script type="text/javascript" src="../../dfiles/12888/pub/yjsyxz/js/main.js"></script>
+      <style>
+      .page-news-cont{
+      
+      min-height: 400px;}
+           </style> 
+  <!--Announced by Visual SiteBuilder 9-->
+<link rel="stylesheet" type="text/css" href="../../_sitegray/_sitegray_d.css" />
+<script language="javascript" src="../../_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:7765626265723230797a46545050574200030002435d -->
+<link rel="stylesheet" type="text/css" href="../../nry.vsb.css" />
+<body><script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1010,'/nry.jsp',6011,1981186608)</script>
+</head>
+
+  
+<div class="container clearfix">
+      <div class="row">
+        <div class="l" id="logo">
+<!-- 网站logo图片地址请在本组件"内容配置-网站logo"处填写 -->
+<a href="../../index.htm" title="研究生院">     <img src="../../images/logo.png" height="110px;"></a></div>
+        <!-- 3.1.3版本 -->
+
+
+
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/js/jquery/jquery-latest.min.js"></script><script language="javascript" src="/system/resource/vue/vue.js"></script><script language="javascript" src="/system/resource/vue/bluebird.min.js"></script><script language="javascript" src="/system/resource/vue/axios.js"></script><script language="javascript" src="/system/resource/vue/polyfill.js"></script><script language="javascript" src="/system/resource/vue/token.js"></script><LINK href="/system/resource/vue/static/element/index.css" type="text/css" rel="stylesheet"><script language="javascript" src="/system/resource/vue/static/element/index.js"></script><script language="javascript" src="/system/resource/vue/static/public.js"></script><script language="javascript" src="/system/resource/openapp/search/js/containsHtmlTags.js"></script><script language="javascript" src="/system/resource/openapp/search/layui/layui.js"></script>
+<div id="divu1"></div>
+<script type="text/html" id="htmlu1">
+    <div id="appu1">
+        <div v-if="!isError" class="search-item">
+       
+            
+               <input class="search-input" name="query" type="text" placeholder="search"  autocomplete=off v-model=query.keyWord @keyup.enter="onSubmit">
+            <button type="submit" class="search-button"  v-on:click="onSubmit()"></button> 
+            
+        </div>
+        <div v-if="isError" style="color: #b30216; font-size:18px;text-align: center;padding:20px;">
+            应用维护中！
+        </div>
+    </div>
+</script>
+<script>
+    $("#divu1").html($("#htmlu1").text());
+</script>
+<script>
+    var appOwner = "1981186608";
+    var token = 'tourist';
+    var urlPrefix = "/aop_component/";
+
+    jQuery.support.cors = true;
+    $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+    });
+
+    new Vue({
+        el: "#appu1",
+        data: function () {
+            return {
+                query: {
+                    keyWord: "",//搜索关键词
+                    owner: appOwner,
+                    token: token,
+                    urlPrefix: urlPrefix,
+                    lang:"i18n_zh_CN"
+                },
+                isError: false
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            // _this.init();
+        },
+        methods: {
+            init: function(){
+                $.ajax({
+                    url: "/aop_component//webber/search/test",
+                    type: "get",
+                    success: function (response) {
+                        if (response.code == "0000") {
+                        } else if (response.code == "220") {
+                            _this.isError = true;
+                            console.log(response);
+                        } else if (!response.code) {
+                            _this.isError = true;
+                            console.log(response);
+                        }
+                    },
+                    error: function (response) {
+                        _this.isError = true;
+                    }
+                });
+            },
+            onSubmit: function (e) {
+                var url = "/aop_views/search/modules/resultpc/soso.html";
+                if ("10" == "1" || "10" == "2") {
+                    url = "" + url;
+                }
+                var _this = this;
+                var query = _this.query;
+                if (url.indexOf("?") > -1) {
+                    url = url.split("?")[0];
+                }
+                if (query.keyWord) {
+                    var query = new Base64().encode(JSON.stringify(query));
+                    window.open(url + "?query=" + query);
+                } else {
+                    alert("请填写搜索内容")
+                }
+            },
+        }
+    })
+</script>
+
+<script>
+   var appElementu1 = document.querySelector("#appu1");
+   if (appElementu1 && appElementu1.__vue__) {
+
+   } else {
+      $("#divu1").html($("#htmlu1").text());
+      var appOwner = "1981186608";   
+      var urlPrefix = "/aop_component/";
+      var ifLogin="";
+      var token = ifLogin=='true'?gettoken(10, true).trim():'tourist';
+      if (containsHtmlTags(token) || !token) { 
+         token = 'tourist';
+      }
+      jQuery.support.cors = true;
+      $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+      });
+      var queryInfou1 = {
+        query: {
+            keyWord: "",//搜索关键词
+            owner: appOwner,
+            token: token,
+            urlPrefix: urlPrefix,
+            lang:"i18n_zh_CN"
+        },
+        isError: false
+      };
+      function keyUpFunu1(e){
+        var theEvent = e || window.event;
+        var keyCode = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if(keyCode == 13){
+          onSubmitu1();
+        }
+      };
+
+      function onSubmitu1(e) {
+        queryInfou1.query.keyWord= $("#appu1  .qwss").val();
+        
+        var url = "/aop_views/search/modules/resultpc/soso.html";      
+        if ("10" == "1" || "10" == "2") {
+           url = "" + url;
+        }
+        var query = queryInfou1.query;
+        if (url.indexOf("?") > -1) {
+            url = url.split("?")[0];
+        }
+        if (query.keyWord) {
+            var query = new Base64().encode(JSON.stringify(query));
+            window.open(url + "?query=" + query);
+        } else {
+            alert("请填写搜索内容")
+        }
+      };
+   }
+</script>
+        
+      </div>
+    </div>
+
+    <!-- 导航 -->
+    <div id="nav"><nav class="container navbar affix-top" data-spy="affix" data-offset-top="108">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle btn-navbar collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+ 
+ 
+     
+     
+         <li class="dropdown">
+         
+         <a class="yanse1" href="../../index.htm">首页    </a>
+         
+         
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="dropdown-toggle" data-toggle="dropdown" href="https://www.ynufe.edu.cn/pub/yjsyxz/gk/index.htm">概况    
+         <span class="caret caret-on"></span>  </a>
+         
+         
+            <ul class="dropdown-menu">
+            
+
+                                 <li><a href="../../gk/jgjj.htm">机构简介</a></li>
+
+                                 <li><a href="../../gk/jgsz.htm">机构设置</a></li>
+
+                                 <li><a href="../../gk/xrld.htm">现任领导</a></li>
+
+                                 <li><a href="../../gk/lsyg.htm">历史沿革</a></li>
+
+                                 <li><a href="../../gk/lrld.htm">历任领导</a></li>
+                               </ul>
+                               
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="yanse3" href="../../zs.htm">招生    
+         <span class="caret caret-on"></span>  </a>
+         
+         
+            <ul class="dropdown-menu">
+            
+
+                                 <li><a href="../../zs/bszs.htm">博士招生</a></li>
+
+                                 <li><a href="../../zs/sszs.htm">硕士招生</a></li>
+
+                                 <li><a href="../../zs/gatzs.htm">港澳台招生</a></li>
+                               </ul>
+                               
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="dropdown-toggle" data-toggle="dropdown" href="https://www.ynufe.edu.cn/pub/yjsyxz/py/index.htm">培养    
+         <span class="caret caret-on"></span>  </a>
+         
+         
+            <ul class="dropdown-menu">
+            
+
+                                 <li><a href="../../py/bs.htm">博士</a></li>
+
+                                 <li><a href="../../py/xsss.htm">学术硕士</a></li>
+
+                                 <li><a href="../../py/zyss.htm">专业硕士</a></li>
+
+                                 <li><a href="../../py/zlgc.htm">质量工程</a></li>
+
+                                 <li><a href="../../py/jyjxdd.htm">教育教学督导</a></li>
+                               </ul>
+                               
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="dropdown-toggle" data-toggle="dropdown" href="https://www.ynufe.edu.cn/pub/yjsyxz/xw/index.htm">学位    
+         <span class="caret caret-on"></span>  </a>
+         
+         
+            <ul class="dropdown-menu">
+            
+
+                                 <li><a href="../../xw/xsbdjc.htm">学术不端检测</a></li>
+
+                                 <li><a href="../../xw/xwlwms.htm">学位论文盲审</a></li>
+
+                                 <li><a href="../../xw/xwlwdb.htm">学位论文答辩</a></li>
+
+                                 <li><a href="../../xw/xwsy.htm">学位授予</a></li>
+
+                                 <li><a href="../../xw/xwlwcj.htm">学位论文抽检</a></li>
+
+                                 <li><a href="../../xw/yxlwtjps.htm">优秀论文推荐评审</a></li>
+                               </ul>
+                               
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="dropdown-toggle" data-toggle="dropdown" href="https://www.ynufe.edu.cn/pub/yjsyxz/zh/index.htm">综合管理    
+         <span class="caret caret-on"></span>  </a>
+         
+         
+            <ul class="dropdown-menu">
+            
+
+                                 <li><a href="../../zhgl/xl.htm">校历</a></li>
+
+                                 <li><a href="../../zhgl/gl.htm">管理</a></li>
+
+                                 <li><a href="../../zhgl/dagl.htm">档案管理</a></li>
+
+                                 <li><a href="../../zhgl/hdfc.htm">活动风采</a></li>
+                               </ul>
+                               
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="dropdown-toggle" data-toggle="dropdown" href="https://www.ynufe.edu.cn/pub/yjsyxz/gzzd/index.htm">规章制度    
+         <span class="caret caret-on"></span>  </a>
+         
+         
+            <ul class="dropdown-menu">
+            
+
+                                 <li><a href="../../gzzd/gj.htm">国家</a></li>
+
+                                 <li><a href="../../gzzd/yns.htm">云南省</a></li>
+
+                                 <li><a href="../../gzzd/xj.htm">校级</a></li>
+                               </ul>
+                               
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="dropdown-toggle" data-toggle="dropdown" href="https://www.ynufe.edu.cn/pub/yjsyxz/xzzq/index.htm">下载专区    
+         <span class="caret caret-on"></span>  </a>
+         
+         
+            <ul class="dropdown-menu">
+            
+
+                                 <li><a href="../../xzzq/zs.htm">招生</a></li>
+
+                                 <li><a href="../../xzzq/py.htm">培养</a></li>
+
+                                 <li><a href="../../xzzq/xw.htm">学位</a></li>
+
+                                 <li><a href="../../xzzq/xj.htm">学籍</a></li>
+
+                                 <li><a href="../../xzzq/ds.htm">导师</a></li>
+
+                                 <li><a href="../../xzzq/zl.htm">质量</a></li>
+                               </ul>
+                               
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="yanse9" href="https://gms.ynufe.edu.cn/" target="_blank">研究生管理系统    </a>
+         
+         
+                               
+          </li>
+
+     
+     
+         <li class="dropdown">
+         
+         <a class="yanse10" href="https://www.ynufe.edu.cn/yjslc/" target="_blank">研究生论丛    </a>
+         
+         
+                               
+          </li>
+
+     
+
+     
+
+     
+
+     
+
+     
+
+     
+            
+     
+            
+          </ul>
+        </div>
+      </nav></div>
+    
+    
+    
+       <!-- banner -->
+    <div class="container"><img src="../../images/listbeijing.png" id="side_ul_col"></div> 
+    
+    
+    
+    
+    
+    
+    
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+              <!-- crumbs start -->
+               <div class="global-crumbs-bar">
+                      <div class="title">
+硕士招生</div>
+              <div class="crumbs"> <span class="home"> &nbsp;   
+ 
+                 <a href="../../index.htm">首页</a>
+                &raquo;
+                <a href="../../zs.htm">招生</a>
+                &raquo;
+                <a href="../../zs/sszs.htm">硕士招生</a>
+                &raquo;
+                正文
+        
+        </span></div>
+              
+              
+            </div>
+              <!-- crumbs end -->
+
+                 <!-- page-list start -->
+                 
+                  <div class="page-news-cont">
+
+<script language="javascript" src="/system/resource/js/dynclicks.js"></script><script language="javascript" src="../../_dwr/interface/NewsvoteDWR.js"></script><script language="javascript" src="../../_dwr/engine.js"></script><script language="javascript" src="/system/resource/js/news/newscontent.js"></script><script language="javascript" src="/system/resource/js/ajax.js"></script><form name="_newscontent_fromname">
+
+
+                <div class="news-cont-info-article">
+                  <div class="title">
+                    云南财经大学2027年硕士研究生招生章程
+                  </div>
+                  <div class="info">
+                                  信息来源：
+                                  <span>作者：</span>
+                    <span>发布时间：2026-09-30</span>
+                  </div>
+                </div>
+                <div class="content">
+                
+                
+  <div id="vsb_content"><div class="v_news_content">
+<p style="text-indent: 0"><script>var vsb_pdf_image_data = ["/__local/3/26/FC/B84A6572529C6631DCCA8C7713D_08D4A48C_143E9.jpg","/__local/9/CF/0D/AC54B9DBE984825FE7CA953E4BD_D63690D2_52A94.jpg","/__local/4/E1/9B/4ED1A80BE222E6A03DAE77510FE_0995E682_47912.jpg","/__local/4/F8/92/5AA4C26FAAED4CD30E160037F9E_F6A2027C_4227D.jpg","/__local/4/29/B2/9DCCFF59DAEB66CA5134800CDE8_0D53BAE5_4393E.jpg","/__local/1/6F/61/C2180F43FED2E23E7379D1181D9_2F4D2F5D_53920.jpg","/__local/F/C5/BC/E609A5C2407A838F968AD052C1E_DB1A08BF_581FA.jpg","/__local/9/72/41/E4826090EF9F88B8ECB1829FBC8_F41331C2_5AC6F.jpg","/__local/F/B0/DB/476D4E3D0DA138828F72ABC9B32_C6367A4B_48B3F.jpg","/__local/0/17/9C/990411BB240CBE1BACA4DB288CE_BD2B18E5_51163.jpg","/__local/1/54/B7/5903F10D57C0B3FB6C488C12C68_2C70B8C8_4AA93.jpg","/__local/0/6E/EB/7C5FB6051A206CB40DD724926B8_D3FF4029_41C58.jpg","/__local/5/24/D5/E402311C953D3759FC7D8248195_12767DE3_1C448.jpg","/__local/4/DA/8B/4609AB5202FCCEA91D253659ECA_CC0C798C_3917D.jpg","/__local/D/EF/D2/860F4AAFBFAC3F1E063C74AABDF_0B9B184B_2F8B9.jpg","/__local/9/DA/52/419EA247BD82E14A5BEA73927E8_7C61D4B9_35735.jpg","/__local/E/74/80/4B40906FE393E2AF90B0AFAF786_5F020407_2D1B3.jpg","/__local/4/31/EE/4012EB87C6A836C5AB301807768_919892CA_34EC6.jpg","/__local/5/6E/00/C83DC71F40DE749455C419A5427_3A09B4E4_27275.jpg","/__local/5/3A/6A/4D91EEF98B3E3F1C2BF91AFE8BB_B9C2B546_33FF9.jpg","/__local/F/A6/19/EC4D6BE549714E4C753A68636BB_445D8228_30071.jpg","/__local/3/2A/A2/5B99246B278AF0EF5C4984CCABA_3DE97B5E_34A2E.jpg","/__local/C/27/B1/8207BF64CFB1130AC49A78D58D6_7C88C48D_39E7D.jpg","/__local/0/88/A9/BD858FC2AAA9FFBC1127A4D5271_3C2403A5_38877.jpg","/__local/0/26/E3/CFD8862F8F783382D12AF429F89_171172B5_37C1D.jpg","/__local/D/11/28/9D2AE1357EB22A1F5BEE0487E3D_37466B21_43823.jpg","/__local/4/EF/5C/3298950D14506641A1808B2927E_F3A51AD6_3B9D1.jpg","/__local/E/BE/85/4C943C5D68F88FF5DD7D538FD62_8B1B9718_39548.jpg","/__local/D/C6/33/F7231FF71FFE5BF2D42CA67288A_1C03C2D3_3A4D6.jpg","/__local/6/14/33/6E815FA31BE074A8CBD9E7AAC83_3ECDEBD2_37A2C.jpg","/__local/B/C0/D4/F2ED3BC8BB661927D0CE2CC7C3A_74E181EE_37BD5.jpg","/__local/A/66/A8/9A32832D2F98FFDEE35C2C32891_4CD9CAEE_3CDE1.jpg","/__local/3/E3/FB/0FD2C5F07805F23EFDCA1AFDC9B_50F37BEF_34E7C.jpg","/__local/4/18/D9/96EC5108013EE8190A4D2AC7868_244D6CF3_367A5.jpg","/__local/F/D3/85/637F8F089F6BFA1450ED7D4797E_50C67F0A_2BD46.jpg","/__local/A/F4/8F/62C06E93FC802891EEE4EB5D200_3548BBF2_362B3.jpg","/__local/0/C4/B2/64D87BDD34DA53C248ED5642B0F_A6C9F097_2BCE8.jpg","/__local/F/A2/ED/5C34E59452F57595C8356582693_CD690D39_1D44F.jpg","/__local/2/A3/1F/65836F811F672A8EBFE45F5BA2B_DAFE849A_5D3CA.jpg","/__local/1/F8/90/4D5D2E40D022348D764F7D35D79_4600AED7_2283D.jpg","/__local/8/B8/7C/DB1AB8517A7C2D471F4DB7201DF_79D0C24F_52F3E.jpg","/__local/4/F4/AF/91776742E0A4652B2A6D52A2A7C_036EE01F_31496.jpg","/__local/7/C5/15/B776552DFDDA2F190BC3C920870_CAE6EEBA_3E8D1.jpg","/__local/3/6F/CA/F97A2414F33538CF73679D0457A_B17FE50A_3B7EB.jpg","/__local/3/6B/B3/C4AEB25AB12490E31C0D98EA744_0035CACA_2C20D.jpg"];showVsbpdfIframe("/__local/7/25/DF/27615BDAF8824CC661AAAF40574_E463C9FE_7A812.pdf","100%","600","0","border:1px solid #DDDDDD",vsb_pdf_image_data);</script></p><p><br></p>
+</div></div>
+
+
+                </div>
+              
+
+
+
+
+
+</form>
+</div>
+                 
+                 
+                 
+              
+              <!-- page-list end -->
+          </div>
+        </div>
+      </div>
+
+         
+<!-- foot -->
+
+
+  <div id="footer">
+          <div class="container clearfix">
+            <div class="row">
+              <div class="col-lg-7 col-md-9 col-sm-7 col-xs-7">
+                <div id="footercontent" class="pull-left" style="margin-top:10px;"><!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+<p>版权所有： 云南财经大学研究生院</p><p>Copyright 2022 Graduate school of Yunnan University of Finance and Economics</p><p>地址: 昆明市龙泉路237号&nbsp;邮编: 650221</p></div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-5 col-xs-5" id="wx">
+                <div class="wx">    
+
+                  <img src="../../images/qrcode.jpg">
+                    <p>研究生院微信公众号</p>
+                
+
+</div>
+              </div>
+            </div>
+          </div>
+        </div>     
+        
+        
+         <!-- flexbox -->
+        <div class="global-fixedbox">
+          <a href="javascript:;" class="btn btn-gotop J-goTop">
+            <i class="icon"></i>
+            <span class="name">置顶</span>
+          </a>
+        </div>
+            
+
+</body></html>

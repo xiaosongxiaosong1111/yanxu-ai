@@ -544,7 +544,7 @@ class ServiceTests(unittest.TestCase):
 
     def test_search_uses_fixed_endpoint_public_terms_and_filters_vr_domains(self):
         observed = []
-        pages = [json.dumps({'title': '目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'}),
+        pages = [json.dumps({'title': '2027年硕士研究生招生专业目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'}),
                  json.dumps({'title': '非官方', 'url': 'https://unrelated.example/info'}),
                  json.dumps({'title': '伪域名', 'url': 'https://a.edu.cn.evil.example/info'}),
                  'not-json', {'title': '中心公告', 'url': 'https://yz.chsi.com.cn/notice'}]
@@ -582,7 +582,7 @@ class ServiceTests(unittest.TestCase):
                 def opener(request, timeout):
                     bodies.append(json.loads(request.data))
                     return Response(json.dumps({'Response': {'Pages': [
-                        json.dumps({'title': '招生目录', 'url': page_url, 'content': '公开资料'})],
+                        json.dumps({'title': '2027年硕士研究生招生专业目录', 'url': page_url, 'content': '公开资料'})],
                         'RequestId': 'req-binding'}}).encode())
 
                 service = AdmissionService(self.data, engine=self.engine, search_api_key='test-key',
@@ -614,7 +614,7 @@ class ServiceTests(unittest.TestCase):
         for url, accepted in cases:
             with self.subTest(url=url):
                 self.service._search_response = Mock(return_value={
-                    'Pages': [{'title': '招生目录', 'url': url}], 'RequestId': 'offline-fixture'})
+                    'Pages': [{'title': '2027年硕士研究生招生专业目录', 'url': url}], 'RequestId': 'offline-fixture'})
                 result = self.service.search({'unit_id': '123', 'year': 2027, 'kind': 'catalog'})
                 official = [row['url'] for row in result['results'] if row['source_tier'] == 'official']
                 self.assertEqual(official, [url] if accepted else [])
@@ -624,7 +624,7 @@ class ServiceTests(unittest.TestCase):
     def test_search_retries_without_site_when_the_site_filter_is_empty(self):
         bodies, responses = [], [
             {'Response': {'RequestId': 'req-empty', 'Query': '公开查询', 'Version': 'standard'}},
-            {'Response': {'Pages': [json.dumps({'title': '目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
+            {'Response': {'Pages': [json.dumps({'title': '2027年硕士研究生招生专业目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
                           'RequestId': 'req-wide'}},
         ]
         def opener(request, timeout):
@@ -644,7 +644,7 @@ class ServiceTests(unittest.TestCase):
             {'Response': {'Pages': [json.dumps({'title': '转载', 'url': 'https://unrelated.example/info'}),
                                     json.dumps({'title': '伪域名', 'url': 'https://a.edu.cn.evil.example/info'}),
                                     'not-json'], 'RequestId': 'req-site'}},
-            {'Response': {'Pages': [json.dumps({'title': '目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
+            {'Response': {'Pages': [json.dumps({'title': '2027年硕士研究生招生专业目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
                           'RequestId': 'req-wide'}},
         ]
         def opener(request, timeout):
@@ -803,7 +803,7 @@ class ServiceTests(unittest.TestCase):
 
     def test_extended_scope_labels_third_party_leads_and_keeps_official_results(self):
         bodies, responses = [], [
-            {'Response': {'Pages': [json.dumps({'title': '目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
+            {'Response': {'Pages': [json.dumps({'title': '2027年硕士研究生招生专业目录', 'url': 'https://grad.a.edu.cn/catalog', 'content': '公开资料'})],
                           'RequestId': 'req-official'}},
             {'Response': {'Pages': [json.dumps({'title': '经验帖', 'url': 'https://kaoyan.offcn.com/a', 'content': '第三方汇总'}),
                                     json.dumps({'title': '无关', 'url': 'https://unrelated.example/info'}),

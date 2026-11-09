@@ -469,6 +469,11 @@ def _program_result(program, profile):
             status = "unknown" if actual is None else "matched" if actual <= limit else "excluded"
             message = "相同计费口径下符合预算" if status == "matched" else "已知学费超过预算" if status == "excluded" else "计费口径或学制不足，无法核对预算"
             fee_evidence = (program["tuition"].get("evidence") or evidence) if isinstance(program.get("tuition"), dict) else evidence
+            tuition = program['tuition'] if isinstance(program.get('tuition'),dict) else {}
+            if (field == 'max_total_tuition' and tuition.get('period') == 'year'
+                    and not (_number(tuition.get('total')) and tuition['total'] >= 0)
+                    and total is not None and program.get('duration_evidence')):
+                fee_evidence = [*_source(fee_evidence), *_source(program['duration_evidence'])]
             reasons.append(_reason(field, status, message, fee_evidence))
     for field, actual, expected in (("study_mode", program.get("study_mode"), profile["study_mode"]),
                                     ("provinces", program.get("province"), profile["provinces"])):

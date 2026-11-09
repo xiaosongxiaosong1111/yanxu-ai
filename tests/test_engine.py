@@ -346,6 +346,25 @@ class RankingTests(unittest.TestCase):
         self.assertEqual(candidates[0]["subject_changes"]["count"], 0)
         self.assertLess(next(index for index, item in enumerate(candidates) if item["program"]["id"] == target["id"]), 20)
 
+    def test_derived_total_keeps_single_dict_fee_and_duration_proofs(self):
+        fee = {**EVIDENCE, 'document_id': 'fee', 'quote': '每年12000元'}
+        duration = {**EVIDENCE, 'document_id': 'duration', 'quote': '学制3年'}
+        row = program(tuition={'amount': 12000, 'period': 'year', 'evidence': fee},
+                      duration_evidence=duration)
+        before = copy.deepcopy(row)
+        result = one(match_programs([row], profile(max_total_tuition=35000)))
+        reason = next(value for value in result['reasons'] if value['field'] == 'max_total_tuition')
+        self.assertEqual(reason['status'], 'excluded')
+        self.assertEqual({ref['document_id'] for ref in reason['evidence']}, {'fee', 'duration'})
+        self.assertEqual(row, before)
+
+    def test_malformed_fee_records_remain_unknown_when_checking_total_budget(self):
+        for tuition in (12000, '12000', True, ['12000']):
+            with self.subTest(tuition=tuition):
+                result = one(match_programs([program(tuition=tuition)], profile(max_total_tuition=35000)))
+                reason = next(value for value in result['reasons'] if value['field'] == 'max_total_tuition')
+                self.assertEqual(reason['status'], 'unknown')
+
     def test_annual_and_total_tuition_are_independent_hard_limits(self):
         rows = [program("annual", tuition={"amount": 20000, "period": "year"}, duration_years=3),
                 program("total", tuition={"amount": 40000, "period": "total"}),
