@@ -215,8 +215,8 @@ R2 门禁修复代码提交：`256327e`；生成提交（含 LF 绑定修复）�
 
 ```json
 {"all": [
-  {"field": "degree_type", "op": "eq", "value": "bachelor", "evidence": "..."},
-  {"any": [{"field": "major", "op": "in", "value": ["0812"], "evidence": "..."}]},
+  {"field": "education", "op": "eq", "value": "bachelor", "evidence": "..."},
+  {"any": [{"field": "background", "op": "in", "value": ["计算机科学与技术"], "evidence": "..."}]},
   {"when": {"field": "study_mode", "op": "eq", "value": "part_time", "evidence": "..."},
    "field": "work_years", "op": "gte", "value": 2, "evidence": "..."}
 ]}
