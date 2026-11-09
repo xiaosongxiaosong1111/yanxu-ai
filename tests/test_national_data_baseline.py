@@ -660,36 +660,47 @@ class SelectTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'gaps'):
             baseline.select_batch([row], expansion=1, backfill=0)
 
+    def backfill_row(self, unit_id, program_count, verified_tuition=0,
+                     verified_duration=0, gaps=None):
+        row = {'unit_id': unit_id, 'year': 2027,
+               'official_url': 'https://a.edu.cn/',
+               'official_url_evidence': entry_evidence(),
+               'program_count': program_count,
+               'verified_tuition': verified_tuition,
+               'verified_duration': verified_duration,
+               'verified_full_qualification': 0,
+               'gaps': [] if gaps is None else gaps}
+        return attach_proof(row)
+
     def test_backfill_pool_prefers_units_with_programs_and_no_fields(self):
-        rows = [
-            {'unit_id': '9', 'program_count': 40, 'tuition': 0, 'duration': 0, 'gaps': []},
-            {'unit_id': '8', 'program_count': 12, 'tuition': 0, 'duration': 0, 'gaps': []},
-            {'unit_id': '7', 'program_count': 80, 'tuition': 3, 'duration': 0, 'gaps': []},
-        ]
+        rows = [self.backfill_row('9', 40), self.backfill_row('8', 12),
+                self.backfill_row('7', 80, verified_tuition=3)]
         picks = baseline.select_batch(rows, expansion=0, backfill=2)
         self.assertEqual([row['unit_id'] for row in picks['backfill']], ['9', '8'])
 
     def test_backfill_pool_retains_partially_covered_units_by_remaining_count(self):
-        rows = [
-            {'unit_id': '5', 'program_count': 100, 'verified_tuition': 90,
-             'verified_duration': 95, 'gaps': []},
-            {'unit_id': '4', 'program_count': 20, 'verified_tuition': 0,
-             'verified_duration': 0, 'gaps': []},
-            {'unit_id': '3', 'program_count': 100, 'verified_tuition': 100,
-             'verified_duration': 100, 'gaps': []},
-        ]
+        rows = [self.backfill_row('5', 100, verified_tuition=90, verified_duration=95),
+                self.backfill_row('4', 20),
+                self.backfill_row('3', 100, verified_tuition=100, verified_duration=100)]
         picks = baseline.select_batch(rows, expansion=0, backfill=2)
         self.assertEqual([row['unit_id'] for row in picks['backfill']], ['4', '5'])
 
     def test_backfill_pool_prefers_units_whose_originals_are_already_collected(self):
-        rows = [
-            {'unit_id': '5', 'program_count': 200, 'tuition': 0, 'duration': 0,
-             'gaps': ['missing_tuition', 'original_pending']},
-            {'unit_id': '4', 'program_count': 30, 'tuition': 0, 'duration': 0,
-             'gaps': ['missing_tuition']},
-        ]
+        rows = [self.backfill_row('5', 200,
+                                  gaps=['missing_tuition', 'original_pending']),
+                self.backfill_row('4', 30, gaps=['missing_tuition'])]
         picks = baseline.select_batch(rows, expansion=0, backfill=2)
         self.assertEqual([row['unit_id'] for row in picks['backfill']], ['4', '5'])
+
+    def test_backfill_pool_requires_a_trusted_entry(self):
+        good = self.backfill_row('3', 10)
+        bad = self.backfill_row('2', 50)
+        bad['entry_verification'].update(status='rejected',
+                                         reason='no_exact_annual_document')
+        bad['entry_verification']['proof_sha256'] = baseline._entry_fingerprint(bad)
+        self.assertFalse(baseline.entry_trusted(bad))
+        picks = baseline.select_batch([bad, good], expansion=0, backfill=1)
+        self.assertEqual([row['unit_id'] for row in picks['backfill']], ['3'])
 
     def test_select_batch_records_queue_binding(self):
         picks = baseline.select_batch([self.expansion_row()], expansion=1, backfill=0,
@@ -712,16 +723,29 @@ class AuditTests(unittest.TestCase):
         snapshot = data / 'snapshots' / 'national' / '2027' / 'u1'
         snapshot.mkdir(parents=True)
         (snapshot / f'aaaabbbbccccdddd-{saved_sha[:16]}.html').write_bytes(saved)
+        saved2 = ('<html><p>研究生院网站主页：'
+                  '<a href="https://b.edu.cn/">https://b.edu.cn/</a></p></html>').encode('utf-8')
+        saved2_sha = hashlib.sha256(saved2).hexdigest()
+        document2_id = f'national-u2-2027-eeeeffff00001111-{saved2_sha[:12]}'
+        snapshot2 = data / 'snapshots' / 'national' / '2027' / 'u2'
+        snapshot2.mkdir(parents=True)
+        (snapshot2 / f'eeeeffff00001111-{saved2_sha[:16]}.html').write_bytes(saved2)
         u1_evidence = {'url': STATEMENT_URL, 'sha256': saved_sha,
                        'quote': 'https://a.edu.cn/', 'link_label': '研究生院网站主页',
                        'relation': 'official_home_link', 'linked_url': 'https://a.edu.cn/',
+                       'verification': 'replayed_from_saved_chsi_official_site_statement'}
+        u2_statement = ('https://yz.chsi.com.cn/zsgs/zsjz/detail.action?'
+                        'zsgsId=3552467249&schCode=10002')
+        u2_evidence = {'url': u2_statement, 'sha256': saved2_sha,
+                       'quote': 'https://b.edu.cn/', 'link_label': '研究生院网站主页',
+                       'relation': 'official_home_link', 'linked_url': 'https://b.edu.cn/',
                        'verification': 'replayed_from_saved_chsi_official_site_statement'}
         write_json(data / 'units.json', {'units': [
             {'id': 'u1', 'name': '甲大学', 'unit_code': '10001', 'province': '甲省',
              'official_url': 'https://a.edu.cn/', 'official_url_evidence': u1_evidence},
             {'id': 'u2', 'name': '乙大学', 'unit_code': '10002', 'province': '乙省',
              'official_url': 'https://b.edu.cn/',
-             'official_url_evidence': entry_evidence('https://b.edu.cn/')}]})
+             'official_url_evidence': u2_evidence}]})
         write_json(data / 'admissions.json', {
             'documents': [], 'admitted_statistics': [], 'score_lines': [],
             'metadata': {},
@@ -741,7 +765,10 @@ class AuditTests(unittest.TestCase):
                                'quote': '甲大学2027年硕士研究生招生章程'}]},
                 {'unit_id': 'u2', 'unit_code': '10002', 'unit_name': '乙大学',
                  'province': '乙省', 'year': 2027, 'annual_status': 'confirmed',
-                 'evidence': []},
+                 'evidence': [{'document_id': document2_id, 'url': u2_statement,
+                               'sha256': saved2_sha, 'kind': 'annual_master_charter',
+                               'structured_fields': {'schId': 'u2'},
+                               'quote': '乙大学2027年硕士研究生招生章程'}]},
                 {'unit_id': 'u3', 'year': 2027, 'annual_status': 'not_listed'},
                 {'unit_id': 'u4', 'year': '2027', 'annual_status': 'confirmed'}]})
         with open(data / 'catalog_coverage_2027.csv', 'w', encoding='utf-8-sig',
@@ -808,7 +835,7 @@ class AuditTests(unittest.TestCase):
             self.assertEqual(report['queue']['sha256'], batch['queue_sha256'])
             self.assertEqual(report['expansion_pool'],
                              {'candidates': 1, 'trusted': 1, 'untrusted': 0})
-            self.assertEqual(report['entry_proof']['status'], {'verified': 1, 'rejected': 1})
+            self.assertEqual(report['entry_proof']['status'], {'verified': 2})
             self.assertEqual(queue[0]['entry_verification']['status'], 'verified')
             self.assertEqual(len(queue[0]['entry_verification']['proof_sha256']), 64)
             self.assertTrue(queue[0]['entry_trusted'])

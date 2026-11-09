@@ -30,7 +30,7 @@ PROTECTED_FILES = (
     'collectors/catalog_hit_public.py',
 )
 COLLECTIONS = ('documents', 'programs', 'admitted_statistics', 'score_lines')
-SELECTION_RULE_VERSION = 'b001-node0-v3'
+SELECTION_RULE_VERSION = 'b001-node0-v4'
 SUPPORTED_ENTRY_VERIFICATIONS = frozenset({
     'replayed_from_saved_chsi_official_site_statement',
     'saved_visible_original_role_replayed',
@@ -435,6 +435,8 @@ def select_batch(rows, thresholds=None, *, expansion=7, backfill=3, queue_sha256
                            'reason': '已保存2027官方原文但尚无采用方向；本轮先解析并核对目录全集。',
                            'next_step': '建立原件清单与目录全集对账，再按格式选择适配器'})
         elif _backfill_candidate(row):
+            if not entry_trusted(row):
+                continue
             back.append({**row, 'role': 'backfill_fields',
                          'reason': ('已有采用方向但仍有未核验的费用/学制方向；'
                                     '只补剩余缺口，不重复计算既有覆盖，也不改完整资格标志。'),
