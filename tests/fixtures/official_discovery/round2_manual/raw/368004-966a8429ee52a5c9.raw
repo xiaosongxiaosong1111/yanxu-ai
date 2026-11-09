@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html><html><head>
+
+
+
+<meta charset="utf-8">
+<title>研究生院</title><META Name="keywords" Content="研究生院" />
+
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link href="css/index_style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="js/comm.js"></script>
+<!--Announced by Visual SiteBuilder 9-->
+<link rel="stylesheet" type="text/css" href="_sitegray/_sitegray_d.css" />
+<script language="javascript" src="_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:7765626265723230797847545353544603090003 -->
+<link rel="stylesheet" type="text/css" href="index.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/vsbscreen.min.js" id="_vsbscreen" devices="pc|mobile|pad"></script>
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1001,'/index.jsp',-1,2125773728)</script>
+</head>
+
+<body>
+<div class="header">
+  <div class="top_line"></div>
+  <div class="header_logo">
+      <div class="common_width clearfix">
+          <div class="header_logo_l fl"><a href="#"><img src="images/logo.png"></a></div>
+          
+          <!--搜索-->
+          <div class="sosuo clearfix">
+
+
+
+
+
+
+<form class="fr" action="ssjgy2023.jsp?wbtreeid=1001" method="post" name="a207528a" onsubmit="return subsearchdataa207528a()" style="display: inline;">
+  <input type="hidden" name="Find" value="find"><input type="hidden" name="entrymode" value="1"><input type="hidden" id="INTEXT2" name="INTEXT2" value=""><input type="hidden" name="news_search_code">
+ <table border="0" cellspacing="1" cellpadding="0">
+      <tr>
+           <td>
+                <span id="intextspana207528a"></span>
+                <iframe id="intextframea207528a" src="about:blank" scrolling="no" frameborder="0" style="position:absolute;top:0px;left:0px;display:none;"></iframe>
+                <input class="srk" size="12" name="INTEXT">
+           </td>
+           <td align="absmiddle" nowrap="nowrap" height="1">
+                    <input class="anniu" type="submit" name="FindButton" value="" />
+
+           </td>
+      </tr>
+ </table>
+</form>
+<script>
+String.prototype.trim= function()       
+{              
+    var t = this.replace(/(^\s*)|(\s*$)/g, "");     
+    return t.replace(/(^　*)|(　*$)/g, "");     
+}  
+function subsearchdataa207528a()
+{ 
+    if(document.a207528a.INTEXT.value.trim()=="")
+    {
+        alert("请输入查询关键字！");
+        return false;
+    }
+    if(checkDataa207528a(document.a207528a))
+    {
+       return true;  
+    }
+    return false;
+}       
+</script>
+
+    <script language="JavaScript" src="_dwr/engine.js"></script>
+    <script language="JavaScript" src="_dwr/util.js"></script>
+    <script language="JavaScript" src="_dwr/interface/NewsSearchDWR.js"></script>
+    <script language="JavaScript" src="/system/resource/js/vsb_news_search.js"></script>
+    <script language="JavaScript" src="/system/resource/js/vsb_news_search_entry.js"></script>  
+    <script language="JavaScript" src="/system/resource/js/language.js"></script>
+    <script language="JavaScript" src="/system/resource/js/base64.js"></script>
+    <script language="JavaScript" src="/system/resource/js/formfunc.js"></script>    
+    
+    <script>    
+    news_searcha207528a = new vsb_news_search();
+    news_searcha207528a.isShowCode=false;
+    news_searcha207528a.tooltipid = 'tooltipa207528a';
+    news_searcha207528a.apptag = 'intextspana207528a';
+    news_searcha207528a.frametag = 'intextframea207528a';
+    news_search_entrya207528a = new vsb_news_search_entry();
+    news_search_entrya207528a.formname = "a207528a";
+    news_search_entrya207528a.news_search_obj = news_searcha207528a; 
+    news_search_entrya207528a.querytxtsize = 155
+    news_search_entrya207528a.yzmts ="您的查询过于频繁，请输入验证码后继续查询";
+    news_search_entrya207528a.qdstyle ="";
+    news_search_entrya207528a.qdname = "确定";
+    news_search_entrya207528a.qxstyle = "";
+    news_search_entrya207528a.qxname = "取消";
+    news_search_entrya207528a.showstr='请输入查询验证码！';    
+    function checkDataa207528a(formname)
+    {    
+        return news_search_entrya207528a.checkdata(formname)   
+    }
+    </script>
+<script language="javascript" src="/system/resource/js/base64.js"></script> 
+
+
+</div>
+      </div>
+  </div>
+  <div class="nav_width">
+      <div class="nav">
+          <script>
+    var newimg1 = new Image();
+    newimg1.src = "/system/resource/images/nav/imgnav_vsb_level1_bg_1.gif";
+    var newimg2 = new Image();
+    newimg2.src = "/system/resource/images/nav/imgnav_vsb_level1_bg_2.gif";
+    var newimg3 = new Image();
+    newimg3.src = "/system/resource/images/nav/imgnav_vsb_level2_bg_1.png";
+</script>
+<!--[if IE 6]> <style>#c207510{behavior: url("/system/resource/js/hover.htc");}</style><![endif]--> 
+<DIV id="c207510"> 
+<UL id="nav" class="clearfix">
+<LI><A id="current" href="index.htm">首页</A>
+<UL>
+  <LI><A href="http://yjsch.imut.edu.cn/old/">旧版首页</A></LI>
+</UL>
+</LI>
+<LI><A href="bmjj.htm">部门简介</A>
+<UL>
+  <LI><A href="bmjj.htm">部门简介</A></LI>
+  <LI><A href="bmjj/jgsz.htm">机构设置</A></LI>
+  <LI><A href="bmjj/ldfg.htm">领导分工</A></LI>
+</UL>
+</LI>
+<LI><A href="xkzy.htm">学科专业</A>
+<UL>
+  <LI><A href="xkzy/bsxk.htm">博士学科</A></LI>
+  <LI><A href="xkzy/ssxk.htm">硕士学科</A></LI>
+  <LI><A href="xkzy/sszyxw.htm">硕士专业学位</A></LI>
+  <LI><A href="xkzy/btzyxw.htm">博土专业学位</A></LI>
+  <LI><A href="xkzy/ylxk.htm">一流学科</A></LI>
+</UL>
+</LI>
+<LI><A href="zsxx.htm">招生信息</A>
+<UL>
+  <LI><A href="zsxx/sszs.htm">硕士招生</A></LI>
+  <LI><A href="zsxx/bszs.htm">博士招生</A></LI>
+</UL>
+</LI>
+<LI><A href="pyyxj.htm">培养与学籍</A>
+<UL>
+  <LI><A href="pyyxj/xjgl.htm">学籍管理</A></LI>
+  <LI><A href="pyyxj/jxgl.htm">教学管理</A></LI>
+  <LI><A href="pyyxj/pygc.htm">培养过程</A></LI>
+  <LI><A href="pyyxj/zyxwjy.htm">专业学位教育</A></LI>
+</UL>
+</LI>
+<LI><A href="xwgz.htm">学位工作</A>
+<UL>
+  <LI><A href="xwgz/ssxw.htm">硕士学位</A></LI>
+  <LI><A href="xwgz/bsxw.htm">博士学位</A></LI>
+  <LI><A href="xwgz/yxxwlw2.htm">优秀学位论文</A></LI>
+  <LI><A href="xwgz/xwpdwyh.htm">学位评定委员会</A></LI>
+</UL>
+</LI>
+<LI style="width:160px;"><A href="zlbzypg.htm">质量保障与评估</A>
+<UL>
+  <LI><A href="zlbzypg/kcjs.htm">课程建设</A></LI>
+  <LI><A href="zlbzypg/jxyj.htm">教学研究</A></LI>
+  <LI><A href="zlbzypg/pggz2.htm">评估工作</A></LI>
+</UL>
+</LI>
+<LI style="width:160px;"><A href="zygcsxy2.htm">卓越工程师学院</A>
+<UL>
+  <LI><A href="zygcsxy2/xygk.htm">学院概况</A></LI>
+  <LI><A href="zygcsxy2/tzgg.htm">通知公告</A></LI>
+  <LI><A href="zygcsxy2/zsxx.htm">招生信息</A></LI>
+  <LI><A href="zygcsxy2/rcpy.htm">人才培养</A></LI>
+  <LI><A href="zygcsxy2/dsdw.htm">导师队伍</A></LI>
+  <LI><A href="zygcsxy2/xqhz.htm">校企合作</A></LI>
+  <LI><A href="zygcsxy2/gzzd.htm">规章制度</A></LI>
+</UL>
+</LI>
+<LI><A href="http://yjsjygl.imut.edu.cn/gmis/(S(mbsr4ditpbww25fldfuhbnll))/dsfc/dsfc_yx">导师队伍</A>
+<UL>
+  <LI><A href="dsdw1/yxds.htm">优秀导师</A></LI>
+  <LI><A href="http://yjsjygl.imut.edu.cn/gmis/(S(lw3hohnxxumjtig5msn45juw))/dsfc/dsfc_yx">导师简介</A></LI>
+</UL>
+</LI>
+<LI><A href="zbjs.htm">支部建设</A>
+</LI>
+<LI><A href="zcfg.htm">政策法规</A>
+<UL>
+  <LI><A href="zcfg/gjwj.htm">国家文件</A></LI>
+  <LI><A href="zcfg/qjwj.htm">区级文件</A></LI>
+  <LI><A href="zcfg/xjwj.htm">校级文件</A></LI>
+</UL>
+</LI>
+<LI><A href="http://www.imut.edu.cn/">学校首页</A>
+</LI>
+</UL>
+</div>
+      </div>
+  </div>
+</div>
+
+
+
+<!--通知公告-->
+<div class="firstone">
+<div class="section_3 clearfix">
+<!--滚动图片-->
+
+<div class="fl" style="overflow: hidden;">
+
+<div class="section_1 banner">
+<script language="javascript" src="/system/resource/js/dynclicks.js"></script><script language="javascript" src="/system/resource/js/ajax.js"></script><div class="hd">
+  <ul>
+   <li>1</li>
+   <li>1</li>
+   <li>1</li>
+   <li>1</li>
+   <li>1</li>
+  </ul>
+ </div>
+
+ <div class="bd">
+  <ul>
+   <li><a href="info/1162/1806.htm"><img src="/__local/8/73/2D/83CF0CE9EBC6C20D8CFCDA55ED2_EBBECADE_8983.jpg" /></a><p>师德师风监督</p></li>
+   <li><a href="info/1162/1635.htm"><img src="/__local/0/5A/1C/FBD5E97B857F222F87631C232B8_2E525B60_1BCE6.jpg" /></a><p>研究生院党支部联合自治区力学...</p></li>
+   <li><a href="https://mp.weixin.qq.com/s/H1YZy2_XxGrd6waRMU5tSA"><img src="/__local/3/AB/7D/D4036175FE4C2D9A8085C526D11_5DCD152E_B0D0.jpg" /></a><p>公布！内蒙古工业大学张鹏举教...</p></li>
+   <li><a href="info/1189/1757.htm"><img src="/__local/E/84/62/D0515359225E939096138917EF5_E95D2F48_58C0.jpg" /></a><p>研究生院赴企业开展产教融合调...</p></li>
+   <li><a href="https://mp.weixin.qq.com/s/OtWoILOLo13hRqHo1XVSKQ"><img src="/__local/8/17/9C/0E2098D3E836856719745C9F640_EFCAF7EC_17378.jpg" /></a><p>揭牌！启航！内蒙古工业大学卓...</p></li>
+</ul>
+  </div><script>_showDynClickBatch(['dynclicks_u2_1806','dynclicks_u2_1635','dynclicks_u2_1760','dynclicks_u2_1757','dynclicks_u2_1758'],[1806,1635,1760,1757,1758],"wbnews", 2125773728)</script>
+
+  <a class="prev" href="javascript:void(0)"></a>
+  <a class="next" href="javascript:void(0)"></a>
+  </div>
+  </div>
+
+<!--通知公告-->
+<div class="fl news">
+  <div class="main_san_m">
+  <div class="newsbox">
+   <div class="title_2_1 clearfix">
+    <ul class="clearfix tit">
+      <li class="on"><a href="sylm/ynxw.htm" target="">院内新闻</a></li>
+      <li><a href="zcfg.htm" target="">政策法规</a></li>
+    </ul>
+    <span class="more">
+      <a href="sylm/ynxw.htm" target=""><img width="23" height="23" src="images/more.png"></a>
+      <a href="zcfg.htm" style="display: none;"><img width="23" height="23" src="images/more.png"></a>
+      <a href="zsxx.htm" style="display: none;"><img width="23" height="23" src="images/more.png"></a>
+      <a href="xwgz.htm" style="display: none;"><img width="23" height="23" src="images/more.png"></a>
+    </span>
+    </div>
+    <div class="newsCon">
+      <ul class="newsbox">
+              <li><span class="date">2025-11-21</span><a href="https://mp.weixin.qq.com/s/H1YZy2_XxGrd6waRMU5tSA"><p>【院内新闻】公布！内蒙古工业大学张鹏举教授当选中国工程...</p></a></li> 
+     <li><span class="date">2025-11-06</span><a href="info/1189/1757.htm"><p>【院内新闻】研究生院赴企业开展产教融合调研交流</p></a></li> 
+     <li><span class="date">2025-10-30</span><a href="info/1189/1634.htm"><p>【院内新闻】我校2025级研究生新生数据库培训讲座系列活动...</p></a></li> 
+     <li><span class="date">2025-10-13</span><a href="https://mp.weixin.qq.com/s/OtWoILOLo13hRqHo1XVSKQ"><p>【院内新闻】揭牌！启航！内蒙古工业大学卓越工程师学院成立</p></a></li> 
+     <li><span class="date">2025-07-23</span><a href="info/1189/1064.htm"><p>【院内新闻】第44届全国工科研究生教育研讨会在呼和浩特召开</p></a></li> 
+     <li><span class="date">2025-04-09</span><a href="info/1189/1065.htm"><p>【院内新闻】南京航空航天大学研究生院院长、国家卓越工程...</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u3_1760','dynclicks_u3_1757','dynclicks_u3_1634','dynclicks_u3_1758','dynclicks_u3_1064','dynclicks_u3_1065'],[1760,1757,1634,1758,1064,1065],"wbnews", 2125773728)</script>
+  
+      </ul>
+      
+      <ul class="newsbox" style="display: none;">
+              <li><span class="date">2026-11-04</span><a href="http://www.moe.gov.cn/srcsite/A22/s7065/202011/t20201111_499442.html"><p>【国家文件】教育部印发《研究生导师指导行为准则》 教研〔...</p></a></li> 
+     <li><span class="date">2026-11-04</span><a href="https://meng.tsinghua.edu.cn/xxfb/tzgg/6347.htm"><p>【国家文件】工程类硕士专业学位研究生学位论文与申请学位...</p></a></li> 
+     <li><span class="date">2025-09-22</span><a href="info/1188/1555.htm"><p>【校级文件】内蒙古工业大学研究生学籍管理细则（2023年修...</p></a></li> 
+     <li><span class="date">2024-04-29</span><a href="info/1186/1491.htm"><p>【国家文件】中华人民共和国学位法</p></a></li> 
+     <li><span class="date">2024-01-22</span><a href="info/1186/1492.htm"><p>【国家文件】学术学位研究生核心课程指南（试行）</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u4_1869','dynclicks_u4_1868','dynclicks_u4_1555','dynclicks_u4_1491','dynclicks_u4_1492'],[1869,1868,1555,1491,1492],"wbnews", 2125773728)</script>
+
+      </ul>
+
+            
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+  <div class="clearfix"></div>
+
+  
+
+  
+  <div class="content">
+  <div class="main_san clearfix">
+      <div class="main_san_m zysx">
+          <div class="newsbox2">
+              <div class="title_2_1 clearfix">
+                  <ul class="clearfix tit">
+                      <li class="on"><a href="sylm/tzgg.htm" target="">通知公告</a></li>
+                      <li><a href="sylm/dbap.htm" target="">答辩安排</a></li>
+                  </ul>
+                  <span class="more">
+                      <a href="sylm/tzgg.htm"><img width="23" height="23" src="images/more.png"></a> 
+                      <a href="sylm/dbap.htm" style="display: none;"><img width="23" height="23" src="images/more.png"></a> 
+                  </span>
+              </div>
+              <div class="newsCon newsCon2">
+                      <ul class="newsbox">
+                              <li><span class="date">2026-11-02</span><a href="info/1105/1866.htm"><p>关于2026年内蒙古工业大学研究生教育教学改革项目拟...</p></a></li> 
+     <li><span class="date">2026-08-06</span><a href="info/1105/1791.htm"><p>关于2026年内蒙古工业大学研究生教改项目（国际工程...</p></a></li> 
+     <li><span class="date">2026-07-21</span><a href="info/1105/1790.htm"><p>关于2026年度自治区研究生教育教学改革项目拟推荐名...</p></a></li> 
+     <li><span class="date">2026-07-17</span><a href="info/1105/1789.htm"><p>关于2026年度内蒙古工业大学卓越工程师学院工程师技...</p></a></li> 
+     <li><span class="date">2025-09-05</span><a href="info/1105/1026.htm"><p>关于做好2025年秋季学期研究生新生入学报到和在校研...</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u5_1866','dynclicks_u5_1791','dynclicks_u5_1790','dynclicks_u5_1789','dynclicks_u5_1026'],[1866,1791,1790,1789,1026],"wbnews", 2125773728)</script>
+
+                      </ul>
+                      
+                     <ul class="newsbox" style="display: none;">
+                             <li><span class="date">2025-11-14</span><a href="info/1190/1024.htm"><p>测试文章</p></a></li> 
+     <li><span class="date">2025-11-14</span><a href="info/1190/1023.htm"><p>测试文章</p></a></li> 
+     <li><span class="date">2025-11-14</span><a href="info/1190/1022.htm"><p>测试文章</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u6_1024','dynclicks_u6_1023','dynclicks_u6_1022'],[1024,1023,1022],"wbnews", 2125773728)</script>
+
+                     </ul>       
+ 
+                  </div>
+          </div>
+      </div>
+      <div class="main_san_m main_san_m1">
+          <div class="newsbox1">
+              <div class="title_2_1 clearfix">
+                  <ul class="clearfix tit">
+		      <li class="on"><a href="zsxx.htm" target="">招生信息</a></li>
+                      <li><a href="pyyxj.htm" target="">培养与学籍</a></li>
+		      <li><a href="xwgz.htm" target="">学位工作</a></li>
+                      <li><a href="zlbzypg.htm" target="">质量保障与评估</a></li>
+
+                  </ul>
+                  <span class="more">
+                      <a href="pyyxj.htm"><img width="23" height="23" src="images/more.png"></a>
+                      <a href="zlbzypg.htm" style="display: none;"><img width="23" height="23" src="images/more.png"></a>
+                  </span>
+              </div>
+              <div class="newsCon newsCon1">
+                      <ul class="newsbox">
+                               <li><span class="date">2026-10-08</span><a href="info/1171/1841.htm"><p>【硕士招生】2027年全国硕士研究生招生考试内蒙古工业大学...</p></a></li> 
+     <li><span class="date">2026-09-30</span><a href="info/1171/1807.htm"><p>【硕士招生】内蒙古工业大学2027年硕士研究生招生章程</p></a></li> 
+     <li><span class="date">2026-09-15</span><a href="info/1171/1802.htm"><p>【硕士招生】内蒙古工业大学2027年接收推荐免试研究生和直...</p></a></li> 
+     <li><span class="date">2026-09-01</span><a href="info/1171/1797.htm"><p>【硕士招生】关于调整我校2027年全国硕士研究生入学考试招...</p></a></li> 
+     <li><span class="date">2026-06-30</span><a href="info/1172/1769.htm"><p>【博士招生】内蒙古工业大学2026级博士研究生录取通知书发...</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u7_1841','dynclicks_u7_1807','dynclicks_u7_1802','dynclicks_u7_1797','dynclicks_u7_1769'],[1841,1807,1802,1797,1769],"wbnews", 2125773728)</script>
+   
+                      </ul>
+		      <ul class="newsbox" style="display: none;">  
+			     <li><span class="date">2019-08-27</span><a href="info/1157/1319.htm"><p>关于转发自治区教育厅《关于做好内蒙古自治区研究生...</p></a></li> 
+     <li><span class="date">2019-05-28</span><a href="info/1157/1320.htm"><p>关于公布2018年校级教育教学改革立项评审结果的通知</p></a></li> 
+     <li><span class="date">2019-05-08</span><a href="info/1157/1321.htm"><p>关于公布2016年精品课程建设项目结题验收结果的通知</p></a></li> 
+     <li><span class="date">2019-05-08</span><a href="info/1157/1322.htm"><p>关于公布2015年内蒙古自治区教改项目结题验收结果的...</p></a></li> 
+     <li><span class="date">2019-04-28</span><a href="info/1157/1323.htm"><p>关于组织研究生2017-2018年“校级核心课程”建设项目...</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u8_1319','dynclicks_u8_1320','dynclicks_u8_1321','dynclicks_u8_1322','dynclicks_u8_1323'],[1319,1320,1321,1322,1323],"wbnews", 2125773728)</script>
+          
+		      </ul>
+		      
+		      <ul class="newsbox" style="display: none;">
+			       <li><span class="date">2026-09-14</span><a href="info/1158/1801.htm"><p>【学位工作】关于做好2026-2027学年第一学期研究生学位论文...</p></a></li> 
+     <li><span class="date">2026-04-09</span><a href="info/1158/1731.htm"><p>【学位工作】关于推荐申报2025年度自治区  优秀博士、硕士...</p></a></li> 
+     <li><span class="date">2026-03-11</span><a href="info/1158/1679.htm"><p>【学位工作】内蒙古工业大学2026年度研究生学位论文送审、...</p></a></li> 
+     <li><span class="date">2025-09-22</span><a href="info/1158/1124.htm"><p>【学位工作】关于做好2025-2026学年第一学期研究生学位论文...</p></a></li> 
+     <li><span class="date">2025-09-01</span><a href="info/1158/1125.htm"><p>【学位工作】内蒙古工业大学2025-2026学年第一学期研究生学...</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u9_1801','dynclicks_u9_1731','dynclicks_u9_1679','dynclicks_u9_1124','dynclicks_u9_1125'],[1801,1731,1679,1124,1125],"wbnews", 2125773728)</script>
+          
+		      </ul>
+		      
+                      <ul class="newsbox" style="display: none;">
+                             <li><span class="date">2025-04-14</span><a href="info/1159/1422.htm"><p>【质量保障与评估】内蒙古工业大学在修订2025版研究生培养...</p></a></li> 
+     <li><span class="date">2021-06-24</span><a href="info/1159/1423.htm"><p>【质量保障与评估】关于公布我校2020年自治区研究生科研创...</p></a></li> 
+     <li><span class="date">2020-11-19</span><a href="info/1159/1424.htm"><p>【质量保障与评估】关于公布2018年内蒙古自治区教育教学改...</p></a></li> 
+     <li><span class="date">2020-10-20</span><a href="info/1159/1425.htm"><p>【质量保障与评估】关于开展内蒙古自治区研究生科研创新项...</p></a></li> 
+     <li><span class="date">2020-09-22</span><a href="info/1159/1426.htm"><p>【质量保障与评估】关于对2018年自治区研究生教育教学改革...</p></a></li> 
+<script>_showDynClickBatch(['dynclicks_u10_1422','dynclicks_u10_1423','dynclicks_u10_1424','dynclicks_u10_1425','dynclicks_u10_1426'],[1422,1423,1424,1425,1426],"wbnews", 2125773728)</script>
+ 
+                      </ul>
+                      
+                 
+                  </div>
+          </div>
+      </div>
+  </div>
+  
+  <!--图标链接-->
+  <div class="main_xxgg">
+      <div class="cont clearfix">
+      <div class="content">
+          <div class="con1">
+                      <ul class="clearfix">
+                    <li>
+                  <a href="sylm/xtdh.htm">
+                  <div class="conttime">
+                      <h4><img src="images/xtdh3.png"></h4>
+                  </div>
+                  <div class="conttxt">系统导航</div>
+                  </a>
+              </li>
+
+                <li>
+                  <a href="sylm/bszn.htm">
+                  <div class="conttime">
+                      <h4><img src="images/bszn2.png"></h4>
+                  </div>
+                  <div class="conttxt">办事指南</div>
+                  </a>
+              </li>
+
+                <li>
+                  <a href="wdxz.htm">
+                  <div class="conttime">
+                      <h4><img src="images/wdxa.png"></h4>
+                  </div>
+                  <div class="conttxt">文档下载</div>
+                  </a>
+              </li>
+
+                <li>
+                  <a href="sylm/lxwm1.htm">
+                  <div class="conttime">
+                      <h4><img src="images/lxwm.png"></h4>
+                  </div>
+                  <div class="conttxt">联系我们</div>
+                  </a>
+              </li>
+
+
+       </ul>
+
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+  </div>
+
+ <!--友情链接--> 
+<div class="yqlj">
+<div class="yqljtitle clearfix">
+                      <h3 class="yq">友情链接</h3>
+  
+                  <span class="more">
+                      <a href=""></a> 
+                  </span>
+              </div>
+
+
+<div class="xnlj">
+<h3>站点链接</h3>
+<ul>
+<script language="javascript" src="/system/resource/js/openlink.js"></script>    <li><a href="http://www.moe.gov.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2125773728, 36915)">教育部</a></li>
+    <li><a href="http://yz.chsi.com.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2125773728, 36918)">中国研究生招生信息网</a></li>
+    <li><a href="http://www.cdgdc.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2125773728, 36919)">中国学位与研究生教育网</a></li>
+    <li><a href="http://www.chsi.com.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2125773728, 36917)">中国高等教育学生信息网</a></li>
+    <li><a href="https://meng.tsinghua.edu.cn" onclick="_addDynClicks(&#34;wburl&#34;, 2125773728, 36916)">全国工程专业学位研究生教育网</a></li>
+    <li><a href="https://jyt.nmg.gov.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 2125773728, 36914)">内蒙古教育厅</a></li>
+
+</ul>
+<div class="clearfix"></div>
+</div>
+
+
+
+
+</div>
+</div>
+</div>    
+</div>
+  <div class="clearfix"></div>
+<div class="footer">
+<div class="footer_1">
+  <div class="common_width clearfix">
+      
+      <div class="footer_1_2 lxwm">    
+         <!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+<p style="text-align: left;"><span style="font-size: 16px;">版权所有：内蒙古工业大学研究生院</span></p><p style="text-align: left;"><span style="font-size: 16px;">联系邮箱：<a href="mailto:yjsy325@imut.edu.cn">yjsy325@imut.edu.cn</a>&nbsp;&nbsp;&nbsp; &nbsp; 电话：0471-6513739<span style="font-size: 16px;"><br /></span></span></p><p style="text-align: left;"><span style="font-size: 16px;">地址：内蒙古呼和浩特市新城区爱民街49号新城校区 科创大厦1311（1309）</span></p><p style="text-align: left;"><span style="font-size: 16px;"><br /></span></p>
+      </div>
+     <div class="ewm">    <table align="center">
+            <tr>
+                <td align="center">
+                
+                        <a href="" title="研究生院公众号" class="c207553" onclick="_addDynClicks(&#34;wbimage&#34;, 2125773728, 40517)" target="_blank">
+                          <img src="images/footewm.jpg" border="0" width="100" height="100"><br>
+                          <span style="font-size:12px;">研究生院公众号</span>
+                        </a>  
+                </td>
+        </tr>
+</table></div>
+  </div>
+</div>
+<div class="footer_2">
+
+</div>
+</div>
+
+
+
+   
+   
+   
+   
+   
+</SCRIPT>
+
+
+
+</body></html>

@@ -109,6 +109,8 @@ flowchart LR
 
 实现与验收方法见 [官网发现与报考事实闭环](docs/OFFICIAL_DISCOVERY_CLOSURE.md)。
 
+最新另取120个单位做两轮真实官网导航测试，失败按起点、归属、访问、导航和正文分别列出，未观察到总体成功率提升；见 [第二轮实测与共性分析](docs/OFFICIAL_DISCOVERY_ROUND2_20261109.md)。全国目录与资格缺口继续按 [Claude 数据实施手册](docs/CLAUDE_NATIONAL_DATA_RUNBOOK.md) 分批推进；测试和操作计划不代表数据已补齐。
+
 ### 五份真实领域 Skill
 
 Skill 是随研究加载的领域规程文件，工具是实际执行入口。页面区分“未加载、已加载、关联工具已执行”，不会把加载文件等同于完成任务。

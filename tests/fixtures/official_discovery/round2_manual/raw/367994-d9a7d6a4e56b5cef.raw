@@ -1,0 +1,783 @@
+﻿<!DOCTYPE html>
+<html>
+    <head><title>太原理工大学研究生院</title><meta name="pageType" content="1">
+<meta name="pageTitle" content="太原理工大学研究生院">
+<META Name="keywords" Content="太原理工大学研究生院" />
+
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="css/swiper.min.css" rel="stylesheet">
+        <link href="css/common.css" rel="stylesheet" />
+        <link href="css/index.css" rel="stylesheet" />
+        <link href="css/media.css" rel="stylesheet" />
+        <!--[if lte IE 9]>
+        <script src="js/ie.js"></script>
+        <![endif]-->
+    <!--Announced by Visual SiteBuilder 9-->
+<script language="javascript" src="_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:77656262657232307b75465752565742000300024150 -->
+<link rel="stylesheet" type="text/css" href="index.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1001,'/index.jsp',-1,1405338603)</script>
+</head>
+    <body>
+        <script type="text/javascript" src="js/jq.js"></script>
+        <script type="text/javascript" src="js/public.js"></script>
+        <script type="text/javascript" src="js/swiper.min.js"></script>
+        <div class="header">
+            <div class="h1">
+                <div class="w90 flex flex-c-center">
+                    <div class="logo">
+<!-- 网站logo图片地址请在本组件"内容配置-网站logo"处填写 -->
+<a href="index.htm" title="研究生院"><img src="img/logo.png" /></a></div>
+                    <div class="header-right flexbox flex-c-center">
+                        <div class="header-link"><script language="javascript" src="/system/resource/js/dynclicks.js"></script><script language="javascript" src="/system/resource/js/openlink.js"></script><ul class="flex-right">
+        <li><a href="http://www.tyut.edu.cn" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1405338603, 34853)">学校首页</a></li>
+</ul>
+                        
+
+</div>
+                        <div class="search">
+
+
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/js/jquery/jquery-latest.min.js"></script><script language="javascript" src="/system/resource/vue/vue.js"></script><script language="javascript" src="/system/resource/vue/bluebird.min.js"></script><script language="javascript" src="/system/resource/vue/axios.js"></script><script language="javascript" src="/system/resource/vue/polyfill.js"></script><script language="javascript" src="/system/resource/vue/token.js"></script><LINK href="/system/resource/vue/static/element/index.css" type="text/css" rel="stylesheet"><script language="javascript" src="/system/resource/vue/static/element/index.js"></script><script language="javascript" src="/system/resource/vue/static/public.js"></script>
+<div id="divu2"></div>
+<script type="text/html" id="htmlu2">
+    <div id="appu2">
+        <div v-if="!isError">
+            <input type="text" class="searchbox" autocomplete=off v-model=query.keyWord @keyup.enter="onSubmit"/>
+            <input type="submit" class="searchbutton" value="" name="submit_button" v-on:click="onSubmit()">
+            <div class="button"></div>
+        </div>
+        <div v-if="isError" style="color: #b30216; font-size:18px;text-align: center;padding:20px;">
+            应用维护中！
+        </div>
+    </div>
+</script>
+<script>
+    $("#divu2").html($("#htmlu2").text());
+</script>
+<script>
+    var appOwner = "1405338603";
+    var token = gettoken(10);
+    var urlPrefix = "/aop_component/";
+
+    jQuery.support.cors = true;
+    $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+    });
+
+    new Vue({
+        el: "#appu2",
+        data: function () {
+            return {
+                query: {
+                    keyWord: "",//搜索关键词
+                    owner: appOwner,
+                    token: token,
+                    urlPrefix: urlPrefix,
+                    lang:"i18n_zh_CN"
+                },
+                isError: false
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            // _this.init();
+        },
+        methods: {
+            init: function(){
+                $.ajax({
+                    url: "/aop_component//webber/search/test",
+                    type: "get",
+                    success: function (response) {
+                        if (response.code == "0000") {
+                        } else if (response.code == "220") {
+                            _this.isError = true;
+                            console.log(response);
+                        } else if (!response.code) {
+                            _this.isError = true;
+                            console.log(response);
+                        }
+                    },
+                    error: function (response) {
+                        _this.isError = true;
+                    }
+                });
+            },
+            onSubmit: function (e) {
+                var url = "/aop_views/search/modules/resultpc/soso.html";
+                if ("10" == "1" || "10" == "2") {
+                    url = "" + url;
+                }
+                var _this = this;
+                var query = _this.query;
+                if (url.indexOf("?") > -1) {
+                    url = url.split("?")[0];
+                }
+                if (query.keyWord) {
+                    var query = new Base64().encode(JSON.stringify(query));
+                    window.open(url + "?query=" + query);
+                } else {
+                    alert("请填写搜索内容")
+                }
+            },
+        }
+    })
+</script></div>
+                        <div class="nav-menu selectBut">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav"><div class="w90">
+                    <ul class="flex">
+                                                <li class="on">
+                            <h3><a href="index.htm">首页</a></h3>
+                        </li>                        
+                        <li>
+                            <h3><a href="jggk.htm">机构概况</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="jggk/yyjj.htm">研院简介</a></li>
+                                    <li><a href="jggk/bmzz.htm">部门职责</a></li>
+                                    <li><a href="jggk/jgsz.htm">机构设置</a></li>
+                                    <li><a href="jggk/lxxy.htm">联系学院</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="zsgz/sszs/tzgg.htm" target="_blank">招生工作</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="zsgz/sszs/tzgg.htm">硕士招生</a></li>
+                                    <li><a href="zsgz/bszs/tzgg.htm">博士招生</a></li>
+                                    <li><a href="zsgz/yxjdsxx.htm">院系及导师信息</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="xjgz.htm">学籍工作</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="xjgz/xjgl.htm">学籍管理</a></li>
+                                    <li><a href="xjgz/dagl.htm">档案管理</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="pygz.htm">培养工作</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="pygz/kcjx.htm">课程教学</a></li>
+                                    <li><a href="pygz/pyzl.htm">培养质量</a></li>
+                                    <li><a href="pygz/jycx.htm">教育创新</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="dsgz.htm">导师工作</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="dsgz/dslx.htm">导师遴选</a></li>
+                                    <li><a href="dsgz/dspx.htm">导师培训</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="xwgz.htm">学位工作</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="xwgz/rcgz.htm">日常工作</a></li>
+                                    <li><a href="xwgz/xwdgz.htm">学位点工作</a></li>
+                                    <li><a href="xwgz/xwsygz.htm">学位授予工作</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="zygcsxy.htm">卓越工程师学院</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="zygcsxy/xqhz.htm">校企合作</a></li>
+                                    <li><a href="zygcsxy/rcpy.htm">人才培养</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="gzzd/zsgz.htm">规章制度</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="gzzd/zsgz.htm">招生工作</a></li>
+                                    <li><a href="gzzd/xjgz.htm">学籍工作</a></li>
+                                    <li><a href="gzzd/pygz.htm">培养工作</a></li>
+                                    <li><a href="gzzd/gjh.htm">国际化</a></li>
+                                    <li><a href="gzzd/dsgz.htm">导师工作</a></li>
+                                    <li><a href="gzzd/xwgz.htm">学位工作</a></li>
+                                    <li><a href="gzzd/qt.htm">其他</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+                        <li>
+                            <h3><a href="bszn1.htm">办事指南</a></h3>
+                        </li>                        
+                        <li>
+                            <h3><a href="xzzq/zsgz.htm">下载专区</a></h3>
+                            <div class="sub">
+                                <ul class="sub-h">
+                                    <li><a href="xzzq/zsgz.htm">招生工作</a></li>
+                                    <li><a href="xzzq/xjgz.htm">学籍工作</a></li>
+                                    <li><a href="xzzq/pygz.htm">培养工作</a></li>
+                                    <li><a href="xzzq/gjh.htm">国际化</a></li>
+                                    <li><a href="xzzq/dsgz.htm">导师工作</a></li>
+                                    <li><a href="xzzq/xwgz.htm">学位工作</a></li>
+                                    <li><a href="xzzq/qt.htm">其他</a></li>
+                                </ul>
+                            </div>
+                        </li>                        
+</ul>
+                </div></div>
+        </div>
+        <div class="navm-box">
+            <div class="link">
+
+
+<ul class="flex-center flex-wrap">
+    <li><a href="http://www.tyut.edu.cn" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1405338603, 34853)">学校首页</a></li>
+    <li><a href="http://link.tyut.edu.cn" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1405338603, 34856)">校园邮箱</a></li>
+</ul>
+            
+
+</div>
+            <ul class="nav-wrap"><li>
+    <a href="index.htm">首页</a>
+</li>
+<li>
+    <a href="jggk.htm">机构概况</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="jggk/yyjj.htm">研院简介</a></dt>
+        <dt><a href="jggk/bmzz.htm">部门职责</a></dt>
+        <dt><a href="jggk/jgsz.htm">机构设置</a></dt>
+        <dt><a href="jggk/lxxy.htm">联系学院</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="zsgz/sszs/tzgg.htm" target="_blank">招生工作</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="zsgz/sszs/tzgg.htm">硕士招生</a></dt>
+        <dt><a href="zsgz/bszs/tzgg.htm">博士招生</a></dt>
+        <dt><a href="zsgz/yxjdsxx.htm">院系及导师信息</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="xjgz.htm">学籍工作</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="xjgz/xjgl.htm">学籍管理</a></dt>
+        <dt><a href="xjgz/dagl.htm">档案管理</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="pygz.htm">培养工作</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="pygz/kcjx.htm">课程教学</a></dt>
+        <dt><a href="pygz/pyzl.htm">培养质量</a></dt>
+        <dt><a href="pygz/jycx.htm">教育创新</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="dsgz.htm">导师工作</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="dsgz/dslx.htm">导师遴选</a></dt>
+        <dt><a href="dsgz/dspx.htm">导师培训</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="xwgz.htm">学位工作</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="xwgz/rcgz.htm">日常工作</a></dt>
+        <dt><a href="xwgz/xwdgz.htm">学位点工作</a></dt>
+        <dt><a href="xwgz/xwsygz.htm">学位授予工作</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="zygcsxy.htm">卓越工程师学院</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="zygcsxy/xqhz.htm">校企合作</a></dt>
+        <dt><a href="zygcsxy/rcpy.htm">人才培养</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="gzzd/zsgz.htm">规章制度</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="gzzd/zsgz.htm">招生工作</a></dt>
+        <dt><a href="gzzd/xjgz.htm">学籍工作</a></dt>
+        <dt><a href="gzzd/pygz.htm">培养工作</a></dt>
+        <dt><a href="gzzd/gjh.htm">国际化</a></dt>
+        <dt><a href="gzzd/dsgz.htm">导师工作</a></dt>
+        <dt><a href="gzzd/xwgz.htm">学位工作</a></dt>
+        <dt><a href="gzzd/qt.htm">其他</a></dt>
+    </dl>
+</li>
+<li>
+    <a href="bszn1.htm">办事指南</a>
+</li>
+<li>
+    <a href="xzzq/zsgz.htm">下载专区</a>
+    <div class="icon-jia"></div>
+    <dl>
+        <dt><a href="xzzq/zsgz.htm">招生工作</a></dt>
+        <dt><a href="xzzq/xjgz.htm">学籍工作</a></dt>
+        <dt><a href="xzzq/pygz.htm">培养工作</a></dt>
+        <dt><a href="xzzq/gjh.htm">国际化</a></dt>
+        <dt><a href="xzzq/dsgz.htm">导师工作</a></dt>
+        <dt><a href="xzzq/xwgz.htm">学位工作</a></dt>
+        <dt><a href="xzzq/qt.htm">其他</a></dt>
+    </dl>
+</li>
+</ul>
+            <div class="search_m">
+
+
+
+<div id="divu6"></div>
+<script type="text/html" id="htmlu6">
+    <div id="appu6">
+        <div v-if="!isError">
+            <input type="text" class="searchbox" autocomplete=off v-model=query.keyWord @keyup.enter="onSubmit"/>
+            <input type="submit" class="searchbutton" value="" name="submit_button" v-on:click="onSubmit()">
+            <div class="button"></div>
+        </div>
+        <div v-if="isError" style="color: #b30216; font-size:18px;text-align: center;padding:20px;">
+            应用维护中！
+        </div>
+    </div>
+</script>
+<script>
+    $("#divu6").html($("#htmlu6").text());
+</script>
+<script>
+    var appOwner = "1405338603";
+    var token = gettoken(10);
+    var urlPrefix = "/aop_component/";
+
+    jQuery.support.cors = true;
+    $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+    });
+
+    new Vue({
+        el: "#appu6",
+        data: function () {
+            return {
+                query: {
+                    keyWord: "",//搜索关键词
+                    owner: appOwner,
+                    token: token,
+                    urlPrefix: urlPrefix,
+                    lang:"i18n_zh_CN"
+                },
+                isError: false
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            // _this.init();
+        },
+        methods: {
+            init: function(){
+                $.ajax({
+                    url: "/aop_component//webber/search/test",
+                    type: "get",
+                    success: function (response) {
+                        if (response.code == "0000") {
+                        } else if (response.code == "220") {
+                            _this.isError = true;
+                            console.log(response);
+                        } else if (!response.code) {
+                            _this.isError = true;
+                            console.log(response);
+                        }
+                    },
+                    error: function (response) {
+                        _this.isError = true;
+                    }
+                });
+            },
+            onSubmit: function (e) {
+                var url = "/aop_views/search/modules/resultpc/soso.html";
+                if ("10" == "1" || "10" == "2") {
+                    url = "" + url;
+                }
+                var _this = this;
+                var query = _this.query;
+                if (url.indexOf("?") > -1) {
+                    url = url.split("?")[0];
+                }
+                if (query.keyWord) {
+                    var query = new Base64().encode(JSON.stringify(query));
+                    window.open(url + "?query=" + query);
+                } else {
+                    alert("请填写搜索内容")
+                }
+            },
+        }
+    })
+</script></div>
+        </div>
+        <div class="part">
+            <div class="w90">
+                <div class="parta flex flex-wrap">
+                    <div class="pa-left">
+                        <div class="title flex">
+                            <h3>通知公告<span>NOTICE</span></h3>
+                            <div class="more"><a href="index/tzgg.htm">MORE+</a></div>
+                        </div>
+                        <div class="notice-list">
+
+<script language="javascript" src="/system/resource/js/centerCutImg.js"></script><script language="javascript" src="/system/resource/js/ajax.js"></script><ul class="flex flex-wrap">
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>04</h3><span>2026-11</span></div>
+                                    <a href="info/1761/16869.htm" title="关于召开2026年下半年学位评定委员会及报送毕业研究生培养和学位申请材料的通知" class="line2">关于召开2026年下半年学位评定委员会及报送毕业研究生培养和学位申请材料的通知</a>
+                                </li>
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>03</h3><span>2026-11</span></div>
+                                    <a href="info/1321/16849.htm" title="关于开展2026年下半年研究生个人培养计划课程自查工作的通知" class="line2">关于开展2026年下半年研究生个人培养计划课程自查工作的通知</a>
+                                </li>
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>25</h3><span>2026-10</span></div>
+                                    <a href="info/1261/16819.htm" title="&lt;考点工作&gt;太原理工大学报考点2027年全国硕士研究生招生考试审核工作通知" class="line2">&lt;考点工作&gt;太原理工大学报考点2027年全国硕士研究生招生考试审核工作通知</a>
+                                </li>
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>19</h3><span>2026-10</span></div>
+                                    <a href="info/1261/16799.htm" title="关于2027年研究生招生秋季直播宣讲活动的通知" class="line2">关于2027年研究生招生秋季直播宣讲活动的通知</a>
+                                </li>
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>19</h3><span>2026-10</span></div>
+                                    <a href="info/1261/16789.htm" title="太原理工大学接收2027届优秀本科毕业生免试攻读研究生（含直博生）拟录取名单公示" class="line2">太原理工大学接收2027届优秀本科毕业生免试攻读研究生（含直博生）拟录取名单公示</a>
+                                </li>
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>15</h3><span>2026-10</span></div>
+                                    <a href="info/1092/16779.htm" title="关于2027年预毕业研究生学历电子图像信息采集的通知" class="line2">关于2027年预毕业研究生学历电子图像信息采集的通知</a>
+                                </li>
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>09</h3><span>2026-10</span></div>
+                                    <a href="info/1026/16749.htm" title="关于2026年下半年增列外聘研究生指导教师遴选工作的通知" class="line2">关于2026年下半年增列外聘研究生指导教师遴选工作的通知</a>
+                                </li>
+                                
+<li class="flexbox flex-c-center">
+                                    <div class="time"><h3>09</h3><span>2026-10</span></div>
+                                    <a href="info/1026/16739.htm" title="关于2026年下半年增列博士研究生指导教师遴选工作的通知" class="line2">关于2026年下半年增列博士研究生指导教师遴选工作的通知</a>
+                                </li>
+                                
+</ul><script>_showDynClickBatch(['dynclicks_u7_16869','dynclicks_u7_16849','dynclicks_u7_16819','dynclicks_u7_16799','dynclicks_u7_16789','dynclicks_u7_16779','dynclicks_u7_16749','dynclicks_u7_16739'],[16869,16849,16819,16799,16789,16779,16749,16739],"wbnews", 1405338603)</script>
+</div>
+                    </div>
+                    <div class="pa-right">    <ul>
+                            
+<li><a href="https://gsb.tyut.edu.cn/tyutyjs/index" class="flex-center flex-c-center" onclick="_addDynClicks(&#34;wbimage&#34;, 1405338603, 1008739)" target="_blank">
+                                <div class="icon"><img src="img/link_icon1.png"></div>
+                                <p>研究生教育<br>综合服务平台</p>
+                            </a></li>
+                            
+<li><a href="https://gsb.tyut.edu.cn/tyutyjs/index?url=yjszskspt" class="flex-center flex-c-center" onclick="_addDynClicks(&#34;wbimage&#34;, 1405338603, 1008740)" target="_blank">
+                                <div class="icon"><img src="img/link_icon2.png"></div>
+                                <p>研究生<br>招生考试平台</p>
+                            </a></li>
+                            
+</ul></div>
+                </div>
+                <div class="partb flex flex-wrap">
+                    <div class="pb-left">
+                        <div class="title flex">
+                            <h3>新闻动态<span>NEWS</span></h3>
+                            <div class="more"><a href="index/xwdt.htm">MORE+</a></div>
+                        </div>
+                        <div class="flex flex-wrap">
+                            <div class="news-scroll">
+
+<div class="swiper-container">
+                                    <ul class="swiper-wrapper">
+                          <li class="swiper-slide">
+                                            <div class="news_img"><a class="image" href="javascript:;" style="background-image: url(img/weixintupian_20260216140204_16_2670.jpg);"></a></div>
+                                            <div class="news_txt"><a href="javascript:;" class="line1">祝全体教职工新春快乐</a></div>
+                                        </li>
+                                                      
+<li class="swiper-slide">
+                                            <div class="news_img"><a class="image" href="info/1093/16209.htm" title="我校圆满举行新聘任研究生导师专题培训会" style="background-image: url(/__local/A/68/74/E5969C3084B75D977DFE1C3C02F_3D253ED6_13EC7.jpg);"></a></div>
+                                            <div class="news_txt"><a href="info/1093/16209.htm" title="我校圆满举行新聘任研究生导师专题培训会" class="line1">我校圆满举行新聘任研究生导师专题培训会</a></div>
+                                        </li>
+                                        
+<li class="swiper-slide">
+                                            <div class="news_img"><a class="image" href="info/1093/15869.htm" title="我校召开研究生学位工作专题研讨会" style="background-image: url(/__local/D/2A/E0/5B9DE5620D7A14795C7C79619B9_7797B22D_5963B.jpg?e=.jpg);"></a></div>
+                                            <div class="news_txt"><a href="info/1093/15869.htm" title="我校召开研究生学位工作专题研讨会" class="line1">我校召开研究生学位工作专题研讨会</a></div>
+                                        </li>
+                                        
+<li class="swiper-slide">
+                                            <div class="news_img"><a class="image" href="info/1093/15719.htm" title="研究生院召开研究生教育高质量发展推进会" style="background-image: url(/__local/2/50/7D/81D4A551F4B906D3277308EF519_AEB3943D_38215.jpg?e=.jpg);"></a></div>
+                                            <div class="news_txt"><a href="info/1093/15719.htm" title="研究生院召开研究生教育高质量发展推进会" class="line1">研究生院召开研究生教育高质量发展推进会</a></div>
+                                        </li>
+                                        
+<li class="swiper-slide">
+                                            <div class="news_img"><a class="image" href="info/1093/15359.htm" title="我校获批3项教育部学位与研究生教育发展中心2025年度主题案例项目" style="background-image: url(/__local/3/1F/B2/9B0E02BE3D8DBF0755EA5101D9A_C813DEC3_8948.jpg);"></a></div>
+                                            <div class="news_txt"><a href="info/1093/15359.htm" title="我校获批3项教育部学位与研究生教育发展中心2025年度主题案例项目" class="line1" style="font-weight:bold;">我校获批3项教育部学位与研究生教育发展中心2025年度主题案例项目</a></div>
+                                        </li>
+                                        
+<li class="swiper-slide">
+                                            <div class="news_img"><a class="image" href="info/1093/15289.htm" title="我校数学学院博士生王海港荣获校长奖学金  以坚韧精神书写人生传奇" style="background-image: url(/__local/5/E5/C2/B10AE686B1485D3282C9579F42F_F68DAD8B_8F58F.jpg);"></a></div>
+                                            <div class="news_txt"><a href="info/1093/15289.htm" title="我校数学学院博士生王海港荣获校长奖学金  以坚韧精神书写人生传奇" class="line1" style="font-weight:bold;color:#173187;">我校数学学院博士生王海港荣获校长奖学金  以坚韧精神书写人生传奇</a></div>
+                                        </li>
+                                        
+</ul>
+                                </div><script>_showDynClickBatch(['dynclicks_u9_16209','dynclicks_u9_15869','dynclicks_u9_15719','dynclicks_u9_15359','dynclicks_u9_15289'],[16209,15869,15719,15359,15289],"wbnews", 1405338603)</script>
+</div>
+                            <div class="news-list">
+
+<ul>
+<li class="headline flexbox flex-c-center">
+    <div class="time flex-center flex-c-center flex-column"><h3>20</h3><span>2026-07</span></div>
+    <div class="txt">
+        <h3 class="line1"><a href="info/1093/16299.htm" title="研究生院组织研究生指导教师参加2026年全国研究生导师培训班（第四期）">研究生院组织研究生指导教师参加2026年全国研究生导师培训班（第四期）</a></h3>
+        <p class="line2">为深入贯彻落实教育部学位管理与研究生教育司关于新时代研究生教育高质量发展、人工智能工具规范化应用相关工作部署，进一步加强我校研究生导师队伍专业化建设，全面提升导师在数智时代下的科研指导、学术诚信管理与拔尖创新人才培养能力，研究生院组织优秀研究生指导教师代表参加2026年全国研究生导师培训班（第四期）。本次培训于7月12日至7月15日在北京举行，由教育部学位与研究生教育发展中心主办，此次培训构建了政策解读、前沿讲学、...</p>
+    </div>
+</li>
+<li class="flex"><a href="info/1093/16279.htm" title="我校参加2026年研考自命题工作研讨会议-聚焦跨校联合命题改革" class="line1">我校参加2026年研考自命题工作研讨会议-聚焦跨校联合命题改革</a><span>07.16</span></li>
+<li class="flex"><a href="info/1093/16269.htm" title="研究生院组织召开自命题评卷工作研讨会" class="line1">研究生院组织召开自命题评卷工作研讨会</a><span>07.15</span></li>
+<li class="flex"><a href="info/1093/16259.htm" title="研究生院组织一线研究生教育管理者开展系列专题研修活动" class="line1">研究生院组织一线研究生教育管理者开展系列专题研修活动</a><span>07.14</span></li>
+<li class="flex"><a href="info/1093/16209.htm" title="我校圆满举行新聘任研究生导师专题培训会" class="line1">我校圆满举行新聘任研究生导师专题培训会</a><span>06.30</span></li>
+<li class="flex"><a href="info/1093/16139.htm" title="我校召开2026年学位评定委员会第一次会议" class="line1">我校召开2026年学位评定委员会第一次会议</a><span>06.16</span></li>
+</ul><script>_showDynClickBatch(['dynclicks_u10_16299','dynclicks_u10_16279','dynclicks_u10_16269','dynclicks_u10_16259','dynclicks_u10_16209','dynclicks_u10_16139'],[16299,16279,16269,16259,16209,16139],"wbnews", 1405338603)</script>
+</div>
+                        </div>
+                    </div>
+                    <div class="pb-right">
+                        <div class="title flex">
+                            <h3>师生风采<span>TEACHERS AND STUDENTS</span></h3>
+                            <div class="more"><a href="index/ssfc.htm">MORE+</a></div>
+                        </div>
+                        <div class="pbox">
+                            <div class="headline flexbox flex-wrap">
+
+
+
+<div class="head_img"><a href="info/1211/15819.htm" title="我校机械工程学院权龙教授入选中国研究生导师发展共同体首届优秀研究生导师" class="image" style="background-image: url(/__local/F/B5/0A/DF08B10656ECCDC1D52304136EA_1B67C101_1C5E3.jpg?e=.jpg);"></a></div>
+<div class="head_txt">
+    <a href="info/1211/15819.htm" title="我校机械工程学院权龙教授入选中国研究生导师发展共同体首届优秀研究生导师" class="line2">我校机械工程学院权龙教授入选中国研究生导师发展共同体首届优秀研究生导师</a>
+    <span>2026-04-23</span>
+</div>
+                            
+
+<script>_showDynClickBatch(['dynclicks_u11_15819'],[15819],"wbnews", 1405338603)</script>
+</div>
+                            <div class="pb-list">
+
+<ul>
+                                    
+<li class="flex"><a href="info/1211/15819.htm" title="我校机械工程学院权龙教授入选中国研究生导师发展共同体首届优秀研究生导师" class="line1">我校机械工程学院权龙教授入选中国研究生导师发展共同体首届优秀研究生导师</a><span>04.23</span></li>
+                                    
+<li class="flex"><a href="info/1211/15319.htm" title="研究生院组织青年导师赴北京大学参加专题培训" class="line1">研究生院组织青年导师赴北京大学参加专题培训</a><span>01.27</span></li>
+                                    
+<li class="flex"><a href="info/1211/10479.htm" title="太原理工大学参加《工程类专业学位类别硕士学位论文基本要求》研修会" class="line1">太原理工大学参加《工程类专业学位类别硕士学位论文基本要求》研修会</a><span>07.02</span></li>
+                                    
+<li class="flex"><a href="https://mp.weixin.qq.com/s/mqCx9sqOXvT5VIaMo1UJ0w" title="学术报告|“一流策略”493、494期（土木工程学科）" class="line1">学术报告|“一流策略”493、494期（土木工程学科）</a><span>05.25</span></li>
+                                    
+</ul><script>_showDynClickBatch(['dynclicks_u12_15819','dynclicks_u12_15319','dynclicks_u12_10479','dynclicks_u12_6069'],[15819,15319,10479,6069],"wbnews", 1405338603)</script>
+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="partc"><div class="title">
+                        <h3>基本数据<span>DATA</span></h3>
+                    </div>
+                    <div class="data-list">
+                        <ul class="flex">
+                        <li><a href="javascript:;">
+                                    <p>一级学科博士学位授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>17</span><i>个</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>专业学位博士授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>3</span><i>个</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>交叉学科博士点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>2</span><i>个</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>一级学科硕士学位授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>36</span><i>个</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>专业学位硕士授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>17</span><i>个</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>博士生导师</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>872</span><i>人</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>硕士生导师</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>3271</span><i>人</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>在读硕士研究生</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>12136</span><i>人</i></div>
+                                </a></li>
+                                
+<li><a href="javascript:;">
+                                    <p>在读博士研究生</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>2343</span><i>人</i></div>
+                                </a></li>
+                                
+                        </ul>
+                        <div class="swiper-container">
+                            <ul class="swiper-wrapper">
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>一级学科博士学位授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>17</span><i>个</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>专业学位博士授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>3</span><i>个</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>交叉学科博士点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>2</span><i>个</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>一级学科硕士学位授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>36</span><i>个</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>专业学位硕士授权点</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>17</span><i>个</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>博士生导师</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>872</span><i>人</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>硕士生导师</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>3271</span><i>人</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>在读硕士研究生</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>12136</span><i>人</i></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="javascript:;">
+                                    <p>在读博士研究生</p>
+                                    <div class="icon"></div>
+                                    <div class="num"><span>2343</span><i>人</i></div>
+                                </a></li>
+                                
+</ul>
+                        </div>
+                    </div></div>
+                <div class="partd">    <div class="title">
+                        <h3>友情链接<span>LINK</span></h3>
+                    </div>
+                    <div class="stu_box">
+                        <div class="swiper-container">
+                            <ul class="swiper-wrapper">
+                                
+<li class="swiper-slide"><a href="http://www.moe.gov.cn/" target="_blank" onclick="_addDynClicks(&#34;wbimage&#34;, 1405338603, 1008742)">
+                                    <div class="image" style="background-image: url(img/frlink1.jpg);"></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="https://yz.chsi.com.cn/" target="_blank" onclick="_addDynClicks(&#34;wbimage&#34;, 1405338603, 1008743)">
+                                    <div class="image" style="background-image: url(img/frlink2.jpg);"></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="https://www.chsi.com.cn/" target="_blank" onclick="_addDynClicks(&#34;wbimage&#34;, 1405338603, 1008744)">
+                                    <div class="image" style="background-image: url(img/frlink3.jpg);"></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="https://jyt.shanxi.gov.cn/" target="_blank" onclick="_addDynClicks(&#34;wbimage&#34;, 1405338603, 1008745)">
+                                    <div class="image" style="background-image: url(img/frlink4.jpg);"></div>
+                                </a></li>
+                                
+<li class="swiper-slide"><a href="http://www.sxkszx.cn/" target="_blank" onclick="_addDynClicks(&#34;wbimage&#34;, 1405338603, 1008746)">
+                                    <div class="image" style="background-image: url(img/frlink5.jpg);"></div>
+                                </a></li>
+                                
+</ul>
+                        </div>
+                    </div></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="w90 flex flex-wrap flex-c-center">
+                <div class="copyright"><!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+<p>E-mail：tyutgs@tyut.edu.cn</p>
+                    <p>版权所有 ©️ 太原理工大学研究生院</p>
+                    <p>Copyright 2024 Powered by TYUTGS, All Rights Reserved. <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14010902001620" target="_blank">晋公网安备14010902001620号</a></p></div>
+                <div class="ewm">    
+
+                    <img src="img/ewm.jpg">
+                    <p>太原理工大学研究生院公众号</p>
+                
+
+</div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/index.js"></script>
+        <div>   
+</SCRIPT></div>
+    </body>
+</html>

@@ -200,6 +200,18 @@ def _source_action(program, fact, source, receipts, audit):
             'completion': '完成有界原文阅读后再提交逐字引用；截断或缺失的上下文不能参与事实核验。'}
 
 
+def _discovery_or_search(unit_id, year, kind, query, discovery, searched, usage):
+    attempted = any(isinstance(row, dict) and row.get('unit_id') == unit_id
+                    and row.get('year') == year and row.get('kind') == kind for row in discovery)
+    if not attempted:
+        return _discovery_action(unit_id, year, kind)
+    if unit_id not in searched and usage.get('searches', 0) < 4:
+        return {'tool': 'search_official_sources', 'args': {'query': query, 'unit_id': unit_id, 'year': year},
+                'reason': '公开入口发现尚未取得所需材料，再为该校安排一次有限搜索；为其他学校保留请求额度。',
+                'completion': '搜索只提供线索，仍须核验原文；本校已搜索后不继续变词耗尽全局预算。'}
+    return None
+
+
 def _fact_action(program, fact, sources, discovery, receipts, audit, searched, usage):
     kind, year, unit_id = FACT_KINDS[fact], program.get('year'), program.get('unit_id')
     for source in sources.values():
@@ -208,15 +220,7 @@ def _fact_action(program, fact, sources, discovery, receipts, audit, searched, u
         action = _source_action(program, fact, source, receipts, audit)
         if action:
             return action
-    attempted = any(isinstance(row, dict) and row.get('unit_id') == unit_id
-                    and row.get('year') == year and row.get('kind') == kind for row in discovery)
-    if not attempted:
-        return _discovery_action(unit_id, year, kind)
-    if unit_id not in searched and usage.get('searches', 0) < 4:
-        return {'tool': 'search_official_sources', 'args': {'query': FACT_QUERIES[fact], 'unit_id': unit_id, 'year': year},
-                'reason': '公开入口发现尚未取得所需材料，再为该校安排一次有限搜索；为其他学校保留请求额度。',
-                'completion': '搜索只提供线索，仍须核验原文；本校已搜索后不继续变词耗尽全局预算。'}
-    return None
+    return _discovery_or_search(unit_id, year, kind, FACT_QUERIES[fact], discovery, searched, usage)
 
 
 def _rotate_actions(actions):
@@ -337,8 +341,11 @@ def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=()
                  'completion': '只采用工具校验通过的临时方向；学校和年度由来源推导，资格仍未知。'}])
             break
         if not unique:
-            unique = [_discovery_action(unit_id, task.get('reference_year'), 'catalog')
-                      for unit_id in task.get('unit_ids', [])]
+            year = task.get('reference_year')
+            scope = task.get('unit_ids') or list(dict.fromkeys(row.get('unit_id') for row in discovery
+                if isinstance(row, dict) and row.get('year') == year and row.get('unit_id')))
+            unique = [action for unit_id in scope if (action := _discovery_or_search(
+                unit_id, year, 'catalog', FACT_QUERIES['subjects'], discovery, searched_units, usage))]
     unique = _rotate_actions(unique)
     goals = [
         {'id': 'scope', 'label': '确定可研究的合理范围', 'status': 'done' if programs else 'open',

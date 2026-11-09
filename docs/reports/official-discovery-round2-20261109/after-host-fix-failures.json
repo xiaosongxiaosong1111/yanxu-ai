@@ -1,0 +1,4073 @@
+{
+  "boundary": "First three website gaps are disjoint; material groups overlap. HTTP response is not proof the HTML is not a JS challenge.",
+  "counts": {
+    "initial_seed_missing": 26,
+    "official_account_only_no_independent_site": 29,
+    "known_independent_entry_but_not_http_read": 5,
+    "site_read_without_requested_material": 22,
+    "requested_material_without_substantive_body": 25
+  },
+  "groups": {
+    "initial_seed_missing": [
+      {
+        "unit_id": "367941",
+        "name": "中国航天科工集团公司第三研究院(8357所)",
+        "case_id": "round2-12a6d9e3e836caac",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367819",
+        "name": "国防大学",
+        "case_id": "round2-1cd64e58a3c02e22",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368136",
+        "name": "上海中医药大学",
+        "case_id": "round2-1fd9704e4ad6cd28",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367795",
+        "name": "中国航空研究院(北京长城计量测试技术研究所)",
+        "case_id": "round2-20605bb309690c64",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368581",
+        "name": "化工机械及自动化研究设计院",
+        "case_id": "round2-2a4c54b9c0b53e73",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368333",
+        "name": "机械科学研究总院(武汉材料保护研究所)",
+        "case_id": "round2-2cb3e2854c8bff76",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368360",
+        "name": "长江大学",
+        "case_id": "round2-2f124a9739b45e26",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "688908263",
+        "name": "河北建筑工程学院",
+        "case_id": "round2-326b83e1de3134dc",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367989",
+        "name": "中国兵器科学研究院(中国北方自动控制技术研究所)",
+        "case_id": "round2-32fecb9a33134bda",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368496",
+        "name": "中国航天科工集团第十研究院",
+        "case_id": "round2-3a8c1a2160daa4d5",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368101",
+        "name": "上海航天技术研究院",
+        "case_id": "round2-450346ed6851e69a",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368113",
+        "name": "电信科学技术研究院(第一研究所)",
+        "case_id": "round2-4d9028fcc76fc044",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367824",
+        "name": "军事航天部队航天工程大学",
+        "case_id": "round2-4dbd33f4ef66b0b0",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368309",
+        "name": "中国舰船研究院(郑州机电工程研究所)",
+        "case_id": "round2-5e85a3a6c154161f",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368350",
+        "name": "空军预警学院",
+        "case_id": "round2-64fe42dea42c687e",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367904",
+        "name": "中国建筑设计研究院",
+        "case_id": "round2-6d865ecb282a75cb",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368303",
+        "name": "中国航空研究院(613所)",
+        "case_id": "round2-7771b4b535b998ba",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367914",
+        "name": "核工业第二研究设计院",
+        "case_id": "round2-7debdba34e827071",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368445",
+        "name": "四川美术学院",
+        "case_id": "round2-805cf007a2de7e66",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368505",
+        "name": "昆明贵金属研究所",
+        "case_id": "round2-8535cfede35b2254",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368020",
+        "name": "机械科学研究总院(沈阳铸造研究所)",
+        "case_id": "round2-9dba6fa44b213950",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368330",
+        "name": "武汉生物制品研究所",
+        "case_id": "round2-a5d8e7c6aabf1784",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368257",
+        "name": "中国航空研究院(602所)",
+        "case_id": "round2-ceb7da192be45276",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368048",
+        "name": "中国医科大学",
+        "case_id": "round2-dabc9953dae73ee8",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367915",
+        "name": "中国戏曲学院",
+        "case_id": "round2-e255591622fadcd7",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368212",
+        "name": "中国舰船研究院(杭州应用声学研究所)",
+        "case_id": "round2-ec00d88b9c436d1f",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "no_registered_url_or_public_declaration",
+        "metrics": {
+          "entry_verified": false,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "no_lead",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": true
+        },
+        "input_official_url": null,
+        "errors": []
+      }
+    ],
+    "official_account_only_no_independent_site": [
+      {
+        "unit_id": "368547",
+        "name": "空军工程大学",
+        "case_id": "round2-030da5a7f7b4d3ba",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552128200,categoryId-10462721,schId-368547,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368471",
+        "name": "中共四川省委党校",
+        "case_id": "round2-03e82d2db685603c",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368412",
+        "name": "陆军特种作战学院",
+        "case_id": "round2-39f40be2a03da51c",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "wrong_unit"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557846361,categoryId-10462635,schId-368412,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "https://yz.chsi.cn/",
+            "code": "wrong_unit",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368406",
+        "name": "广东省心血管病研究所",
+        "case_id": "round2-3b9d49f231509a7f",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3122169199,categoryId-10462591,schId-368406,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368114",
+        "name": "上海生物制品研究所",
+        "case_id": "round2-42ad140e045d09be",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367817",
+        "name": "军事科学院",
+        "case_id": "round2-4f17adf01cbaaff6",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewBulletin--infoId-3560188872,categoryId-436359,schId-367817,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "688908505",
+        "name": "吉林化工大学",
+        "case_id": "round2-4fa8e0a42c7bb9d9",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557936717,categoryId-688908557,schId-688908505,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368548",
+        "name": "火箭军工程大学",
+        "case_id": "round2-5727a88b2d79c63d",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367838",
+        "name": "中国建筑材料科学研究总院",
+        "case_id": "round2-5ff2c4e9958d855c",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367994",
+        "name": "太原理工大学",
+        "case_id": "round2-6810aa2bfd2a1a7e",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "fetch_error"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "https://www.gs.tyut.edu.cn/",
+            "code": "fetch_error",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367793",
+        "name": "北京生物制品研究所",
+        "case_id": "round2-74d4274e534a2fab",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368226",
+        "name": "马鞍山矿山研究院",
+        "case_id": "round2-7635eedc7a16ea7b",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367898",
+        "name": "中国兽医药品监察所",
+        "case_id": "round2-7f64886c324d54e0",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "target_identity_missing"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552006991,categoryId-10462129,schId-367898,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "http://www.ivdc.org.cn/",
+            "code": "target_identity_missing",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367988",
+        "name": "山西省中医药研究院",
+        "case_id": "round2-842145f1f2e4ee7e",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3550149131,categoryId-10462561,schId-367988,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368174",
+        "name": "空军勤务学院",
+        "case_id": "round2-8821311859637906",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368004",
+        "name": "内蒙古工业大学",
+        "case_id": "round2-90c67685717bfd88",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "683178",
+        "name": "中国电子科技集团有限公司研究生院",
+        "case_id": "round2-9175b002655f3e54",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "1864277803",
+        "name": "海军勤务学院",
+        "case_id": "round2-a2f779d393b0b8d3",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367823",
+        "name": "解放军医学院",
+        "case_id": "round2-a8cebdf1467452e7",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "2807891793",
+        "name": "上海商学院",
+        "case_id": "round2-ab0cea8e2949ec2a",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "wrong_unit"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "https://yz.chsi.cn/",
+            "code": "wrong_unit",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368382",
+        "name": "湖南省中医药研究院",
+        "case_id": "round2-ab7833c576f5a753",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552029178,categoryId-10462587,schId-368382,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "3416382837",
+        "name": "信息支援部队工程大学",
+        "case_id": "round2-b456816c17a75daf",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3550296610,categoryId-3416382889,schId-3416382837,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368173",
+        "name": "海军指挥学院",
+        "case_id": "round2-bb2e1bbc5a2496d5",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368270",
+        "name": "海军航空大学",
+        "case_id": "round2-c23245c8dc77a615",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368272",
+        "name": "海军潜艇学院",
+        "case_id": "round2-c271c16660e595ce",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "document_found",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3546059205,categoryId-10462710,schId-368272,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368154",
+        "name": "国网电力科学研究院",
+        "case_id": "round2-dd7b4e26176c463c",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368015",
+        "name": "东北财经大学",
+        "case_id": "round2-ddb28f8fd8ec6759",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "target_identity_missing"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 2,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "http://graduate.dufe.edu.cn/",
+            "code": "target_identity_missing",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368104",
+        "name": "上海核工程研究设计院",
+        "case_id": "round2-f315b1234f5ee052",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "timeout"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "http://www.snerdi.com.cn/",
+            "code": "timeout",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "3274413086",
+        "name": "遵义师范学院",
+        "case_id": "round2-fe38f543a94eb202",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      }
+    ],
+    "known_independent_entry_but_not_http_read": [
+      {
+        "unit_id": "367825",
+        "name": "首都儿科研究所",
+        "case_id": "round2-0004afd2891725cc",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "wrong_unit"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.shouer.com.cn/",
+        "errors": [
+          {
+            "url": "https://www.shouer.com.cn/",
+            "code": "wrong_unit",
+            "message": "来源或重定向不属于所选招生单位。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368329",
+        "name": "中国地震局地震研究所",
+        "case_id": "round2-66b7803698dfeb49",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "dns_error"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.eqhb.gov.cn/",
+        "errors": [
+          {
+            "url": "http://www.eqhb.gov.cn/",
+            "code": "dns_error",
+            "message": "Public hostname could not be resolved"
+          },
+          {
+            "url": "https://www.eqhb.gov.cn/",
+            "code": "dns_error",
+            "message": "Public hostname could not be resolved"
+          },
+          {
+            "url": "http://www.eqhb.gov.cn/yjsjy.htm",
+            "code": "dns_error",
+            "message": "Public hostname could not be resolved"
+          }
+        ]
+      },
+      {
+        "unit_id": "367990",
+        "name": "中国辐射防护研究院",
+        "case_id": "round2-79deccd38ac4b12c",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "http_error"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557685214,categoryId-10462211,schId-367990,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.cirp.org.cn/",
+        "errors": [
+          {
+            "url": "https://www.cirp.org.cn/",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 412）。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367844",
+        "name": "应急管理部国家自然灾害防治研究院",
+        "case_id": "round2-a89ea6039a091cbb",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "wrong_unit"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": false,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 2,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.ninhm.ac.cn/",
+        "errors": [
+          {
+            "url": "http://www.ninhm.ac.cn/",
+            "code": "wrong_unit",
+            "message": "已读取页面尚不能确认属于当前学校。"
+          },
+          {
+            "url": "https://www.ninhm.ac.cn/",
+            "code": "wrong_unit",
+            "message": "已读取页面尚不能确认属于当前学校。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367841",
+        "name": "中国地震局地球物理研究所",
+        "case_id": "round2-d72c9ef4181e9ae2",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "fetch_error"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.cea-igp.ac.cn/",
+        "errors": [
+          {
+            "url": "https://www.cea-igp.ac.cn/",
+            "code": "fetch_error",
+            "message": "官方原文暂时无法读取。"
+          }
+        ]
+      }
+    ],
+    "site_read_without_requested_material": [
+      {
+        "unit_id": "367853",
+        "name": "北京市市政工程研究院",
+        "case_id": "round2-03045c48114d837a",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "ownership_unproven",
+            "too_large"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.szgcyjy.com/",
+            "https://www.szgcyjy.com/menu295/newsDetail/18094.html"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.szgcyjy.com/",
+        "errors": [
+          {
+            "url": "https://file.bmrb.com.cn/file/upload/2025/03/28/1743155926376.pdf",
+            "code": "too_large",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202007923",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368515",
+        "name": "昆明医科大学",
+        "case_id": "round2-0347beff2ae53b97",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "http_error",
+            "target_identity_missing"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.kmmu.edu.cn/",
+            "https://www.kmmu.edu.cn/list2546.aspx",
+            "https://www.kmmu.edu.cn/list314.aspx"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.kmmu.edu.cn/",
+        "errors": [
+          {
+            "url": "https://www.kmmu.edu.cn/temple/assets/js/ft-carousel.min.js",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 406）。"
+          },
+          {
+            "url": "https://yjs801.kmmu.edu.cn/ASPX/Admin1/Login.aspx",
+            "code": "target_identity_missing",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "https://www.kmmu.edu.cn/temple/assets/js/libs.js",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 406）。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367930",
+        "name": "中国社会科学院大学",
+        "case_id": "round2-046654f121b3aee4",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "reviewed_curated_root",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://skdzs.ucass.edu.cn/",
+            "https://skdzs.ucass.edu.cn/info/1041/2745.htm",
+            "https://skdzs.ucass.edu.cn/sszs1/zsxx.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368306",
+        "name": "机械科学研究总院(郑州机械研究所)",
+        "case_id": "round2-0c8acfd99b66688d",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "ownership_unproven",
+            "target_identity_missing"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.zrime.com.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 7,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.zrime.com.cn/",
+        "errors": [
+          {
+            "url": "http://yjsjy.cam.com.cn/",
+            "code": "target_identity_missing",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "https://yjsjy.cam.com.cn/",
+            "code": "target_identity_missing",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://camhx.cam.com.cn/camhx/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://camqd.cam.com.cn/camqd/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://capital.cam.com.cn/gyzb/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://cmfi.cam.com.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.brimet.ac.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.camjs.com.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.camsouth.com.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.camtc.com.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.chinasrif.com/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.cifmt.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368383",
+        "name": "长沙矿山研究院",
+        "case_id": "round2-1f5f597fdd8d4854",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "ownership_unproven"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "http://www.cimr.com.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.cimr.com.cn/",
+        "errors": [
+          {
+            "url": "http://mail.cimr.com.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://wpa.qq.com/msgrd?v=3&uin=324249965&site=qq&menu=yes",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.chinamine.net/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368208",
+        "name": "自然资源部第二海洋研究所",
+        "case_id": "round2-2d424c1099bc9042",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "http://www.sio.org.cn/",
+            "http://www.sio.org.cn/a/tzgg/23324.html",
+            "http://www.sio.org.cn/sssdss.html",
+            "http://www.sio.org.cn/zsjz",
+            "http://www.sio.org.cn/zsjz.html",
+            "http://www.sio.org.cn/zyml.html"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 9,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.sio.org.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368392",
+        "name": "湖南农业大学",
+        "case_id": "round2-30d1dbbb55c5d053",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "target_identity_missing"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjsy.hunau.edu.cn/yjszs/",
+            "https://yjsy.hunau.edu.cn/yjszs/sszs/",
+            "https://yjsy.hunau.edu.cn/yjszs/sszs/zsjz_1590/",
+            "https://yjsy.hunau.edu.cn/yjszs/sszs/zsjz_1590/202509/t20250928_474584.html",
+            "https://yjsy.hunau.edu.cn/yjszs/sszs/zsjz_1590/202609/t20260929_528020.html"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "https://yjsy.hunau.edu.cn/ywzh/yjsjygk/",
+            "code": "target_identity_missing",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367787",
+        "name": "中国铁道科学研究院",
+        "case_id": "round2-50eae6d41a4eeb1e",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.morpogs.com/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 3,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.morpogs.com/",
+        "errors": []
+      },
+      {
+        "unit_id": "368289",
+        "name": "山东大学",
+        "case_id": "round2-545cdddcd951dcc3",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "ownership_unproven"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.yz.sdu.edu.cn/",
+            "https://www.yz.sdu.edu.cn/info/1022/1491.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.yz.sdu.edu.cn/",
+        "errors": [
+          {
+            "url": "https://sduyjs.sdu.edu.cn/yjszs/plugins/zs/sszs/zsxxfb/index",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367992",
+        "name": "山西医科大学",
+        "case_id": "round2-5f288653fd361211",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": false,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.sxmu.edu.cn/",
+            "https://www.sxmu.edu.cn/info/1050/40506.htm",
+            "https://www.sxmu.edu.cn/info/1050/40590.htm",
+            "https://www.sxmu.edu.cn/info/1050/40714.htm",
+            "https://www.sxmu.edu.cn/info/1071/40817.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.sxmu.edu.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368086",
+        "name": "黑龙江省社会科学院",
+        "case_id": "round2-6df4f6d22626d517",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": false,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "http://www.hlass.org.cn/",
+            "http://www.hlass.org.cn/jg/jx/yjsb/",
+            "http://www.hlass.org.cn/xwjj/byyw/2021/04/28052.htm",
+            "http://www.hlass.org.cn/xwjj/gg/2020/09/27110.htm",
+            "http://www.hlass.org.cn/xwjj/gg/2021/09/28780.htm",
+            "http://www.hlass.org.cn/xwjj/gg/2022/09/30461.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.hlass.org.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368522",
+        "name": "西藏民族大学",
+        "case_id": "round2-832a186b6676b870",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": true,
+          "stage": "entry_verified",
+          "error_codes": [
+            "ownership_unproven"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www1.xzmu.edu.cn/",
+            "https://www1.xzmu.edu.cn/contentlist?dept_id=78&column_id=1447&column_type=1&per=15&url=list",
+            "https://www1.xzmu.edu.cn/contentlist?dept_id=78&column_id=1453&column_type=1&per=1&url=list",
+            "https://www1.xzmu.edu.cn/contentlist?dept_id=78&column_id=1453&column_type=1&per=15&url=list",
+            "https://www1.xzmu.edu.cn/getcontent?id=110826&url=show"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www1.xzmu.edu.cn/",
+        "errors": [
+          {
+            "url": "http://edu.xizang.gov.cn/",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367884",
+        "name": "北京理工大学",
+        "case_id": "round2-8331c1d9116c0992",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "invalid_candidate"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://grd.bit.edu.cn/",
+            "https://grd.bit.edu.cn/zsgz/index.htm",
+            "https://grd.bit.edu.cn/zsgz/ssyjs/tzgg_ss/0c8992c19aba46e283b03565210a8a2c.htm",
+            "https://grd.bit.edu.cn/zsgz/zsxx/index.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://grd.bit.edu.cn/",
+        "errors": [
+          {
+            "url": "http://yz.chsi.com.cn/",
+            "code": "invalid_candidate",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367913",
+        "name": "中国农业机械化科学研究院",
+        "case_id": "round2-8991c0dd24c4d648",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "invalid_candidate"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "http://grs.caams.org.cn/",
+            "http://grs.caams.org.cn/tzgg/zs/202610/t20261009_656938.html",
+            "http://grs.caams.org.cn/zsgz/",
+            "http://grs.caams.org.cn/zsgz/ssszs/",
+            "http://grs.caams.org.cn/zsgz/ssszs/zlgs/202607/t20260701_643874.html",
+            "http://grs.caams.org.cn/zsgz/ssszs/zsjz/202510/t20251030_589974.html",
+            "http://grs.caams.org.cn/zsgz/ssszs/zsjz/202510/t20251030_589977.html",
+            "http://grs.caams.org.cn/zsgz/ssszs/zsjz/202610/t20261009_656875.html"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://grs.caams.org.cn/",
+        "errors": [
+          {
+            "url": "https://yz.chsi.com.cn/",
+            "code": "invalid_candidate",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367917",
+        "name": "钢铁研究总院",
+        "case_id": "round2-9ddcfa7e93902e25",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": true,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "http://www.cisri.com.cn/",
+            "http://www.cisri.com.cn/info/1097/3910.htm",
+            "http://www.cisri.com.cn/info/1097/3931.htm",
+            "http://www.cisri.com.cn/rlzy/yjs/gk/yjsjygs.htm",
+            "http://www.cisri.com.cn/rlzy/yjs/zsxx/jzml.htm",
+            "http://www.cisri.com.cn/rlzy/yjs/zsxx/sszs.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.cisri.com.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368024",
+        "name": "沈阳化工研究院",
+        "case_id": "round2-ad4eaf47d4456f95",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": true,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": false,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.syrici.com.cn/",
+            "https://www.syrici.com.cn/syrici/ky/yjs/A116004005Gone1.html",
+            "https://www.syrici.com.cn/syrici/yjspy/dssje/A116008002Gone1.html",
+            "https://www.syrici.com.cn/syrici/yjspy/zsxx/xxgk/2025/7/I1399782946801451008.html",
+            "https://www.syrici.com.cn/syrici/yjspy/zsxx/xxgk/A116008003001Gone1.html"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.syrici.com.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368028",
+        "name": "渤海大学",
+        "case_id": "round2-b79fe4bfe8510885",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": false,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjszsxxw.bhu.edu.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 3,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://yjszsxxw.bhu.edu.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "367933",
+        "name": "中国财政科学研究院",
+        "case_id": "round2-bdf003eadc7bcc67",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "invalid_candidate"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": false,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjsb.icafs.cn/",
+            "https://yjsb.icafs.cn/index/newsContent_getOneNewsRecord?newsid=0826183303_67867037&searchFlag=2",
+            "https://yjsb.icafs.cn/index/newsContent_getOneNewsRecord?newsid=1008132033_19777063&searchFlag=2",
+            "https://yjsb.icafs.cn/index/newsContent_getOneNewsRecord?newsid=1008132054_28137064&searchFlag=2",
+            "https://yjsb.icafs.cn/index/newsContent_getOneNewsRecord?newsid=1009125715_79557070&searchFlag=2"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://yjsb.icafs.cn/",
+        "errors": [
+          {
+            "url": "http://yz.chsi.com.cn/",
+            "code": "invalid_candidate",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "302968759",
+        "name": "安徽科技工程大学",
+        "case_id": "round2-ca636594a3ca62d5",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "invalid_candidate"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "http://www.ahstu.edu.cn/",
+            "http://www.ahstu.edu.cn/info/1131/402261.htm",
+            "https://www.ahstu.edu.cn/yjs/",
+            "https://www.ahstu.edu.cn/yjs/zsgz/zsjz1.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.ahstu.edu.cn/",
+        "errors": [
+          {
+            "url": "http://yz.chsi.com.cn/",
+            "code": "invalid_candidate",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368338",
+        "name": "武汉安全环保研究院",
+        "case_id": "round2-cbd58b07df86cbbb",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "account_scope_missing",
+            "ownership_unproven",
+            "wrong_unit"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "http://zgsepri.com/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://zgsepri.com/",
+        "errors": [
+          {
+            "url": "https://mp.weixin.qq.com/s/O6WkdLYnHh4Ruao0sRs5OA",
+            "code": "account_scope_missing",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://www.beian.gov.cn/portal/index.do",
+            "code": "ownership_unproven",
+            "message": "归属证据尚未完成核验。"
+          },
+          {
+            "url": "http://zgsepri.com/go?type=link&url=10",
+            "code": "wrong_unit",
+            "message": "来源或重定向不属于所选招生单位。"
+          },
+          {
+            "url": "http://zgsepri.com/go?type=link&url=11",
+            "code": "wrong_unit",
+            "message": "来源或重定向不属于所选招生单位。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368484",
+        "name": "四川轻化工大学",
+        "case_id": "round2-e0fb93cfb95f2249",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": true,
+          "stage": "entry_verified",
+          "error_codes": [
+            "wrong_unit"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjs.suse.edu.cn/",
+            "https://yjs.suse.edu.cn/2024/0927/c2380a189165/page.htm",
+            "https://yjs.suse.edu.cn/2025/0324/c2402a189358/page.htm",
+            "https://yjs.suse.edu.cn/zsjz/list.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://webadm.suse.edu.cn/",
+        "errors": [
+          {
+            "url": "https://webadm.suse.edu.cn/",
+            "code": "wrong_unit",
+            "message": "来源或重定向不属于所选招生单位。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367878",
+        "name": "北京大学",
+        "case_id": "round2-ff380ee92db217c8",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": false,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [
+            "http_error",
+            "navigation_budget_exceeded"
+          ],
+          "matching_urls": [],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjsy.bjmu.edu.cn/",
+            "https://yjsy.bjmu.edu.cn/zslq/zsjzjml/81c0e88eb1c24658abea5a6c32ce5dd9.htm",
+            "https://yjsy.bjmu.edu.cn/zslq/zsjzjml/index.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 9,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://yjsy.bjmu.edu.cn/",
+        "errors": [
+          {
+            "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?channelID=LEJZ6539",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 404）。"
+          },
+          {
+            "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?siteID=LEJZ157&channelID=0&contentID=0",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 404）。"
+          },
+          {
+            "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?channelID=LEJZ6539",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 404）。"
+          },
+          {
+            "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?siteID=LEJZ157&channelID=0&contentID=0",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 404）。"
+          },
+          {
+            "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?channelID=LEJZ6539",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 404）。"
+          },
+          {
+            "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?siteID=LEJZ157&channelID=0&contentID=0",
+            "code": "navigation_budget_exceeded",
+            "message": "本轮官网导航预算已用完；已定位入口和待补步骤已保留。"
+          }
+        ]
+      }
+    ],
+    "requested_material_without_substantive_body": [
+      {
+        "unit_id": "368547",
+        "name": "空军工程大学",
+        "case_id": "round2-030da5a7f7b4d3ba",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552128200,categoryId-10462721,schId-368547,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "499722211",
+        "name": "宁夏师范大学",
+        "case_id": "round2-2c6d1a0ef0e0188a",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yjsc.nxnu.edu.cn/info/20978/4160.htm"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjsc.nxnu.edu.cn/",
+            "https://yjsc.nxnu.edu.cn/info/20978/4160.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 4,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368238",
+        "name": "合肥工业大学",
+        "case_id": "round2-30a88799c79ff680",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557829212,categoryId-10461315,schId-368238,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjszs.hfut.edu.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 3,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://yjszs.hfut.edu.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368412",
+        "name": "陆军特种作战学院",
+        "case_id": "round2-39f40be2a03da51c",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "wrong_unit"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557846361,categoryId-10462635,schId-368412,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "https://yz.chsi.cn/",
+            "code": "wrong_unit",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368406",
+        "name": "广东省心血管病研究所",
+        "case_id": "round2-3b9d49f231509a7f",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3122169199,categoryId-10462591,schId-368406,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "302961587",
+        "name": "泉州师范学院",
+        "case_id": "round2-41a0b8f45578b0f1",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "document_found",
+          "error_codes": [],
+          "matching_urls": [
+            "https://www.qztc.edu.cn/2026/0930/c2094a295753/page.htm"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.qztc.edu.cn/",
+            "https://www.qztc.edu.cn/2026/0930/c2094a295753/page.htm",
+            "https://www.qztc.edu.cn/yjszsw/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 11,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.qztc.edu.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368440",
+        "name": "海南师范大学",
+        "case_id": "round2-47757540a16b0fed",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "document_found",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yjsc.hainnu.edu.cn/2026/1010/c1830a170116/page.htm"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjsc.hainnu.edu.cn/",
+            "https://yjsc.hainnu.edu.cn/1779/list.htm",
+            "https://yjsc.hainnu.edu.cn/2026/1010/c1830a170116/page.htm",
+            "https://yjsc.hainnu.edu.cn/2026/1017/c1779a170365/page.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://yjsc.hainnu.edu.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "367817",
+        "name": "军事科学院",
+        "case_id": "round2-4f17adf01cbaaff6",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewBulletin--infoId-3560188872,categoryId-436359,schId-367817,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "688908505",
+        "name": "吉林化工大学",
+        "case_id": "round2-4fa8e0a42c7bb9d9",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557936717,categoryId-688908557,schId-688908505,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368364",
+        "name": "湖北工业大学",
+        "case_id": "round2-59d1aca5f610429d",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": true,
+          "stage": "document_found",
+          "error_codes": [
+            "restricted"
+          ],
+          "matching_urls": [
+            "https://yjs.hbut.edu.cn/info/1010/19503.htm",
+            "https://yjs.hbut.edu.cn/info/1085/19513.htm"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjs.hbut.edu.cn/",
+            "https://yjs.hbut.edu.cn/info/1010/19503.htm",
+            "https://yjs.hbut.edu.cn/info/1085/10453.htm",
+            "https://yjs.hbut.edu.cn/info/1085/19513.htm",
+            "https://yjs.hbut.edu.cn/zsgz/sszs/zsjz.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://yjs.hbut.edu.cn/",
+        "errors": [
+          {
+            "url": "https://yjs.hbut.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1506355238&wbfileid=E75F3B3326AC0BF1A51F06C8095248A6",
+            "code": "restricted",
+            "message": "官方页面要求验证码、登录或访问验证，尚未取得招生原文。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367855",
+        "name": "北京市创伤骨科研究所",
+        "case_id": "round2-6acff2525e758733",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "http_error"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3553413334,categoryId-10462550,schId-367855,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.jst-hosp.com.cn/Html/Index.html"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 4,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.jst-hosp.com.cn/",
+        "errors": [
+          {
+            "url": "https://www.jst-hosp.com.cn/Content/Areas/Common/scripts/nav.js",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 418）。"
+          },
+          {
+            "url": "https://www.jst-hosp.com.cn/Content/Areas/Common/scripts/banbenjiance.js",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 418）。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368558",
+        "name": "西安工业大学",
+        "case_id": "round2-6cd8bc130f823dfe",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "http_error"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552062696,categoryId-10461751,schId-368558,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://grs.xatu.edu.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 3,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://grs.xatu.edu.cn/",
+        "errors": [
+          {
+            "url": "http://a.yunshipei.com/d329b0efb83f8fa9f8f67f85011342aa/allmobilize.min.js",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 404）。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367990",
+        "name": "中国辐射防护研究院",
+        "case_id": "round2-79deccd38ac4b12c",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "http_error"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557685214,categoryId-10462211,schId-367990,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.cirp.org.cn/",
+        "errors": [
+          {
+            "url": "https://www.cirp.org.cn/",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 412）。"
+          }
+        ]
+      },
+      {
+        "unit_id": "368385",
+        "name": "长沙矿冶研究院",
+        "case_id": "round2-7a68896fb96bffcc",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552678246,categoryId-10462160,schId-368385,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.crimm.com.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 4,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.crimm.com.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "367898",
+        "name": "中国兽医药品监察所",
+        "case_id": "round2-7f64886c324d54e0",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "target_identity_missing"
+          ],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552006991,categoryId-10462129,schId-367898,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 1,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": [
+          {
+            "url": "http://www.ivdc.org.cn/",
+            "code": "target_identity_missing",
+            "message": "归属证据尚未完成核验。"
+          }
+        ]
+      },
+      {
+        "unit_id": "3274414024",
+        "name": "三明学院",
+        "case_id": "round2-82ca6d4bf67d54e6",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3556418243,categoryId-3274414077,schId-3274414024,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjsc.fjsmu.edu.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 2,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://yjsc.fjsmu.edu.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "367988",
+        "name": "山西省中医药研究院",
+        "case_id": "round2-842145f1f2e4ee7e",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3550149131,categoryId-10462561,schId-367988,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368611",
+        "name": "新疆农业大学",
+        "case_id": "round2-900a354d66b5abb9",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "document_found",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yjsc.xjau.edu.cn/2026/1008/c2153a118684/page.htm",
+            "https://yjsc.xjau.edu.cn/2026/1008/c2155a118684/page.htm"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://yjsc.xjau.edu.cn/",
+            "https://yjsc.xjau.edu.cn/2026/1008/c2153a118684/page.htm",
+            "https://yjsc.xjau.edu.cn/2026/1008/c2155a118684/page.htm",
+            "https://yjsc.xjau.edu.cn/sszs/list.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 8,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://yjsc.xjau.edu.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368382",
+        "name": "湖南省中医药研究院",
+        "case_id": "round2-ab7833c576f5a753",
+        "sampling_stratum": "unregistered_research",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3552029178,categoryId-10462587,schId-368382,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "3416382837",
+        "name": "信息支援部队工程大学",
+        "case_id": "round2-b456816c17a75daf",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3550296610,categoryId-3416382889,schId-3416382837,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "367902",
+        "name": "中国建筑科学研究院",
+        "case_id": "round2-b4acf154448d9cba",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557862648,categoryId-10462145,schId-367902,mindex-12.dhtml",
+            "https://yz.chsi.com.cn/sch/viewBulletin--infoId-3557862416,categoryId-442975,schId-367902,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.cabr.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 3,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.cabr.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "368272",
+        "name": "海军潜艇学院",
+        "case_id": "round2-c271c16660e595ce",
+        "sampling_stratum": "unregistered_school",
+        "starting_condition": "public_bundle_declarations",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "document_found",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3546059205,categoryId-10462710,schId-368272,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": false,
+          "official_account_known": true,
+          "independent_website_http_read": false,
+          "independent_website_read_urls": [],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 0,
+          "initial_seed_missing": false
+        },
+        "input_official_url": null,
+        "errors": []
+      },
+      {
+        "unit_id": "368275",
+        "name": "山东艺术学院",
+        "case_id": "round2-d2155e51fbd8a088",
+        "sampling_stratum": "registered_school",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [
+            "http_error"
+          ],
+          "matching_urls": [
+            "https://graduate.sdca.edu.cn/info/1040/5665.htm"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://graduate.sdca.edu.cn/",
+            "https://graduate.sdca.edu.cn/info/1040/5665.htm"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 6,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://graduate.sdca.edu.cn/",
+        "errors": [
+          {
+            "url": "https://graduate.sdca.edu.cn/_sitegray/_sitegray.js",
+            "code": "http_error",
+            "message": "官方来源读取失败（HTTP 404）。"
+          }
+        ]
+      },
+      {
+        "unit_id": "367816",
+        "name": "中日友好临床医学研究所",
+        "case_id": "round2-d6be346f223c9547",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "body_read",
+          "error_codes": [],
+          "matching_urls": [
+            "https://yz.chsi.com.cn/sch/viewZszc--infoId-3557335157,categoryId-10462439,schId-367816,mindex-12.dhtml"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.zryhyy.com.cn/"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 3,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "https://www.zryhyy.com.cn/",
+        "errors": []
+      },
+      {
+        "unit_id": "367790",
+        "name": "中国艺术研究院",
+        "case_id": "round2-da2a82f641a71452",
+        "sampling_stratum": "registered_research",
+        "starting_condition": "registered_homepage",
+        "metrics": {
+          "entry_verified": true,
+          "requested_document_located": true,
+          "requested_body_read": false,
+          "source_evidence_complete": false,
+          "expected_article_applicable": false,
+          "expected_article_discovered": false,
+          "historical_document_observed": false,
+          "stage": "entry_verified",
+          "error_codes": [],
+          "matching_urls": [
+            "https://www.gscaa.cn/shuoshi_detail/1418.html"
+          ],
+          "read_urls": []
+        },
+        "phases": {
+          "known_independent_entry": true,
+          "official_account_known": true,
+          "independent_website_http_read": true,
+          "independent_website_read_urls": [
+            "https://www.gscaa.cn/",
+            "https://www.gscaa.cn/dynamic_state_detail/1279.html",
+            "https://www.gscaa.cn/enrollment_work.html",
+            "https://www.gscaa.cn/fwxz_detail/1250.html",
+            "https://www.gscaa.cn/fwxz_detail/1339.html",
+            "https://www.gscaa.cn/shuoshi_detail/1418.html"
+          ],
+          "requested_body_from_live_website": false,
+          "requested_body_from_cached_account": false,
+          "public_http_requests": 9,
+          "initial_seed_missing": false
+        },
+        "input_official_url": "http://www.gscaa.cn/",
+        "errors": []
+      }
+    ]
+  }
+}

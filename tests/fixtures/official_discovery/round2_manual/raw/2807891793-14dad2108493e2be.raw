@@ -1,0 +1,676 @@
+<!doctype html>
+<html><meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta name="format-detection" content="telephone=no"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="renderer" content="webkit"> 
+<title>研究生教育网</title> 
+<link rel="stylesheet" href="../css/style.css"> 
+<link rel="stylesheet" href="../css/font-awesome.min.css"> 
+<link rel="stylesheet" href="../css/subcon.css"><style type="text/css">
+    .divPlayerImgResponsive{max-width: 480px;overflow: hidden;position: relative;margin: 15px auto;}
+    .divPlayerResponsive2{text-align:center;max-width: 480px;overflow: hidden;position: relative;margin: 15px auto;}
+    .divPlayerResponsive2 video{width:100%;height: auto;}
+    .article i.iconfont{font-style: normal;}
+</style>
+<script type="text/javascript">
+    //2024-01-15 16:46:29
+    if (typeof jQuery == 'undefined') {
+        var myScript= document.createElement("script");
+        myScript.type = "text/javascript";
+        myScript.src="/publish/gpowersoft/js/jquery-3.5.1.min.js";
+        document.head.appendChild(myScript);
+    }
+</script>
+<script src="/publish/gpowersoft/js/videojs-ie8.min.js"></script>
+<script src="/publish/gpowersoft/js/video.js"></script>
+<script src="/publish/gpowersoft/js/videojs-flash.min.js"></script>
+<script src="/publish/gpowersoft/js/share-video-player.js"></script>
+<link href="/publish/gpowersoft/css/video-js-default.css" rel="stylesheet" type="text/css"/><script type='text/javascript' src='/publish/gPublic/all.js'></script><body >
+<!--header开始-->
+
+<header class="wrap_header">  
+  <div class="wrap_header">
+    <div class="header">
+        <div class="logo">
+              <a href="#" class="logo_01"><img src="../images/logo_02.png"></a>
+                <a href="" class="logo_02"><img src="../images/logo_022.png"></a>
+            </div>
+        <div class="ser ser01" id="ser">
+      <form name="dataForm" class="search" action="/cms/web/search/index.jsp" target="_blank" method="post" accept-charset="utf-8" onsubmit="document.charset='utf-8';">
+        <input name="siteID" value="9652b3a18b32472bbd2d6ef7082f1617" type ="hidden">
+        <input class="notxt" value="请输入搜索内容" name="query" type="text" id="keywords" onFocus="if(value==defaultValue){value='';}" onBlur="if(!value){value=defaultValue;}" onclick="if(this.value==''){this.value='';this.form.keywords.style.color='#639372'}">
+        <input class="notxt1" name="Submit" type="submit" value="" />
+      </form>
+    </div>
+        
+    </div> 
+    <nav class="nav">
+        <div class="nav">
+          <ul id="nav">
+          <li><a href="../index.htm">首页</a></li>
+            <li><a href="../jgjj/index.htm">机构简介</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../jgjj/yjsjy/index.htm">研究生教育</a></dd>
+                          	<dd><a href="../jgjj/jgzn/index.htm">机构职能</a></dd>
+                          	<dd><a href="../jgjj/gzry/index.htm">联系我们</a></dd>
+                          </dl>
+            </div>
+            </li>
+            <li><a href="../zsgz/index.htm">招生工作</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../zsgz/tzggzs/index.htm">通知公告</a></dd>
+                          	<dd><a href="../zsgz/zsjz/index.htm">招生简章</a></dd>
+                          	<dd><a href="../zsgz/glzdzs/index.htm">管理制度</a></dd>
+                          </dl>
+            </div>
+            </li>
+            <li><a href="../pygz/index.htm">培养工作</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../pygz/tzggpy/index.htm">通知公告</a></dd>
+                          	<dd><a href="../pygz/pyfa/index.htm">培养方案</a></dd>
+                          	<dd><a href="../pygz/kcjs/index.htm">课程建设</a></dd>
+                          	<dd><a href="../pygz/glzdpy/index.htm">管理制度</a></dd>
+                          </dl>
+            </div>
+            </li>
+            <li><a href="../xwgz/index.htm">学位工作</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../xwgz/tzggxw/index.htm">通知公告</a></dd>
+                          	<dd><a href="../xwgz/xwgl/index.htm">学位管理</a></dd>
+                          	<dd><a href="../xwgz/xwdjs/index.htm">学位点建设</a></dd>
+                          	<dd><a href="../xwgz/glzdxw/index.htm">管理制度</a></dd>
+                          </dl>
+            </div>
+            </li>
+            <li><a href="../dsgz/index.htm">学籍管理</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../dsgz/tzggds/index.htm">通知公告</a></dd>
+                          	<dd><a href="../dsgz/glzdds/index.htm">管理制度</a></dd>
+                          </dl>
+            </div>
+            </li>
+            <li><a href="../xsgz/index.htm">研工管理</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../xsgz/tzggxs/index.htm">通知公告</a></dd>
+                          	<dd><a href="../xsgz/xshd/index.htm">学生活动</a></dd>
+                          	<dd><a href="../xsgz/xszz/index.htm">学生资助</a></dd>
+                          	<dd><a href="../xsgz/jygz/index.htm">就业工作</a></dd>
+                          	<dd><a href="../xsgz/glzdxs/index.htm">管理制度</a></dd>
+                          </dl>
+            </div>
+            </li>
+            <li><a href="../xxgk/index.htm">信息公开</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../xxgk/gsxx/index.htm">公示信息</a></dd>
+                          	<dd><a href="../xxgk/glzd1/index.htm">管理制度</a></dd>
+                          </dl>
+            </div>
+            </li>
+            <li><a href="../xzzx/index.htm">下载中心</a>
+            <div class="subNav">
+                          <dl>
+                          	<dd><a href="../xzzx/zsgzxz/index.htm">招生工作</a></dd>
+                          	<dd><a href="../xzzx/pygzxz/index.htm">培养工作</a></dd>
+                          	<dd><a href="../xzzx/xwgzxz/index.htm">学位工作</a></dd>
+                          	<dd><a href="../xzzx/dsgzxz/index.htm">导师工作</a></dd>
+                          	<dd><a href="../xzzx/xsgzxz/index.htm">学生工作</a></dd>
+                          	<dd><a href="../xzzx/zhswxz/index.htm">综合事务</a></dd>
+                          </dl>
+            </div>
+            </li>
+              
+            </ul>
+        </div>          
+        </nav>
+        <div class="mbtn"><img src="../images/nav.png"></div>
+        <div class="navm">
+        <ul> 
+          <li><a href="../index.htm">首页</a></li>
+            <li  class="sub_has"  >
+            	<a href="../jgjj/index.htm">机构简介</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../jgjj/yjsjy/index.htm">研究生教育</a></dd>
+                          	<dd><a href="../jgjj/jgzn/index.htm">机构职能</a></dd>
+                          	<dd><a href="../jgjj/gzry/index.htm">联系我们</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li  class="sub_has"  >
+            	<a href="../zsgz/index.htm">招生工作</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../zsgz/tzggzs/index.htm">通知公告</a></dd>
+                          	<dd><a href="../zsgz/zsjz/index.htm">招生简章</a></dd>
+                          	<dd><a href="../zsgz/glzdzs/index.htm">管理制度</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li  class="sub_has"  >
+            	<a href="../pygz/index.htm">培养工作</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../pygz/tzggpy/index.htm">通知公告</a></dd>
+                          	<dd><a href="../pygz/pyfa/index.htm">培养方案</a></dd>
+                          	<dd><a href="../pygz/kcjs/index.htm">课程建设</a></dd>
+                          	<dd><a href="../pygz/glzdpy/index.htm">管理制度</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li  class="sub_has"  >
+            	<a href="../xwgz/index.htm">学位工作</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../xwgz/tzggxw/index.htm">通知公告</a></dd>
+                          	<dd><a href="../xwgz/xwgl/index.htm">学位管理</a></dd>
+                          	<dd><a href="../xwgz/xwdjs/index.htm">学位点建设</a></dd>
+                          	<dd><a href="../xwgz/glzdxw/index.htm">管理制度</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li  class="sub_has"  >
+            	<a href="../dsgz/index.htm">学籍管理</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../dsgz/tzggds/index.htm">通知公告</a></dd>
+                          	<dd><a href="../dsgz/glzdds/index.htm">管理制度</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li  class="sub_has"  >
+            	<a href="../xsgz/index.htm">研工管理</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../xsgz/tzggxs/index.htm">通知公告</a></dd>
+                          	<dd><a href="../xsgz/xshd/index.htm">学生活动</a></dd>
+                          	<dd><a href="../xsgz/xszz/index.htm">学生资助</a></dd>
+                          	<dd><a href="../xsgz/jygz/index.htm">就业工作</a></dd>
+                          	<dd><a href="../xsgz/glzdxs/index.htm">管理制度</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li  class="sub_has"  >
+            	<a href="../xxgk/index.htm">信息公开</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../xxgk/gsxx/index.htm">公示信息</a></dd>
+                          	<dd><a href="../xxgk/glzd1/index.htm">管理制度</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li  class="sub_has"  >
+            	<a href="../xzzx/index.htm">下载中心</a>
+            <span class="fa fa-chevron-right"></span>
+                <div class="subNavs">
+                    <dl>
+                          	<dd><a href="../xzzx/zsgzxz/index.htm">招生工作</a></dd>
+                          	<dd><a href="../xzzx/pygzxz/index.htm">培养工作</a></dd>
+                          	<dd><a href="../xzzx/xwgzxz/index.htm">学位工作</a></dd>
+                          	<dd><a href="../xzzx/dsgzxz/index.htm">导师工作</a></dd>
+                          	<dd><a href="../xzzx/xsgzxz/index.htm">学生工作</a></dd>
+                          	<dd><a href="../xzzx/zhswxz/index.htm">综合事务</a></dd>
+                    </dl>
+                </div>
+            </li>
+            <li>
+              <div class="ser" id="ser">
+      <form name="dataForm" class="search" action="/cms/web/search/index.jsp" target="_blank" method="post" accept-charset="utf-8" onsubmit="document.charset='utf-8';">
+        <input name="siteID" value="9652b3a18b32472bbd2d6ef7082f1617" type ="hidden">
+        <input class="notxt" value="请输入搜索内容" name="query" type="text" id="keywords" onFocus="if(value==defaultValue){value='';}" onBlur="if(!value){value=defaultValue;}" onclick="if(this.value==''){this.value='';this.form.keywords.style.color='#639372'}">
+        <input class="notxt1" name="Submit" type="submit" value="" />
+      </form>
+    </div>
+            </li>   
+        </ul>
+    </div>
+  </div>    
+</header>
+
+<div class="sub_banner" id="subbanner"> <img src="../images/banner01.jpg" > </div>
+<!--header结束 --> 
+<!--banner开始-->
+
+
+<!--banner结束 --> 
+
+<!--content开始-->
+<div class="subPage">
+  <div class="subPage_con">
+
+        <div class="bread"><span>  
+          <a href="../index.htm">首页</a>&nbsp;&gt;&nbsp;
+          <a href="index.htm">招生信息</a>
+        	</span></div>
+        	
+      <div class="pageArticle box-shadow">
+        <div class="articleTitle borderBot">
+          <h2>招生信息</h2>
+          <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+          </div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":[]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+         
+        </div>
+        <div class="article">
+                <div class="articleTitle02">   
+                      <h2>上海商学院2027年硕士研究生招生简章</h2>
+                      <div class="articleAuthor">
+                        
+                            <span>发布时间：2026-09-30</span>       
+                       
+                     </div>
+                    
+                 </div>
+
+
+                 <div class="article02">
+                    <p style="text-align: justify;"><span style="text-indent: 43px; font-family: 仿宋; line-height: 150%; font-size: 21px;"> &nbsp; &nbsp;上海商学院是一所商科特色鲜明的普通公办高等学校，</span><span style="text-indent: 43px; font-family: 'Times New Roman'; line-height: 150%; font-size: 21px;"><span style="font-family:仿宋">学校坚持</span>“<span style="font-family:仿宋">以商立校、应用为本</span>”<span style="font-family:仿宋">办学理念，秉承</span>“<span style="font-family:仿宋">厚德博学、经世济民</span>”<span style="font-family:仿宋">校训精神，全力打造</span>“<span style="font-family:仿宋">应用型、创新性、国际化</span>”<span style="font-family:仿宋">办学特色，全面建设特色鲜明的高水平应用型商科大学。</span></span><br></p> 
+<p style="text-align: justify;"><span style="text-indent: 43px; font-family: 'Times New Roman'; line-height: 150%; font-size: 21px;"><span style="font-family:仿宋"><br></span></span></p> 
+<p style=";line-height:150%"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">一、培养目标</span></span></strong></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">培养热爱祖国，拥护中国共产党的领导，拥护社会主义制度，遵纪守法，品德良好，具有服务国家</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">、</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">服务人民的社会责任感，掌握本学科坚实的基础理论和系统的专业知识，具有创新精神、创新能力和较强解决实际问题的能力、能够承担专业技术或管理工作、具有良好职业素养的高层次</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">实践创新</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">型专门人才。</span></span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></p> 
+<p style=";line-height:150%"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">二、招生计划</span></span></strong></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">我校</span>2027<span style="font-family:仿宋">年拟招收全日制专业学位硕士研究生</span><span style="font-family:Times New Roman">26</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">5</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">名，具体拟招生计划人数参见下表。录取时将根据教育部最终下达招生计划，综合考虑生源状况和发展需要，对学校招生总数及各专业招生数进行适当调整。</span></span></p> 
+<table cellspacing="0" width="577" align="center"> 
+ <tbody> 
+  <tr class="firstRow"> 
+   <td width="132" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 仿宋;font-size: 19px">学院</span></strong></p></td> 
+   <td width="133" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">专业名称</span></span></strong></p></td> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 仿宋;font-size: 19px">专业代码</span></strong></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">培养方式</span></span></strong></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">拟招生人数（人）</span></span></strong></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="132" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px">商务经济学院</span></p></td> 
+   <td width="133" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">金融</span></span><span style="font-family: 仿宋;font-size: 19px">硕士</span></p></td> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">0251</span></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">50</span></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="133" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px">国际商务硕士</span></p></td> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">0</span></span><span style="font-family: 'Times New Roman';font-size: 19px">254</span></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">5</span><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">0</span></span></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="132" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">酒店管理学院</span></span></p></td> 
+   <td width="133" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">旅游管理</span></span><span style="font-family: 仿宋;font-size: 19px">硕士</span></p></td> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">1</span></span><span style="font-family: 'Times New Roman';font-size: 19px">254</span></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">25</span></span></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="132" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">工商管理学院</span></span></p></td> 
+   <td width="133" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">工商管理</span></span><span style="font-family: 仿宋;font-size: 19px">硕士</span></p></td> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">1251</span></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">60</span></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="132" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">商务信息学院</span></span></p></td> 
+   <td width="133" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">工程管理</span></span><span style="font-family: 仿宋;font-size: 19px">硕士</span></p></td> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">125601</span></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">20</span></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">125604</span></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">20</span></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="132" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">文法学院</span></span></p></td> 
+   <td width="133" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">社会工作</span></span><span style="font-family: 仿宋;font-size: 19px">硕士</span></p></td> 
+   <td width="94" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">0</span></span><span style="font-family: 'Times New Roman';font-size: 19px">352</span></p></td> 
+   <td width="95" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">40</span></span></p></td> 
+  </tr> 
+  <tr style="height:38px"> 
+   <td width="454" valign="center" colspan="4" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">合计</span></span></p></td> 
+   <td width="123" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">26</span><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">5</span></span></p></td> 
+  </tr> 
+ </tbody> 
+</table> 
+<p style="margin-top:10px;line-height:150%"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="margin-top:10px;line-height:150%"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">三、报考条件</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（一）报名参加全国硕士研究生招生考试的人员，须符合下列条件：</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">1</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">拥护中国共产党的领导，品德良好，遵纪守法。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">2</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">身体健康状况符合国家和招生单位规定的体检要求。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">3</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">考生学业水平必须符合下列条件之一：</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（</span>1<span style="font-family:仿宋">）国家承认学历的应届本科毕业生（含普通高校、成人高校、普通高校举办的成人高等学历教育等应届本科毕业生）及自学考试和网络教育届时可毕业本科生。考生录取当年</span><span style="font-family:Times New Roman">9</span><span style="font-family:仿宋">月</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">日前必须取得</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">国家承认的国（境）内高校本科毕业证书或经相关专业机构认证的国（境）外教育机构合法学历学位证书</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">，否则录取资格无效。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（</span>2<span style="font-family:仿宋">）具有国家承认的大学本科毕业学历的人员。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（</span>3<span style="font-family:仿宋">）获得国家承认的高职</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">（专科）</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">毕业学历后满</span>2<span style="font-family:仿宋">年</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">及以上人员</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（毕业后到录取当年入学前，下同），以及国家承认学历的本科结业生，</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">且</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">符合招生单位根据本单位的培养目标对考生提出的具体学业要求的，按本科毕业同等学力身份报考。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（</span>4<span style="font-family:仿宋">）已获硕士、博士研究生学历或学位的人员。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">4.</span><span style="font-family:仿宋">不存在其他法律法规或规章规定的不得报考硕士研究生的情形。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">因违反国家教育考试规定，被给予暂停参加国家教育考试处理且在停考期内的人员，不得报考硕士研究生。</span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（二）报名参加工商管理、旅游管理</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">、</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">工程管理专业学位硕士研究生招生考试的人员，须符合下列条件：</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1.<span style="font-family:仿宋">符合本条（一）中第</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">、</span><span style="font-family:Times New Roman">2</span><span style="font-family:仿宋">、</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">4</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">各项的要求。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">2.<span style="font-family:仿宋">本科毕业后有</span><span style="font-family:Times New Roman">3</span><span style="font-family:仿宋">年以上工作经验；或获得国家承认的高职</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">（专科）</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">毕业学历或本科结业后，达到本科毕业同等学力并有</span>5<span style="font-family:仿宋">年以上工作经验；或获得硕士、博士研究生学历或学位后有</span><span style="font-family:Times New Roman">2</span><span style="font-family:仿宋">年以上工作经验。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">工商管理硕士专业学位研究生相关考试招生政策同时按照《教育部关于进一步规范工商管理硕士专业学位研究生教育的意见》（教研〔</span>2016<span style="font-family:仿宋">〕</span><span style="font-family:Times New Roman">2</span><span style="font-family:仿宋">号）有关规定执行。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（三）</span><span style="font-family:Times New Roman">“</span><span style="font-family:仿宋">少数民族高层次骨干人才计划</span><span style="font-family:Times New Roman">”“</span><span style="font-family:仿宋">退役大学生士兵计划</span><span style="font-family:Times New Roman">”</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">等专项计划</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">招生按国家相关规定执行。</span> </span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（四）补充说明：</span> </span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1.<span style="font-family:仿宋">全日制考生选择报考类别为</span><span style="font-family:Times New Roman">“</span><span style="font-family:仿宋">定向就业</span><span style="font-family:Times New Roman">”</span><span style="font-family:仿宋">的，报考我校研究生须在报考前征得所在单位书面同意，复试时向我校提交单位书面同意书。定向就业硕士研究生按定向合同就业，在被录取前与招生单位、用人单位分别签订定向就业合同，学习期间人事档案和户口均不能转入我校，不能参评学校的奖助学金和资助项目，毕业时不纳入就业派遣。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">非定向就业硕士研究生按本人与用人单位双向选择的办法就业。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">2.<span style="font-family:仿宋">在校研究生报名前须取得所在培养单位研究生教育主管部门负责人签名并加盖公章同意报考的书面证明。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">3.<span style="font-family:仿宋">未尽事宜详见教育部硕士研究生招生工作管理规定和相关文件。</span></span></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">四、报名</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">所有参加硕士研究生招生考试的考生均须进行网上报名，</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">认真核对并</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">确认网报信息和采集本人图像等相关电子信息。</span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1.<span style="font-family:仿宋">网上报名时间为</span><span style="font-family:Times New Roman">2026</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">10</span><span style="font-family:仿宋">月</span><span style="font-family:Times New Roman">15</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">日至</span>10<span style="font-family:仿宋">月</span><span style="font-family:Times New Roman">2</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">4</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">日（网上预报名时间为</span>2026<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">10</span><span style="font-family:仿宋">月</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">9</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">日至</span>10<span style="font-family:仿宋">月</span><span style="font-family:Times New Roman">1</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">2</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">日，相关工作安排由各省级教育招生考试机构确定并公布），每日</span>9:00-22:00<span style="font-family:仿宋">。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">2.<span style="font-family:仿宋">报名网址：中国研究生招生信息网（公网网址：</span><span style="font-family:Times New Roman">https</span><span style="font-family:仿宋">：</span><span style="font-family:Times New Roman">//yz.chsi.com.cn</span><span style="font-family:仿宋">，教育网址：</span><span style="font-family:Times New Roman">https://yz.chsi.cn</span><span style="font-family:仿宋">，以下简称</span><span style="font-family:Times New Roman">“</span><span style="font-family:仿宋">研招网</span><span style="font-family:Times New Roman">”</span><span style="font-family:仿宋">）。考生应按教育部、考生所在省级教育招生考试机构、报考点以及我校发布的相关通知公告要求报名。报名期间，考生可自行修改网上报名信息或重新填报报名信息，但一位考生只能保留一条有效报名信息。逾期不再补报，也不得修改报名信息。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">3.<span style="font-family:仿宋">考生报名时只填报一个招生单位的一个专业。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">4.<span style="font-family:仿宋">考生应按招生单位要求如实填写学习情况和提供真实材料。考生要准确填写本人所受奖惩情况，特别是要如实填写在参加普通和成人高等学校招生考试、全国硕士研究生招生考试、高等教育自学考试等国家教育考试过程中因违纪、作弊所受处罚情况。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">5.</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">实行网上报名与网上确认一体化。网上报名期间，考生填报个人信息和报考志愿后，即可一并提交报考点要求的</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">居民身份证、学历学位证书（应届本科毕业生持学生证）和网上报名编号等</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">核验材料</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">。</span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">6</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">报名期间将对考生学历（学籍）信息进行网上校验，考生可上网查看学历（学籍）校验结果。考生可在报名前或报名期间自行登录</span><span style="font-family:Times New Roman">“</span><span style="font-family:仿宋">中国高等教育学生信息网</span><span style="font-family:Times New Roman">”</span><span style="font-family:仿宋">（网址：</span><span style="font-family:Times New Roman">https://www.chsi.com.cn</span><span style="font-family:仿宋">）查询本人学历（学籍）信息。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">未能通过学历（学籍）网上校验的考生应在</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">网上报名结束</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">前完成学历（学籍）校验。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">7.</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">应届本科毕业生原则上应选择就读学校所在地省级教育招生考试机构指定的报考点；其他考生应选择工作所在地或户籍所在地省级教育招生考试机构指定的报考点（相关具体要求由所在地省级教育招生考试机构因地制宜、合理确定）。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">8.</span><span style="font-family:仿宋">网上报名结束后，报考点会集中审核考生报名信息和材料，确定考生的考试资格。如果考生的材料不符合要求，报考点将通过研招网站内消息等方式提醒考生及时补充材料，考生按要求补充材料后即可完成报名。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">9</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">按规定享受少数民族照顾政策的考生，须在网上报名时按要求填报相关信息，并如实填写少数民族身份及定向就业少数民族地区。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">10</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">按规定享受初试加分政策的考生，须在网上报名时按要求填报相关信息。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">1</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">遵循</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">《中华人民共和国残疾人教育条例》</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">和有关要求，学校积极为残疾人参加考试提供必要支持条件和合理便利。残疾考生如需组考单位在考试期间提供合理考试便利服务的，应于报名阶段与考点所在地省级招生考试机构和招生单位沟通申请，以便提前做好安排。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">12</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">.</span><span style="font-family:仿宋">考生应当按规定缴纳报考费。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">13</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">.</span><span style="font-family:仿宋">考生应当按报考点规定配合采集本人图像等相关电子信息。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">4</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">考生应当认真了解并严格按照报考条件及相关政策要求选择填报志愿并选择报考点。因不符合报考条件及相关政策要求，造成后续不能考试（含初试和复试）或录取的，后果由考生本人承担。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">5</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">考生应当按要求准确填写个人网上报名信息并提供真实材料。考生因网报信息填写错误、填报虚假信息而造成不能考试（含初试和复试）或录取的，后果由考生本人承担。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">6</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">考生应当在考前十天左右，凭网报用户名和密码登录</span><span style="font-family:Times New Roman">“</span><span style="font-family:仿宋">研招网</span><span style="font-family:Times New Roman">”</span><span style="font-family:仿宋">自行下载打印《准考证》。《准考证》使用</span><span style="font-family:Times New Roman">A4</span><span style="font-family:仿宋">幅面白纸打印，正、反两面在使用期间不得涂改或书写。考生凭下载打印的《准考证》及有效居民身份证参加初试和复试。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">7</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">.<span style="font-family:仿宋">考生报名时须签署《考生诚信考试承诺书》并遵守相关约定及要求。</span></span></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">五、考试</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">入学考试分初试和复试</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（一）初试</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1.2027<span style="font-family:仿宋">年全国硕士研究生招生初试时间为</span><span style="font-family:Times New Roman">2026</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">12</span><span style="font-family:仿宋">月</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">19</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">日至</span>2</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">0</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">日。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">2.<span style="font-family:仿宋">初试科目详见我校</span><span style="font-family:Times New Roman">2027</span><span style="font-family:仿宋">年硕士研究生招生目录，初试方式均为笔试，初试地点由各报考点另行通知。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">我校招生目录中所列参考书目仅供参考，初试和复试题目不仅局限于参考书目。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（二）复试</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">复试采取差额复试，差额比例不低于</span>120%<span style="font-family:仿宋">，具体差额比例根据专业自身特点和生源状况确定。</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">合格生源比例不足的，按实际合格生源数组织复试。</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">具体复试办法和复试安排等信息届时由我校研究生教育网（</span>https://yjs.sbs.edu.cn/<span style="font-family:仿宋">）公布。</span></span></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">六、调剂</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">根据当年度考生报考情况，我校个别专业可能会有调剂需求，请考生在复试阶段关注我校研究生教育网和中国研究生招生信息网查看调剂专业，我校将严格按照教育部有关政策要求及我校相关工作办法，通过教育部指定的</span><span style="font-family:Times New Roman">“</span><span style="font-family:仿宋">全国硕士生招生调剂服务系统</span><span style="font-family:Times New Roman">”</span><span style="font-family:仿宋">进行。</span></span></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">七、录取与体检</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（一）录取</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1.</span><span style="font-family: &quot;Times New Roman&quot;; line-height: 150%; font-size: 21px;"><span style="font-family:仿宋">我校在研究生招生</span></span><span style="font-family: 仿宋; line-height: 150%; font-size: 21px;">委员会</span><span style="font-family: &quot;Times New Roman&quot;; line-height: 150%; font-size: 21px;"><span style="font-family:仿宋">的统一领导下，严格按照教育部和</span></span><span style="font-family: 仿宋; line-height: 150%; font-size: 21px;">上海市教育行政部门</span><span style="font-family: &quot;Times New Roman&quot;; line-height: 150%; font-size: 21px;"><span style="font-family:仿宋">有关招生录取政策规定，根据本单位招生计划、复试录取办法以及考生初试和复试成绩、思想政治表现、身心健康状况等择优确定拟录取名单。录取工作依法保护残疾考生的合法权益。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">2.<span style="font-family:仿宋">考生因报考硕士研究生与所在单位产生的问题由考生自行处理。若因此造成考生不能复试或无法录取，我校不承担责任。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">3.<span style="font-family:仿宋">经考生确认的报考信息在录取阶段一律不作修改，对报考资格不符合规定者不予录取。应届本科毕业生及自学考试和网络教育届时可毕业本科生考生，入学时未取得国家承认的本科毕业证书者，录取资格无效。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（二）体检</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">身体健康是研究生录取的必要条件之一。我校将统一安排拟录取考生体检，体检工作参照</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:仿宋">《中华人民共和国残疾人教育条例》和《教育部办公厅</span> <span style="font-family:仿宋">卫生部办公厅关于普通高等学校招生学生入学身体检查取消乙肝项目检测有关问题的通知》（教学厅〔</span><span style="font-family:Times New Roman">2010</span><span style="font-family:仿宋">〕</span><span style="font-family:Times New Roman">2</span><span style="font-family:仿宋">号）等文件规定，参照《教育部 卫生部 中国残疾人联合会关于印发〈普通高等学校招生体检工作指导意见〉的通知》（教学〔</span><span style="font-family:Times New Roman">2003</span><span style="font-family:仿宋">〕</span><span style="font-family:Times New Roman">3</span><span style="font-family:仿宋">号）要求</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">，并结合我校招生专业实际情况进行。考生体检后发现有《指导意见》中所未包含病情的，学校有权对认为不适合所报考专业学习要求的考生做出相应的决定。</span></span></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">八、学制与证书</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（一）学制</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">我校金融、国际商务、旅游管理、工商管理、工程管理、社会工作全日制专业学位硕士研究生的基本修业年限为</span>2<span style="font-family:仿宋">年。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（二）证书</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">学习期满，符合国家有关规定和学校硕士研究生毕业条件者，可获得注明学习方式的毕业证书；符合学校硕士学位授予条件者，授予硕士学位证书。</span></span></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">九、学费与奖助政策</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（一）学费</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">我校</span>2027<span style="font-family:仿宋">年全日制专业学位硕士研究生学费标准如下（以主管部门批复为准）：</span></span></p> 
+<table cellspacing="0" width="614" align="center"> 
+ <tbody> 
+  <tr style="height:34px" class="firstRow"> 
+   <td width="136" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">专业名称</span></span></strong></p></td> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 仿宋;font-size: 19px">专业代码</span></strong></p></td> 
+   <td width="107" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">培养方式</span></span></strong></p></td> 
+   <td width="156" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">学费（每生</span>/<span style="font-family:仿宋">年）</span></span></strong></p></td> 
+   <td width="113" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">学制（年）</span></span></strong></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="136" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">金融硕士</span></span></p></td> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">0251</span></p></td> 
+   <td width="107" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="156" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">64</span></span><span style="font-family: 'Times New Roman';font-size: 19px">000<span style="font-family:仿宋">元</span></span></p></td> 
+   <td width="113" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">2</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="136" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">国际商务硕士</span></span></p></td> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">0</span></span><span style="font-family: 'Times New Roman';font-size: 19px">254</span></p></td> 
+   <td width="107" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="156" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">49</span></span><span style="font-family: 'Times New Roman';font-size: 19px">000<span style="font-family:仿宋">元</span></span></p></td> 
+   <td width="113" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">2</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="136" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">旅游管理硕士</span></span></p></td> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">1</span></span><span style="font-family: 'Times New Roman';font-size: 19px">254</span></p></td> 
+   <td width="107" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="156" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">45000<span style="font-family:仿宋">元</span></span></p></td> 
+   <td width="113" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">2</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="136" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">工商管理硕士</span></span></p></td> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">1251</span></p></td> 
+   <td width="107" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="156" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">74000<span style="font-family:仿宋">元</span></span></p></td> 
+   <td width="113" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">2</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="136" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">工程管理硕士</span></span></p></td> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">125601</span></p></td> 
+   <td width="107" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="156" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">54000<span style="font-family:仿宋">元</span></span></p></td> 
+   <td width="113" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">2</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">125604</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="136" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">社会工作硕士</span></span></p></td> 
+   <td width="102" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 19px"><span style="font-family:Times New Roman">0</span></span><span style="font-family: 'Times New Roman';font-size: 19px">352</span></p></td> 
+   <td width="107" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">全日制</span></span></p></td> 
+   <td width="156" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">30000<span style="font-family:仿宋">元</span></span></p></td> 
+   <td width="113" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">2</span></p></td> 
+  </tr> 
+ </tbody> 
+</table> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">我校为全日制硕士研究生安排住宿。其他教育收费按照上级要求和学校规定执行。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 仿宋;font-size: 21px">（二）</span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">奖助政策</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">我校根据国家和上海市相关政策，构建了完善的研究生奖助体系。学校为所有全日制研究生（定向培养有固定工资收入者除外）发放研究生国家助学金；另外通过研究生国家奖学金、学业奖学金、三助岗位、助学贷款等制度，建立多元奖助体系，支持研究生完成学业，提高研究生待遇水平。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">1.<span style="font-family:仿宋">研究生国家助学金：硕士研究生国家助学金资助标准为</span><span style="font-family:Times New Roman">6000</span><span style="font-family:仿宋">元</span><span style="font-family:Times New Roman">/</span><span style="font-family:仿宋">年。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">2.<span style="font-family:仿宋">研究生国家奖学金：根据研究生年度综合素质测评结果和答辩选拔评定研究生国家奖学金，资助标准为</span><span style="font-family:Times New Roman">20000</span><span style="font-family:仿宋">元</span><span style="font-family:Times New Roman">/</span><span style="font-family:仿宋">人，具体名额由上级主管部门确定。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">3.<span style="font-family:仿宋">研究生学业奖学金：研究生学业奖学金的评选实行动态评价，在学制内分两个阶段进行，第一个阶段为入学后</span><span style="font-family:Times New Roman">1-2</span><span style="font-family:仿宋">学期，第二个阶段为学制内的其他学期。第一阶段获奖比例为评选对象的</span><span style="font-family:Times New Roman">100%</span><span style="font-family:仿宋">；第二阶段获奖比例为评选对象的</span><span style="font-family:Times New Roman">90%</span><span style="font-family:仿宋">，具体奖励金额及</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 19px"><span style="font-family:仿宋">等级比例参见</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">下表。</span></span></p> 
+<table cellspacing="0" align="center"> 
+ <tbody> 
+  <tr style="height:34px" class="firstRow"> 
+   <td width="171" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">阶段</span></span></strong></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">等级比例</span></span></strong></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">金额（元</span>/<span style="font-family:仿宋">年）</span></span></strong></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="171" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">第一阶段</span></span></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">一等奖（</span>40%<span style="font-family:仿宋">）</span></span></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">6000</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">二等奖（</span>60%<span style="font-family:仿宋">）</span></span></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">4000</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="171" valign="center" rowspan="3" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">第二阶段</span></span></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">一等奖（</span>10%<span style="font-family:仿宋">）</span></span></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">12000</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">二等奖（</span>25%<span style="font-family:仿宋">）</span></span></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">8000</span></p></td> 
+  </tr> 
+  <tr style="height:34px"> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px"><span style="font-family:仿宋">三等奖（</span>55%<span style="font-family:仿宋">）</span></span></p></td> 
+   <td width="189" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 19px">4000</span></p></td> 
+  </tr> 
+ </tbody> 
+</table> 
+<p style=";line-height:150%"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style=";line-height:150%"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">十、其他事项</span></span></strong></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（一）复试通知、复试成绩以及其他通知均在我校研究生教育网站公布，不寄发书面通知；录取通知书由我校研究生处负责寄发。</span></span></p> 
+<p style="text-indent: 43px; line-height: 150%; text-align: justify;"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（二）以上招生政策和程序若与国家教育部及有关部门颁布的规定有不符之处，须按国家教育部及有关部门的相关文件规定执行。本章程公布后，若上级部门在本招生年度出台新的政策，我校将做相应调整，并及时在学校研究生教育网予以公布。</span></span></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋"><br></span></span></strong></p> 
+<p style="line-height: 150%; text-align: justify;"><strong><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">十一、联系方式</span></span></strong></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">上海商学院代码：</span>12050</span></p> 
+<p style="margin-left:149px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">学校地址：中山西路校区（徐汇区中山西路</span>2271<span style="font-family:仿宋">号）</span></span></p> 
+<p style="margin-left:148px;text-indent:0;line-height:150%"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">漕宝路校区</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">（</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">徐汇区</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:仿宋">漕宝路</span><span style="font-family:Times New Roman">121</span><span style="font-family:仿宋">号</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">）</span></p> 
+<p style="margin-left:148px;text-indent:0;line-height:150%"><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">奉浦校区</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">（</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">奉贤区</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:仿宋">东方美谷大道</span><span style="font-family:Times New Roman">6333</span><span style="font-family:仿宋">号</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">）</span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">联系部门：上海商学院研究生处</span></span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">通讯地址：</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">上海市徐汇区中山西路</span>2271<span style="font-family:仿宋">号教学楼</span></span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px"><span style="font-family:Times New Roman">1</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">216</span><span style="font-family: 仿宋;line-height: 150%;font-size: 21px">室</span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">邮政编码：</span>200235</span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">联系电话：</span>021-64163253</span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">电子邮箱：</span>sbsyjs@163.com</span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">官方网站：上海商学院研究生教育网</span></span></p> 
+<p style="text-indent:128px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">（网址：</span></span><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px">http://yjs.sbs.edu.cn<span style="font-family:仿宋">）</span></span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">微信公众号：上海商学院研究生教育</span></span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">申诉渠道：纪检监察室</span>021-67105467<span style="font-family:仿宋">，</span><span style="font-family:Times New Roman">jiw@sbs.edu.cn</span></span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"> </span></p> 
+<p style="text-indent:43px;line-height:150%"><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><span style="font-family:仿宋">附件：上海商学院</span>2027<span style="font-family:仿宋">年专业学位硕士研究生招生专业目录</span></span></p> 
+<p><span style="font-family: 'Times New Roman';line-height: 150%;font-size: 21px"><br clear="all" style="page-break-before:always"></span> </p> 
+<p style="margin-top: 7px;margin-bottom: 7px;line-height: 21px"><span style="font-family: 仿宋;font-size: 21px"><br></span></p> 
+<p style="margin-top: 7px;margin-bottom: 7px;line-height: 21px"><span style="font-family: 仿宋;font-size: 21px">附件：</span></p> 
+<p style=";text-align:center;line-height:150%"><span style="font-family: 黑体;line-height: 150%;font-size: 21px;background: #FFFFFF"><span style="font-family:黑体">上海商学院</span>2027年专业学位硕士研究生招生专业目录</span></p> 
+<table cellspacing="0" width="1032" style="width: 983px;" align="center"> 
+ <tbody> 
+  <tr style="page-break-inside:avoid" class="firstRow"> 
+   <td width="62" valign="center" style="padding: 0px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">学院代码及学院名称</span></span></strong></p></td> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">专业代码及专业名称</span></span></strong></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">初试考试科目</span></span></strong></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">初试参考书目</span></span></strong></p></td> 
+   <td width="110" valign="center" style="padding: 0px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">复试内容</span></span></strong></p></td> 
+   <td width="163" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">复试参考书目</span></span></strong></p></td> 
+   <td width="90" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center;line-height:150%"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">同等学力加试科目</span></span></strong></p></td> 
+   <td width="104" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center;line-height:150%"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">同等学力参考书目</span></span></strong></p></td> 
+   <td width="118" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center"><strong><span style="font-family: 'Times New Roman';font-size: 16px"><span style="font-family:仿宋">联系方式</span></span></strong></p></td> 
+  </tr> 
+  <tr style="page-break-inside:avoid"> 
+   <td width="62" valign="center" rowspan="2" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">001<span style="font-family:仿宋">商务经济学院</span></span></p></td> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">025100</span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">金融</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">①</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">101 <span style="font-family:仿宋">思想政治理论</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">②</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">204 <span style="font-family:仿宋">英语（二）</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">③</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">396 <span style="font-family:仿宋">经济类综合能力</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">④</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">431 <span style="font-family:仿宋">金融学综合</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">396<span style="font-family:仿宋">统考科目，考试大纲由教育部教育考试院编制（最新版）</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">431<span style="font-family:仿宋">《金融学》（第六版），黄达、张杰，中国人民大学出版社，</span><span style="font-family:Times New Roman">2024</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">3</span><span style="font-family:仿宋">月；《公司理财》（第</span><span style="font-family:Times New Roman">13</span><span style="font-family:仿宋">版）斯蒂芬</span><span style="font-family:Times New Roman">·A.</span><span style="font-family:仿宋">罗斯，机械工业出版社，</span><span style="font-family:Times New Roman">2024</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="110" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">专业综合能力</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">英语口语与听力</span></span></p></td> 
+   <td width="163" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《金融学》</span></span><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">（</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">第六版</span></span><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">）</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">黄达、张杰，中国人民大学出版社，</span>2024<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">3</span><span style="font-family:仿宋">月</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《公司理财》</span></span><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">（</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">第</span></span><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:Times New Roman">13</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">版</span></span><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">）</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">斯蒂芬</span>A.<span style="font-family:仿宋">罗斯，机械工业出版社，</span><span style="font-family:Times New Roman">2024</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="193" valign="center" colspan="2" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px"><a name="OLE_LINK5"></a><span style="font-family:仿宋">不招收同等学力考生</span></span></p></td> 
+   <td width="118" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px"><span style="font-family:仿宋">丁老师</span></span></p><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px">021-64870020<span style="font-family:仿宋">转</span><span style="font-family:Times New Roman">1107</span><span style="font-family:仿宋">，</span></span></p><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px">021-67108238</span></p></td> 
+  </tr> 
+  <tr style="page-break-inside:avoid"> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">025400</span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">国际商务</span></span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"> </span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">①</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">101 <span style="font-family:仿宋">思想政治理论</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">②</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">204 <span style="font-family:仿宋">英语（二）</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">③</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">396 <span style="font-family:仿宋">经济类综合能力</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">④</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">434 <span style="font-family:仿宋">国际商务专业基础</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">396<span style="font-family:仿宋">统考科目，考试大纲由教育部教育考试院编制（最新版）</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">434<span style="font-family:仿宋">《国际商务》（第</span><span style="font-family:Times New Roman">13</span><span style="font-family:仿宋">版），查尔斯</span><span style="font-family:Times New Roman">·</span><span style="font-family:仿宋">希尔著，中国人民大学出版社，</span><span style="font-family:Times New Roman">2024</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">3</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="110" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">专业综合能力</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">英语口语与听力</span></span></p></td> 
+   <td width="163" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《经济学原理》（微观、宏观经济学分册）（第</span>8<span style="font-family:仿宋">版），曼昆著，梁小民等译，北京大学出版社，</span><span style="font-family:Times New Roman">2020</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">7</span><span style="font-family:仿宋">月</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《国际经济学：理论与政策》（第</span></span><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">十一</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">版），克鲁格曼、奥伯斯法尔德、梅丽兹著，中国人民大学出版社，</span>2021<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">月</span></span></p></td> 
+  </tr> 
+  <tr style="page-break-inside:avoid"> 
+   <td width="62" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">002<span style="font-family:仿宋">酒店管理学院</span></span></p></td> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">125400</span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">旅游管理</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">①</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">199 <span style="font-family:仿宋">管理类综合能力</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">②</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">204 <span style="font-family:仿宋">英语（二）</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">199<span style="font-family:仿宋">统考科目，考试大纲由教育部教育考试院编制（最新版）</span></span></p></td> 
+   <td width="110" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">思想政治理论</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">专业综合能力</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">3.<span style="font-family:仿宋">英语口语与听力</span></span></p></td> 
+   <td width="163" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《旅游学概论》（第二版），邓爱民，任斐著，华中科技大学出版社，</span>2022<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">7</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="90" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">旅游接待业</span></span></p><p style="margin-top:0;margin-bottom:0;text-align:justify;text-justify:inter-ideograph;background:rgb(255,255,255)"><span style="font-family: 'Times New Roman';font-size: 14px">2.<span style="font-family:仿宋">旅游消费者行为</span></span></p></td> 
+   <td width="104" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《旅游接待业</span><span style="font-family:Times New Roman">—</span><span style="font-family:仿宋">理论、方法与实践》，何建民，重庆大学出版社，</span><span style="font-family:Times New Roman">2024</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">10</span><span style="font-family:仿宋">月</span></span></p><p style="margin-top:0;margin-bottom:0;text-align:justify;text-justify:inter-ideograph;background:rgb(255,255,255)"><span style="font-family: 'Times New Roman';font-size: 14px"><span style="font-family:仿宋">《旅游消费者行为（双语版）》，史达，华中科技大学出版社，</span>2023<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">7</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="118" valign="center" style="padding: 0px 7px; border-width: 1px; border-color: windowtext; border-style: solid;"><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px"><span style="font-family:仿宋">周老师</span></span></p><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px">021-37198068</span></p></td> 
+  </tr> 
+  <tr style="page-break-inside:avoid"> 
+   <td width="62" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">003</span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">工商管理学院</span></span></p></td> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">125100</span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">工商管理</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">①</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">199 <span style="font-family:仿宋">管理类综合能力</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">②</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">204 <span style="font-family:仿宋">英语（二）</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">199<span style="font-family:仿宋">统考科目，考试大纲由教育部教育考试院编制（最新版）</span></span></p></td> 
+   <td width="110" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">思想政治理论</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">专业综合能力</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">3.<span style="font-family:仿宋">英语口语与听力</span></span></p></td> 
+   <td width="163" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><br></td> 
+   <td width="90" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">管理学</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">市场营销</span></span></p></td> 
+   <td width="104" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《管理学》，《管理学》编写组主编，高等教育出版社，</span>2019<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">月</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">市场营销（第</span></span><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:Times New Roman">2</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">版），王永贵，中国人民大学出版社，</span>2022<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="118" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px"><span style="font-family:仿宋">金老师</span></span></p><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px">021-67104598</span></p></td> 
+  </tr> 
+  <tr style="height:79px;page-break-inside:avoid"> 
+   <td width="62" valign="center" rowspan="2" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">004<span style="font-family:仿宋">商务信息学院</span></span></p></td> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">125601</span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">工程管理</span></span></p></td> 
+   <td width="161" valign="center" rowspan="2" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">①</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">199 <span style="font-family:仿宋">管理类综合能力</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">②</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">204 <span style="font-family:仿宋">英语（二）</span></span></p></td> 
+   <td width="161" valign="center" rowspan="2" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">199<span style="font-family:仿宋">统考科目，考试大纲由教育部教育考试院编制（最新版）</span></span></p></td> 
+   <td width="110" valign="center" rowspan="2" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">思想政治理论</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">专业综合能力</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">3.<span style="font-family:仿宋">英语口语与听力</span></span></p></td> 
+   <td width="163" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《管理学》，《管理学》编写组主编，高等教育出版社，</span>2019<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="90" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">管理学</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">管理信息系统</span></span></p></td> 
+   <td width="104" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《管理信息系统》（第七版），黄梯云、李一军，高等教育出版社，</span>2019<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">8</span><span style="font-family:仿宋">月</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《管理学》，《管理学》编写组主编，高等教育出版社，</span>2019<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">1</span><span style="font-family:仿宋">月</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"> </span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"> </span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"> </span></p></td> 
+   <td width="118" valign="center" rowspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px"><span style="font-family:仿宋">张老师</span></span></p><p style=";text-align:center;line-height:150%"><span style="font-family: 'Times New Roman';font-size: 14px">021-67102981</span></p></td> 
+  </tr> 
+  <tr style="height:73px;page-break-inside:avoid"> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">125604</span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">物流工程与管理</span></span></p></td> 
+  </tr> 
+  <tr style="height:187px;page-break-inside:avoid"> 
+   <td width="62" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">005<span style="font-family:仿宋">文法学院</span></span></p></td> 
+   <td width="65" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">035200</span></p><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">社会工作</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">①</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">101 <span style="font-family:仿宋">思想政治理论</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">②</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">204 <span style="font-family:仿宋">英语（二）</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">③</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">331 <span style="font-family:仿宋">社会工作原理</span></span></p><p><span style="font-family: 宋体;font-size: 14px;background: #FFFFFF"><span style="font-family:宋体">④</span></span><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">437 <span style="font-family:仿宋">社会工作实务</span></span></p></td> 
+   <td width="161" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">331<span style="font-family:仿宋">《社会工作概论》（第四版），王思斌，高等教育出版社，</span><span style="font-family:Times New Roman">2023</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">10</span><span style="font-family:仿宋">月</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">437<span style="font-family:仿宋">《社会工作实务手册》（第二版），朱眉华、文军，社会科学文献出版社，</span><span style="font-family:Times New Roman">2022</span><span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">2</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="110" valign="center" style="padding: 0px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"> </span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">1.<span style="font-family:仿宋">专业综合能力</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF">2.<span style="font-family:仿宋">英语口语与听力</span></span></p></td> 
+   <td width="163" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《社会工作概论》（第四版），王思斌，高等教育出版社，</span>2023<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">10</span><span style="font-family:仿宋">月</span></span></p><p><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">《社会工作实务手册》（第二版），朱眉华、文军，社会科学文献出版社，</span>2022<span style="font-family:仿宋">年</span><span style="font-family:Times New Roman">2</span><span style="font-family:仿宋">月</span></span></p></td> 
+   <td width="193" valign="center" colspan="2" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 'Times New Roman';font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">不招收同等学力考生</span></span></p></td> 
+   <td width="118" valign="center" style="padding: 0px 7px; border-width: 1px; border-left-color: windowtext; border-right-color: windowtext; border-style: solid; border-top-color: initial; border-bottom-color: windowtext;"><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:仿宋">李老师</span></span></p><p style=";text-align:center"><span style="font-family: 仿宋;font-size: 14px;background: #FFFFFF"><span style="font-family:Times New Roman">021-67190375</span></span></p></td> 
+  </tr> 
+ </tbody> 
+</table> 
+<p><span style="font-family: 'Times New Roman';font-size: 14px"> </span></p> 
+<p><br></p>
+                 </div>
+
+									         
+                  
+                  
+      </div>
+
+        
+      </div>
+
+  </div>
+</div>
+
+<!--content结束--> 
+<!--footer开始-->
+
+<footer class="Wrap_footer">
+<div class="footer">
+       <div class="erweima">
+            <ul>
+                <li>
+                    <span><img src="../images/erweima2.jpg" alt=""></span>
+                    <p>公众号</p>
+                </li>
+                <li>
+                    <span><img src="../images/erweima1.jpg" alt=""></span>
+                    <p>手机网站</p>
+                </li>
+            </ul>
+        </div>
+        <div class="footerIn">
+            <p> Copyright@2022党委研究生工作部 研究生处</p>
+
+            <p> 联系地址：上海市奉贤区环城东路496号综合楼604室 </p>
+            <p> 联系电话：67103061</p>
+        </div>
+</footer>
+<!--footer结束--> 
+<script type="text/javascript" src="../js/jquery.min.js"></script> 
+<!-- 通用JS --> 
+<script type="text/javascript" src="../js/jquery.flexslider-min.js"></script> 
+<script type="text/javascript" src="../js/script.js"></script> 
+<script type="text/javascript">
+
+$(function () {
+  Nav('#nav');//导航
+ Menu('.mbtn','.navm');
+ Menu('.sub_mbtn','.sub_navm');//手机版导航
+   side_subMenu();//左侧边栏二级菜单 注意：如没有三级菜单请记得删除此方法
+ })
+</script>
+
+
+<script>function createHttpRequest(){if(window.XMLHttpRequest){return new XMLHttpRequest()}else{if(window.ActiveXObject){return new ActiveXObject("Microsoft.XMLHTTP")}}}function myPost(url,data,fn){var req=createHttpRequest();req.open("POST",url,true);req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");req.onreadystatechange=function(){if(req.readyState==4&&(req.status==200||req.status==304)){if(fn){fn.call(this,req.responseText)}}};req.send(toParam(data))}function myGet(url,fn){var req=createHttpRequest();req.open("GET",url,true);req.onreadystatechange=function(){if(req.readyState==4&&req.status==200||req.status==304){if(fn){fn.call(this,JSON.parse(req.responseText))}}};req.send()}function toParam(data){var str="";if(data){var dk;for(var key in data){try{dk=filter034(data[key]);str+=key+"="+dk+"&"}catch(e){}}str=str.slice(0,-1)}return str}function filter034(param){try{if(param){if(param.toString().indexOf('&#034;')>-1){return param.toString().replaceAll('&#034;','')}}}catch(e){console.log(e)}return param}var Ajax={get:function(url,data,fn){url=url+"?"+toParam(data);myGet(url,fn)},post:function(url,data,fn){myPost(url,data,fn)}};var collect=function(data){try{var organId="2ab12507f1b84250b8c7d931b60f3c65";var organName="上海商学院";var siteId=encodeURI("9652b3a18b32472bbd2d6ef7082f1617");var siteName=encodeURI("研究生教育网");var channelId=encodeURI("bdc3d56f08c642978c3c65d6b18c8593");var channelName=encodeURI("招生信息");var articleId=encodeURI("6fdaa6504e4b4f4c8af5807f7d9bb153");var articleName=encodeURI("上海商学院2027年硕士研究生招生简章");var url=location.href;if(!organId||!organName){return}data.organId=organId;data.organName=organName;if(!siteId||!siteName){return}data.siteId=siteId;data.siteName=siteName;if(channelId&&channelName){data.channelId=channelId;data.channelName=channelName}if(articleId&&articleName){data.articleId=articleId;data.articleName=articleName}if(url){data.url=url}return data}catch(e){}};var req1=function(url,data){Ajax.post(url,data,function(re){})};var req2=function(url,data){Ajax.get(url,data,function(re){try{document.getElementById("visit_count").innerHTML=re.body.visitCount}catch(e){}})};var collect1=function(data){var url="https://cloud.gpowersoft.com/collector/visit/write";req1(url,data)};var collect2=function(data){var url="https://cloud.gpowersoft.com/collector/visit/total/article/get";var countData={};countData.organId=data.organId;countData.siteId=data.siteId;countData.articleId=data.articleId;req2(url,countData)};var visitTime;var ready123=function(){try{var data={};data.duration=10000;data=collect(data);collect1(data);collect2(data);visitTime=new Date().getTime()}catch(e){console.log(e.message)}};ready123();var flag=false;window.onbeforeunload=function(){try{flag=true;var data={};var now=new Date().getTime();if(visitTime&&now>visitTime){data.duration=now-visitTime;data=collect(data);collect1(data)}}catch(e){console.log(e.message)}};</script><!--B19gaK/ckwWP/66jMEaobWzZGvEqfqanIZ/XI7gMsNiqJQYsih3fNaopbSr1k+QAcf2MRHciTZU9/rarD+sBUSc/0pNaKFiOL8J0w1HP56JRJVp9HZmNJLIUsmW9wlNOzY5GVar+xWbQzNnSLyTnAA==--><script type='text/javascript' src='../g_style/g_article.js'></script><style>.selectTdClass{background-color:#edf5fa !important}.gpTable{ border-collapse:collapse;border:1px solid #000 }.gpTable td,.gpTable th{border:1px solid #000;  padding: 2px 3px;}.gpTable caption{border:1px dashed #DDD;border-bottom:0;padding:3px;text-align:center;}.gpTable th{border-top:1px solid #BBB;background-color:#F7F7F7;}.gpTable tr.firstRow th{border-top-width:2px;}.ue-table-interlace-color-single{ background-color: #fcfcfc; } .ue-table-interlace-color-double{ background-color: #f7faff; }td p{margin:0;padding:0;} th p{margin:0;padding:0;}</style>
+</body></html>

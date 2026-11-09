@@ -1,0 +1,24 @@
+{
+  "baseline_collector_manifest_correction": {
+    "baseline_finished_at": "2026-11-09T08:28:29+00:00",
+    "manifest_captured_at": "2026-11-09T08:29:23.087966+00:00",
+    "capture_timing": "54 seconds after the baseline finished, not during the baseline",
+    "measurement_limit": "Original source_changed_during_run omitted collectors/discovery.py. The side capture and execution history support the prior version, but do not constitute a baseline-start transport fingerprint.",
+    "preserved_original": "live120/transport-source-manifest.json remains unchanged; its capture_phase label is superseded by this timing note."
+  },
+  "after_collector_tracking": "after-host-fix-source-manifest.json captured collector SHA before the run and checked it after live and replay.",
+  "old_replay_counter_correction": {
+    "baseline_replay_field": 388,
+    "after_replay_field": 383,
+    "meaning": "Old replay phase.public_http_requests counted URL-deduplicated recorded responses, not new HTTP. Both replay runs made zero HTTP network requests.",
+    "latest_cli_fields": [
+      "public_http_requests",
+      "recorded_response_count",
+      "replay_transport_calls"
+    ]
+  },
+  "version_boundary": "Original A/B/replay reports use the original audit helper. Hardened helper with full replay validation, collector hashes, Windows path protections and corrected counters is independently tested after those runs. No original report was rewritten.",
+  "scoring_limit": "Old scorer omits CHSI H2 primary article headings; cached-account body=0 does not prove cached originals unreadable. Independent website new-body columns are separate.",
+  "html_boundary": "Complete authorized-domain HTTP200+SHA response does not by itself exclude JavaScript challenges or prove fresh institutional ownership. See independent postclassification.",
+  "sampling_boundary": "Four equal strata of30 cover31 provinces and exclude72 prior units; this deliberate failure-seeking sample is not a population estimate of all931 units."
+}

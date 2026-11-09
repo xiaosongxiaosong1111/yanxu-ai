@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 设置根目录路径 -->
+    <meta id="domain" content="http://www.mod.gov.cn/material/">
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="icon" type="image/png" href='http://www.mod.gov.cn/material/img/favicon.ico'>
+    <link rel="shortcut icon" href="http://www.mod.gov.cn/material/img/favicon.ico">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!--link rel="icon" sizes="192x192" href="../../14782.files/favicon.png"-->
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Add title for apple-mobile-web-app-title -->
+    <meta name="apple-mobile-web-app-title" content="2025年军队院校招生政策解读" />
+    <link rel="apple-touch-icon-precomposed" href='/img/favicon.png'>
+    <!-- Tile icon for Win8 (180x180 + tile color) -->
+    <meta name="msapplication-TileImage" content="http://www.mod.gov.cn/material/img/favicon.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <!-- Add Page Title -->
+    <title>
+        2025年军队院校招生政策解读 - 中华人民共和国国防部
+    </title>
+    <!-- Add description and keyword-->
+
+    <link rel="stylesheet" href='http://www.mod.gov.cn/template/tenant207/t1414/css/style.css'>
+    <!--Webterren MetaCode start-->
+    <meta name="filetype" content="0" />
+    <meta name="publishedtype" content="1" />
+    <meta name="pagetype" content="1" />
+    <meta name="catalogs" content="cbf-214139" />
+    <meta name="_catalogs" content="S21_">
+    <meta name="contentid" content="16391935">
+    <meta name="publishdate" content="2025-06-18" />
+    <meta name="author" content="李庆桐"/>
+    <meta name="reporter" content="田强 李琳 吴旭 倪伟栋"/>
+    <meta name="editor" content="李庆桐"/>
+    <!--Webterren MetaCode end-->
+    <link rel="stylesheet" href='http://www.mod.gov.cn/material/static/api/css/share_style1_16.css'/>
+    <link rel="stylesheet" href='http://www.mod.gov.cn/material/css/fenye.css' />
+    <script src="http://www.mod.gov.cn/material/js/jquery.js"></script>
+   
+    
+</head>
+
+<body>
+    <!--header-->
+    <link rel="stylesheet" href="http://www.mod.gov.cn/template/tenant207/t557/css/header.css"/>
+ <div class="nav-bar hidden-print">
+        <div class="container">
+            <a class="logo navbar-header" href="http://www.mod.gov.cn">
+                <img class="logo" src='http://www.mod.gov.cn/template/tenant207/t557/img/logo.png' alt="中华人民共和国国防部" />
+            </a>
+            <ul class="list-unstyled nav navbar-nav hidden-xs hidden-sm">
+                <!-- 权威发布1 -->
+                <li><a href="http://www.mod.gov.cn/gfbw/qwfb/index.html">
+                        权威发布 </a></li>
+                <!--武装力量  -->
+                <li><a href="http://www.mod.gov.cn/gfbw/wzll/index.html">
+                        武装力量 </a></li>
+                <!--  军事外交-->
+                <li><a href="http://www.mod.gov.cn/gfbw/jswj/index.html">
+                        军事外交 </a></li>
+                <!--国防服务  -->
+                <li><a href="http://www.mod.gov.cn/gfbw/gffw/index.html">
+                        国防服务 </a></li>
+            </ul>
+            <form action="http://www.mod.gov.cn/zjlm/ssjgym/index.html" class="pull-right hidden-xs"
+                method="get" target="_blank">
+                <input type="hidden" id="serach_type_input" name="searchfield" value="TITLE">
+                <input type="text" name="keyword" placeholder="请输入关键字" required class="form-control input-sx">
+                <input type="hidden" name="indexsearch" value="1" />
+                <button type="submit" class="btn btn-info btn-custom btn-sm">搜索</button>
+            </form>
+        </div>
+    </div>
+    <script src="http://www.mod.gov.cn/material/js/webdig.js"></script>
+<!-- make template id  557 name 正文页header -->
+<!-- make time 2023-03-11 20:49:00 -->
+<!-- make template id  557 name 正文页header -->
+
+    <!--header end-->
+    
+ 
+    
+    <div class="container m-t">
+        <div class="row m-t">
+         <div>
+          <!--/sidebar-->
+          <link rel="stylesheet" href='http://www.mod.gov.cn/template/tenant207/t414/css/style.css'>
+<div class="sidebar hidden-xs hidden-sm">
+	<h3>
+		<span class="title">
+			<a href="http://www.mod.gov.cn/gfbw/qwfb/index.html" target="_blank" class="">
+				权威发布
+			</a>
+		</span>
+		<span class="sub_title">AUTHORITATIVE NEWS</span>
+	</h3>
+	<ol class="list-ol" style="display:none">
+		<!--权威发布  214031-->
+				<li><a href="http://www.mod.gov.cn/gfbw/qwfb/16498849.html" target="_blank">
+				习近平致电祝贺约托娃当选保加利亚总统</a></li>
+				<li><a href="http://www.mod.gov.cn/gfbw/qwfb/16498595.html" target="_blank">
+				习近平参加北京市区人大代表换届选举投票</a></li>
+				<li><a href="http://www.mod.gov.cn/gfbw/qwfb/16498499.html" target="_blank">
+				习近平同加蓬总统恩圭马会谈</a>&nbsp;<a _rmt_related href="http://www.mod.gov.cn/gfbw/qwfb/16498508.html" target="_blank">中加联合声明</a></li>
+				<li><a href="http://www.mod.gov.cn/gfbw/qwfb/16498497.html" target="_blank">
+				习近平会见奥地利总理施托克尔</a></li>
+				<li><a href="http://www.mod.gov.cn/gfbw/qwfb/16498343.html" target="_blank">
+				习近平复信澳大利亚青年学生</a></li>
+			</ol>
+
+    <ol class="list-ol">
+    <!--权威发布  214031-->
+            <li>
+      <a href="http://www.mod.gov.cn/gfbw/qwfb/16498849.html" target="_blank" >习近平致电祝贺约托娃当选保加利亚总统</a>
+    </li>
+                <li>
+      <a href="http://www.mod.gov.cn/gfbw/qwfb/16498595.html" target="_blank" >习近平参加北京市区人大代表换届选举投票</a>
+    </li>
+                <!-- 1是多稿件 -->
+    <li>
+        <a href="http://www.mod.gov.cn/gfbw/qwfb/16498499.html" target="_blank">习近平同加蓬总统恩圭马会谈</a>
+          
+        <a href="http://www.mod.gov.cn/gfbw/qwfb/16498508.html" target="_blank">中加联合声明</a>
+            </li>
+                <li>
+      <a href="http://www.mod.gov.cn/gfbw/qwfb/16498497.html" target="_blank" >习近平会见奥地利总理施托克尔</a>
+    </li>
+          </ol>
+	<hr />
+	<div class="toggle-box">
+		<h3>
+			<span class="toggle"></span>
+			<span class="title">
+				<a href="http://www.mod.gov.cn/gfbw/spbb_214126/index.html" target="_blank" class="">
+					视频播报
+				</a>
+			</span>
+			<span class="sub_title">VIDEOS</span>
+		</h3>
+
+		<ul class="list-unstyled list-pic">
+
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/spbb_214126/16495225.html" target="_blank">
+					<img src="/gfbw/spbb_214126/_attachment/2026/10/21/16495225_03ad201e897eb6bc107fd826c071a411.jpg">
+					<em class="video_40x40"></em>
+					<span>
+						《伟大远征》第七集《丰碑》</span>
+					<p>
+						2026-10-21 21:14:57
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/spbb_214126/16495168.html" target="_blank">
+					<img src="/gfbw/spbb_214126/_attachment/2026/10/21/16495168_e53f9f1e19c0a2534a048cf37bba1f22.png">
+					<em class="video_40x40"></em>
+					<span>
+						赴山河 从头越——追随统帅回望长征之路丨接力</span>
+					<p>
+						2026-10-21 18:08:40
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/spbb_214126/16495158.html" target="_blank">
+					<img src="/gfbw/spbb_214126/_attachment/2026/10/21/16495158_b6d0e92c6023d975bfe0b6c75949eb96.png">
+					<em class="video_40x40"></em>
+					<span>
+						赴山河 从头越——追随统帅回望长征之路丨本色</span>
+					<p>
+						2026-10-21 14:32:45
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/spbb_214126/16495157.html" target="_blank">
+					<img src="/gfbw/spbb_214126/_attachment/2026/10/21/16495157_6ee3cf25120dcc6fdf4bd2b8f05fc5ee.png">
+					<em class="video_40x40"></em>
+					<span>
+						赴山河 从头越——追随统帅回望长征之路丨同心</span>
+					<p>
+						2026-10-21 16:34:40
+					</p>
+				</a>
+			</li>
+			
+		</ul>
+	</div>
+	<hr />
+	<div class="toggle-box">
+		<h3>
+			<span class="toggle"></span>
+			<span class="title">
+				<a href="http://www.mod.gov.cn/gfbw/tp_214132/index.html" target="_blank" class="">
+					图片
+				</a>
+			</span>
+			<span class="sub_title">PHOTOS</span>
+		</h3>
+		<ul class="list-unstyled list-pic">
+			<!--图片 47014-->
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/tp_214132/16498689.html" target="_blank">
+					<img src="/gfbw/tp_214132/_attachment/2026/11/08/16498689_5037f8f2f1bfccc5b137fbd115e923e0.jpg">
+					</em>
+					<span>
+						大漠戈壁，新疆军区某团组织多型火器实弹射击考核</span>
+					<p>
+						2026-11-08 07:39:18
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/tp_214132/16498602.html" target="_blank">
+					<img src="/gfbw/tp_214132/_attachment/2026/11/06/16498602_4508e2c5a1355ffcac54c91f870c3cae.jpg">
+					</em>
+					<span>
+						陆军某团开展实弹射击考核</span>
+					<p>
+						2026-11-06 07:57:26
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/tp_214132/16498603.html" target="_blank">
+					<img src="/gfbw/tp_214132/_attachment/2026/11/06/16498603_482eba70f896214779cd7d89603c2506.jpg">
+					</em>
+					<span>
+						海军航空大学某团开展飞行训练</span>
+					<p>
+						2026-11-06 07:58:05
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.mod.gov.cn/gfbw/tp_214132/16498601.html" target="_blank">
+					<img src="/gfbw/tp_214132/_attachment/2026/11/07/16498601_b2d4d530d79bc5124cb9a99bb35f9db8.jpg">
+					</em>
+					<span>
+						空军某部开展飞行训练</span>
+					<p>
+						2026-11-04 09:29:03
+					</p>
+				</a>
+			</li>
+					</ul>
+	</div>
+
+	<hr />
+	<div class="toggle-box">
+		<h3>
+			<span class="toggle"></span>
+			<span class="title">
+				<a href="http://www.mod.gov.cn/gfbw/zt/index.html" target="_blank" class="">
+					专题
+				</a>
+			</span>
+			<span class="sub_title">SPECIAL REPORTS</span>
+		</h3>
+		<ul class="list-unstyled list-pic">
+			<!--专题 47007-->
+						<li class="clearfix">
+				<a href="http://www.81.cn/zt/2026nzt/zmxsdgmjr_252984/index.html" target="_blank">
+					<img src="/gfbw/zt/_attachment/2026/08/20/16479151_1572281a51f5ab63ef863d55fdea15e0.jpg">
+					</em>
+					<span>
+						最美新时代革命军人</span>
+					<p>
+						2026-08-01 10:30:54
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.81.cn/zt/2026nzt/lyyxfcl/index.html" target="_blank">
+					<img src="/gfbw/zt/_attachment/2026/08/20/16479152_e288fd2a49976c3aa3a1cb924e979e1f.jpg">
+					</em>
+					<span>
+						“两优一先”风采录</span>
+					<p>
+						2026-07-03 16:10:43
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.81.cn/zt/2026nzt/sdkmgfkjdxjywj/index.html" target="_blank">
+					<img src="/gfbw/zt/_attachment/2026/08/20/16479153_4879da2b5c1eb6346b673dd88c16f8c6.jpg">
+					</em>
+					<span>
+						时代楷模 国防科技大学计算机学院研究员王戟 冲锋不止的科研尖兵</span>
+					<p>
+						2026-07-29 16:26:55
+					</p>
+				</a>
+			</li>
+						<li class="clearfix">
+				<a href="http://www.81.cn/zt/2026nzt/tykpzsktkjhkbmtxjsj/index.html" target="_blank">
+					<img src="/gfbw/zt/_attachment/2026/08/20/16479154_9ce449ff84ed98e0af0da6339b77d6fe.jpg">
+					</em>
+					<span>
+						铁翼鲲鹏 制胜空天——空军航空兵某团先进事迹</span>
+					<p>
+						2026-06-28 12:25:15
+					</p>
+				</a>
+			</li>
+					</ul>
+	</div>
+	<hr />
+</div>
+<script> 
+	var catid ='';
+</script>
+
+
+<!-- make template id  414 name 侧边栏 -->
+<!-- make time 2026-11-09 14:30:28 -->
+<!-- make template id  414 name 侧边栏 -->
+
+          <!--/sidebar-->
+          
+        </div>
+
+
+      
+            <div class="content">
+                <ol class="breadcrumb hidden-print">
+                    <!--当前位置-->
+                     <a href="http://www.mod.gov.cn/gfbw/gfjy_index/index.html" target="_blank" >国防教育</a>
+                    <font class="">/</font>正文
+                </ol>
+
+                <span class="bdsharebuttonbox box_fr hidden-xs bdshare-button-style1-16" data-bd-bind="1653876365632">
+                    <a href="#" class="bds_more" data-cmd="more"></a>
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_people bds_custom_people" data-cmd="people" title="分享到人民微博"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_weixin bds_custom_weixin" data-cmd="weixin" title="分享到微信"></a>
+                </span>
+               
+                <hr class="m-n" />
+
+                <div class="article-header">
+                    <!--二维码-->
+                    <div class="qrCode visible-lg" id="qrCode"></div>
+                    <!--稿件信息-->
+                    <h3></h3>
+                    <h1>2025年军队院校招生政策解读</h1>
+                    <h3></h3>
+                    <div class="info">
+                                                <span>来源：解放军报</span>
+                                                                         <span>作者：田强 李琳 吴旭 倪伟栋</span>                          <span>责任编辑：李庆桐</span> 
+                        <span>2025-06-18 07:34:59</span>
+                                             </div>
+                </div>
+
+                <div class="article-content p-t" id="article-content">
+                    <div id="mediaurl">
+                        <!--mediaurl-->
+                    </div>
+
+                    <div id="cm-player"></div>
+
+                    <div id="wxsimgbox" style="display:none"></div>
+
+                    <div class="m-t-list" id="main-news-list">
+                        <!--HTMLBOX-->
+                        <div>
+                                                    <p tag="ueditor-paragraph-custom" class="ueditor-text-p_display" style="text-align: center; text-indent: 0em; "><strong>强军在召唤 报国正当时</strong></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display" style="text-align: center; text-indent: 0em; ">■倪伟栋 &nbsp;解放军报特约记者 &nbsp;吴 旭</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style="">青年时代，是人生中最富活力、最具创造力的时期。青年人如破土新芽，怀揣对世界的好奇与憧憬，以蓬勃的生命力冲破束缚；又似初燃之火，在思想碰撞中迸发灵感火花，敢于向未知挑战、为理想献身。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style="">百余年前，在民族危亡的时刻，五四运动爆发，中国青年以热血与担当探寻民族复兴的道路。从革命战争年代的浴血奋战，到社会主义建设时期的艰苦创业，再到改革开放以来的开拓进取，一代又一代中国青年书写了壮丽的青春篇章，他们的精神激励着新时代青年接续奋斗。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style="">今天，新时代青年唯有以奋斗致敬先辈、以实干铸就辉煌，才能让“强国一代”的誓言写在中华大地，在中华民族伟大复兴的征程中刻下属于这代人的青春印记。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style="">强国必须强军，军强才能国安。一支军队的未来，寄望于青年的选择、青春的担当。广大青年应主动将个人理想融入强军实践，以挺膺担当回应时代召唤，积极献身国防、矢志强军，在军队这个大舞台上施展才华，在军营这个大熔炉里百炼成钢，书写火热的青春篇章、锻造出彩的军旅人生。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style="">近年来，我军军兵种结构布局调整不断优化，军事人才培养体系更加健全。全军院校不仅是培养军事人才的摇篮，更为广大青年实现人生价值、放飞青春梦想、投身报国实践提供了广阔舞台。期待更多青年在军校中茁壮成长、淬炼本领，为建功强军事业打下坚实军政基础。</p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display ueditor-text-tushuo" style="text-align: center; text-indent: 0em; "><span tag="ueditor-text-tushuo" class="imgdesc" style="color: rgb(0, 0, 128); ">■优化招生院校布局，招生院校数量由27所精简至22所</span></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display ueditor-text-tushuo" style="text-align: center; text-indent: 0em; "><span tag="ueditor-text-tushuo" class="imgdesc" style="color: rgb(0, 0, 128); ">■创新招生培养模式，不再区分“指挥”“非指挥”类别，取消招考方向</span></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display ueditor-text-tushuo" style="text-align: center; text-indent: 0em; "><span tag="ueditor-text-tushuo" class="imgdesc" style="color: rgb(0, 0, 128); ">■所有本科毕业生允许直接报考相关学科专业硕士研究生</span></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display ueditor-text-tushuo" style="text-align: center; text-indent: 0em; "><span tag="ueditor-text-tushuo" class="imgdesc" style="color: rgb(0, 0, 128); ">■建立特战专业选拔机制，学员在校期间可参与特战人才选拔</span></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display" style="text-align: center; text-indent: 0em; "><strong>2025年军队院校招生政策解读</strong></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display" style="text-align: center; text-indent: 0em; "><strong>——中央军委训练管理部军事教育局相关负责人答记者问</strong></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display" style="text-align: center; text-indent: 0em; ">■田 强 &nbsp;解放军报记者 &nbsp;李 琳 &nbsp;特约记者 &nbsp;吴 旭</p><p class="ueditor-paragraph-media ueditor-paragraph-img" tag="ueditor-paragraph-media" style="text-indent: 0em; text-align: center;"><img title="" src="/gfbw/gfjy_index/_attachment/2025/06/18/16391935_43fd673eec7ad879b6da9cbb0c12d901.jpg" data-id="6781761" contentid="dd36d590b7594397b71bdd566b5054b3" fileguid="fa488be2967c0e08d5d3c4b5bdd6d2f0" alt="43fd673eec7ad879b6da9cbb0c12d901.jpg" data-mime-type="" data-size="446308" data-original-name="43fd673eec7ad879b6da9cbb0c12d901.jpg" data-ext="jpg" data-time="1750203065" data-save-path="image/uploadpic/20250618/43fd673eec7ad879b6da9cbb0c12d901.jpg!400x400" data-filename="43fd673eec7ad879b6da9cbb0c12d901.jpg" data-domain="https://rmt-static.jfjb.com.cn" data-width="1000" data-height="562" data-describe="8210981_jbzt2_1749719768957.jpg"></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display ueditor-text-tushuo" style="text-align: center; text-indent: 0em; "><span tag="ueditor-text-tushuo" class="imgdesc" style="color: rgb(0, 0, 128); ">海军大连舰艇学院学员在风帆训练舰上开展训练。江 &nbsp;硕摄</span></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style="">近日，教育部、中央军委政治工作部、中央军委训练管理部发布了2025年军队院校招生计划，引发军地广泛关注。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style="">今年军队院校招生工作有哪些变化和要求？考生需要注意哪些方面？解放军报编辑部邀请军委机关招生业务部门相关负责人对有关情况进行解读。</p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display" style="text-align: center; text-indent: 0em; "><strong>普通高中毕业生报考军校</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：与去年相比，今年军队院校招收普通高中毕业生计划有什么变化？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>为贯彻院校改革总体部署、提高军队院校生长军官学员的适岗性，遵循“宽延口径、因材施教、统分结合”的基本原则，今年对招生计划作出了整体优化，主要有4个方面变化。一是优化招生院校布局，招生院校数量由27所精简至22所，打造更高效优质的军事人才培养体系。陆军特种作战学院、陆军边海防学院、武警特种警察学院、武警海警学院等4所院校不再直接招生。其中，陆军特种作战、侦察分队初级军官由陆军工程大学、陆军兵种大学、陆军步兵学院负责招生，边防分队初级军官由陆军步兵学院负责招生，武警特种作战、侦察分队初级警官由武警警官学院负责招生，海警舰艇指挥、维权执法初级警官由海军大连舰艇学院、武警工程大学负责招生，这些招生院校负责本科通识教育，后段专业教学任务继续由相关院校承担。考生可根据专业培养目标精准选择院校，相关内容已在招生计划中明确。二是创新招生培养模式，所有院校招生计划不再区分“指挥”“非指挥”类别，取消招考方向，明确培养目标，有利于考生在入学之初就能清晰规划未来发展。三是允许直接报考硕士研究生，从2025年起，军队院校所有本科毕业生，均有机会直接报考相关学科专业硕士研究生，生长军官成长路径更加丰富多元。四是建立特战专业选拔机制，有志投身特战领域的学员在校学习期间可参与特战人才选拔，接受特战专业化教育。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：今年招生的军队院校有哪些？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>今年共有22所军队院校面向普通高中毕业生招生，军委直属1所、陆军5所、海军5所、空军4所、火箭军1所、军事航天部队1所、网络空间部队1所、信息支援部队1所、联勤保障部队1所、武警部队2所。其中，陆军兵种大学、信息支援部队工程大学、联勤保障部队工程大学3所院校是新调整组建的院校；陆军兵种大学以陆军装甲兵学院、炮兵防空兵学院为基础组建，信息支援部队工程大学以国防科技大学信息通信学院、陆军工程大学通信士官学校为基础组建，联勤保障部队工程大学以陆军勤务学院、陆军军事交通学院本部及所属汽车士官学校为基础组建。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：报考军队院校需要符合哪些条件？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>根据2023年12月教育部和军委机关有关部门联合颁发的《军队院校招收普通高中毕业生工作办法》，普通高中毕业生报考军队院校须符合下列条件：未婚；截至今年8月31日，年龄不低于16周岁、不超过20周岁；高中阶段体质测试成绩达到及格以上；参加今年普通高等学校招生全国统一考试，高考成绩须达到本省特殊类型招生控制线或一本线。普通高中应届毕业生、往届毕业生均可报考。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：军检和录取的基本流程是什么？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>主要有5个步骤：①政治考核，考生按照户籍所在地、经常居住地或报考所在地兵役机关要求参加政治考核；②填报志愿，考生根据所在省、自治区、直辖市高考招生工作要求填报志愿；③划设军检线，省军区招生工作办公室按照招生计划数的3倍～5倍，会同省级招委会办公室划设军检线并向社会公布；④面试体检，填报军队院校志愿且达到军检线的考生，按照当地省军区招生工作办公室要求参加面试和体格检查；⑤投档录取，通过政治考核、面试和体格检查，且成绩达到志愿院校提档分数线的考生，由省级招委会办公室在提前批次按照成绩由高到低进行投档，院校审档通过后录取。未被投档或未被录取的，可以参加后续普通批次投档。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：政治考核主要考核什么内容？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>政治考核主要考核考生本人政治思想表现，以及家庭成员、未共同生活的兄弟姐妹的政治背景和违法犯罪等情况。其主要程序：高考结束后考生填写政治考核表，由学校通过所在县、区、市教育部门报送当地兵役机关，兵役机关会同公安机关组织政治考核、作出结论，逐级上报至省军区招生工作办公室，由其向省级招委会办公室提供。详细内容和要求，考生可关注当地有关部门发布的信息。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：面试一般考察哪些方面？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>面试由省军区招生工作办公室具体组织实施，主要考察考生的报考动机、价值取向、成长经历、社会支持与沟通、环境适应性，以及逻辑思维和语言表达能力等。面试完成后，面试结论由面试工作人员当场告知面试对象。面试对象对面试结论有异议的，可以当场申请复核，复核结论为最终结论。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：报考军队院校对视力、身高、体重等方面有哪些要求？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>军队院校招收普通高中毕业生执行《军队选拔军官和文职人员体检标准》，视力、身高、体重的通用标准是：①视力，任何一眼裸眼视力不低于4.5；②身高，男性162cm以上、女性158cm以上；③体重，男性体重指数在17.5至30、女性体重指数在17至24之间。详细标准可通过“军校招生”微信公众号查询。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：军队院校审档主要审核哪些内容？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>根据《2025年普通高等学校招生工作规定》，军队院校须对省级招委会办公室投放的考生电子档案进行审阅，重点审核考生基本信息、政治考核、面试、体格检查等情况是否达到报考院校和专业的相关要求。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：如何查询了解军队院校招生信息？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>为了确保大家全面准确了解军校招生信息，军委机关招生业务部门已开设了“军校招生”微信公众号，及时发布更新招生工作各类信息。同时，针对高考季的到来，还通过《解放军报》、“中国军号”客户端等军地媒体平台推出“军校巡礼”等系列栏目，陆续刊载相关信息，请广大考生和家长关注。此外，考生也可通过省级招委会办公室、军队招生院校、省军区招生工作办公室的官方网站或微信公众号了解相关信息。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：如何识破军校招生骗局？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>每年高招录取期间，都有一些人打着军校招生的旗号进行招生诈骗。其诈骗伎俩大体有3种。一是说自己有关系，可以帮助分数不够的考生上军校。二是吹嘘自己可以保证上线的考生不退档被录取。三是号称自己有内部招生指标或者计划外招生指标，可以使没上线的考生在计划外录取。军校招生严格执行教育部“阳光招生”政策并接受社会监督，绝无计划外名额和内部名额，任何人许诺保证录取的，考生和家长切不可轻信，防止财物损失，更重要的是避免影响考生正常报考。</p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display" style="text-align: center; text-indent: 0em; "><strong>现役士兵报考军校</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：请介绍一下今年军队院校招收士兵学员计划指标的大概情况。</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>为适应新型作战力量建设、院校改革调整、兵员成分结构等方面发展变化，根据军官（警官）、军士（警士）选拔补充需求，今年，22所军队院校计划招收生长军官（警官）全日制本科教育学员约0.3万名，30所军队院校计划招收军士（警士）职业技术教育学员约1.4万名。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：请介绍一下今年组织专科起点本科军士（警士）职业技术教育的大概情况。</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>专科起点本科军士（警士）职业技术教育是我军加快推进军士（警士）队伍现代化建设、锻造高素质专业化新型军士（警士）人才方阵的有力举措，坚持和继承了军士（警士）职业技术教育定位、属性和特色，以岗位任职能力提升为主线、兼顾学历升级，2024年在部分军兵种试点部署展开。今年计划安排14所院校、18个专业布点面向军兵种和武警部队招生，招生专业和数量较去年稳步增加，确保更好满足部队新域新质力量建设和武器装备发展对军士（警士）能力素质新需求。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：文化科目考试成绩怎样查询？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>考试成绩预计于6月底或7月初公布，届时士兵考生可凭身份证号、考生号，登录强军网“军队院校招生信息平台”查询。如对所查询成绩存疑，士兵考生可在成绩发布当日向所在师团级单位招生业务部门提出复核申请，逐级汇总后由军委机关招生业务部门组织复核。成绩复核主要核查士兵考生信息与答题卡相关信息是否一致，答题卡扫描图像是否清晰、完整，是否存在漏评，成绩统计核分是否有误等事项。成绩复核不涉及评分标准，答题卡不与考生及所在单位见面。复核成绩为最终成绩。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：士兵考生怎样填报志愿？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>成绩公布后，采取个人选择与组织安排相结合方式，依托强军网“军队院校招生信息平台”填报志愿。报考生长军官（警官）全日制本科教育考生，除军队文化工作专业和改录军士（警士）职业技术教育（专科）志愿外，可以填报3个志愿；报考军士（警士）职业技术教育（专科）考生，除调剂志愿外，可以填报1个志愿且与所从事专业相同或相近；报考专科起点本科军士（警士）职业技术教育考生，可以填报1个志愿且不得调剂。广大士兵考生应充分了解志愿填报方法要求，按时完成填报并对所填报内容的真实性、准确性负责。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：报考生长军官（警官）全日制本科教育士兵考生投档方案是怎样制定的？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>报考生长军官（警官）全日制本科教育（军队文化工作专业除外）士兵考生投档方案，是由各部门各单位根据招生计划、考生志愿、体检结论等情况，按照军事共同科目、文化科目考试成绩及政策加分3项总分由高到低排序，采取平行志愿方式制定。如考生总分相同，先依次比较军事共同科目考试成绩、文化科目考试成绩，再依次比较语文、数学、英语、军政知识综合、科学知识综合科目考试成绩。对不能按志愿投档但服从调剂的，可以进行调剂；不服从调剂的，不予投档。各部门各单位按照招生计划数的100%向院校投档。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：报考军士（警士）职业技术教育考生投档有什么要求？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>报考军士（警士）职业技术教育考生的投档规则，由各部门各单位招生业务部门分别确定。其中，由报考生长军官（警官）全日制本科教育改投军士（警士）职业技术教育（专科）、免文化科目考试保送军士（警士）职业技术教育（专科）的，纳入军士（警士）职业技术教育招生计划指标；直接招收和定向培养军士（警士），报考生长军官（警官）全日制本科教育的，不能改投同等学力军士（警士）职业技术教育；报考生长军官（警官）全日制本科教育的，不能改投专科起点本科军士（警士）职业技术教育。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：哪些情形可以享受加分政策？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>报考生长军官（警官）全日制本科教育的士兵考生，如本人获得三等战功、二等功、三级表彰以上奖励表彰，在驻特殊地区部队服役满一定年限，以及父母为烈士、因公牺牲，获得二等战功以上奖励，被作为重大典型宣传，在驻特殊地区部队、特殊岗位任职满一定年限或为现役军人，可以享受加分政策。报考军士（警士）职业技术教育的考生，如本人获得四等战功、三等功、三级表彰奖励，在驻特殊地区部队服役满一定年限，通过国家、军队相应职业技能等级、专业技术职称认定，担任班长、副班长满一定年限，或父母在驻特殊地区部队、特殊岗位任职满一定年限或为现役军人，可以享受加分政策。报考专科起点本科军士（警士）职业技术教育的考生，现阶段不享受加分政策。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：士兵考生档案审查主要涉及哪些方面？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>士兵考生档案审查由招生业务部门会同档案管理部门进行，审查内容包括士兵考学审批报告表等考生材料、应征公民入伍批准书等服役材料、毕业证书等其他材料。档案审查主要看考生资格是否符合条件、考生档案是否完整齐全、考生信息是否前后一致、档案材料是否真实有效。</p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>问：士兵考学招生的公平公正如何接受监督？</strong></p><p tag="ueditor-text-p_display" class="ueditor-text-p_display" style=""><strong>答：</strong>《军队院校招收士兵学员工作办法》要求团级以上单位健全完善招收士兵学员工作监督机制，加大对招生工作关键环节监督检查力度，自觉接受官兵监督。同时，为落实阳光招生要求，维护广大考生切身利益，纯正军事教育领域行业风气，我们聚焦士兵考学招生工作中的敏感事务和重点部位，自上而下建立信息公开、权力制约、预警预告等制度机制，对招生工作全领域各环节进行监管。招生考试期间，还设立监督举报电话010-66827155，各单位也分别设立监督举报电话，受理广大士兵考生举报反映情况。</p><p class="ueditor-paragraph-media ueditor-paragraph-img" tag="ueditor-paragraph-custom" style="text-indent: 0em; text-align: center; "><img title="" src="/gfbw/gfjy_index/_attachment/2025/06/18/16391935_53ed73720da0254fea28c1ca820dfd99.jpg" data-id="6781639" contentid="50ab80e5a103476d9ae9dbf96fbebdc5"></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display ueditor-text-tushuo" style="text-wrap-mode: wrap; text-align: center; text-indent: 0em; "><span tag="ueditor-text-tushuo" class="imgdesc" style="color: rgb(0, 0, 128); ">“军校招生”微信公众号　更多信息请扫描二维码</span></p><p class="ueditor-paragraph-media ueditor-paragraph-img" tag="ueditor-paragraph-custom" style="text-indent: 0em; text-align: center; "><img title="" src="/gfbw/gfjy_index/_attachment/2025/06/18/16391935_164919ae542dfa4882d26598f0661333.jpg" data-id="6781640" contentid="d55e56acb5d443cc9be4d5b7521f5a31"></p><p tag="ueditor-paragraph-custom" class="ueditor-text-p_display ueditor-text-tushuo" style="text-wrap-mode: wrap; text-align: center; text-indent: 0em; "><span tag="ueditor-text-tushuo" class="imgdesc" style="color: rgb(0, 0, 128); ">“中国军号”客户端　更多信息请扫描二维码</span></p>
+                                                 </div>
+                        <!--HTMLBOX-->
+                    </div>
+                </div>
+
+            </div>
+       
+        </div>
+    </div>
+
+    <div id="loadNextPageBtn" data-CurrentPage="1" class="loadNextPageBtn visible-xs visible-sm hidden-print">
+        <span>轻触这里，加载下一页</span><br /><small id="VProgress"></small>
+    </div>
+    <div width="100%" id="displaypagenum" class="more-page" style="text-align:center"></div>
+     
+
+    <!--footer-->
+     <style type="text/css">
+    #copy-year { font-style: normal;}
+ </style>
+
+<div data-slot="articleFooter">
+   <link rel="stylesheet" href='http://www.mod.gov.cn/template/tenant207/t385/articleFooter.css'>
+   <div class="footer currencyFooter m-t" id="pageFooter">
+    <div class="container">
+      <p>
+        <a
+          href="http://www.mod.gov.cn/zjlm/wzdt_226173/index.html#S2"
+          target="_blank"
+          class="hidden-xs"
+          >站点地图</a>
+        <em class="hidden-xs">|</em>
+        <a href="http://www.mod.gov.cn/zjlm/wzdt_226173/index.html#S3" target="_blank"
+          >版权声明</a>
+        <!-- <em>|</em> -->
+        <!-- <a href="http://www.81.cn/jwdy/wfhblxxjb/index.html">纠错/举报</a> -->
+        <em>|</em>
+        <a href="http://www.mod.gov.cn/zjlm/wzdt_226173/index.html" target="_blank"
+          >关于我们</a>
+      </p>
+      <small><a class="spc-color" target="_blank" href="http://www.81.cn/jwdy/xwxxfwxkz/index.html">互联网新闻信息服务许可证10120170013</a></small><br>
+      <div class="hidden-xs">
+        <small>未经本网书面授权，请勿转载、摘编或建立镜像，否则视为侵权。</small>
+        <br />
+      </div>
+      <small>Copyright ©<i id="copy-year"></i> mod.gov.cn All Rights Reserved</small>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    var currentFullYear = (new Date()).getFullYear();
+    document.getElementById('copy-year').innerHTML = currentFullYear;
+</script>
+<!-- make template id  385 name image_footer -->
+<!-- make time 2026-07-03 15:17:41 -->
+<!-- make template id  385 name image_footer -->
+
+    <!--/footer--> 
+
+
+
+
+   
+    <script src='http://www.mod.gov.cn/template/tenant207/t1414/js/modscript.js'></script>
+    <script src="http://www.mod.gov.cn/material/js/jquery.s2t.js"></script>
+    <script src='http://www.mod.gov.cn/material/js/fenye.js'></script>
+   <script>
+        /**
+         * pageCount:页面总数
+         * url：页面部分请求链接
+         * url_file：页面的后缀名
+         * lmno：栏目文章总条数
+         * _type：fenye: pc分页 移动端点击加载   scroll: pc 手机 滚动加载更多 
+         * isDetail：'detial':表示详情页正文，为空表示栏目列表
+         * */
+        function createManuscriptPageHTML( 
+            pageCount, 
+            pageno, 
+            url, 
+            url_file, 
+            lmno, 
+            _type, 
+            isDetail 
+        ){
+            createPageHTML(pageCount,pageno,url,url_file,lmno,_type,isDetail);
+        };
+        createManuscriptPageHTML(
+          '1',
+          '1',
+          '16391935',
+          'html',
+          '',
+          'fenye',
+          'detail'
+        );
+
+</script>
+<script src='http://www.mod.gov.cn/template/tenant207/t1414/js/javascript-v2.0.0.js'></script>
+<script src='http://www.mod.gov.cn/material/js/wxs-1.0.0.js'></script>
+
+</body>
+</html>
+<!-- make template id  1414 name 响应式正文页 -->
+<!-- make time 2025-06-18 07:41:27 -->
+<!-- make template id  1414 name 响应式正文页 -->

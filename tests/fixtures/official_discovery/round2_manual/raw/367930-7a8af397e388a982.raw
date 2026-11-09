@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>招生网</title><META Name="keywords" Content="招生网" />
+
+        <link type="text/css" rel="stylesheet" href="css/base.css">
+        <link type="text/css" rel="stylesheet" href="css/style.css">    
+
+    <!--Announced by Visual SiteBuilder 9-->
+<link rel="stylesheet" type="text/css" href="_sitegray/_sitegray_d.css" />
+<script language="javascript" src="_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:77656262657232307e7847545257574a03090000 -->
+<link rel="stylesheet" type="text/css" href="index.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/vsbscreen.min.js" id="_vsbscreen" devices="pc|pad"></script>
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1001,'/index.jsp',-1,1552267061)</script>
+</head>
+    <body>
+        <!--头部-->
+        <div class="head cleafix">
+            <div class="wrap">
+                <div class="logo fl">
+                    
+<!-- 网站logo图片地址请在本组件"内容配置-网站logo"处填写 -->
+<a href="index.htm" title="招生网"><img src="images/logo_03.png">
+</a>
+                </div>
+                <div class="head-fr fr">
+                <ul class="fl nav">
+                <li>
+                <a href="bszs1/zsxx.htm">博士招生</a>
+                    <div class="sub-box">
+                        <ul class="submenu">
+                                <li><a href="bszs1/zsxx.htm">招生信息</a></li>
+                                <li><a href="bss-zscx.jsp?urltype=tree.TreeTempUrl&wbtreeid=1068">招生咨询</a></li>
+                                <li><a href="bszs1/cjcx1.htm">成绩查询</a></li>
+                                <li><a href="bszs1/lnst.htm">历年试题</a></li>
+                                <li><a href="bszs1/xyjj.htm">学院简介</a></li>
+                                <li><a href="bszs1/xytxl.htm">学院通讯录</a></li>
+                                <li><a href="gxxz.jsp?urltype=tree.TreeTempUrl&wbtreeid=1073">学院下载</a></li>
+                        </ul>
+                    </div>
+            </li>
+            <li>
+                <a href="sszs1/zsxx.htm">硕士招生</a>
+                    <div class="sub-box">
+                        <ul class="submenu">
+                                <li><a href="sszs1/zsxx.htm">招生信息</a></li>
+                                <li><a href="sss-zscx.jsp?urltype=tree.TreeTempUrl&wbtreeid=1075">招生咨询</a></li>
+                                <li><a href="sszs1/cjcx1.htm">成绩查询</a></li>
+                                <li><a href="sszs1/lqqk.htm">录取情况</a></li>
+                                <li><a href="sszs1/lnst.htm">历年试题</a></li>
+                                <li><a href="bszs1/xyjj.htm">学院简介</a></li>
+                                <li><a href="bszs1/xytxl.htm">学院通讯录</a></li>
+                                <li><a href="gxxz.jsp?urltype=tree.TreeTempUrl&wbtreeid=1081">学院下载</a></li>
+                        </ul>
+                    </div>
+            </li>
+            <li class="bks">
+                <a href="bkzs1/tzgg.htm">本科招生</a>
+                    <div class="sub-box">
+                        <ul class="submenu">
+                                <li><a href="bkzs1/tzgg.htm">通知公告</a></li>
+                                <li><a href="bkzs1/zsxx/zszc.htm">招生信息</a></li>
+                                <li><a href="zsjh.jsp?urltype=tree.TreeTempUrl&wbtreeid=1091">历年数据</a></li>
+                                <li><a href="bkzs1/lqjgcx.htm">录取结果查询</a></li>
+                                <li><a href="bks-zscx.jsp?urltype=tree.TreeTempUrl&wbtreeid=1094">招生咨询</a></li>
+                        </ul>
+                    </div>
+            </li>
+            <li>
+                <a href="http://intl.ucass.edu.cn/lxskd1/zwxm.htm" target="_blank">留学生</a>
+            </li>
+            <li>
+                <a href="gatzs.htm">港澳台招生</a>
+            </li>
+            <li>
+                <a href="http://sle.ucass.edu.cn" target="_blank">继续教育</a>
+            </li>
+            <li>
+                <a href="http://sle.ucass.edu.cn/hzbx/xmjj.htm">合作办学招生</a>
+            </li>
+            <li>
+                <a href="lxwm.htm">联系我们</a>
+            </li>
+</ul>
+
+                    <div class="search-box fr">
+                        <h5 class="fdj"><img src="images/search_03.png"></h5>
+                    </div>
+                </div>
+            </div>
+        
+        <script type="text/javascript">
+    function _nl_ys_check(){
+        
+        var keyword = document.getElementById('showkeycode1004').value;
+        if(keyword==null||keyword==""){
+            alert("请输入你要检索的内容！");
+            return false;
+        }
+        if(window.toFF==1)
+        {
+            document.getElementById("lucenenewssearchkey1004").value = Simplized(keyword );
+        }else
+        {
+            document.getElementById("lucenenewssearchkey1004").value = keyword;            
+        }
+        var  base64 = new Base64();
+        document.getElementById("lucenenewssearchkey1004").value = base64.encode(document.getElementById("lucenenewssearchkey1004").value);
+        new VsbFormFunc().disableAutoEnable(document.getElementById("showkeycode1004"));
+        return true;
+    } 
+</script>
+<div class="sbox cleafix">
+<div class="wrap cleafix">
+<form action="search_list.jsp?wbtreeid=1001" method="post" id="au2a" name="au2a" onsubmit="return _nl_ys_check()" class="search">
+ <input type="hidden" id="lucenenewssearchkey1004" name="lucenenewssearchkey" value=""><input type="hidden" id="_lucenesearchtype1004" name="_lucenesearchtype" value="1"><input type="hidden" id="searchScope1004" name="searchScope" value="0">
+ <input name="showkeycode" id="showkeycode1004" type="text" class="text" placeholder="请输入搜索的内容">
+ <input type="submit" class="submit" value=""> 
+</form>
+</div>
+</div>
+
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/js/formfunc.js"></script>
+</div>
+        <!--banner-->
+        <div class="focus">
+        
+                    <script language="javascript" src="/system/resource/js/dynclicks.js"></script><ul class="focuspic">
+            <li>
+        <a href="#" title="" onclick="_addDynClicks(&#34;wbimage&#34;, 1552267061, 1001)" target="_blank">
+            <img src="images/banner_02.jpg" border="0">
+        </a>  
+        </li>
+   </ul>
+
+
+
+        
+            <a class="prev" href="javascript:void(0)"></a>
+            <a class="next" href="javascript:void(0)"></a>
+            <div class="num">
+                <ul>
+                </ul>
+            </div>
+        </div>
+        <!--主体一-->
+        <div class="wrap main1 cleafix">
+            <!--左侧通知公告-->
+            <div class="tzgg fl">
+                <script language="javascript" src="/system/resource/js/centerCutImg.js"></script><script language="javascript" src="/system/resource/js/ajax.js"></script><div class="title">
+    <a href="index/tzgg.htm" class="fr gay">更多</a>
+    <h2>通知公告</h2>
+</div>
+<ul class="cleafix">
+    <li>
+    <div class="tz-fl fl">
+        <p class="day">30</p>
+        <p class="year">2026-10</p>
+    </div>
+    <div class="tz-fr fr">
+        <a href="info/1041/2750.htm" target="_blank" title="关于中国社会科学院大学报考点（1172）资格审核的温馨提示">
+        <h2>关于中国社会科学院大学报考点（1172）资格审核...</h2>
+        <div class="tz-zy">
+            <p class="zy fr gay">各位考生：中国社会科学院大学报考点（1172）资格审核正在进行中，请密切关注研招网报名系统审核结论。若系统提示待补充材料...</p>
+        </div>
+        </a>
+    </div>
+    </li> 
+    <li>
+    <div class="tz-fl fl">
+        <p class="day">10</p>
+        <p class="year">2026-10</p>
+    </div>
+    <div class="tz-fr fr">
+        <a href="info/1041/2746.htm" target="_blank" title="关于中国社会科学院大学（1172）报考点上传材料的相关提示">
+        <h2>关于中国社会科学院大学（1172）报考点上传材料...</h2>
+        <div class="tz-zy">
+            <p class="zy fr gay">如果您无法在线浏览此 PDF 文件，则可以下载免费小巧的 福昕(Foxit) PDF 阅读器,安装后即可在线浏览  或下载免费的 Adobe Rea...</p>
+        </div>
+        </a>
+    </div>
+    </li> 
+    <li>
+    <div class="tz-fl fl">
+        <p class="day">10</p>
+        <p class="year">2026-10</p>
+    </div>
+    <div class="tz-fr fr">
+        <a href="info/1041/2745.htm" target="_blank" title="中国社会科学院大学考点（1172）2027年研考网报公告">
+        <h2>中国社会科学院大学考点（1172）2027年研考网报...</h2>
+        <div class="tz-zy">
+            <p class="zy fr gay">中国社会科学院大学报考点代码为“1172”，根据教育部《2027年全国硕士研究生招生工作管理规定》和《北京市2027年全国硕士研...</p>
+        </div>
+        </a>
+    </div>
+    </li> 
+ </ul><script>_showDynClickBatch(['dynclicks_u4_2750','dynclicks_u4_2746','dynclicks_u4_2745'],[2750,2746,2745],"wbnews", 1552267061)</script>
+
+            </div>
+            <!--动态信息-->
+            <div class="dtxx fr">
+                <div class="title">
+    <a href="index/dtxx.htm" class="fr gay">更多</a>
+    <h2>动态信息</h2>
+</div>
+<ul class="cleafix">
+    <li>
+    <span class="fr gay">2026年07月23日</span>
+    <a href="info/1052/2717.htm" target="_blank" title="通知书动态 | 2026年本科录取通知书快递单查询（7.28更新）">通知书动态 | 2026年本科录取通知书快递单查询（7.28更新）</a>
+    </li>
+    <li>
+    <span class="fr gay">2026年07月14日</span>
+    <a href="info/1052/2716.htm" target="_blank" title="录取进程 | 2026年可查询录取结果省份及批次（7.28更新）">录取进程 | 2026年可查询录取结果省份及批次（7.28更新）</a>
+    </li>
+    <li>
+    <span class="fr gay">2026年06月18日</span>
+    <a href="info/1052/2607.htm" target="_blank" title="中国社会科学院大学2026年分省分专业招生计划及选考科目要求">中国社会科学院大学2026年分省分专业招生计划及选考科目要求</a>
+    </li>
+    <li>
+    <span class="fr gay">2026年06月18日</span>
+    <a href="info/1052/2602.htm" target="_blank" title="2026年中国社科大本科招生宣传手册">2026年中国社科大本科招生宣传手册</a>
+    </li>
+    <li>
+    <span class="fr gay">2026年06月18日</span>
+    <a href="info/1052/2603.htm" target="_blank" title="叮咚！中国社科大2026年本科招生咨询群来啦！">叮咚！中国社科大2026年本科招生咨询群来啦！</a>
+    </li>
+    <li>
+    <span class="fr gay">2026年06月11日</span>
+    <a href="info/1052/2565.htm" target="_blank" title="社科大2026年近期本科宣传预告（6月11日更新）">社科大2026年近期本科宣传预告（6月11日更新）</a>
+    </li>
+    <li>
+    <span class="fr gay">2026年05月17日</span>
+    <a href="info/1052/2707.htm" target="_blank" title="习近平就推动哲学社会科学高质量发展作出重要指示">习近平就推动哲学社会科学高质量发展作出重要指示</a>
+    </li>
+    <li>
+    <span class="fr gay">2026年05月17日</span>
+    <a href="info/1052/2706.htm" target="_blank" title="哲学社会科学界深入学习贯彻习近平文化思想——书写经世华章 展现中国气派">哲学社会科学界深入学习贯彻习近平文化思想——书写经世华章 展现中国气派</a>
+    </li>
+</ul><script>_showDynClickBatch(['dynclicks_u5_2717','dynclicks_u5_2716','dynclicks_u5_2607','dynclicks_u5_2602','dynclicks_u5_2603','dynclicks_u5_2565','dynclicks_u5_2707','dynclicks_u5_2706'],[2717,2716,2607,2602,2603,2565,2707,2706],"wbnews", 1552267061)</script>
+
+            </div>
+        </div>
+        <!--内容2-->
+        <div class="main2 cleafix">
+            <div class="wrap">
+                <ul class="zx-box fl">
+                    <li class="zx-dw" id="n3">
+                        <a href="http://yz.ucass.edu.cn/Default.aspx" target="_blank">    <img src="images/icon44_04.png">
+                            <p>博士网上报名</p>
+                      </a>
+                    </li>
+                    <li class="zx-dw" id="n1">
+                            <img src="images/icon4_03.jpg">
+                            <p>录取结果查询 </p>
+                       <script language="javascript" src="/system/resource/js/openlink.js"></script> <ul class="cx-box">
+    <LI><a href="bkzs1/lqjgcx.htm" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 1005)">本科生</a></li>
+    <LI><a href="sszs1/cjcx1.htm" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 1006)">硕士生</a></li>
+    <LI><a href="bszs1/cjcx1.htm" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 1007)">博士生</a></li>
+</UL>
+                    </li>
+                    <li class="zx-dw" id="n2">
+                            <img src="images/icon4_05.png">
+                            <p>招生咨询 </p>
+                        <ul class="cx-box">
+    <LI><a href="bks-zscx.jsp?urltype=tree.TreeTempUrl&amp;wbtreeid=1094" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 36205)">本科生</a></li>
+    <LI><a href="sss-zscx.jsp?urltype=tree.TreeTempUrl&amp;wbtreeid=1075" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 36206)">硕士生</a></li>
+    <LI><a href="bss-zscx.jsp?urltype=tree.TreeTempUrl&amp;wbtreeid=1068" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 36207)">博士生</a></li>
+</UL>
+                    </li>
+                </ul>
+                <!--友情链接-->
+                <div class="link fr">
+                    <div class="tltle-t">
+                        常用链接
+                    </div>
+                    <ul class="cleafix">
+    <LI><a href="https://yz.chsi.com.cn/" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 1001)">中国研究生招生信息网</a></li>
+    <LI><a href="https://gaokao.chsi.com.cn/" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 1002)">阳光高考</a></li>
+    <LI><a href="http://www.cssn.cn/" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 1003)">中国社会科学院</a></li>
+    <LI><a href="http://www.ucass.edu.cn/" title="" onclick="_addDynClicks(&#34;wburl&#34;, 1552267061, 1004)">中国社会科学院大学</a></li>
+</UL>
+                </div>
+            </div>
+        </div>
+        <!--尾部-->
+        <div class="foot cleafix">
+            <div class="wrap">
+                <div class="copy fl">
+                   <script language="javascript" src="/system/resource/js/news/mp4video.js"></script>
+<div class="bdsharebuttonbox" data-tag="share_1" id="bdsharebox"> 
+ <a class="bds_qzone" data-cmd="qzone" href="#"></a> 
+ <a class="bds_tsina" data-cmd="tsina"></a> 
+ <a class="bds_tqq" data-cmd="tqq"></a> 
+ <a class="bds_renren" data-cmd="renren"></a> 
+</div>
+                    <!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+<p>版权所有©中国社会科学院大学</p><p>地址：北京市房山区长于大街11号</p><p>邮编：102488</p>
+                </div>
+                <ul class="ewm fr cleafix">
+                         
+ <li>
+	<img src="images/3_05.jpg">
+	<p>中国社会科学院大学招生</p>
+ </li>
+
+                </ul>
+            </div>
+            
+        </div>
+        <script type="text/javascript" src="js/gy.js"></script>
+        <script type="text/javascript" src="js/gy1.js"></script>
+        <script type="text/javascript" src="js/base.js"></script>
+        <script type="text/javascript" src="js/share.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+            
+                /*鼠标移过，左右按钮显示*/
+                $(".focus").hover(function(){
+                    $(this).find(".prev,.next").fadeTo("show",0.1);
+                },function(){
+                    $(this).find(".prev,.next").hide();
+                })
+                
+                /*鼠标移过某个按钮 高亮显示*/
+                $(".prev,.next").hover(function(){
+                    $(this).fadeTo("show",0.7);
+                },function(){
+                    $(this).fadeTo("show",0.1);
+                })
+                
+                $(".focus").slide({
+                    titCell:".num ul",
+                    mainCell:".focuspic",
+                    effect:"fold", //fade：渐显；|| left：左滚动；|| fold：淡入淡出
+                    autoPlay:true,
+                    delayTime:700,
+                    autoPage:"<li><a></a></li>"
+                });
+                
+            });
+        </script>
+<script id="eda_bar_script" src="https://answer.eol.cn/school/pc/school3621.js"></script>
+
+    </body>
+</html>

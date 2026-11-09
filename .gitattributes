@@ -17,3 +17,4 @@ tests/fixtures/source_candidates/bift2027/*.html binary
 tests/fixtures/official_discovery/**/*.html binary
 tests/fixtures/official_discovery/**/*.js binary
 tests/fixtures/official_discovery/**/*.bin binary
+tests/fixtures/official_discovery/**/*.raw binary

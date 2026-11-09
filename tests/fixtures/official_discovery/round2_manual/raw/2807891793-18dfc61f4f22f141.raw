@@ -1,0 +1,771 @@
+<!doctype html>
+<html><meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta name="format-detection" content="telephone=no"> 
+<meta name="renderer" content="webkit"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<title>上海商学院</title> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900"> 
+<link rel="stylesheet" href="css/base.css?20231229"> 
+<link rel="stylesheet" href="css/swiper.css?20231229"> 
+<link rel="stylesheet" href="css/style.css?20231229"> 
+<link rel="stylesheet" href="css/index.css?20231229"> <!--[if lt IE 9]>
+<style>html{overflow:hidden;}</style>
+<i class="ie_bg"></i><div class="ie9tips"> <img src="images/logo.png" alt=""> <p>本站不再支持您的浏览器，请升级您的浏览器到 <a href='http://browsehappy.osfipin.com/' target='_blank' style='text-decoration:underline'>更高的版本</a>！以获得更好的观看效果。</p></div>
+<![endif]--> <!--[if IE 9]>
+<div id="ie9tips" style="position:fixed;top:15px;left:0;width:100%;text-align:center;color:#ccc;z-index:999999">您的浏览器版本过低，请升级到ie10以上或更换Chrome浏览器获得流畅的浏览效果！</div>
+<![endif]--><script type='text/javascript' src='/publish/gPublic/all.js'></script><body >
+
+<header>
+	<div class="mobile_header">
+		<div class="mob_nav_btn only_mob" onclick="toggleOn(this,'.mobile-header','.mobile_header_cover')">
+			<span></span><span></span><span></span>
+		</div>
+		<div class="mobile_header_cover"></div>
+		<section class="mobile-header only_mob" >
+			<div class="mobile-nav">
+				<ul>
+					<li>
+						<a href="xygk/index.htm">学院概况</a><div class="arrow" onclick="toggleParentOn(this)"></div>
+						<dl class="mobile_sub_nav">
+							<dd><a href="xygk/xxjj/index.htm">学校简介</a></dd>
+							<dd><a href="xygk/lsyg/index.htm">历史沿革</a></dd>
+							<dd><a href="xygk/xrld/index.htm">现任领导</a></dd>
+							<dd><a href="xygk/lrld/index.htm">历任领导</a></dd>
+							<dd><a href="xygk/yxjg/index.htm">院系机构</a></dd>
+							<dd><a href="xygk/xx/index.htm">校训</a></dd>
+							<dd><a href="xygk/jyfzjjh/index.htm">教育发展基金会</a></dd>
+							<dd><a href="xygk/xxgk/index.htm">信息公开</a></dd>
+						</dl>
+					</li>
+					<li>
+						<a href="djjy/index.htm">党建家园</a><div class="arrow" onclick="toggleParentOn(this)"></div>
+						<dl class="mobile_sub_nav">
+							<dd><a href="djjy/djdt/index.htm">党建动态</a></dd>
+							<dd><a href="djjy/ffcl/index.htm">反腐倡廉</a></dd>
+							<dd><a href="djjy/ghgz/index.htm">工会工作</a></dd>
+							<dd><a href="djjy/ssqn/index.htm">上商青年</a></dd>
+						</dl>
+					</li>
+					<li>
+						<a href="jxky/index.htm">教学科研</a><div class="arrow" onclick="toggleParentOn(this)"></div>
+						<dl class="mobile_sub_nav">
+							<dd><a href="jxky/yjsjy/index.htm">研究生教育</a></dd>
+							<dd><a href="jxky/bkjy/index.htm">本科教育</a></dd>
+							<dd><a href="jxky/kydt/index.htm">科研动态</a></dd>
+							<dd><a href="jxky/xsqk/index.htm">学术期刊</a></dd>
+							<dd><a href="jxky/sssyfzyjy/index.htm">上商商业发展研究院</a></dd>
+							<dd><a href="jxky/xdltsyjxsfzx/index.htm">现代流通实验教学示范中心</a></dd>
+						</dl>
+					</li>
+					<li>
+						<a href="zsjy/index.htm">招生就业</a><div class="arrow" onclick="toggleParentOn(this)"></div>
+						<dl class="mobile_sub_nav">
+							<dd><a href="zsjy/bzkzs/index.htm">本专科招生</a></dd>
+							<dd><a href="zsjy/yjszs/index.htm">研究生招生</a></dd>
+							<dd><a href="zsjy/jxjy/index.htm">继续教育</a></dd>
+							<dd><a href="zsjy/xnpfx/index.htm">西南片辅修</a></dd>
+							<dd><a href="zsjy/jycy/index.htm">本专科就业</a></dd>
+							<dd><a href="zsjy/jqzd/index.htm">奖勤助贷</a></dd>
+						</dl>
+					</li>
+					<li>
+						<a href="whsh/index.htm">文化生活</a><div class="arrow" onclick="toggleParentOn(this)"></div>
+						<dl class="mobile_sub_nav">
+							<dd><a href="whsh/wmzx/index.htm">文明在线</a></dd>
+							<dd><a href="whsh/ghgz1/index.htm">工会工作</a></dd>
+							<dd><a href="whsh/yywx/index.htm">语言文学</a></dd>
+							<dd><a href="whsh/ssqn1/index.htm">上商青年</a></dd>
+						</dl>
+					</li>
+					<li>
+						<a href="gjjl/index.htm">国际交流</a><div class="arrow" onclick="toggleParentOn(this)"></div>
+						<dl class="mobile_sub_nav">
+							<dd><a href="gjjl/gjjl1/index.htm">国际交流</a></dd>
+							<dd><a href="gjjl/lxss/index.htm">留学上商</a></dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			<div class="mobile_search">
+				<form class="search" name="dataForm" action="/cms/search/index.jsp" target="_blank" method="post" accept-charset="utf-8" onsubmit="document.charset='utf-8';">
+					<input name="siteid" value="$curChannel.site.id" type="hidden">
+					<input class="notxt" value="输入关键字" name="query" type="text" id="keywords" onfocus="if(value==defaultValue){value='';}" onblur="if(!value){value=defaultValue;}">
+					<input class="notxt1 btn" name="Submit" type="submit" value="Search">
+				</form>
+			</div>
+			<div class="mob_links">
+				<dl>
+					<dd><a href="https://scloud.sbs.edu.cn/">学生</a></dd>
+					<dd><a href="https://scloud.sbs.edu.cn/">教职工</a></dd>
+					<dd><a href="#">校友</a></dd>
+					<dd><a href="#">访客</a></dd>
+				</dl>
+				<dl>
+					<dd><a href="javascript:void(0)" onclick="aria.oldFixedStart()">适老版</a></dd>
+					<dd><a href="https://scloud.sbs.edu.cn/">服务门户</a></dd>
+					<dd><a href="http://lib.sbs.edu.cn/">图书资料</a></dd>
+				</dl>
+			</div>
+		</section>
+	</div>
+	<div class="pop_box ser_box">
+		<div class="pop_box_bg" onclick="toggleOn('.ser_box.pop_box')"><div class="close"></div></div>
+		<div class="ser">
+			<form class="search" name="dataForm" action="/cms/web/search/index.jsp" target="_blank" method="post" accept-charset="utf-8" onsubmit="document.charset='utf-8';">
+				<input name="siteid" value="$curChannel.site.id" type="hidden">
+				<input class="notxt" value="输入关键字" name="query" type="text" id="keywords" onfocus="if(value==defaultValue){value='';}" onblur="if(!value){value=defaultValue;}">
+				<input class="notxt1 btn" name="Submit" type="submit" value="Search">
+			</form>
+		</div>
+	</div>
+	<div class="header">
+		<div class="header_top">
+			<div class="gp-container">
+				<div class="left top_link fs16">
+					<a href="yjzd/index.htm">一键直达</a>
+					<a href="https://xwzx.sbs.edu.cn">新闻中心</a>
+                                        <a href="https://xwzx.sbs.edu.cn/xb/">校报</a>
+					<a href="http://lib.sbs.edu.cn/">图书馆</a>
+<a href="https://jxzt.sbs.edu.cn/">建校75周年专题网</a>
+<a href="javascript:;" onclick="aria.start()" clickhide="false">无障碍阅读</a>	
+				
+				</div>
+				<div class="right top_link fs16">
+					<a href="https://xshpg.sbs.edu.cn/ "><b>审核评估</b></a>
+					<a href="https://scloud.sbs.edu.cn/">服务登录</a>
+					<a href="https://zhaopin.sbs.edu.cn/zp.html#/">招聘</a>
+					<a href="https://iec.sbs.edu.cn/En">ENGLISH</a>
+<a href="javascript:;" onclick="aria.oldFixedStart()" clickhide="false">适老版</a>
+					<div class="ser_btn" onclick="toggleOn('.ser_box.pop_box')"></div>
+				</div>
+			</div>
+		</div>
+		<div class="wrap_logo">
+			<div class="logo">
+				<img src="images/logo1.png" alt="">
+				<img src="images/logo2.png" alt="" class="img2">
+				<a class="logo1" href="index.htm"></a>
+				
+			</div>
+		</div>
+		<div class="gp-container wrap_nav">
+			<nav class="nav">
+				<div class="left">
+					<ul>
+						<li>
+							<a href="xygk/index.htm">学院概况</a>
+							<div class="sub_nav">
+								<h3 class="fs18">学院概况</h3>
+								<div class="img_box"><img src="images/nav_img1.png" alt=""></div>
+								<dl>
+									<dd><a href="xygk/xxjj/index.htm">学校简介</a></dd>
+									<dd><a href="xygk/lsyg/index.htm">历史沿革</a></dd>
+									<dd><a href="xygk/xrld/index.htm">现任领导</a></dd>
+									<dd><a href="xygk/lrld/index.htm">历任领导</a></dd>
+									<dd><a href="xygk/yxjg/index.htm">院系机构</a></dd>
+									<dd><a href="xygk/xx/index.htm">校训</a></dd>
+									<dd><a href="xygk/jyfzjjh/index.htm">教育发展基金会</a></dd>
+									<dd><a href="xygk/xxgk/index.htm">信息公开</a></dd>
+								</dl>
+								
+							</div>
+						</li>
+						<li>
+							<a href="djjy/index.htm">党建家园</a>
+							<div class="sub_nav">
+								<h3 class="fs18">党建家园</h3>
+								<div class="img_box"><img src="images/nav_img1.png" alt=""></div>
+								<dl>
+									<dd><a href="djjy/djdt/index.htm">党建动态</a></dd>
+									<dd><a href="djjy/ffcl/index.htm">反腐倡廉</a></dd>
+									<dd><a href="djjy/ghgz/index.htm">工会工作</a></dd>
+									<dd><a href="djjy/ssqn/index.htm">上商青年</a></dd>
+								</dl>
+								
+							</div>
+						</li>
+						<li>
+							<a href="jxky/index.htm">教学科研</a>
+							<div class="sub_nav">
+								<h3 class="fs18">教学科研</h3>
+								<div class="img_box"><img src="images/nav_img1.png" alt=""></div>
+								<dl>
+									<dd><a href="jxky/yjsjy/index.htm">研究生教育</a></dd>
+									<dd><a href="jxky/bkjy/index.htm">本科教育</a></dd>
+									<dd><a href="jxky/kydt/index.htm">科研动态</a></dd>
+									<dd><a href="jxky/xsqk/index.htm">学术期刊</a></dd>
+									<dd><a href="jxky/sssyfzyjy/index.htm">上商商业发展研究院</a></dd>
+									<dd><a href="jxky/xdltsyjxsfzx/index.htm">现代流通实验教学示范中心</a></dd>
+								</dl>
+								
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul>
+						<li>
+							<a href="zsjy/index.htm">招生就业</a>
+							<div class="sub_nav wide">
+								<h3 class="fs18">招生就业</h3>
+								<div class="img_box"><img src="images/nav_img2.png" alt=""></div>
+								<dl>
+									<dd><a href="zsjy/bzkzs/index.htm">本专科招生</a></dd>
+									<dd><a href="zsjy/yjszs/index.htm">研究生招生</a></dd>
+									<dd><a href="zsjy/jxjy/index.htm">继续教育</a></dd>
+									<dd><a href="zsjy/xnpfx/index.htm">西南片辅修</a></dd>
+									<dd><a href="zsjy/jycy/index.htm">本专科就业</a></dd>
+									<dd><a href="zsjy/jqzd/index.htm">奖勤助贷</a></dd>
+								</dl>
+							</div>
+						</li>
+						<li>
+							<a href="whsh/index.htm">文化生活</a>
+							<div class="sub_nav wide">
+								<h3 class="fs18">文化生活</h3>
+								<div class="img_box"><img src="images/nav_img2.png" alt=""></div>
+								<dl>
+									<dd><a href="whsh/wmzx/index.htm">文明在线</a></dd>
+									<dd><a href="whsh/ghgz1/index.htm">工会工作</a></dd>
+									<dd><a href="whsh/yywx/index.htm">语言文学</a></dd>
+									<dd><a href="whsh/ssqn1/index.htm">上商青年</a></dd>
+								</dl>
+							</div>
+						</li>
+						<li>
+							<a href="gjjl/index.htm">国际交流</a>
+							<div class="sub_nav wide">
+								<h3 class="fs18">国际交流</h3>
+								<div class="img_box"><img src="images/nav_img2.png" alt=""></div>
+								<dl>
+									<dd><a href="gjjl/gjjl1/index.htm">国际交流</a></dd>
+									<dd><a href="gjjl/lxss/index.htm">留学上商</a></dd>
+								</dl>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+</header><!--B19gaK/ckwWP/66jMEaobcpsYfHurg4kiaANP8Fn0tAdgpinzd4EZ0RlJtz0dwP0yff979SHPRQqxCoMR6XUNECAf1SSyMfOP9yjbVS8TXx/cOTs23OWUqrbrjNY/Y1J2UoXVkEjqqO/TKneXX0TNw==-->
+<div class="home_swiper">
+
+	<div class="swiper-wrapper">
+		<div class="swiper-slide wrapbanner">
+			
+			<div class="banner">
+				<div class="swiper-wrapper">
+					
+					<div class="swiper-slide"><a href="https://www.sbs.edu.cn/ssyw/e878f6d214f24c739a80832c4d0b169f.htm">
+						<div class="gp-img gp-img_nohover"><img class="swiper-lazy" data-src="images/2026-11/02925a00e63740028755c63ad1a48ab5.jpg"></div>
+					</a></div>
+					<div class="swiper-slide"><a href="https://www.sbs.edu.cn/ssyw/0bb7631d83544f109bb000c58f295a9d.htm">
+						<div class="gp-img gp-img_nohover"><img class="swiper-lazy" data-src="images/2026-11/82f79dbb40034d5b94d03fbb32fb080d.jpeg"></div>
+<div class="title fs32">健康第一 赛场逐梦--学校第二十二届运动会举行</div>
+					</a></div>
+				
+<div class="swiper-slide"><a href="#">
+						<div class="gp-img gp-img_nohover">
+							<img class="swiper-lazy" data-src="images/banner.png">
+							<div class="gp-video-box" data-video="images/video.mp4" poster-src="images/banner.png"></div>
+						</div>
+					</a></div>
+	
+					
+					<div class="swiper-slide"><a href="https://www.sbs.edu.cn/">
+						<div class="gp-img gp-img_nohover"><img class="swiper-lazy" data-src="images/2026-10/bf67229d4fae46d6842d8d5e2c25d6a9.jpg"></div>
+<div class="title fs32">以美铸魂·青春逐光</div>
+					</a></div>
+					<div class="swiper-slide"><a href="https://www.sbs.edu.cn/">
+						<div class="gp-img gp-img_nohover"><img class="swiper-lazy" data-src="images/2026-10/374ad628d4c24e86af320180572b93e4.png"></div>
+					</a></div>
+				</div>
+			</div>
+			<div class="swiper_menu">
+				<div class="arrow prev"></div>
+				<div class="swiper-pagination"></div>
+				<div class="arrow next"></div>
+			</div>
+
+		</div>
+		<div class="swiper-slide home_slide">
+			
+			<div class="content">
+				<!-- mode01开始 -->
+				<div class="wrap_mode01">
+					<div class="gp-container mode01">
+						<a class="index_title fs36" href="https://xwzx.sbs.edu.cn/">上商<i></i>要闻</a>
+
+						<a class="index_01a item gp-flex" href="https://xwzx.sbs.edu.cn/xxyw/5521788e9c0846d4b8cf2ab8e58c2fe4.htm">
+							
+							<div class="img_box">
+								<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/bb3b88deee524879b6b283bfc57540a3.png" ></div>
+							</div>
+							<div class="info_box">
+								
+								<div class="time ">
+									<div class="day fs14"> 2026</div>
+									<div class="month fs20"> 11.07</div>
+								</div>
+								<div class="title fs24">校领导走访慰问第九届进博会志愿者并开展主题党课</div>
+								<div class="info fs18">
+									11月6日，校党委书记沈大明，校党委副书记、校长吴忠一行赴国家会展中心，走访慰问我校第九届进博会志愿者并开展主题党课。党办、校办、校团委相关老师陪同。
+								</div>
+								<div class="more fs18" l-href="https://xwzx.sbs.edu.cn/xxyw/5521788e9c0846d4b8cf2ab8e58c2fe4.htm">了解更多+</div>
+								<div class="share_box">
+									<span class="fs18">分享</span>
+									<div class="share_btn share_wechat"><div class="hover"></div></div>
+									<div class="share_btn share_sina"></div>
+								</div>
+								
+							</div>
+							
+						</a>
+						<div class="index_01b ul-inline">
+							<ul class="gp-avg-md-4 gp-avg-sm-2">
+								<li><a class="item" href="https://xwzx.sbs.edu.cn/xxyw/d7d2a535fe03401fb5a0ec325e42a8c6.htm">
+									<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/1e2a1705b70242cabfe504abeea54189.jpeg" ></div>
+									<div class="bottom">
+										<div class="title fs18 lh36x2">2026上海商学院酒店文旅学术会议暨第七届国际学者“上商”论坛成功举办</div>
+										<div class="time fs18">2026-11-09</div>
+										<div class="share_box">
+											<span class="fs18">分享</span>
+											<div class="share_btn share_wechat"><div class="hover"></div></div>
+											<div class="share_btn share_sina"></div>
+										</div>
+									</div>
+								</a></li>
+								<li><a class="item" href="https://xwzx.sbs.edu.cn/xxyw/01580514340b43a4af705356640030d7.htm">
+									<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/c0e788c5dad84d959b8afedb0a6ef017.jpeg" ></div>
+									<div class="bottom">
+										<div class="title fs18 lh36x2">广州工程技术职业学院来我校开展学生工作交流</div>
+										<div class="time fs18">2026-11-08</div>
+										<div class="share_box">
+											<span class="fs18">分享</span>
+											<div class="share_btn share_wechat"><div class="hover"></div></div>
+											<div class="share_btn share_sina"></div>
+										</div>
+									</div>
+								</a></li>
+								<li><a class="item" href="ssyw/e878f6d214f24c739a80832c4d0b169f.htm">
+									<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/f4e0edc09678478184a8bc22da4e7bf1.jpeg" ></div>
+									<div class="bottom">
+										<div class="title fs18 lh36x2">“读红色经典 做信仰传人”上海商学院阅读党课顺利开讲</div>
+										<div class="time fs18">2026-11-08</div>
+										<div class="share_box">
+											<span class="fs18">分享</span>
+											<div class="share_btn share_wechat"><div class="hover"></div></div>
+											<div class="share_btn share_sina"></div>
+										</div>
+									</div>
+								</a></li>
+								<li><a class="item" href="ssyw/0bb7631d83544f109bb000c58f295a9d.htm">
+									<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/c8d4e495d80e43a391fc3a3a81815094.jpeg" ></div>
+									<div class="bottom">
+										<div class="title fs18 lh36x2">健康第一，赛场逐梦——上海商学院第二十二届运动会圆满举行</div>
+										<div class="time fs18">2026-11-07</div>
+										<div class="share_box">
+											<span class="fs18">分享</span>
+											<div class="share_btn share_wechat"><div class="hover"></div></div>
+											<div class="share_btn share_sina"></div>
+										</div>
+									</div>
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- mode01结束 -->
+
+				<!-- mode02开始 -->
+				<div class="wrap_mode02">
+					<div class="gp-container mode02">
+						<div class="lf">
+							<a class="index_title2 fs36" href="https://xwzx.sbs.edu.cn/">综合新闻</a>
+							<img src="images/mode02_bg2.png" alt="" class="mode02_img">
+							<a class="index_more2 fs18" href="https://xwzx.sbs.edu.cn/">了解更多+</a>
+						</div>
+						<div class="rt">
+							<div class="index_02 ul-inline">
+								<ul>
+									<li><a class="item" href="https://xwzx.sbs.edu.cn/zhxw/af20bf80d47f49bda99d510577e7e1c5.htm">
+										<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/7ca769b86cf54d1086b76a795676b1e6.jpg" ></div>
+										<div class="bottom">
+											<div class="more"></div>
+											<div class="title fs18 lh32x2">汲取榜样经验，磨砺蓄力成长——学校举办2026年第5期“弘德·立商”青椒沙龙</div>
+											<div class="time fs18">2026-11-09</div>
+										</div>
+									</a></li>
+									<li><a class="item" href="ssjx/7d0671403bdb475fa065b46f08837e1c.htm">
+										<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/6372de588d684354b3f66671f9b43990.jpg" ></div>
+										<div class="bottom">
+											<div class="more"></div>
+											<div class="title fs18 lh32x2">元创未来 合作无界｜上海商学院师生斩获第四届元宇宙设计创意大赛多项荣誉</div>
+											<div class="time fs18">2026-11-07</div>
+										</div>
+									</a></li>
+									<li><a class="item" href="https://xwzx.sbs.edu.cn/xxyw/5521788e9c0846d4b8cf2ab8e58c2fe4.htm">
+										<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/bb3b88deee524879b6b283bfc57540a3.png" ></div>
+										<div class="bottom">
+											<div class="more"></div>
+											<div class="title fs18 lh32x2">校领导走访慰问第九届进博会志愿者并开展主题党课</div>
+											<div class="time fs18">2026-11-07</div>
+										</div>
+									</a></li>
+									<li><a class="item" href="ssjx/399431dd6861472b94d03e585cdd7b0c.htm">
+										<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/4601e9c26a384e26a07ec73b128ecf6a.png" ></div>
+										<div class="bottom">
+											<div class="more"></div>
+											<div class="title fs18 lh32x2">艺术设计学院召开2027届毕业生就业启动会暨毕业设计（论文）动员会</div>
+											<div class="time fs18">2026-11-07</div>
+										</div>
+									</a></li>
+									<li><a class="item" href="ssjx/062465fb7c024e81966b86623c86cedc.htm">
+										<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-11/9a0f99b758c94dd887968ff84a904ce5.png" ></div>
+										<div class="bottom">
+											<div class="more"></div>
+											<div class="title fs18 lh32x2">洞察市场变局，深耕战略设计
+——艺术设计学院举办《市场变局下的战略性设计》视觉传达设计专业导论专题讲座</div>
+											<div class="time fs18">2026-11-07</div>
+										</div>
+									</a></li>
+								</ul>
+								<div class="swiper_menu">
+									<div class="arrow next"></div>
+									<div class="arrow prev"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- mode02结束 -->
+
+				<!-- mode03开始 -->
+				<div class="wrap_mode03">
+					<div class="gp-container mode03">
+						<div class="lf">
+							<a class="index_title2 fs36" href="https://xwzx.sbs.edu.cn/">媒体聚焦</a>
+							<a class="index_more2 fs18" href="https://xwzx.sbs.edu.cn/">了解更多+</a>
+						</div>
+						<div class="rt">
+
+							<a class="index_03a item gp-flex" href="https://www.jfdaily.com/wx/detail.do?id=1185161">
+								<div class="img_box">
+									<div class="gp-img"><img src="https://xwzx.sbs.edu.cn/images/2026-09/c7ca4c39c381457ab6460e0ba6e36f8b.jpg" ></div>
+								</div>
+								<div class="info_box fs18 lh36">
+									<div class="title">世赛酒店接待项目银牌获得者王嘉艺：以热爱为底色，以苦练为阶梯</div>
+									<div class="info">
+										在第48届世界技能大赛上，中国选手王嘉艺夺得酒店接待项目银牌。
+									</div>
+									<div class="time">2026-09-27</div>
+									<div class="more">【解放日报】</div>
+								</div>
+								<!-- <div class="gp-clear"></div> -->
+							</a>
+							<div class="index_03b ul-inline">
+								<ul class="gp-avg-md-3">
+
+									<li><a class="item fs18 lh36" href="https://mp.weixin.qq.com/s/_VlZZ9WWs8cmjNaTSiWQ4w">
+										<div class="top">
+											<div class="title">《工人日报》：通过世赛这一窗口，上海展示职业教育培养技能人才的成果</div>
+											<div class="info">
+												上海共有9位选手参加第48届世界技能大赛，最终斩获6金3银的历史最佳成绩。上海教育系统将持续深化世赛成果转化，把世赛先进理念、技术标准和评价方式融入人才培养全过程，让更多学生共享世赛成果。
+											</div>
+										</div>
+										<div class="time">2026-10-18</div>
+										<div class="more">【上海教育】</div>
+									</a></li>
+									<li><a class="item fs18 lh36" href="https://szb.grrb.com.cn/lsrb/szb/grrb_news?bz=grrb&isNeedVoiceLoad=1&theDate=2026-10-15&link_text=/papers/grrb/2026/10/15/7/news-1.html">
+										<div class="top">
+											<div class="title">通过世赛这一窗口，上海展示职业教育培养技能人才的成果【职教实践进行时】“原来职校生可以站到那么高的地方”</div>
+											<div class="info">
+												上海共有9位选手参加第48届世界技能大赛，最终斩获6金3银的历史最佳成绩。上海教育系统将持续深化世赛成果转化，把世赛先进理念、技术标准和评价方式融入人才培养全过程，让更多学生共享世赛成果。
+											</div>
+										</div>
+										<div class="time">2026-10-15</div>
+										<div class="more">【工人日报纸质版】</div>
+									</a></li>
+									<li><a class="item fs18 lh36" href="https://paper.xinmin.cn/html/xmwb/2026-10-11/4/249757.html">
+										<div class="top">
+											<div class="title">稳定 共情 把小事练到极致
+世赛师生走进上观直播间分享夺牌秘诀</div>
+											<div class="info">
+												日前，第48届世界技能大赛上，中国代表团第五次位居金牌榜和团体总分世界第一。由上海商贸职教集团、全国泛酒店业产教融合共同体主办的“职言职语”访谈前天在上观直播间举行，网站技术项目金牌获得者、上海信息技术学校2022级软件与信息服务专业学生高书恒，酒店接待项目银牌获得者、上海商学院2023级酒店管理专业学生王嘉艺获邀分享成长感悟。世赛夺牌有何秘诀？上海商学院酒店管理学院院长、第48届世界技能大赛酒店接待项目中国教练组组长姜红，上海信息技术学校人工智能产业学院院长林丹丹归纳为三个关键词：“稳定”“共情”“把小事练到极致”。
+											</div>
+										</div>
+										<div class="time">2026-10-11</div>
+										<div class="more">【新民晚报纸质版】</div>
+									</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="gp-clear"></div>
+					</div>
+				</div>
+				<!-- mode03结束 -->
+
+				<!-- mode04开始 -->
+				<div class="wrap_mode04">
+					<div class="gp-container mode04">
+						<a class="index_title fs36" href="#">上商<i></i>公告</a>
+						<div class="lf">
+							<div class="index_04a ul-inline">
+								<ul>
+									<li><a class="item" href="https://xwzx.sbs.edu.cn/">
+										<div class="tip fs24">通知公告</div>
+										<div class="more fs18 lh20">了解更多+</div>
+									</a></li>
+									<li><a class="item" href="ssgg/jzbg/index.htm">
+										<div class="tip fs24">讲座报告</div>
+										<div class="more fs18 lh20">了解更多+</div>
+									</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="rt">
+							<div class="index_04b ul-inline">
+								<ul class="gp-avg-lg-3 gp-avg-md-2">
+									<li><a class="item" href="https://xwzx.sbs.edu.cn/tzgg/36cf918bd01e466aa06ff4a428a70fbd.htm">
+										<div class="title fs18 lh36x2">关于拟推荐艾柯代·阿卜杜热西提同学参加第九届“我为资助代言”上海高校十佳学生资助宣传大使展示活动的公示</div>
+										<div class="info fs18 lh36x2">
+											本次遴选按照学生个人自主申报、学院资格审核推荐、校级资助宣讲比赛现场评审、学生工作处综合评议的程序开展，拟推荐艾柯代·阿卜杜热西提同学作为我校参赛人选，报送参加市级展示活动。
+										</div>
+										<div class="time fs18">2026.10.28</div>
+									</a></li>
+									<li><a class="item" href="https://xwzx.sbs.edu.cn/tzgg/fa13d58d238147e3ab6943928ab9bd44.htm">
+										<div class="title fs18 lh36x2">2027年英国剑桥大学RBL学术实践冬校招生简章</div>
+										<div class="info fs18 lh36x2">
+											本项目为科研+实训相结合的剑桥大学线下学习项目，完整遵循「理论前沿介绍→科研系统学习→实战课题挑战」递进式培养路径，分为在线先导课程+英国剑桥线下科研实训两大模块。
+
+在线先导课程阶段，学生系统学习研究方法论、学术写作、项目先导内容，快速适应研究型学习模式，掌握学术表达与科研基础技能，为赴英线下课程做好准备。
+
+线下实训阶段，由剑桥大学教授讲授学科前沿研究进展，解读行业发展趋势，解析交叉学科培养模式，打通“专业理论—产业应用—商业价值落地”完整链路；教授与助教手把手传授科研实操技能，讲解专业软件、数据库、研究方法、选题技巧，开展实战模拟训练；学员以小组形式完成商业企业项目（Business Enterprise Programme）实战课题挑战，在商业顾问、教师共同指导下，自主创立并全权管理学生模拟公司，完整走完从创意构思到商业路演的全流程，切身感受专业知识向商业价值转化的全过程，体悟交叉学科融合的驱动力。
+
+项目配套丰富剑桥校园文化活动：剑河撑篙、学院参观、剑桥传统高桌晚宴、萨尔萨社交舞蹈；同时组织伦敦城市参访，包括大英博物馆、英国国家美术馆等顶级文博机构，沉浸式感受英伦历史人文底蕴。
+										</div>
+										<div class="time fs18">2026.10.27</div>
+									</a></li>
+									<li><a class="item" href="ssgg/tzgg/8bcae324d4714d0fbb24f95f6e6b95d9.htm">
+										<div class="title fs18 lh36x2">行业专家进课堂丨国际金融案例分享：解码“资本流动与全球市场定价”</div>
+										<div class="info fs18 lh36x2">
+											10 月 19 日下午，商务经济学院特邀兴业证券资深投资顾问张茜贤走进《国际金融》课堂，开展课堂专题授课，主题为 “国际金融如何定价世界 —— 从宏观变量到财富决策”。本次授课立足当前全球经济形势，理论联系市场实践，引导同学们深化对国际金融市场运行逻辑与实践规律的理解。
+										</div>
+										<div class="time fs18">2026.10.20</div>
+									</a></li>
+
+<a class="index_04c only_mob" href="https://xwzx.sbs.edu.cn/">
+										<div class="tip fs24">讲座报告</div>
+										<div class="more fs18 lh20">了解更多+</div>
+									</a>
+									<li><a class="item item2" href="ssgg/jzbg/6c6b7400d4fc41c29ab61310ca38fc55.htm">
+										<div class="title fs18 lh36x2">丝路商道大讲堂第五讲：知识分类与中国近代学术系统的重建</div>
+										<div class="info2 fs18">
+											<p class="ico ico1"></p>
+											<p class="ico ico2">2026年10月10日14:00-16:00 </p>
+											<p class="ico ico3">奉浦校区行政楼407会议室</p>
+										</div>
+									</a></li>
+									<li><a class="item item2" href="https://xwzx.sbs.edu.cn/tzgg/bba0767110ea422eb5bf71258ef21989.htm">
+										<div class="title fs18 lh36x2">2026年涉海院校外语学科服务海洋强国战略学术论坛暨第六届“海洋杯”国际翻译大赛颁奖典礼</div>
+										<div class="info2 fs18">
+											<p class="ico ico1"></p>
+											<p class="ico ico2">2026年6月20日9：30-12：30 </p>
+											<p class="ico ico3">中山西路校区107沉浸式教室</p>
+										</div>
+									</a></li>
+									<li><a class="item item2" href="ssgg/jzbg/b8734521f58f4b87b451e36868718e91.htm">
+										<div class="title fs18 lh36x2">丝路商道大讲堂系列讲座第3讲 | 从十一个学科看区域国别学的研究路径</div>
+										<div class="info2 fs18">
+											<p class="ico ico1"></p>
+											<p class="ico ico2">2025年11月19日14:15-16:30 </p>
+											<p class="ico ico3">奉浦校区行政楼407会议室</p>
+										</div>
+									</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="gp-clear"></div>
+					</div>
+				</div>
+				<!-- mode04结束 -->
+
+				<!-- mode05开始 -->
+				<div class="wrap_mode05">
+					<div class="gp-container mode05">
+						<div class="index_05 ul-inline">
+							<h2 class="fs36">上商专题</h2>
+							<ul class="gp-avg-md-1">
+								<li><a class="item" href="https://www.sbs.edu.cn/xydxwl/hdtz/index.htm">
+									<div class="gp-img"><img src="images/2026-04/65ef974d92b840c88fcbe0f054819d05.jpg" ></div>
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- mode05结束 -->
+
+				<!-- mode06开始 -->
+				<div class="wrap_mode06">
+					<div class="gp-container mode06">
+						<div class="lf">
+							<a class="index_title2 fs36" href="#">融媒·上商</a>
+							<a class="index_06a size1 item" href="https://mp.weixin.qq.com/s/b0Ywiq1ay2E196brTf3Tgg">
+								<div class="gp-img"><img src="images/2026-11/6d92799683d7456c859718dd8ffe63d2.jpg" alt=""></div>
+							<!--	<div class="video_btn"></div>-->
+								<div class="bottom fs18">
+									<img src="images/mode06_ico3.png" alt="" class="ico">
+									上商召开ACBSP国际认证工作推进会
+								</div>
+							</a>
+							<div class="index_06b ul-inline">
+								<ul>
+									<li><a class="item" href="ssjj/63d8c6e6ce72403fa74c82abd2c79417.htm">
+										<div class="title fs24">上商简介</div>
+										<div class="info fs18 lh36x3">
+											<div id="articleDiv" class=""> 
+ <p style="text-indent: 2em;">上海商学院是一所商科特色鲜明的普通公办高等学校，前身是1950年成立的中央税务学校华东分校，现有奉浦、中山西路、漕宝路、国权路四个校区和福州路一个办学点，全日制在校生9000余人，教职工700余人。</p> 
+ <p style="text-indent: 2em;">70多年来，上海商学院全面贯彻落实党的教育方针，坚持“以商立校、应用为本”办学理念，秉承“厚德博学、经世济民”校训精神，全力打造“应用型、创新性、国际化”办学特色，努力培养具有社会责任、专业素养、实践能力、创新精神、国际视野的高素质应用型商科人才。目前学校设有12个二级学院，本科专业29个，硕士专业学位授权点6个（旅游管理、国际商务、金融、工商管理、工程管理、社会工作）。已形成从本科生到研究生，从全日制到成人教育以及留学生教育的全方位、多层次教育架构。</p> 
+ <p style="text-indent: 2em;">学校着力加强特色商科专业（群）建设，应用经济学为上海市Ⅱ类高原学科，工商管理入选上海高校一流学科（B类）培育计划。先后入选教育部“第四批高等学校特色专业建设点”、教育部“本科教学工程”地方高校第一批本科专业综合改革试点、“上海高等学校一流本科建设引领计划”。工商管理、电子商务、酒店管理、国际经济与贸易、物流管理5个专业为国家级一流本科专业建设点，金融学、计算机科学与技术等8个专业为上海市级一流本科专业建设点，税收学等9个专业为上海市属高校应用型本科试点专业。工商管理、酒店管理、电子商务、市场营销4个专业通过ACBSP国际认证，食品质量与安全专业通过IFT专业认证。</p> 
+ <p style="text-indent: 2em;">学校注重产、教、研协同高质量发展。开展国家级、市级“四新”项目9项，实现教育部新工科、新农科、新文科项目建设全覆盖。建设国家级一流本科课程5门、市级一流本科课程32门、市级重点课程121门。获批上海高校课程思政领航计划重点改革领航学院1个、上海课程思政示范团队3个、上海课程思政示范课程9门、上海高校党史学习教育与课程相融合示范课程3门、上海课程思政教学名师2人，开展“课程思政”建设项目119项。另外，学校获批2个市级重点产业学院，拥有世界技能大赛中国集训基地和上海市创新创业教育实践基地。近五年，学生在世界技能大赛、“互联网+”大学生创新创业大赛、苹果全球开发者大会（WWDC）、全国管理决策模拟大赛等学科（专项）竞赛中获省部级以上荣誉2000余项，其中国家级奖项600余项。</p> 
+ <p style="text-indent: 2em;">学校立足国家地方战略和行业重大需求，开展高质量商业（商务）应用研究与咨询服务。近五年，新增国家社会科学基金项目（含重大子课题、重点课题）、国家自然科学基金项目、教育部人文社科项目、上海市决策咨询研究项目（含重大、重点课题）等省部级及以上科研项目160余项，获上海市哲学社会科学优秀成果奖、上海市决策咨询研究成果奖等各类省部级及以上科研奖10余项，近100项决策咨询成果获省部级及以上领导肯定性批示或部门采纳。</p> 
+ <p style="text-indent: 2em;">学校坚持国际化办学特色，着力提升国际声誉和影响力。与瑞士洛桑酒店管理学院合作开办中外合作办学机构“上海洛桑酒店管理学院”。学校与美国、英国、澳大利亚等国家和地区的109所高校及研究机构开展合作交流，发起成立“一带一路”国际商科教育联盟，组建国际高端智库联盟，建立中东欧海外教育基地。学校建有商务部特设的6大援外培训基地之一的商务部国际商务官员研修基地（上海），基地累计培训来自147个国家（地区）的9748位商务官员。</p> 
+ <p style="text-indent: 2em;">学校聚焦传统商业文化传承和社会主义核心价值观培育。建有中国商业文化展示馆、海派商业文化研究院，出品《上海商业百年》《零售百年》《贸易百年》等商业专题片，承办《中国诗词大会》（第二季、第三季）上海赛区面试选拔活动、市级“读红色经典·做信仰传人”主题阅读活动。学校先后获“国家通用语言文字推广普及先进集体”“第二届中国青年志愿服务项目大赛银奖”“教育部国防教育特色学校”“教育部2019年中华经典诵写讲大赛优秀组织奖”“上海市第二届文明校园”“上海市安全文明校园”等荣誉。</p> 
+ <p style="text-indent: 2em;">站在新的历史起点，学校以习近平新时代中国特色社会主义思想为指导，以全面贯彻落实党的二十大精神为主线，坚持为党育人、为国育才初心使命，围绕立德树人根本任务，按照学校第一次党代会精神确立的发展目标和“十四五”发展规划，在全面建成特色鲜明的高水平应用型商科大学新征程中爬坡奋进、勇毅前行。（数据截至2025年3月）</p> 
+</div>	
+										</div>
+										<div class="more fs18">查看更多</div>
+									</a></li>
+								</ul>
+								<div class="swiper_menu">
+									<div class="arrow prev"></div>
+									<div class="arrow next"></div>
+								</div>
+							</div>
+							<a class="index_06a size2 item" href="https://b23.tv/BV16Gnz6FEwZ">
+								<div class="gp-img"><img src="images/2026-10/865a198337fd4a7387919a6f11c8ae86.jpg" alt=""></div>
+								<div class="bottom fs18">
+									<img src="images/mode06_ico5.png" alt="" class="ico">
+									【经典铸魂育人 星火聚力前行 ——纪念长征胜利90周年“世纪火种”图书文创校园行走进上海商学院
+								</div>
+							</a>
+						</div>
+						<div class="rt">
+							<a class="index_06a size3 item" href="​​​https://weibo.com/3462455140/5360926955143858">
+								<div class="gp-img"><img src="images/2026-11/32081415ce4e4d64b5628a788f922aa8.jpg" alt=""></div>
+								<div class="bottom fs18">
+									<img src="images/mode06_ico2.png" alt="" class="ico">
+									#晚安,上商# 愿你眼里长着阳光，笑里全是坦荡，爱他人的同时，别忘了爱自己。晚安，上商！
+								</div>
+							</a>
+							<a class="index_06a size4 item" href="https://v.douyin.com/3ZoISSl-JgY/">
+								<div class="gp-img"><img src="images/2026-10/0de8ba9c65e14e30aba0d90b7ba8908e.jpg" alt=""></div>
+								<div class="bottom fs18">
+									<img src="images/mode06_ico4.png" alt="" class="ico">
+									# 高校日常# 当上商遇上AI，用不一样的方式打开秋日校园
+								</div>
+							</a>
+							<a class="index_06a size4 item" href="https://mp.weixin.qq.com/s/MZk1i8ruw_OmyI9ZcjQoLg">
+								<div class="gp-img"><img src="images/2026-10/98d6f77fb256457d859da4834e8552a9.jpg" alt=""></div>
+								<div class="bottom fs18">
+									<img src="images/mode06_ico1.png" alt="" class="ico">
+									权威！上海商学院2027年硕士研究生招生简章 
+								</div>
+							</a>
+						</div>
+						<div class="gp-clear"></div>
+					</div>
+				</div>
+				<!-- mode06结束 -->
+
+
+<footer>
+					<div class="gp-container">
+						<div class="footer_top">
+							<div class="footer_logo">
+								<img src="images/footer_logo.png" >
+								<a href="#" class="logo1"></a>
+							</div>
+						</div>
+						<div class="footer_bottom">
+							<div class="footer_lf">
+								<div class="copy_right fs18 lh36">
+									<p>奉浦校区：东方美谷大道6333号 201400
+									<p>中山西路校区：中山西路2271号 200235
+									<p>漕宝路校区：漕宝路121号 200233</p>
+									<p>电话：86-21-64870020 Copyright©2019</p>
+									<p>E-Mail：webmaster@sbs.edu.cn</p>
+									<p>沪ICP备 20010161-2号</p>
+									<p>沪公网安备 31010402008153号</p>
+								</div>
+							</div>
+							<div class="footer_rt">
+								<div class="footer_code">
+									<div class="box fs18">
+										<img src="images/weibo.jpg" alt="">
+										<p>官方微博</p>
+									</div>
+									<div class="box fs18">
+										<img src="images/weixin.jpg" alt="">
+										<p>官方微信</p>
+									</div>
+									<div class="box fs18">
+										<img src="images/i2d.jpg" alt="">
+										<p>i上商手机客户端</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer><!--voT7S7wl97D5zG9B2pFhKmIUn358MatfbF/AWEe84/a4VQa8Jk1cU53/lEXSwCiDV3StOBmjemoxXC1AJZlbFPEcPhNZPqs4MaYL4aHYaLeVcvOrpH5meQRJfWUCbzWFPiBcfLxnB6+qcrcRtplCIg==-->
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<div class="home_side_fix ul-inline">
+	<ul>
+		<li><a class="item" href="yjzd/index.htm">
+			<div class="img_box"><img src="images/side_nav_ico1.png" alt=""></div>
+			<div class="title">一键直达</div>
+		</a></li>
+		<li><a class="item" href="https://scloud.sbs.edu.cn/">
+			<div class="img_box"><img src="images/side_nav_ico2.png" alt=""></div>
+			<div class="title">学生综合服务登录</div>
+		</a></li>
+		<li><a class="item" href="https://scloud.sbs.edu.cn/">
+			<div class="img_box"><img src="images/side_nav_ico3.png" alt=""></div>
+			<div class="title">教师综合服务登录</div>
+		</a></li>
+		<li><a class="item" href="https://xxgk.sbs.edu.cn/">
+			<div class="img_box"><img src="images/side_nav_ico4.png" alt=""></div>
+			<div class="title">信息公开</div>
+		</a></li>
+		<li><a class="item go_tz">
+			<div class="img_box"><img src="images/side_nav_ico5.png" alt=""></div>
+			<div class="title">通知公告</div>
+		</a></li>
+                <li><a class="item" href="https://xwzx.sbs.edu.cn/xb/">
+			<div class="img_box"><img  style="height: 26px; padding-left: 14px;" src="images/16@4x.svg" alt=""></div>
+			<div class="title">校报</div>
+		</a></li>
+		<li><div class="item gotop">
+			<div class="img_box"><img src="images/side_nav_gotop.png" alt=""></div>
+			<div class="title">返回顶部</div>
+		</div></li>
+	</ul>
+</div>
+
+
+<script src="js/jquery.min.js?20231229" type="text/javascript"></script>
+<script src="js/jquery.mousewheel.js?20231229"></script>
+<script src="js/swiper.min.js?20231229" type="text/javascript"></script>
+<script src="js/n_share.js?20231229" type="text/javascript"></script>
+<script src="js/script.js?20231229" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://jhelper.shanghai.gov.cn/publicJS/242008153.js?20231229"></script><!--B19gaK/ckwWP/66jMEaobcpsYfHurg4kiaANP8Fn0tAdgpinzd4EZ0RlJtz0dwP0yff979SHPRQqxCoMR6XUNCd1ka4xMGauTVeBrtafgoiRl/yY+yl9/FMdzUgXuVps2UoXVkEjqqO/TKneXX0TNw==--><script type='text/javascript' src='g_style/g_index.js'></script><style>.selectTdClass{background-color:#edf5fa !important}.gpTable{ border-collapse:collapse;border:1px solid #000 }.gpTable td,.gpTable th{border:1px solid #000;  padding: 2px 3px;}.gpTable caption{border:1px dashed #DDD;border-bottom:0;padding:3px;text-align:center;}.gpTable th{border-top:1px solid #BBB;background-color:#F7F7F7;}.gpTable tr.firstRow th{border-top-width:2px;}.ue-table-interlace-color-single{ background-color: #fcfcfc; } .ue-table-interlace-color-double{ background-color: #f7faff; }td p{margin:0;padding:0;} th p{margin:0;padding:0;}</style>
+</body></html>

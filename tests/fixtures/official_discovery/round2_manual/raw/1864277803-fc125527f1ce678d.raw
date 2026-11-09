@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- 设置根目录路径 -->
+    <meta id="domain" content="http://www.81.cn/material/">
+    <!-- 设置当前文件的路径 -->
+    <meta id="kjuapath" content="http://www.81.cn/template/tenant207/t288/js/kjua.js">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit" />
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- Add title for apple-mobile-web-app-title -->
+    <meta name="apple-mobile-web-app-title"  content="海军勤务学院2023年硕士研究生招生简章"/>
+    <meta name="description" content=""/>
+    
+    <!-- Tile icon for Win8 (180x180 + tile color) -->
+    <!-- <meta name="msapplication-TileImage" content="material/favicon.png" /> -->
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <!-- Add Page Title -->
+    <title>海军勤务学院2023年硕士研究生招生简章 - 中国军网</title>
+    <!-- Add description and keyword-->
+
+    <link
+      rel="stylesheet"
+      href='http://www.81.cn/template/tenant207/t288/css/style-3.0.css'
+    />
+    
+    <!-- 统计详情 start-->
+    <meta name="filetype" content="0" />
+    <meta name="publishedtype" content="1" />
+    <meta name="pagetype" content="1" />
+    <meta name="catalogs" content="cbf-208569" id="node-id-path"/>
+    <meta name="contentid" content="cbf-10192259" />
+    <meta ame="publishdate" content="2022-10-14"/>
+    <meta name="author" content="王凤" />
+    <meta name="editor" content="王凤"/>
+    <meta name="reporter" content=""/>
+    <!-- 统计详情 start-->
+
+
+    <link rel="stylesheet" href='http://www.81.cn/material/static/api/css/share_style1_16.css'/>
+    <!-- 公共头部引入 -->
+    <meta name="domain" content="http://www.81.cn">
+<link rel="icon" type="image/png" href='http://www.81.cn/material/img/favicon.ico'>
+<script>
+  // 判断shi是否是IE以下，是出现提示弹窗  对象不支持“prepend”属性或方法
+  var temp = window.navigator.userAgent.toUpperCase()
+  var charHead = temp.indexOf('MSIE')
+  var charLast = temp.indexOf(';', charHead)
+  var ieVersion = temp.substring(charHead, charLast)
+  ieVersion = ieVersion.split(' ')[1]
+  if (ieVersion < 11) {
+    window.location.href = 'http://www.81.cn/ysym/Ibbgdtsy/index.html'
+  }
+</script>
+<style>
+  @font-face {
+  font-family: 'icomoon';
+  src: url('http://www.81.cn/material/fonts/icomoon.eot?v3lc3l');
+  src: url('http://www.81.cn/material/fonts/icomoon.eot?v3lc3l#iefix') format('embedded-opentype'),
+    url('http://www.81.cn/material/fonts/icomoon.woff?v3lc3l') format('woff'),
+    url('http://www.81.cn/material/fonts/icomoon.svg?v3lc3l#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+</style>
+<!--[if lt IE 9]>
+<script src='http://www.81.cn/material/js/respond.min.js'></script>
+<script src='http://www.81.cn/material/js/es5-sham.min.js'></script>
+<script src='http://www.81.cn/material/js/es5-shim.min.js'></script>
+<![endif]-->
+
+
+<!-- make template id  504 name 公共头部引入 -->
+<!-- make time 2026-05-20 10:43:03 -->
+<!-- make template id  504 name 公共头部引入 -->
+
+  </head>
+  <body>
+
+    <!-- 头部 -->
+    <style type="text/css">
+
+.top-line a, .top-line a:active,.top-line a:focus {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    background-color: transparent; 
+}
+
+.top-line div[onclick], .top-line button, .top-line span[onclick] {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.top-line img {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    display: block;
+}
+
+.top-line button {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+
+</style>
+
+
+
+<div class="top-line">
+  <div class="container">
+    <a
+      href="http://www.81.cn"
+      class="jw-logo float-left"  >
+      <img  src="http://www.81.cn/template/tenant207/t306/img/logo.png" alt="中国军网"
+      />
+    </a>
+    <ul class="nav navbar-nav hidden-xs hidden-sm float-left nav-list">
+      <li><a href="http://www.81.cn/yw_208727/index.html">要闻</a></li>
+      <li><a href="http://www.81.cn/pl_208541/index.html">评论</a></li>
+      <li><a href="http://www.81.cn/tp_207717/index.html">图片</a></li>
+      <li>
+        <a href="http://tv.81.cn">视频</a>
+      </li>
+      <li class="dropdown" role="presentation">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;" role="button">
+            更多<span class="caret"></span>
+          </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="http://www.81.cn/tz/index.html" target="_blank"
+              >特战</a
+            >
+          </li>
+          <li>
+            <a href="http://www.81.cn/nb_208573/index.html" target="_blank"
+              >女兵</a
+            >
+          </li>
+          <li>
+            <a href="http://www.81.cn/wj_208604/index.html" target="_blank"
+              >外军</a
+            >
+          </li>
+          <li>
+            <a href="http://www.81.cn/wh_208575/index.html" target="_blank"
+              >维和</a
+            >
+          </li>
+          <li>
+            <a href="http://www.81.cn/bq_208581/index.html" target="_blank"
+              >兵器</a
+            >
+          </li>
+          <li>
+            <a href="http://www.81.cn/kt/index.html" target="_blank"
+              >空天</a
+            >
+          </li>
+          <li>
+            <a href="http://www.81.cn/jl_208606/index.html" target="_blank"
+              >军粮</a
+            >
+          </li>
+          <li>
+            <a href="http://www.81.cn/wh_208594/index.html" target="_blank"
+              >文化</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <form action="http://www.81.cn/ysym/ssjgy/index.html"  class="pull-right hidden-xs float-right jw-search" autocomplete="off" >
+      <input  type="text"   name="keyword"  id="keyword"  placeholder="请输入关键字" required=""   class="input-sx" />
+      <input type="hidden" name="indexsearch" value="1" />
+      <input type="hidden" name="searchfield" value="TITLE" />
+      <button type="submit" class="btn btn-success btn-custom btn-sm">
+        搜索
+      </button>
+    </form>
+    <div class="float-right hidden-xs-up">
+      <button class="hidden button showSideMenu sideMenuToggle" type="button">
+        <span class="sr-only">显示与隐藏侧边栏</span>
+      </button>
+      <a  href="http://www.81.cn/ysym/ssjgy/index.html"  class="button search-btn"><span class="sr-only">搜索</span></a>
+      <a  id="topJFJB"  href="http://www.81.cn/szb_223187/szblb/index.html"  class="button jfjb-btn"><img src="http://www.81.cn/template/tenant207/t306/img/jfjb.png" width="56" alt="解放军报"/></a>
+    
+    </div>
+  </div>
+</div>
+
+<!-- make template id  306 name 响应式列表页-头部 -->
+<!-- make time 2026-03-13 09:32:36 -->
+<!-- make template id  306 name 响应式列表页-头部 -->
+
+
+    <div class="container m-t">
+      <div class="row m-t">
+        <!-- 右侧 -->
+        <div class="sidebar hidden-xs hidden-sm">
+  <h3>
+    <span class="title">要闻推荐</span>
+    <span class="sub_title">We Recommend</span>
+  </h3>
+  <ol class="list-ol">
+            <li>
+      <a href="http://www.81.cn/yw_208727/16498850.html" target="_blank" rel="noopener noreferrer" >习近平致电祝贺约托娃当选保加利亚总统</a>
+    </li>
+                <!-- 1是多稿件 -->
+    <li>
+        <a href="http://www.81.cn/zt/2026nzt/xxgcddesjwzqhjs_253487/index.html" target="_blank" rel="noopener noreferrer"> 学习贯彻五中全会精神   </a>
+          
+        <a href="http://www.81.cn/yw_208727/16498757.html" target="_blank" rel="noopener noreferrer">一体推进不敢腐不能腐不想腐</a>
+            </li>
+                <li>
+      <a href="http://www.81.cn/yw_208727/16498763.html" target="_blank" rel="noopener noreferrer" >喜报！军队系统多件作品获第36届中国新闻奖，1人获长江韬奋奖</a>
+    </li>
+                <li>
+      <a href="http://www.81.cn/yw_208727/16498779.html" target="_blank" rel="noopener noreferrer" >五中全会精神在军营｜陆军某旅领导坚持以上率下立起好样子</a>
+    </li>
+          </ol>
+  <hr />
+  <h3>
+    <span class="title">热点专题</span>
+    <span class="sub_title">Special Reports</span>
+  </h3>
+  <ul class="list-unstyled list-special list_topic_toggle m-t">
+        <li class="0">
+      <a href="http://www.81.cn/zt/2026nzt/xxgcddesjwzqhjs_253487/index.html" target="_blank" rel="noopener noreferrer">
+        <img src="/zt/rdzt_196978/_attachment/2026/11/02/16496310_65d575309d80eab1b7b689184f250b4b.jpg" border="0" />
+        <span>学习贯彻党的二十届五中全会精神</span>
+      </a>
+    </li>
+        <li class="1">
+      <a href="http://www.81.cn/zt/2026nzt/srxxgcxjpdjsx/index.html" target="_blank" rel="noopener noreferrer">
+        <img src="/zt/rdzt_196978/_attachment/2026/06/18/16468317_72e36443b5c306db4d2bf71ff55e2f42.jpg" border="0" />
+        <span>深入学习贯彻习近平党建思想</span>
+      </a>
+    </li>
+        <li class="2">
+      <a href="http://www.81.cn/zt/2026nzt/czsl90zn/index.html" target="_blank" rel="noopener noreferrer">
+        <img src="/zt/rdzt_196978/_attachment/2026/10/19/16494626_b874cbf668bd5f36583e3ff754f2889b.jpg" border="0" />
+        <span>大型互动融媒专题《胜利的方向》</span>
+      </a>
+    </li>
+        <li class="3">
+      <a href="http://www.81.cn/zt/2026nzt/2026sjhlwdhwzfh/index.html" target="_blank" rel="noopener noreferrer">
+        <img src="/zt/rdzt_196978/_attachment/2026/10/30/16497065_26b0c9dbdcddfb82935350d7dc8b17d4.jpg" border="0" />
+        <span>2026世界互联网大会乌镇峰会</span>
+      </a>
+    </li>
+      </ul>
+  <hr />
+  <h3>
+    <span class="title">视频推荐</span>
+    <span class="sub_title">Videos</span>
+  </h3>
+  <ul class="list-unstyled list-pic">
+        <li>
+      <a href="http://www.81.cn/byds_206407/byds_206410/16498597.html" target="_blank" rel="noopener noreferrer">
+        <img src="/byds_206407/byds_206410/_attachment/2026/11/07/16498597_c7aedf1a3221fbddfad1affa7e57e2d0.jpg" border="0" />
+        <span>驻华武官了解105岁老红军王全英事迹后热泪盈眶</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/byds_206407/byds_206410/16498316.html" target="_blank" rel="noopener noreferrer">
+        <img src="/byds_206407/byds_206410/_attachment/2026/11/06/16498316_08892b3d5218d41d8abc3311a94f02f1.png" border="0" />
+        <span>精准拦截</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/byds_206407/byds_206410/16498158.html" target="_blank" rel="noopener noreferrer">
+        <img src="/byds_206407/byds_206410/_attachment/2026/11/04/16498158_eac9eaf13c98979355f8cb35a09c9e4b.png" border="0" />
+        <span>一马平川</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/byds_206407/byds_206410/16498154.html" target="_blank" rel="noopener noreferrer">
+        <img src="/byds_206407/byds_206410/_attachment/2026/11/05/16498154_6133235aadd13fbbb7a8d7cf82037461.png" border="0" />
+        <span>做满分的自己</span>
+      </a>
+    </li>
+      </ul>
+  <hr />
+
+  <h3>
+    <span class="title">军事酷图</span>
+    <span class="sub_title">Photos</span>
+  </h3>
+  <ul class="list-unstyled list-pic">
+        <li>
+      <a href="http://www.81.cn/lmyybl/jskt_208724/16489755.html" target="_blank" rel="noopener noreferrer">
+        <img src="/lmyybl/jskt_208724/_attachment/2026/09/22/16489755_cc63e735a8400b0bf128c5856e1692cc.jpg" border="0" />
+        <span>中国海军“吉祥方舟”号医院船结束访问毛里塔尼亚</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/lmyybl/jskt_208724/16489754.html" target="_blank" rel="noopener noreferrer">
+        <img src="/lmyybl/jskt_208724/_attachment/2026/09/22/16489754_2322fb351466b1388b610f422f0cd802.jpg" border="0" />
+        <span>“伟大的远征——纪念中国工农红军长征胜利90周年主题展览”在京开幕</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/lmyybl/jskt_208724/16489752.html" target="_blank" rel="noopener noreferrer">
+        <img src="/lmyybl/jskt_208724/_attachment/2026/09/18/16489752_470e431b9c20eac5e2da8ef93dd76cf1.jpg" border="0" />
+        <span>组图丨沈阳举行勿忘九一八撞钟鸣警仪式</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/lmyybl/jskt_208724/16473628.html" target="_blank" rel="noopener noreferrer">
+        <img src="/lmyybl/jskt_208724/_attachment/2026/07/12/16473628_cd580e1d1f427108621ac7e279a95df7.jpg" border="0" />
+        <span>中俄“海上联合-2026”联合演习海上演练阶段精彩瞬间</span>
+      </a>
+    </li>
+      </ul>
+
+  <h3>
+    <span class="title">军网理论</span>
+  </h3>
+  <ul class="list-unstyled list-pic">
+        <li>
+      <a href="http://www.81.cn/ll_208543/16497232.html" target="_blank" rel="noopener noreferrer">
+        <img src="/ll_208543/_attachment/2026/10/26/16497232_bfcde756ce0b165773fa2003e8c31ede.jpg" border="0" />
+        <span>理论纵横丨高擎真理火炬 勇立时代潮头</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/ll_208543/16497230.html" target="_blank" rel="noopener noreferrer">
+        <img src="/ll_208543/_attachment/2026/07/13/16497230_f8c482ad56a8057ee5d1526d24351adf.jpg" border="0" />
+        <span>新时代全面从严治党开辟了百年大党自我革命新境界</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/ll_208543/16497349.html" target="_blank" rel="noopener noreferrer">
+        <img src="/ll_208543/_attachment/2025/04/22/16497349_c13cba2135ca1d890a18bcb7d3bbd4d2.png" border="0" />
+        <span>长征中党的军事战略指导的历史性转变</span>
+      </a>
+    </li>
+        <li>
+      <a href="http://www.81.cn/ll_208543/16496473.html" target="_blank" rel="noopener noreferrer">
+        <img src="/ll_208543/_attachment/2024/10/15/16496473_7ecdb87a4f2ff7479def2d35f08e0db0.jpeg" border="0" />
+        <span>习近平党建思想书写马克思主义建党学说中国化时代化新篇章</span>
+      </a>
+    </li>
+      </ul>
+</div>
+<link rel="stylesheet" href="http://www.81.cn/template/tenant207/t300/styles.css">
+
+<!-- make template id  300 name 响应式列表页-右侧侧边栏 -->
+<!-- make time 2026-11-09 15:27:21 -->
+<!-- make template id  300 name 响应式列表页-右侧侧边栏 -->
+
+
+        <!-- 正文 -->
+        <div class="content">
+           <!-- 面包屑导航 -->
+          <ol class="breadcrumb hidden-print">
+              <a href="http://www.81.cn/jx_208569/index.html" target="_blank" >军校</a>
+              正文
+          </ol>
+          <!-- 分享工具 -->
+          <!-- <span class="bdsharebuttonbox box_fr hidden-xs bdshare-button-style1-16" id="shareUtil"  >
+              <a href="#" target="_blank" class="bds_qzone" id="_qzone"  title="分享到QQ空间"></a>
+              <a href="#"  target="_blank"  class="bds_tsina" id="_weibo" title="分享到新浪微博"></a>
+              <a href="#"  target="_blank"  class="bds_weixin bds_custom_weixin" id="_weixin" title="分享到微信"></a>
+            </span> -->
+          <span class="bdsharebuttonbox box_fr hidden-xs bdshare-button-style1-16" data-bd-bind="1668156406652">
+                <a href="#" class="bds_more" data-cmd="more"></a>
+                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+				        <a href="#" class="bds_people bds_custom_people" data-cmd="people" title="分享到人民微博"></a>
+                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+				        <a href="#" class="bds_weixin bds_custom_weixin" data-cmd="weixin" title="分享到微信"></a>
+            </span>
+
+          <hr class="m-n" />
+          <div class="article-header">
+            <!--二维码-->
+            <div class="qrcode visible-lg" id="qrcode">
+              <div class="qrcode-content">
+                <img id="qr-icon" class="hidden" src="http://www.81.cn/template/tenant207/t288/img/qricon.png"/>
+              </div>
+            </div>
+            <!--稿件信息-->
+            <!--引题-->
+                        <!--标题信息-->
+            <h1>海军勤务学院2023年硕士研究生招生简章<span class="num" id="num"></span></h1>
+            <!--副标题  -->
+                        <div class="info">
+
+              <span>来源：“海军勤务学院”微信公众号</span>                             <span>责任编辑：王凤</span>               <div class="bdsharebuttonbox bdshare-button-style1-16"
+                data-tag="share_1" data-bd-bind="1648472425865">
+                <small>
+                  <i class="time">2022-10-14 19:11:21</i>
+                  <i class="share bds_count" data-cmd="count" title="累计分享0次">0</i>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="article-content p-t" id="article-content">
+            <div id="wxsimgbox"></div>
+             <div class=" m-t-list" id="main-news-list">
+                 <!--HTMLBOX-->
+                  <!--文章正文-->
+                    <!-- <center> -->
+                                                <!-- 新闻类型 -->
+                          <center><img data-id="4739967" id="14883404" title="" border="0" src="/jx_208569/_attachment/2022/10/14/10192259_e0be0336085e24b389331b.jpg" sourcedescription="编辑提供的本地文件" sourcename="本地文件"/></center>
+<p>海军勤务学院是海军后勤人才培养的主阵地，本部位于天津市滨海新区，濒临海河，风景优美。学院在70年的办学历程中，逐步构建形成了融指挥、勤务、技术与管理为一体的学科专业体系，涵盖军事学、工学、经济学、管理学四大学科门类，后装保障（后勤保障）学科是军队“双重”重点建设学科专业。学院自2001年起开展研究生培养，目前拥有军事硕士（军事后勤领域）和工程管理硕士（工程管理领域）两个专业硕士学位授权点。</p>
+
+
+
+<p><strong>01/招生专业</strong></p>
+
+<p>军事硕士（军事后勤领域）专业学位研究生教育面向部队后装保障岗位需求，设有后勤指挥管理、财务保障、军需保障、军事能源保障、军事物流、运输投送、军事设施建设、军事采购等研究方向。</p>
+
+<p>工程管理专业学位研究生教育面向军事设施建设领域岗位需求，瞄准海防工程建设管理方向，以突出工程管理应用性与实用性为重点，设有海防工程建设决策、海防工程建设管理、海防工程建设风险管理、海防工程建设评价等研究方向。</p>
+
+
+
+<p><strong>02/招生计划</strong></p>
+
+<p>详见军网学院校园网主页www.hjqwxy.mtn通知公告栏。</p>
+
+
+
+<p><strong>03/学习方式与学制</strong></p>
+
+<p>采取全日制和非全日制两种培养模式，考生在网上报名时需慎重进行选择。全日制研究生基本学制2.5年，非全日制研究生基本学制3.5年，可在基本学制的基础上延长0.5年。非全日制研究生主要采取分阶段相对集中时间进行课程教学，在校学习时间累计不少于6个月。全日制和非全日制研究生毕业并通过论文答辩者均发放毕业证书和相应学位证书。</p>
+
+
+
+<p><strong>04/报考条件及要求</strong></p>
+
+<p>具有3年以上军官岗位任职经历的在职军官（截至录取当年9月1日），距离本衔级最高年限和服役最高年龄均不少于4年（截至录取当年9月1日），其中军事硕士仅限招收上尉以上军衔的指挥管理军官。委任制文职人员结合岗位需要，可报考我院工程管理硕士专业，不得报考军事硕士专业，其他条件按照在职军官同等对待。同时还必须满足以下条件：</p>
+
+<p>（一）拥护中国共产党的领导，品德优良，遵纪守法，愿为国防和军队现代化服务，能够胜任研究生学习和科研工作。</p>
+
+<p>（二）身体健康状况符合《中国人民解放军军队院校招收学员体格检查标准》。</p>
+
+<p>（三）应具有国家承认的大学本科毕业学历或具有大学本科毕业同等学力，以同等学力报考工程管理硕士的必须有5年以上工作经验。以同等学力报考的考生复试时须加试与报考专业相关的本科主干课程2门，加试科目与初试科目不同，加试方式为笔试。</p>
+
+<p>（四）在职军官报考研究生，应当填写《军队在职军官报考研究生推荐审批表》，按照军官晋升任用批准权限审批，依托信息系统，逐级报军委政治工作部军官局备案。凡与“军队在职军官报考研究生备案数据”和相关政策规定要求不符者，不予核发准考证。</p>
+
+<p>（五）报考研究生的现役军官，参加复试时应提交师级以上单位出具的最近一次军事体育考核达标证明。</p>
+
+<p>（六）其他要求按国家和军队有关规定执行。</p>
+
+
+
+<p><strong>05/报考流程及有关说明</strong></p>
+
+<p>报名包括网上报名和网上确认两个阶段。所有参加硕士研究生招生考试的考生均须进行网上报名，并在网上确认网报信息和采集本人图像等相关电子信息，同时按规定缴纳报考费。网上报名和确认有关具体要求和注意事项，详见《2023年全国硕士研究生招生工作管理规定》。主要时间节点如下：</p>
+
+<p>（一）网上报名时间：2022年10月5日至10月25日，每天9:00—22:00。</p>
+
+<p>（二）网上报名网址：考生应在规定时间登录“中国研究生招生信息网”（公网网址：https://yz.chsi.com.cn，教育网址：https://yz.chsi.cn，以下简称“研招网”）浏览报考须知，并按教育部、省级教育招生考试机构、报考点以及我院发布的网上公告要求报名。</p>
+
+<p>（三）网上确认：所有考生均应当在规定时间内在网上核对并确认其网上报名信息，逾期不再补办。网上确认时间由各省级教育招生考试机构根据国家招生工作安排和本地区报考组织情况自行确定和公布，请考生及时关注报考点通知公告信息。报名信息经考生确认后一律不作修改，因考生填写错误引起的一切后果由其自行承担。</p>
+
+<p>（四）资格审查：考生网上确认报名信息后，须及时将本人二代居民身份证复印件、军官证复印件、学历学位证书复印件及报考研究生推荐审批表原件寄送至我院教务处研究生办公室。凡手续不全、资格不够、报考专业不符合要求的，将不予核发准考证。因不符合报考条件及相关政策要求、网报信息填写错误、填报虚假信息而造成后续不能网上确认（现场确认）或考试（含初试、复试）或录取的，后果由本人承担。</p>
+
+<p>（四）打印准考证：考生应当在考前十天左右，凭网报用户名和密码登录“研招网”自行下载打印《准考证》。《准考证》使用A4幅面白纸打印，正、反两面在使用期间不得涂改或书写。考生凭下载打印的《准考证》及有效居民身份证参加初试和复试。</p>
+
+<p>（五）初试时间：初试时间为2022年12月24日至25日（每天上午8:30—11:30，下午14:00—17:00）；</p>
+
+<p>12月24日上午 思想政治理论、管理类综合能力；</p>
+
+<p>12月24日下午 外国语；</p>
+
+<p>12月25日上午 业务课一；</p>
+
+<p>12月25日下午 业务课二。</p>
+
+
+
+<p><strong>06/专业代码及考试科目</strong></p>
+<strong>
+<center><img data-id="4739968" id="14883410" title="" border="0" src="/jx_208569/_attachment/2022/10/14/10192259_e0be0336085e24b389551c.jpg" sourcedescription="编辑提供的本地文件" sourcename="本地文件"/></center>
+<p>07/参考书目</p></strong>
+
+<p>（一）军事共同基础：依据全军考试大纲和参考教材命题，参考书目由全国军事专业学位研究生教育指导委员会编写组编写。</p>
+
+<p>（二）军事后勤基本理论：《军事后勤学教程》，宋学先、陈卫平主编，解放军出版社。</p>
+
+<p>（三）工程管理专业硕士（MEM）属于教育部指定的管理类专业硕士之一，初试设置两个单元考试科目，即外国语、管理类综合能力，满分分别为100分、200分，考生可自行在互联网购买相关教材。</p>
+
+<p>（四）军事后勤专业复试参考资料为内部教材，请咨询教务处索取。工程管理硕士政治理论考试参考书为《习近平新时代中国特色社会主义思想学习纲要》，中共中央宣传部编写。专业复试参考书为《建设工程项目管理》，ISBN：9787302527367，清华大学出版社出版，曹明等编写。</p>
+
+<p>（五）军事后勤专业初试/复试参考书、《军队在职军官报考研究生推荐审批表》以及相关参考资料请来电咨询获取。</p>
+
+
+
+<p><strong>08/复试</strong></p>
+
+<p>复试是硕士研究生招生考试的重要组成部分，用于考查考生的创新能力、专业素养和综合素质等，是硕士研究生录取的必要环节，复试不合格者不予录取。复试办法和要求根据国家和军队有关政策另行公布。</p>
+
+
+
+<p><strong>09/其他事项</strong></p>
+
+<p>复习参考资料可在学院网站下载或来电咨询</p>
+
+<p>学院网址（军网）：www.hjqwxy.mtn</p>
+
+<p>邮寄地址：天津市滨海新区河北路一号教务处</p>
+
+<p>邮编：300450</p>
+
+<p>联系人：</p>
+
+<p>侯参谋：0251-73028(军）</p>
+
+<p>022-66973028（地）</p>
+
+<p>郭参谋：0251-73031(军）</p>
+
+<p>022-66973031（地）</p>
+
+<p>咨询邮箱：1426458680@qq.com</p>
+                                          <!-- </center> -->
+                 <!--HTMLBOX-->
+             </div>
+            <!-- 分页dom -->
+            <div class="more-page" id="displaypagenum"></div>
+            <div id="loadNextPageBtn" data-CurrentPage="1" class="loadNextPageBtn" ></div>
+          </div>
+
+          <div id="ArticleRelation" class="relation">
+            <div class="media">
+              <div class="row">
+                <div class="col-sm-2 col-xs-12 visible-lg">
+                  <img src='http://www.81.cn/template/tenant207/t288/img/media-header.jpg'/>
+                </div>
+                <div class="col-sm-2 col-xs-6">
+                  <a href="javascript:;" class="cncm">
+                    <span>中国军网微信公众号</span>
+                  </a>
+                </div>
+                <div class="col-sm-2 col-xs-6">
+                  <a href="http://www.81.cn/jwdy/jfjbkhd/index.html" class="jfjbapp">
+                    <span>解放军报客户端</span>
+                  </a>
+                </div>
+
+                <div class="col-sm-2 col-xs-6">
+                  <a href="javascript:;" class="weibo">
+                    <span>解放军报微博公众号</span>
+                  </a>
+                </div>
+                <div class="col-sm-2 col-xs-6">
+                  <a href="javascript:;" class="weichat">
+                    <span>解放军报微信公众号</span>
+                  </a>
+                </div>
+                <div class="col-sm-2 col-xs-6">
+                  <a href="http://www.81.cn/jwdy/gfzxkhd/index.html" class="defense-online">
+                    <span>国防在线客户端</span>
+                  </a>
+                </div>
+                <div class="col-sm-2 col-xs-6">
+                  <a href="javascript:;" class="junzp">
+                    <span>钧正平工作室公众号</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/content-->
+      </div>
+    </div>
+
+  <!-- 底部 -->
+     <!--不使用 rmt_include_ssi path="/zjlm/xyszwdb/index.html -->
+   <link rel="stylesheet" href='http://www.81.cn/template/tenant207/t735/footer.css?v=1.0.1' /> 
+ <!--页脚-->
+<div class="footer m-t-lg" id="pageFooter">
+	<div class="container">
+        <p>
+            <a href="http://www.81.cn/jwdy/wfhblxxjb/index.html" target="_blank">纠错/举报</a>
+            <em>|</em>
+            <a target="_blank" href="http://www.81.cn/jwdy/xwxxfwxkz/index.html">互联网新闻信息服务许可证10120170013</a><br>
+            <small class="hidden-xs">本网站刊登的新闻信息和专题专栏资料，均为中国军网版权所有，未经协议授权，禁止下载使用<br></small>
+            <!-- <small>Copyright ©1999-2025 www.81.cn All Rights Reserved</small> -->
+            <small>Copyright ©1999-<i id="copy-year"></i> www.81.cn All Rights Reserved</small>
+        </p>
+	</div>
+</div>
+<script type="text/javascript">
+    var currentFullYear = (new Date()).getFullYear();
+    document.getElementById('copy-year').innerHTML = currentFullYear;
+</script>
+<!-- make template id  735 name 图片正文-底部 -->
+<!-- make time 2025-12-18 10:22:53 -->
+<!-- make template id  735 name 图片正文-底部 -->
+
+    <!--分享到-->
+    <div id="share-to" class="shareto hidden-md hidden-lg">
+      <h3>分享到</h3>
+      <hr />
+      <ul
+        class="bdsharebuttonbox bdshare-button-style1-16"
+        data-tag="share_2"
+        data-bd-bind="1648472425865"
+      >
+        <li>
+          <a href="#" class="share-to-sina" data-cmd="tsina">新浪微博</a
+          >
+        </li>
+        <li>
+          <a href="#" class="share-to-tqq" data-cmd="tqq">腾讯微博</a>
+        </li>
+        <li>
+          <a href="#" class="share-to-people" data-cmd="people">人民微博</a>
+        </li>
+        <li>
+          <a href="#" class="share-to-weixin" data-cmd="weixin">微信</a>
+        </li>
+        <li>
+          <a href="#" class="share-to-sqq" data-cmd="sqq">QQ 好友</a>
+        </li>
+        <li>
+          <a href="#" class="share-to-qzone" data-cmd="qzone">QQ 空间</a>
+        </li>
+      </ul>
+      <div class="shareto-footer">
+        <button class="btn btn-default" onclick="hideShareTo()">取消</button>
+      </div>
+    </div>
+    <!-- <div class="screen-cover close-side-menu"></div> -->
+    <!--快捷菜单-->
+    <div
+      class="side-fixed-button hidden-print"
+      id="side-fixed-button"
+      style="right: 492px"
+    >
+      <a id="back-to-top" class="back-to-top img-circle" href="javascript:backToTop();"></a>
+      <a class="app hidden showSideMenu" href="javascript:shareTo();"></a>
+    </div>
+    <!--/快捷菜单-->
+    <script src='http://www.81.cn/template/tenant207/t288/js/javascript-2.5.js'></script>
+
+    <link rel="stylesheet" href="http://www.81.cn/material/css/simpleShare.css"></link>
+    <script src="http://www.81.cn/material/js/jquery.qrcode.min.js" type="text/javascript"></script>
+    <script>document.write('<script src="http://www.81.cn/material/js/simpleShare.js?t=' + new Date().getTime() + '"><\/script>')</script>
+
+    <script type="text/javascript" src="http://www.81.cn/material/js/wxs-1.0.0.js?v=1d16adc6637b61d93614332aaefae4dd"></script>
+    <script src='http://www.81.cn/material/js/fenye.js'></script>
+    <link rel="stylesheet" href="http://www.81.cn/material/css/fenye.css">
+      <script>
+        /**
+         * pageCount:页面总数
+         * url：页面部分请求链接
+         * url_file：页面的后缀名
+         * lmno：栏目文章总条数
+         * _type：fenye: pc分页 移动端点击加载   scroll: pc 手机 滚动加载更多 
+         * isDetail：'detial':表示详情页正文，为空表示栏目列表
+         * */
+        function createManuscriptPageHTML(pageCount,pageno,url,url_file,lmno,_type,isDetail){
+            createPageHTML(pageCount,pageno,url,url_file,lmno,_type,isDetail);
+        }
+        createManuscriptPageHTML(
+          '1',
+          '1',
+          '10192259',
+          'html',
+          '',
+          'fenye',
+          'detail'
+        )
+      </script>
+    <!-- 公共底部引入 -->
+<script>
+    document.write('<script src="http://www.81.cn/material/js/jquery.s2t.js?t=' + new Date().getTime() + '"><\/script>')
+</script>
+<script>
+    window.onload = function () {
+        // 统计代码
+        // 正式：https://rmt-zuul.81.cn
+        // 测试：https://zuul.cbf.k8s01.tikrnews.com:9000
+        var channel_classify_idE = $("meta[name='catalogs']");
+        var article_idE = $("meta[name='contentid']");
+        var param = ''
+        var channel_classify_id = ''
+        var article_id = ''
+        if (channel_classify_idE.length > 0) {
+            channel_classify_id = channel_classify_idE.attr('content').replace('cbf-', '')
+            param += '&channel_classify_id=' + channel_classify_id
+        }
+        if (article_idE.length > 0) {
+            article_id = article_idE.attr('content').replace('cbf-', '')
+            param += '&art_id=' + article_id
+        }
+        $.ajax({
+            url: 'https://tongji.81.cn/api-traffic/web/pollAll?host=' + window.location.host + param,
+            type: 'GET',
+            success: function (res) {
+            console.log('执行点击量监控')
+            },
+            error: function (error) {},
+        })
+
+        // 统计代码
+        $.ajax({
+            url:
+            'https://tongji.81.cn/api-traffic/web/poll?u=' + window.location.href,
+            type: 'GET',
+            success: function (res) {
+            console.log('执行点击量监控')
+            },
+            error: function (error) {},
+        })
+        if ($('.bdsharebuttonbox').length > 0) {
+            $('.bdsharebuttonbox a').on('click', function () {
+            // 分享代码
+            $.ajax({
+                url:
+                'https://tongji.81.cn/api-traffic/web/share?u=' +
+                window.location.href,
+                type: 'GET',
+                success: function (res) {
+                console.log('执行分享量监控')
+                },
+                error: function (error) {},
+            })
+            })
+        }
+    }
+  
+</script>
+<!-- make template id  637 name 公共底部引入 -->
+<!-- make time 2026-01-15 16:44:45 -->
+<!-- make template id  637 name 公共底部引入 -->
+
+  </body>
+</html>
+
+<!-- make template id  288 name 响应式正文 -->
+<!-- make time 2023-03-29 01:04:07 -->
+<!-- make template id  288 name 响应式正文 -->

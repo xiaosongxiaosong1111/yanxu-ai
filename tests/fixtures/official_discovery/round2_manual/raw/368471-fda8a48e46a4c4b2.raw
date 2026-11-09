@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>蜀光网</title>
+    <link rel="icon" href="/static/images/favicon.ico" type="x-icon" />
+
+    <link rel="stylesheet" href="/template/1/outsite/css/swiper-bundle.css" />
+    <link rel="stylesheet" href="/template/1/outsite/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/template/1/outsite/css/out1site_index.css" />
+
+    <script src="/static/plugins/moment/2.24.0/moment.min.js"></script>
+    <style type="text/css">
+        .news-flash .news .news-list:first-child {
+            margin-top: 1px;
+        }
+
+        .news-flash .news .news-list:last-child {
+            margin-bottom: 3px;
+        }
+
+        .five-logo .ztjj-img .logo-img {
+            width: 266px !important;
+            height: 117px;
+        }
+
+        .ztjj-img {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .five-logo {
+            position: relative;
+            height: auto !important;
+            margin-bottom: 40px;
+        }
+
+        /* 图片预览遮罩层 */
+        .img-preview-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .img-preview-overlay.active {
+            display: flex;
+        }
+
+        .img-preview-toolbar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            z-index: 10001;
+        }
+
+        .img-preview-toolbar button {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .img-preview-toolbar button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .img-preview-container {
+            overflow: hidden;
+            max-width: 90vw;
+            max-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-preview-container img {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+            cursor: grab;
+        }
+
+        .img-preview-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10001;
+        }
+
+        .img-preview-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <link rel="stylesheet" href="/template/1/outsite/css/outsite_index.css" />
+<meta charset="utf-8" />
+<meta http-equiv="content-type" content="text/html" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="app-mobile-web-app-capable" content="yes" />
+<meta name="app-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="keywords" content="蜀光网" />
+<meta name="description" content="蜀光网" />
+<link rel="icon" href="/static/images/favicon.ico" type="x-icon" />
+<script type="text/javascript" src="/static/plugins/vue/2.6.9/vue.min.js"></script>
+<link rel="stylesheet" href="/static/plugins/iconfont/1.0.0/iconfont.css" />
+<link rel="stylesheet" href="/static/plugins/animate/4.1.0/animate.min.css" />
+<script src="/static/plugins/element-ui/2.12.0/index.js"></script>
+<link rel="stylesheet" href="/static/plugins/element-ui/2.12.0/index.css" />
+
+<!--网络请求框架-->
+<script src="/static/plugins/axios/0.18.0/axios.min.js"></script>
+<script src="/static/plugins/qs/6.6.0/qs.min.js"></script>
+<script src="/static/plugins/ms/1.0.0/ms.js"></script>
+<script src="/static/plugins/ms/1.0.0/ms.http.js"></script>
+<script src="/static/plugins/ms/1.0.0/ms.util.js"></script>
+<script src="/static/plugins/accounting/0.4.1/accounting.js"></script>
+<script src="/static/plugins/ms/1.0.0/ms.vue.expand.js"></script>
+<script src="/static/plugins/vue-ueditor-wrap/vue-ueditor-wrap.min.js"></script>
+
+    <script src="/static/plugins/tree-select/tree.js"></script>
+
+    <link rel="stylesheet" href="/static/plugins/hover/2.3.1/hover-min.css" />
+    <link rel="stylesheet" href="/static/plugins/swiper/6.4.1/swiper-bundle.css" />
+    <script src="/static/plugins/swiper/6.4.1/swiper-bundle.js"></script>
+    <script src="/static/plugins/echarts.4.2.1/echarts.min.js"></script>
+    <script src="/static/plugins/vue-seamless-scroll/1.1.21/vue-seamless-scroll.min.js"></script>
+<div class="w1400">
+  <!--div class="back-insite">
+    <a href="http://172.16.4.76/" target="_blank">
+      <img src="/template/1/outsite/img/outindex/index_19.png" alt="">
+      <span>返回内网</span>
+    </a>
+  </div-->
+    <div class="web-header">
+        <div class="header-menu">
+            <!-- <span class="item">设为主页</span>|<span class="item">加入收藏</span>|<span class="item">手机版</span> -->
+        </div>
+        <div class="flex-box" style="align-items: flex-end;margin-top: 0;">
+            <div class="logo" style="padding-top:35px;padding-left:35px">
+                <a href="/html/website/outsite/index.html">
+                    <img src="/template/1/outsite/img/sgw (10).png?20211108" width="100%" height="100%"
+                        alt="蜀光网">
+                </a>
+            </div>
+            <!-- <form id="searchForm" class="searchForm" action="/mdiyPage/outsite/esSearch.do" method="get" style="display:none">
+                <el-input placeholder="请输入关键字进行搜索" v-model="keyword" name="keyword" value="keyword"
+                    class="input-with-select" @keyup.enter.native="btnQuery">
+                    <el-select v-model='select' name="selecttype" @change="handleSelect" slot="prepend"
+                        placeholder="请选择">
+                        <el-option v-for="(option,index) in options" :key="index" :label="option.text"
+                            :value="option.value" />
+                    </el-select>
+                    <el-button slot="append" icon="el-icon-search" type="submit" @click="btnQuery"></el-button>
+                </el-input>
+                <input type="hidden" name="net" value="outsite">
+
+                
+            </form> -->
+        </div>
+    </div>
+</div>
+<div class="menu-nav">
+    <div class="w1400">
+        <div class="nav-box" >
+            <ul class="nav">
+                <li class="item"><a href="/html/website/outsite/index.html">网站首页</a></li>
+                <li class="item">
+                  <a :href="'/html/website/outsite/yuanxiaogaikuang/yuanxiaojianjie/index.html?date='+urlDate">校院概况</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/yuanxiaogaikuang/yuanxiaojianjie/index.html">校院简介</a></li>
+                        <li class="item"><a href="/html/website/outsite/yuanxiaogaikuang/yuanxiaolingdao/index.html">校院领导</a></li>
+                        <li class="item"><a href="/html/website/outsite/yuanxiaogaikuang/jigoushezhi/index.html">机构设置</a></li>
+                        <li class="item"><a href="/html/website/outsite/yuanxiaogaikuang/xiaoyuanwenhua/index.html">校院文化</a></li>
+                        <li class="item"><a href="/html/website/outsite/yuanxiaogaikuang/xiaoyuandashiji/index.html">校院大事记</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/index.html">新闻中心</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/index.html">校院新闻</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/jingcaituji/index.html">精彩图集</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/zhuantibaodao/index.html">专题报道</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/index.html">教研动态</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/zhikujianshe/index.html">智库建设</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/index.html">工作动态</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/liluntansuo/index.html">理论探索</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/index.html">市县党校</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/index.html">学员天地</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/zhengcefagui/index.html">政策法规</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/index.html">通知公告</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/index.html">招标采购</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/hezuojiaoliu/index.html">合作交流</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/index.html">时政要闻</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinwenzhongxin/xuexilushang/index.html">学习路上</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a href="/html/website/outsite/jiaoxuepeixun/jiaoxuedongtai/index.html">教学培训</a>
+                    <ul class="child-nav">
+                        <!--
+				<li class="item"><a href="/html/website/outsite/jiaoxuepeixun/jiaoxuedongtai/index.html">教学动态</a></li>
+				
+      href="/html/website/outsite/jiaoxuepeixun/jiaoxuedongtai/index.html"
+
+				<li class="item"><a href="/html/website/outsite/jiaoxuepeixun/yanjiushengjiaoyu/index.html">研究生教育</a></li>
+				
+      href="/html/website/outsite/jiaoxuepeixun/yanjiushengjiaoyu/index.html"
+
+				<li class="item"><a href="/html/website/outsite/jiaoxuepeixun/yuanchengjiaoyu/index.html">远程教育</a></li>
+				
+      href="/html/website/outsite/jiaoxuepeixun/yuanchengjiaoyu/index.html"
+-->
+
+                        <li class="item">
+                            <a href="/html/website/outsite/jiaoxuepeixun/jiaoxuedongtai/index.html"
+                                target="_blank">
+                                教学动态
+                            </a>
+
+                        </li>
+                        <li class="item">
+                            <a href="http://www.scge.gov.cn/html/website/yjssite/index.html"
+                                target="_blank">
+                                研究生教育
+                            </a>
+
+                        </li>
+                        <li class="item">
+                            <a href="/html/website/outsite/jiaoxuepeixun/yuanchengjiaoyu/index.html"
+                                target="_blank">
+                                远程教育
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+                <li class="item"><a href="/html/website/outsite/kexueyanjiu/keyandongtai/index.html">科学研究</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/kexueyanjiu/keyandongtai/index.html">科研动态</a></li>
+                        <li class="item"><a href="/html/website/outsite/kexueyanjiu/keyanchengguo/index.html">科研成果</a></li>
+                        <li class="item"><a href="/html/website/outsite/kexueyanjiu/xuehuijidi/index.html">学会基地</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a
+                        href="/html/website/outsite/zhikujianshe1382238311107063809/zhikudongtai/index.html">智库建设</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/zhikujianshe1382238311107063809/zhikudongtai/index.html">智库动态</a></li>
+                        <li class="item"><a href="/html/website/outsite/zhikujianshe1382238311107063809/xiangmuguanli/index.html">项目管理</a></li>
+                        <li class="item"><a href="/html/website/outsite/zhikujianshe1382238311107063809/zhidujianshe1382239035710828546/index.html">制度建设</a></li>
+                        <li class="item"><a href="/html/website/outsite/zhikujianshe1382238311107063809/zhikuqianyan/index.html">智库前沿</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a
+                        href="/html/website/outsite/hezuojiaoliu1382519891062964226/gongzuodongtai1382519997128523777/index.html">合作交流</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/hezuojiaoliu1382519891062964226/gongzuodongtai1382519997128523777/index.html">工作动态</a></li>
+                        <li class="item"><a href="/html/website/outsite/hezuojiaoliu1382519891062964226/zhengcefagui1382520086429450242/index.html">政策法规</a></li>
+                        <li class="item"><a href="/html/website/outsite/hezuojiaoliu1382519891062964226/zhishijianjie/index.html">知识简介</a></li>
+                        <li class="item"><a href="/html/website/outsite/hezuojiaoliu1382519891062964226/ziliaoxiazai1382520346526629889/index.html">资料下载</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a href="/html/website/outsite/rencaiduiwu/zhuanjiaxuezhe/index.html">人才队伍</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/rencaiduiwu/zhuanjiaxuezhe/index.html">专家学者</a></li>
+                        <li class="item"><a href="/html/website/outsite/rencaiduiwu/zhengcefagui1382516462219444225/index.html">政策法规</a></li>
+                        <li class="item"><a href="/html/website/outsite/rencaiduiwu/rencaizhaopin/index.html">人才招聘</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a
+                        href="/html/website/outsite/xinxihuagongzuo/gongzuodongtai1382517173472739329/index.html">信息化工作</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/xinxihuagongzuo/gongzuodongtai1382517173472739329/index.html">工作动态</a></li>
+                        <li class="item"><a href="/html/website/outsite/xinxihuagongzuo/wenjianziliao/index.html">文件资料</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a href="/html/website/outsite/xingzhenghouqin/houqingaikuang/index.html">行政后勤</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/xingzhenghouqin/houqingaikuang/index.html">后勤概况</a></li>
+                        <li class="item"><a href="/html/website/outsite/xingzhenghouqin/fuwuzhinan/index.html">服务指南</a></li>
+                    </ul>
+                </li>
+                <li class="item"><a href="/html/website/outsite/jiguandangjian/dangjiandongtai/index.html">机关党建</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/outsite/jiguandangjian/dangjiandongtai/index.html">党建动态</a></li>
+                        <li class="item"><a href="/html/website/outsite/jiguandangjian/zhibujianshe/index.html">支部建设</a></li>
+                        <li class="item"><a href="/html/website/outsite/jiguandangjian/quntuangongzuo/index.html">群团工作</a></li>
+                        <li class="item"><a href="/html/website/outsite/jiguandangjian/xuexiyuandi/index.html">学习园地</a></li>
+                        <li class="item"><a href="/html/website/outsite/jiguandangjian/zhengcefagui1382518975916163073/index.html">政策法规</a></li>
+                        <li class="item"><a href="/html/website/outsite/jiguandangjian/lianzhengjiaoyu/index.html">廉政教育</a></li>
+                    </ul>
+                </li>
+                <div  id="searchApp"> 
+                <form id="searchForm" class="searchForm"  action="/html/website/outsite/advancedSearch.html?selecttype=标题&net=outsite" method="get">
+                    <div style="display: flex;align-items: center;">
+                        <el-input style="width: 180px;" placeholder="请输入关键字进行搜索" v-model="keyword" name="keyword" value="keyword"
+                            class="input-with-select" @keyup.enter.native="btnQuery">
+                        </el-input>
+                      <el-select style="display: none;" v-model='select' name="selecttype" @change="handleSelect"
+                        placeholder="请选择">
+                        <el-option v-for="(option,index) in options" :key="index" :label="option.text"
+                            :value="option.value" />
+                    </el-select>
+                        <input type="hidden" name="net" value="outsite">
+                        <div class="search-head-btn" @click="btnQuery">
+                            <div class="search-btn-icon"></div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+  .searchForm{
+      width: 220px !important;
+      position: relative !important;
+    top: 0;
+    left: 0;
+  }
+    .el-select .el-input {
+        width: 90px;
+    }
+    .input-with-select .el-input__inner{
+        height: 32px;
+        border-radius: 0;
+        border-color: transparent;
+    }
+    .search-head-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 32px;
+        background: #fff;
+        border-left: 1px solid #A42117;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    .search-btn-icon{
+        width: 20px;
+        height: 20px;
+        background: url('/template/1/outsite/img/search-icon.png');
+        background-size: 100% 100%;
+    }
+</style>
+<script src="/template/1/outsite/js/jquery-1.12.4.js"></script>
+<script>
+    // 导航下拉 防抖
+    var timer;
+    var navChoose = function () {
+        $('.nav > .item').mouseenter(function () {
+            if (!timer) {
+                timer = setTimeout(() => {
+                    $(this).find(".child-nav").slideDown('fast');
+                }, 200);
+            }
+        });
+        $('.nav > .item').mouseleave(function () {
+            $(this).find(".child-nav").slideUp('fast');
+            clearTimeout(timer);
+            timer = null;
+        })
+    }
+
+    navChoose();
+    var index = 0;
+  	// $('#searchOnclick').click(function () {
+    //     if(index == 0) {
+  	// 		index++;
+    //         $('#searchForm').css('display', 'block');
+    //     }else {
+  	// 		index = 0;
+    //         $('#searchForm').css('display', 'none');
+    //     }
+        
+    // })
+
+    var searchApp = new Vue({
+        el: "#searchApp",
+        data: {
+            keyword: '',
+            select: '1',
+            selecttype: '1',
+            urlDate:new Date().getTime(),
+            options: [
+                { text: "标题", value: "1" },
+                { text: "作者", value: "2" },
+                { text: "内容", value: "3" }
+            ],
+            showSearch:false,
+        },
+        methods: {
+            handleSelect() {
+                this.selecttype = this.select;
+            },
+            btnQuery() {
+                if (this.keyword == '') {
+                    this.$message({
+                        message: '请输入关键字查询',
+                        type: 'warning'
+                    });
+                    return;
+                }
+   //  校验敏感字符
+                if (!this.addEscape(this.keyword)) {
+                    this.keyword = '';
+                    this.$message({
+                        message: '您输入的关键字包含敏感信息！',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                $("#searchForm").submit();
+            }, 
+  // 特殊字符校验 2023-08-21 09:21:02
+            addEscape(value) {
+                let flag = true;
+                let arr = [
+                    "(",
+                    "[",
+                    "{",
+                    "/",
+                    "^",
+                    "$",
+                    "¦",
+                    "}",
+                    "]",
+                    ")",
+                    "?",
+                    "*",
+                    "+",
+                    ".",
+                    "'",
+                    '"',
+                    "%",
+                ];
+                for (let i = 0; i < arr.length; i++) {
+                    if (value) {
+                        if (value.indexOf(arr[i]) > -1) {
+                            flag = false;
+                            break
+                        }
+                    }
+                }
+                return flag;
+            },
+        }
+    })
+
+</script> <!-- 弹窗轮播功能 -->
+
+
+
+        <div id="recruitTeacher" style="position: fixed;right: 0;bottom: 10vh;z-index: 99;">
+            <div id="recruitTeacherClose" style="position: absolute;left: 10px;top: 10px;cursor: pointer;">
+                <img style="width: 25px;height: 25px;" src="/template/1/outsite/img/close-icon.png" alt="" srcset="">
+            </div>
+            <a href="http://www.scge.gov.cn/html/website/outsite/weishipindangyuan/weishipindierqi/index.html" target="_blank">
+                <img style="width: 300px;height: auto;" src="/template/1/outsite/img/wsp-banner.png" alt=""
+                    srcset="">
+            </a>
+        </div>
+        <!-- <div id="inspect" style="position: fixed;right: 0;bottom: 10vh;z-index: 100;">
+            <div id="inspectClose" style="position: absolute;left: 10px;top: 10px;cursor: pointer;"
+                onclick="event.stopPropagation(); $('#inspect').hide();">
+                <img style="width: 25px;height: 25px;" src="/template/1/outsite/img/close-icon.png" alt="" srcset="">
+            </div>
+            <img style="width: 300px;height: auto;cursor: pointer;" src="/template/1/outsite/img/index-banner.png"
+                alt="" srcset="" onclick="openImgPreview('/template/1/outsite/img/index-banner-big.jpg')">
+        </div> -->
+
+        <!-- 图片预览弹窗 -->
+        <div class="img-preview-overlay" id="imgPreviewOverlay" onclick="closeImgPreview(event)">
+            <button class="img-preview-close" onclick="closeImgPreview()" title="关闭">&times;</button>
+            <div class="img-preview-toolbar" onclick="event.stopPropagation()">
+                <button onclick="zoomImg(-0.2)">缩小 -</button>
+                <button onclick="zoomImg(0)">还原</button>
+                <button onclick="zoomImg(0.2)">放大 +</button>
+                <button onclick="downloadImg()">下载</button>
+            </div>
+            <div class="img-preview-container" onclick="event.stopPropagation()">
+                <img id="previewImg" src="" alt="预览图" onmousedown="startDrag(event)">
+            </div>
+        </div>
+
+
+        <!-- 学习深入建设 -->
+        <div class="center-box">
+            <div class="w1400">
+                <div class="box-1400">
+                    <div class="c-title">
+                        深入学习贯彻习近平新时代中国特色社会主义思想
+                    </div>
+                    <div class="c-content">
+                        <div class="left">
+                            <div class="line">
+                                <img src="/template/1/outsite/img/outindex/index_5.png" width="100%" height="100%"
+                                    alt="">
+                            </div>
+                            <div class="l-content">
+                                <div class="top-title">
+                                    学习路上
+                                </div>
+                                <div class="bottom-content" style="width:550px">
+                                    <div class="bottom-content_a"><a href="/html/website/outsite/xinwenzhongxin/xuexilushang/c2116923239803535361.html"
+                                            target="_blank">习近平：关于《中共中央关于持之以恒推进全面从严治党若干重大问题的决定》的说明</a></div>
+                                    <div class="bottom-content_a"><a href="/html/website/outsite/xinwenzhongxin/xuexilushang/c2110641832907128833.html"
+                                            target="_blank">习近平：以更高标准、更实举措推进全面从严治党</a></div>
+                                    <div class="bottom-content_a"><a href="/html/website/outsite/xinwenzhongxin/xuexilushang/c2099770200437178369.html"
+                                            target="_blank">习近平：在加强基础研究座谈会上的讲话</a></div>
+                                    <!--<div  class="bottom-content_a"><a href="">中央政治局就学习贯彻党的二十大精神进行集体学习</a></div>
+                  <div class="bottom-content_a"><a href="">中央政治局召开会议 研究部署学习宣传贯彻党的二十大精神</a></div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="line">
+                                <img src="/template/1/outsite/img/outindex/index_5.png" width="100%" height="100%"
+                                    alt="">
+                            </div>
+                            <div class="l-content">
+                                <div class="top-title">
+                                    习近平
+                                </div>
+                                <div class="bottom-content" style="padding-top: 10px;">
+                                    <a href="http://jhsjk.people.cn/" target="_blank"
+                                        style="color: #B0740B;">系列重要讲话数据库</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-img">
+                        <img src="/template/1/outsite/img/outindex/index_6.png" width="100%" height="100%" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w1400" style="margin-top:32px">
+            <!-- 滚动轮播 + 时政要闻 -->
+            <div class="news-flash">
+                <div class="flash" style="height:100%">
+                    <div class="swiper-container flash1 swiper1" style="height:100%">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a href="/html/website/outsite/xinwenzhongxin/flashxinwen/c2071614899506819074.html" target="_blank">
+                                    <img src="/upload/cms/content/1783331794440.jpg" width="806px" height="449px" />
+                                </a>
+                                <div class="imgInfo">王晓晖前往省委党校（四川行政学院），向参加培训的学员代表讲树立和践行正确政绩观学习教育专题党课 </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="/html/website/outsite/xinwenzhongxin/flashxinwen/c2104493965914013697.html" target="_blank">
+                                    <img src="/upload/cms/content/1790587076695.jpg" width="806px" height="449px" />
+                                </a>
+                                <div class="imgInfo">全省党校（行政学院）校长（院长）会议召开 在为党育才为党献策中展现更大作为</div>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="/html/website/outsite/xinwenzhongxin/flashxinwen/c2094973278425841665.html" target="_blank">
+                                    <img src="/upload/cms/content/1788315516477.jpg" width="806px" height="449px" />
+                                </a>
+                                <div class="imgInfo">省委党校（四川行政学院）2026年秋季学期开学</div>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="/html/website/outsite/xinwenzhongxin/flashxinwen/c2101472162052440066.html" target="_blank">
+                                    <img src="/upload/cms/content/1789864973978.jpg" width="806px" height="449px" />
+                                </a>
+                                <div class="imgInfo">省委党校（四川行政学院）举行2026年庆祝教师节暨秋季学期教职工大会</div>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="/html/website/outsite/xinwenzhongxin/flashxinwen/c2081947068431249409.html" target="_blank">
+                                    <img src="/upload/cms/content/1785209832333.jpg" width="806px" height="449px" />
+                                </a>
+                                <div class="imgInfo">四川长征干部学院第五届党性教育微课程竞赛决赛举办</div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"
+                            style="text-align: right;padding-right: 23px;width: 96%;bottom: 20px;">
+                        </div>
+                    </div>
+                </div>
+                <!-- 时政要闻 -->
+                <div class="news-list news w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>时政要闻</label> </span><a
+                            href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <div class="news-list" style="padding-left: 0;">
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-11-06</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2118735176052916226.html" title="习近平参加北京市区人大代表换届选举投票" target="_blank">
+                                    习近平参加北京市区人大代表换届选举投票
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-11-06</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2118614365384097793.html" title="国家主席习近平任免驻外大使" target="_blank">
+                                    国家主席习近平任免驻外大使
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-11-06</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2118614366621417473.html" title="习近平复信澳大利亚青年学生" target="_blank">
+                                    习近平复信澳大利亚青年学生
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-11-02</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2117285613815349249.html" title="习近平对进一步做好黄河保护治理工作作出重要指示强调 持续完善大保护大协同格局 努力让这条母亲河越来越美" target="_blank">
+                                    习近平对进一步做好黄河保护治理工作作出重要指示强调 持续完善大保护大协同格局 努力让这条母亲河越来越美
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-11-01</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2116923223571578881.html" title="新华社受权全文播发《中共中央关于持之以恒推进全面从严治党若干重大问题的决定》和习近平总书记所作的《关于〈中共中央关于持之以恒推进全面从严治党若干重大问题的决定〉的说明》" target="_blank">
+                                    新华社受权全文播发《中共中央关于持之以恒推进全面从严治党若干重大问题的决定》和习近平总书记所作的《关于〈中共中央关于持之以恒推进全面从严治党若干重大问题的决定〉的说明》
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-10-30</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2116077651323125761.html" title="中共中央召开党外人士座谈会 习近平主持并发表重要讲话" target="_blank">
+                                    中共中央召开党外人士座谈会 习近平主持并发表重要讲话
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-10-29</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2115836059333033986.html" title="中国共产党第二十届中央委员会第五次全体会议在京举行" target="_blank">
+                                    中国共产党第二十届中央委员会第五次全体会议在京举行
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+
+                            <div class="right-time">
+                                <div>2026-10-29</div>
+                            </div>
+                            <div class="left-title text-els1">
+                                <a href="/html/website/outsite/xinwenzhongxin/shizhengyaowen/c2115836059748270081.html" title="中国共产党第二十届中央委员会第五次全体会议公报" target="_blank">
+                                    中国共产党第二十届中央委员会第五次全体会议公报
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 专题集锦  线上栏目是专题报道 -->
+            <div class="five-logo">
+                <div class="ztjj-img">
+
+                    <div class="swiper-wrapper">
+                       
+                        <div class="swiper-slide">
+                            <div class="logo-img">
+                                <a href="/html/website/outsite/zhuantizhuanlan/xxxcgcxjpzsjddxgzzyzsjs/index.html"
+                                    target="_blank" class="">
+                                    <img src="/upload/cms/content/1761557590685.png" width="100%" height="100%" alt="">
+                                </a>
+                            </div>
+                        </div>
+                     
+                        <div class="swiper-slide">
+                            <div class="logo-img">
+                                    <a href="https://www.news.cn/zt/xxgcddesjwzqh/index.html" target="_blank" class="">
+                                        <img src="/upload/cms/content/1793342444539.jpg" width="100%" height="100%" alt="">
+                                    </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="logo-img">
+                                    <a href="http://www.scge.gov.cn/html/website/outsite/zhuantizhuanlan/xuetiaolicufazhan/index.html" target="_blank" class="">
+                                        <img src="/upload/cms/content/1756975444221.png" width="100%" height="100%" alt="">
+                                    </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="logo-img">
+                                    <a href="https://www.ccps.gov.cn/zt/jx90zn/" target="_blank" class="">
+                                        <img src="/upload/cms/content/1684228399700.png" width="100%" height="100%" alt="">
+                                    </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="logo-img">
+                                    <a href="http://www.scge.gov.cn/html/website/outsite/zhuantizhuanlan/jujiaojibenpeixun/index.html" target="_blank" class="">
+                                        <img src="/upload/cms/content/1718270163636.png" width="100%" height="100%" alt="">
+                                    </a>
+                            </div>
+                        </div>
+                        <!--  <div class="swiper-slide">
+                            <div class="logo-img">
+                                <a href="https://www.gjwlaqxcz.cn/" target="_blank" class="">
+                                    <img src="/template/1/outsite/img/wlaq2.png" width="100%" height="100%" alt="">
+                                </a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+            </div>
+            <!--  教研动态 智库建设 合作交流-->
+            <div class="center-content">
+                <!-- 校院新闻 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>校院新闻</label> </span><a
+                            href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content">
+                        <li class="item">
+                            <span class="ico"> 2026-11-05</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2118259938416525314.html" title="杨东在省委党校“蜀光讲坛”作专题报告"
+                                target="_blank">杨东在省委党校“蜀光讲坛”作专题报告</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-11-02</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2117070573975764994.html" title="省委党校（四川行政学院）召开校（院）委会会议 传达学习党的二十届五中全会精神"
+                                target="_blank">省委党校（四川行政学院）召开校（院）委会会议 传达学习党的二十届五中全会精神</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-10-29</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2115619624488927233.html" title="《理论与改革》影响因子再创新高  居学科Q1区前列"
+                                target="_blank">《理论与改革》影响因子再创新高  居学科Q1区前列</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-10-26</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2114629394847891458.html" title="四川日报联合校（院）推出重磅理论策划《深刻把握建设长期执政的马克思主义政党的规律性认识》"
+                                target="_blank">四川日报联合校（院）推出重磅理论策划《深刻把握建设长期执政的马克思主义政党的规律性认识》</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-10-12</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2109569681705795586.html" title="校（院）联合省委党史研究室、四川广播电视台推出“红旗漫卷”长征知识答题挑战赛"
+                                target="_blank">校（院）联合省委党史研究室、四川广播电视台推出“红旗漫卷”长征知识答题挑战赛</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-10-08</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2108132139122950146.html" title="校（院）举行2026年秋季学期第一期主体班毕业典礼"
+                                target="_blank">校（院）举行2026年秋季学期第一期主体班毕业典礼</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 教研动态 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>教研动态</label> </span><a
+                            href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content">
+                        <li class="item">
+                            <span class="ico"> 2026-10-25</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/2114642962167234561.html" title="四川省数字治理与智慧党建重点实验室举办“智慧党建：智能体驱动的组织变革、治理创新与价值对齐”学术论坛"
+                                target="_blank">四川省数字治理与智慧党建重点实验室举办“智慧党建：智能体驱动的组织变革、治理创新与价值对齐”学术论坛</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-10-20</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/2112428450420752386.html" title="悟思沙龙（222）：朱筱煦讲述“补位与协同：社会工作助力中小学心理健康服务生态建设”"
+                                target="_blank">悟思沙龙（222）：朱筱煦讲述“补位与协同：社会工作助力中小学心理健康服务生态建设”</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-09-20</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/2101503913076326402.html" title="光华求知讲堂（67）：美以伊战争与中东地缘政治变局"
+                                target="_blank">光华求知讲堂（67）：美以伊战争与中东地缘政治变局</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-09-16</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/2100045249215856642.html" title="悟思沙龙（218）：延安时期中国共产党农民思想政治教育研究"
+                                target="_blank">悟思沙龙（218）：延安时期中国共产党农民思想政治教育研究</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-09-14</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/2099427539914194945.html" title="科技与生态文明教研部召开决策咨询专题辅导会"
+                                target="_blank">科技与生态文明教研部召开决策咨询专题辅导会</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-09-14</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/jiaoyandongtai/2099315724609781762.html" title="李刚工作室在权威期刊发表标志性论文成果"
+                                target="_blank">李刚工作室在权威期刊发表标志性论文成果</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 智库建设  理论探索 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title zkjs_llts"><label>智库建设</label>
+                            <label class="uhover">理论探索</label></span>
+                        <a href="/html/website/outsite/xinwenzhongxin/zhikujianshe/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content zkjs">
+                        <li class="item">
+                            <span class="ico"> 2026-03-13</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhikujianshe/2032405658225336322.html" title="深刻领会习近平总书记关于文化原创力的重要论述推进文化和旅游深度融合发展"
+                                target="_blank">深刻领会习近平总书记关于文化原创力的重要论述推进文化和旅游深度融合发展</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-03-13</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhikujianshe/2032404246187728897.html" title="全面准确领会习近平总书记关于人工智能重要论述的思维特质与实践方法"
+                                target="_blank">全面准确领会习近平总书记关于人工智能重要论述的思维特质与实践方法</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-05-28</span>
+                            <a class="title" href="/html/website/outsite/zhikujianshe1382238311107063809/zhikuchengguo/1927571063605211138.html" title="《三州地区光伏产业发展亟需统筹经济效益与生态安全》——决策咨询研究成果"
+                                target="_blank">《三州地区光伏产业发展亟需统筹经济效益与生态安全》——决策咨询研究成果</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-04-07</span>
+                            <a class="title" href="/html/website/outsite/zhikujianshe1382238311107063809/zhikuchengguo/1909142538992881666.html" title="《关于组织化防治甘薯小象甲的建议》——决策咨询研究成果"
+                                target="_blank">《关于组织化防治甘薯小象甲的建议》——决策咨询研究成果</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-03-14</span>
+                            <a class="title" href="/html/website/outsite/zhikujianshe1382238311107063809/zhikuchengguo/1900394145697107969.html" title="《关于我省高质量对接湛江港产业合作渠道 进一步推动西部陆海新通道建设的建议》——决策咨询研究成果"
+                                target="_blank">《关于我省高质量对接湛江港产业合作渠道 进一步推动西部陆海新通道建设的建议》——决策咨询研究成果</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-03-10</span>
+                            <a class="title" href="/html/website/outsite/zhikujianshe1382238311107063809/zhikuchengguo/1898908016506486785.html" title="《关于在我省新一轮应急预案修订工作中进一步强化应急预案牵引指导作用的建议》——决策咨询研究成果"
+                                target="_blank">《关于在我省新一轮应急预案修订工作中进一步强化应急预案牵引指导作用的建议》——决策咨询研究成果</a>
+                        </li>
+                    </ul>
+                    <ul class="main-content llts" style="display: none">
+                        <li class="item">
+                            <span class="ico"> 2026-09-29</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/liluntansuo/zz2104850759815397377.html" title="以“投资于人”理念激发人口发展红利"
+                                target="_blank">以“投资于人”理念激发人口发展红利</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-06-10</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/liluntansuo/zz1932238241461874690.html" title="充分发挥公平正义凝聚改革共识的重要作用"
+                                target="_blank">充分发挥公平正义凝聚改革共识的重要作用</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-03-31</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/liluntansuo/1906561759964172289.html" title="裴泽庆:深入贯彻落实中央八项规定精神的重大意义"
+                                target="_blank">裴泽庆:深入贯彻落实中央八项规定精神的重大意义</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2024-12-02</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/liluntansuo/zz1863385388983390209.html" title="构建中国自主的宪法学知识体系（构建中国特色哲学社会科学）"
+                                target="_blank">构建中国自主的宪法学知识体系（构建中国特色哲学社会科学）</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2024-06-20</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/liluntansuo/zz1803589807218237442.html" title="抓好城市治理体系和治理能力现代化（深入学习贯彻习近平新时代中国特色社会主义思想）"
+                                target="_blank">抓好城市治理体系和治理能力现代化（深入学习贯彻习近平新时代中国特色社会主义思想）</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2024-06-20</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/liluntansuo/zz1803589512555798530.html" title="以中国特色社会主义取得的举世瞩目成就为内容支撑讲好思政课（深入学习贯彻习近平新时代中国特色社会主义思想）"
+                                target="_blank">以中国特色社会主义取得的举世瞩目成就为内容支撑讲好思政课（深入学习贯彻习近平新时代中国特色社会主义思想）</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 合作交流 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>合作交流</label> </span><a
+                            href="/html/website/outsite/hezuojiaoliu1382519891062964226/gongzuodongtai1382519997128523777/index.html"
+                            target="_blank" class="more">更多+</a>
+                    </div>
+                    <ul class="main-content">
+                        <li class="item">
+                            <span class="ico"> 2026-09-18</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/2100789373502095362.html" title="陕西省委党校图书和文化馆一行来校调研座谈"
+                                target="_blank">陕西省委党校图书和文化馆一行来校调研座谈</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-09-11</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/2098341830327402497.html" title="离退休人员工作处赴资阳开展课题调研"
+                                target="_blank">离退休人员工作处赴资阳开展课题调研</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-06-01</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/2061427572503470081.html" title="上海市委党校调研组来校调研座谈"
+                                target="_blank">上海市委党校调研组来校调研座谈</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-05-26</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/2059223127778648065.html" title="河南红旗渠干部学院等院校来校调研"
+                                target="_blank">河南红旗渠干部学院等院校来校调研</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-04-27</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/2048690488118337538.html" title="吉林省委党校法学教研部来校调研座谈"
+                                target="_blank">吉林省委党校法学教研部来校调研座谈</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-04-22</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/2046775319788249090.html" title="浙江省委党校研究生部来校调研交流"
+                                target="_blank">浙江省委党校研究生部来校调研交流</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 学员天地 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>学员天地</label> </span><a
+                            href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content">
+                        <li class="item">
+                            <span class="ico"> 2026-09-08</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/2097250986627301377.html" title="第67期县处级领导干部进修班赴省气象局开展现场教学"
+                                target="_blank">第67期县处级领导干部进修班赴省气象局开展现场教学</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-06-15</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/2066416087842562049.html" title="第13期市厅级领导干部任职进修班举行第一期早间微论坛 "
+                                target="_blank">第13期市厅级领导干部任职进修班举行第一期早间微论坛 </a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-05-28</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/2059833059376881666.html" title="第62、63期县处级领导干部进修班开展第5期早间微论坛"
+                                target="_blank">第62、63期县处级领导干部进修班开展第5期早间微论坛</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-05-18</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/2056265284767178753.html" title="第63期县处级领导干部进修班赴成都金牛区开展现场教学"
+                                target="_blank">第63期县处级领导干部进修班赴成都金牛区开展现场教学</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-04-30</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/2049765106287632386.html" title="第36期中青班三班赴天府新区开展现场教学"
+                                target="_blank">第36期中青班三班赴天府新区开展现场教学</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-04-09</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xueyuantiandi/2042178822069280770.html" title="第36期中青一班赴金牛区开展党建引领新兴领域治理案例教学"
+                                target="_blank">第36期中青一班赴金牛区开展党建引领新兴领域治理案例教学</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 市县党校 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>市县党校</label> </span><a
+                            href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content">
+                        <li class="item">
+                            <span class="ico"> 2026-09-11</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/2098340041091842050.html" title="绵阳市委党校编著的《创新先行：中国式现代化的绵阳故事》出版发行"
+                                target="_blank">绵阳市委党校编著的《创新先行：中国式现代化的绵阳故事》出版发行</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-08-28</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/2093231690137862145.html" title="《学习时报》刊发乐山市委党校工作经验文章"
+                                target="_blank">《学习时报》刊发乐山市委党校工作经验文章</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-06-25</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/2070051313093357569.html" title="《学习时报》刊发绵阳市委党校工作经验文章"
+                                target="_blank">《学习时报》刊发绵阳市委党校工作经验文章</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-06-02</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/2061621569750556673.html" title="《学习时报》刊发内江市委党校工作经验文章"
+                                target="_blank">《学习时报》刊发内江市委党校工作经验文章</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-04-30</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/2049768078274977793.html" title="攀枝花市党校（行政学院）工作会议召开"
+                                target="_blank">攀枝花市党校（行政学院）工作会议召开</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-04-21</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/shixiandangxiao/2046525587652337665.html" title="巴中市委党校召开教研工作座谈会"
+                                target="_blank">巴中市委党校召开教研工作座谈会</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 通知公告  政策法规 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title tzgg_zcfg"><label>通知公告</label>
+                            <label class="uhover">政策法规</label></span>
+                        <a href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content tzgg" style="display: block;">
+                        <li class="item">
+                            <span class="ico"> 2026-11-09</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/2119633651124797442.html" title="关于召开四川省法学会行政法学研究会2026年年会暨四川依法治省智库决策咨询能力提升培训会具体事项的通知"
+                                target="_blank">关于召开四川省法学会行政法学研究会2026年年会暨四川依法治省智库决策咨询能力提升培训会具体事项的通知</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-11-06</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/2118625007264464898.html" title="关于召开四川省领导科学研究会（2026）年会暨学术研讨会的通知"
+                                target="_blank">关于召开四川省领导科学研究会（2026）年会暨学术研讨会的通知</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-11-04</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/2117840259524984833.html" title="“弘扬伟大长征精神、走好新的长征路”理论研讨会暨四川省长征精神研究会2026年年会征文启事"
+                                target="_blank">“弘扬伟大长征精神、走好新的长征路”理论研讨会暨四川省长征精神研究会2026年年会征文启事</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-11-02</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/2117169803780292610.html" title="2026年全省党校（行政学院）系统主体班精品课竞赛结果公示"
+                                target="_blank">2026年全省党校（行政学院）系统主体班精品课竞赛结果公示</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-10-30</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/2116099313884069889.html" title="关于召开全省党校系统党建引领社会工作理论研讨会的通知"
+                                target="_blank">关于召开全省党校系统党建引领社会工作理论研讨会的通知</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-10-20</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/tongzhigonggao/2112461078515548162.html" title="关于召开四川省科学社会主义学会2026年学术年会暨“深入学习贯彻党的二十届五中全会精神”理论研讨会的通知"
+                                target="_blank">关于召开四川省科学社会主义学会2026年学术年会暨“深入学习贯彻党的二十届五中全会精神”理论研讨会的通知</a>
+                        </li>
+                    </ul>
+                    <ul class="main-content zcfg" style="display: none;">
+                        <li class="item">
+                            <span class="ico"> 2025-09-04</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhengcefagui/1963533756786790401.html" title="中国共产党党校（行政学院）工作条例"
+                                target="_blank">中国共产党党校（行政学院）工作条例</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2021-11-09</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhengcefagui/1458062168418410497.html" title="中共中央印发《中国共产党党徽党旗条例》"
+                                target="_blank">中共中央印发《中国共产党党徽党旗条例》</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2019-10-14</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhengcefagui/nw83960.html" title="中共中央印发《中国共产党党内法规制定条例》及《中国共产党党内法规和规范性文件备案审查规定》、《中国共产党党内法规执行责任制规定（试行）》"
+                                target="_blank">中共中央印发《中国共产党党内法规制定条例》及《中国共产党党内法规和规范性文件备案审查规定》、《中国共产党党内法规执行责任制规定（试行）》</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2019-08-27</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhengcefagui/nw54555.html" title="中华人民共和国公务员法"
+                                target="_blank">中华人民共和国公务员法</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2018-11-22</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhengcefagui/nw81254.html" title="《四川省党政机关公务用车管理实施办法》"
+                                target="_blank">《四川省党政机关公务用车管理实施办法》</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2017-09-29</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhengcefagui/nw77431.html" title="互联网群组信息服务管理规定"
+                                target="_blank">互联网群组信息服务管理规定</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 招标采购 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>招标采购</label> </span><a
+                            href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content">
+                        <li class="item">
+                            <span class="ico"> 2025-07-28</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/1949696365537964034.html" title="中共四川省委党校关于零星维修项目过程管理服务采购项目  (竞争性磋商)成交公告"
+                                target="_blank">中共四川省委党校关于零星维修项目过程管理服务采购项目  (竞争性磋商)成交公告</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-07-15</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/1945020657985302530.html" title="中共四川省委党校关于零星维修项目过程管理服务采购项目的竞争性磋商第二次公告"
+                                target="_blank">中共四川省委党校关于零星维修项目过程管理服务采购项目的竞争性磋商第二次公告</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-07-15</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/1945020153284702209.html" title="中共四川省委党校关于零星维修项目过程管理服务采购项目的终止公告"
+                                target="_blank">中共四川省委党校关于零星维修项目过程管理服务采购项目的终止公告</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-07-02</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/1940336036764889090.html" title="中共四川省委党校关于零星维修项目过程管理服务采购项目的竞争性磋商公告"
+                                target="_blank">中共四川省委党校关于零星维修项目过程管理服务采购项目的竞争性磋商公告</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-05-27</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/1927196196288507906.html" title="中国共产党四川省委员会党校零星维修竣工结算审核采购项目  (竞争性磋商)成交公告（项目编号：WYGL-2502号）"
+                                target="_blank">中国共产党四川省委员会党校零星维修竣工结算审核采购项目  (竞争性磋商)成交公告（项目编号：WYGL-2502号）</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-05-14</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/zhaobiaocaigou/1922559199246725121.html" title="四川省委党校零星维修竣工结算审核采购项目磋商邀请"
+                                target="_blank">四川省委党校零星维修竣工结算审核采购项目磋商邀请</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 机关党建 -->
+                <div class="news-list w430">
+                    <div class="main-title">
+                        <span class="title item-title"> <label>机关党建</label> </span><a
+                            href="/html/website/outsite/jiguandangjian/dangjiandongtai/index.html" target="_blank"
+                            class="more">更多+</a>
+                    </div>
+                    <ul class="main-content">
+                        <li class="item">
+                            <span class="ico"> 2026-08-31</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/gongzuodongtai/2094250292060225538.html" title="校（院）党建引领聚智聚力 定点帮扶赋能高原振兴"
+                                target="_blank">校（院）党建引领聚智聚力 定点帮扶赋能高原振兴</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2026-04-03</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2041354376219713538.html" title="校（院）2026年机关党建和党风廉政建设工作暨2025年度党组织书记抓党建述职和部门负责人述责述廉评议会议召开"
+                                target="_blank">校（院）2026年机关党建和党风廉政建设工作暨2025年度党组织书记抓党建述职和部门负责人述责述廉评议会议召开</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-12-19</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/2001911285679386625.html" title="校（院）召开学习贯彻党的二十届四中全会和省委十二届八次全会精神宣讲会暨警示教育会"
+                                target="_blank">校（院）召开学习贯彻党的二十届四中全会和省委十二届八次全会精神宣讲会暨警示教育会</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-09-16</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/1967793852672819201.html" title="校（院）召开第33次校（院）委会（扩大）会议 总结深入贯彻中央八项规定精神学习教育"
+                                target="_blank">校（院）召开第33次校（院）委会（扩大）会议 总结深入贯彻中央八项规定精神学习教育</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-09-04</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/xiaoyuanxinwen/1963414573633753089.html" title="校（院）组织收看纪念中国人民抗日战争暨世界反法西斯战争胜利80周年大会"
+                                target="_blank">校（院）组织收看纪念中国人民抗日战争暨世界反法西斯战争胜利80周年大会</a>
+                        </li>
+                        <li class="item">
+                            <span class="ico"> 2025-09-04</span>
+                            <a class="title" href="/html/website/outsite/xinwenzhongxin/flashxinwen/1967401082149847042.html" title="校（院）组织收看纪念中国人民抗日战争暨世界反法西斯战争胜利80周年大会"
+                                target="_blank">校（院）组织收看纪念中国人民抗日战争暨世界反法西斯战争胜利80周年大会</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 党校报 -->
+                <div class="b-resource">
+                    <a href="http://www.scczgbxy.org.cn/" target="_blank" class="menu-item">
+                        <img src="/template/1/outsite/img/outindex/sgwww01.png" width="100%" height="100%" alt="">
+                    </a>
+                    <a href="http://www.scge.gov.cn/html/website/yjssite/index.html" target="_blank" class="menu-item">
+                        <img src="/template/1/outsite/img/outindex/sgwww02.png" width="100%" height="100%" alt="">
+                    </a>
+                    <a href="https://llgg.cbpt.cnki.net/WKD/WebPublication/index.aspx?mid=llgg" target="_blank"
+                        class="menu-item">
+                        <img src="/template/1/outsite/img/outindex/sgwww03.png" width="100%" height="100%" alt="">
+                    </a>
+                    <a href="https://zscd.cbpt.cnki.net/WKD/WebPublication/index.aspx?mid=zscd" target="_blank"
+                        class="menu-item">
+                        <img src="/template/1/outsite/img/outindex/sgwww04.png" width="100%" height="100%" alt="">
+                    </a>
+                    <a href="https://sxzb.cbpt.cnki.net/WKD/WebPublication/index.aspx?mid=sxzb" target="_blank"
+                        class="menu-item">
+                        <img src="/template/1/outsite/img/outindex/sgwww05.png" width="100%" height="100%" alt="">
+                    </a>
+                    <a href="https://www.scge.gov.cn/html/website/outsite/dxb.html" target="_blank"
+                        class="menu-item">
+                        <img src="/template/1/outsite/img/outindex/sgwww06.png" width="100%" height="100%" alt="">
+                    </a>
+                </div>
+                <!-- 友情链接 -->
+                <div class="yqlj_links flex-box" style="margin-top:20px;height: 210px;">
+                    <div class="news-list w1400">
+                        <div class="main-title" style="justify-content: left;">
+                            <span><label
+                                    style="padding: 0 30px;line-height: 40px;background: #EBE8E3;font-size: 20px;color: #b80e15;height: 40px;margin-right: 10px;display: block;">友情链接</label></span>
+                            <span class="title yqlj_links" id="yqlj_links">
+                                <label class="">国家级干部教育机构</label>
+                                <label class="uhover">省级(副省级)党校行政学院</label>
+                                <label class="uhover">四川党校行政学院系统</label>
+                            </span>
+                        </div>
+                        <ul class="content yqlj1" style="display: block;">
+                            <li class="item">
+                                <a class="title" href="https://www.ccps.gov.cn/" title="中共中央党校(国家行政学院)"
+                                    target="_blank">中共中央党校(国家行政学院)</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.zysy.org.cn/" title="中央社会主义学院"
+                                    target="_blank">中央社会主义学院</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.celap.org.cn/" title="中国浦东干部学院"
+                                    target="_blank">中国浦东干部学院</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.celaj.gov.cn/" title="中国井冈山干部学院"
+                                    target="_blank">中国井冈山干部学院</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.celay.org.cn/" title="中国延安干部学院"
+                                    target="_blank">中国延安干部学院</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.cela.gov.cn/home/" title="中国干部网络学院"
+                                    target="_blank">中国干部网络学院</a>
+                            </li>
+                        </ul>
+                        <ul class="content yqlj2" style="display: none;">
+                            <li class="item">
+                                <a class="title" href="https://www.bai.gov.cn/" title="北京"
+                                    target="_blank">北京</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.tjdx.gov.cn/" title="天津"
+                                    target="_blank">天津</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.hebdx.com/" title="河北"
+                                    target="_blank">河北</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.sxswdx.gov.cn/" title="山西"
+                                    target="_blank">山西</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.nmgdx.cn/" title="内蒙古"
+                                    target="_blank">内蒙古</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.lnswdx.cn/" title="辽宁"
+                                    target="_blank">辽宁</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.jlswdx.gov.cn/" title="吉林"
+                                    target="_blank">吉林</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.hljswdx.org.cn/" title="黑龙江"
+                                    target="_blank">黑龙江</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.sdx.sh.cn/" title="上海"
+                                    target="_blank">上海</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.sdx.js.cn/" title="江苏"
+                                    target="_blank">江苏</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.zjdx.gov.cn/" title="浙江"
+                                    target="_blank">浙江</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.ahdx.gov.cn/" title="安徽"
+                                    target="_blank">安徽</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.fjdx.gov.cn/" title="福建"
+                                    target="_blank">福建</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.jxdx.gov.cn/" title="江西"
+                                    target="_blank">江西</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.sddx.gov.cn/" title="山东"
+                                    target="_blank">山东</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.dangxiao.ha.cn/" title="河南"
+                                    target="_blank">河南</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.hbdx.gov.cn/" title="湖北"
+                                    target="_blank">湖北</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.hnswdx.gov.cn/" title="湖南"
+                                    target="_blank">湖南</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.gddx.gov.cn/" title="广东"
+                                    target="_blank">广东</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.gxdx.gov.cn/" title="广西"
+                                    target="_blank">广西</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.dx.hainan.gov.cn/" title="海南"
+                                    target="_blank">海南</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.cqdx.gov.cn/" title="重庆"
+                                    target="_blank">重庆</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.gzdx.gov.cn/" title="贵州"
+                                    target="_blank">贵州</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.yndx.gov.cn/html/yndx/" title="云南"
+                                    target="_blank">云南</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.xzqwdx.gov.cn/" title="西藏"
+                                    target="_blank">西藏</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.shxdx.com/" title="陕西"
+                                    target="_blank">陕西</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.gsdx.gov.cn/" title="甘肃"
+                                    target="_blank">甘肃</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.qhswdx.com/" title="青海"
+                                    target="_blank">青海</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.nxdx.org.cn/" title="宁夏"
+                                    target="_blank">宁夏</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.xjdx.gov.cn/" title="新疆"
+                                    target="_blank">新疆</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://dwdx.xjbt.gov.cn/" title="新疆兵团"
+                                    target="_blank">新疆兵团</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.gzswdx.gov.cn/" title="广州"
+                                    target="_blank">广州</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.whdx.gov.cn/" title="武汉"
+                                    target="_blank">武汉</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.hrbps.org.cn/" title="哈尔滨"
+                                    target="_blank">哈尔滨</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.zgsyswdx.com/" title="沈阳"
+                                    target="_blank">沈阳</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.cddx.gov.cn/" title="成都"
+                                    target="_blank">成都</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://dx.nanjing.gov.cn/" title="南京"
+                                    target="_blank">南京</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.xaswdx.com/" title="西安"
+                                    target="_blank">西安</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.ccdx.org.cn/" title="长春"
+                                    target="_blank">长春</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.jndx.gov.cn/" title="济南"
+                                    target="_blank">济南</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.hzswdx.gov.cn/" title="杭州"
+                                    target="_blank">杭州</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.swdx.dl.gov.cn/" title="大连"
+                                    target="_blank">大连</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.qddx.gov.cn/n435777/index.html" title="青岛"
+                                    target="_blank">青岛</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.szps.gov.cn/" title="深圳"
+                                    target="_blank">深圳</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.xmdx.gov.cn/" title="厦门"
+                                    target="_blank">厦门</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.nbdx.cn/" title="宁波"
+                                    target="_blank">宁波</a>
+                            </li>
+                        </ul>
+                        <ul class="content yqlj3" style="display: none;">
+                            <li class="item">
+                                <a class="title" href="https://www.cddx.gov.cn/" title="成都"
+                                    target="_blank">成都</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.sczgdx.cn/" title="自贡"
+                                    target="_blank">自贡</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.pzhswdx.cn/" title="攀枝花"
+                                    target="_blank">攀枝花</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.lzxzxy.cn/" title="泸州"
+                                    target="_blank">泸州</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://dyswdx.gov.cn/" title="德阳"
+                                    target="_blank">德阳</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.dzdx.gov.cn/" title="达州"
+                                    target="_blank">达州</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://myswdx.mianyang.cn" title="绵阳"
+                                    target="_blank">绵阳</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.gyswdx.cn/" title="广元"
+                                    target="_blank">广元</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="https://www.snswdx.cn/" title="遂宁"
+                                    target="_blank">遂宁</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.njswdx.cn" title="内江"
+                                    target="_blank">内江</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.lsdx.gov.cn/" title="乐山"
+                                    target="_blank">乐山</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.msswdx.cn/" title="眉山"
+                                    target="_blank">眉山</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://swdx.yibin.gov.cn/" title="宜宾"
+                                    target="_blank">宜宾</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.gadx.cn/" title="广安"
+                                    target="_blank">广安</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.bzswdx.com.cn/" title="巴中"
+                                    target="_blank">巴中</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.yaswdx.gov.cn/" title="雅安"
+                                    target="_blank">雅安</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.lszwdx.cn/" title="凉山"
+                                    target="_blank">凉山</a>
+                            </li>
+                            <li class="item">
+                                <a class="title" href="http://www.czgbxy.org.cn/" title="阿坝"
+                                    target="_blank">阿坝</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+<link rel="stylesheet" href="/template/1/outsite/css/outsite_index.css" />
+<!-- 底部 -->
+<div class="footer1">
+  <div class="content1 flex-box">
+    <img src="/template/1/outsite/img/outindex/index_18.png" width="52px" height="64px" alt="">
+    <div class="detail1">
+      <ul>
+        <li>
+          中共四川省委党校 四川行政学院 版权所有 违者必究 版权所有 © 2009 - 2025
+        </li>
+        <li>
+          <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">蜀ICP备10001505号
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+var _czc = _czc || [];
+(function () {
+	var um = document.createElement("script");
+	um.src = "https://s4.cnzz.com/z.js?id=1281114176&async=1";
+	var s = document.getElementsByTagName("script")[0];
+	s.parentNode.insertBefore(um, s);
+})();
+</script>        <!-- 公开招聘广告 -->
+        <div class="gkzp_ads"
+            onclick="window.open('/html/website/outsite/rencaiduiwu/rencaizhaopin/index.html','_blank')">
+        </div>
+        <!-- 停电公告广告 -->
+        <div class="tdgg_ads" style="display:none;">
+            <p>因服务器停电，蜀光网将于2022年3月14日 19时 停止访问，待电力恢复后再访问本网站。</p>
+            <span class="ads_close" id="ads_close"></span>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="/template/1/outsite/js/jquery-1.12.4.js"></script>
+<script src="/template/1/outsite/js/swiper-bundle.min.js"></script>
+<script>     
+
+
+    $(function () {
+  $("#recruitTeacherClose").click(function () {
+    $("#recruitTeacher").hide()
+  })
+
+        //	flash 轮播
+        var flashSwiper = new Swiper('.flash1', {
+            loop: true,
+            autoplay: {
+                disableOnInteraction: false,
+                delay: 3000,
+                stopOnLastSlide: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        })
+
+        var ztjjSwiper = new Swiper('.ztjj-img', {
+            loop: true,
+            autoplay: true,
+            spaceBetween: 30,
+            slidesPerView: '5',
+            loopedSlides: 5,
+        })
+
+        $('#ads_close').on('click', function () {
+            $('.tdgg_ads').fadeOut(300);
+        })
+
+        $(".swiper-pagination-bullet").hover(function () {
+            $(this).click(); //鼠标划上去之后，自动触发点击事件来模仿鼠标划上去的事件
+        }, function () {
+            flashSwiper.autoplay.start(); //鼠标移出之后，自动轮播开启
+        })
+
+
+        var szywSwiper = new Swiper('.szywContainer', {
+            loop: true,
+            autoplay: {
+                disableOnInteraction: false,
+                delay: 5000,
+                stopOnLastSlide: false,
+            }
+        })
+
+        var mySwiper = new Swiper('.zjhd', {
+            // direction: 'vertical',
+            loop: true,
+            autoplay: {
+                disableOnInteraction: false,
+                delay: 4000,
+                stopOnLastSlide: false,
+                pauseOnMouseEnter: true, // 鼠标置于swiper时暂停自动切换，鼠标离开时恢复自动切换。
+            },
+        })
+
+
+        // 通知公告 政策法规
+        $('.tzgg_zcfg label').hover(function () {
+            $(this).parent().find('label').addClass('uhover')
+            $(this).removeClass()
+            if ($(this).index() == 0) {
+                $('.tzgg').css('display', 'block')
+                $('.zcfg').css('display', 'none')
+                $(this)
+                    .parent()
+                    .next()
+                    .attr(
+                        'href',
+                        '/html/website/outsite/xinwenzhongxin/tongzhigonggao/index.html'
+                    )
+            } else {
+                $('.tzgg').css('display', 'none')
+                $('.zcfg').css('display', 'block')
+                $(this)
+                    .parent()
+                    .next()
+                    .attr(
+                        'href',
+                        '/html/website/outsite/xinwenzhongxin/zhengcefagui/index.html'
+                    )
+            }
+        })
+
+        // 智库建设 理论探索
+        $('.zkjs_llts label').hover(function () {
+            $(this).parent().find('label').addClass('uhover')
+            $(this).removeClass()
+            if ($(this).index() == 1) {
+                $('.llts').css('display', 'block')
+                $('.zkjs').css('display', 'none')
+                $(this)
+                    .parent()
+                    .next()
+                    .attr(
+                        'href',
+                        '/html/website/outsite/xinwenzhongxin/liluntansuo/index.html'
+                    )
+            } else {
+                $('.llts').css('display', 'none')
+                $('.zkjs').css('display', 'block')
+                $(this)
+                    .parent()
+                    .next()
+                    .attr(
+                        'href',
+                        '/html/website/outsite/xinwenzhongxin/zhikujianshe/index.html'
+                    )
+            }
+        })
+
+        //	初始化选中第一个友情链接栏目
+        $("#yqlj_links label").first().attr('class', '');
+
+        // 友情链接
+        $('.yqlj_links label').hover(function () {
+            $(this).parent().find('label').addClass('uhover')
+            $(this).removeClass()
+            if ($(this).index() == 2) {
+                $('.yqlj3').css('display', 'block');
+                $('.yqlj1,.yqlj2').css('display', 'none');
+            } else if ($(this).index() == 1) {
+                $('.yqlj2').css('display', 'block');
+                $('.yqlj1,.yqlj3').css('display', 'none');
+            } else {
+                $('.yqlj1').css('display', 'block');
+                $('.yqlj3,.yqlj2').css('display', 'none');
+            }
+        })
+
+        //	弹窗轮播动画
+        var mySwiper1 = new Swiper('.swiper', {
+            loop: true, // 循环模式选项
+            autoplay: {
+                delay: 5000,
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
+                preventClicksPropagation: false,
+            },
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+        })
+
+        $(".popup .close").click(function () {
+            $(".popup").hide();
+        });
+
+
+
+    })
+
+    // ========== 图片预览功能 ==========
+    var previewScale = 1;
+    var dragState = { dragging: false, startX: 0, startY: 0, translateX: 0, translateY: 0, lastTx: 0, lastTy: 0 };
+
+    function openImgPreview(src) {
+        previewScale = 1;
+        dragState = { dragging: false, startX: 0, startY: 0, translateX: 0, translateY: 0, lastTx: 0, lastTy: 0 };
+        var img = document.getElementById('previewImg');
+        img.src = src;
+        img.style.transform = 'scale(1) translate(0px, 0px)';
+        document.getElementById('imgPreviewOverlay').classList.add('active');
+    }
+
+    function closeImgPreview(e) {
+        if (e && e.target && (e.target.tagName === 'IMG' || e.target.classList.contains('img-preview-toolbar') || e.target.tagName === 'BUTTON')) return;
+        document.getElementById('imgPreviewOverlay').classList.remove('active');
+    }
+
+    function zoomImg(delta) {
+        if (delta === 0) {
+            previewScale = 1;
+            dragState.translateX = 0;
+            dragState.translateY = 0;
+            dragState.lastTx = 0;
+            dragState.lastTy = 0;
+        } else {
+            previewScale = Math.max(0.2, Math.min(5, previewScale + delta));
+        }
+        document.getElementById('previewImg').style.transform =
+            'scale(' + previewScale + ') translate(' + dragState.translateX + 'px,' + dragState.translateY + 'px)';
+    }
+
+    function downloadImg() {
+        var src = document.getElementById('previewImg').src;
+        var a = document.createElement('a');
+        a.href = src;
+        a.download = src.split('/').pop();
+        a.click();
+    }
+
+    function startDrag(e) {
+        if (previewScale <= 1) return;
+        e.preventDefault();
+        dragState.dragging = true;
+        dragState.startX = e.clientX - dragState.lastTx;
+        dragState.startY = e.clientY - dragState.lastTy;
+        document.getElementById('previewImg').style.cursor = 'grabbing';
+
+        document.onmousemove = function (ev) {
+            if (!dragState.dragging) return;
+            dragState.translateX = ev.clientX - dragState.startX;
+            dragState.translateY = ev.clientY - dragState.startY;
+            dragState.lastTx = dragState.translateX;
+            dragState.lastTy = dragState.translateY;
+            document.getElementById('previewImg').style.transform =
+                'scale(' + previewScale + ') translate(' + dragState.translateX + 'px,' + dragState.translateY + 'px)';
+        };
+        document.onmouseup = function () {
+            dragState.dragging = false;
+            document.getElementById('previewImg').style.cursor = 'grab';
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+    }
+
+
+
+
+
+</script>

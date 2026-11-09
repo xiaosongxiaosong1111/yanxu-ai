@@ -1,0 +1,3416 @@
+{
+  "checked_at": "2026-11-09T08:19:53.993103+00:00",
+  "network_requests": 0,
+  "runtime_databases_opened": 0,
+  "package_sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
+  "manifest_dataset": {
+    "reference_year": 2027,
+    "target_year": 2028,
+    "index_units": 936,
+    "annual_units": 931,
+    "program_units": 135,
+    "programs": 22356,
+    "catalog_documents": 4603,
+    "school_score_lines": 6,
+    "transfer_rules": 1,
+    "enrichment_rules": 7,
+    "pending_original_table_rows": 389,
+    "individual_result_documents_excluded": 3,
+    "derived_admission_statistics_excluded": 6
+  },
+  "prepared_matches_package": [
+    {
+      "path": "data/units.json",
+      "expected_sha256": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
+      "prepared_sha256": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
+      "matches": true
+    },
+    {
+      "path": "data/admissions.json",
+      "expected_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
+      "prepared_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
+      "matches": true
+    },
+    {
+      "path": "data/history.json",
+      "expected_sha256": "c063264a41c3a83a5c1f40d46c6d436fadbe0b2a18882b56667e68fc65ffa955",
+      "prepared_sha256": "c063264a41c3a83a5c1f40d46c6d436fadbe0b2a18882b56667e68fc65ffa955",
+      "matches": true
+    },
+    {
+      "path": "data/program_enrichment.json",
+      "expected_sha256": "aeed97c0b870b2af3650a6d8e9c2c873b0996ff0e12367fa6c67d5d1ba0bcfc8",
+      "prepared_sha256": "aeed97c0b870b2af3650a6d8e9c2c873b0996ff0e12367fa6c67d5d1ba0bcfc8",
+      "matches": true
+    },
+    {
+      "path": "data/annual_registry_2027.json",
+      "expected_sha256": "06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40",
+      "prepared_sha256": "06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40",
+      "matches": true
+    },
+    {
+      "path": "data/catalog_semantic_audits.json",
+      "expected_sha256": "e37d3d6dbda34310727debd1f2a74298fb294fe150d0bdb35cf28771c87d0848",
+      "prepared_sha256": "e37d3d6dbda34310727debd1f2a74298fb294fe150d0bdb35cf28771c87d0848",
+      "matches": true
+    },
+    {
+      "path": "data/catalog_facts.json",
+      "expected_sha256": "b8f6440c31381100296d781ddd40aafe957b66cf4de9ff71c856988cd40715ea",
+      "prepared_sha256": "b8f6440c31381100296d781ddd40aafe957b66cf4de9ff71c856988cd40715ea",
+      "matches": true
+    }
+  ],
+  "annual_confirmed_count": 931,
+  "program_covered_annual_units": 135,
+  "missing_annual_program_units": 796,
+  "catalog_unit_percent": 14.500537,
+  "raw_package_programs": {
+    "programs": 22356,
+    "qualification_complete": 0,
+    "qualification_pending": 22356,
+    "conditions_nonempty": 0,
+    "requires_review": 22356,
+    "eligibility_flag_true": 0,
+    "tuition_known": 650,
+    "tuition_year": 378,
+    "tuition_evidence_present": 650,
+    "duration_known": 1680,
+    "total_derived_from_annual_duration": 373,
+    "total_cost_computable": 645,
+    "tuition_total": 272,
+    "unique_ids": 22356,
+    "program_units": 135,
+    "tuition_units": 11,
+    "duration_units": 16,
+    "years": {
+      "2027": 22356
+    },
+    "tuition_percent": 2.907497,
+    "duration_percent": 7.514761,
+    "by_unit": [
+      {
+        "unit_id": "2125721162",
+        "unit_name": "齐齐哈尔医学院",
+        "programs": 48,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2125733175",
+        "unit_name": "贵阳学院",
+        "programs": 26,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2311267403",
+        "unit_name": "内蒙古艺术学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2807891793",
+        "unit_name": "上海商学院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302960377",
+        "unit_name": "北京石油化工学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302960684",
+        "unit_name": "北京电子科技学院",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302965854",
+        "unit_name": "湖南人文科技学院",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302966133",
+        "unit_name": "绵阳师范学院",
+        "programs": 15,
+        "tuition_known": 15,
+        "duration_known": 15,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302972497",
+        "unit_name": "厦门理工学院",
+        "programs": 34,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302973928",
+        "unit_name": "北京城市学院",
+        "programs": 14,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302974482",
+        "unit_name": "长春工程学院",
+        "programs": 16,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302975907",
+        "unit_name": "重庆科技大学",
+        "programs": 110,
+        "tuition_known": 110,
+        "duration_known": 110,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302982783",
+        "unit_name": "山东政法学院",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274412345",
+        "unit_name": "滁州学院",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274413086",
+        "unit_name": "遵义师范学院",
+        "programs": 3,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274414302",
+        "unit_name": "贺州学院",
+        "programs": 3,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274414450",
+        "unit_name": "贵州师范学院",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440551",
+        "unit_name": "皖西学院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440799",
+        "unit_name": "九江学院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440926",
+        "unit_name": "乐山师范学院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274441049",
+        "unit_name": "西昌学院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416379410",
+        "unit_name": "运城学院",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416379589",
+        "unit_name": "泰山学院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416381895",
+        "unit_name": "宜宾学院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416381954",
+        "unit_name": "商洛学院",
+        "programs": 5,
+        "tuition_known": 5,
+        "duration_known": 5,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416382019",
+        "unit_name": "安康学院",
+        "programs": 2,
+        "tuition_known": 2,
+        "duration_known": 2,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416382078",
+        "unit_name": "呼和浩特民族学院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367780",
+        "unit_name": "中国制浆造纸研究院",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367782",
+        "unit_name": "北京化工研究院",
+        "programs": 11,
+        "tuition_known": 0,
+        "duration_known": 11,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367788",
+        "unit_name": "交通运输部公路科学研究所",
+        "programs": 13,
+        "tuition_known": 0,
+        "duration_known": 13,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367793",
+        "unit_name": "北京生物制品研究所",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367796",
+        "unit_name": "中国疾病预防控制中心",
+        "programs": 32,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367798",
+        "unit_name": "中国航空研究院(北京航空精密机械研究所)",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367841",
+        "unit_name": "中国地震局地球物理研究所",
+        "programs": 25,
+        "tuition_known": 25,
+        "duration_known": 25,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367842",
+        "unit_name": "中国地震局地质研究所",
+        "programs": 32,
+        "tuition_known": 32,
+        "duration_known": 32,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367847",
+        "unit_name": "国家老年医学中心",
+        "programs": 20,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367850",
+        "unit_name": "中国原子能科学研究院",
+        "programs": 124,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367859",
+        "unit_name": "北京师范大学",
+        "programs": 463,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367861",
+        "unit_name": "首都体育学院",
+        "programs": 29,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367877",
+        "unit_name": "北京化工大学",
+        "programs": 70,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367878",
+        "unit_name": "北京大学",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367879",
+        "unit_name": "中国人民大学",
+        "programs": 260,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367881",
+        "unit_name": "北京交通大学",
+        "programs": 302,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367883",
+        "unit_name": "北京航空航天大学",
+        "programs": 275,
+        "tuition_known": 0,
+        "duration_known": 275,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367884",
+        "unit_name": "北京理工大学",
+        "programs": 357,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367887",
+        "unit_name": "外交学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367888",
+        "unit_name": "北京工商大学",
+        "programs": 70,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367893",
+        "unit_name": "中国农业大学",
+        "programs": 228,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367896",
+        "unit_name": "北京科技大学",
+        "programs": 1010,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367898",
+        "unit_name": "中国兽医药品监察所",
+        "programs": 4,
+        "tuition_known": 4,
+        "duration_known": 4,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367905",
+        "unit_name": "中国农业科学院",
+        "programs": 437,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367912",
+        "unit_name": "机械科学研究总院(北京机电研究所)",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367913",
+        "unit_name": "中国农业机械化科学研究院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367920",
+        "unit_name": "中央民族大学",
+        "programs": 94,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367927",
+        "unit_name": "首都经济贸易大学",
+        "programs": 142,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367929",
+        "unit_name": "中国科学院大学",
+        "programs": 5165,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367949",
+        "unit_name": "南开大学",
+        "programs": 226,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367950",
+        "unit_name": "天津师范大学",
+        "programs": 286,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367975",
+        "unit_name": "河北工程大学",
+        "programs": 64,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367981",
+        "unit_name": "承德医学院",
+        "programs": 50,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367986",
+        "unit_name": "中国日用化学工业研究院",
+        "programs": 5,
+        "tuition_known": 5,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367988",
+        "unit_name": "山西省中医药研究院",
+        "programs": 24,
+        "tuition_known": 24,
+        "duration_known": 24,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368005",
+        "unit_name": "内蒙古大学",
+        "programs": 209,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368033",
+        "unit_name": "大连理工大学",
+        "programs": 454,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368038",
+        "unit_name": "辽宁科技大学",
+        "programs": 173,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368040",
+        "unit_name": "辽宁石油化工大学",
+        "programs": 79,
+        "tuition_known": 0,
+        "duration_known": 79,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368042",
+        "unit_name": "大连海洋大学",
+        "programs": 78,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368052",
+        "unit_name": "辽宁工业大学",
+        "programs": 45,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368076",
+        "unit_name": "中共黑龙江省委党校",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368080",
+        "unit_name": "机械科学研究总院(哈尔滨焊接研究所)",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368085",
+        "unit_name": "中国地震局工程力学研究所",
+        "programs": 44,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368087",
+        "unit_name": "哈尔滨工业大学",
+        "programs": 312,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368101",
+        "unit_name": "上海航天技术研究院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368103",
+        "unit_name": "中国航空研究院(640所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368128",
+        "unit_name": "同济大学",
+        "programs": 700,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368129",
+        "unit_name": "上海交通大学",
+        "programs": 241,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368133",
+        "unit_name": "东华大学",
+        "programs": 166,
+        "tuition_known": 156,
+        "duration_known": 166,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368137",
+        "unit_name": "华东师范大学",
+        "programs": 272,
+        "tuition_known": 272,
+        "duration_known": 272,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368152",
+        "unit_name": "苏州科技大学",
+        "programs": 165,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368169",
+        "unit_name": "中国舰船研究院(中国船舶科学研究中心)",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368178",
+        "unit_name": "南京体育学院",
+        "programs": 17,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368181",
+        "unit_name": "南京航空航天大学",
+        "programs": 388,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368183",
+        "unit_name": "江苏科技大学",
+        "programs": 278,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368187",
+        "unit_name": "江苏省中国科学院植物研究所",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368190",
+        "unit_name": "南京中医药大学",
+        "programs": 565,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368192",
+        "unit_name": "江苏师范大学",
+        "programs": 176,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368201",
+        "unit_name": "南京林业大学",
+        "programs": 305,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368211",
+        "unit_name": "温州医科大学",
+        "programs": 142,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368213",
+        "unit_name": "浙江大学",
+        "programs": 294,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368218",
+        "unit_name": "浙江工业大学",
+        "programs": 30,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368219",
+        "unit_name": "杭州电子科技大学",
+        "programs": 63,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368226",
+        "unit_name": "马鞍山矿山研究院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368233",
+        "unit_name": "淮北师范大学",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368237",
+        "unit_name": "中国科学技术大学",
+        "programs": 202,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368246",
+        "unit_name": "福建师范大学",
+        "programs": 451,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368259",
+        "unit_name": "南昌大学",
+        "programs": 663,
+        "tuition_known": 0,
+        "duration_known": 638,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368274",
+        "unit_name": "山东体育学院",
+        "programs": 58,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368278",
+        "unit_name": "济南大学",
+        "programs": 218,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368281",
+        "unit_name": "中国兵器科学研究院(山东非金属材料研究所)",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368298",
+        "unit_name": "山东第一医科大学",
+        "programs": 247,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368306",
+        "unit_name": "机械科学研究总院(郑州机械研究所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368317",
+        "unit_name": "郑州大学",
+        "programs": 438,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368319",
+        "unit_name": "郑州轻工业大学",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368331",
+        "unit_name": "武汉邮电科学研究院",
+        "programs": 22,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368333",
+        "unit_name": "机械科学研究总院(武汉材料保护研究所)",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368338",
+        "unit_name": "武汉安全环保研究院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368345",
+        "unit_name": "江汉大学",
+        "programs": 159,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368358",
+        "unit_name": "华中科技大学",
+        "programs": 718,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368416",
+        "unit_name": "华南理工大学",
+        "programs": 298,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368417",
+        "unit_name": "深圳大学",
+        "programs": 351,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368428",
+        "unit_name": "汕头大学",
+        "programs": 229,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368434",
+        "unit_name": "广西医科大学",
+        "programs": 465,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368444",
+        "unit_name": "中共重庆市委党校",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368464",
+        "unit_name": "中国核动力研究设计院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368470",
+        "unit_name": "成都大学",
+        "programs": 114,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368471",
+        "unit_name": "中共四川省委党校",
+        "programs": 19,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368475",
+        "unit_name": "电信科学技术研究院(第五研究所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368479",
+        "unit_name": "四川大学",
+        "programs": 919,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368480",
+        "unit_name": "电子科技大学",
+        "programs": 182,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368496",
+        "unit_name": "中国航天科工集团第十研究院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 9,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368499",
+        "unit_name": "遵义医科大学",
+        "programs": 104,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368531",
+        "unit_name": "中国兵器科学研究院(西安应用光学研究所)",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368543",
+        "unit_name": "中共陕西省委党校",
+        "programs": 14,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368574",
+        "unit_name": "西安体育学院",
+        "programs": 58,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368576",
+        "unit_name": "西安外国语大学",
+        "programs": 133,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368600",
+        "unit_name": "青海大学",
+        "programs": 152,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368608",
+        "unit_name": "新疆财经大学",
+        "programs": 116,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "499721721",
+        "unit_name": "赤峰大学",
+        "programs": 33,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "499721832",
+        "unit_name": "海南热带海洋学院",
+        "programs": 38,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "677380",
+        "unit_name": "上海电力大学",
+        "programs": 31,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "677844",
+        "unit_name": "哈尔滨体育学院",
+        "programs": 25,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "678581",
+        "unit_name": "贵州民族大学",
+        "programs": 53,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "679184",
+        "unit_name": "北京联合大学",
+        "programs": 106,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "688909092",
+        "unit_name": "湖南理工大学",
+        "programs": 88,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "688909319",
+        "unit_name": "重庆三峡科技大学",
+        "programs": 38,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      }
+    ]
+  },
+  "enrichment_metadata": {
+    "applied_count": 262,
+    "invalid_rule_ids": [],
+    "applied_rule_ids": [
+      "zzu-2027-full-time-academic",
+      "nankai-2027-full-time-085400-031",
+      "nankai-2027-full-time-085400-033",
+      "nankai-2027-full-time-085400-035",
+      "nankai-2027-full-time-085400-037",
+      "nankai-2027-full-time-085400-038",
+      "nankai-2027-part-time-software"
+    ],
+    "notice": "仅补齐所列年度白名单的费用和学制，招生资格与下一年度政策仍需核验。"
+  },
+  "after_enrichment": {
+    "programs": 22356,
+    "qualification_complete": 0,
+    "qualification_pending": 22356,
+    "conditions_nonempty": 0,
+    "requires_review": 22356,
+    "eligibility_flag_true": 0,
+    "tuition_known": 912,
+    "tuition_year": 640,
+    "tuition_evidence_present": 912,
+    "duration_known": 1942,
+    "total_derived_from_annual_duration": 635,
+    "total_cost_computable": 907,
+    "tuition_total": 272,
+    "unique_ids": 22356,
+    "program_units": 135,
+    "tuition_units": 13,
+    "duration_units": 18,
+    "years": {
+      "2027": 22356
+    },
+    "tuition_percent": 4.079442,
+    "duration_percent": 8.686706,
+    "by_unit": [
+      {
+        "unit_id": "2125721162",
+        "unit_name": "齐齐哈尔医学院",
+        "programs": 48,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2125733175",
+        "unit_name": "贵阳学院",
+        "programs": 26,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2311267403",
+        "unit_name": "内蒙古艺术学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2807891793",
+        "unit_name": "上海商学院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302960377",
+        "unit_name": "北京石油化工学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302960684",
+        "unit_name": "北京电子科技学院",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302965854",
+        "unit_name": "湖南人文科技学院",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302966133",
+        "unit_name": "绵阳师范学院",
+        "programs": 15,
+        "tuition_known": 15,
+        "duration_known": 15,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302972497",
+        "unit_name": "厦门理工学院",
+        "programs": 34,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302973928",
+        "unit_name": "北京城市学院",
+        "programs": 14,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302974482",
+        "unit_name": "长春工程学院",
+        "programs": 16,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302975907",
+        "unit_name": "重庆科技大学",
+        "programs": 110,
+        "tuition_known": 110,
+        "duration_known": 110,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302982783",
+        "unit_name": "山东政法学院",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274412345",
+        "unit_name": "滁州学院",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274413086",
+        "unit_name": "遵义师范学院",
+        "programs": 3,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274414302",
+        "unit_name": "贺州学院",
+        "programs": 3,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274414450",
+        "unit_name": "贵州师范学院",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440551",
+        "unit_name": "皖西学院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440799",
+        "unit_name": "九江学院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440926",
+        "unit_name": "乐山师范学院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274441049",
+        "unit_name": "西昌学院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416379410",
+        "unit_name": "运城学院",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416379589",
+        "unit_name": "泰山学院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416381895",
+        "unit_name": "宜宾学院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416381954",
+        "unit_name": "商洛学院",
+        "programs": 5,
+        "tuition_known": 5,
+        "duration_known": 5,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416382019",
+        "unit_name": "安康学院",
+        "programs": 2,
+        "tuition_known": 2,
+        "duration_known": 2,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416382078",
+        "unit_name": "呼和浩特民族学院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367780",
+        "unit_name": "中国制浆造纸研究院",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367782",
+        "unit_name": "北京化工研究院",
+        "programs": 11,
+        "tuition_known": 0,
+        "duration_known": 11,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367788",
+        "unit_name": "交通运输部公路科学研究所",
+        "programs": 13,
+        "tuition_known": 0,
+        "duration_known": 13,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367793",
+        "unit_name": "北京生物制品研究所",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367796",
+        "unit_name": "中国疾病预防控制中心",
+        "programs": 32,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367798",
+        "unit_name": "中国航空研究院(北京航空精密机械研究所)",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367841",
+        "unit_name": "中国地震局地球物理研究所",
+        "programs": 25,
+        "tuition_known": 25,
+        "duration_known": 25,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367842",
+        "unit_name": "中国地震局地质研究所",
+        "programs": 32,
+        "tuition_known": 32,
+        "duration_known": 32,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367847",
+        "unit_name": "国家老年医学中心",
+        "programs": 20,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367850",
+        "unit_name": "中国原子能科学研究院",
+        "programs": 124,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367859",
+        "unit_name": "北京师范大学",
+        "programs": 463,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367861",
+        "unit_name": "首都体育学院",
+        "programs": 29,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367877",
+        "unit_name": "北京化工大学",
+        "programs": 70,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367878",
+        "unit_name": "北京大学",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367879",
+        "unit_name": "中国人民大学",
+        "programs": 260,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367881",
+        "unit_name": "北京交通大学",
+        "programs": 302,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367883",
+        "unit_name": "北京航空航天大学",
+        "programs": 275,
+        "tuition_known": 0,
+        "duration_known": 275,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367884",
+        "unit_name": "北京理工大学",
+        "programs": 357,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367887",
+        "unit_name": "外交学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367888",
+        "unit_name": "北京工商大学",
+        "programs": 70,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367893",
+        "unit_name": "中国农业大学",
+        "programs": 228,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367896",
+        "unit_name": "北京科技大学",
+        "programs": 1010,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367898",
+        "unit_name": "中国兽医药品监察所",
+        "programs": 4,
+        "tuition_known": 4,
+        "duration_known": 4,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367905",
+        "unit_name": "中国农业科学院",
+        "programs": 437,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367912",
+        "unit_name": "机械科学研究总院(北京机电研究所)",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367913",
+        "unit_name": "中国农业机械化科学研究院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367920",
+        "unit_name": "中央民族大学",
+        "programs": 94,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367927",
+        "unit_name": "首都经济贸易大学",
+        "programs": 142,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367929",
+        "unit_name": "中国科学院大学",
+        "programs": 5165,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367949",
+        "unit_name": "南开大学",
+        "programs": 226,
+        "tuition_known": 10,
+        "duration_known": 10,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367950",
+        "unit_name": "天津师范大学",
+        "programs": 286,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367975",
+        "unit_name": "河北工程大学",
+        "programs": 64,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367981",
+        "unit_name": "承德医学院",
+        "programs": 50,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367986",
+        "unit_name": "中国日用化学工业研究院",
+        "programs": 5,
+        "tuition_known": 5,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367988",
+        "unit_name": "山西省中医药研究院",
+        "programs": 24,
+        "tuition_known": 24,
+        "duration_known": 24,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368005",
+        "unit_name": "内蒙古大学",
+        "programs": 209,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368033",
+        "unit_name": "大连理工大学",
+        "programs": 454,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368038",
+        "unit_name": "辽宁科技大学",
+        "programs": 173,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368040",
+        "unit_name": "辽宁石油化工大学",
+        "programs": 79,
+        "tuition_known": 0,
+        "duration_known": 79,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368042",
+        "unit_name": "大连海洋大学",
+        "programs": 78,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368052",
+        "unit_name": "辽宁工业大学",
+        "programs": 45,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368076",
+        "unit_name": "中共黑龙江省委党校",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368080",
+        "unit_name": "机械科学研究总院(哈尔滨焊接研究所)",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368085",
+        "unit_name": "中国地震局工程力学研究所",
+        "programs": 44,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368087",
+        "unit_name": "哈尔滨工业大学",
+        "programs": 312,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368101",
+        "unit_name": "上海航天技术研究院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368103",
+        "unit_name": "中国航空研究院(640所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368128",
+        "unit_name": "同济大学",
+        "programs": 700,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368129",
+        "unit_name": "上海交通大学",
+        "programs": 241,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368133",
+        "unit_name": "东华大学",
+        "programs": 166,
+        "tuition_known": 156,
+        "duration_known": 166,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368137",
+        "unit_name": "华东师范大学",
+        "programs": 272,
+        "tuition_known": 272,
+        "duration_known": 272,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368152",
+        "unit_name": "苏州科技大学",
+        "programs": 165,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368169",
+        "unit_name": "中国舰船研究院(中国船舶科学研究中心)",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368178",
+        "unit_name": "南京体育学院",
+        "programs": 17,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368181",
+        "unit_name": "南京航空航天大学",
+        "programs": 388,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368183",
+        "unit_name": "江苏科技大学",
+        "programs": 278,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368187",
+        "unit_name": "江苏省中国科学院植物研究所",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368190",
+        "unit_name": "南京中医药大学",
+        "programs": 565,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368192",
+        "unit_name": "江苏师范大学",
+        "programs": 176,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368201",
+        "unit_name": "南京林业大学",
+        "programs": 305,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368211",
+        "unit_name": "温州医科大学",
+        "programs": 142,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368213",
+        "unit_name": "浙江大学",
+        "programs": 294,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368218",
+        "unit_name": "浙江工业大学",
+        "programs": 30,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368219",
+        "unit_name": "杭州电子科技大学",
+        "programs": 63,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368226",
+        "unit_name": "马鞍山矿山研究院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368233",
+        "unit_name": "淮北师范大学",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368237",
+        "unit_name": "中国科学技术大学",
+        "programs": 202,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368246",
+        "unit_name": "福建师范大学",
+        "programs": 451,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368259",
+        "unit_name": "南昌大学",
+        "programs": 663,
+        "tuition_known": 0,
+        "duration_known": 638,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368274",
+        "unit_name": "山东体育学院",
+        "programs": 58,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368278",
+        "unit_name": "济南大学",
+        "programs": 218,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368281",
+        "unit_name": "中国兵器科学研究院(山东非金属材料研究所)",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368298",
+        "unit_name": "山东第一医科大学",
+        "programs": 247,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368306",
+        "unit_name": "机械科学研究总院(郑州机械研究所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368317",
+        "unit_name": "郑州大学",
+        "programs": 438,
+        "tuition_known": 252,
+        "duration_known": 252,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368319",
+        "unit_name": "郑州轻工业大学",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368331",
+        "unit_name": "武汉邮电科学研究院",
+        "programs": 22,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368333",
+        "unit_name": "机械科学研究总院(武汉材料保护研究所)",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368338",
+        "unit_name": "武汉安全环保研究院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368345",
+        "unit_name": "江汉大学",
+        "programs": 159,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368358",
+        "unit_name": "华中科技大学",
+        "programs": 718,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368416",
+        "unit_name": "华南理工大学",
+        "programs": 298,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368417",
+        "unit_name": "深圳大学",
+        "programs": 351,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368428",
+        "unit_name": "汕头大学",
+        "programs": 229,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368434",
+        "unit_name": "广西医科大学",
+        "programs": 465,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368444",
+        "unit_name": "中共重庆市委党校",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368464",
+        "unit_name": "中国核动力研究设计院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368470",
+        "unit_name": "成都大学",
+        "programs": 114,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368471",
+        "unit_name": "中共四川省委党校",
+        "programs": 19,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368475",
+        "unit_name": "电信科学技术研究院(第五研究所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368479",
+        "unit_name": "四川大学",
+        "programs": 919,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368480",
+        "unit_name": "电子科技大学",
+        "programs": 182,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368496",
+        "unit_name": "中国航天科工集团第十研究院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 9,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368499",
+        "unit_name": "遵义医科大学",
+        "programs": 104,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368531",
+        "unit_name": "中国兵器科学研究院(西安应用光学研究所)",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368543",
+        "unit_name": "中共陕西省委党校",
+        "programs": 14,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368574",
+        "unit_name": "西安体育学院",
+        "programs": 58,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368576",
+        "unit_name": "西安外国语大学",
+        "programs": 133,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368600",
+        "unit_name": "青海大学",
+        "programs": 152,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368608",
+        "unit_name": "新疆财经大学",
+        "programs": 116,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "499721721",
+        "unit_name": "赤峰大学",
+        "programs": 33,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "499721832",
+        "unit_name": "海南热带海洋学院",
+        "programs": 38,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "677380",
+        "unit_name": "上海电力大学",
+        "programs": 31,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "677844",
+        "unit_name": "哈尔滨体育学院",
+        "programs": 25,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "678581",
+        "unit_name": "贵州民族大学",
+        "programs": 53,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "679184",
+        "unit_name": "北京联合大学",
+        "programs": 106,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "688909092",
+        "unit_name": "湖南理工大学",
+        "programs": 88,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "688909319",
+        "unit_name": "重庆三峡科技大学",
+        "programs": 38,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      }
+    ]
+  },
+  "after_evidence_safety": {
+    "programs": 22356,
+    "qualification_complete": 0,
+    "qualification_pending": 22356,
+    "conditions_nonempty": 0,
+    "requires_review": 22356,
+    "eligibility_flag_true": 0,
+    "tuition_known": 912,
+    "tuition_year": 640,
+    "tuition_evidence_present": 912,
+    "duration_known": 1942,
+    "total_derived_from_annual_duration": 635,
+    "total_cost_computable": 907,
+    "tuition_total": 272,
+    "unique_ids": 22356,
+    "program_units": 135,
+    "tuition_units": 13,
+    "duration_units": 18,
+    "years": {
+      "2027": 22356
+    },
+    "tuition_percent": 4.079442,
+    "duration_percent": 8.686706,
+    "by_unit": [
+      {
+        "unit_id": "2125721162",
+        "unit_name": "齐齐哈尔医学院",
+        "programs": 48,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2125733175",
+        "unit_name": "贵阳学院",
+        "programs": 26,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2311267403",
+        "unit_name": "内蒙古艺术学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "2807891793",
+        "unit_name": "上海商学院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302960377",
+        "unit_name": "北京石油化工学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302960684",
+        "unit_name": "北京电子科技学院",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302965854",
+        "unit_name": "湖南人文科技学院",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302966133",
+        "unit_name": "绵阳师范学院",
+        "programs": 15,
+        "tuition_known": 15,
+        "duration_known": 15,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302972497",
+        "unit_name": "厦门理工学院",
+        "programs": 34,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302973928",
+        "unit_name": "北京城市学院",
+        "programs": 14,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302974482",
+        "unit_name": "长春工程学院",
+        "programs": 16,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302975907",
+        "unit_name": "重庆科技大学",
+        "programs": 110,
+        "tuition_known": 110,
+        "duration_known": 110,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "302982783",
+        "unit_name": "山东政法学院",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274412345",
+        "unit_name": "滁州学院",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274413086",
+        "unit_name": "遵义师范学院",
+        "programs": 3,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274414302",
+        "unit_name": "贺州学院",
+        "programs": 3,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274414450",
+        "unit_name": "贵州师范学院",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440551",
+        "unit_name": "皖西学院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440799",
+        "unit_name": "九江学院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274440926",
+        "unit_name": "乐山师范学院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3274441049",
+        "unit_name": "西昌学院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416379410",
+        "unit_name": "运城学院",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416379589",
+        "unit_name": "泰山学院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416381895",
+        "unit_name": "宜宾学院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416381954",
+        "unit_name": "商洛学院",
+        "programs": 5,
+        "tuition_known": 5,
+        "duration_known": 5,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416382019",
+        "unit_name": "安康学院",
+        "programs": 2,
+        "tuition_known": 2,
+        "duration_known": 2,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "3416382078",
+        "unit_name": "呼和浩特民族学院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367780",
+        "unit_name": "中国制浆造纸研究院",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367782",
+        "unit_name": "北京化工研究院",
+        "programs": 11,
+        "tuition_known": 0,
+        "duration_known": 11,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367788",
+        "unit_name": "交通运输部公路科学研究所",
+        "programs": 13,
+        "tuition_known": 0,
+        "duration_known": 13,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367793",
+        "unit_name": "北京生物制品研究所",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367796",
+        "unit_name": "中国疾病预防控制中心",
+        "programs": 32,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367798",
+        "unit_name": "中国航空研究院(北京航空精密机械研究所)",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367841",
+        "unit_name": "中国地震局地球物理研究所",
+        "programs": 25,
+        "tuition_known": 25,
+        "duration_known": 25,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367842",
+        "unit_name": "中国地震局地质研究所",
+        "programs": 32,
+        "tuition_known": 32,
+        "duration_known": 32,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367847",
+        "unit_name": "国家老年医学中心",
+        "programs": 20,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367850",
+        "unit_name": "中国原子能科学研究院",
+        "programs": 124,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367859",
+        "unit_name": "北京师范大学",
+        "programs": 463,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367861",
+        "unit_name": "首都体育学院",
+        "programs": 29,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367877",
+        "unit_name": "北京化工大学",
+        "programs": 70,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367878",
+        "unit_name": "北京大学",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367879",
+        "unit_name": "中国人民大学",
+        "programs": 260,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367881",
+        "unit_name": "北京交通大学",
+        "programs": 302,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367883",
+        "unit_name": "北京航空航天大学",
+        "programs": 275,
+        "tuition_known": 0,
+        "duration_known": 275,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367884",
+        "unit_name": "北京理工大学",
+        "programs": 357,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367887",
+        "unit_name": "外交学院",
+        "programs": 37,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367888",
+        "unit_name": "北京工商大学",
+        "programs": 70,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367893",
+        "unit_name": "中国农业大学",
+        "programs": 228,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367896",
+        "unit_name": "北京科技大学",
+        "programs": 1010,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367898",
+        "unit_name": "中国兽医药品监察所",
+        "programs": 4,
+        "tuition_known": 4,
+        "duration_known": 4,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367905",
+        "unit_name": "中国农业科学院",
+        "programs": 437,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367912",
+        "unit_name": "机械科学研究总院(北京机电研究所)",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367913",
+        "unit_name": "中国农业机械化科学研究院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367920",
+        "unit_name": "中央民族大学",
+        "programs": 94,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367927",
+        "unit_name": "首都经济贸易大学",
+        "programs": 142,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367929",
+        "unit_name": "中国科学院大学",
+        "programs": 5165,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367949",
+        "unit_name": "南开大学",
+        "programs": 226,
+        "tuition_known": 10,
+        "duration_known": 10,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367950",
+        "unit_name": "天津师范大学",
+        "programs": 286,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367975",
+        "unit_name": "河北工程大学",
+        "programs": 64,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367981",
+        "unit_name": "承德医学院",
+        "programs": 50,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367986",
+        "unit_name": "中国日用化学工业研究院",
+        "programs": 5,
+        "tuition_known": 5,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "367988",
+        "unit_name": "山西省中医药研究院",
+        "programs": 24,
+        "tuition_known": 24,
+        "duration_known": 24,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368005",
+        "unit_name": "内蒙古大学",
+        "programs": 209,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368033",
+        "unit_name": "大连理工大学",
+        "programs": 454,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368038",
+        "unit_name": "辽宁科技大学",
+        "programs": 173,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368040",
+        "unit_name": "辽宁石油化工大学",
+        "programs": 79,
+        "tuition_known": 0,
+        "duration_known": 79,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368042",
+        "unit_name": "大连海洋大学",
+        "programs": 78,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368052",
+        "unit_name": "辽宁工业大学",
+        "programs": 45,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368076",
+        "unit_name": "中共黑龙江省委党校",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368080",
+        "unit_name": "机械科学研究总院(哈尔滨焊接研究所)",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368085",
+        "unit_name": "中国地震局工程力学研究所",
+        "programs": 44,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368087",
+        "unit_name": "哈尔滨工业大学",
+        "programs": 312,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368101",
+        "unit_name": "上海航天技术研究院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368103",
+        "unit_name": "中国航空研究院(640所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368128",
+        "unit_name": "同济大学",
+        "programs": 700,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368129",
+        "unit_name": "上海交通大学",
+        "programs": 241,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368133",
+        "unit_name": "东华大学",
+        "programs": 166,
+        "tuition_known": 156,
+        "duration_known": 166,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368137",
+        "unit_name": "华东师范大学",
+        "programs": 272,
+        "tuition_known": 272,
+        "duration_known": 272,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368152",
+        "unit_name": "苏州科技大学",
+        "programs": 165,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368169",
+        "unit_name": "中国舰船研究院(中国船舶科学研究中心)",
+        "programs": 5,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368178",
+        "unit_name": "南京体育学院",
+        "programs": 17,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368181",
+        "unit_name": "南京航空航天大学",
+        "programs": 388,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368183",
+        "unit_name": "江苏科技大学",
+        "programs": 278,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368187",
+        "unit_name": "江苏省中国科学院植物研究所",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368190",
+        "unit_name": "南京中医药大学",
+        "programs": 565,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368192",
+        "unit_name": "江苏师范大学",
+        "programs": 176,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368201",
+        "unit_name": "南京林业大学",
+        "programs": 305,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368211",
+        "unit_name": "温州医科大学",
+        "programs": 142,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368213",
+        "unit_name": "浙江大学",
+        "programs": 294,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368218",
+        "unit_name": "浙江工业大学",
+        "programs": 30,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368219",
+        "unit_name": "杭州电子科技大学",
+        "programs": 63,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368226",
+        "unit_name": "马鞍山矿山研究院",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368233",
+        "unit_name": "淮北师范大学",
+        "programs": 6,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368237",
+        "unit_name": "中国科学技术大学",
+        "programs": 202,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368246",
+        "unit_name": "福建师范大学",
+        "programs": 451,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368259",
+        "unit_name": "南昌大学",
+        "programs": 663,
+        "tuition_known": 0,
+        "duration_known": 638,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368274",
+        "unit_name": "山东体育学院",
+        "programs": 58,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368278",
+        "unit_name": "济南大学",
+        "programs": 218,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368281",
+        "unit_name": "中国兵器科学研究院(山东非金属材料研究所)",
+        "programs": 7,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368298",
+        "unit_name": "山东第一医科大学",
+        "programs": 247,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368306",
+        "unit_name": "机械科学研究总院(郑州机械研究所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368317",
+        "unit_name": "郑州大学",
+        "programs": 438,
+        "tuition_known": 252,
+        "duration_known": 252,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368319",
+        "unit_name": "郑州轻工业大学",
+        "programs": 1,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368331",
+        "unit_name": "武汉邮电科学研究院",
+        "programs": 22,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368333",
+        "unit_name": "机械科学研究总院(武汉材料保护研究所)",
+        "programs": 2,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368338",
+        "unit_name": "武汉安全环保研究院",
+        "programs": 8,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368345",
+        "unit_name": "江汉大学",
+        "programs": 159,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368358",
+        "unit_name": "华中科技大学",
+        "programs": 718,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368416",
+        "unit_name": "华南理工大学",
+        "programs": 298,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368417",
+        "unit_name": "深圳大学",
+        "programs": 351,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368428",
+        "unit_name": "汕头大学",
+        "programs": 229,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368434",
+        "unit_name": "广西医科大学",
+        "programs": 465,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368444",
+        "unit_name": "中共重庆市委党校",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368464",
+        "unit_name": "中国核动力研究设计院",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368470",
+        "unit_name": "成都大学",
+        "programs": 114,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368471",
+        "unit_name": "中共四川省委党校",
+        "programs": 19,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368475",
+        "unit_name": "电信科学技术研究院(第五研究所)",
+        "programs": 4,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368479",
+        "unit_name": "四川大学",
+        "programs": 919,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368480",
+        "unit_name": "电子科技大学",
+        "programs": 182,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368496",
+        "unit_name": "中国航天科工集团第十研究院",
+        "programs": 9,
+        "tuition_known": 0,
+        "duration_known": 9,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368499",
+        "unit_name": "遵义医科大学",
+        "programs": 104,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368531",
+        "unit_name": "中国兵器科学研究院(西安应用光学研究所)",
+        "programs": 10,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368543",
+        "unit_name": "中共陕西省委党校",
+        "programs": 14,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368574",
+        "unit_name": "西安体育学院",
+        "programs": 58,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368576",
+        "unit_name": "西安外国语大学",
+        "programs": 133,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368600",
+        "unit_name": "青海大学",
+        "programs": 152,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "368608",
+        "unit_name": "新疆财经大学",
+        "programs": 116,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "499721721",
+        "unit_name": "赤峰大学",
+        "programs": 33,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "499721832",
+        "unit_name": "海南热带海洋学院",
+        "programs": 38,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "677380",
+        "unit_name": "上海电力大学",
+        "programs": 31,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "677844",
+        "unit_name": "哈尔滨体育学院",
+        "programs": 25,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "678581",
+        "unit_name": "贵州民族大学",
+        "programs": 53,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "679184",
+        "unit_name": "北京联合大学",
+        "programs": 106,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "688909092",
+        "unit_name": "湖南理工大学",
+        "programs": 88,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      },
+      {
+        "unit_id": "688909319",
+        "unit_name": "重庆三峡科技大学",
+        "programs": 38,
+        "tuition_known": 0,
+        "duration_known": 0,
+        "qualification_complete": 0
+      }
+    ]
+  },
+  "current_original_field_claim_states": {
+    "tuition": {
+      "verified": 912
+    },
+    "duration": {
+      "verified": 1942
+    }
+  },
+  "boundary": "Public package and pure read-only overlay/evidence functions only. No service, published runtime DB, model/search key, or temporary research fact was opened. Compact projections retain full fee/duration/overlay targets; other rows retain count and selector fields.",
+  "registry_official_url_counts": {
+    "raw_known": 638,
+    "raw_missing": 293,
+    "after_curated_known": 642,
+    "after_curated_missing": 289
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "scope": "synthetic fixtures through current production code; no network, keys or user DB",
+  "results": {
+    "unbound_no_seed": {
+      "stage": "no_lead",
+      "entry_verified": false,
+      "usage": {
+        "public_reads": 0,
+        "paid_searches": 0
+      },
+      "fetch_calls": [],
+      "errors": [],
+      "document_urls": [],
+      "next_plan_actions": [
+        {
+          "tool": "discover_official_entry",
+          "args": {
+            "unit_id": "123",
+            "year": 2027,
+            "kind": "catalog"
+          }
+        }
+      ],
+      "entry_sources": []
+    },
+    "unbound_candidate_no_root": {
+      "stage": "verification_required",
+      "entry_verified": false,
+      "usage": {
+        "public_reads": 0,
+        "paid_searches": 0
+      },
+      "fetch_calls": [],
+      "errors": [
+        {
+          "url": "https://grad.other.edu.cn/",
+          "code": "ownership_unproven",
+          "message": "归属证据尚未完成核验。"
+        }
+      ],
+      "document_urls": [],
+      "next_plan_actions": [
+        {
+          "tool": "discover_official_entry",
+          "args": {
+            "unit_id": "123",
+            "year": 2027,
+            "kind": "catalog"
+          }
+        }
+      ],
+      "entry_sources": []
+    },
+    "registered_all_fetches_fail": {
+      "stage": "entry_verified",
+      "entry_verified": true,
+      "usage": {
+        "public_reads": 1,
+        "paid_searches": 0
+      },
+      "fetch_calls": [
+        "https://www.example.edu.cn/"
+      ],
+      "errors": [
+        {
+          "url": "https://www.example.edu.cn/",
+          "code": "http_error",
+          "message": "fixture HTTP404, no real request"
+        }
+      ],
+      "document_urls": [],
+      "next_plan_actions": [
+        {
+          "tool": "discover_official_entry",
+          "args": {
+            "unit_id": "123",
+            "year": 2027,
+            "kind": "catalog"
+          }
+        }
+      ],
+      "entry_sources": [
+        {
+          "url": "https://www.example.edu.cn/",
+          "status": "official_entry",
+          "sha256": null,
+          "source_role": "official_entry"
+        }
+      ]
+    },
+    "local_depth_first_starves_sibling_target": {
+      "stage": "entry_verified",
+      "entry_verified": true,
+      "usage": {
+        "public_reads": 8,
+        "paid_searches": 0
+      },
+      "fetch_calls": [
+        "https://www.example.edu.cn/",
+        "https://www.example.edu.cn/a",
+        "https://www.example.edu.cn/archive/0",
+        "https://www.example.edu.cn/archive/1",
+        "https://www.example.edu.cn/archive/10",
+        "https://www.example.edu.cn/archive/11",
+        "https://www.example.edu.cn/archive/12",
+        "https://www.example.edu.cn/archive/13"
+      ],
+      "errors": [],
+      "document_urls": [],
+      "next_plan_actions": [
+        {
+          "tool": "discover_official_entry",
+          "args": {
+            "unit_id": "123",
+            "year": 2027,
+            "kind": "catalog"
+          }
+        }
+      ],
+      "entry_sources": [
+        {
+          "url": "https://www.example.edu.cn/",
+          "status": "official_entry",
+          "sha256": null,
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/",
+          "status": "official_original_read",
+          "sha256": "4e0d03e06c1cd31dca6e37a942ab9fd94b7267b15dfb77ad0c745a59b54256d5",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/a",
+          "status": "official_original_read",
+          "sha256": "e996353800f837feceffbfa253fd3cd75793b92fb6d8c52c0b867da1a8e24f7b",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/archive/0",
+          "status": "official_original_read",
+          "sha256": "4c8f7be3d706b416304fe82157f3221b24bf319b3e01fff69f958d91acd37535",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/archive/1",
+          "status": "official_original_read",
+          "sha256": "4c8f7be3d706b416304fe82157f3221b24bf319b3e01fff69f958d91acd37535",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/archive/10",
+          "status": "official_original_read",
+          "sha256": "4c8f7be3d706b416304fe82157f3221b24bf319b3e01fff69f958d91acd37535",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/archive/11",
+          "status": "official_original_read",
+          "sha256": "4c8f7be3d706b416304fe82157f3221b24bf319b3e01fff69f958d91acd37535",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/archive/12",
+          "status": "official_original_read",
+          "sha256": "4c8f7be3d706b416304fe82157f3221b24bf319b3e01fff69f958d91acd37535",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/archive/13",
+          "status": "official_original_read",
+          "sha256": "4c8f7be3d706b416304fe82157f3221b24bf319b3e01fff69f958d91acd37535",
+          "source_role": "official_entry"
+        }
+      ]
+    },
+    "scripts_before_already_visible_target": {
+      "stage": "body_read",
+      "entry_verified": true,
+      "usage": {
+        "public_reads": 4,
+        "paid_searches": 0
+      },
+      "fetch_calls": [
+        "https://www.example.edu.cn/",
+        "https://www.example.edu.cn/common.js",
+        "https://www.example.edu.cn/nav.js",
+        "https://www.example.edu.cn/z"
+      ],
+      "errors": [],
+      "document_urls": [
+        "https://www.example.edu.cn/z"
+      ],
+      "next_plan_actions": [
+        {
+          "tool": "search_knowledge_segments",
+          "args": {
+            "query": "招生专业目录 考试科目",
+            "entry_id": "k_a87dd4cd81494dc5ab0df448",
+            "unit_id": "123",
+            "year": 2027
+          }
+        }
+      ],
+      "entry_sources": [
+        {
+          "url": "https://www.example.edu.cn/",
+          "status": "official_entry",
+          "sha256": null,
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/",
+          "status": "official_original_read",
+          "sha256": "1562d8201cffab0eed6bdafab74f7c887f441cadcf48081e55dccbaf8d012ce3",
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/z",
+          "status": "official_original_read",
+          "sha256": "2d2e2ed15f1c1aa2aa21ddb9d2aa3882547e3094bd19a352536d2b630a214e3d",
+          "source_role": "admissions_document"
+        }
+      ]
+    },
+    "hash_article_route_discarded": {
+      "stage": "entry_verified",
+      "entry_verified": true,
+      "usage": {
+        "public_reads": 1,
+        "paid_searches": 0
+      },
+      "fetch_calls": [
+        "https://www.example.edu.cn/"
+      ],
+      "errors": [],
+      "document_urls": [],
+      "next_plan_actions": [
+        {
+          "tool": "discover_official_entry",
+          "args": {
+            "unit_id": "123",
+            "year": 2027,
+            "kind": "catalog"
+          }
+        }
+      ],
+      "entry_sources": [
+        {
+          "url": "https://www.example.edu.cn/",
+          "status": "official_entry",
+          "sha256": null,
+          "source_role": "official_entry"
+        },
+        {
+          "url": "https://www.example.edu.cn/",
+          "status": "official_original_read",
+          "sha256": "7ceacde30a54dd10b29bb9a89b685a2be4ac4be43a7818fe3e38466da2e1d659",
+          "source_role": "official_entry"
+        }
+      ]
+    },
+    "dns_only_first_address_attempted": {
+      "validated_addresses": [
+        "93.184.216.34",
+        "1.1.1.1"
+      ],
+      "connection_attempts": [
+        "93.184.216.34"
+      ],
+      "network_calls": 0
+    },
+    "linked_external_pdf_cannot_use_html_authority_path": {
+      "result": {
+        "status": "needs_review",
+        "code": "unsupported_type",
+        "message": "归属证据尚未完成核验。"
+      },
+      "calls": [
+        "https://www.example.edu.cn/",
+        "https://cdn.example.net/official-2027.pdf"
+      ]
+    },
+    "root_transport_failure_collapsed_to_ownership_unproven": {
+      "status": "needs_review",
+      "code": "ownership_unproven",
+      "message": "归属证据尚未完成核验。"
+    }
+  }
+}

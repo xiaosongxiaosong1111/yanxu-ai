@@ -1,0 +1,621 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head><title>研究生招生-太原理工大学</title><meta name="pageType" content="2">
+<meta name="pageTitle" content="研究生招生">
+<META Name="keywords" Content="太原理工大学" />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- <meta name="description" content="" />
+        <meta name="keywords" content="" /> -->
+    <link rel="stylesheet" type="text/css" href="../css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style2.css" />
+    <link rel="stylesheet" type="text/css" href="../css/swiper.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../css/jjy.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../fonts/iconfont.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.fancybox.min.js" type="text/javascript" charset="utf-8"></script>
+<!--Announced by Visual SiteBuilder 9-->
+<script language="javascript" src="../_sitegray/_sitegray.js"></script>
+<!-- CustomerNO:77656262657232307b75465752565742000300024150 -->
+<link rel="stylesheet" type="text/css" href="../jjy.vsb.css" />
+<script type="text/javascript" src="/system/resource/js/counter.js"></script>
+<script type="text/javascript">_jsq_(1177,'/jjy.jsp',-1,1796696457)</script>
+</head>
+
+<body class="body-c">
+    <div class="header c-hd">
+        <div class="wps flex">
+            <div class="logo flex-v-center">
+<!-- 网站logo图片地址请在本组件"内容配置-网站logo"处填写 -->
+<a href="../index.htm" title="太原理工大学2021" target="_blank"><img src="../images/logo.png" alt="" class="imgMargin"></a></div>
+            <div class="headerR ">
+                <ul class="header-t flex-right">
+                    <div style="display:flex;"><script language="javascript" src="/system/resource/js/dynclicks.js"></script><script language="javascript" src="/system/resource/js/openlink.js"></script><link rel="stylesheet" type="text/css" href="../font/style.css" />
+<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css">
+<li><a href="../index.htm" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57507)" target="_blank"><i class="iconfont icon-homepage"></i><span>学校首页</span></a></li>
+<li><a href="https://one.tyut.edu.cn" target="_blank"><i class="icon-xiaobao"></i><span>校内通知</span></a></li>
+<li><a href="https://one.tyut.edu.cn" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57508)" target="_blank"><i class="iconfont icon-zhihuitiku"></i><span>智慧校园</span></a></li>
+<li><a href="https://mail.tyut.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57575)" target="_blank"><i class="iconfont icon-youxiang"></i><span>校园邮箱</span></a></li>
+<li><a href="http://english.tyut.edu.cn/" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57509)" target="_blank"><i class="iconfont icon-duoyuyan"></i><span>English</span></a></li>
+</div>
+                    <li class="topser pore"> <a href="javascript:;" class="toSearch"><i class="iconfont icon-sousuo"></i></a>
+                        <div class="serpc">
+
+
+<script language="javascript" src="/system/resource/js/base64.js"></script><script language="javascript" src="/system/resource/js/jquery/jquery-latest.min.js"></script><script language="javascript" src="/system/resource/vue/vue.js"></script><script language="javascript" src="/system/resource/vue/bluebird.min.js"></script><script language="javascript" src="/system/resource/vue/axios.js"></script><script language="javascript" src="/system/resource/vue/polyfill.js"></script><script language="javascript" src="/system/resource/vue/token.js"></script><LINK href="/system/resource/vue/static/element/index.css" type="text/css" rel="stylesheet"><script language="javascript" src="/system/resource/vue/static/element/index.js"></script><script language="javascript" src="/system/resource/vue/static/public.js"></script><div id="divu2"></div>
+<script type="text/html" id="htmlu2">
+    <div id="appu2">
+        <div v-if="!isError" class="flex">
+            <input type="text" class="inp" placeholder="搜索..." autocomplete=off v-model=query.keyWord @keyup.enter="onSubmit">
+            <input class="sub" name="submit_button" type="submit" value="" v-on:click="onSubmit()"/>
+        </div>
+        <span class="swiper-icons swi-close close"></span>
+        <div v-if="isError" style="color: #b30216; font-size:18px;text-align: center;padding:20px;">
+            应用维护中！
+        </div>
+    </div>
+</script>
+<script>
+    $("#divu2").html($("#htmlu2").text());
+</script>
+<script>
+    var appOwner = "1796696457";
+    var token = gettoken(10);
+    var urlPrefix = "/aop_component/";
+
+    jQuery.support.cors = true;
+    $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+    });
+
+    new Vue({
+        el: "#appu2",
+        data: function () {
+            return {
+                query: {
+                    keyWord: "",//搜索关键词
+                    owner: appOwner,
+                    token: token,
+                    urlPrefix: urlPrefix,
+                    lang:"i18n_zh_CN"
+                },
+                isError: false
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            // _this.init();
+        },
+        methods: {
+            init: function(){
+                $.ajax({
+                    url: "/aop_component//webber/search/test",
+                    type: "get",
+                    success: function (response) {
+                        if (response.code == "0000") {
+                        } else if (response.code == "220") {
+                            _this.isError = true;
+                            console.log(response);
+                        } else if (!response.code) {
+                            _this.isError = true;
+                            console.log(response);
+                        }
+                    },
+                    error: function (response) {
+                        _this.isError = true;
+                    }
+                });
+            },
+            onSubmit: function (e) {
+                var url = "/aop_views/search/modules/resultpc/soso.html";
+                if ("10" == "1" || "10" == "2") {
+                    url = "" + url;
+                }
+                var _this = this;
+                var query = _this.query;
+                if (url.indexOf("?") > -1) {
+                    url = url.split("?")[0];
+                }
+                if (query.keyWord) {
+                    var query = new Base64().encode(JSON.stringify(query));
+                    window.open(url + "?query=" + query);
+                } else {
+                    alert("请填写搜索内容")
+                }
+            },
+        }
+    })
+</script></div>
+                    </li>
+                </ul>
+                <div class="mian-nav"><ul class="nav flex-right ">
+                                              <li><a href="../xxgk1.htm" target="_blank" class="dropdown-toggle">学校概况</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="../xxgk1/xxjj.htm" target="_blank">学校简介</a>
+                                    <a href="../xxgk1/lsyg.htm" target="_blank">历史沿革</a>
+                                    <a href="../xxgk1/xxzc.htm" target="_blank">学校章程</a>
+                                    <a href="../xxgk1/xrld.htm" target="_blank">现任领导</a>
+                                    <a href="../xxgk1/lrld.htm" target="_blank">历任领导</a>
+                                    <a href="../xxgk1/xxbs.htm" target="_blank">学校标识</a>
+                                    <a href="../xxgk1/xydl.htm" target="_blank">校园导览</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../xxjg.htm#jg_area" target="_blank" class="dropdown-toggle">学校机构</a>
+                            <div class="sub-nav">
+                                <div class="sub-nav-h jg-nav-h">
+                                    <a href="../xxjg.htm#1" target="_blank">党政管理机构</a>
+                                    <a href="../xxjg.htm#2" target="_blank">驻校纪检监察机构</a>
+                                    <a href="../xxjg.htm#3" target="_blank">教学业务机构</a>
+                                    <a href="../xxjg.htm#4" target="_blank">群团组织</a>
+                                    <a href="../xxjg.htm#5" target="_blank">教学辅助机构</a>
+                                    <a href="../xxjg.htm#6" target="_blank">重点科研机构</a>
+                                    <a href="../xxjg.htm#7" target="_blank">附属机构</a>
+                                    <a href="../xxjg.htm#8" target="_blank">其他机构</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../rcpy3.htm" target="_blank" class="dropdown-toggle">人才培养</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="http://jwc.tyut.edu.cn/" target="_blank">本科生教育</a>
+                                    <a href="http://www.gs.tyut.edu.cn/" target="_blank">研究生教育</a>
+                                    <a href="http://ciee.tyut.edu.cn/" target="_blank">留学生教育</a>
+                                    <a href="http://jxjyxy.tyut.edu.cn/" target="_blank">继续教育</a>
+                                    <a href="../rcpy3/wljx.htm" target="_blank">网络教学</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../kxyj2.htm" target="_blank" class="dropdown-toggle">科学研究</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="http://kj.tyut.edu.cn/" target="_blank">科学技术研究院</a>
+                                    <a href="https://gyjsyjy.tyut.edu.cn/" target="_blank">工业技术研究院</a>
+                                    <a href="../kxyj2/kycg/kycg.htm" target="_blank">科研成果</a>
+                                    <a href="../kxyj2/yjjg/gjkcjd.htm" target="_blank">研究机构</a>
+                                    <a href="http://qkzx.tyut.edu.cn/" target="_blank">期刊中心</a>
+                                    <a href="https://tyutjournal.tyut.edu.cn/" target="_blank">太原理工大学学报</a>
+                                    <a href="http://www.tyls.cbpt.cnki.net/" target="_blank">太原理工大学学报社科版</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../xkjs.htm" target="_blank" class="dropdown-toggle">学科建设</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="../xkjs/gjjzdxk.htm" target="_blank">国家级重点学科</a>
+                                    <a href="../xkjs/sjzdxk.htm" target="_blank">省级重点学科</a>
+                                    <a href="../xkjs/ysxk.htm" target="_blank">优势学科</a>
+                                    <a href="../xkjs/bsxwsqxk.htm" target="_blank">博士学位授权学科</a>
+                                    <a href="../xkjs/ssxwsqxk.htm" target="_blank">硕士学位授权学科</a>
+                                    <a href="../xkjs/bkzysz.htm" target="_blank">本科专业设置</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../szdw1.htm" target="_blank" class="dropdown-toggle">师资队伍</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="../szdw1/lyys.htm" target="_blank">两院院士</a>
+                                    <a href="../szdw1/zjxz.htm" target="_blank">专家学者</a>
+                                    <a href="../szdw1/jxms.htm" target="_blank">教学名师</a>
+                                    <a href="../szdw1/cxtd.htm" target="_blank">创新团队</a>
+                                    <a href="http://www.gs.tyut.edu.cn/zsgz/yxjdsxx.htm" target="_blank">研究生导师</a>
+                                    <a href="http://renshi.tyut.edu.cn/" target="_blank">人才招聘</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../xsgz.htm" target="_blank" class="dropdown-toggle">学生工作</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="http://student.tyut.edu.cn/" target="_blank">学生工作部</a>
+                                    <a href="http://gongqingtuan.tyut.edu.cn/" target="_blank">共青团</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../zsjy.htm" target="_blank" class="dropdown-toggle">招生就业</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="http://zs.tyut.edu.cn/" target="_blank">本科生招生</a>
+                                    <a href="yjszs.htm" target="_blank">研究生招生</a>
+                                    <a href="http://is.tyut.edu.cn " target="_blank">留学生招生</a>
+                                    <a href="http://jxjyxy.tyut.edu.cn" target="_blank">继续教育招生</a>
+                                    <a href="https://career.tyut.edu.cn/" target="_blank">就业服务</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="../hzjl.htm" target="_blank" class="dropdown-toggle">合作交流</a>
+                            <div class="sub-nav ">
+                                <div class="sub-nav-h">
+                                    <a href="../hzjl/gjhz2.htm" target="_blank">国际合作</a>
+                                    <a href="../hzjl/gnhz1.htm" target="_blank">国内合作</a>
+                                    <a href="http://xiaoyou.tyut.edu.cn/" target="_blank">校友会</a>
+                                    <a href="../hzjl/zjyz.htm" target="_blank">专家引智</a>
+                                    <a href="http://ices.tyut.edu.cn/kzxy/afhkbedxkzxy.htm" target="_blank">孔子学院</a>
+                                </div>
+                            </div>
+                        </li>
+</ul></div>
+            </div>
+        </div>
+    </div>
+    <div class="headerm flex">
+        <div class="logo flex-v-center">
+            
+<!-- 网站logo图片地址请在本组件"内容配置-网站logo"处填写 -->
+<a href="../index.htm" title="太原理工大学2021" target="_blank"><img src="../images/logo.png" alt="" class="imgMargin"></a>
+        </div>
+        <div class="mobNavbtn flex">
+            <a href="javascript:;" class="trans searchbtn toSearch2 flex-v-center"><img src="../images/ser.svg" height="20" /></a>
+            <div class="flex-v-center">
+                <button class="menu-btn">
+                    <span class="line-1"></span><span class="line-2"></span><span class="line-3"></span>MENU
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="sermob">
+
+
+<div id="divu5"></div>
+<script type="text/html" id="htmlu5">
+    <div id="appu5">
+        <div v-if="!isError" class="flex">
+            <input type="text" class="inp" placeholder="搜索..." autocomplete=off v-model=query.keyWord @keyup.enter="onSubmit">
+            <input class="sub" name="submit_button" type="submit" value="" v-on:click="onSubmit()"/>
+        </div>
+        <span class="swiper-icons swi-close close"></span>
+        <div v-if="isError" style="color: #b30216; font-size:18px;text-align: center;padding:20px;">
+            应用维护中！
+        </div>
+    </div>
+</script>
+<script>
+    $("#divu5").html($("#htmlu5").text());
+</script>
+<script>
+    var appOwner = "1796696457";
+    var token = gettoken(10);
+    var urlPrefix = "/aop_component/";
+
+    jQuery.support.cors = true;
+    $.ajaxSetup({
+        beforeSend: function (request, settings) {
+            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("owner", appOwner);
+        }
+    });
+
+    new Vue({
+        el: "#appu5",
+        data: function () {
+            return {
+                query: {
+                    keyWord: "",//搜索关键词
+                    owner: appOwner,
+                    token: token,
+                    urlPrefix: urlPrefix,
+                    lang:"i18n_zh_CN"
+                },
+                isError: false
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            // _this.init();
+        },
+        methods: {
+            init: function(){
+                $.ajax({
+                    url: "/aop_component//webber/search/test",
+                    type: "get",
+                    success: function (response) {
+                        if (response.code == "0000") {
+                        } else if (response.code == "220") {
+                            _this.isError = true;
+                            console.log(response);
+                        } else if (!response.code) {
+                            _this.isError = true;
+                            console.log(response);
+                        }
+                    },
+                    error: function (response) {
+                        _this.isError = true;
+                    }
+                });
+            },
+            onSubmit: function (e) {
+                var url = "/aop_views/search/modules/resultpc/soso.html";
+                if ("10" == "1" || "10" == "2") {
+                    url = "" + url;
+                }
+                var _this = this;
+                var query = _this.query;
+                if (url.indexOf("?") > -1) {
+                    url = url.split("?")[0];
+                }
+                if (query.keyWord) {
+                    var query = new Base64().encode(JSON.stringify(query));
+                    window.open(url + "?query=" + query);
+                } else {
+                    alert("请填写搜索内容")
+                }
+            },
+        }
+    })
+</script></div>
+    <div class="mobNav">
+        <div class="flex toplink"><a href="https://one.tyut.edu.cn" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57498)"><i class="iconfont icon-zhihuitiku"></i><span>智慧校园</span></a>
+            
+<a href="http://english.tyut.edu.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57500)"><i class="iconfont icon-duoyuyan"></i><span>English</span></a>
+            
+</div>
+        <ul>            <li>
+                <div class="navp flex"><a href="../xxgk1.htm">学校概况</a><i></i></div>
+                <div class="subNavm">
+                    <a href="../xxgk1/xxjj.htm"><span>学校简介</span></a>
+                    <a href="../xxgk1/lsyg.htm"><span>历史沿革</span></a>
+                    <a href="../xxgk1/xxzc.htm"><span>学校章程</span></a>
+                    <a href="../xxgk1/xrld.htm"><span>现任领导</span></a>
+                    <a href="../xxgk1/lrld.htm"><span>历任领导</span></a>
+                    <a href="../xxgk1/xxbs.htm"><span>学校标识</span></a>
+                    <a href="../xxgk1/xydl.htm"><span>校园导览</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../xxjg.htm#jg_area">学校机构</a><i></i></div>
+                <div class="subNavm">
+                    <a href="../xxjg.htm"><span>党政管理机构</span></a>
+                    <a href="../xxjg.htm"><span>驻校纪检监察机构</span></a>
+                    <a href="../xxjg.htm"><span>教学业务机构</span></a>
+                    <a href="../xxjg.htm"><span>群团组织</span></a>
+                    <a href="../xxjg.htm"><span>教学辅助机构</span></a>
+                    <a href="../xxjg.htm"><span>重点科研机构</span></a>
+                    <a href="../xxjg.htm"><span>附属机构</span></a>
+                    <a href="../xxjg.htm"><span>其他机构</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../rcpy3.htm">人才培养</a><i></i></div>
+                <div class="subNavm">
+                    <a href="http://jwc.tyut.edu.cn/"><span>本科生教育</span></a>
+                    <a href="http://www.gs.tyut.edu.cn/"><span>研究生教育</span></a>
+                    <a href="http://ciee.tyut.edu.cn/"><span>留学生教育</span></a>
+                    <a href="http://jxjyxy.tyut.edu.cn/"><span>继续教育</span></a>
+                    <a href="../rcpy3/wljx.htm"><span>网络教学</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../kxyj2.htm">科学研究</a><i></i></div>
+                <div class="subNavm">
+                    <a href="http://kj.tyut.edu.cn/"><span>科学技术研究院</span></a>
+                    <a href="https://gyjsyjy.tyut.edu.cn/"><span>工业技术研究院</span></a>
+                    <a href="../kxyj2/kycg/kycg.htm"><span>科研成果</span></a>
+                    <a href="../kxyj2/yjjg/gjkcjd.htm"><span>研究机构</span></a>
+                    <a href="http://qkzx.tyut.edu.cn/"><span>期刊中心</span></a>
+                    <a href="https://tyutjournal.tyut.edu.cn/"><span>太原理工大学学报</span></a>
+                    <a href="http://www.tyls.cbpt.cnki.net/"><span>太原理工大学学报社科版</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../xkjs.htm">学科建设</a><i></i></div>
+                <div class="subNavm">
+                    <a href="../xkjs/gjjzdxk.htm"><span>国家级重点学科</span></a>
+                    <a href="../xkjs/sjzdxk.htm"><span>省级重点学科</span></a>
+                    <a href="../xkjs/ysxk.htm"><span>优势学科</span></a>
+                    <a href="../xkjs/bsxwsqxk.htm"><span>博士学位授权学科</span></a>
+                    <a href="../xkjs/ssxwsqxk.htm"><span>硕士学位授权学科</span></a>
+                    <a href="../xkjs/bkzysz.htm"><span>本科专业设置</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../szdw1.htm">师资队伍</a><i></i></div>
+                <div class="subNavm">
+                    <a href="../szdw1/lyys.htm"><span>两院院士</span></a>
+                    <a href="../szdw1/zjxz.htm"><span>专家学者</span></a>
+                    <a href="../szdw1/jxms.htm"><span>教学名师</span></a>
+                    <a href="../szdw1/cxtd.htm"><span>创新团队</span></a>
+                    <a href="http://www.gs.tyut.edu.cn/zsgz/yxjdsxx.htm"><span>研究生导师</span></a>
+                    <a href="http://renshi.tyut.edu.cn/"><span>人才招聘</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../xsgz.htm">学生工作</a><i></i></div>
+                <div class="subNavm">
+                    <a href="http://student.tyut.edu.cn/"><span>学生工作部</span></a>
+                    <a href="http://gongqingtuan.tyut.edu.cn/"><span>共青团</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../zsjy.htm">招生就业</a><i></i></div>
+                <div class="subNavm">
+                    <a href="http://zs.tyut.edu.cn/"><span>本科生招生</span></a>
+                    <a href="yjszs.htm"><span>研究生招生</span></a>
+                    <a href="http://is.tyut.edu.cn "><span>留学生招生</span></a>
+                    <a href="http://jxjyxy.tyut.edu.cn"><span>继续教育招生</span></a>
+                    <a href="https://career.tyut.edu.cn/"><span>就业服务</span></a>
+                </div>
+            </li>
+                   <li>
+                <div class="navp flex"><a href="../hzjl.htm">合作交流</a><i></i></div>
+                <div class="subNavm">
+                    <a href="../hzjl/gjhz2.htm"><span>国际合作</span></a>
+                    <a href="../hzjl/gnhz1.htm"><span>国内合作</span></a>
+                    <a href="http://xiaoyou.tyut.edu.cn/"><span>校友会</span></a>
+                    <a href="../hzjl/zjyz.htm"><span>专家引智</span></a>
+                    <a href="http://ices.tyut.edu.cn/kzxy/afhkbedxkzxy.htm"><span>孔子学院</span></a>
+                </div>
+            </li>
+            </ul>
+    </div>
+    <div class="c-ban" style="background-image: url(../images/c-ban02.jpg);">
+        <div class="txt">
+            <div class="wp">
+                <h3 class="tit">
+招生就业</h3>
+                <div class="cur"> 
+                        <a href="../index.htm" class="in" target="_blank">首页</a>
+                <span>>></span>
+                <a href="../zsjy.htm" target="_blank">招生就业</a>
+                <span>>></span>
+                <a href="yjszs.htm" target="_blank">研究生招生</a>
+</div>
+            </div>
+        </div>
+    </div>
+     <div class="c-ban-mobile c-ban" style="background-image: url(../images/c-ban02.jpg);">
+        <div class="txt">
+            <div class="wp">
+                <h3 class="tit">
+招生就业</h3>
+                <div class="cur"> 
+                        <a href="../index.htm" class="in" target="_blank">首页</a>
+                <span>>></span>
+                <a href="../zsjy.htm" target="_blank">招生就业</a>
+                <span>>></span>
+                <a href="yjszs.htm" target="_blank">研究生招生</a>
+</div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <div class="c-tabclick" style="padding:0px;"></div>
+        <div class="j-item">
+       <div class="wp">
+        <div class="num1">
+            <div class="i-pic"><img src="../images/jjy/icon1-2.png" alt=""></div>
+            <div class="titico"><img src="../images/jjy/icon1-1.png" alt=""></div>
+            <div class="name">
+研究生招生</div>
+            <div class="titico"><img src="../images/jjy/icon2-1.png" alt=""></div>
+            <div class="i-pic"><img src="../images/jjy/icon2-2.png" alt=""></div>
+        </div>
+        <div class="num2">
+
+
+
+
+
+<script language="javascript" src="/system/resource/js/ajax.js"></script><script language="javascript">_getBatchClickTimes('null',1796696457,'wbnews','u13')</script>
+<link rel="stylesheet" Content-type="text/css" href="/system/resource/style/component/news/content/format2.css"><script>function seeContenta13(contentid,size,displayid){	document.getElementById(contentid).innerHTML = '[';	for(var i=0;i<=size;i++){		var allcontentid = contentid+(i+1);		if(allcontentid==displayid){			document.getElementById(contentid).innerHTML += " <span id='"+allcontentid+"' name='"+allcontentid+"'  >"+(i+1)+"</span> ";			document.getElementById(displayid).style.display = 'block';		}else{			document.getElementById(contentid).innerHTML += " <span style='cursor:pointer' id='"+allcontentid+"' name='"+allcontentid+"' onclick=seeContenta13('"+contentid+"','"+size+"','"+allcontentid+"')  >"+(i+1)+"</span> ";			document.getElementById(allcontentid).style.display = 'none';		}	}	document.getElementById(contentid).innerHTML += ']';}</script>
+<script language="javascript" src="/system/resource/js/news/mp4video.js"></script>
+<script>_addDynClicks('wbnews',1796696457,5080)</script>
+
+    <div id="vsb_content_2_5080_u131"><div id="vsb_content_2"><p class="vsbcontent_start" style="font-size: 18px;"><span style="font-size: 18px;">1962年，学校首次培养研究生；1978年，学校恢复招收研究生制度；1986年，太原工业大学成为博士学位授权单位。现有17个一级学科博士学位授权点，3个专业学位博士学位授权点，2个交叉学科博士点，36个一级学科硕士学位授权点，17个专业学位硕士学位授权点。3个国家重点学科，15个省重点学科，19个省重点建设学科。2021年进入第二轮“双一流”建设发展期。目前，有博士生导师872人，硕士生导师3271人。在校硕士研究生11833人，其中博士研究生1883人。<span style="text-indent: 36px; text-wrap: wrap;">每年招收博士研究生近600名，招收硕士研究生4000余名。</span></span></p><p style="font-size: 18px;"><span style="font-size: 18px;">相关链接：</span></p><p style="font-size: 18px;"><span style="font-size: 18px;">太原理工大学研究生院网站：</span><a href="http://www.gs.tyut.edu.cn/" style="text-indent: 2em;"><span style="font-size: 18px;">http://www.gs.tyut.edu.cn</span></a></p></div></div>
+    <span id="vsb_content_2_5080_u13" name="vsb_content_2_5080_u13"></span><br /><br />
+    
+</div>
+       </div>
+    </div>
+               
+        <div class="footer">
+        <div class="fta">
+            <div class="wp flex pore">
+                <dl class="aleft "><dt>友情链接</dt>
+<div class="fr_link">
+                    <dd>      
+<p><a href="http://www.moe.gov.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57486)">中华人民共和国教育部</a></p>
+                        
+<p><a href="http://www.most.gov.cn/index.html" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57531)">中华人民共和国科学技术部</a></p>
+                        
+<p><a href="https://www.nsfc.gov.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57533)">国家自然科学基金委员会</a></p>
+                        
+<p><a href="http://www.sastind.gov.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57810)">国家国防科工局</a></p>
+                        
+<p><a href="http://www.weain.mil.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57811)">武器装备信息网</a></p>
+                        
+</dd>
+                    <dd>      
+<p><a href="http://jyt.shanxi.gov.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57489)">山西省教育厅</a></p>
+                        
+<p><a href="https://kjt.shanxi.gov.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57532)">山西省科学技术厅</a></p>
+                        
+<p><a href="https://www.eol.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57627)">中国教育在线</a></p>
+                        
+<p><a href="https://www.chsi.com.cn/" target="_blank" onclick="_addDynClicks(&#34;wburl&#34;, 1796696457, 57487)">中国高等教育学生信息网（学信网）</a></p>
+                        
+</dd>
+</div></dl>
+                <div class="amid">
+                    <div class="ftlogo">    
+<a href="../index.htm" target="_blank"><img src="../images/foot_logo1.png" alt="" class="imgMargin"></a>
+
+</div>
+                </div>
+                <dl class="aright ">
+<dt>联系我们</dt>
+                    <dd>
+                        <p>迎西校区：中国山西省太原市万柏林区迎泽西大街79号</p>
+<p>邮编：030024<br></p>
+<p>明向校区：中国山西省晋中市榆次区大学街209号</p>
+<p>邮编：030600</p>
+<p><span><span>邮箱：tyutxcb@tyut.edu.cn</span></span></p>
+                    </dd>
+</dl>
+            </div>
+        </div>
+        <div class="ftb">
+            <div class="wp">
+                <p><!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+<p>版权所有：太原理工大学　<a href="https://beian.mps.gov.cn/#/query/webSearch?code=14010902001579" class="a1" target="_blank"> 晋公网安备14010902001579</a>　<a href="https://beian.miit.gov.cn/">晋ICP备05000465号</a></p></p>
+            </div>
+        </div>
+    </div>
+    <script src="../js/ie_cn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/wow.min2.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        var wow = new WOW({
+            boxClass: 'Uani',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: false,
+            live: true
+        });
+        wow.init();
+    </script>
+    <!-- 分享 -->
+    <link rel="stylesheet" href="../css/jsmodern.min.css">
+    <script src="../js/jquery_min.js"></script>
+    <script src="../js/jsmodern.min.js"></script>
+    <script>
+        jsModern.share({
+            qrcode: "#share-qrcode",
+            douban: "#share-douban",
+            qzone: "#share-qzone",
+            sina: "#share-sina",
+            qq: "#share-qq"
+        });
+    </script>
+    <link rel="stylesheet" href="../css/slick.css">
+    <script src="../js/slick.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            $(' .slick-e1').slick({
+                arrows: true,
+                dots: false,
+                autoplay: false,
+                autoplaySpeed: 4000,
+            })
+        })
+        $('.slick-e1').on('afterChange', function(event, slick, currentSlide, nextSlide) {
+            $(".m-btn-e1 a").eq(currentSlide).addClass('on').siblings("a").removeClass('on');
+        });
+        $(".m-btn-e1 a").click(function() {
+            $(this).addClass('on').siblings().removeClass('on');
+            var num = $(this).index();
+            $('.slick-e1').slick('slickGoTo', num);
+        });
+    </script>
+</body>
+
+</html>

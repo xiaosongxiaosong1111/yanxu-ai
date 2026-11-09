@@ -69,6 +69,7 @@ def public_target(url, resolver=socket.getaddrinfo):
 
 class _PinnedConnection(http.client.HTTPConnection):
     def __init__(self, host, port, address, timeout, tls):
+        self.default_port = 443 if tls else 80
         super().__init__(host, port=port, timeout=timeout)
         self._address, self._tls = address, tls
 

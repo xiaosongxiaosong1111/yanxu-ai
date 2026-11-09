@@ -1,0 +1,257 @@
+{
+  "boundary": "Same120/public bundle/budget; sequential public live runs can differ in network or remote content, so deltas are observations, not causal claims.",
+  "sample_bytes_equal": true,
+  "collector_stable": true,
+  "before": {
+    "all": {
+      "total": 120,
+      "phase_metrics": {
+        "known_independent_entry": 65,
+        "official_account_known": 85,
+        "independent_website_http_read": 60,
+        "requested_body_from_live_website": 25,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 26
+      },
+      "target_metrics": {
+        "entry_verified": 94,
+        "requested_document_located": 50,
+        "requested_body_read": 25,
+        "source_evidence_complete": 24
+      },
+      "public_http_requests": 394
+    },
+    "registered_research": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 30,
+        "official_account_known": 23,
+        "independent_website_http_read": 25,
+        "requested_body_from_live_website": 9,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 0
+      },
+      "target_metrics": {
+        "entry_verified": 30,
+        "requested_document_located": 15,
+        "requested_body_read": 9,
+        "source_evidence_complete": 8
+      },
+      "public_http_requests": 165
+    },
+    "registered_school": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 30,
+        "official_account_known": 28,
+        "independent_website_http_read": 30,
+        "requested_body_from_live_website": 14,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 0
+      },
+      "target_metrics": {
+        "entry_verified": 30,
+        "requested_document_located": 22,
+        "requested_body_read": 14,
+        "source_evidence_complete": 14
+      },
+      "public_http_requests": 192
+    },
+    "unregistered_research": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 1,
+        "official_account_known": 13,
+        "independent_website_http_read": 1,
+        "requested_body_from_live_website": 1,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 17
+      },
+      "target_metrics": {
+        "entry_verified": 13,
+        "requested_document_located": 6,
+        "requested_body_read": 1,
+        "source_evidence_complete": 1
+      },
+      "public_http_requests": 7
+    },
+    "unregistered_school": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 4,
+        "official_account_known": 21,
+        "independent_website_http_read": 4,
+        "requested_body_from_live_website": 1,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 9
+      },
+      "target_metrics": {
+        "entry_verified": 21,
+        "requested_document_located": 7,
+        "requested_body_read": 1,
+        "source_evidence_complete": 1
+      },
+      "public_http_requests": 30
+    }
+  },
+  "after": {
+    "all": {
+      "total": 120,
+      "phase_metrics": {
+        "known_independent_entry": 65,
+        "official_account_known": 85,
+        "independent_website_http_read": 60,
+        "requested_body_from_live_website": 24,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 26
+      },
+      "target_metrics": {
+        "entry_verified": 94,
+        "requested_document_located": 49,
+        "requested_body_read": 24,
+        "source_evidence_complete": 23
+      },
+      "public_http_requests": 390
+    },
+    "registered_research": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 30,
+        "official_account_known": 23,
+        "independent_website_http_read": 25,
+        "requested_body_from_live_website": 9,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 0
+      },
+      "target_metrics": {
+        "entry_verified": 30,
+        "requested_document_located": 15,
+        "requested_body_read": 9,
+        "source_evidence_complete": 8
+      },
+      "public_http_requests": 164
+    },
+    "registered_school": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 30,
+        "official_account_known": 28,
+        "independent_website_http_read": 30,
+        "requested_body_from_live_website": 13,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 0
+      },
+      "target_metrics": {
+        "entry_verified": 30,
+        "requested_document_located": 21,
+        "requested_body_read": 13,
+        "source_evidence_complete": 13
+      },
+      "public_http_requests": 189
+    },
+    "unregistered_research": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 1,
+        "official_account_known": 13,
+        "independent_website_http_read": 1,
+        "requested_body_from_live_website": 1,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 17
+      },
+      "target_metrics": {
+        "entry_verified": 13,
+        "requested_document_located": 6,
+        "requested_body_read": 1,
+        "source_evidence_complete": 1
+      },
+      "public_http_requests": 7
+    },
+    "unregistered_school": {
+      "total": 30,
+      "phase_metrics": {
+        "known_independent_entry": 4,
+        "official_account_known": 21,
+        "independent_website_http_read": 4,
+        "requested_body_from_live_website": 1,
+        "requested_body_from_cached_account": 0,
+        "initial_seed_missing": 9
+      },
+      "target_metrics": {
+        "entry_verified": 21,
+        "requested_document_located": 7,
+        "requested_body_read": 1,
+        "source_evidence_complete": 1
+      },
+      "public_http_requests": 30
+    }
+  },
+  "unit_differences": [
+    {
+      "unit_id": "367878",
+      "name": "北京大学",
+      "changes": {
+        "requested_body_from_live_website": {
+          "before": true,
+          "after": false
+        },
+        "requested_document_located": {
+          "before": true,
+          "after": false
+        },
+        "requested_body_read": {
+          "before": true,
+          "after": false
+        },
+        "source_evidence_complete": {
+          "before": true,
+          "after": false
+        }
+      },
+      "before_errors": [
+        {
+          "url": "http://yjsy.bjmu.edu.cn/",
+          "code": "http_error",
+          "message": "官方来源读取失败（HTTP 404）。"
+        },
+        {
+          "url": "https://yjsy.bjmu.edu.cn/",
+          "code": "http_error",
+          "message": "官方来源读取失败（HTTP 404）。"
+        }
+      ],
+      "after_errors": [
+        {
+          "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?channelID=LEJZ6539",
+          "code": "http_error",
+          "message": "官方来源读取失败（HTTP 404）。"
+        },
+        {
+          "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?siteID=LEJZ157&channelID=0&contentID=0",
+          "code": "http_error",
+          "message": "官方来源读取失败（HTTP 404）。"
+        },
+        {
+          "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?channelID=LEJZ6539",
+          "code": "http_error",
+          "message": "官方来源读取失败（HTTP 404）。"
+        },
+        {
+          "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?siteID=LEJZ157&channelID=0&contentID=0",
+          "code": "http_error",
+          "message": "官方来源读取失败（HTTP 404）。"
+        },
+        {
+          "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?channelID=LEJZ6539",
+          "code": "http_error",
+          "message": "官方来源读取失败（HTTP 404）。"
+        },
+        {
+          "url": "https://yjsy.bjmu.edu.cn/cms/web/writeLog.jsp?siteID=LEJZ157&channelID=0&contentID=0",
+          "code": "navigation_budget_exceeded",
+          "message": "本轮官网导航预算已用完；已定位入口和待补步骤已保留。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://gsao.fudan.edu.cn/main.psp",
+    "pinned_address": "175.186.248.53",
+    "explicit_host_without_default_port": false,
+    "error": "RemoteDisconnected",
+    "message": "Remote end closed connection without response"
+  },
+  {
+    "url": "https://gsao.fudan.edu.cn/main.psp",
+    "pinned_address": "175.186.248.53",
+    "explicit_host_without_default_port": true,
+    "status": 200,
+    "sha256": "8833e8d4e211995cbfc36610d6f3dfddc90ef7af22f51ae880c47de2873118ce",
+    "response_bytes": 42457,
+    "title": "复旦大学研究生招生网"
+  }
+]

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>四川省委党校研究生部 </title>
+	<link rel="icon" href="/static/images/favicon.ico" type="x-icon" />
+	<link rel="stylesheet" href="/template/1/yjssite/css/main.css">
+	<link rel="stylesheet" href="/template/1/yjssite/css/swiper-bundle.min.css">
+	<link rel="stylesheet" href="/template/1/yjssite/css/animate.min.css">
+
+	<script type="text/javascript" src="/static/plugins/vue/2.6.9/vue.min.js"></script>
+	<link rel="stylesheet" href="/static/plugins/iconfont/1.0.0/iconfont.css" />
+	<link rel="stylesheet" href="/static/plugins/animate/4.1.0/animate.min.css" />
+	<script src="/static/plugins/element-ui/2.12.0/index.js"></script>
+	<link rel="stylesheet" href="/static/plugins/element-ui/2.12.0/index.css" />
+
+	<style type="text/css">
+		.el-select .el-input {
+			width: 90px;
+		}
+		.jctj-swiper{
+			position: relative;
+			width: 1200px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<!-- 包含文件头部  搜索导航 -->
+		<!-- 顶部区域 -->
+<div class="top_header">
+    <div class="w1200">
+        <div class="header-menu">
+            <span class="item" onclick="SetHome(this,window.location)">设为主页</span><span class="item" onclick="AddFavorite(window.location,document.title)">加入收藏</span>
+        </div>
+    </div>
+</div>
+<!-- logo区域 -->
+<div class="logo_header">
+    <div class="w1200 clth_bg">
+        <div class="logo">
+            <a href="/html/website/yjssite/index.html">
+                <img src="/template/1/yjssite/img/yjs_logo.png" width="100%" height="100%" alt="蜀光网">
+            </a>
+        </div>
+    </div>
+</div>
+<!-- menu 菜单区域 -->
+<div class="menu-nav">
+    <div class="w1200 clth_bg">
+        <div class="flex-box">
+            <ul class="nav">
+                <li class="item"><a href="/html/website/yjssite/index.html">网站首页</a></li>
+                <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/jianjie/xuexiaojianjie/index.html">简&nbsp;&nbsp;介</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/jianjie/xuexiaojianjie/index.html">学校简介</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/jianjie/jigoushezhi1427148206185320449/index.html">机构设置</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/jianjie/lianxifangshi/index.html">联系方式</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/jianjie/xuekejianjie/index.html">学科简介</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/zhaoshengjianzhang/index.html">招生信息</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/zhaoshengjianzhang/index.html">招生简章</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/zhaoshengzhengce/index.html">招生政策</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/chushichengjichaxun/index.html">初试成绩查询</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/xinxifabu/index.html">信息发布</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="/html/website/yjssite/yanjiushengbuwangzhan/peiyangguanli1435523876959535106/xueshuxingshuoshipeiyang1435524334461632514/index.html">培养管理</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/peiyangguanli1435523876959535106/xueshuxingshuoshipeiyang1435524334461632514/index.html">学术型硕士培养</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/peiyangguanli1435523876959535106/zhuanyeshuoshipeiyang/index.html">专业硕士培养</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="/html/website/yjssite/yanjiushengbuwangzhan/xueweigongzuo/xueweiwenjian/index.html">学位工作</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/xueweigongzuo/xueweiwenjian/index.html">学位文件</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/xueweigongzuo/xueweilunwen/index.html">学位论文</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/xueweigongzuo/xueweishouyu/index.html">学位授予</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="/html/website/yjssite/yanjiushengbuwangzhan/jiuyezhidao/zhengcetongzhi/index.html">就业指导</a>
+                    <ul class="child-nav">
+                       <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/jiuyezhidao/zhengcetongzhi/index.html" target="_blank">政策通知</a></li>
+                       <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/jiuyezhidao/jiuyezhinan/index.html" target="_blank">就业指南</a></li>
+                       <li class="item"><a href="https://scge.jiuyeqiao.cn/" target="_blank">就业桥</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/yanjiushenghui/index.html">学生园地</a>
+                    <ul class="child-nav">
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/yanjiushenghui/index.html">研究生会</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshenghuodong/index.html">学生活动</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshengdangjian/index.html">学生党建</a></li>
+                        <li class="item"><a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/jiangxuezhuxue/index.html">奖学助学</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="/html/website/yjssite/yanjiushengbuwangzhan/ziliaoxiazai1427151802033442817/index.html">资料下载</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="/template/1/yjssite/js/jquery-1.12.4.js"></script>
+<script>
+    // 导航下拉 防抖
+    var timer;
+    var navChoose = function() {
+        $('.nav > .item').mouseenter(function() {
+            if (!timer) {
+                timer = setTimeout(() => {
+                    $(this).find(".child-nav").slideDown('fast');
+                }, 200);
+            }
+        });
+        $('.nav > .item').mouseleave(function() {
+            $(this).find(".child-nav").slideUp('fast');
+            clearTimeout(timer);
+            timer = null;
+        })
+    }
+
+    navChoose();
+
+    $("#btnquery").click(function() {
+        if ($("#content_title").val() == '') {
+            alert('请输入关键字查询');
+            return;
+        }
+
+        $("#searchForm").submit();
+    })
+
+    //  加入收藏
+    function AddFavorite(sURL, sTitle) {
+        try {
+            window.external.addFavorite(sURL, sTitle);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(sTitle, sURL, "");
+            } catch (e) {
+                alert("加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+
+    //设为首页
+    function SetHome(vrl) {
+        if (document.all) {
+            document.body.style.behavior = "url(#default#homepage)";
+            document.body.setHomePage(vrl);
+        } else {
+            alert('您的浏览器不支持自动设置页面为首页功能，请手动在浏览器里设置改页面为首页')
+        }
+    }
+</script>		<!-- 通知公告区域 -->
+		<div class="notice_div">
+			<div class="notice_div_main">
+				<div class="notice_div_l">
+					<div class="swiper-container swiper-ads">
+						<div class="notice_div_l_list swiper-wrapper">
+							<div class="notice_div_l_list_c swiper-slide">
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2108374726903726081.html" title="中共四川省委党校2027年硕士研究生招生简章"
+									target="_blank">中共四川省委党校2027年硕士研究生招生简章</a>
+							</div>
+							<div class="notice_div_l_list_c swiper-slide">
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2098241289207283714.html" title="关于调整公共管理硕士（MPA）学费标准的公示"
+									target="_blank">关于调整公共管理硕士（MPA）学费标准的公示</a>
+							</div>
+							<div class="notice_div_l_list_c swiper-slide">
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2047589146188570625.html" title="中共四川省委党校2026年硕士研究生招生拟录取名单公示"
+									target="_blank">中共四川省委党校2026年硕士研究生招生拟录取名单公示</a>
+							</div>
+							<div class="notice_div_l_list_c swiper-slide">
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2046874663233249281.html" title="中共四川省委党校2026年硕士研究生调剂考生（第三批次）复试成绩及总成绩公布"
+									target="_blank">中共四川省委党校2026年硕士研究生调剂考生（第三批次）复试成绩及总成绩公布</a>
+							</div>
+							<div class="notice_div_l_list_c swiper-slide">
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2046044447149645826.html" title="中共四川省委党校2026年硕士研究生复试工作安排（调剂第三批次）"
+									target="_blank">中共四川省委党校2026年硕士研究生复试工作安排（调剂第三批次）</a>
+							</div>
+							<!-- <li><a href="#" target="_blank">http://www.scge.gov.cn/html/website/yjssite</a></li> -->
+						</div>
+					</div>
+				</div>
+				<div class="notice_div_r" id="app">
+					<form id="searchForm" class="searchForm" action="/mdiyPage/yjssite/esSearch.do" method="get">
+						<el-input placeholder="请输入关键字进行搜索" v-model="keyword" name="keyword" value="keyword"
+							class="input-with-select" @keyup.enter.native="btnQuery">
+							<el-select v-model='select' name="selecttype" @change="handleSelect" slot="prepend"
+								placeholder="请选择">
+								<el-option v-for="(option,index) in options" :key="index" :label="option.text"
+									:value="option.value" />
+							</el-select>
+							<el-button slot="append" icon="el-icon-search" type="submit" @click="btnQuery">
+							</el-button>
+						</el-input>
+						<input type="hidden" name="net" value="yjssite">
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 头条区域 -->
+		<div class="w1200 headlines_div">
+			<div class="headlines_ct">
+				<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/c,h,p2115981115402616834.html" title="2026级硕士研究生开学典礼举行" target="_blank">
+					<h3>
+						2026级硕士研究生开学典礼举行
+					</h3>
+					<p>
+        金秋启序，翰墨飘香。9月2日上午，中共四川省委党校2026级硕士研究生开学典礼在西校区长征厅举行。常务副校长王建军出席典礼并讲话，副校长、机关党委书记吴刚强主持典礼。
+					</p>
+				</a>
+			</div>
+		</div>
+		<!-- 新闻动态 -->
+		<div class="w1200 news_div">
+			<div class="news_div_l swiper-container flash1 swiper1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/c,h,p2115981115402616834.html" target="_blank"><img src="/upload/cms/content/1793324168964.jpg"
+								width="630px" height="" alt="" /></a>
+						<div class="imgInfo">
+							2026级硕士研究生开学典礼举行
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/h,p2115976917105639425.html" target="_blank"><img src="/upload/cms/content/1793323150215.jpg"
+								width="630px" height="" alt="" /></a>
+						<div class="imgInfo">
+							我校举行2026届硕士研究生毕业典礼暨学位授予仪式
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/p1938138673438699521.html" target="_blank"><img src="/upload/cms/content/1750923230568.png"
+								width="630px" height="" alt="" /></a>
+						<div class="imgInfo">
+							校（院）召开研究生教育工作会议暨导师培训会
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/p1938137686032429057.html" target="_blank"><img src="/upload/cms/content/1750922994576.png"
+								width="630px" height="" alt="" /></a>
+						<div class="imgInfo">
+							校学位评定委员会召开2025年第1次全体会议
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/h,p1938053436989943809.html" target="_blank"><img src="/upload/cms/content/1750902854963.jpg"
+								width="630px" height="" alt="" /></a>
+						<div class="imgInfo">
+							2025届硕士研究生毕业典礼暨学位授予仪式举行
+						</div>
+					</div>
+				</div>
+				<div class="swiper-pagination bullet1"
+					style="text-align: right;padding-right: 23px;width: 96%;bottom: 12px;"></div>
+			</div>
+			<div class="news_div_r">
+				<div class="news_div_r_nav">
+					<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/index.html"
+						target="_blank">更多</a>
+				</div>
+				<div class="news_div_r_hd news_wr">
+ 2026级硕士研究生开学典礼举行 &nbsp;<a
+						href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/c,h,p2115981115402616834.html">[详细]</a> 
+				</div>
+				<div class="news_div_r_ct news_wr">
+					<ul>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/c,h,p2115981115402616834.html" title="2026级硕士研究生开学典礼举行"
+								target="_blank">2026级硕士研究生开学典礼举行</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/h,p2115976917105639425.html" title="我校举行2026届硕士研究生毕业典礼暨学位授予仪式"
+								target="_blank">我校举行2026届硕士研究生毕业典礼暨学位授予仪式</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/2062360081156268034.html" title="我校2025 级全日制硕士研究生赴雅安开展理想信念教育培训"
+								target="_blank">我校2025 级全日制硕士研究生赴雅安开展理想信念教育培训</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/2049404008531222529.html" title="我校2024级学术型硕士研究生赴宜宾开展集中社会实践活动"
+								target="_blank">我校2024级学术型硕士研究生赴宜宾开展集中社会实践活动</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/2049300482194923522.html" title="浙江省委党校研究生部来校调研交流"
+								target="_blank">浙江省委党校研究生部来校调研交流</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/2007621107448016897.html" title="青马宣讲团赴四川省图书馆开展党的二十届四中全会精神专题宣讲"
+								target="_blank">青马宣讲团赴四川省图书馆开展党的二十届四中全会精神专题宣讲</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/2003629398561124353.html" title="硕士研究生防范电信网络诈骗与消防安全主题讲座举办"
+								target="_blank">硕士研究生防范电信网络诈骗与消防安全主题讲座举办</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/2002907311185850369.html" title="研究生部赴四川农业大学学习调研"
+								target="_blank">研究生部赴四川农业大学学习调研</a>
+						</li>
+						<li>
+							<a href="/html/website/yjssite/yanjiushengbuwangzhan/xinwendongtai/2000370466799480834.html" title="研究生部参加《学位法》赋能学位授予工作提质增效暨学籍学历学位管理创新研讨会"
+								target="_blank">研究生部参加《学位法》赋能学位授予工作提质增效暨学籍学历学位管理创新研讨会</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 广告区域 省委党校研究生 -->
+		<div class="w1200 ad1_div">
+			<!-- 研究生教育发展质量报告 -->
+			<div class="ad1_div_ad1">
+				<a href="http://www.scge.gov.cn/html/website/yjssite/yanjiushengbuwangzhan/dianzishu/yanjiushengjiaoyufazhanzhiliangbaogao/index.html"
+					target="_blank">
+					<img src="/template/1/yjssite/img/ad1_div_ad2.jpg" /></a>
+			</div>
+			<!-- 学位授权点年度建设报告 -->
+			<div class="ad1_div_ad2">
+				<a href="http://www.scge.gov.cn/html/website/yjssite/yanjiushengbuwangzhan/dianzishu/xueweishouquandianniandujianshebaogao/index.html"
+					target="_blank">
+					<img src="/template/1/yjssite/img/ad1_div_ad3.jpg" /></a>
+			</div>
+		</div>
+		<!-- 通知公告，资料下载，合作交流，学生园地，学科简介，招生简章，招生政策，初试成绩查询，政策通知，就业指南 -->
+		<div class="w1200 content">
+			<div class="content_l">
+				<div class="content_l_ct">
+					<div class="content_l_ct_nav content_l_ct_nav1">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/index.html"
+							target="_blank">
+							更多</a>
+					</div>
+					<div class="content_l_content">
+						<ul>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2108374726903726081.html" title="中共四川省委党校2027年硕士研究生招生简章"
+									target="_blank">中共四川省委党校2027年硕士研究生招生简章</a><span>10-09</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2098241289207283714.html" title="关于调整公共管理硕士（MPA）学费标准的公示"
+									target="_blank">关于调整公共管理硕士（MPA）学费标准的公示</a><span>09-09</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2047589146188570625.html" title="中共四川省委党校2026年硕士研究生招生拟录取名单公示"
+									target="_blank">中共四川省委党校2026年硕士研究生招生拟录取名单公示</a><span>04-24</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2046874663233249281.html" title="中共四川省委党校2026年硕士研究生调剂考生（第三批次）复试成绩及总成绩公布"
+									target="_blank">中共四川省委党校2026年硕士研究生调剂考生（第三批次）复试成绩及总成绩公布</a><span>04-22</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2046044447149645826.html" title="中共四川省委党校2026年硕士研究生复试工作安排（调剂第三批次）"
+									target="_blank">中共四川省委党校2026年硕士研究生复试工作安排（调剂第三批次）</a><span>04-18</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2045033168956022785.html" title="中共四川省委党校2026年硕士研究生调剂考生（第二批次）复试成绩及总成绩公布"
+									target="_blank">中共四川省委党校2026年硕士研究生调剂考生（第二批次）复试成绩及总成绩公布</a><span>04-17</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2044225006497685505.html" title="中共四川省委党校2026年硕士研究生复试工作安排（调剂第二批次）"
+									target="_blank">中共四川省委党校2026年硕士研究生复试工作安排（调剂第二批次）</a><span>04-14</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/tongzhigonggao1432623099395891201/2043296780162162690.html" title="中共四川省委党校2026年硕士研究生调剂考生（第一批次）复试成绩及总成绩公布"
+									target="_blank">中共四川省委党校2026年硕士研究生调剂考生（第一批次）复试成绩及总成绩公布</a><span>04-12</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="content_l_ct">
+					<div class="content_l_ct_nav content_l_ct_nav2">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/ziliaoxiazai1427151802033442817/index.html"
+							target="_blank">
+							更多</a>
+					</div>
+					<div class="content_l_content">
+						<ul>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/ziliaoxiazai1427151802033442817/2039159381576376321.html" title="中共四川省委党校定向就业培养研究生合同"
+									target="_blank">中共四川省委党校定向就业培养研究生合同</a><span>04-01</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/ziliaoxiazai1427151802033442817/2034164325341716481.html" title="体格检查表（2026）"
+									target="_blank">体格检查表（2026）</a><span>03-18</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/ziliaoxiazai1427151802033442817/2034164184132083713.html" title="考生诚信复试承诺书（2026年）"
+									target="_blank">考生诚信复试承诺书（2026年）</a><span>03-18</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/ziliaoxiazai1427151802033442817/2034164027495800834.html" title="思想政治素质和品德考核表（2026年）"
+									target="_blank">思想政治素质和品德考核表（2026年）</a><span>03-18</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="content_l_ct">
+					<div class="content_l_ct_nav content_l_ct_nav3">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/index.html"
+							target="_blank">
+							更多</a>
+					</div>
+					<div class="content_l_content">
+						<ul>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/1872204678373183490.html" title="思想政治教育专业硕士研究生参加学术研讨会"
+									target="_blank">思想政治教育专业硕士研究生参加学术研讨会</a><span>12-26</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/c,p1858695612690743298.html" title="我校硕士研究生赴四川省社会科学院参加交流活动"
+									target="_blank">我校硕士研究生赴四川省社会科学院参加交流活动</a><span>11-19</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/1833775027561099265.html" title="研究生部赴四川师范大学开展调研"
+									target="_blank">研究生部赴四川师范大学开展调研</a><span>09-11</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/1767087163218059266.html" title="法学教研部师生参加成渝地区双城经济圈绿色制造法治保障座谈会暨四川省法学会能源法学研究会2023年年会"
+									target="_blank">法学教研部师生参加成渝地区双城经济圈绿色制造法治保障座谈会暨四川省法学会能源法学研究会2023年年会</a><span>03-11</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/1733057019176542209.html" title="川渝党校“读经典·学原著”学术交流暨学生社团联学交流活动举办"
+									target="_blank">川渝党校“读经典·学原著”学术交流暨学生社团联学交流活动举办</a><span>12-08</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/1732215988151377921.html" title="研究生部参加研究生教育治理现代化研讨会"
+									target="_blank">研究生部参加研究生教育治理现代化研讨会</a><span>12-06</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/1722087262273069058.html" title="2022级MPA专业研究生赴成都高新减灾研究所实地调研"
+									target="_blank">2022级MPA专业研究生赴成都高新减灾研究所实地调研</a><span>11-08</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/hezuojiaoliu1432947218511486978/1719972484188659714.html" title="我校联合省社科院举办2024届硕士毕业生就业双选会"
+									target="_blank">我校联合省社科院举办2024届硕士毕业生就业双选会</a><span>11-02</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="content_l_ct">
+					<div class="content_l_ct_nav content_l_ct_nav4">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/index.html" target="_blank">
+							更多</a>
+					</div>
+					<div class="content_l_content">
+						<ul>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshenghuodong/1997833935362715649.html" title="川渝两地党校“读经典学原著”学术交流暨学生社团联学共建活动举办"
+									target="_blank">川渝两地党校“读经典学原著”学术交流暨学生社团联学共建活动举办</a><span>12-08</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshenghuodong/1986248704365142017.html" title="我校联合省社会科学院举办2026届硕士毕业生就业双选会"
+									target="_blank">我校联合省社会科学院举办2026届硕士毕业生就业双选会</a><span>11-06</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshengdangjian/1986248371761029121.html" title="2025级学硕和专硕研究生党支部成立大会暨支委选举大会召开"
+									target="_blank">2025级学硕和专硕研究生党支部成立大会暨支委选举大会召开</a><span>11-06</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshenghuodong/1982615704465285122.html" title="我校青马宣讲团赴高新区肖家河街道兴蓉社区开展主题宣讲"
+									target="_blank">我校青马宣讲团赴高新区肖家河街道兴蓉社区开展主题宣讲</a><span>10-27</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/yanjiushenghui/1982615192969912321.html" title="我校第十届研究生会执行委员会换届选举暨表彰大会召开"
+									target="_blank">我校第十届研究生会执行委员会换届选举暨表彰大会召开</a><span>10-27</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshengdangjian/1972936487964164097.html" title="学硕研究生党支部开展主题党日活动"
+									target="_blank">学硕研究生党支部开展主题党日活动</a><span>09-30</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshenghuodong/1966334092073156610.html" title="2025级硕士研究生迎新工作圆满落幕"
+									target="_blank">2025级硕士研究生迎新工作圆满落幕</a><span>09-12</span>
+							</li>
+							<li>
+								<a href="/html/website/yjssite/yanjiushengbuwangzhan/xueshengyuandi/xueshenghuodong/1966333817857949697.html" title="青马宣讲团赴青羊区光华街道开展主题宣讲"
+									target="_blank">青马宣讲团赴青羊区光华街道开展主题宣讲</a><span>09-12</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="content_r">
+				<a href="/html/website/yjssite/yanjiushengbuwangzhan/jianjie/xuekejianjie/index.html" target="_blank">
+					<img src="/template/1/yjssite/img/content_r1.png" />
+				</a>
+				<a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/zhaoshengjianzhang/index.html"
+					target="_blank">
+					<img src="/template/1/yjssite/img/content_r2.png" />
+				</a>
+				<a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/zhaoshengzhengce/index.html"
+					target="_blank">
+					<img src="/template/1/yjssite/img/content_r3.png" />
+				</a>
+				<a href="/html/website/yjssite/yanjiushengbuwangzhan/zhaoshengxinxi/chushichengjichaxun/index.html"
+					target="_blank">
+					<img src="/template/1/yjssite/img/content_r4.png" />
+				</a>
+				<a href="/html/website/yjssite/yanjiushengbuwangzhan/jiuyezhidao/zhengcetongzhi/index.html"
+					target="_blank">
+					<img src="/template/1/yjssite/img/content_r5.png" />
+				</a>
+				<a href="/html/website/yjssite/yanjiushengbuwangzhan/jiuyezhidao/jiuyezhinan/index.html"
+					target="_blank">
+					<img src="/template/1/yjssite/img/content_r6.png" />
+				</a>
+			</div>
+		</div>
+		<!-- 精彩图集 -->
+		<div class="w1200 content_2">
+			<div class="content_l_ct content_2_ct">
+				<div class="content_l_ct_nav content_l_ct_nav5">
+					<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/index.html"
+						target="_blank">更多</a>
+				</div>
+				<div class="content_2_content">
+					<div class="swiper jctj-swiper">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/1674318197106544642.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/cms/content/1688023536121.jpg" title="2023届毕业晚会" width="100%" height="100%">
+							</div>
+							<p>
+								2023届毕业晚会
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/1661550763199045633.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/cms/content/1684979562157.jpg" title="社会实践活动" width="100%" height="100%">
+							</div>
+							<p>
+								社会实践活动
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/p1661290624890052610.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/cms/content/1684917772669.jpg" title="素质拓展" width="100%" height="100%">
+							</div>
+							<p>
+								素质拓展
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/p1661287370919649281.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/cms/content/1684917934351.jpg" title="学生活动" width="100%" height="100%">
+							</div>
+							<p>
+								学生活动
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/p1661285043957538817.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/cms/content/1684917832691.jpg" title="歌手大赛" width="100%" height="100%">
+							</div>
+							<p>
+								歌手大赛
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/p1661282844921700354.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/cms/content/1684917858474.jpg" title="篮球赛" width="100%" height="100%">
+							</div>
+							<p>
+								篮球赛
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/p1661193410855444482.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/cms/content/1684917878362.jpg" title="趣味运动会" width="100%" height="100%">
+							</div>
+							<p>
+								趣味运动会
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							<div class="swiper-slide">
+                          <div class="content_2_content_ct">
+						<a href="/html/website/yjssite/yanjiushengbuwangzhan/jingcaituji1432623376517750785/1461590478511321089.html" target="_blank">
+							<div class="content_2_content_img">
+								<img src="/upload/1/cms/content/editor/1637305277731.jpg" title="蜀英杯辩论赛" width="100%" height="100%">
+							</div>
+							<p>
+								蜀英杯辩论赛
+							</p>
+						</a>
+					</div>
+							</div>
+					
+							
+						</div>
+						<div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- 友情链接 -->
+		<div class="w1200 content_3">
+			<div class="content_l_ct content_2_ct">
+				<div class="content_l_ct_nav content_l_ct_nav6">
+					<!-- <a href="#">更多</a> -->
+				</div>
+			</div>
+		</div>
+		<div class="links_div">
+			<div class="w1200 links_div_ct">
+				<div class="links_div_ct_1">
+					<a href="http://www.scge.gov.cn/">蜀光网</a>
+				</div>
+				<div class="links_div_ct_1">
+					<a href="http://llgg.cbpt.cnki.net/wkg/WebPublication/index.aspx?mid=llgg">理论与改革</a>
+				</div>
+				<div class="links_div_ct_1">
+					<a href="https://zscd.cbpt.cnki.net/WKG/WebPublication/index.aspx?mid=zscd">中共四川省委党校学报</a>
+				</div>
+				<div class="links_div_ct_1">
+					<a href="https://sxzb.cbpt.cnki.net/WKG/WebPublication/index.aspx?mid=sxzb">四川行政学院学报</a>
+				</div>
+				<div class="links_div_ct_1">
+					<a href="http://www.scge.gov.cn/html/website/outsite/sichuandangxiaobao/index.html">四川党校报</a>
+				</div>
+			</div>
+		</div>
+<div class="footer">
+    <div class="content">
+        <p>
+            研招办：028-87351286 &nbsp;&nbsp;&nbsp;&nbsp; 办公室：028-87351178 &nbsp;&nbsp;&nbsp;&nbsp;学位办：028-87351742&nbsp;&nbsp;&nbsp;&nbsp; 传真：028-87351286
+        </p>
+        <p>Copyright©2009-2025 中共四川省委党校研究生部 版权所有
+			<!-- 上一版本cnzz -->
+            <!-- <script type="text/javascript">
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_1280292251'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1280292251%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+            </script> -->
+        </p>
+    </div>
+</div>
+
+<script>
+	var _czc = _czc || [];
+	(function () {
+		var um = document.createElement("script");
+		um.src = "https://s4.cnzz.com/z.js?id=1281114176&async=1";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(um, s);
+	})();
+</script>	</div>
+</body>
+
+</html>
+<script src="/template/1/yjssite/js/jquery-1.12.4.js"></script>
+<script src="/template/1/yjssite/js/swiper-bundle.min.js"></script>
+<script>
+	// $("#btnquery").click(function() {
+	//     if ($("#content_title").val() == '') {
+	//         alert('请输入关键字查询');
+	//         return;
+	//     }
+	//     $("#searchForm").submit();
+	// })
+
+
+	var mySwiper = new Swiper('.swiper-ads', {
+		direction: 'vertical',
+		loop: true,
+		autoplay: {
+			disableOnInteraction: false,
+			delay: 2000,
+			stopOnLastSlide: false,
+			pauseOnMouseEnter: true, // 鼠标置于swiper时暂停自动切换，鼠标离开时恢复自动切换。
+		},
+	})
+
+	//	flash 轮播
+	var flashSwiper = new Swiper('.flash1', {
+		loop: true,
+		autoplay: {
+			disableOnInteraction: false,
+			delay: 3000,
+			stopOnLastSlide: false,
+		},
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+			renderBullet: function (index, className) {
+				return '<span class="' + className + '">' + (index + 1) + '</span>'
+			},
+		},
+	})
+
+	$(".swiper-pagination-bullet").hover(function () {
+		$(this).click(); //鼠标划上去之后，自动触发点击事件来模仿鼠标划上去的事件
+	}, function () {
+		flashSwiper.autoplay.start(); //鼠标移出之后，自动轮播开启
+	})
+
+	var swiper = new Swiper(".jctj-swiper", {
+		slidesPerView: 4,
+		spaceBetween: 30,
+		autoplay: {
+			       disableOnInteraction: false,
+			       delay: 2000,
+			       stopOnLastSlide: false,
+			       pauseOnMouseEnter: true, // 鼠标置于swiper时暂停自动切换，鼠标离开时恢复自动切换。
+                },
+		
+		navigation: {
+         nextEl: ".swiper-button-next",
+         prevEl: ".swiper-button-prev",
+      },
+	});
+
+
+	var searchApp = new Vue({
+		el: "#app",
+		data: {
+			keyword: '',
+			select: '1',
+			selecttype: '1',
+			options: [{
+				text: "标题",
+				value: "1"
+			},
+			{
+				text: "作者",
+				value: "2"
+			},
+			{
+				text: "内容",
+				value: "3"
+			}
+			],
+		},
+		methods: {
+			handleSelect() {
+				this.selecttype = this.select;
+			},
+			btnQuery() {
+				if (this.keyword == '') {
+					this.$message({
+						message: '请输入关键字查询',
+						type: 'warning'
+					});
+					return;
+				}
+				$("#searchForm").submit();
+			}
+		}
+	})
+</script>

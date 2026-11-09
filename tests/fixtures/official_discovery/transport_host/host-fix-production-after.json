@@ -1,0 +1,12 @@
+{
+  "url": "https://gsao.fudan.edu.cn/main.psp",
+  "sha256": "8833e8d4e211995cbfc36610d6f3dfddc90ef7af22f51ae880c47de2873118ce",
+  "checked_at": "2026-11-09T08:34:07+00:00",
+  "network_verified": true,
+  "content_type": "text/html;charset=UTF-8",
+  "response_bytes": 42457,
+  "title": "复旦大学研究生招生网",
+  "production_fetch": true,
+  "custom_transport": false,
+  "collector_sha256": "83d7c866aab50a159af6595cd718e0c7016e2858eea810b5762cb5add807129e"
+}
