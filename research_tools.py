@@ -22,6 +22,7 @@ from research_store import ResearchError
 from source_privacy import contains_personal_roster
 import research_knowledge
 import research_fields
+import research_candidate_tools
 from research_plan import build_plan
 
 LIMITS={'max_rounds':8,'max_searches':4,'max_documents':4,'max_model_calls':8,
@@ -29,8 +30,8 @@ LIMITS={'max_rounds':8,'max_searches':4,'max_documents':4,'max_model_calls':8,
         'max_discoveries':2,'max_navigation_fetches':4,'max_links':20}
 SKILL_CATALOG=(
     ('understand-intent','理解需求',('find_units','find_candidates','propose_profile')),
-    ('research-official-sources','研究官方资料',('find_units','find_candidates','search_official_sources','search_knowledge','search_knowledge_segments')),
-    ('verify-evidence','核对原文依据',('read_official_source','search_knowledge','search_knowledge_segments','read_knowledge_segment')),
+    ('research-official-sources','研究官方资料',('find_units','find_candidates','search_official_sources','search_knowledge','search_knowledge_segments','propose_source_candidates')),
+    ('verify-evidence','核对原文依据',('read_official_source','search_knowledge','search_knowledge_segments','read_knowledge_segment','propose_source_candidates')),
     ('compare-plans','比较备考方案',('compare_candidates','analyze_decisions','plan_subject_routes','suggest_adjustments')),
     ('assess-transfer-options','复试与调剂研究',('read_knowledge','read_official_source','search_official_sources')),
 )
@@ -162,6 +163,23 @@ TOOLS=[
             {'query':{'type':'string'},'entry_id':{'type':'string'},'unit_id':{'type':'string'},'year':{'type':'integer'}},('query',)),
     _schema('read_knowledge_segment','精读本轮已发现的segment_id及有限邻接上下文，保留原文位置、表头、否定和例外；失效来源不可复用。',
             {'segment_id':{'type':'string'},'before':{'type':'integer'},'after':{'type':'integer'},'max_chars':{'type':'integer'}},('segment_id',)),
+    _schema('propose_source_candidates','从本轮已精读的当前有效官方目录原文提出最多六个临时方向；精确引用完整专业行与科目，不接收学校、年度、费用或命题范围。通过校验后仅供本轮确定性比较，资格仍未知。',
+            {'source_id':{'type':'string'},'segment_id':{'type':'string'},
+             'drafts':{'type':'array','minItems':1,'maxItems':6,'items':{'type':'object','additionalProperties':False,
+                 'properties':{'code':{'type':'string'},'name':{'type':'string'},'department':{'type':'string'},
+                     'direction':{'type':'string'},'study_mode':{'type':'string'},
+                     'row':{'type':'object','additionalProperties':False,'properties':{
+                         'segment_id':{'type':'string'},'char_start':{'type':'integer'},'char_end':{'type':'integer'},'quote':{'type':'string'}},
+                         'required':['segment_id','char_start','char_end','quote']},
+                     'exams':{'type':'object','additionalProperties':False,'properties':{
+                         'segment_id':{'type':'string'},'char_start':{'type':'integer'},'char_end':{'type':'integer'},'quote':{'type':'string'}},
+                         'required':['segment_id','char_start','char_end','quote']},
+                     'supplements':{'type':'array','maxItems':2,'items':{'type':'object','additionalProperties':False,
+                         'properties':{'field':{'type':'string','enum':['study_mode','politics']},
+                             'citation':{'type':'object','additionalProperties':False,'properties':{
+                                 'segment_id':{'type':'string'},'char_start':{'type':'integer'},'char_end':{'type':'integer'},'quote':{'type':'string'}},
+                                 'required':['segment_id','char_start','char_end','quote']}},'required':['field','citation']}}},
+                 'required':['code','name','study_mode','row','exams']}}},('source_id','segment_id','drafts')),
     _schema('propose_profile','把用户原句理解成待确认的备考条件；每个字段附完整用户原句。不会自动应用，必须等待用户确认后再按新条件计算。',
             {'updates':{'type':'object'},'evidence':{'type':'array','items':{'type':'object','properties':{
                 'field':{'type':'string'},'quote':{'type':'string'}},'required':['field','quote'],'additionalProperties':False}}},('updates','evidence')),
@@ -195,7 +213,9 @@ class ResearchTools:
                     for row in self.bootstrap.get('units',[]) if isinstance(row,dict) and isinstance(row.get('id'),str)}
         self.revision=self.bootstrap.get('revision')
         self.field_candidates=[];self.field_applications={'applied':[],'paused':[]}
+        research_candidate_tools.initialize(self)
         self.inheritance=self._inherit(task.get('previous_report'))
+        research_candidate_tools.seed_source(self)
 
     def _inherit(self,previous):
         """Revalidate the previous turn's candidates and sources before reuse."""
@@ -239,6 +259,7 @@ class ResearchTools:
             if not isinstance(row,dict):continue
             identifier=row.get('id')
             if not isinstance(identifier,str) or not identifier or identifier in self.programs:continue
+            if identifier.startswith('tp_'):continue
             try:bundle=self.admission.catalog_program(identifier,revision=self.revision)
             except Exception:
                 info['stale_candidate_ids'].append(identifier);continue
@@ -252,10 +273,12 @@ class ResearchTools:
             self.programs[identifier]={**deepcopy(program),'inherited_from_turn':info['previous_turn_id']}
             info['candidate_ids'].append(identifier)
         self._remember_research_pool(list(self.programs.values()))
+        research_candidate_tools.inherit(self,previous,info)
         info['reused']=bool(self.programs or self.sources)
         return info
 
     def _apply_fields(self):
+        research_candidate_tools.refresh(self)
         previous=deepcopy(self.programs)
         result=research_fields.field_candidates(self.programs,self.sources)
         pool=research_fields.field_candidates(self._research_pool,self.sources)
@@ -294,7 +317,7 @@ class ResearchTools:
                   'plan_subject_routes':self.routes,
                   'suggest_adjustments':self.adjustments,'read_knowledge':self.knowledge,'propose_profile':self.propose_profile,
                   'search_knowledge':self.search_knowledge,'search_knowledge_segments':self.search_segments,
-                  'read_knowledge_segment':self.read_segment}
+                  'read_knowledge_segment':self.read_segment,'propose_source_candidates':self.propose_source_candidates}
         if name not in handlers:raise ResearchError('unknown_tool','该操作不在允许的研究工具中。')
         result=handlers[name](args)
         self._check_control()
@@ -684,13 +707,17 @@ class ResearchTools:
         complete=explicit or bool(self._research_scans) and all(row['scan_complete'] for row in self._research_scans)
         return {'pool_count':len(rows),'scan_complete':complete,'revision':self.revision,
                 'queries':deepcopy(self._research_scans),'national_complete':False,
-                'mode':'selected_candidates' if explicit else 'published_query_pool',
+                'mode':'selected_candidates' if explicit else 'research_query_pool' if any(
+                    row.get('candidate_origin')=='official_original' for row in rows) else 'published_query_pool',
+                'research_original_count':sum(row.get('candidate_origin')=='official_original' for row in rows),
+                'published_count':sum(row.get('candidate_origin')!='official_original' for row in rows),
                 'notice':'只比较明确指定的候选。' if explicit else
-                         '按本轮已扫描的发布目录查询范围试算，不代表全国全部选择。' if complete else
-                         '仅对本轮已取得的部分目录范围试算，未取得资料的方向不计为不存在。'}
+                         '按本轮已取得的目录与核验原文方向试算，不代表全国全部选择。' if complete else
+                         '仅对本轮已取得的部分目录与原文方向试算，未取得资料的方向不计为不存在。'}
 
     def _save_candidate_sources(self,selected):
         for row in selected:
+            if row.get('candidate_origin')=='official_original':continue
             for ref in row.get('evidence',[]) if isinstance(row.get('evidence'),list) else [row.get('evidence')]:
                 if not isinstance(ref,dict) or not isinstance(ref.get('url'),str):continue
                 sid=self._source({'url':ref['url'],'title':f"{row.get('unit_name','')} {row.get('name','')}目录依据",
@@ -732,9 +759,10 @@ class ResearchTools:
     def _candidate(row):
         keys=('id','unit_id','unit_name','name','code','department','direction','study_mode','degree_type','year',
               'subjects','tuition','duration_years','eligibility_evidence_complete','requires_review','notes',
-              'field_conflicts')
+              'field_conflicts','candidate_origin','candidate_ref','validation','evidence_refs')
         result={key:deepcopy(row.get(key)) for key in keys if key in row}
-        return {**result,'verification_mode':'published_snapshot','exam_unresolved_reason':exam_unresolved_reason(row)}
+        return {**result,'verification_mode':row.get('verification_mode','published_snapshot'),
+                'exam_unresolved_reason':exam_unresolved_reason(row)}
 
     def _source(self,value):
         url=value.get('url','');parsed=urlsplit(url)
@@ -886,7 +914,9 @@ class ResearchTools:
         return response
 
     def refresh_knowledge(self):
-        return research_knowledge.refresh_sources(self,_reusable_knowledge)
+        result=research_knowledge.refresh_sources(self,_reusable_knowledge)
+        research_candidate_tools.refresh(self)
+        return result
 
     def search_segments(self,args):
         _object(args,('query','entry_id','unit_id','year'));query=text(args.get('query'),240)
@@ -916,7 +946,15 @@ class ResearchTools:
         before=args.get('before',0);after=args.get('after',0);limit=args.get('max_chars',6000)
         if any(type(value) is not int or not 0<=value<=2 for value in (before,after)) or type(limit) is not int or not 64<=limit<=8000:
             raise ResearchError('invalid_segment_window','补读范围必须为前后0至2段、64至8000字符。')
-        return research_knowledge.read_segment(self,identifier,before,after,limit,_reusable_knowledge)
+        result=research_knowledge.read_segment(self,identifier,before,after,limit,_reusable_knowledge)
+        research_candidate_tools.register_read(self,result,before,after,limit)
+        return result
+
+    def propose_source_candidates(self,args):
+        return research_candidate_tools.propose(self,args)
+
+    def confirm_segment_delivery(self,original_result,delivered_result):
+        research_candidate_tools.confirm_delivery(self,original_result,delivered_result)
 
     def search_sources(self,args):
         self._check_control()
@@ -1163,7 +1201,8 @@ class ResearchTools:
     def _selected(self,args):
         self._apply_fields()
         ids=args.get('program_ids',list(self.programs))
-        if not ids and not self.programs and self.candidate_metrics and self.candidate_metrics.get('scanned_count',0):
+        if not ids and not self.programs and (self._source_candidate_records or
+                self.candidate_metrics and self.candidate_metrics.get('scanned_count',0)):
             return []
         if not isinstance(ids,list) or not ids or len(ids)>12 or any(not isinstance(k,str) or k not in self.programs for k in ids):
             raise ResearchError('unknown_candidates','请先选择本轮已查询的真实候选。')
@@ -1329,13 +1368,19 @@ class ResearchTools:
                                           'year':ref.get('year'),'source_id':identifier})
                     reasons.append({'field':reason.get('field'),'label':reason.get('label'),
                                     'status':reason.get('status'),'message':reason.get('message'),
-                                    'evidence':evidence})
+                                    'evidence':evidence,
+                                    'evidence_refs':research_candidate_tools.reason_refs(program,reason.get('field'))})
                 rows.append({'candidate_id':program.get('id'),'unit_id':program.get('unit_id'),
                              'unit_name':program.get('unit_name'),'name':program.get('name'),
                              'status':entry.get('status'),'rank_score':entry.get('rank_score'),
                              'rank_interval':deepcopy(entry.get('rank_interval')),
                              'subject_changes':deepcopy(entry.get('subject_changes')),
                              'reasons':reasons,'original_links':links,'deterministic':True,
+                             'candidate_origin':program.get('candidate_origin'),
+                             'verification_mode':program.get('verification_mode','published_snapshot'),
+                             'candidate_ref':deepcopy(program.get('candidate_ref')),
+                             'validation':deepcopy(program.get('validation')),
+                             'evidence_refs':deepcopy(program.get('evidence_refs',[])),
                              'not_admission_probability':True})
         return rows[:24]
 
@@ -1346,14 +1391,17 @@ class ResearchTools:
         candidates=[self._candidate(row) for row in self.programs.values()]
         gaps=list(dict.fromkeys([*self.gaps,'全国专业目录尚未完整覆盖，本轮候选不代表全国最优或全部选择。',
                                '2027资料仅作2028入学规划参考；具体报考条件和新年度目录需继续核验。',
-                               *(['尚未找到已发布的可计算候选，可以继续调整关键词或补充意向地区。'] if not candidates else [])]))
+                               *(['尚未找到可计算方向，可以继续定位官方原文或补充意向地区。'] if not candidates else [])]))
         actual_questions=self.questions()
         if self.profile_proposal:actual_questions=[{'field':'profile_proposal','label':'请确认识别到的备考条件是否准确。','message':'确认后才用于新一轮算法。','options':[]}]
         plan=self.plan(actual_questions)
         decisions=self.decisions()
-        return {'summary':f"本轮整理了{len({row.get('unit_id') for row in candidates})}所学校的{len(candidates)}个已发布候选、{len(self.sources)}份来源或检索线索。",
+        original_count=sum(row.get('candidate_origin')=='official_original' for row in candidates)
+        published_count=len(candidates)-original_count
+        return {'summary':f"本轮整理了{len({row.get('unit_id') for row in candidates})}所学校的{len(candidates)}个方向（已发布{published_count}个、官方原文临时方向{original_count}个）、{len(self.sources)}份来源或检索线索。",
                 'plan':plan,
                 'assistant_summary':assistant_summary,'questions':actual_questions,'candidates':candidates,
+                'research_candidates':research_candidate_tools.snapshot(self),
                 'evidence':list(deepcopy(self.sources).values()),'algorithm':deepcopy(self.algorithm),'gaps':gaps,
                 'profile_proposal':deepcopy(self.profile_proposal),
                 'inheritance':deepcopy(self.inheritance),
@@ -1369,6 +1417,10 @@ class ResearchTools:
                     'errors':list(dict.fromkeys([*self.knowledge_errors,*self._knowledge_failures.values()])),
                     'notice':'保存数包含通过准入与待核资料；仅通过准入资料可复用。过滤来源不入库，新增原文仍须字段审校才能用于招生事实。'},
                 'coverage':{'candidate_count':len(candidates),'candidate_unit_count':len({row.get('unit_id') for row in candidates}),
+                            'research_original_count':original_count,'published_count':published_count,
+                            'research_pool_count':len(self._research_pool),
+                            'research_original_pool_count':sum(row.get('candidate_origin')=='official_original'
+                                for row in self._research_pool.values()),
                             'turn_id':self.task.get('turn_id',0),'searched_units':sorted(self.searched_units),
                             'selection':deepcopy(self.candidate_metrics),
                             'national_complete':False,'reference_year':self.task['reference_year'],'target_year':self.task['target_year'],

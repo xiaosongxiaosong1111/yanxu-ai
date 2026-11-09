@@ -7,7 +7,9 @@ from research_plan import build_plan
 def candidate(**overrides):
     row = {'id': 'p1', 'unit_id': 'u1', 'unit_name': '测试大学', 'year': 2027,
            'eligibility_evidence_complete': False, 'tuition': None,
-           'subjects': [{'code': '408', 'name': '计算机学科专业基础'}]}
+           'subjects': [{'code': code, 'name': name, 'scope': 'national', 'exam_unit': slot}
+                        for slot, code, name in [(1, '101', '思想政治理论'), (2, '201', '英语一'),
+                                                 (3, '301', '数学一'), (4, '408', '计算机学科专业基础')]]}
     row.update(overrides)
     return row
 

@@ -7,6 +7,10 @@ description: Separate discovered links, downloaded originals and adopted field-l
 
 始终区分：元宝检索线索、已读取官网原文、已发布核验事实。读取成功只能证明取得对应原文；没有字段级解析与审校，不得将模型抽取的学费、分数或考试科目当作正式事实，更不能写回招生库。
 
+官方新原文可经受控propose_source_candidates形成“官方原文临时方向”：先search_knowledge_segments定位，再read_knowledge_segment精读当前有效完整块，最后提交同一完整专业行与完整考试科目的精确引用。该工具逐字段校验名称、代码、方向、学习方式及考试单元，保留SHA、entry_id、extraction_id、generation_id、segment_id和绝对位置；学校和实际年度只从当前来源推导。不得提交AI生成的学校、年度、费用或scope，不拼接相邻专业行，不把未完整送达模型的预览当作已读原文。只有已完整精读的上下文才能作单独补充引文。
+
+临时方向保留candidate_origin=official_original、verification_mode=research_original和candidate_ref.kind=research，不等于published_snapshot。validation.state=computable只表示方向和科目足够参与本轮确定性比较；eligibility_evidence_complete仍为false，报考资格、费用和学制没有依据时保持unknown。比较、路线、报告返回和跨轮继承前都重新核验原件、SHA、学校年度及提取代次；撤信、换代或引用失效立即移出可计算池，原始证明和失效原因留在research_candidates审计中。
+
 比对学校、年度、院系、专业、方向、学习方式、招生方式和专项范围。原文有歧义、相互矛盾、登录限制或缺字段时保留未知。不得拼接不同年度字段为同一年统计；学校线、学院线、专业线、拟录取成绩不得混用。
 
 已发布记录保留published_snapshot标识；这次并非实时核验全国。对新原文保留可用链接、读取时间、摘要与SHA；具体事实仍待逐字段核验时明示说明。
@@ -25,6 +29,6 @@ search_knowledge只复用accepted且reusable=true的资料，不能把搜索线�
 
 match_mode=document_terms表示复合关键词分散在同一份当前原文中，单个命中片段未必同时满足全部条件；须分别精读其适用范围和上下文，不能据此合并事实或推断同一专业同时符合这些条件。
 
-质量accepted还须validity=active、usable=true且原文SHA与当前提取代次可核验。revoked、conflict、superseded、质量降级或留档失效时，旧摘录、旧tool消息和旧推断停止复用；重新检索当前有效版本。工具提示来源变化时报告资料缺口，不继续照搬先前解释；新文本仍不能绕过字段审校参与确定性招生算法。
+质量accepted还须validity=active、usable=true且原文SHA与当前提取代次可核验。revoked、conflict、superseded、质量降级或留档失效时，旧摘录、旧tool消息和旧推断停止复用；重新检索当前有效版本。工具提示来源变化时报告资料缺口，不继续照搬先前解释；新文本必须经propose_source_candidates逐字段校验，或既有正式发布审校路径，才能参与确定性招生算法。
 
 可能含逐人录取或复试名单的材料只向研究对话提供来源与版本信息，不把姓名、考号或原始名单传给模型。完整工具原文与报告另存，模型上下文只收到明确标记的有界摘要，不得假装模型已通读全部材料。

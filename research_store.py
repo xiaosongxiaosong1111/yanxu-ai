@@ -69,6 +69,7 @@ class ResearchStore:
                'reference_year':request.get('profile',{}).get('reference_year',2027),
                'turn_id':1,'confirmed_fields':request.get('confirmed_fields',[]),
                'budget':{},'usage':{},'report':{},'error':None}
+        value={**value,**{key:request[key] for key in ('knowledge_entry_id','source_context') if key in request}}
         with self._lock,self._connect() as connection:
             connection.execute('INSERT INTO research_tasks VALUES(?,?,?,?,?)',
                                (identifier,status,stamp,stamp,_encoded(value)))

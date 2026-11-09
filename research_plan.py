@@ -5,6 +5,8 @@ missing and whether a Skill has actually produced a checkable result. It never t
 model prose into admission facts.
 """
 from copy import deepcopy
+from evidence import exam_unresolved_reason
+from grad_engine import _subject_units
 
 FACT_LABELS = {
     'eligibility': '报考资格与适用范围',
@@ -27,13 +29,13 @@ SKILL_CONTRACTS = {
     'research-official-sources': {
         'input': '学校、真实参考年度与有限检索预算',
         'tools': ('find_units', 'find_candidates', 'search_official_sources', 'search_knowledge',
-                  'search_knowledge_segments'),
+                  'search_knowledge_segments', 'propose_source_candidates'),
         'output': '可回到学校官网或本机留档的来源，保留实际年度与读取范围',
     },
     'verify-evidence': {
         'input': '本轮发现的来源与原文片段',
         'tools': ('read_official_source', 'search_knowledge', 'search_knowledge_segments',
-                  'read_knowledge_segment'),
+                  'read_knowledge_segment', 'propose_source_candidates'),
         'output': '带来源、年度、范围和原文位置的证据；未读到时保持未知',
     },
     'compare-plans': {
@@ -72,7 +74,9 @@ def _candidate_fact(program, fact):
         }
     if fact == 'subjects':
         value = program.get('subjects')
-        known = isinstance(value, list) and bool(value)
+        units, invalid = _subject_units(value)
+        unresolved = exam_unresolved_reason(program)
+        known = not unresolved and not invalid and sorted(units) in ([1, 2], [1, 2, 3], [1, 2, 3, 4])
         return {
             'candidate_id': identifier, 'fact': fact, 'label': FACT_LABELS[fact],
             'status': 'known' if known else 'unknown',
@@ -82,7 +86,7 @@ def _candidate_fact(program, fact):
                 'tool': 'search_official_sources', 'args': {'query': FACT_QUERIES[fact],
                                                              'unit_id': program.get('unit_id'),
                                                              'year': program.get('year')},
-                'reason': '科目未知时先核对专业目录，不能根据常识补默认科目。',
+                'reason': unresolved or '考试单元或科目身份尚不完整，先核对专业目录，不能根据常识补默认科目。',
                 'completion': '在官方目录中找到科目组合与命题范围；否则不参与换科计算。',
             },
         }
@@ -184,6 +188,36 @@ def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=()
             continue
         seen.add(key)
         unique.append({'priority': len(unique) + 1, **deepcopy(action)})
+    if not programs:
+        for source in sources.values():
+            if source.get('seeded') and source.get('status') == 'search_lead':
+                unique.append({'priority': len(unique)+1, 'tool': 'read_official_source',
+                    'args': {'source_id': source['id'], 'unit_id': source.get('unit_id')},
+                    'reason': '用户指定的资料尚待核验；先重新读取受控官网原文，不能直接当作方向事实。',
+                    'completion': '取得实际年度、可核验原件与完整正文，通过准入后再定位专业行。'})
+                continue
+            if (source.get('status') != 'official_original_read' or source.get('knowledge_current') is False
+                    or source.get('usable') is False or source.get('year') != task.get('reference_year')):
+                continue
+            segments = source.get('segments') or []
+            if not segments:
+                unique.append({'priority': len(unique)+1, 'tool': 'search_knowledge_segments',
+                    'args': {'query': '招生专业目录 考试科目', 'entry_id': source.get('knowledge_id'),
+                             'unit_id': source.get('unit_id'), 'year': source.get('year')},
+                    'reason': '没有已发布候选时，先在已取得的官方原文中定位完整专业行与考试科目。',
+                    'completion': '取得当前提取版本的真实片段ID；未取得时不制造占位方向。'})
+                continue
+            segment = segments[0]
+            unique.extend([
+                {'priority': len(unique)+1, 'tool': 'read_knowledge_segment',
+                 'args': {'segment_id': segment['id'], 'before': 1, 'after': 1, 'max_chars': 3200},
+                 'reason': '精读专业完整行、表头与限定条件，不能用搜索摘要生成方向。',
+                 'completion': '明确读到当前版本的完整行与逐字引用范围。'},
+                {'priority': len(unique)+2, 'tool': 'propose_source_candidates',
+                 'args': {'source_id': source['id'], 'segment_id': segment['id']},
+                 'reason': '精读后按完整行和科目逐字引用构造最多六个草案，再交确定性校验生成临时方向。',
+                 'completion': '只采用工具校验通过的临时方向；学校和年度由来源推导，资格仍未知。'}])
+            break
     goals = [
         {'id': 'scope', 'label': '确定可研究的合理范围', 'status': 'done' if programs else 'open',
          'completion': '取得有限、可解释的候选，并标明不是全国全集。'},

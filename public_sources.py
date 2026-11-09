@@ -279,9 +279,9 @@ class _VisibleHTML(HTMLParser):
         inherited = bool(self.stack and self.stack[-1][1])
         main = tag in {'main', 'article'} or values.get('role') == 'main' or bool(self.stack and self.stack[-1][2])
         if tag in self.BLOCK:
-            self._append('\n', inherited or hidden, main)
+            self._append('\n', inherited or hidden, main, boundary=tag in {'tr','table'})
         elif tag in {'td', 'th'}:
-            self._append('\t', inherited or hidden, main)
+            self._append('\t', inherited or hidden, main, boundary=True)
         if tag not in self.VOID:
             self.stack.append((tag, inherited or hidden, main))
 
@@ -299,12 +299,18 @@ class _VisibleHTML(HTMLParser):
             if self.stack[index][0] == tag:
                 _, hidden, main = self.stack[index]
                 if tag in self.BLOCK:
-                    self._append('\n', hidden, main)
+                    self._append('\n', hidden, main, boundary=tag in {'tr','table'})
                 self.stack = self.stack[:index]
                 break
 
-    def _append(self, data, hidden, main):
+    def _append(self, data, hidden, main, boundary=False):
         if not hidden:
+            # HTML indentation and paragraphs inside a real cell do not end
+            # its row. Keep actual tr/td boundaries, without filling rowspan.
+            in_row=any(item[0]=='tr' for item in self.stack)
+            if in_row and not boundary:
+                if not any(item[0] in {'td','th'} for item in self.stack):return
+                data=re.sub(r'\s+',' ',data)
             self.parts.append(data)
             if main:
                 self.main.append(data)
@@ -322,7 +328,8 @@ class _VisibleHTML(HTMLParser):
 
     def result(self):
         text = ''.join(self.main if self.main else self.parts)
-        lines = [re.sub(r'[ \t\r\v]+', ' ', line).strip() for line in text.splitlines()]
+        lines = ['\t'.join(re.sub(r'[ \r\v]+',' ',cell).strip() for cell in line.split('\t')).strip('\t ')
+                 for line in text.splitlines()]
         return '\n'.join(line for line in lines if line), re.sub(r'\s+', ' ', ''.join(self.title)).strip()
 
 

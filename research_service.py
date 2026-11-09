@@ -11,6 +11,8 @@ from provider_catalog import TransportError
 from research_store import ResearchError, ResearchStore, identity
 from research_tools import LIMITS, TOOLS, ResearchTools, text, _reusable_knowledge
 import research_knowledge
+from research_source_context import source_context
+from research_model_projection import project_segment_read
 
 _BASE=Path(__file__).resolve().parent
 _SKILLS=('understand-intent','research-official-sources','verify-evidence','compare-plans')
@@ -60,7 +62,7 @@ class ResearchService:
             return None
 
     def _request(self,payload):
-        _payload(payload,('query','profile','unit_ids'),('query',))
+        _payload(payload,('query','profile','unit_ids','knowledge_entry_id'),('query',))
         query=text(payload['query'],4000)
         try:profile=validate_profile(payload.get('profile',{}))
         except (ValueError,TypeError) as error:
@@ -71,8 +73,18 @@ class ResearchService:
         if ids:
             known={unit['id'] for unit in self.admission.catalog_bootstrap()['units']}
             if any(k not in known for k in ids):raise ResearchError('unknown_unit','部分学校不在当前单位索引中。')
-        return {'query':query,'profile':profile,'unit_ids':list(dict.fromkeys(ids)),
-                'confirmed_fields':list(payload.get('profile',{}))}
+        request={'query':query,'profile':profile,'unit_ids':list(dict.fromkeys(ids)),
+                 'confirmed_fields':list(payload.get('profile',{}))}
+        if 'knowledge_entry_id' in payload:
+            request={**request,**source_context(payload['knowledge_entry_id'],profile,payload.get('profile',{}),
+                       request['unit_ids'],self.admission.catalog_bootstrap()['units'],self._knowledge_entry)}
+        return request
+
+    def _knowledge_entry(self,identifier):
+        if self._knowledge_store is None:
+            from knowledge_store import KnowledgeStore
+            self._knowledge_store=KnowledgeStore(self.data_dir)
+        return self._knowledge_store.get(identifier)
 
     def create(self,payload):
         request=self._request(payload)
@@ -108,12 +120,14 @@ class ResearchService:
         return {**result,'tasks':[self._current_task(task,cache) for task in result['tasks']]}
 
     def _current_task(self,task,cache=None):
-        def current(identifier):
+        task=research_knowledge.refresh_saved_task(task,self._knowledge_entry,_reusable_knowledge,cache)
+        if any((task.get(key) or {}).get('research_candidates') for key in ('report','previous_report')):
+            from research_candidate_tools import refresh_saved_candidates
             if self._knowledge_store is None:
                 from knowledge_store import KnowledgeStore
                 self._knowledge_store=KnowledgeStore(self.data_dir)
-            return self._knowledge_store.get(identifier)
-        return research_knowledge.refresh_saved_task(task,current,_reusable_knowledge,cache)
+            return refresh_saved_candidates(task,self.admission,self._knowledge_store,self.data_dir)
+        return task
 
     def cancel(self,payload):
         _payload(payload,('research_id',),('research_id',));identifier=identity(payload['research_id'])
@@ -127,7 +141,7 @@ class ResearchService:
         return self.get(identifier)
 
     def continue_research(self,payload):
-        _payload(payload,('research_id','message','profile','unit_ids'),('research_id',))
+        _payload(payload,('research_id','message','profile','unit_ids','knowledge_entry_id'),('research_id',))
         identifier=identity(payload['research_id'])
         with self._lock:
             task=self.store.get(identifier)
@@ -142,7 +156,8 @@ class ResearchService:
             if not isinstance(changes,dict):raise ResearchError('invalid_profile','备考条件应为对象。')
             previous_profile=deepcopy(task['profile'])
             checked=self._request({'query':task['query'],'profile':{**task['profile'],**changes},
-                                   'unit_ids':payload.get('unit_ids',task['unit_ids'])})
+                                   'unit_ids':payload.get('unit_ids',task['unit_ids']),
+                                   'knowledge_entry_id':payload.get('knowledge_entry_id',task.get('knowledge_entry_id'))})
             checked={**checked,'confirmed_fields':sorted(set(task.get('confirmed_fields',[]))|set(changes))}
             turn_changes=sorted(field for field,value in changes.items() if value!=previous_profile.get(field))
             scope_changed='unit_ids' in payload and list(payload.get('unit_ids') or [])!=list(task['unit_ids'])
@@ -251,6 +266,8 @@ class ResearchService:
 
     @staticmethod
     def _model_result(value):
+        if isinstance(value,dict) and isinstance(value.get('segment'),dict) and 'text' in value['segment']:
+            return json.dumps(project_segment_read(value),ensure_ascii=False,allow_nan=False)
         def compact(item,depth=0):
             if depth>7:return '已省略深层资料，完整内容在报告中。'
             if isinstance(item,dict):return {key:compact(child,depth+1) for key,child in item.items() if key not in {'evidence','raw','pages'}}
@@ -350,7 +367,11 @@ class ResearchService:
                     '如果只有模糊需求，也要先研究可用选择，再提出最关键的少量问题。'
                     '用户原句可通过propose_profile提出updates和逐字段用户原句quote，但条件须用户确认才参与新算法。'
                     '调用比较算法后再解释取舍；最终可以返回JSON {summary,questions}，其中只作解释，不新增数据。'
-                    '程序会自动核算已发布候选；条件不足时优先追问，不要继续堆来源。已出现关键问题时尽早结束本轮等用户确认。'
+                    '程序会自动核算目录候选和已通过原文校验的本轮候选；条件不足时优先追问，不要继续堆来源。'
+                    '目录未收录的学校应定位其实际年度官方目录，精读完整目录行，再调用propose_source_candidates；'
+                    '同校同年明确适用全部专业的政治、学习方式声明可补充引用，其他缺失字段不得猜测。'
+                    'source_context仅是用户选择补证的来源线索，状态待核时不得当作可信原文；须按工具重新核验。'
+                    '已出现关键问题时尽早结束本轮等用户确认。'
                     '按计划账本的next_actions优先补齐资格、科目和费用；缺资格先查招生简章，缺费用先查收费公示；'
                     '工具失败或预算结束时保留成果并列出待补证项，不能把模型自称完成当作完成。'
                     '本轮若继承上轮候选或来源，不重复检索未变化内容；条件变化只更新受影响范围。'
@@ -359,6 +380,8 @@ class ResearchService:
                     '每轮至多4个工具调用，总轮次8，最多4次搜索和4份原文；接近上限时返回部分成果。\n\n'+instructions)
             request={'query':task['query'],'follow_ups':task.get('follow_ups',[]),'user_profile':task['profile'],
                      'selected_units':task['unit_ids'],'budgets':LIMITS}
+            if task.get('source_context'):
+                request={**request,'source_context':task['source_context']}
             base_messages=[{'role':'system','content':system},{'role':'user','content':json.dumps(request,ensure_ascii=False)}]
             messages=list(base_messages)
             if tools.sources:messages.append({'role':'user','content':self._model_result({'cached_sources':list(tools.sources.values()),
@@ -414,6 +437,8 @@ class ResearchService:
                                      data={'tool':call['name'],'ok':event_type=='tool_completed'})
                     self._compare(identifier,tools)
                     encoded=self._model_result(result)
+                    if call['name']=='read_knowledge_segment' and isinstance(result,dict) and result.get('segment'):
+                        tools.confirm_segment_delivery(result,json.loads(encoded))
                     messages.append({'role':'tool','tool_call_id':call['id'],'name':call['name'],'content':encoded})
                     self.store.update(identifier,report=tools.report(),usage=tools.usage)
                     if self._pause_for_input(identifier,tools):status='awaiting_input';break
@@ -448,4 +473,6 @@ class ResearchService:
                 'plan_subject_routes':'比较0/1/2科调整路线',
                 'suggest_adjustments':'试算允许变化的条件情景','read_knowledge':'核对规则与适用年度',
                 'search_knowledge':'复用本机已留档的公共资料','search_knowledge_segments':'定位当前有效的原文条款与表格',
-                'read_knowledge_segment':'精读原文片段、表头与邻接条款','propose_profile':'整理需要你确认的备考条件'}.get(name,'检查工具是否可用')
+                'read_knowledge_segment':'精读原文片段、表头与邻接条款',
+                'propose_source_candidates':'按原文校验本轮候选方向',
+                'propose_profile':'整理需要你确认的备考条件'}.get(name,'检查工具是否可用')

@@ -57,6 +57,25 @@ function qualityOf(entry){
  const reasons=list(quality.reasons).filter(reason=>typeof reason?.message==='string'&&reason.message).slice(0,8);
  return {state,reasons,materialType:text(quality.material_type),reusable:state==='accepted'};
 }
+function inventoryView(entry){
+ const original=entry.original_available===true&&!unavailable(entry),extraction=object(entry.extraction),ready=['ready','succeeded'].includes(entry.index_state)&&extraction.extraction_status==='complete'&&count(extraction.segment_count)>0&&original&&qualityOf(entry).reusable&&currentValidity(entry)==='active'&&entry.usable===true;
+ const originalState=original?'已留档':extraction.extraction_status==='needs_ocr'?'待取全文 / 待 OCR':'待补齐';
+ const segmentState=ready?'可用':extraction.extraction_status==='needs_ocr'?'待 OCR':extraction.extraction_status==='partial'?'提取不完整':currentValidity(entry)!=='active'?'当前不可复用':'待补齐';
+ return `<div class="yk-inventory" aria-label="资料库存状态"><span>来源信息：${safeLink(entry.url)?'已保存':'待核对'}</span><span>原文：${originalState}</span><span>可定位片段：${segmentState}</span><span>语义索引：待查询</span></div>`;
+}
+
+function researchBlockReason(entry){
+ if(currentValidity(entry)!=='active')return '当前资料不可发起补证。请在“维护与版本”中恢复有效版本，或选择其他有效的官方资料。';
+ if(qualityOf(entry).state==='excluded'||entry.content_notice||entry.text_origin==='metadata_only')return '此资料仅保留来源信息，请选择其他有效的官方资料补证。';
+ if(!/^k_[a-f0-9]{24}$/.test(text(entry.id))||!text(entry.unit_id)||!safeLink(entry.url))return '资料来源信息尚不完整，请选择具有官方来源的其他有效资料。';
+ return '';
+}
+const needsResearch=entry=>!researchBlockReason(entry)&&(qualityOf(entry).state==='pending'||entry.original_available!==true||unavailable(entry)||entry.extraction?.extraction_status==='needs_ocr'||entry.extraction?.extraction_status==='partial');
+function researchHandoff(entry){
+ const blocked=researchBlockReason(entry);
+ if(blocked)return `<section class="yk-research-handoff" role="status"><p>${esc(blocked)}</p></section>`;
+ return needsResearch(entry)?'<section class="yk-research-handoff"><button type="button" class="yk-primary" data-knowledge-action="research">让 Agent 补证 '+icon('arrow')+'</button><p>先进入可编辑的研究草稿，由你点击开始后再查证。</p></section>':'';
+}
 
 function reasonList(entry){
  const quality=qualityOf(entry),fallback=quality.state==='accepted'?'已达到本地准入规则，具体报考字段仍需另行核验。':quality.state==='excluded'?'未满足准入条件，仅保留来源与版本信息。':'尚未完成质量检查，暂不供研究自动复用。';
@@ -86,7 +105,7 @@ function filtersView(state){
 
 function entryView(entry,activeId,query=''){
  const link=safeLink(entry.url),broken=unavailable(entry),quality=qualityOf(entry),excerpt=currentValidity(entry)!=='active'?`${validityLabel(entry)}，暂不展示旧摘录。`:quality.state==='excluded'?'正文已拦截，仅保留来源信息与准入原因。':broken?'原文留档待复核，暂不展示摘录。':entry.text_origin==='metadata_only'?text(entry.content_notice)||'仅保留来源信息，不展示个人名单正文。':entry.status==='official_original_read'&&!text(query).trim()?'原文已留档，打开详情查看摘录与来源。':text(entry.excerpt).slice(0,220);
- return `<article class="yk-entry ${entry.id===activeId?'is-selected':''}" data-quality-state="${quality.state}"><button type="button" class="yk-entry-open" data-knowledge-open="${esc(entry.id)}" aria-pressed="${entry.id===activeId}"><div class="yk-entry-top"><div class="yk-entry-tags"><span class="yk-quality-badge is-${quality.state}">${qualityLabel(quality.state)}</span><span class="yk-kind ${entry.status==='official_original_read'&&!broken?'is-original':''}">${broken?'原文待复核':esc(label(entry.status))}</span></div><span>${esc(year(entry))}${!entry.year&&entry.requested_year?` · 检索目标 ${esc(entry.requested_year)}`:''}</span></div><h2>${esc(entry.title||'资料标题待补齐')}</h2><p class="yk-entry-meta">${esc(entry.unit_name||'招生单位待确认')}${link?`<span>·</span>${esc(new URL(link).hostname)}`:''}</p>${excerpt?`<p class="yk-entry-excerpt">${esc(excerpt)}</p>`:''}<div class="yk-entry-footer"><span>最近存入 ${esc(date(entry.last_seen_at||entry.first_seen_at))}</span><span>${sourceCount(entry)>1?`${sourceCount(entry)} 次研究引用`:'查看来源详情'} ${icon('arrow')}</span></div></button>${admissionDetails(entry,true)}</article>`;
+ return `<article class="yk-entry ${entry.id===activeId?'is-selected':''}" data-quality-state="${quality.state}"><button type="button" class="yk-entry-open" data-knowledge-open="${esc(entry.id)}" aria-pressed="${entry.id===activeId}"><div class="yk-entry-top"><div class="yk-entry-tags"><span class="yk-quality-badge is-${quality.state}">${qualityLabel(quality.state)}</span><span class="yk-kind ${entry.status==='official_original_read'&&!broken?'is-original':''}">${broken?'原文待复核':esc(label(entry.status))}</span></div><span>${esc(year(entry))}${!entry.year&&entry.requested_year?` · 检索目标 ${esc(entry.requested_year)}`:''}</span></div><h2>${esc(entry.title||'资料标题待补齐')}</h2><p class="yk-entry-meta">${esc(entry.unit_name||'招生单位待确认')}${link?`<span>·</span>${esc(new URL(link).hostname)}`:''}</p>${inventoryView(entry)}${excerpt?`<p class="yk-entry-excerpt">${esc(excerpt)}</p>`:''}<div class="yk-entry-footer"><span>最近存入 ${esc(date(entry.last_seen_at||entry.first_seen_at))}</span><span>${sourceCount(entry)>1?`${sourceCount(entry)} 次研究引用`:'查看来源详情'} ${icon('arrow')}</span></div></button>${admissionDetails(entry,true)}</article>`;
 }
 
 function pageExcerpts(entry){
@@ -107,6 +126,8 @@ function reader(entry,readerState={}){
   ${!entry.year&&entry.requested_year?`<p class="yk-requested-year">检索目标 ${esc(entry.requested_year)} 年；来源本身的年度尚待核验。</p>`:''}
   ${link?`<a class="yk-original-link" href="${esc(link)}" target="_blank" rel="noopener noreferrer">${lead?'打开来源网页':'查看官方来源'} ${icon('arrowUp')}</a>`:'<p class="yk-muted">来源链接尚待核对</p>'}
  </header><div class="yk-reader-content">
+  ${inventoryView(entry)}
+  ${researchHandoff(entry)}
   <section class="yk-quality-notice is-${quality.state}"><p>${currentValidity(entry)!=='active'?`当前${esc(validityLabel(entry))}，不供研究复用。准入检查与资料有效性分别记录。`:qualityDescription[quality.state]}</p>${admissionDetails(entry)}</section>
   ${structuredEntry(entry)||currentValidity(entry)!=='active'?readerWorkbench(entry,readerState):documentBody}
   <div class="yk-boundary">${icon('shield')}<p>${lead?'搜索摘要只是发现线索，不能当作官方逐字原文或报考结论。':entry.status==='published_snapshot'?'已收录资料保留其原有核验范围，不表示本次重新联网核对。':'原文已留档，字段仍需逐项核验。保存不等于当年规则已确认。'}</p></div>
@@ -134,7 +155,7 @@ function loadStyle(document){
  const readerStyle=document.createElement('link');readerStyle.rel='stylesheet';readerStyle.href=new URL('./knowledge-reader.css',import.meta.url).href;document.head.append(readerStyle);
 }
 
-export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSegmentId='',initialQuery='',initialQuality='accepted',initialStatus='',initialYear='',initialUnit='',initialPage=1}={}){
+export function mountKnowledge(container,{api,onBack,onResearch,initialEntryId='',initialSegmentId='',initialQuery='',initialQuality='accepted',initialStatus='',initialYear='',initialUnit='',initialPage=1}={}){
  const document=container.ownerDocument,view=document.defaultView;loadStyle(document);
  let disposed=false,listController,detailController,listGeneration=0,detailGeneration=0,hybridController,hybridGeneration=0,timer,composing=false,renderPending=false,returnPoint={scroll:0,id:''},detailPushed=false;
  let state={loadStatus:'loading',entries:[],summary:{},facets:{units:[],years:[]},total:0,page:Math.max(1,Number(initialPage)||1),pageSize:12,filters:{q:text(initialQuery),status:text(initialStatus),year:text(initialYear),unit_id:text(initialUnit),quality:qualityFilter(initialQuality)},error:'',queryExpansion:null,detailId:text(initialEntryId),detailSegmentId:validSegment(initialSegmentId),detail:null,detailStatus:initialEntryId?'loading':'none',detailError:'',hybrid:{status:'idle',result:null,error:'',query:''}};
@@ -235,6 +256,7 @@ export function mountKnowledge(container,{api,onBack,initialEntryId='',initialSe
   if(button.dataset.knowledgeOpen){openDetail(button.dataset.knowledgeOpen,{segmentId:text(button.dataset.knowledgeHybridSegment)});return;}
   if(button.dataset.knowledgeQuality){const next=qualityFilter(button.dataset.knowledgeQuality);if(next!==state.filters.quality)updateFilters({quality:next});return;}
   const action=button.dataset.knowledgeAction;
+  if(action==='research'){if(state.detailStatus==='ready'&&state.detail&&needsResearch(state.detail)){const entry=state.detail;onResearch?.({entry_id:entry.id,title:text(entry.title),unit_id:text(entry.unit_id),unit_name:text(entry.unit_name),year:Number.isInteger(entry.year)?entry.year:null});}return;}
   if(action==='back')onBack?.();
   if(action==='retry')loadList();
   if(action==='retry-detail')openDetail(state.detailId,{remember:false});

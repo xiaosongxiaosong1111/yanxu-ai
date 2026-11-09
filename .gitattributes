@@ -8,3 +8,7 @@ collectors/catalog_pdf_variants.py -text
 collectors/catalog_pdf_national.py -text
 collectors/catalog_pdf_national_v2.py -text
 collectors/catalog_hit_public.py -text
+
+# Official originals are immutable byte snapshots, including source whitespace.
+# Preserve SHA across Windows checkouts and avoid text normalization/merging.
+tests/fixtures/source_candidates/bift2027/*.html binary

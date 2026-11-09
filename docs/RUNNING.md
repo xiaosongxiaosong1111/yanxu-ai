@@ -287,6 +287,7 @@ node tests/browser-knowledge.cjs
 node tests/browser-knowledge-hybrid.cjs
 node tests/browser-agent-decisions.cjs
 node tests/browser-catalog-review.cjs
+node tests/browser-demand-candidates.cjs
 ```
 
 内存紧张时，Node 可用 `node --test --test-concurrency=1 tests/*.test.mjs` 顺序执行。Python 可按 `tests/test_*.py` 文件逐个运行 `python -m unittest discover -s tests -p <文件名>`，务必遍历全部文件并汇总失败和跳过，不将资源错误归为通过。本次整体审计的实际结果及未完成项见 [系统审计](SYSTEM_AUDIT_20261109.md)。

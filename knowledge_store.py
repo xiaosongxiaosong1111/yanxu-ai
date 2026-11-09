@@ -396,7 +396,7 @@ class KnowledgeStore:
                 current=source.get('extraction') or {}
                 if (source.get('validity')!='active' or current.get('generation_id')!=row['generation_id']
                         or quality=='accepted' and not self._usable(source)):continue
-                result.append({**segments.public_segment(row,source),'match_mode':match_mode})
+                result.append({**segments.public_segment(row,source),'match_mode':segments.segment_match_mode(row,query,match_mode)})
             return {**empty,'segments':result,'total':total,'index_state':'ready','match_mode':match_mode}
 
     def read_segment(self,segment_id,*,before=0,after=0,max_chars=6000,trusted_only=True):

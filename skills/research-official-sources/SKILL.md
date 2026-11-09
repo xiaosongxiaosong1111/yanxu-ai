@@ -7,6 +7,10 @@ description: Find official graduate admissions sources with Yuanbao and a finite
 
 先查已发布本地候选，再使用元宝search_official_sources补查本轮相关学校、专业和年度的公开资料。学校没有已入库专业时仍可以先find_units确认身份并搜索，不得制造占位专业。
 
+没有已发布专业但已有官方新原文时，继续完成可计算方向闭环：find_units确认学校→search_knowledge或read_official_source取得真实年度原文→search_knowledge_segments定位完整目录行→read_knowledge_segment精读完整行、表头与必要邻接限定→propose_source_candidates提交最多六个有精确引用的草案→compare_candidates与plan_subject_routes。程序只把校验通过的方向放进本轮临时研究池，不写正式目录；每轮最多二十四个临时方向，展示至多十二个，未展示或被当前条件排除不代表不存在。来源不能支持完整科目和身份时保留缺口，不凑占位专业。
+
+propose_source_candidates只提交source_id、segment_id和drafts；每个draft限code/name/department?/direction?/study_mode/row/exams/supplements?。row与exams引用分别为{segment_id,char_start,char_end,quote}，使用精读返回的绝对字符位置和逐字文本；row必须完整单行，exams必须属于同一行并完整覆盖该行考试单元。表头或校级说明单独精读后可用supplements补study_mode或politics，须明确同校同年全校适用且无例外。学校、年度、费用、资格、命题范围和候选ID均不得由模型填写；工具从可信来源和确定性规则推导。只有搜索命中、摘要、被裁剪的工具预览或旧轮引文不能生成方向。
+
 搜索词仅含公开学校、专业、科目、年度、材料类型；不发送个人姓名、电话、证件、Key或完整个人档案。搜索结果是线索，摘要和排名都不代表原文已核验。通过read_official_source读取允许学校域名的原文；不要自行访问未绑定URL或研招网门禁。
 
 检索响应里的 `failure_stage` 只说明本次停在哪一步：`binding_missing` 表示该校尚未登记可信官网，`attribution_unverified` 表示只找到归属待确认的候选域名，`third_party_only` 表示只有第三方线索，`domain_mismatch` 表示本次返回域名与已登记官网不符，`index_no_hit` 表示上游索引本次没有命中。这些都不等于“官网没有资料”，只能如实说“本次没有取得可展示的官方来源”，并给出核对已登记官网、更换资料类型或年份、改用本机知识库的下一步。`official_domain_candidate` 与 `third_party_reference` 永远只是线索，不能写成官方招生事实，也不能据此把某个域名登记为官网。响应中的 `request_count` 与 `queries_tried` 是真实外部请求，回退或换词发生过就要如实说明，不能包装成一次完成。

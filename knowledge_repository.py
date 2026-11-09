@@ -165,18 +165,32 @@ def query_rows(connection, *, query, entry_id, unit_id, year, quality, page, pag
                              year=year,quality=quality,page=page,page_size=page_size)
     where,args=_scope(query,entry_id,unit_id,year,quality)
     terms=query.split()[:8]
+    strict=None
     if terms and all(len(term) >= 3 for term in terms) and has_table(connection, 'knowledge_segments_fts'):
         condition = 's.id IN (SELECT segment_id FROM knowledge_segments_fts WHERE knowledge_segments_fts MATCH ?)'
         value = ' AND '.join('"' + term.replace('"', '""') + '"' for term in terms)
         try:
             result=_query(connection,[*where,condition],[*args,value],page,page_size)
-            if result[1]:return (*result,'segment_terms')
+            if result[1]:strict=result
         except sqlite3.OperationalError:pass
-    result=_query(connection,where,args,page,page_size)
-    if result[1] or len(terms)<2:return (*result,'segment_terms')
+    result=strict if strict is not None else _query(connection,where,args,page,page_size)
+    if len(terms)<2:return (*result,'segment_terms')
     where,args=_document_scope(query,entry_id,unit_id,year,quality)
-    rank=' + '.join('CASE WHEN instr(lower(s.search_text),lower(?))>0 THEN 1 ELSE 0 END' for _ in terms)
-    return (*_query(connection,where,args,page,page_size,rank,terms),'document_terms')
+    exact=' AND '.join('instr(lower(s.search_text),lower(?))>0' for _ in terms)
+    coverage=' + '.join('CASE WHEN instr(lower(s.search_text),lower(?))>0 THEN 1 ELSE 0 END' for _ in terms)
+    # A precise row may depend on a separately stated scope or exception. Keep
+    # it first, then retain the existing same-document all-term context pool.
+    rank='CASE WHEN '+exact+' THEN 100 ELSE 0 END + '+coverage
+    mode='segment_terms' if result[1] else 'document_terms'
+    return (*_query(connection,where,args,page,page_size,rank,[*terms,*terms]),mode)
+
+
+def segment_match_mode(row, query, fallback):
+    """Expose partial document context honestly even alongside precise hits."""
+    terms=query.split()[:8]
+    if len(terms)<2 or natural_terms(query):return fallback
+    body=json.loads(row['payload']).get('search_text','').lower()
+    return 'segment_terms' if all(term.lower() in body for term in terms) else 'document_terms'
 
 
 def _natural_rows(connection, *, derived, query, entry_id, unit_id, year, quality, page, page_size):

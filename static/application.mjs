@@ -16,7 +16,7 @@ const hydratingPrograms=new Set();
 let route={page:'home',id:null,tab:'overview'},lastDiscover='/discover',lastPlan='/plan',searchTimer,subjectTimer,toastTimer,listSequence=0,analysisSequence=0,workbenchCleanup,workbenchGeneration=0,radarUnread=0,radarPending=false,radarError='',radarProgramIds=[];
 let detailReturn={path:'/discover',scroll:0,id:null},pendingWorkbenchRestore=null;
 let sourcesReturn={path:'/',scroll:0},pendingSourceRestore=null,sourceCleanup,sourceGeneration=0,evidenceCleanup,evidenceGeneration=0;
-let surfaceCleanup,surfaceGeneration=0,surfaceSignature='',researchReturn='/',knowledgeReturn='/',serviceStatusSequence=0,resetProfileRequested=false,pendingPlanImport=null,researchSeed='';
+let surfaceCleanup,surfaceGeneration=0,surfaceSignature='',researchReturn='/',knowledgeReturn='/',serviceStatusSequence=0,resetProfileRequested=false,pendingPlanImport=null,researchSeed='',researchSeedContext=null;
 const routeScrolls=new Map();
 history.scrollRestoration='manual';
 const weights={balanced:{cost:2,subjects:3,location:2},subjects:{cost:1,subjects:5,location:1},cost:{cost:5,subjects:2,location:1}};
@@ -99,6 +99,7 @@ function renderPlan(){const tool=workbenchTool();return `<section id="plan-page"
 
 function renderPage({preserveScroll=true}={}){
  const nextRoute=parseRoute(location.hash,[...knownIds(),...(requestedProgramId()?[requestedProgramId()]:[])]);
+ if(nextRoute.page!=='research'){researchSeed='';researchSeedContext=null;}
  // The knowledge surface owns its entry_id/segment_id history. Keeping the
  // signature at the page level lets its popstate listener update the reader
  // instead of tearing the surface down and losing the pushed-detail marker.
@@ -134,13 +135,20 @@ function openKnowledge({entry_id='',segment_id='',query='',quality='accepted'}={
  if(entry_id&&/^sg_[a-f0-9]{32}$/.test(segment_id))queryParams.set('segment_id',segment_id);
  navigate('/knowledge'+(queryParams.size?'?'+queryParams.toString():''));
 }
+function researchKnowledge(entry){
+ if(!/^k_[a-f0-9]{24}$/.test(entry?.entry_id||''))return;
+ researchSeed=`请核对这份资料，补齐原文、年份与专业信息，并保留仍待确认的报考条件。资料：${String(entry.title||'资料标题待补齐').slice(0,600)}${entry.unit_name?`；学校：${String(entry.unit_name).slice(0,120)}`:''}${Number.isInteger(entry.year)?`；资料年度：${entry.year} 年`:''}。`;
+ researchSeedContext={entry_id:entry.entry_id,title:String(entry.title||''),returnPath:location.hash.slice(1)||'/knowledge'};
+ navigate('/research');
+}
 async function mountResearchSurface(surface){
  const generation=surfaceGeneration,container=document.getElementById(surface+'-root');
  try{
   const module=await import('./'+surface+'.mjs');
   if(generation!==surfaceGeneration||!container?.isConnected)return;
-  const options=surface==='settings'?{api,onBack:()=>navigate(researchReturn),onSaved:refreshServiceStatus}:surface==='knowledge'?{api,onBack:()=>navigate(knowledgeReturn),initialEntryId:params().get('entry_id')||'',initialSegmentId:params().get('segment_id')||'',initialQuery:params().get('q')||'',initialQuality:params().get('quality')||'accepted',initialStatus:params().get('status')||'',initialYear:params().get('year')||'',initialUnit:params().get('unit_id')||'',initialPage:Math.max(1,Number(params().get('page'))||1)}:{api,bootstrap:state.bootstrap,getBootstrap:()=>state.bootstrap,initialTaskId:params().get('id')||'',initialQuery:researchSeed,onSettings:()=>navigate('/settings'),onTaskChange:id=>navigate('/research?id='+encodeURIComponent(id),{replace:true}),onOpenProgram:openProgram,onCoverage:()=>showInfo('coverage'),onDiscover:()=>navigate('/discover'),onKnowledge:openKnowledge,savedIds:state.saved,onToggleSaved:saveProgramFromAgent};
-  researchSeed='';
+  const seed=surface==='agent'?researchSeedContext:null;
+  const options=surface==='settings'?{api,onBack:()=>navigate(researchReturn),onSaved:refreshServiceStatus}:surface==='knowledge'?{api,onBack:()=>navigate(knowledgeReturn),onResearch:researchKnowledge,initialEntryId:params().get('entry_id')||'',initialSegmentId:params().get('segment_id')||'',initialQuery:params().get('q')||'',initialQuality:params().get('quality')||'accepted',initialStatus:params().get('status')||'',initialYear:params().get('year')||'',initialUnit:params().get('unit_id')||'',initialPage:Math.max(1,Number(params().get('page'))||1)}:{api,bootstrap:state.bootstrap,getBootstrap:()=>state.bootstrap,initialTaskId:seed?'':params().get('id')||'',initialQuery:researchSeed,initialKnowledgeEntryId:seed?.entry_id||'',initialKnowledgeTitle:seed?.title||'',onKnowledgeReturn:()=>seed&&navigate(seed.returnPath),onSettings:()=>navigate('/settings'),onTaskChange:id=>navigate('/research?id='+encodeURIComponent(id),{replace:true}),onOpenProgram:openProgram,onCoverage:()=>showInfo('coverage'),onDiscover:()=>navigate('/discover'),onKnowledge:openKnowledge,savedIds:state.saved,onToggleSaved:saveProgramFromAgent};
+  if(surface==='agent'){researchSeed='';researchSeedContext=null;}
   const cleanup=(surface==='settings'?module.mountSettings:surface==='knowledge'?module.mountKnowledge:module.mountAgent)(container,options);
   if(generation===surfaceGeneration)surfaceCleanup=cleanup;else cleanup?.();
  }catch(error){if(generation===surfaceGeneration&&container?.isConnected){container.innerHTML=`<div class="page-container"><h1>页面暂时未能打开</h1><p class="service-error" role="alert">${esc(error.message||'请刷新后重试。')}</p><button class="btn btn-primary" data-action="reload-surface">重新打开</button></div>`;}}
@@ -235,7 +243,7 @@ async function runHistoricalMatch(form){
 const sourceHost=value=>{try{return new URL(value).hostname}catch{return ''}};
 const sourceStageHints={binding_missing:'该校尚未登记可信官网域名；这不代表官网没有资料。',attribution_unverified:'发现疑似官方页面，但域名归属尚未确认，不能作为报考依据。',third_party_only:'本次只有第三方线索，不能作为报考依据。',domain_mismatch:'检索到的页面不在已登记官方域名内，未当作该校资料。',index_no_hit:'已登记官方域名内本次没有可展示来源，不代表资料不存在。'};
 function registeredOfficialLinks(){const unit=selectedUnit(),urls=[...(Array.isArray(unit?.official_urls)?unit.official_urls:[]).map(item=>typeof item==='string'?item:item?.url),unit?.official_url].map(safeHttpUrl).filter(Boolean);return [...new Set(urls)].slice(0,4);}
-function seedResearch(){researchSeed=sourceResearchSeed(selectedUnit(),state.preferences.sourceKind,referenceYear());closeDialog(document,'info-dialog');navigate('/research');}
+function seedResearch(){researchSeedContext=null;researchSeed=sourceResearchSeed(selectedUnit(),state.preferences.sourceKind,referenceYear());closeDialog(document,'info-dialog');navigate('/research');}
 async function runSourceSearch(button,scope='official'){
  if(!state.preferences.unit_id)return;
  const kind=state.preferences.sourceKind||'catalog',kindLabel=sourceKindLabel(kind);

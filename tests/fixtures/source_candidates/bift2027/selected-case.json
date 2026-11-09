@@ -1,0 +1,47 @@
+{
+  "case_id": "official-bift-2027-082104-01",
+  "unit_id": "367889",
+  "unit_code": "10012",
+  "unit_name": "北京服装学院",
+  "admission_year": 2027,
+  "publication_date": "2026-10-05",
+  "scope": "One directly witnessed direction for independent offline acceptance; this file does not claim school-catalog completeness.",
+  "existing_catalog_unit_count": 135,
+  "existing_unit_program_count": 0,
+  "annual_registry_status": "confirmed",
+  "catalog_source": "bift-2027-catalog.html",
+  "charter_source": "bift-2027-charter.html",
+  "observed_record": {
+    "college_code": "001",
+    "college_name": "服装艺术与工程学院",
+    "major_code": "082104",
+    "major_name": "服装设计与工程",
+    "degree_type": "学硕",
+    "direction_code": "01",
+    "direction_name": "功能性服装研究",
+    "study_mode": "全日制",
+    "exam_units": [
+      {"unit": 1, "code": "101", "name": "思想政治理论"},
+      {"unit": 2, "code": "201", "name": "英语(一)"},
+      {"unit": 3, "code": "302", "name": "数学(二)"},
+      {"unit": 4, "code": "902", "name": "服装理论"}
+    ]
+  },
+  "field_evidence": [
+    {"fields": ["admission_year"], "file": "bift-2027-catalog.html", "line": 317, "locator": "h2", "quote": "北京服装学院2027年硕士研究生招生专业目录"},
+    {"fields": ["publication_date"], "file": "bift-2027-catalog.html", "line": 318, "locator": "h4", "quote": "2026-10-05"},
+    {"fields": ["college_code", "college_name"], "file": "bift-2027-catalog.html", "line": 342, "locator": "table.gpTable > tbody > tr:nth-child(2) > td:nth-child(1)", "quote": "001服装艺术与工程学院"},
+    {"fields": ["major_code", "major_name"], "file": "bift-2027-catalog.html", "line": 343, "locator": "table.gpTable > tbody > tr:nth-child(2) > td:nth-child(2)", "quote": "082104服装设计与工程"},
+    {"fields": ["degree_type"], "file": "bift-2027-catalog.html", "line": 344, "locator": "table.gpTable > tbody > tr:nth-child(2) > td:nth-child(3)", "quote": "学硕"},
+    {"fields": ["direction_code", "direction_name"], "file": "bift-2027-catalog.html", "line": 345, "locator": "table.gpTable > tbody > tr:nth-child(2) > td:nth-child(4)", "quote": "01功能性服装研究"},
+    {"fields": ["exam_units.2", "exam_units.3", "exam_units.4"], "file": "bift-2027-catalog.html", "line": 346, "locator": "table.gpTable > tbody > tr:nth-child(2) > td:nth-child(5)", "quote": "②201英语(一)③302数学(二)④902服装理论"},
+    {"fields": ["exam_units.1"], "file": "bift-2027-catalog.html", "line": 717, "locator": "After table.gpTable, remark 1", "quote": "1.考试科目一均为：①101思想政治理论。"},
+    {"fields": ["study_mode"], "file": "bift-2027-charter.html", "line": 322, "locator": "Section 二、招生类别, first paragraph", "quote": "我校所有专业均招收全日制硕士研究生。"}
+  ],
+  "interpretation_notes": [
+    "The selected direction occupies the first data row: all relevant second-to-fourth exam cells are explicit on that row, so no rowspan inference is required for this one witnessed record.",
+    "Exam unit 1 is a document-wide explicit remark; study mode is an explicit school-wide clause in the same-year official charter.",
+    "The catalog contains rowspan cells and a three-unit museum major with fourth unit --无. A future whole-school parser must handle those cases rather than extrapolate four units to every row.",
+    "Student names, candidate numbers, admission rosters, scores, or application records were not downloaded."
+  ]
+}

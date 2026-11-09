@@ -4,6 +4,8 @@
 它不替代 `PRODUCT_CONTRACT.md`（产品边界）、`VERIFICATION.md`（验收证据）和
 `RUNNING.md`（运行方式）。任何与代码冲突的描述，以测试和已发布快照为准。
 
+2026-11-09 最新节点：**官方原文→当轮方向→算法→失效重验已完成首版**。详情与 B～F 后续步骤见 [ON_DEMAND_CANDIDATES.md](ON_DEMAND_CANDIDATES.md)，最新测试见 [VERIFICATION.md](VERIFICATION.md)。下方 W0～W7 与 AD 条目保留各阶段历史，不应覆盖新验收。下一优先级是资格、费用、学制补证和知识库全文维护，再扩复杂目录结构与语义评测。
+
 ## 1. 目标与非目标
 
 **目标**：让考生从“查到资料”走到“能核对、能比较、能行动”，并且每个结论都能回到
