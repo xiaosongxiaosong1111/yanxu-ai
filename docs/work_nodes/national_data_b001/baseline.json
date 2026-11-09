@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-09T16:49:05+0800",
+  "generated_at": "2026-11-09T16:51:52+0800",
   "git": {
-    "commit": "67d5e243e765876481b3a698759dc07b24ccb385",
+    "commit": "ceeff0502de1009b91018a8e5aeb58f9ca07586f",
     "branch": "data/national-b001"
   },
   "package": {
@@ -99,7 +99,8 @@
     "review_pending": 84,
     "original_pending": 413,
     "missing_catalog": 796,
-    "parser_pending": 433
+    "parser_pending": 433,
+    "missing_trusted_entry": 2
   },
   "queue_count": 931,
   "queue_count_mismatch": 0,

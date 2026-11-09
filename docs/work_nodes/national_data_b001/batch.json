@@ -1,6 +1,6 @@
 {
   "batch_id": "b001",
-  "generated_at": "2026-11-09T16:49:05+0800",
+  "generated_at": "2026-11-09T16:51:52+0800",
   "selection_rule": "数据队列确定性排序；不手写学校名",
   "expansion": [
     {

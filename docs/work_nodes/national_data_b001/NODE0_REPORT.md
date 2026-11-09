@@ -68,7 +68,7 @@
 | `missing_duration` | 119 | 已有方向但无 verified 学制 |
 | `partial_catalog` | 84 | 已有部分专业资料，全校目录未对账完整；不得勾整校完成 |
 | `review_pending` | 84 | 部分目录待独立审校 |
-| `missing_trusted_entry` | 2+ | 官方入口未核准；交 Codex 补证，本批跳过该单位 |
+| `missing_trusted_entry` | 2 | 官方入口未核准；交 Codex 补证，本批跳过该单位 |
 
 注：`original_pending` 与 `parser_pending` 是按现有覆盖文件的状态归因；节点1 必须以实际原件重新判定，不能把本表当最终结论。
 
@@ -156,7 +156,7 @@ python -m venv .venv
 ./.venv/Scripts/python.exe -X utf8 national_data_baseline.py --data-dir data --out data/batch_runs/b001 --repo-root . --raw-pdf "C:/Program Files/Git/mingw64/bin/pdftotext.exe" --bbox-pdf "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe"
 ```
 
-- 新逻辑先 RED（`ModuleNotFoundError: national_data_baseline`），实现后 GREEN：10 项通过。
+- 新逻辑先 RED（`ModuleNotFoundError: national_data_baseline`），实现后 GREEN：11 项通过（含“有网址但未核准入口”反例）。
 - 本节点未运行全库测试（只改新增模块），未改五个保护文件、未改旧金标/阈值。
 - 产物：`data/batch_runs/b001/{baseline.json,queue.json,batch.json}`（本机工作产物）；
   可提交副本在 `docs/work_nodes/national_data_b001/`。
@@ -165,7 +165,7 @@ python -m venv .venv
 
 - 未联网采集、未解析任何新原件、未采用任何方向、未发布 SQLite、未构建新包；本报告不得被当作目录或资格增长。
 - 首批 10 校的“来源数 / 原文 URL”来自公开包覆盖文件；节点1 必须以实际原件 URL、MIME、SHA、年份重新核对，URL 数不等于原件数。
-- `original_pending` 与 `needs_binding` 的单位不在首批扩目录池；其中缺官网归属的，按手册交 Codex 结构化阻塞，不自行扩绑定。
+- `original_pending` 与 `needs_binding` 的单位不在首批扩目录池；其中缺官网归属的，按手册交 Codex 结构化阻塞，不自行扩绑定。本次明确归为 `missing_trusted_entry` 的是 **河北建筑工程学院（688908263 / 10084）** 与 **复旦大学（368127 / 10246）**：两者覆盖文件仍写“尚未核准该单位的官方招生网站入口”，即使字符串里有网址也不能当作已核准入口。
 - 本机未安装/未启动向量模型；本任务不需要。
 - 下一步（节点1）：对首批 10 校建立原件清单与目录全集对账；每校保留 `document_id / URL / 标题 / 年份 / SHA / 路径 / 状态`，失败的按互斥主因分类。做完一批再报，不静默长跑。
 

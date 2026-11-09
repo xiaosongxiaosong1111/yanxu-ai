@@ -57,7 +57,8 @@ def classify_gaps(row, stats):
     """Return every real gap code for one unit; a unit may have several."""
     gaps = []
     program_count = int(stats.get('program_count') or 0)
-    if not str(row.get('official_url') or '').strip():
+    reason = str(row.get('missing_reason') or '')
+    if not str(row.get('official_url') or '').strip() or '尚未核准' in reason:
         gaps.append('missing_trusted_entry')
     if program_count == 0:
         gaps.append('missing_catalog')
@@ -70,7 +71,6 @@ def classify_gaps(row, stats):
     if program_count and not stats.get('duration'):
         gaps.append('missing_duration')
     status = str(row.get('collection_status') or '')
-    reason = str(row.get('missing_reason') or '')
     if status in ('needs_binding', 'truncated') or '登录或限制访问' in reason or '尚未找到可核验' in reason:
         gaps.append('original_pending')
     if status == 'collected' and program_count == 0 and '待解析' in reason:

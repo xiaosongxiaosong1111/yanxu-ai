@@ -4286,6 +4286,7 @@
   "missing_reason": "尚未核准该单位的官方招生网站入口。",
   "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-688908263.dhtml",
   "gaps": [
+   "missing_trusted_entry",
    "missing_catalog",
    "original_pending"
   ],
@@ -7707,6 +7708,7 @@
   "missing_reason": "尚未核准该单位的官方招生网站入口。",
   "official_url": "https://yz.chsi.com.cn/sch/schoolInfo--schId-368127.dhtml",
   "gaps": [
+   "missing_trusted_entry",
    "missing_catalog",
    "original_pending"
   ],

@@ -63,6 +63,13 @@ class GapTests(unittest.TestCase):
             self.stats(program_count=5, full_qualification=5, tuition=5, duration=5))
         self.assertEqual(gaps, [])
 
+    def test_unapproved_entry_is_missing_even_when_a_url_string_exists(self):
+        gaps = baseline.classify_gaps(
+            self.row(official_url='https://unreviewed.example.edu.cn/',
+                     missing_reason='尚未核准该单位的官方招生网站入口。'),
+            self.stats())
+        self.assertIn('missing_trusted_entry', gaps)
+
     def test_queue_without_programs_does_not_claim_field_gaps(self):
         gaps = baseline.classify_gaps(self.row(), self.stats())
         self.assertNotIn('missing_tuition', gaps)
