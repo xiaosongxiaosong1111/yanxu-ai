@@ -742,7 +742,7 @@ def _git(repo_root, *args):
 
 
 def _write_json(path, payload):
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), 'utf-8')
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), 'utf-8', newline='\n')
 
 
 def audit(data_dir, out_dir, *, raw_pdf='', bbox_pdf='', repo_root='.', expansion=7, backfill=3):

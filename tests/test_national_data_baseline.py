@@ -874,6 +874,13 @@ class ToolTests(unittest.TestCase):
             self.assertEqual(baseline.sha256_file(path),
                              'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad')
 
+    def test_write_json_uses_lf_bytes_for_canonical_binding(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'x.json'
+            baseline._write_json(path, {'a': 1})
+            data = path.read_bytes()
+            self.assertEqual(data, b'{\n  "a": 1\n}')
+
     def test_git_helper_returns_empty_for_missing_working_tree(self):
         self.assertEqual(baseline._git(str(Path(tempfile.gettempdir()) / 'no-such-repo-xyz'),
                                        'rev-parse', 'HEAD'), '')
