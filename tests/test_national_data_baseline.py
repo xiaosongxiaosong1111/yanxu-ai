@@ -1,5 +1,6 @@
 import csv
 import hashlib
+import html
 import json
 import shutil
 import sys
@@ -32,7 +33,8 @@ def attach_proof(row, status='verified', reason='saved_original_replayed', **ove
              'document_id': 'national-u1-2027-aaaabbbbccccdddd-aaaaaaaaaaaa',
              'document_sha256': 'a' * 64, 'document_path':
              'snapshots/national/2027/u1/aaaabbbbccccdddd-aaaaaaaaaaaaaaaa.html',
-             'file_sha256': 'a' * 64, 'quote_match': 'literal'}
+             'file_sha256': 'a' * 64, 'quote_match': 'literal',
+             'role_category': 'home', 'role_evidence': '研究生院网站主页'}
     proof.update(overrides)
     row['entry_verification'] = proof
     proof['proof_sha256'] = baseline._entry_fingerprint(row)
@@ -264,7 +266,8 @@ class EntryProofTests(unittest.TestCase):
     def test_quote_absent_from_the_original_is_rejected(self):
         proof = self.rewritten(quote='http://b.edu.cn/')
         self.assertEqual(proof['reason'], 'quote_host_mismatch')
-        proof = self.rewritten(quote='http://a.edu.cn/other/')
+        proof = self.rewritten(quote='http://a.edu.cn/other/',
+                               linked_url='http://a.edu.cn/other/')
         self.assertEqual(proof['reason'], 'quote_not_in_original')
 
     def test_unsupported_relation_is_rejected(self):
@@ -569,6 +572,223 @@ class UnitsTests(unittest.TestCase):
         self.assertEqual(rows[0]['official_url'], 'https://a.edu.cn/')
 
 
+class EntryRoleReplayTests(unittest.TestCase):
+    """R2: the saved original must visibly declare this unit's site role."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.data = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def make(self, article='', *, unit_name='甲大学', unit_id='u1',
+             official_url='https://a.edu.cn/', full_html=None, hidden=False,
+             quote=None, linked=None, known_hosts=None, known_names=None,
+             relation='official_home_link', return_context=False):
+        if full_html is None:
+            if hidden:
+                payload = ('<html><body><div class="cnt_body_wrapper"></div>'
+                           f'<input type="hidden" id="hid_content" value="'
+                           f'{html.escape(article, quote=True)}"></body></html>')
+            else:
+                payload = f'<html><body>{article}</body></html>'
+        else:
+            payload = full_html
+        saved = payload.encode('utf-8')
+        sha = hashlib.sha256(saved).hexdigest()
+        document_id = f'national-{unit_id}-2027-aaaabbbbccccdddd-{sha[:12]}'
+        folder = self.data / 'snapshots' / 'national' / '2027' / unit_id
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / f'aaaabbbbccccdddd-{sha[:16]}.html').write_bytes(saved)
+        record = {
+            'unit_id': unit_id, 'unit_code': '10001', 'year': 2027,
+            'annual_status': 'confirmed',
+            'evidence': [{'document_id': document_id, 'url': STATEMENT_URL,
+                          'sha256': sha, 'kind': 'annual_master_charter',
+                          'quote': '甲大学2027年硕士研究生招生章程'}]}
+        unit = {
+            'id': unit_id, 'name': unit_name, 'official_url': official_url,
+            'official_url_evidence': {
+                'url': STATEMENT_URL, 'sha256': sha,
+                'quote': quote if quote is not None else official_url,
+                'linked_url': linked if linked is not None else official_url,
+                'relation': relation,
+                'verification': 'replayed_from_saved_chsi_official_site_statement'}}
+        proof = baseline.verify_entry(unit, record, self.data, known_hosts,
+                                     known_names)
+        if return_context:
+            return proof, unit, record
+        return proof
+
+    def test_chsi_counterexample_is_not_trusted_or_selected(self):
+        proof, unit, record = self.make(
+            '我校学历（学籍）信息可登录“中国高等教育学生信息网”'
+            '（网址：https://www.chsi.com.cn）查询。'
+            '学校网址：http://www.sdau.edu.cn/',
+            unit_name='山东农业大学', official_url='https://www.chsi.com.cn/',
+            hidden=True, return_context=True)
+        self.assertEqual(proof['reason'], 'platform_not_official_site')
+        row = {'unit_id': 'u1', 'year': 2027, 'annual_status': 'confirmed',
+               'official_url': unit['official_url'],
+               'official_url_evidence': unit['official_url_evidence'],
+               'catalog_status': 'not_collected', 'collection_status': 'collected',
+               'missing_reason': '已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。',
+               'original_urls': 'https://www.chsi.com.cn/zsml/2027.htm',
+               'gaps': ['missing_catalog', 'parser_pending']}
+        queue = baseline.build_queue([], {}, {}, [row],
+                                     entry_proofs={'u1': proof})
+        self.assertFalse(queue[0]['entry_trusted'])
+        picks = baseline.select_batch(queue, expansion=1, backfill=1)
+        self.assertEqual(picks['expansion'], [])
+        self.assertEqual(picks['backfill'], [])
+
+    def test_hidden_chsi_article_replays_a_visible_school_role(self):
+        proof = self.make(
+            '学校网址：<a href="http://www.sdau.edu.cn/">http://www.sdau.edu.cn/</a>'
+            '；研究生处网址：http://yjsc.sdau.edu.cn/',
+            unit_name='山东农业大学', official_url='http://www.sdau.edu.cn/',
+            hidden=True)
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'home')
+        self.assertIn('网址', proof['role_evidence'])
+        self.assertEqual(proof['quote_match'], 'literal')
+
+    def test_chsi_student_status_url_is_not_a_school_site_role(self):
+        proof = self.make(
+            '我校学历（学籍）信息可登录“中国高等教育学生信息网”'
+            '（网址：https://www.chsi.com.cn）查询。'
+            '学校网址：http://www.sdau.edu.cn/',
+            unit_name='山东农业大学', official_url='https://www.chsi.com.cn/',
+            hidden=True)
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'platform_not_official_site')
+        self.assertEqual(proof['role_category'], '')
+
+    def test_admissions_page_platform_url_is_not_its_own_site(self):
+        proof = self.make(
+            '我校研究生招生信息均由我校研究生学院官方网站'
+            '（http://yjs.dep.dlpu.edu.cn/）统一公布。'
+            '考生可登录中国高等教育学生信息网'
+            '（网址：https://www.chsi.com.cn）查询。',
+            unit_name='大连工业大学', official_url='https://www.chsi.com.cn/',
+            hidden=True)
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'platform_not_official_site')
+
+    def test_url_only_in_a_comment_or_script_is_not_visible_evidence(self):
+        proof = self.make(full_html=(
+            '<html><body><p>请查阅招生章程。</p>'
+            '<!-- 研究生院网站主页：https://a.edu.cn/ --></body></html>'))
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
+        proof = self.make(full_html=(
+            '<html><body><p>请查阅招生章程。</p>'
+            '<script>var u = "https://a.edu.cn/";</script></body></html>'))
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
+
+    def test_an_unrelated_link_target_is_not_a_site_role(self):
+        proof = self.make('请点击<a href="https://a.edu.cn/">这里</a>查看。')
+        self.assertEqual(proof['reason'], 'role_declaration_missing')
+
+    def test_another_units_site_declaration_is_rejected(self):
+        proof = self.make(
+            '乙大学官方网站：<a href="https://a.edu.cn/">https://a.edu.cn/</a>',
+            unit_name='甲大学', known_names={'甲大学', '乙大学'})
+        self.assertEqual(proof['reason'], 'foreign_unit_reference')
+
+    def test_anchor_target_must_match_the_declared_url(self):
+        proof = self.make(
+            '我校官方网站：<a href="https://www.chsi.com.cn/">https://a.edu.cn/</a>')
+        self.assertEqual(proof['reason'], 'link_target_mismatch')
+
+    def test_plain_visible_url_with_a_role_can_pass(self):
+        proof = self.make('我校官方网站：https://a.edu.cn/')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['quote_match'], 'literal')
+
+    def test_linked_url_is_compared_ignoring_scheme_and_trailing_slash(self):
+        proof = self.make('我校官方网站：https://a.edu.cn/',
+                          linked='http://a.edu.cn')
+        self.assertEqual(proof['status'], 'verified')
+
+    def test_linked_target_with_a_different_path_is_rejected(self):
+        proof = self.make('我校官方网站：https://a.edu.cn/',
+                          linked='https://a.edu.cn/zsml/')
+        self.assertEqual(proof['reason'], 'linked_target_mismatch')
+
+    def test_nearby_platform_mention_does_not_hide_a_school_site_role(self):
+        proof = self.make(
+            '请登录中国研究生招生信息网了解政策，或访问我校官方网站：'
+            '<a href="https://a.edu.cn/">https://a.edu.cn/</a>。')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'home')
+
+    def test_earlier_catalog_words_do_not_override_the_site_label(self):
+        proof = self.make(
+            '招生专业目录等相关内容可登录我校网站'
+            '（https://a.edu.cn/）查询。')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'home')
+
+    def test_yanzhao_url_label_is_not_the_platform(self):
+        proof = self.make('我校研招网址：https://a.edu.cn/')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'admissions')
+
+    def test_full_article_can_own_an_abbreviated_label(self):
+        proof = self.make(
+            '甲大学2027年硕士研究生招生章程。' + '其他说明。' * 120
+            + '考生可通过招生信息网（https://a.edu.cn/）查询。')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'admissions')
+
+    def test_own_admissions_publication_accepts_a_catalog_title(self):
+        proof = self.make(
+            '<a href="https://a.edu.cn/zsml.htm">'
+            '甲大学2027年硕士研究生招生专业目录</a>',
+            official_url='https://a.edu.cn/zsml.htm',
+            relation='own_admissions_publication')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['role_category'], 'catalog')
+        self.assertEqual(proof['quote_match'], 'link_target')
+
+    def test_home_relation_still_rejects_a_catalog_title(self):
+        proof = self.make(
+            '<a href="https://a.edu.cn/zsml.htm">'
+            '甲大学2027年硕士研究生招生专业目录</a>',
+            official_url='https://a.edu.cn/zsml.htm',
+            relation='official_home_link')
+        self.assertEqual(proof['reason'], 'relation_role_mismatch')
+
+    def test_percent_encoded_punctuation_is_normalised(self):
+        proof = self.make(
+            '我院官网地址：http://a.edu.cn/。',
+            official_url='http://a.edu.cn/%E3%80%82',
+            quote='http://a.edu.cn/%E3%80%82',
+            linked='http://a.edu.cn/%E3%80%82',
+            relation='declared_official_site')
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['quote_match'], 'literal')
+
+    def test_backface_visibility_style_does_not_hide_article_text(self):
+        proof = self.make(full_html=(
+            '<html><body><p style="backface-visibility: hidden">'
+            '我校官方网站：https://a.edu.cn/</p></body></html>'))
+        self.assertEqual(proof['status'], 'verified')
+
+    def test_linked_target_with_a_different_fragment_is_rejected(self):
+        proof = self.make(
+            '我校官方网站：https://a.edu.cn/',
+            quote='https://a.edu.cn/#/admission/article-3506',
+            linked='https://a.edu.cn/')
+        self.assertEqual(proof['reason'], 'linked_target_mismatch')
+
+    def test_registry_host_owned_by_another_unit_is_rejected(self):
+        proof = self.make('我校官方网站：https://a.edu.cn/',
+                          known_hosts={'a.edu.cn': {'u2'}})
+        self.assertEqual(proof['reason'], 'other_unit_host')
+
+
 class QueueTests(unittest.TestCase):
     def test_build_queue_keeps_raw_effective_verified_and_remaining_counts(self):
         annual = [{'unit_id': 'u1', 'year': 2027, 'annual_status': 'confirmed',
@@ -701,6 +921,22 @@ class SelectTests(unittest.TestCase):
         self.assertFalse(baseline.entry_trusted(bad))
         picks = baseline.select_batch([bad, good], expansion=0, backfill=1)
         self.assertEqual([row['unit_id'] for row in picks['backfill']], ['3'])
+
+    def test_expansion_pool_rejects_a_proof_without_a_replayed_role(self):
+        row = self.expansion_row()
+        row['entry_verification']['role_category'] = ''
+        row['entry_verification']['proof_sha256'] = baseline._entry_fingerprint(row)
+        self.assertFalse(baseline.entry_trusted(row))
+        picks = baseline.select_batch([row], expansion=1, backfill=0)
+        self.assertEqual(picks['expansion'], [])
+
+    def test_backfill_pool_rejects_a_proof_without_role_evidence(self):
+        row = self.backfill_row('3', 10)
+        row['entry_verification']['role_evidence'] = '   '
+        row['entry_verification']['proof_sha256'] = baseline._entry_fingerprint(row)
+        self.assertFalse(baseline.entry_trusted(row))
+        picks = baseline.select_batch([row], expansion=0, backfill=1)
+        self.assertEqual(picks['backfill'], [])
 
     def test_select_batch_records_queue_binding(self):
         picks = baseline.select_batch([self.expansion_row()], expansion=1, backfill=0,

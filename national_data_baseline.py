@@ -17,8 +17,9 @@ import subprocess
 import sys
 import time
 from collections import Counter, defaultdict
+from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 import ijson
 
@@ -50,6 +51,33 @@ SUPPORTED_ENTRY_RELATIONS = frozenset({
     'official_home_statement',
     'official_annual_catalog_link',
 })
+ENTRY_ROLE_CATEGORIES = frozenset({'home', 'admissions', 'catalog'})
+_SELF_REFERENCE = re.compile(
+    r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院|学校|招生单位|单位|学院)')
+_ROLE_PATTERNS = (
+    # A self-referential or institutional site declaration is the strongest
+    # visible role evidence.  The label must be attached to the URL/link.
+    ('home', re.compile(
+        r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院|学校|招生单位|单位|学院)'
+        r'(?:官方网站|官网|官方网址|网站|网址|主页)')),
+    ('home', re.compile(
+        r'(?:研究生院|研究生处|研究生学院|研究生部|研究生教育部|党委研究生工作部|'
+        r'研招办|招生办公室)[^。；\n]{0,20}?'
+        r'(?:官方网站|官网|官方网址|网站|网址|主页|网)')),
+    ('labeled', re.compile(
+        r'([一-龥A-Za-z]{2,24})(?:官方网站|官网|官方网址|主页)')),
+    ('admissions', re.compile(
+        r'(?:招生信息网|招生网站|招生网址|招生网|招生官网|招生资讯网|'
+        r'招生信息发布网址|研究生招生信息网址|研招网址|研招网|研招在线|'
+        r'研究生招生网|研究生招生信息网|研究生招生专题网站|招生专题网站)')),
+    ('catalog', re.compile(r'(?:招生专业目录|专业目录|招生简章|招生章程|附件)')),
+    ('home', re.compile(r'(?:网站|网址|主页|官网)')),
+)
+_PLATFORM_LABEL = re.compile(
+    r'(?:中国研究生招生信息网|全国硕士研究生招生信息公开平台|'
+    r'中国高等教育学生信息网|学信网(?!址|站|页)|研招网(?!址|站|页))')
+_VISIBLE_URL = re.compile(
+    r'https?://[^\s<>"\'`）】。，；、”‘」』]+', re.I)
 SHA256_HEX = re.compile(r'^[0-9a-f]{64}$')
 NOTICE = ('只读审计：未联网、未调用模型或元宝、未写采用文件、未创建发布索引；'
           '非空字段不等于原文已核验，完整资格仍以逐条条款审校为准。')
@@ -154,6 +182,8 @@ def _entry_fingerprint(row):
         'proof_file_sha256': str(proof.get('file_sha256') or ''),
         'proof_document_path': str(proof.get('document_path') or ''),
         'proof_quote_match': str(proof.get('quote_match') or ''),
+        'proof_role_category': str(proof.get('role_category') or ''),
+        'proof_role_evidence': str(proof.get('role_evidence') or ''),
     }
     canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
     return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
@@ -190,6 +220,10 @@ def entry_trusted(row):
     if str(proof.get('official_url') or '').strip() != url:
         return False
     if _host(evidence.get('quote')) != _host(url) or not _host(url):
+        return False
+    if proof.get('role_category') not in ENTRY_ROLE_CATEGORIES:
+        return False
+    if not str(proof.get('role_evidence') or '').strip():
         return False
     if not SHA256_HEX.match(str(proof.get('proof_sha256') or '')):
         return False
@@ -251,38 +285,405 @@ def _saved_original(data_dir, unit_id, year, sha256, document_id):
     return path, ''
 
 
-def _normalized_original_text(path):
+class _VisibleHTMLParser(HTMLParser):
+    """Collect visible article text and real anchor targets.
+
+    Comments, scripts, styles, navigation/head/footer chrome and hidden
+    elements are not visible article content.  Text is whitespace-normalised
+    as it is appended so anchor offsets stay valid for later role checks.
+    """
+
+    _BLOCK = frozenset({
+        'p', 'div', 'br', 'li', 'tr', 'td', 'th', 'h1', 'h2', 'h3', 'h4',
+        'h5', 'h6', 'section', 'article', 'ul', 'ol', 'table', 'tbody',
+        'thead', 'hr', 'blockquote', 'pre'})
+    _SKIP = frozenset({'script', 'style', 'noscript', 'template', 'svg'})
+    _CHROME_TAG = frozenset({'head', 'header', 'nav', 'footer', 'aside'})
+    _CHROME_MARK = re.compile(
+        r'(?:^|[-_])(?:nav|navbar|menu|footer|header|breadcrumb|sidebar|banner)'
+        r'(?:$|[-_])', re.I)
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self._parts = []
+        self._length = 0
+        self._open = []
+        self._skip_tags = []
+        self.anchors = []
+
+    def _space(self):
+        if self._length and not self._parts[-1].endswith(' '):
+            self._parts.append(' ')
+            self._length += 1
+
+    def _add(self, value):
+        value = re.sub(r'\s+', ' ', value or '')
+        if not value:
+            return
+        if value.startswith(' ') and (not self._length or self._parts[-1].endswith(' ')):
+            value = value[1:]
+        if value:
+            self._parts.append(value)
+            self._length += len(value)
+
+    def _close_anchor(self):
+        if self._open:
+            href, start = self._open.pop()
+            self.anchors.append((start, self._length, href))
+
+    @staticmethod
+    def _hidden(attrs):
+        values = dict(attrs)
+        if 'hidden' in values:
+            return True
+        style = str(values.get('style') or '').replace(' ', '').lower()
+        return bool(re.search(
+            r'(?:^|;)(?:display:none|visibility:hidden)(?:;|$)', style))
+
+    def handle_starttag(self, tag, attrs):
+        tag = tag.lower()
+        if self._skip_tags:
+            return
+        values = dict(attrs)
+        marker = ' '.join((str(values.get('id') or ''),
+                           str(values.get('class') or '')))
+        if (tag in self._SKIP or tag in self._CHROME_TAG
+                or self._hidden(attrs)
+                or (tag in ('div', 'ul', 'ol') and self._CHROME_MARK.search(marker))):
+            self._skip_tags.append(tag)
+            return
+        if tag in self._BLOCK:
+            self._space()
+        if tag == 'a':
+            self._close_anchor()
+            self._open.append((str(values.get('href') or ''), self._length))
+
+    def handle_startendtag(self, tag, attrs):
+        tag = tag.lower()
+        if self._skip_tags:
+            return
+        if tag in self._BLOCK:
+            self._space()
+
+    def handle_endtag(self, tag):
+        tag = tag.lower()
+        if self._skip_tags:
+            if tag == self._skip_tags[-1]:
+                self._skip_tags.pop()
+            return
+        if tag == 'a':
+            self._close_anchor()
+        if tag in self._BLOCK:
+            self._space()
+
+    def handle_data(self, data):
+        if not self._skip_tags:
+            self._add(data)
+
+    def text(self):
+        return ''.join(self._parts)
+
+
+def _decode_original(path):
     raw = Path(path).read_bytes()
-    chunks = []
     for encoding in ('utf-8', 'gb18030'):
-        chunks.append(html.unescape(raw.decode(encoding, 'replace')).replace('\\/', '/'))
-    return '\n'.join(chunks)
+        try:
+            return raw.decode(encoding).replace('\\/', '/')
+        except UnicodeDecodeError:
+            continue
+    return raw.decode('utf-8', 'replace').replace('\\/', '/')
+
+
+def _article_fragment(raw):
+    """Return the rendered article body, not page chrome or hidden controls.
+
+    Chsi annual-charter pages keep the article HTML in the ``hid_content``
+    input value and render it into the visible container.  Other saved pages
+    expose the article directly in ``yxk-news-contain``.  The article is the
+    only place where a school's own site-role declaration is meaningful;
+    platform navigation/header/footer links must not become entry evidence.
+    """
+    match = re.search(r'<input\b[^>]*\bid\s*=\s*(["\'])hid_content\1[^>]*>',
+                      raw, re.I | re.S)
+    if match:
+        value = re.search(r'\bvalue\s*=\s*"([^"]*)"', match.group(0), re.S)
+        if value is None:
+            value = re.search(r"\bvalue\s*=\s*'([^']*)'", match.group(0), re.S)
+        if value is not None:
+            return html.unescape(value.group(1)), 'hid_content'
+    match = re.search(
+        r'<div\b[^>]*\bclass\s*=\s*(["\'])[^"\']*\byxk-news-contain\b[^"\']*\1[^>]*>',
+        raw, re.I | re.S)
+    if match:
+        start = match.end()
+        depth = 1
+        for token in re.finditer(r'<(/?)div\b[^>]*>', raw[start:], re.I | re.S):
+            depth += -1 if token.group(1) else 1
+            if depth == 0:
+                return raw[start:start + token.start()], 'yxk_news'
+    return raw, 'full_page'
+
+
+def _visible_original(path):
+    raw = _decode_original(path)
+    fragment, _ = _article_fragment(raw)
+    parser = _VisibleHTMLParser()
+    parser.feed(fragment)
+    parser.close()
+    return parser.text(), parser.anchors
+
+
+def _is_web_url(value):
+    try:
+        return urlsplit(str(value or '')).scheme.lower() in ('http', 'https')
+    except ValueError:
+        return False
+
+
+def _url_key(value):
+    text = str(value or '').strip().rstrip('。，；、）】》\'"')
+    if not text:
+        return ('', '', '', '')
+    if '://' not in text:
+        text = 'http://' + text
+    try:
+        parts = urlsplit(text)
+    except ValueError:
+        return ('', '', '', '')
+    path = unquote(parts.path or '/').rstrip('/。，；、）】》\'" ') or '/'
+    return ((parts.hostname or '').lower(), path,
+            parts.query or '', parts.fragment or '')
+
+
+def _visible_quote_spans(text, quote):
+    """Find canonical URL occurrences in visible text.
+
+    The stored quote and the visible original may differ only by scheme or a
+    trailing slash.  A raw substring search would miss that legitimate case
+    and would also let unrelated URL prefixes through.
+    """
+    spans = []
+    position = 0
+    while True:
+        index = text.find(quote, position)
+        if index < 0:
+            break
+        spans.append((index, index + len(quote)))
+        position = index + 1
+    key = _url_key(quote)
+    if key[0]:
+        for match in _VISIBLE_URL.finditer(text):
+            if _url_key(match.group(0)) == key:
+                spans.append((match.start(), match.end()))
+    return sorted(set(spans))
+
+
+def _longest_common_substring(left, right):
+    left = str(left or '')
+    right = str(right or '')
+    best = ''
+    for start in range(len(left)):
+        for end in range(start + len(best) + 1, len(left) + 1):
+            piece = left[start:end]
+            if piece not in right:
+                break
+            best = piece
+    return best
+
+
+def _foreign_name_in(span, unit_name, other_names):
+    """Find another known unit's exact name in a tight role span.
+
+    School-name patterns over free text produce false positives such as
+    "详见学校" or "研究生学院".  The registry already contains every unit
+    name, so ownership is checked against those exact names instead.
+    """
+    unit_name = str(unit_name or '')
+    for name in other_names or ():
+        name = str(name or '')
+        if not name or name == unit_name:
+            continue
+        if unit_name and (name in unit_name or unit_name in name):
+            continue
+        if name in span:
+            return name
+    return ''
+
+
+def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
+    """Replay a visible role declaration attached to the URL/link.
+
+    Returns ``(role, '')`` when a school-own site role is declared, or
+    ``(None, reason)``.  A URL that merely appears in the article, in a
+    comment/script, or under another organisation's label is not a role.
+    """
+    prefix = text[max(0, target_start - 120):target_start]
+    cut = max(prefix.rfind('。'), prefix.rfind('\n'))
+    if cut >= 0:
+        prefix = prefix[cut + 1:]
+    target_text = text[target_start:target_end]
+    candidate = prefix + target_text
+    matches = []
+    for priority, (category, pattern) in enumerate(_ROLE_PATTERNS):
+        for match in pattern.finditer(candidate):
+            matches.append((priority, -match.end(), match.start(),
+                            match.end(), match.group(0), category))
+    if not matches:
+        return None, 'role_declaration_missing'
+    target_position = len(prefix)
+    distances = [max(0, target_position - item[3]) for item in matches]
+    nearest_distance = min(distances)
+    nearby = [item for item, distance in zip(matches, distances)
+              if distance <= nearest_distance + 2]
+    _, _, start, end, role_text, category = min(
+        nearby, key=lambda item: (item[0], max(0, target_position - item[3])))
+    window = candidate[max(0, start - 24):end]
+    tight_window = candidate[max(0, start - 16):end]
+    platform = _PLATFORM_LABEL.search(tight_window)
+    if platform and not _SELF_REFERENCE.search(tight_window):
+        return None, 'platform_not_official_site'
+    context = text[max(0, target_start - 220):min(len(text), target_end + 40)]
+    own = bool(unit_name and (unit_name in context or unit_name in text))
+    selfref = bool(_SELF_REFERENCE.search(window))
+    overlap = _longest_common_substring(context, unit_name or '')
+    if category == 'labeled':
+        label_match = re.match(r'([一-龥A-Za-z]{2,24})', role_text)
+        label = label_match.group(1) if label_match else role_text
+        owned = (bool(_SELF_REFERENCE.search(label))
+                 or bool(unit_name and unit_name in label)
+                 or len(_longest_common_substring(label, unit_name or '')) >= 3
+                 or own)
+    elif category == 'home':
+        institutional = re.match(
+            r'(?:研究生院|研究生处|研究生学院|研究生部|研究生教育部|'
+            r'党委研究生工作部|研招办|招生办公室)', role_text)
+        owned = bool(institutional) or selfref or own or len(overlap) >= 3
+    else:
+        owned = selfref or own or len(overlap) >= 3
+    foreign = _foreign_name_in(window, unit_name, other_names)
+    if foreign:
+        return None, 'foreign_unit_reference'
+    if not owned:
+        return None, 'role_ownership_missing'
+    return {'category': category, 'evidence': role_text}, ''
+
+
+def _relation_accepts(relation, category):
+    if relation == 'own_admissions_publication':
+        return category in {'home', 'admissions', 'labeled', 'catalog'}
+    if category == 'catalog':
+        return relation == 'official_annual_catalog_link'
+    return relation in {
+        'official_home_link', 'declared_official_site',
+        'own_admissions_publication', 'official_home_statement'}
+
+
+def _enclosing_anchor(anchors, position):
+    found = None
+    for start, end, href in anchors:
+        if start <= position < end:
+            if found is None or start >= found[0]:
+                found = (start, end, href)
+    return found
+
+
+def _pick_entry_failure(reasons):
+    for reason in ('relation_role_mismatch', 'foreign_unit_reference',
+                   'platform_not_official_site', 'role_ownership_missing',
+                   'link_target_mismatch', 'role_declaration_missing'):
+        if reason in reasons:
+            return reason
+    return 'role_declaration_missing'
+
+
+def _replay_entry_role(path, evidence, official_url, unit_id, unit_name,
+                       known_hosts=None, known_names=None):
+    """Prove that the saved original visibly declares this school's site.
+
+    The check is structural and semantic, not a domain allow/deny list:
+    comments, scripts, page chrome and hidden controls are excluded; the
+    declared URL must be visible text or the real target of a visible link;
+    the role label must belong to this unit; and the role category must match
+    the stored relation.
+    """
+    quote = str(evidence.get('quote') or '').strip()
+    linked = str(evidence.get('linked_url') or '').strip()
+    relation = str(evidence.get('relation') or '')
+    entry_host = _host(official_url)
+    if not quote or not entry_host:
+        return None, 'quote_not_in_original'
+    if linked and _url_key(linked) != _url_key(quote):
+        return None, 'linked_target_mismatch'
+    owners = (known_hosts or {}).get(entry_host) or set()
+    if owners and unit_id not in owners:
+        return None, 'other_unit_host'
+    text, anchors = _visible_original(path)
+    if not text.strip():
+        return None, 'visible_article_missing'
+    candidates = []
+    for index, end in _visible_quote_spans(text, quote):
+        inside = _enclosing_anchor(anchors, index)
+        if inside and _is_web_url(inside[2]):
+            target_ok = (_host(inside[2]) == entry_host
+                         and (not linked or _url_key(inside[2]) == _url_key(linked)))
+        else:
+            target_ok = not linked or _url_key(quote) == _url_key(linked)
+        candidates.append((index, end, target_ok, 'literal'))
+    for start, end, href in anchors:
+        if not _is_web_url(href):
+            continue
+        if _host(href) != entry_host:
+            continue
+        if linked and _url_key(href) != _url_key(linked):
+            continue
+        if not linked and _url_key(href) != _url_key(quote):
+            continue
+        candidates.append((start, end, True, 'link_target'))
+    if not candidates:
+        return None, 'quote_not_in_original'
+    failures = []
+    for start, end, target_ok, quote_match in candidates:
+        if not target_ok:
+            failures.append('link_target_mismatch')
+            continue
+        role, reason = _role_evidence(text, start, end, unit_name, known_names)
+        if role is None:
+            failures.append(reason or 'role_declaration_missing')
+            continue
+        if not _relation_accepts(relation, role['category']):
+            failures.append('relation_role_mismatch')
+            continue
+        return {**role, 'quote_match': quote_match}, ''
+    return None, _pick_entry_failure(failures)
 
 
 def _quote_match(path, quote):
-    """The ownership quote must literally occur in the saved original."""
+    """The ownership quote must literally occur in visible article text."""
     quote = str(quote or '').strip()
     if not quote:
         return ''
-    return 'literal' if quote in _normalized_original_text(path) else ''
+    text, _ = _visible_original(path)
+    return 'literal' if _visible_quote_spans(text, quote) else ''
 
 
-def verify_entry(unit, record, data_dir):
+def verify_entry(unit, record, data_dir, known_hosts=None, known_names=None):
     """Replay one official entry against the real saved original.
 
     The proof is accepted only when every link in the chain holds: supported
     verification/relation metadata, exact annual document URL+SHA, unit
-    identity, a saved file bound to that document, matching file bytes, and
-    the ownership quote present in the original. Any missing or mismatched
-    link yields a persisted rejection reason instead of a silent pass.
+    identity, a saved file bound to that document, matching file bytes, a
+    visible article-level role declaration for this unit, and a real link
+    target that matches the claimed evidence. Any missing or mismatched link
+    yields a persisted rejection reason instead of a silent pass.
     """
     unit_id = str(record.get('unit_id') or '')
+    unit_name = str(unit.get('name') or unit.get('unit_name') or '').strip()
     official_url = str(unit.get('official_url') or '').strip()
     proof = {'status': 'rejected', 'reason': '', 'unit_id': unit_id,
              'year': record.get('year'), 'official_url': official_url,
              'evidence_url': '', 'evidence_sha256': '', 'document_id': '',
              'document_sha256': '', 'document_path': '', 'file_sha256': '',
-             'quote_match': ''}
+             'quote_match': '', 'role_category': '', 'role_evidence': ''}
     evidence = unit.get('official_url_evidence')
     if not isinstance(evidence, dict):
         proof['reason'] = 'no_entry_evidence'
@@ -339,20 +740,40 @@ def verify_entry(unit, record, data_dir):
     if actual != proof['evidence_sha256']:
         proof['reason'] = 'saved_original_sha_mismatch'
         return proof
-    match = _quote_match(path, evidence.get('quote'))
-    proof['quote_match'] = match
-    if not match:
-        proof['reason'] = 'quote_not_in_original'
+    role, reason = _replay_entry_role(
+        path, evidence, official_url, unit_id, unit_name, known_hosts, known_names)
+    if role is None:
+        proof['reason'] = reason or 'role_declaration_missing'
         return proof
+    proof['quote_match'] = role['quote_match']
+    proof['role_category'] = role['category']
+    proof['role_evidence'] = role['evidence']
     proof['status'] = 'verified'
     proof['reason'] = 'saved_original_replayed'
     return proof
+
+
+def _official_hosts(registry):
+    """Map each known official host to the registry units that claim it."""
+    hosts = {}
+    for unit in registry.get('units', []):
+        if not isinstance(unit, dict):
+            continue
+        unit_id = unit.get('id')
+        host = _host(unit.get('official_url'))
+        if isinstance(unit_id, str) and unit_id and host:
+            hosts.setdefault(host, set()).add(unit_id)
+    return hosts
 
 
 def verify_entries(registry, annual, data_dir):
     """Build one persisted proof record per confirmed annual unit."""
     units = {unit['id']: unit for unit in registry.get('units', [])
              if isinstance(unit, dict) and isinstance(unit.get('id'), str)}
+    known_hosts = _official_hosts(registry)
+    known_names = {str(unit.get('name') or '').strip()
+                   for unit in registry.get('units', [])
+                   if isinstance(unit, dict) and str(unit.get('name') or '').strip()}
     proofs = {}
     for record in annual.get('units', []):
         if record.get('annual_status') != 'confirmed' or type(record.get('year')) is not int:
@@ -360,7 +781,8 @@ def verify_entries(registry, annual, data_dir):
         unit_id = record.get('unit_id')
         if not isinstance(unit_id, str) or not unit_id:
             continue
-        proofs[unit_id] = verify_entry(units.get(unit_id, {}), record, data_dir)
+        proofs[unit_id] = verify_entry(
+            units.get(unit_id, {}), record, data_dir, known_hosts, known_names)
     return proofs
 
 
