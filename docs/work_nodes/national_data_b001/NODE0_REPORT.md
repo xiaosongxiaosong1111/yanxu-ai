@@ -1,36 +1,41 @@
-# 全国采用数据 · 节点0报告（b001，R2 可见原文角色与目标重放）
+# 全国采用数据 · 节点0报告（b001，R3 完整目标、就近归属与隐藏子树）
 
-状态：`baseline_ready_r2_role_replayed_resubmitted`（工作状态，不等于任何学校目录或资格已完成）
-生成时间：2026-11-09（本机时区 UTC+8）
+状态：`baseline_ready_r3_full_target_resubmitted`（工作状态，不等于任何学校目录或资格已完成）
+生成时间：2026-11-10（本机时区 UTC+8）
 执行者：Claude（数据）；独立验收：Codex
-审查对象：`data/national-b001`，base `67d5e24`；被审查 R2 结论对应 HEAD `cfc38ce` 之前的实现
-R2 角色重放提交：`cfc38ce`（`fix: replay visible entry role and target from saved originals`）
-R2 自有标签准入提交 / 生成提交：`1dd44aa`（`fix: admit owned labeled entry roles and reject foreign site labels`）
+审查对象：`data/national-b001`，base `67d5e24`
+R2 角色目标重放提交：`cfc38ce978bd44e3af2c9a8673d02af912ef7de3`
+R2 自有标签准入提交：`1dd44aa5390437331bb403380ed3b8d2be1279d5`
+R2 证据提交：`33931618ed5126f786aba8c3b8d03af958c2ce60`（Codex 复核对象）
+R3 修复提交 / 生成提交：`97131fe3a604bcb4851640a3e8e7df2eb97dc656`（`fix: prove complete role targets and hidden-subtree ownership`）
 证据提交：包含本文件与全部产物的 `data/national-b001` 分支 HEAD（SHA 见交付消息；不把提交自身 SHA 写进提交内容）
 手册：[CLAUDE_NATIONAL_DATA_RUNBOOK](../../CLAUDE_NATIONAL_DATA_RUNBOOK.md)（已在本分支仓库内）
 
-## 0. 本轮修正摘要（只补 R2 可见原文角色与目标重放）
+## 0. 本轮修正摘要（关闭 Codex 对 `3393161` 指出的四类错误准入与覆盖率数字）
 
-| Codex R2 指出的问题 | 本轮修正 | 可复核位置 |
+Codex 在隔离构造的原件上复现了四类仍被 `verified/trusted/selected` 的错误准入，以及一处纯分支覆盖率算术错误。本轮逐项修复，没有增加样例域名黑名单：
+
+| Codex 指出的问题 | 本轮修正 | 可复核位置 |
 | --- | --- | --- |
-| `national_data_baseline.py:262,342` 只验证“URL 出现在原件里”，没有证明“原件把该 URL 声明为该校官网” | 新增可见正文提取与角色重放：从落盘原件取出真实文章正文，排除脚本、样式、注释、页面导航/页脚/侧栏、隐藏控件和 `display:none/visibility:hidden` 内容；在 URL/链接旁重放可见角色词（学校官网、研究生院/研招网站、招生信息网、目录/章程等），角色必须由当前单位拥有，并与入口 `relation` 相容 | `_VisibleHTMLParser`、`_article_fragment`、`_visible_original`、`_visible_quote_spans`、`_role_evidence`、`_relation_accepts`、`_replay_entry_role` |
-| Codex 用真实未改动原件 `368295`、`368049`，只把内存入口换成 `https://www.chsi.com.cn`，生产链仍返回 verified/trusted/selected | 现在两例都返回 `rejected / platform_not_official_site`：角色窗口内的“学信网/研招网/中国研究生招生信息网”等平台名，若无本校自指，不能作为学校官网声明；生产 `verify_entry → build_queue → select_batch` 两池均不选 | `test_chsi_counterexample_is_not_trusted_or_selected`、`test_chsi_student_status_url_is_not_a_school_site_role`、`test_admissions_page_platform_url_is_not_its_own_site` |
-| 合成“URL 只出现在 HTML 注释里”仍通过 | 注释、`script`、`style`、`noscript`、`template`、`svg` 不计入可见正文；只出现在这些位置的 URL 返回 `quote_not_in_original` | `test_url_only_in_a_comment_or_script_is_not_visible_evidence` |
-| 无关链接、其他单位网址未拒绝 | 可见 URL 若在锚点内，锚点目标必须与声明 URL 同 host/path/query/fragment；只有链接目标没有角色文字的“这里/点击查看”返回 `role_declaration_missing`；登记表中其他单位的精确名称/官网 host 返回 `foreign_unit_reference` / `other_unit_host`；`labeled` 角色另行检查标签本身，未登记的外校名称也不能借全文出现的本校名通过 | `_enclosing_anchor`、`_replay_entry_role`、`_foreign_name_in`、`_foreign_label_in`、`_official_hosts`；对应用例见 F 节 |
-| 不要只加域名黑名单 | 没有新增域名黑名单。判定依据是可见角色语义、单位归属、平台标签、锚点目标与 relation 相容性；`chsi.com.cn` 只是被拒绝样本之一，不是按域名规则拒绝 | 同上 |
-| 扩目录、补字段两池都要有反例 | 两池都新增“证明缺少重放角色/角色证据则不得入选”的 RED/GREEN；现有两池都调用 `entry_trusted` | `test_expansion_pool_rejects_a_proof_without_a_replayed_role`、`test_backfill_pool_rejects_a_proof_without_role_evidence` |
-| 数字按实报，可低于 405 | 真实重放后 **verified 403 / rejected 528**；相对上一轮 405/526，16 个旧 verified 被拒、14 个旧 rejected 重新通过。没有为保住 405 放宽规则 | C1 节；`baseline.json.entry_proof` |
+| **高**：可见完整 URL 以声明 URL 为前缀，但 host/path 不同（`entry.example.edu.cn.attacker.example`、`/admissions-other`），仍被字面前缀冒充 | `_visible_quote_spans` 只接受**完整可见 URL token**或规范化后完全相等的 URL；字面出现必须满足前后 URL token 边界。`_replay_entry_role` 无锚点时比较原文实际可见 URL 的 host/path/query/fragment，不再拿两个输入元数据互相比较。`url_host_prefix`、`url_path_prefix` 均返回 `quote_not_in_original`；两池不选 | `_url_token_boundary`、`_visible_quote_spans`、`_replay_entry_role`；`test_url_host_prefix_does_not_prove_the_declared_host`、`test_url_path_prefix_does_not_prove_the_declared_path` |
+| **高**：未登记外校的“丙大学网站”“丙大学研究生院网站”借正文出现的本校名通过 | 所有角色类别先做**就近明确拥有者**检查：只取角色词紧前的实体后缀，剥离“请访问/考生可登录/详见”等引导词后再判定；登记表和未登记实体名都拒绝。`home/admissions/catalog` 不再用整篇正文出现本校名兜底；只有 220 字内的本单位名、强自指（本校/我校/我院等）或明确的通用机构/招生角色词可拥有 | `_foreign_entity_before`、`_entity_owned`、`_role_evidence`；`test_unregistered_foreign_plain_site_is_rejected`、`test_unregistered_foreign_institute_site_is_rejected`、`test_unregistered_foreign_admissions_site_is_rejected`、`test_foreign_statement_outside_the_site_window_is_rejected` |
+| **中**：相对 href（`/not-the-entry`）按原件 URL 解析后并非学校入口，`javascript:void(0)` 也被静默当成“没有锚点” | 锚点目标一律用 `urljoin` 按**保存原件的 URL**解析；相对 href 解析到研招网主机时拒绝；`javascript:`/`mailto:`/`data:`/仅 fragment/无可解析目标返回 `unresolved_link_target`，不再回退到元数据自比较。只有解析出的完整 HTTP(S) 目标与声明 URL 的 host/path/query/fragment 全等才通过 | `_resolve_web_target`、`_replay_entry_role`；`test_relative_anchor_target_is_resolved_against_the_original_url`、`test_javascript_anchor_target_cannot_prove_the_entry`、`test_scheme_relative_anchor_resolves_to_the_entry` |
+| **中**：嵌套 hidden 容器遇到第一个内部同名结束标签就提前恢复；`display:none !important` 仍算可见 | 隐藏/页面框架/脚本子树按 `[tag, depth]` 维护同名嵌套深度，只有最外层结束标签才退出；`_hidden` 去掉 `!important` 后识别 `display:none`/`visibility:hidden`。嵌套 hidden 与 `!important` 均返回 `quote_not_in_original`；可见嵌套容器仍正常重放 | `_VisibleHTMLParser`；`test_nested_hidden_container_keeps_the_declaration_hidden`、`test_hidden_css_with_important_stays_hidden`、`test_visible_nested_container_still_replays_the_declaration` |
+| **低**：纯分支覆盖率用 `(354−30)/354=91.53%` 倒算 | 改从 `coverage json` 的 `totals.covered_branches / totals.num_branches` 生成元数据。本轮 **348/392 = 88.78%**，部分分支 36 个不当作缺失分支；综合覆盖率 93%，仍高于 80% | `coverage-evidence.json` 的 `branch_coverage_percent/branch_coverage_source`；`coverage-report.txt` 头部 |
+| 不要只加域名黑名单 | 新增判定全部基于 URL 边界、完整目标、锚点真实解析、单位就近归属与隐藏子树；`attacker.example`、`chsi.com.cn` 只是测试样本，不是域名规则 | 同上 |
 
-**未重做**：R1 部分覆盖、R3 verified 逐条重放、R4 queue→batch 重放、费用/学制口径均未改；raw/effective/verified 数字仍为 650/912/912 学费、1,680/1,942/1,942 学制、645/907/907 可算全程、完整资格 0。队列内容因入口证明新增角色字段和 7 个自有标签单位准入而变化；batch 的 7+3 单位、角色、理由与 next_step 不变。
+**未重做**：R1 部分覆盖、R3 verified 逐条重放、R4 queue→batch 重放、费用/学制口径均未改；raw/effective/verified 数字仍为 650/912/912 学费、1,680/1,942/1,942 学制、645/907/907 可算全程、完整资格 0。队列因证明结果变化而字节变化；batch 的 7+3 单位、角色、理由与 next_step 不变。
 
 ## A. 身份与隔离
 
 | 字段 | 实际值 |
 | --- | --- |
 | 仓库 / 分支 / base SHA | `https://github.com/xiaosongxiaosong1111/yanxu-ai`，`data/national-b001`，`67d5e24` |
-| R2 角色/目标重放提交 | `cfc38ce978bd44e3af2c9a8673d02af912ef7de3`（2 文件，+677/−19） |
-| R2 自有标签准入提交 / 生成提交 | `1dd44aa5390437331bb403380ed3b8d2be1279d5`（2 文件，+70/−2） |
-| 生成时工作区 | `tracked_dirty=false`；`baseline.json.git.commit=1dd44aa` |
+| R2 角色/目标重放提交 | `cfc38ce978bd44e3af2c9a8673d02af912ef7de3` |
+| R2 自有标签准入提交 | `1dd44aa5390437331bb403380ed3b8d2be1279d5` |
+| R2 证据提交（被复核） | `33931618ed5126f786aba8c3b8d03af958c2ce60` |
+| R3 修复 / 生成提交 | `97131fe3a604bcb4851640a3e8e7df2eb97dc656`（2 文件，+271/−29） |
+| 生成时工作区 | `tracked_dirty=false`；`baseline.json.git.commit=97131fe` |
 | 独立工作树 | `D:/yx-data-b001`（短路径；未复用 `E:/PythonSpace/yanxu-ai`，未碰 `D:/CodexRuntime`） |
 | 数据根 / 产物根 | `D:/yx-data-b001` / `D:/yx-data-b001/data/batch_runs/b001` |
 | 用户 runtime / Key | 未读取、未复制、未覆盖；本工作树没有 `data/runtime/` 发布库 |
@@ -87,7 +92,7 @@ R2 自有标签准入提交 / 生成提交：`1dd44aa`（`fix: admit owned label
 
 ## C. 931 单位完整队列（可重放）与入口证明
 
-`queue.json` 是生成器原样输出，931 行，3,113,750 字节，SHA256 `da6393ee98bbcbd95a1e0673a8c847909e8af63e0b3d6ee82821c02c61ce3a9f`（LF 规范字节，等于 Git blob）。每行保留身份、原始与采用、入口证据与证明、三层计数、剩余缺口、`gaps/count_mismatch/effective_count_mismatch`。
+`queue.json` 是生成器原样输出，931 行，3,113,770 字节，SHA256 `43bfad3c9abee09e106bf10bcef8514d4d13c688330c8c257691504522fb76a4`（LF 规范字节，等于 Git blob）。每行保留身份、原始与采用、入口证据与证明、三层计数、剩余缺口、`gaps/count_mismatch/effective_count_mismatch`。
 
 每行持久化 `entry_verification`，由 `verify_entry` 产生：
 
@@ -95,7 +100,7 @@ R2 自有标签准入提交 / 生成提交：`1dd44aa`（`fix: admit owned label
 {"status": "verified|rejected", "reason": "...", "unit_id": "...", "year": 2027,
  "official_url": "...", "evidence_url": "...", "evidence_sha256": "...",
  "document_id": "...", "document_sha256": "...", "document_path": "snapshots/national/2027/...",
- "file_sha256": "...", "quote_match": "literal|link_target|", 
+ "file_sha256": "...", "quote_match": "literal|link_target|",
  "role_category": "home|admissions|catalog|labeled|", "role_evidence": "...",
  "proof_sha256": "<64 hex>"}
 ```
@@ -106,19 +111,19 @@ R2 自有标签准入提交 / 生成提交：`1dd44aa`（`fix: admit owned label
 
 | 状态 | 单位数 |
 | --- | ---: |
-| `verified`（`saved_original_replayed`） | 403 |
-| `rejected` | 528 |
+| `verified`（`saved_original_replayed`） | 400 |
+| `rejected` | 531 |
 | 合计 | 931 |
 
 verified 的可见角色分布：
 
 | 角色类别 | 单位数 | 含义 |
 | --- | ---: | --- |
-| `home` | 295 | 学校/研究生院/研招办网站、网址、主页等本校站点声明 |
+| `home` | 292 | 学校/研究生院/研招办网站、网址、主页等本校站点声明 |
 | `admissions` | 94 | 招生信息网、研究生招生网、研招在线等招生站点声明 |
 | `catalog` | 7 | 招生专业目录/简章/章程等目录类声明 |
 | `labeled` | 7 | 标签本身可归属本校的具名站点声明（如“山西大同大学官方网站”） |
-| 合计 | 403 | |
+| 合计 | 400 | |
 
 拒绝原因（互斥主因，按代码判定顺序取第一个失败）：
 
@@ -129,19 +134,21 @@ verified 的可见角色分布：
 | `unsupported_relation` | 45 | relation 不在支持的入站关系集合 |
 | `unsupported_verification` | 20 | verification 为 rejected/failed/未知值 |
 | `relation_role_mismatch` | 11 | 可见角色类别与持久化 relation 不相容（如目录/文章链接却声明 home 关系） |
-| `link_target_mismatch` | 9 | 可见 URL 所在锚点的实际目标与声明 URL 不同 host/path |
+| `link_target_mismatch` | 10 | 完整可见 URL 或锚点解析目标与声明 URL 不同 host/path/query/fragment |
+| `platform_not_official_site` | 1 | 目标旁只有研招网/学信网等平台角色，且无本校自指 |
 | `ambiguous_saved_original` | 1 | 同目录下多个文件匹配 SHA 前缀 |
 | `quote_host_mismatch` | 1 | 引文 host 不是入口 host |
 | `linked_target_mismatch` | 1 | `linked_url` 与引文 canonical URL 不一致（含 query/fragment） |
-| 合计 | 528 | |
+| `unresolved_link_target` | 1 | 可见 URL 所在锚点是非 HTTP 目标（如 `qq://txfile/`），无法证明入口 |
+| 合计 | 531 | |
 
-与上一轮 405/526 相比：
+与 R2 证据提交 `3393161`（403/528）相比，**3 个旧 verified 被拒、0 个旧 rejected 重新通过**。三项都不是新发现的错误准入，而是完整目标/非 HTTP 规则无法再从已保存原件重放：
 
-- **16 个旧 verified 被拒**：10 个 `relation_role_mismatch`（`367889, 367876, 302973928, 368108, 368197, 368291, 302961334, 368431, 368430, 368485`）；6 个 `link_target_mismatch`（`367985, 368112, 3416382139, 368515, 368521, 368593`）。前者可见声明是目录/文章链接而非官网主页，后者可见 URL 的锚点实际指向别处（如 `368521` 指向 `utibet` 列表页、`368593` 指向列表页、`368515` 目标含错误百分号编码）。
-- **14 个旧 rejected 重新通过**：`367884, 367803, 367936, 368202, 368161, 368207, 368242, 2807891665, 368359, 302976118, 2124439800, 678380, 368512, 368522`。原因是旧检查把合法站点声明误判为平台/他校，新角色重放在真实正文中找到了本校自有声明。
-- 7 个 `labeled` 单位（`367902, 2125710548, 368097, 368237, 368494, 3416381895, 368574`）的证明通过后，现在也进入 `entry_trusted`；此前它们显示 verified 却因类别集合缺失而不被选择，属于门禁不一致，本轮已统一。
-
-因此 `missing_trusted_entry` 为 **528**，不是上一轮元数据门禁下的 2。上一轮只检查非空元数据，2 是“没有网址/明写尚未核准”的数量；现在按真实原件角色重放，403 个单位有可重放入口，其余 528 个必须补证。这是更严格也更诚实的结果，不能当作退步掩盖。
+| unit_id | 名称 | R2 结果 | R3 结果 | 说明 |
+| --- | --- | --- | --- | --- |
+| `367866` | 中央财经大学 | verified/home | rejected/platform_not_official_site | 根 URL 的完整 token 只出现在联系方式表格行，120 字角色窗口里最近的是“研招网”平台名；正文中“研究生院网站（…/gzzd/jzgz.htm）”声明的是更深子页，不能证明根入口。旧实现接受了该根 URL 的子串前缀 |
+| `368429` | 桂林理工大学 | verified/home | rejected/link_target_mismatch | 可见文字是根 URL，但真实锚点为 `/index.htm`；按完整 path 比较不是声明入口。旧实现只比较 host |
+| `499722082` | 天水师范大学 | verified/home | rejected/unresolved_link_target | 可见根 URL 包在 `qq://txfile/` 非 HTTP 锚点中；按本轮规则不能把不可证明目标静默当作无锚点 |
 
 ### C2. 扩目录池
 
@@ -149,16 +156,16 @@ verified 的可见角色分布：
 
 | 入口证明 | 单位数 |
 | --- | ---: |
-| `entry_trusted=true` | 133 |
-| `entry_trusted=false` | 300 |
+| `entry_trusted=true` | 131 |
+| `entry_trusted=false` | 302 |
 
-300 个被排除单位的证明原因：`no_entry_evidence` 234、`no_exact_annual_document` 42、`unsupported_relation` 7、`unsupported_verification` 6、`relation_role_mismatch` 5、`link_target_mismatch` 5、`linked_target_mismatch` 1。没有“verified 但 untrusted”的残留：所有 403 个 verified 都通过同一套 `entry_trusted` 指纹与角色检查。
+302 个被排除单位的证明原因：`no_entry_evidence` 234、`no_exact_annual_document` 42、`unsupported_relation` 7、`unsupported_verification` 6、`link_target_mismatch` 6、`relation_role_mismatch` 5、`linked_target_mismatch` 1、`unresolved_link_target` 1。没有“verified 但 untrusted”的残留：所有 400 个 verified 都通过同一套 `entry_trusted` 指纹与角色检查。
 
 ### C3. 缺口频次
 
 | 缺口 | 单位数 | 含义与下一步 |
 | --- | ---: | --- |
-| `missing_trusted_entry` | 528 | 入口证明未通过重放；交 Codex 补证，本批两池都不选 |
+| `missing_trusted_entry` | 531 | 入口证明未通过重放；交 Codex 补证，本批两池都不选 |
 | `missing_catalog` | 796 | 尚未采用任何 2027 方向；不等于未招生 |
 | `parser_pending` | 433 | 已保存公开原文、但尚无采用方向；节点1/2 解析并做目录全集对账 |
 | `original_pending` | 413 | 来源受限、截断或尚未取得可核验原文 |
@@ -278,20 +285,21 @@ verified 的可见角色分布：
 ## F. 测试、覆盖率、CLI 与资源边界
 
 ```powershell
-# 本轮实际执行（工作树 .venv）
+# 本轮实际执行（工作树 .venv，clean HEAD 97131fe）
 ./.venv/Scripts/python.exe -m unittest tests.test_national_data_baseline -v
 ./.venv/Scripts/python.exe -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q
 ./.venv/Scripts/python.exe -m coverage report -m
+./.venv/Scripts/python.exe -m coverage json -o b001-final5-coverage.json
 # CLI 必须前置 pdftotext 所在目录到 PATH（本机为 Git 的 mingw64/bin）
 $env:PATH = 'C:\Program Files\Git\mingw64\bin;' + $env:PATH
 ./.venv/Scripts/python.exe -X utf8 national_data_baseline.py --data-dir data --out data/batch_runs/b001 --repo-root . --raw-pdf "C:/Program Files/Git/mingw64/bin/pdftotext.exe" --bbox-pdf "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe"
 ```
 
-- 测试：**97 项通过**（上一轮 94 项）。新增 3 项针对本轮门禁：自有 `labeled` 站点可被信任并入选、未登记的“乙大学官方网站”不能借全文出现的本校名通过、通用“研究生招生信息网主页”可由本校文章拥有。
-- R2 角色/目标重放的红绿用例（`EntryRoleReplayTests`）覆盖：chsi 入口反例（真实山东农业大学/大连工业大学原件形态）、隐藏 `hid_content` 文章、注释/脚本 URL、无关锚点文字、登记表他校名称、未登记他校标签、锚点目标不一致、`linked_url` path/fragment 不一致、他校 host 归属、平台名邻近但不遮蔽本校角色、目录词早于站点标签、`研招网址` 不被误判为平台、缩写标签由全文单位名拥有、目录标题与 relation 相容性、百分号编码标点、`backface-visibility` 不隐藏正文、两池缺少角色/角色证据时拒绝。
-- 含分支覆盖：**93%**，829 语句仅 42 行未执行，354 分支仅 30 个部分分支；按分支计 `(354−30)/354 = 91.53%`，高于手册“核心修改含分支覆盖至少 80%”的要求。缺失行：`261->263, 330, 332, 333->exit, 346, 354, 370-374, 379->381, 400-402, 419, 420->422, 426-431, 447-448, 454, 456, 459-460, 482->486, 515, 532, 536, 599, 616->615, 617->615, 628, 646, 654, 666, 672, 697-698, 753-754, 768-769, 793, 796->791, 1310`。
-- 覆盖率证据绑定：`coverage-report.txt` 以 LF 字节写入，SHA256(LF) `a811eef6b2490b282aab8b646b53d434b90af308ba4fcacf5d23b34231c67bc1`，Git blob SHA-1 `b1ae87713ffb0d98b8430ed49934f32b0ad0fdb2`；`coverage-evidence.json` 同时记录两者。仓库 `core.autocrlf=true`，编辑器另存或重新 checkout 可能变成 CRLF；**以 Git blob 为准**，字节级核验用 `git cat-file blob`。
-- 完整公开包 CLI：`cli-recompute.log` 记录命令、PATH 前缀、stdout/stderr 与运行元数据；`cli-run.json` 机器可读。结果 **exit 0，83.680 秒**；真实工作进程峰值工作集 **1,386,397,696 字节（约 1.29 GiB）**；直接子进程加全部后代的峰值之和为 1,397,379,072 字节（保守上界）。测量方法为每 200 ms 对直接子进程及其后代调用 `psapi!GetProcessMemoryInfo` 读取 `PeakWorkingSetSize`。两次失败的 `Start-Process` 尝试（参数未引号、仅在 0.5 秒内报参数错误）未用于任何证据；全部产物来自上述 exit 0 的完整运行。
+- 测试：**111 项通过**（上一轮 97 项）。本轮新增 14 项：host 前缀、path 前缀、带中文标点的完整 URL 正例、相对锚点、`javascript:` 锚点、协议相对锚点正例、嵌套 hidden、`display:none !important`、可见嵌套容器正例、未登记外校“网站”、未登记外校“研究生院网站”、窗口外外校声明、未登记外校“招生信息网”、普通叙述“考生可登录学校网站”不被误判。
+- R2 角色/目标重放的红绿用例（`EntryRoleReplayTests`）继续覆盖：chsi 入口反例（真实山东农业大学/大连工业大学原件形态）、隐藏 `hid_content` 文章、注释/脚本 URL、无关锚点文字、登记表他校名称、未登记他校标签、锚点目标不一致、`linked_url` path/fragment 不一致、他校 host 归属、平台名邻近但不遮蔽本校角色、目录词早于站点标签、`研招网址` 不被误判为平台、缩写标签由就近单位名拥有、目录标题与 relation 相容性、百分号编码标点、`backface-visibility` 不隐藏正文、两池缺少角色/角色证据时拒绝。
+- 含分支覆盖：**93%**，910 语句仅 53 行未执行，392 分支中 36 个部分分支；**纯分支覆盖 348/392 = 88.78%**，由 `coverage json` 的 `covered_branches/num_branches` 直接计算，部分分支不当作缺失分支，仍高于手册“核心修改含分支覆盖至少 80%”的要求。缺失行：`270->272, 342, 344, 345->exit, 387-391, 419-421, 438, 439->441, 445-450, 466-467, 473, 475, 478-479, 498, 525->529, 542, 545-546, 552, 556-557, 560, 590, 607, 611, 621, 623, 649, 653, 656, 658, 720, 729, 746->745, 747->745, 759, 779, 787, 839-840, 895-896, 910-911, 935, 938->933, 1452`。
+- 覆盖率证据绑定：`coverage-report.txt` 以 LF 字节写入，SHA256(LF) `c7b6f898f7ba71c793f58f1a9ac36400f1c1abd01101442b99b6cedd3c983547`，Git blob SHA-1 `16640f04a2fcd697e991e646b70908e9e4d9b211`；`coverage-evidence.json` 同时记录两者。仓库 `core.autocrlf=true`，编辑器另存或重新 checkout 可能变成 CRLF；**以 Git blob 为准**，字节级核验用 `git cat-file blob`。
+- 完整公开包 CLI：`cli-recompute.log` 记录命令、PATH 前缀、stdout/stderr 与运行元数据；`cli-run.json` 机器可读。结果 **exit 0，94.754 秒**；真实工作进程峰值工作集 **1,385,734,144 字节（约 1.29 GiB）**；直接子进程加全部后代的峰值之和为 1,405,673,472 字节（保守上界）。测量方法为每 200 ms 对直接子进程及其后代调用 `psapi!GetProcessMemoryInfo` 读取 `PeakWorkingSetSize`。运行在 clean tracked HEAD `97131fe` 上完成，stderr 为空。
 - **资源边界（明确保留）**：`effective_counts` 仍完整 `json.load` 大 `admissions.json` 并构造内存视图，未做上限或分块；1.29 GiB 只是本机实测峰值，不能据此声称整套重算有界内存，也不能保证在更小内存环境一定成功。这是扩规模前必须解决的实测限制，Codex 可按此边界验收。
 - 本节点未运行全库测试（只改新增模块），未改五个保护文件、未改旧金标/阈值、未改采用数据。
 
@@ -305,32 +313,33 @@ $env:PATH = 'C:\Program Files\Git\mingw64\bin;' + $env:PATH
 | `data/units.json` | `91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb` |
 | `data/annual_registry_2027.json` | `06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40` |
 | `data/catalog_coverage_2027.csv` | `42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e` |
-| `national_data_baseline.py`（工作字节） | `0bb4d6e6115413fe90cfba9c18d71633af0f90cb0d67c2fa3d339eb1b4189bc1` |
-| `national_data_baseline.py`（Git blob `1dd44aa:...`） | `83ab47cef8e35d824be30b853948a612403eb19d`（SHA-1） |
+| `national_data_baseline.py`（工作字节） | `006952b9afd742e268f9dd60d7a4a59c62c3b16e24d268307f6a9f84a263bfbf` |
+| `national_data_baseline.py`（Git blob `97131fe:...`） | `fc8fd04388aca80d72cec0e9db12a872fe5c606d`（SHA-1） |
 
 产物（`docs/work_nodes/national_data_b001/`）：
 
 | 文件 | 字节 | SHA256 | 说明 |
 | --- | ---: | --- | --- |
-| `baseline.json` | 5,806 | `848ce7c6ade4e0f52e6a1d6249cf1dc62e186bfab4eca29d743021c40cc02ec0` | 三口径、输入/产物 SHA、入口池、证明状态与原因、缺口频次 |
-| `queue.json` | 3,113,750 | `da6393ee98bbcbd95a1e0673a8c847909e8af63e0b3d6ee82821c02c61ce3a9f` | 生成器原样 931 行，含角色证明，可重放 |
-| `queue-summary.json` | 1,063,548 | `db848661b33afdbbabfa84aeba696cf8769e4c5bf01c904169ea97e84d6f6815` | 只读摘要，`replayable=false` |
-| `batch.json` | 56,329 | `531ce9a4029c0734b280a5cced4eb93dc3a99c5feee0ea6fc80c43f82378a3ce` | 7+3 首批；绑定 `queue_sha256` 与 `selection_rule_version=b001-node0-v4` |
-| `replay-check.json` | 13,555 | `493b9f510720341c178653a6b46a19bf1b6036203491b5ab1a6a2bea2f7df703` | 从落盘 queue 重放 batch；含 10 校证明路径/文件 SHA/角色 |
-| `coverage-report.txt` | 1,408 | `a811eef6b2490b282aab8b646b53d434b90af308ba4fcacf5d23b34231c67bc1`（LF；blob `b1ae8771...`） | 覆盖率命令、测试尾部与原始报表 |
-| `coverage-evidence.json` | 1,395 | `5aaf9a6007e67b281924f99a008455df90a0dcdc1ba21a1bce664275a2c54453` | 覆盖率机器可读证据与换行绑定 |
-| `cli-recompute.log` | 1,709 | `0e2a464bdd13ebaa02ea188bd9e78da277c46d1e33703d1a099656522082a0ff` | 完整 CLI 成功日志与运行元数据（LF） |
-| `cli-run.json` | 1,158 | `c84a2d468e509ef7b01708f63d9104e2c5bc0ad0e143f393c39c12760c0ece98` | exit 0、83.680s、峰值 1.29GiB |
-| `protected-sha256.json` | 824 | `fd1f6020da4c2f774182bcd18e82cecb089fe97d97b2cc6aa5792109bf5bde95` | 五个保护适配器 SHA（LF） |
+| `baseline.json` | 5,916 | `36ee0cd62506de215cdc2f84643226d1f7267f4bd82e9b153189f1262ebc4a41` | 三口径、输入/产物 SHA、入口池、证明状态与原因、缺口频次 |
+| `queue.json` | 3,113,770 | `43bfad3c9abee09e106bf10bcef8514d4d13c688330c8c257691504522fb76a4` | 生成器原样 931 行，含角色证明，可重放 |
+| `queue-summary.json` | 1,063,650 | `51be11fa19d424255f996d44bec57e6a1a9117a1c57269ee77065c9c64267503` | 只读摘要，`replayable=false` |
+| `batch.json` | 56,329 | `fbf2feeb23eec160b87ceed7c914c49c97c139b97442007edfb7e327455c3597` | 7+3 首批；绑定 `queue_sha256` 与 `selection_rule_version=b001-node0-v4` |
+| `replay-check.json` | 13,555 | `bbae5489f8be45b9483c0e9e225616e58471f7c6cec39074db60e6bf7d7a8185` | 从落盘 queue 重放 batch；含 10 校证明路径/文件 SHA/角色 |
+| `coverage-report.txt` | 1,643 | `c7b6f898f7ba71c793f58f1a9ac36400f1c1abd01101442b99b6cedd3c983547`（LF；blob `16640f04...`） | 覆盖率命令、测试尾部与原始报表 |
+| `coverage-evidence.json` | 1,725 | `33589dbfd300e7f0d368db6b3b8c3c09edf6ce63b4733dc6a0891328076dd876` | 覆盖率机器可读证据、真实分支分子分母与换行绑定 |
+| `cli-recompute.log` | 1,710 | `56f79bbdfefd4360cdeade8afcaeb5ede8d400aeeb2aeb7f11f704cfd37cf55d` | 完整 CLI 成功日志与运行元数据（LF） |
+| `cli-run.json` | 1,181 | `1dc0553a1261d7237f987fb8a3e7d96b4fd67c4020fe523ccad41b28b2c0391f` | exit 0、94.754s、峰值 1.29GiB |
+| `protected-sha256.json` | 824 | `92bbee5a450d837c167146d15cc6c07f919f1598c755f5a98ce59aba9025569f` | 五个保护适配器 SHA（LF） |
 
-`baseline.json.artifacts` 与上表前三个生成产物一致：queue `da6393ee…`、summary `db848661…`、batch `531ce9a4…`。批次重放验证：读取落盘 `queue.json`，用同一 `queue_sha256` 和 `b001-node0-v4` 调 `select_batch`，7 扩目录 + 3 补字段的 ID、角色、理由、next_step 全部与 `batch.json` 一致；摘要重放被显式拒绝。机器可读结果见 `replay-check.json`（`replay_matches_batch=true`，`summary_rejected=true`）。
+`baseline.json.artifacts` 与上表前三个生成产物一致：queue `43bfad3c…`、summary `51be11fa…`、batch `fbf2feeb…`。批次重放验证：读取落盘 `queue.json`，用同一 `queue_sha256` 和 `b001-node0-v4` 调 `select_batch`，7 扩目录 + 3 补字段的 ID、角色、理由、next_step 全部与 `batch.json` 一致；摘要重放被显式拒绝。机器可读结果见 `replay-check.json`（`replay_matches_batch=true`，`summary_rejected=true`；10 校 proof 全部 verified、`entry_trusted_now=true`、文件 SHA 与指纹均匹配）。
 
 ## H. 失败、边界与下一步
 
 - 未联网采集、未解析任何新原件、未采用任何方向、未发布 SQLite、未构建新包；本报告不得被当作目录或资格增长。
-- **528 个单位入口未通过可见原文重放**，其中 293 个单位根本没有入口证据字典；这些单位已写入队列和 `baseline.json`，不是静默丢弃。Codex 若确认其中某入口合法，需要补一份可重放的年度原件/归属声明；在补证前本批两池都不选。
+- **531 个单位入口未通过可见原文重放**，其中 293 个单位根本没有入口证据字典；这些单位已写入队列和 `baseline.json`，不是静默丢弃。Codex 若确认其中某入口合法，需要补一份可重放的年度原件/归属声明；在补证前本批两池都不选。
 - 两个具名结构化阻塞：**阜阳师范大学 `688908731 / 10371`** 和 **同济大学 `368128 / 10247`**，原因均为 `no_exact_annual_document`（年度登记没有与入口证据 URL+SHA 完全一致的原件）。阜阳被广西大学顶替，同济被南京林业大学顶替；不是把未核验单位留在批次里。
-- 角色归属仍是启发式：`home/admissions/catalog` 的归属允许本校名出现在正文；`labeled` 必须由标签本身或紧邻上下文拥有，并拒绝未登记的外校实体名（如“乙大学官方网站”）。中文没有分词，实体名判定只作用于 `labeled` 标签，不会扫描任意前置文字，避免把“考生关注学校”误判成校名。未登记的“乙大学网站”（无“官网”字样）如走通用 `home` 标签仍可能借正文本校名通过；这是已知边界，节点1 若遇到同名外校条目需人工复核。
+- 本轮已关闭 Codex 的四类合成反例：完整 URL host/path 前缀、未登记外校“网站/研究生院网站/招生信息网”、相对与 `javascript:` 锚点、嵌套 hidden 与 `!important`。全部经过 `verify_entry` 证明链与两池门禁；未增加任何样例域名黑名单。
+- 归属判定仍是可解释的启发式：只检查角色词紧前的实体后缀（剥离常见引导词），并辅以 220 字内本单位名和强自指；它能拒绝“丙大学网站”，但不做中文分词，也不声称覆盖所有别名/简称。若同一 URL 在表格中被多个机构标签共享，或页面结构丢失标签与 URL 的单元格关系，可能产生假阴性（本轮 3 个真实单位即因完整目标/非 HTTP 锚点无法重放），不会放宽规则去换回 verified 数量。
 - `effective_counts` 非有界内存，实测峰值约 1.29 GiB；不是“已验证有界”，扩规模前需改为分块/流式或明确上限。
 - `source_count` 与本地 `original_urls` 数量不同（如山东农业大学 1001 vs 40）；本地 40 条也可能含分页/导航变体，节点1 必须按最终原件对账。
 - 下一步（节点1，尚未开始）：对首批 10 校建立原件清单与目录全集对账；每校保留 `document_id / URL / 标题 / 年份 / SHA / 路径 / 状态`，失败按互斥主因分类。做完一批即报，不静默长跑；不碰任何完整资格标志。
@@ -338,34 +347,39 @@ $env:PATH = 'C:\Program Files\Git\mingw64\bin;' + $env:PATH
 ## I. 发给 Codex 的节点简报
 
 ```text
-批次/节点/分支/base：b001 / 节点0 R2 角色重放重交 / data/national-b001 / 67d5e24
-被审查 R2 实现：cfc38ce 之前；R2 角色/目标重放提交：cfc38ce
-自有标签准入/生成提交：1dd44aa（生成时 tracked_dirty=false）；证据提交=本文件所在分支 HEAD
+批次/节点/分支/base：b001 / 节点0 R3 完整目标重交 / data/national-b001 / 67d5e24
+R2 被复核提交：3393161；R3 修复/生成提交：97131fe（生成时 tracked_dirty=false）
 实际处理：0/10 采集；931/931 队列已建立；首批 10 校入队（7 扩目录+3 补字段）
 三口径：raw 650 学费（378 年费/272 全程）、1,680 学制、645 可算全程
         effective-present 912（640/272）、1,942、907
         verified 912、1,942、907；完整资格 0；冲突暂停 0
-入口证明：931 个单位全部持久化 proof；verified 403 / rejected 528
-          verified 角色：home 295、admissions 94、catalog 7、labeled 7
+入口证明：931 个单位全部持久化 proof；verified 400 / rejected 531
+          verified 角色：home 292、admissions 94、catalog 7、labeled 7
           reasons: no_entry_evidence 293、no_exact_annual_document 147、
           unsupported_relation 45、unsupported_verification 20、
-          relation_role_mismatch 11、link_target_mismatch 9、
-          ambiguous_saved_original 1、quote_host_mismatch 1、linked_target_mismatch 1
-扩目录池：433 → trusted 133 / untrusted 300
-R2：可见正文角色+锚点目标重放；排除注释/脚本/隐藏内容；平台名、他校名/他校 host、
-    无关链接、role/relation 不相容均拒绝；未加域名黑名单；两池都有缺角色反例
-    368295/368049 的 chsi 反例均 rejected/platform_not_official_site，生产链不选
-    verified 从 405 变为 403：16 旧 verified 被拒（10 relation_role_mismatch、6 link_target_mismatch），
-    14 旧 rejected 重新通过；未放宽规则
+          relation_role_mismatch 11、link_target_mismatch 10、
+          platform_not_official_site 1、ambiguous_saved_original 1、
+          quote_host_mismatch 1、linked_target_mismatch 1、unresolved_link_target 1
+扩目录池：433 → trusted 131 / untrusted 302
+R3：完整可见 URL token 边界；无锚点比较原文实际 URL 而非元数据；
+    相对 href 按原件 URL 解析；javascript/mailto/qq 等不可证明目标拒绝；
+    隐藏子树按同名嵌套深度维护并识别 !important；
+    所有角色类别做就近明确拥有者检查，未登记外校“网站/研究生院网站”均拒绝；
+    未加域名黑名单；新增 14 项正反例
+    368295/368049 的 chsi 反例仍 rejected/platform_not_official_site
+    verified 从 403 变为 400：3 个旧 verified 因完整目标/非 HTTP 锚点不再可重放
+    （367866 platform、368429 link_target、499722082 unresolved_link_target），
+    0 个旧 rejected 重新通过；没有放宽规则换数量
 R1/R3/R4：未重做，数字与上一轮一致；batch 7+3 单位与角色不变
-测试：97 项通过；含分支覆盖 93%（829 语句/354 分支/30 部分；分支计 91.53%）
-覆盖率绑定：coverage-report.txt SHA256(LF) a811eef6…，git blob b1ae8771…；autocrlf 只影响 checkout
-CLI：exit 0，83.680s，工作进程峰值 1,386,397,696 B（约 1.29GiB），后代峰值和 1,397,379,072 B
-     成功日志 cli-recompute.log 0e2a464b…，元数据 cli-run.json c84a2d46…
-产物：baseline.json 848ce7c6…、queue.json da6393ee…（3,113,750 B）、
-      queue-summary.json db848661…（replayable=false）、batch.json 531ce9a4…（v4）、
-      replay-check.json 493b9f51…（replay_matches_batch=true，summary_rejected=true）
+测试：111 项通过；含分支覆盖 93%（910 语句/392 分支/36 部分；
+      纯分支 348/392=88.78%，按 coverage json 分子分母）
+覆盖率绑定：coverage-report.txt SHA256(LF) c7b6f898…，git blob 16640f04…；autocrlf 只影响 checkout
+CLI：exit 0，94.754s，工作进程峰值 1,385,734,144 B（约 1.29GiB），后代峰值和 1,405,673,472 B
+     成功日志 cli-recompute.log 56f79bbd…，元数据 cli-run.json 1dc0553a…
+产物：baseline.json 36ee0cd6…、queue.json 43bfad3c…（3,113,770 B）、
+      queue-summary.json 51be11fa…（replayable=false）、batch.json fbf2feeb…（v4）、
+      replay-check.json bbae5489…（replay_matches_batch=true，summary_rejected=true）
 保护：五个 PDF 适配器 SHA 与 base 一致；未改采用数据/发布库/runtime/Key
-未解项：未采集/解析/采用/发布；528 个单位入口需补证；effective 重算非有界内存
-下一节点：节点1 首批 10 校原件与目录全集清单（不碰完整资格标志）
+未解项：未采集/解析/采用/发布；531 个单位入口需补证；effective 重算非有界内存
+下一节点：节点1 首批 10 校原件与目录全集对账（不碰完整资格标志）
 ```

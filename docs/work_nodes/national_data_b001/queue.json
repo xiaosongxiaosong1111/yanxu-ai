@@ -2048,8 +2048,8 @@
     "remaining_duration": 0,
     "remaining_full_qualification": 0,
     "entry_verification": {
-      "status": "verified",
-      "reason": "saved_original_replayed",
+      "status": "rejected",
+      "reason": "platform_not_official_site",
       "unit_id": "367866",
       "year": 2027,
       "official_url": "http://gs.cufe.edu.cn/",
@@ -2059,18 +2059,19 @@
       "document_sha256": "76fdff383c559abe8e6a4026a9b15e10ce64edfda0be18bc02d206ddd4808bbe",
       "document_path": "snapshots/national/2027/367866/bd612a1f463a54a6-76fdff383c559abe.html",
       "file_sha256": "76fdff383c559abe8e6a4026a9b15e10ce64edfda0be18bc02d206ddd4808bbe",
-      "quote_match": "literal",
-      "role_category": "home",
-      "role_evidence": "研究生院网站",
-      "proof_sha256": "2a6483c5096092a042d347f986a1fb11a3cf182cde2b1c5c14c92cedd33106d2"
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": "",
+      "proof_sha256": "2038c5be75f55f13bbace53c63b73b4c6922e50234f14cd99982c3fcdd8527bf"
     },
     "gaps": [
+      "missing_trusted_entry",
       "missing_catalog",
       "original_pending"
     ],
     "count_mismatch": false,
     "effective_count_mismatch": false,
-    "entry_trusted": true
+    "entry_trusted": false
   },
   {
     "unit_id": "367897",
@@ -40463,8 +40464,8 @@
       "file_sha256": "abc7e7f46d762e789be07796d9f159a9be0a72b258a75df388e2f9f6b67338c7",
       "quote_match": "literal",
       "role_category": "home",
-      "role_evidence": "研究生院网站",
-      "proof_sha256": "e28befe07286768b07caa341dd8c13900fb3de9e19c08623849c78ba42651903"
+      "role_evidence": "研究生院网址",
+      "proof_sha256": "5ab207575fada64d4b18e7639b692c87ce2b84c6bcf2ef35423f0a5b72c77fd3"
     },
     "gaps": [
       "missing_catalog",
@@ -47249,8 +47250,8 @@
     "remaining_duration": 0,
     "remaining_full_qualification": 0,
     "entry_verification": {
-      "status": "verified",
-      "reason": "saved_original_replayed",
+      "status": "rejected",
+      "reason": "link_target_mismatch",
       "unit_id": "368429",
       "year": 2027,
       "official_url": "https://yjsy.glut.edu.cn/",
@@ -47260,18 +47261,19 @@
       "document_sha256": "470bf7af4d62c3468077dbb74b05619c1e149f50ef59f6a8cf20e8c3b0336835",
       "document_path": "snapshots/national/2027/368429/b08b5a4cb3241afe-470bf7af4d62c346.html",
       "file_sha256": "470bf7af4d62c3468077dbb74b05619c1e149f50ef59f6a8cf20e8c3b0336835",
-      "quote_match": "literal",
-      "role_category": "home",
-      "role_evidence": "网址",
-      "proof_sha256": "3f72c093ed9e13604f211d6f5331ad6778c95d6ffe2ae6fafab1239aad182604"
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": "",
+      "proof_sha256": "cb2476f8d9ce7d80f78eb643a781c0ec9cd50fd7bb88f8a39443cf7b0b34d933"
     },
     "gaps": [
+      "missing_trusted_entry",
       "missing_catalog",
       "parser_pending"
     ],
     "count_mismatch": false,
     "effective_count_mismatch": false,
-    "entry_trusted": true
+    "entry_trusted": false
   },
   {
     "unit_id": "368434",
@@ -58627,8 +58629,8 @@
     "remaining_duration": 0,
     "remaining_full_qualification": 0,
     "entry_verification": {
-      "status": "verified",
-      "reason": "saved_original_replayed",
+      "status": "rejected",
+      "reason": "unresolved_link_target",
       "unit_id": "499722082",
       "year": 2027,
       "official_url": "http://yjsc.tsnu.edu.cn/",
@@ -58638,18 +58640,19 @@
       "document_sha256": "42e1a532df61940bdaf1253b4468234abaee80f8295b46c7726c1d5073d80a3b",
       "document_path": "snapshots/national/2027/499722082/9865bffc3f7f79ec-42e1a532df61940b.html",
       "file_sha256": "42e1a532df61940bdaf1253b4468234abaee80f8295b46c7726c1d5073d80a3b",
-      "quote_match": "literal",
-      "role_category": "home",
-      "role_evidence": "研究生处主页",
-      "proof_sha256": "08ff8a2d57131680931671565d66846418dcfe6cacd1a4c9c4b79f035729f95e"
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": "",
+      "proof_sha256": "9b5a0133b152b005ea08e57288c69ea7945e2a062773398d70d19584047ee2e9"
     },
     "gaps": [
+      "missing_trusted_entry",
       "missing_catalog",
       "parser_pending"
     ],
     "count_mismatch": false,
     "effective_count_mismatch": false,
-    "entry_trusted": true
+    "entry_trusted": false
   },
   {
     "unit_id": "2807891193",

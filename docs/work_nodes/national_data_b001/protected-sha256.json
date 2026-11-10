@@ -1,6 +1,6 @@
 {
   "base_commit": "67d5e243e765876481b3a698759dc07b24ccb385",
-  "generated_at_commit": "1dd44aa5390437331bb403380ed3b8d2be1279d5",
+  "generated_at_commit": "97131fe3a604bcb4851640a3e8e7df2eb97dc656",
   "files": {
     "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
     "collectors/catalog_pdf_variants.py": "76583e49222980947a061fad641742a07fe85103b20a9759194c811384718971",

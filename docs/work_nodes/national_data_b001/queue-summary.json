@@ -1,7 +1,7 @@
 {
   "replayable": false,
   "note": "摘要仅供阅读；不含 original_urls/official_url_evidence 等选择必需字段，不能用来复算批次。重放请使用 queue.json 及其 SHA。",
-  "queue_sha256": "da6393ee98bbcbd95a1e0673a8c847909e8af63e0b3d6ee82821c02c61ce3a9f",
+  "queue_sha256": "43bfad3c9abee09e106bf10bcef8514d4d13c688330c8c257691504522fb76a4",
   "rows": [
     {
       "unit_id": "367878",
@@ -1091,8 +1091,9 @@
       "source_count": "71",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://gs.cufe.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "original_pending"
       ],
@@ -25377,8 +25378,9 @@
       "source_count": "16",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "https://yjsy.glut.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
@@ -31534,8 +31536,9 @@
       "source_count": "4",
       "missing_reason": "已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。",
       "official_url": "http://yjsc.tsnu.edu.cn/",
-      "entry_trusted": true,
+      "entry_trusted": false,
       "gaps": [
+        "missing_trusted_entry",
         "missing_catalog",
         "parser_pending"
       ],
