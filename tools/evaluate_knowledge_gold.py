@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import sys
 import tempfile
+import zipfile
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -92,13 +93,53 @@ def _checked_file(root, name, expected):
     return raw
 
 
+def _selected_members(manifest, paths):
+    entries = [(item['path'], item, package['name']) for package in manifest['packages']
+               for item in package['files'] if item['path'] in paths]
+    selected = {name: (item, package) for name, item, package in entries}
+    if len(entries) != len(selected):
+        raise ValueError('Gold input has duplicate bundle members.')
+    if selected.keys() != paths:
+        raise ValueError('Gold input is missing from the public bundle manifest.')
+    return selected
+
+
+def _checked_archive_input(project, package, name, expected):
+    try:
+        with zipfile.ZipFile(_local(project / 'data/bundles', package)) as archive:
+            entries = [item for item in archive.infolist() if item.filename == name]
+            if len(entries) != 1 or entries[0].file_size != expected['size']:
+                raise ValueError('Gold archive input is missing, duplicated or has changed size: ' + name)
+            raw = archive.read(entries[0])
+    except (OSError, zipfile.BadZipFile) as exc:
+        raise ValueError('Gold archive input cannot be read: ' + name) from exc
+    if digest(raw) != expected['sha256']:
+        raise ValueError('Gold archive integrity mismatch: ' + name)
+
+
+def _check_public_inputs(project, corpus, reviewed):
+    paths = {'data/units.json', *(source['original_member'] for source in corpus['sources'])}
+    frozen = _selected_members(reviewed, paths)
+    current = _selected_members(json.loads(_local(project, 'data/bundles/manifest.json').read_bytes()), paths)
+    for name in sorted(paths):
+        expected, _ = frozen[name]
+        member, package = current[name]
+        if (type(member.get('size')) is not int or member['size'] != expected['size']
+                or member.get('sha256') != expected['sha256']):
+            raise ValueError('Gold public input changed from the reviewed bundle: ' + name)
+        raw = _local(project, name).read_bytes()
+        if len(raw) != expected['size'] or digest(raw) != expected['sha256']:
+            raise ValueError('Gold public input integrity mismatch: ' + name)
+        _checked_archive_input(project, package, name, expected)
+
+
 def load_fixture(project=PROJECT_ROOT, fixture=FIXTURE):
     manifest = json.loads(_checked_file(fixture, 'manifest.json', FREEZE_SHA256))
     corpus = json.loads(_checked_file(fixture, 'corpus.json', CORPUS_SHA256))
-    bundle_manifest = _local(project, 'data/bundles/manifest.json').read_bytes()
-    manifest_hashes = {digest(bundle_manifest), digest(bundle_manifest.replace(b'\r\n', b'\n'))}
-    if manifest['public_bundle_manifest_sha256'] not in manifest_hashes:
-        raise ValueError('Reviewed public bundle manifest changed.')
+    reviewed = json.loads(_checked_file(fixture, 'public_bundle_manifest.json',
+                                        manifest['public_bundle_manifest_sha256']))
+    # Pin the reviewed inputs, so unrelated catalog growth does not redefine the gold corpus.
+    _check_public_inputs(project, corpus, reviewed)
     for name, expected in manifest['files'].items():
         if name.startswith('texts/'): _checked_file(fixture, name, expected)
     _check_questions(corpus, fixture)

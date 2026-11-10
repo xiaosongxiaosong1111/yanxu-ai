@@ -4,11 +4,13 @@ from pathlib import Path
 import hashlib
 import json
 import shutil
+import tempfile
+import zipfile
 from unittest.mock import patch
 
 from knowledge_quality import assess_quality
 from tools.evaluate_knowledge_gold import CORPUS_SHA256, FREEZE_SHA256, covered, locate_quote, valid_span
-from tools.evaluate_knowledge_gold import evaluate, PROJECT_ROOT
+from tools.evaluate_knowledge_gold import evaluate, load_fixture, PROJECT_ROOT, FIXTURE
 
 
 class RealSourceAdmissionTests(unittest.TestCase):
@@ -123,6 +125,199 @@ class GoldEvaluationContractTests(unittest.TestCase):
         self.assertTrue(valid_span(value, self.extraction))
         self.assertFalse(valid_span({**value, 'page_start': 1}, self.extraction))
         self.assertFalse(valid_span({**value, 'text': '伪造的连续引文'}, self.extraction))
+
+
+class GoldPublicInputFreezeTests(unittest.TestCase):
+    """Package growth must not change the 29 reviewed originals or unit context."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.corpus = json.loads((FIXTURE / 'corpus.json').read_bytes())
+        cls.historical = json.loads((FIXTURE / 'public_bundle_manifest.json').read_bytes())
+        cls.paths = {'data/units.json', *(source['original_member'] for source in cls.corpus['sources'])}
+        cls.original = cls.corpus['sources'][0]['original_member']
+        cls.base = tempfile.TemporaryDirectory(prefix='yanxu-gold-input-base-')
+        cls.addClassCleanup(cls.base.cleanup)
+        cls.base_root = Path(cls.base.name)
+        packages = []
+        for package in cls.historical['packages']:
+            files = [item for item in package['files'] if item['path'] in cls.paths]
+            if not files:
+                continue
+            packages.append({**package, 'files': files})
+            archive = cls.base_root / 'data/bundles' / package['name']
+            archive.parent.mkdir(parents=True, exist_ok=True)
+            with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipped:
+                for item in files:
+                    destination = cls.base_root / item['path']
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(PROJECT_ROOT / item['path'], destination)
+                    zipped.write(destination, item['path'])
+        (cls.base_root / 'data/bundles/manifest.json').write_text(
+            json.dumps({**cls.historical, 'packages': packages}), encoding='utf-8')
+
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix='yanxu-gold-input-case-')
+        self.addCleanup(temporary.cleanup)
+        self.project = Path(temporary.name) / 'project'
+        shutil.copytree(self.base_root, self.project)
+        self.manifest_path = self.project / 'data/bundles/manifest.json'
+
+    def manifest(self):
+        return json.loads(self.manifest_path.read_bytes())
+
+    def write_manifest(self, value):
+        self.manifest_path.write_text(json.dumps(value), encoding='utf-8')
+
+    def change_member(self, path, **changes):
+        value = self.manifest()
+        self.write_manifest({**value, 'packages': [
+            {**package, 'files': [{**item, **changes} if item['path'] == path else item
+                                 for item in package['files']]}
+            for package in value['packages']]})
+
+    def archive_for(self, path):
+        package = next(package for package in self.manifest()['packages']
+                       if any(item['path'] == path for item in package['files']))
+        return self.project / 'data/bundles' / package['name']
+
+    def rewrite_archive_member(self, path, replacement):
+        archive = self.archive_for(path)
+        with zipfile.ZipFile(archive) as zipped:
+            entries = [(item.filename, zipped.read(item)) for item in zipped.infolist()
+                       if item.filename != path]
+        with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipped:
+            for name, raw in entries:
+                zipped.writestr(name, raw)
+            if replacement is not None:
+                zipped.writestr(path, replacement)
+
+    def test_unrelated_dataset_packages_and_members_may_change(self):
+        value = self.manifest()
+        self.write_manifest({**value, 'dataset': {'programs': 99999}, 'packages': [
+            *value['packages'], {'name': 'new-unrelated.zip', 'files': [
+                {'path': 'data/new-catalog.json', 'sha256': 'unrelated', 'size': 100}]}]})
+        result = load_fixture(self.project)
+        self.assertEqual(result, self.corpus)
+        self.assertEqual(len(result['questions']), 34)
+
+    def test_current_real_public_bundle_keeps_the_same_gold_inputs(self):
+        self.assertEqual(load_fixture(PROJECT_ROOT), self.corpus)
+
+    def test_historical_manifest_is_bound_to_the_original_frozen_sha(self):
+        frozen = json.loads((FIXTURE / 'manifest.json').read_bytes())
+        self.assertEqual(hashlib.sha256((FIXTURE / 'public_bundle_manifest.json').read_bytes()).hexdigest(),
+                         frozen['public_bundle_manifest_sha256'])
+        temporary = tempfile.TemporaryDirectory(prefix='yanxu-gold-fixture-case-')
+        self.addCleanup(temporary.cleanup)
+        copied = Path(temporary.name) / 'fixture'
+        shutil.copytree(FIXTURE, copied)
+        (copied / 'public_bundle_manifest.json').write_bytes(b'{}')
+        with self.assertRaises(ValueError):
+            load_fixture(self.project, copied)
+
+    def test_selected_manifest_sha_and_size_changes_are_rejected(self):
+        for path in (self.original, 'data/units.json'):
+            size = next(item['size'] for package in self.manifest()['packages']
+                        for item in package['files'] if item['path'] == path)
+            for changes in ({'sha256': '0' * 64}, {'size': 1}, {'size': True}, {'size': float(size)}):
+                with self.subTest(path=path, changes=changes):
+                    original = self.manifest_path.read_bytes()
+                    self.change_member(path, **changes)
+                    with self.assertRaises(ValueError):
+                        load_fixture(self.project)
+                    self.manifest_path.write_bytes(original)
+
+    def test_missing_selected_manifest_member_is_rejected(self):
+        value = self.manifest()
+        self.write_manifest({**value, 'packages': [{**package, 'files': [
+            item for item in package['files'] if item['path'] != self.original]}
+            for package in value['packages']]})
+        with self.assertRaises(ValueError):
+            load_fixture(self.project)
+
+    def test_conflicting_or_duplicate_selected_manifest_paths_are_rejected(self):
+        value = self.manifest()
+        member = next(item for package in value['packages'] for item in package['files']
+                      if item['path'] == self.original)
+        for duplicate in (member, {**member, 'sha256': 'f' * 64}):
+            for first in (False, True):
+                with self.subTest(conflict=duplicate != member, duplicate_first=first):
+                    extra = {'name': 'conflicting.zip', 'files': [duplicate]}
+                    packages = [extra, *value['packages']] if first else [*value['packages'], extra]
+                    self.write_manifest({**value, 'packages': packages})
+                    with self.assertRaises(ValueError):
+                        load_fixture(self.project)
+
+    def test_self_consistent_changes_to_current_original_or_units_do_not_redefine_gold(self):
+        for path in (self.original, 'data/units.json'):
+            raw = (self.project / path).read_bytes()
+            manifest = self.manifest_path.read_bytes()
+            archive = self.archive_for(path)
+            archive_raw = archive.read_bytes()
+            changed = raw + b'\n'
+            (self.project / path).write_bytes(changed)
+            self.rewrite_archive_member(path, changed)
+            self.change_member(path, size=len(changed), sha256=hashlib.sha256(changed).hexdigest())
+            with self.subTest(path=path), self.assertRaises(ValueError):
+                load_fixture(self.project)
+            (self.project / path).write_bytes(raw)
+            self.manifest_path.write_bytes(manifest)
+            archive.write_bytes(archive_raw)
+
+    def test_changed_or_missing_expanded_original_and_units_are_rejected(self):
+        for path in (self.original, 'data/units.json'):
+            location = self.project / path
+            raw = location.read_bytes()
+            for replacement in (raw[:-1] + bytes([raw[-1] ^ 1]), raw + b'changed', None):
+                with self.subTest(path=path, missing=replacement is None):
+                    if replacement is None:
+                        location.unlink()
+                    else:
+                        location.write_bytes(replacement)
+                    with self.assertRaises((ValueError, FileNotFoundError)):
+                        load_fixture(self.project)
+                    location.write_bytes(raw)
+
+    def test_changed_missing_and_duplicate_zipped_inputs_are_rejected(self):
+        for path in (self.original, 'data/units.json'):
+            archive = self.archive_for(path)
+            original_archive = archive.read_bytes()
+            raw = (self.project / path).read_bytes()
+            for replacement in (raw[:-1] + bytes([raw[-1] ^ 1]), raw + b'changed', None):
+                with self.subTest(path=path, missing=replacement is None):
+                    self.rewrite_archive_member(path, replacement)
+                    with self.assertRaises(ValueError):
+                        load_fixture(self.project)
+                    archive.write_bytes(original_archive)
+            with zipfile.ZipFile(archive, 'a') as zipped:
+                with self.assertWarns(UserWarning):
+                    zipped.writestr(path, raw)
+            with self.assertRaises(ValueError):
+                load_fixture(self.project)
+            archive.write_bytes(original_archive)
+
+    def test_unreadable_or_missing_selected_archives_are_rejected(self):
+        archive = self.archive_for(self.original)
+        raw = archive.read_bytes()
+        for replacement in (b'not a zip', None):
+            with self.subTest(missing=replacement is None):
+                if replacement is None:
+                    archive.unlink()
+                else:
+                    archive.write_bytes(replacement)
+                with self.assertRaises(ValueError):
+                    load_fixture(self.project)
+                archive.write_bytes(raw)
+
+    def test_archive_paths_cannot_read_outside_public_bundles(self):
+        value = self.manifest()
+        self.write_manifest({**value, 'packages': [
+            {**package, 'name': '../outside.zip'} for package in value['packages']]})
+        with patch('tools.evaluate_knowledge_gold.zipfile.ZipFile') as archive:
+            with self.assertRaises(ValueError):
+                load_fixture(self.project)
+            archive.assert_not_called()
 
 
 @unittest.skipUnless(shutil.which('pdftotext') and (PROJECT_ROOT / 'data/units.json').is_file(),
