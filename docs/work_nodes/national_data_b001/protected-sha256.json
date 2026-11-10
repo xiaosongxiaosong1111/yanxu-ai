@@ -1,6 +1,6 @@
 {
   "base_commit": "67d5e243e765876481b3a698759dc07b24ccb385",
-  "generated_at_commit": "97131fe3a604bcb4851640a3e8e7df2eb97dc656",
+  "generated_at_commit": "f4f01e624fea4039fcf25da6ed5317012e3ff581",
   "files": {
     "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
     "collectors/catalog_pdf_variants.py": "76583e49222980947a061fad641742a07fe85103b20a9759194c811384718971",
@@ -8,6 +8,5 @@
     "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
     "collectors/catalog_hit_public.py": "e757752d9a707007288d55417318a00d947bbe30c55f124a82742cd8231f5f1e"
   },
-  "unchanged": true,
-  "notice": "五个保护适配器在节点0前后一致；本文件只记录SHA，不包含修改。"
+  "unchanged": true
 }

@@ -1,11 +1,17 @@
 {
-  "generated_at": "2026-11-10T08:48:17+0800",
+  "generated_at": "2026-11-10T10:05:16+0800",
   "git": {
-    "commit": "97131fe3a604bcb4851640a3e8e7df2eb97dc656",
-    "branch": "data/national-b001",
+    "commit": "f4f01e624fea4039fcf25da6ed5317012e3ff581",
+    "branch": "fix/national-b001-entry-boundaries",
     "tracked_dirty": false
   },
-  "module_sha256": "006952b9afd742e268f9dd60d7a4a59c62c3b16e24d268307f6a9f84a263bfbf",
+  "module_sha256": "364cca3e8260becda5eb84e79686d4d5df7ce0390e67d9b86a205771fe74510a",
+  "code_sha256": {
+    "national_data_baseline.py": "364cca3e8260becda5eb84e79686d4d5df7ce0390e67d9b86a205771fe74510a",
+    "national_entry_html.py": "c42322d6964623242cff5dcfafe68a70abcffac0b8c0cb4df0e75574cebd09b8",
+    "national_entry_proof.py": "190010b2969653ebce77ecefa9fd43edbc43063224fa71e2453832fbe5014d07"
+  },
+  "code_hash_format": "UTF-8 source bytes with LF line endings",
   "inputs": {
     "admissions_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
     "units_sha256": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
@@ -13,9 +19,9 @@
     "coverage_csv_sha256": "42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e"
   },
   "artifacts": {
-    "queue.json": "43bfad3c9abee09e106bf10bcef8514d4d13c688330c8c257691504522fb76a4",
-    "queue-summary.json": "51be11fa19d424255f996d44bec57e6a1a9117a1c57269ee77065c9c64267503",
-    "batch.json": "fbf2feeb23eec160b87ceed7c914c49c97c139b97442007edfb7e327455c3597"
+    "queue.json": "7af36409e732bdb5c1f4357a345a0e9b63db4f0c5ddaad6ffd62d5541d3ab89e",
+    "queue-summary.json": "c0ae16ed743f7fea437cc8a9a9370cebd5b72e86a63708b1d0da7992b1b30c77",
+    "batch.json": "f181f45c0dcadda5420ba90e8be74919a5954629e0bccb992713512d2934754d"
   },
   "package": {
     "catalog_data_zip_sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
@@ -30,12 +36,11 @@
   },
   "tools": {
     "raw_pdftotext": {
-      "path": "C:/Program Files/Git/mingw64/bin/pdftotext.exe",
+      "path": "C:\\Program Files\\Git\\mingw64\\bin\\pdftotext.exe",
       "version": "pdftotext version 4.00"
     },
     "bbox_pdftotext": {
-      "path": "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe",
-      "version": "pdftotext version 26.07.0"
+      "path": ""
     }
   },
   "annual": {
@@ -120,7 +125,7 @@
   },
   "queue": {
     "count": 931,
-    "sha256": "43bfad3c9abee09e106bf10bcef8514d4d13c688330c8c257691504522fb76a4",
+    "sha256": "7af36409e732bdb5c1f4357a345a0e9b63db4f0c5ddaad6ffd62d5541d3ab89e",
     "replayable": true,
     "summary_path": "queue-summary.json",
     "summary_replayable": false

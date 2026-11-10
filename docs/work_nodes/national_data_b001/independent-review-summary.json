@@ -1,0 +1,44 @@
+{
+  "scope": "Final read-only review of planned five-family fixes and own-entry false-rejection corrections",
+  "verdict": "pass_no_remaining_P1_P2_in_reviewed_scope",
+  "source_sha256_lf": {
+    "national_data_baseline.py": "364cca3e8260becda5eb84e79686d4d5df7ce0390e67d9b86a205771fe74510a",
+    "national_entry_html.py": "c42322d6964623242cff5dcfafe68a70abcffac0b8c0cb4df0e75574cebd09b8",
+    "national_entry_proof.py": "190010b2969653ebce77ecefa9fd43edbc43063224fa71e2453832fbe5014d07"
+  },
+  "source_line_counts": {
+    "national_data_baseline.py": 658,
+    "national_entry_html.py": 413,
+    "national_entry_proof.py": 641
+  },
+  "final_regression_tests": {
+    "run": 48,
+    "passed": 48,
+    "failed": 0,
+    "scope": "tests.test_national_entry_regressions"
+  },
+  "original_proof_replay": {
+    "records": 931,
+    "status": {
+      "rejected": 531,
+      "verified": 400
+    },
+    "status_and_reason_delta_vs_0b4d8f6": [],
+    "seconds": 10.961
+  },
+  "original_functions_missing": [],
+  "unchanged_original_function_AST_count": 46,
+  "resolved_review_feedback": [
+    "ASCII subdelimiter nested URLs",
+    "Inline CSS comments and invalid token joining",
+    "Own-name prose guide false rejections in six actual units",
+    "URL plus Chinese publication prose and wrapped occurrences"
+  ],
+  "no_source_edits_by_reviewer": true,
+  "no_network_or_full_suite_by_reviewer": true,
+  "runtime_or_keys_opened": false,
+  "limits": [
+    "Full external CSS cascade and JavaScript execution are not implemented or required for this local replay checker",
+    "Full-public-bundle CLI and full-project environment checks belong to parent validation"
+  ]
+}

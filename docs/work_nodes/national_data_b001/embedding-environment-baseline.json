@@ -1,0 +1,18 @@
+{
+  "baseline_commit": "598bb09",
+  "failure_names_match_full_run": true,
+  "failures": [
+    "test_context_and_prefix_share_the_budget_and_context_is_real_text",
+    "test_long_prefix_must_terminate_and_cover_the_tail",
+    "test_prefix_that_leaves_no_room_fails_fast_not_by_looping",
+    "test_tail_exception_of_long_segment_survives_inside_token_budget",
+    "test_windows_partition_exact_spans_and_bind_sha_to_model_input"
+  ],
+  "embedding_files_identical_to_baseline": {
+    "embedding_inputs.py": true,
+    "embedding_local.py": true,
+    "tests/test_embedding_inputs.py": true
+  },
+  "root_cause": "isolated public-data checkout does not include local BGE runtime model files",
+  "production_embedding_files_changed": false
+}

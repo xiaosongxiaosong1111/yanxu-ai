@@ -1,0 +1,15 @@
+{
+  "source_sha256_lf": {
+    "national_data_baseline.py": "364cca3e8260becda5eb84e79686d4d5df7ce0390e67d9b86a205771fe74510a",
+    "national_entry_html.py": "c42322d6964623242cff5dcfafe68a70abcffac0b8c0cb4df0e75574cebd09b8",
+    "national_entry_proof.py": "190010b2969653ebce77ecefa9fd43edbc43063224fa71e2453832fbe5014d07"
+  },
+  "proofs": 931,
+  "status": {
+    "rejected": 531,
+    "verified": 400
+  },
+  "changes_vs_0b4d8f6": [],
+  "seconds": 10.961,
+  "regressions_exit_code": 0
+}

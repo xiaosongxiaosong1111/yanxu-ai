@@ -1,0 +1,14 @@
+{
+  "phase": "RED",
+  "command": [
+    "C:\\Users\\derlteuser\\Documents\\Codex\\2026-10-21\\https-builderx-csdn-net-activity-site\\outputs\\grad-admissions-guide\\data\\runtime\\claude-node4\\venv\\Scripts\\python.exe",
+    "-m",
+    "unittest",
+    "tests.test_national_entry_regressions",
+    "-v"
+  ],
+  "exit_code": 1,
+  "test_file_sha256": "088c79e0ad6d5ebc7b234ab9c4cd7751fcfe0f77adfd4baf6a86c19532fc6c4f",
+  "production_sha256": "eb526425fb0c951e3adb2fa5746e1cbf514373d98f9e871224053ca9206eeac3",
+  "tail": "          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\CodexRuntime\\yanxu-b001-recheck-0b4d8f6\\tests\\test_national_entry_regressions.py\", line 36, in assert_rejected\n    self.assertEqual(proof['status'], 'rejected')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'verified' != 'rejected'\n- verified\n+ rejected\n\n\n----------------------------------------------------------------------\nRan 29 tests in 0.329s\n\nFAILED (failures=15)\n"
+}

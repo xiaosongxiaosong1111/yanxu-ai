@@ -1,0 +1,27 @@
+{
+  "source_lines": {
+    "national_data_baseline.py": 658,
+    "national_entry_html.py": 362,
+    "national_entry_proof.py": 635
+  },
+  "old_functions_missing": [],
+  "changed_functions": [
+    "_VisibleHTMLParser",
+    "_article_fragment",
+    "_url_key",
+    "_visible_quote_spans",
+    "_resolve_web_target",
+    "_foreign_label_in",
+    "_entity_owned",
+    "_foreign_entity_before",
+    "audit"
+  ],
+  "unchanged_function_count": 46,
+  "new_symbols": [
+    "_code_hashes",
+    "_ArticleSelector",
+    "_normalise_percent",
+    "_visible_url_tokens",
+    "_nearest_entity"
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "367859": {
+    "name": "北京师范大学",
+    "quote": "https://yz.bnu.edu.cn",
+    "proof": {
+      "status": "rejected",
+      "reason": "foreign_unit_reference",
+      "unit_id": "367859",
+      "year": 2027,
+      "official_url": "https://yz.bnu.edu.cn/",
+      "evidence_url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549213731&schCode=10027",
+      "evidence_sha256": "3d99aee22c39ee6e4df38007b36a46fb49284a4620bf119ef5fafb3b11a70a9f",
+      "document_id": "national-367859-2027-4d7ed0aed0255569-3d99aee22c39",
+      "document_sha256": "3d99aee22c39ee6e4df38007b36a46fb49284a4620bf119ef5fafb3b11a70a9f",
+      "document_path": "snapshots/national/2027/367859/4d7ed0aed0255569-3d99aee22c39ee6e.html",
+      "file_sha256": "3d99aee22c39ee6e4df38007b36a46fb49284a4620bf119ef5fafb3b11a70a9f",
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": ""
+    },
+    "trace": [
+      {
+        "kind": "registered",
+        "span": "分数线、复试安排、拟录取名单等均可在北京师范大学研究生招生网",
+        "unit": "北京师范大学",
+        "result": ""
+      },
+      {
+        "kind": "entity_before",
+        "candidate": "推免生接收、报名、初试成绩、分数线、复试安排、拟录取名单等均可在北京师范大学研究生招生网（https://yz.bnu.edu.cn",
+        "role_start": 38,
+        "prefix": "推免生接收、报名、初试成绩、分数线、复试安排、拟录取名单等均可在北京师范大学",
+        "nearest_entity": "拟录取名单等均可在北京师范大学",
+        "unit": "北京师范大学",
+        "result": "拟录取名单等均可在北京师范大学"
+      }
+    ]
+  },
+  "367853": {
+    "name": "北京市市政工程研究院",
+    "quote": "https://www.szgcyjy.com",
+    "proof": {
+      "status": "rejected",
+      "reason": "foreign_unit_reference",
+      "unit_id": "367853",
+      "year": 2027,
+      "official_url": "https://www.szgcyjy.com/",
+      "evidence_url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549428810&schCode=87111",
+      "evidence_sha256": "6c029bfab229b6f7bd03342d687c2a2f8950bacc2fa5fb779e741b06068bf101",
+      "document_id": "national-367853-2027-71878b84636d1cf0-6c029bfab229",
+      "document_sha256": "6c029bfab229b6f7bd03342d687c2a2f8950bacc2fa5fb779e741b06068bf101",
+      "document_path": "snapshots/national/2027/367853/71878b84636d1cf0-6c029bfab229b6f7.html",
+      "file_sha256": "6c029bfab229b6f7bd03342d687c2a2f8950bacc2fa5fb779e741b06068bf101",
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": ""
+    },
+    "trace": [
+      {
+        "kind": "registered",
+        "span": " 复试参考书目将在北京市市政工程研究院网站",
+        "unit": "北京市市政工程研究院",
+        "result": ""
+      },
+      {
+        "kind": "entity_before",
+        "candidate": " 复试参考书目将在北京市市政工程研究院网站（https://www.szgcyjy.com",
+        "role_start": 19,
+        "prefix": " 复试参考书目将在北京市市政工程研究院",
+        "nearest_entity": "复试参考书目将在北京市市政工程研究院",
+        "unit": "北京市市政工程研究院",
+        "result": "复试参考书目将在北京市市政工程研究院"
+      }
+    ]
+  },
+  "302981182": {
+    "name": "大连民族大学",
+    "quote": "https://new.dlnu.edu.cn/gs/",
+    "proof": {
+      "status": "rejected",
+      "reason": "foreign_unit_reference",
+      "unit_id": "302981182",
+      "year": 2027,
+      "official_url": "https://new.dlnu.edu.cn/",
+      "evidence_url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3546223284&schCode=12026",
+      "evidence_sha256": "646c8aba35f4e0d29ff6d77365a138d1ac214753a7a7d9a50de547607ee2e46a",
+      "document_id": "national-302981182-2027-95d6b52eeb52c2c4-646c8aba35f4",
+      "document_sha256": "646c8aba35f4e0d29ff6d77365a138d1ac214753a7a7d9a50de547607ee2e46a",
+      "document_path": "snapshots/national/2027/302981182/95d6b52eeb52c2c4-646c8aba35f4e0d2.html",
+      "file_sha256": "646c8aba35f4e0d29ff6d77365a138d1ac214753a7a7d9a50de547607ee2e46a",
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": ""
+    },
+    "trace": [
+      {
+        "kind": "registered",
+        "span": "目录和分专业招生计划等招考信息，均在大连民族大学研究生招生网",
+        "unit": "大连民族大学",
+        "result": ""
+      },
+      {
+        "kind": "entity_before",
+        "candidate": " 八、信息公开公示 学校招生章程、招生政策和规定、招生专业目录和分专业招生计划等招考信息，均在大连民族大学研究生招生网站（https://new.dlnu.edu.cn/gs/",
+        "role_start": 53,
+        "prefix": " 八、信息公开公示 学校招生章程、招生政策和规定、招生专业目录和分专业招生计划等招考信息，均在大连民族大学",
+        "nearest_entity": "均在大连民族大学",
+        "unit": "大连民族大学",
+        "result": "均在大连民族大学"
+      }
+    ]
+  },
+  "368129": {
+    "name": "上海交通大学",
+    "quote": "https://yzb.sjtu.edu.cn/",
+    "proof": {
+      "status": "rejected",
+      "reason": "foreign_unit_reference",
+      "unit_id": "368129",
+      "year": 2027,
+      "official_url": "https://yzb.sjtu.edu.cn/",
+      "evidence_url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549415894&schCode=10248",
+      "evidence_sha256": "93041e5e3cd966b8f7accef78131b9e73ee35f593477c100542643b957c0598f",
+      "document_id": "national-368129-2027-5df914451c7fddfe-93041e5e3cd9",
+      "document_sha256": "93041e5e3cd966b8f7accef78131b9e73ee35f593477c100542643b957c0598f",
+      "document_path": "snapshots/national/2027/368129/5df914451c7fddfe-93041e5e3cd966b8.html",
+      "file_sha256": "93041e5e3cd966b8f7accef78131b9e73ee35f593477c100542643b957c0598f",
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": ""
+    },
+    "trace": [
+      {
+        "kind": "registered",
+        "span": "见上海交通大学研究生招生网",
+        "unit": "上海交通大学",
+        "result": ""
+      },
+      {
+        "kind": "entity_before",
+        "candidate": "见上海交通大学研究生招生网：https://yzb.sjtu.edu.cn/",
+        "role_start": 7,
+        "prefix": "见上海交通大学",
+        "nearest_entity": "见上海交通大学",
+        "unit": "上海交通大学",
+        "result": "见上海交通大学"
+      }
+    ]
+  },
+  "3274414232": {
+    "name": "衢州学院",
+    "quote": "https://yzw.qzc.edu.cn/",
+    "proof": {
+      "status": "rejected",
+      "reason": "foreign_unit_reference",
+      "unit_id": "3274414232",
+      "year": 2027,
+      "official_url": "https://yzw.qzc.edu.cn/",
+      "evidence_url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549307102&schCode=11488",
+      "evidence_sha256": "c1b5742adddcd3f8a7629469dcec185943970940ecc4f431248bc0f3fed36e3e",
+      "document_id": "national-3274414232-2027-377f5d077cdd32e3-c1b5742adddc",
+      "document_sha256": "c1b5742adddcd3f8a7629469dcec185943970940ecc4f431248bc0f3fed36e3e",
+      "document_path": "snapshots/national/2027/3274414232/377f5d077cdd32e3-c1b5742adddcd3f8.html",
+      "file_sha256": "c1b5742adddcd3f8a7629469dcec185943970940ecc4f431248bc0f3fed36e3e",
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": ""
+    },
+    "trace": [
+      {
+        "kind": "registered",
+        "span": "题工作由我校组织，相关考试大纲及参考书目将在学校研究生招生网",
+        "unit": "衢州学院",
+        "result": ""
+      },
+      {
+        "kind": "entity_before",
+        "candidate": "自命题科目的命题工作由我校组织，相关考试大纲及参考书目将在学校研究生招生网公布（https://yzw.qzc.edu.cn/",
+        "role_start": 31,
+        "prefix": "自命题科目的命题工作由我校组织，相关考试大纲及参考书目将在学校",
+        "nearest_entity": "相关考试大纲及参考书目将在学校",
+        "unit": "衢州学院",
+        "result": "相关考试大纲及参考书目将在学校"
+      }
+    ]
+  },
+  "368554": {
+    "name": "西安交通大学",
+    "quote": "http://yz.xjtu.edu.cn/",
+    "proof": {
+      "status": "rejected",
+      "reason": "foreign_unit_reference",
+      "unit_id": "368554",
+      "year": 2027,
+      "official_url": "http://yz.xjtu.edu.cn/",
+      "evidence_url": "https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3548771300&schCode=10698",
+      "evidence_sha256": "1de698dec2089863e6fdc4ca64acc712edb147196a6b22f9ffaa4b203417620b",
+      "document_id": "national-368554-2027-49e463d02e081d9c-1de698dec208",
+      "document_sha256": "1de698dec2089863e6fdc4ca64acc712edb147196a6b22f9ffaa4b203417620b",
+      "document_path": "snapshots/national/2027/368554/49e463d02e081d9c-1de698dec2089863.html",
+      "file_sha256": "1de698dec2089863e6fdc4ca64acc712edb147196a6b22f9ffaa4b203417620b",
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": ""
+    },
+    "trace": [
+      {
+        "kind": "registered",
+        "span": "tps：//yz.chsi.com.cn）及学校研究生招生信息网",
+        "unit": "西安交通大学",
+        "result": ""
+      },
+      {
+        "kind": "entity_before",
+        "candidate": "考生可登录教育部“中国研究生招生信息网”（https：//yz.chsi.com.cn）及学校研究生招生信息网（http://yz.xjtu.edu.cn/",
+        "role_start": 47,
+        "prefix": "考生可登录教育部“中国研究生招生信息网”（https：//yz.chsi.com.cn）及学校",
+        "nearest_entity": "及学校",
+        "unit": "西安交通大学",
+        "result": "及学校"
+      }
+    ]
+  },
+  "688909023": {
+    "name": "湖北汽车工业学院",
+    "quote": "http://yjsc.huat.edu.cn",
+    "proof": {
+      "status": "rejected",
+      "reason": "role_declaration_missing",
+      "unit_id": "688909023",
+      "year": 2027,
+      "official_url": "http://yjsc.huat.edu.cn/",
+      "evidence_url": "https://yz.chsi.com.cn/sch/viewZszc--infoId-3546513865,categoryId-688909075,schId-688909023,mindex-12.dhtml",
+      "evidence_sha256": "7db99c10a936e04c4718eff2476b7b1ae4723e73f7e7291fb49a65241db9f975",
+      "document_id": "national-688909023-2027-044a04b2590db360-7db99c10a936",
+      "document_sha256": "7db99c10a936e04c4718eff2476b7b1ae4723e73f7e7291fb49a65241db9f975",
+      "document_path": "snapshots/national/2027/688909023/044a04b2590db360-7db99c10a936e04c.html",
+      "file_sha256": "7db99c10a936e04c4718eff2476b7b1ae4723e73f7e7291fb49a65241db9f975",
+      "quote_match": "",
+      "role_category": "",
+      "role_evidence": ""
+    },
+    "trace": []
+  }
+}

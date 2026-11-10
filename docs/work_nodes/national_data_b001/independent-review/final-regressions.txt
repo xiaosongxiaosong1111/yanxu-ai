@@ -1,0 +1,54 @@
+{"out_dir": "C:\\Users\\DERLTE~1\\AppData\\Local\\Temp\\tmprrn66zqv\\out", "raw_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "effective_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "verified": {"program_count": 1, "verified_tuition": 0, "verified_duration": 0, "verified_full_qualification": 0, "verified_computed_total_cost": 0, "tuition_claim_statuses": {"needs_review": 1}, "duration_claim_statuses": {"needs_review": 1}, "qualification_claim_statuses": {}}, "batch": {"expansion": ["u1"], "backfill": ["u2"]}}
+test_ascii_entry_before_chinese_publication_prose_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_ascii_entry_before_chinese_publication_prose_remains_valid) ... ok
+test_ascii_parenthesized_independent_url_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_ascii_parenthesized_independent_url_remains_valid) ... ok
+test_chinese_query_text_does_not_expose_a_nested_url (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_chinese_query_text_does_not_expose_a_nested_url) ... ok
+test_complete_current_university_name_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_complete_current_university_name_remains_valid) ... ok
+test_css_comment_alone_does_not_hide_visible_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_css_comment_alone_does_not_hide_visible_text) ... ok
+test_css_comment_before_hidden_value_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_css_comment_before_hidden_value_stays_hidden) ... ok
+test_css_comment_cannot_join_an_invalid_hidden_keyword (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_css_comment_cannot_join_an_invalid_hidden_keyword) ... ok
+test_current_unit_named_article_keeps_generic_admissions_role (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_current_unit_named_article_keeps_generic_admissions_role) ... ok
+test_default_https_port_is_equivalent (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_default_https_port_is_equivalent) ... ok
+test_display_none_with_tab_and_important_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_display_none_with_tab_and_important_stays_hidden) ... ok
+test_encoded_path_separator_does_not_prove_another_path (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_encoded_path_separator_does_not_prove_another_path) ... ok
+test_exact_explicit_iri_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_exact_explicit_iri_remains_valid) ... ok
+test_explicit_iri_is_not_a_prefix_of_a_different_iri (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_explicit_iri_is_not_a_prefix_of_a_different_iri) ... ok
+test_fullwidth_query_parentheses_do_not_expose_a_nested_url (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_fullwidth_query_parentheses_do_not_expose_a_nested_url) ... ok
+test_generic_admissions_guidance_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_generic_admissions_guidance_remains_valid) ... ok
+test_hidden_ancestor_of_article_container_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_ancestor_of_article_container_stays_hidden) ... ok
+test_hidden_article_container_cannot_be_extracted_as_visible (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_article_container_cannot_be_extracted_as_visible) ... ok
+test_hidden_css_whitespace_normalization_handles_form_feed (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_css_whitespace_normalization_handles_form_feed) ... ok
+test_hidden_rendered_chsi_article_rule_remains_supported (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_rendered_chsi_article_rule_remains_supported) ... ok
+test_hidden_void_img_does_not_swallow_visible_following_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_void_img_does_not_swallow_visible_following_text) ... ok
+test_hidden_void_input_does_not_swallow_visible_following_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_void_input_does_not_swallow_visible_following_text) ... ok
+test_nearest_current_owner_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_current_owner_remains_valid) ... ok
+test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) ... ok
+test_nested_hidden_parent_does_not_hide_later_visible_sibling (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nested_hidden_parent_does_not_hide_later_visible_sibling) ... ok
+test_non_default_port_in_anchor_is_a_different_target (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_non_default_port_in_anchor_is_a_different_target) ... ok
+test_non_default_port_in_visible_url_is_a_different_target (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_non_default_port_in_visible_url_is_a_different_target) ... ok
+test_nonvoid_slash_does_not_close_hidden_html_container (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nonvoid_slash_does_not_close_hidden_html_container) ... ok
+test_nonvoid_slash_does_not_remove_hidden_article_ancestor (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nonvoid_slash_does_not_remove_hidden_article_ancestor) ... ok
+test_parenthesized_explicit_iri_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_parenthesized_explicit_iri_remains_valid) ... ok
+test_parenthesized_independent_url_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_parenthesized_independent_url_remains_valid) ... ok
+test_percent_encoded_unreserved_letter_is_equivalent (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_percent_encoded_unreserved_letter_is_equivalent) ... ok
+test_prose_guides_inside_exact_institution_names_are_not_removed (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_prose_guides_inside_exact_institution_names_are_not_removed) ... ok
+test_query_subdelimiters_do_not_start_an_independent_target (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_query_subdelimiters_do_not_start_an_independent_target) ... ok
+test_real_publication_guides_do_not_become_foreign_names (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_real_publication_guides_do_not_become_foreign_names) ... ok
+test_registered_prefix_in_other_host_stays_rejected (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_registered_prefix_in_other_host_stays_rejected) ... ok
+test_same_encoded_reserved_path_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_same_encoded_reserved_path_remains_valid) ... ok
+test_same_explicit_non_default_port_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_same_explicit_non_default_port_remains_valid) ... ok
+test_self_closing_hidden_void_does_not_swallow_visible_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_self_closing_hidden_void_does_not_swallow_visible_text) ... ok
+test_shared_university_suffix_is_not_an_ownership_alias (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_shared_university_suffix_is_not_an_ownership_alias) ... ok
+test_similar_visible_css_property_is_not_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_similar_visible_css_property_is_not_hidden) ... ok
+test_unknown_entity_ending_with_current_name_is_not_an_alias (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_unknown_entity_ending_with_current_name_is_not_an_alias) ... ok
+test_url_embedded_in_another_url_query_is_not_an_entry (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_url_embedded_in_another_url_query_is_not_an_entry) ... ok
+test_visibility_hidden_with_newline_and_important_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_visibility_hidden_with_newline_and_important_stays_hidden) ... ok
+test_visible_article_container_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_visible_article_container_remains_valid) ... ok
+test_visible_article_still_excludes_unrelated_page_chrome (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_visible_article_still_excludes_unrelated_page_chrome) ... ok
+test_void_inside_hidden_parent_does_not_end_its_hidden_subtree (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_void_inside_hidden_parent_does_not_end_its_hidden_subtree) ... ok
+test_audit_report_binds_all_entry_modules (tests.test_national_entry_regressions.EntryCodeProvenanceTests.test_audit_report_binds_all_entry_modules) ... ok
+test_imported_entry_logic_is_bound_even_when_cli_source_is_unchanged (tests.test_national_entry_regressions.EntryCodeProvenanceTests.test_imported_entry_logic_is_bound_even_when_cli_source_is_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 0.852s
+
+OK

@@ -1,0 +1,56 @@
+{
+  "source_commit": "f4f01e624fea4039fcf25da6ed5317012e3ff581",
+  "scope": "node0 entry replay bug fixes",
+  "targeted_tests_passed": 159,
+  "coverage": {
+    "covered_lines": 975,
+    "num_statements": 1012,
+    "percent_covered": 95.44817927170868,
+    "percent_covered_display": "95",
+    "missing_lines": 37,
+    "excluded_lines": 0,
+    "percent_statements_covered": 96.34387351778656,
+    "percent_statements_covered_display": "96",
+    "num_branches": 416,
+    "num_partial_branches": 28,
+    "covered_branches": 388,
+    "missing_branches": 28,
+    "percent_branches_covered": 93.26923076923077,
+    "percent_branches_covered_display": "93"
+  },
+  "full_cli_passed": true,
+  "full_cli_seconds": 200.894,
+  "full_python_run": {
+    "total": 2332,
+    "passed": 2316,
+    "failures": 2,
+    "errors": 3,
+    "skipped": 11,
+    "failure_scope": "same five missing-local-BGE-model cases reproduced on unchanged baseline",
+    "failure_names": [
+      "test_context_and_prefix_share_the_budget_and_context_is_real_text",
+      "test_long_prefix_must_terminate_and_cover_the_tail",
+      "test_prefix_that_leaves_no_room_fails_fast_not_by_looping",
+      "test_tail_exception_of_long_segment_survives_inside_token_budget",
+      "test_windows_partition_exact_spans_and_bind_sha_to_model_input"
+    ],
+    "note": "Final changed entry logic is additionally covered by the final 159-test run."
+  },
+  "node_tests_passed": 264,
+  "dependency_vulnerabilities": 0,
+  "proof_status": {
+    "rejected": 531,
+    "verified": 400
+  },
+  "expansion_pool": {
+    "candidates": 433,
+    "trusted": 131,
+    "untrusted": 302
+  },
+  "entry_status_and_reason_delta_from_0b4d8f6": [],
+  "admissions_and_bundle_inputs_unchanged": true,
+  "adopted": false,
+  "published": false,
+  "node1_started": false,
+  "user_runtime_or_keys_changed": false
+}

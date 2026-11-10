@@ -1,0 +1,303 @@
+test_ascii_parenthesized_independent_url_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_ascii_parenthesized_independent_url_remains_valid) ... ok
+test_current_unit_named_article_keeps_generic_admissions_role (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_current_unit_named_article_keeps_generic_admissions_role) ... ok
+test_default_https_port_is_equivalent (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_default_https_port_is_equivalent) ... ok
+test_display_none_with_tab_and_important_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_display_none_with_tab_and_important_stays_hidden) ... FAIL
+test_encoded_path_separator_does_not_prove_another_path (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_encoded_path_separator_does_not_prove_another_path) ... FAIL
+test_generic_admissions_guidance_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_generic_admissions_guidance_remains_valid) ... ok
+test_hidden_ancestor_of_article_container_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_ancestor_of_article_container_stays_hidden) ... FAIL
+test_hidden_article_container_cannot_be_extracted_as_visible (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_article_container_cannot_be_extracted_as_visible) ... FAIL
+test_hidden_css_whitespace_normalization_handles_form_feed (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_css_whitespace_normalization_handles_form_feed) ... FAIL
+test_hidden_rendered_chsi_article_rule_remains_supported (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_rendered_chsi_article_rule_remains_supported) ... ok
+test_hidden_void_img_does_not_swallow_visible_following_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_void_img_does_not_swallow_visible_following_text) ... FAIL
+test_hidden_void_input_does_not_swallow_visible_following_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_void_input_does_not_swallow_visible_following_text) ... FAIL
+test_nearest_current_owner_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_current_owner_remains_valid) ... ok
+test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) ...
+  test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='招生信息网') ... FAIL
+  test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='研究生院网站') ... FAIL
+  test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='招生专业目录') ... FAIL
+  test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='官方网站') ... FAIL
+test_nested_hidden_parent_does_not_hide_later_visible_sibling (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nested_hidden_parent_does_not_hide_later_visible_sibling) ... ok
+test_non_default_port_in_anchor_is_a_different_target (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_non_default_port_in_anchor_is_a_different_target) ... FAIL
+test_non_default_port_in_visible_url_is_a_different_target (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_non_default_port_in_visible_url_is_a_different_target) ... FAIL
+test_parenthesized_independent_url_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_parenthesized_independent_url_remains_valid) ... ok
+test_percent_encoded_unreserved_letter_is_equivalent (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_percent_encoded_unreserved_letter_is_equivalent) ... ok
+test_registered_prefix_in_other_host_stays_rejected (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_registered_prefix_in_other_host_stays_rejected) ... ok
+test_same_encoded_reserved_path_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_same_encoded_reserved_path_remains_valid) ... ok
+test_same_explicit_non_default_port_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_same_explicit_non_default_port_remains_valid) ... ok
+test_self_closing_hidden_void_does_not_swallow_visible_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_self_closing_hidden_void_does_not_swallow_visible_text) ... ok
+test_similar_visible_css_property_is_not_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_similar_visible_css_property_is_not_hidden) ... ok
+test_url_embedded_in_another_url_query_is_not_an_entry (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_url_embedded_in_another_url_query_is_not_an_entry) ... FAIL
+test_visibility_hidden_with_newline_and_important_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_visibility_hidden_with_newline_and_important_stays_hidden) ... FAIL
+test_visible_article_container_remains_valid (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_visible_article_container_remains_valid) ... ok
+test_visible_article_still_excludes_unrelated_page_chrome (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_visible_article_still_excludes_unrelated_page_chrome) ... ok
+test_void_inside_hidden_parent_does_not_end_its_hidden_subtree (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_void_inside_hidden_parent_does_not_end_its_hidden_subtree) ... ok
+
+======================================================================
+FAIL: test_display_none_with_tab_and_important_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_display_none_with_tab_and_important_stays_hidden)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 126, in test_display_none_with_tab_and_important_stays_hidden
+    self.assert_rejected('<div style="display:\tnone !important">'
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         '本校官网：https://a.edu.cn/</div>')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_encoded_path_separator_does_not_prove_another_path (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_encoded_path_separator_does_not_prove_another_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 61, in test_encoded_path_separator_does_not_prove_another_path
+    self.assert_rejected(self.anchor('https://a.edu.cn/admissions%2Fother',
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                     'https://a.edu.cn/admissions/other'),
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         official_url='https://a.edu.cn/admissions/other')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_hidden_ancestor_of_article_container_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_ancestor_of_article_container_stays_hidden)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 114, in test_hidden_ancestor_of_article_container_stays_hidden
+    self.assert_rejected('<div hidden><div class="yxk-news-contain">'
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         '<p>本校官网：https://a.edu.cn/</p></div></div>')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_hidden_article_container_cannot_be_extracted_as_visible (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_article_container_cannot_be_extracted_as_visible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 110, in test_hidden_article_container_cannot_be_extracted_as_visible
+    self.assert_rejected('<div class="yxk-news-contain" hidden>'
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         '<p>本校官网：https://a.edu.cn/</p></div>')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_hidden_css_whitespace_normalization_handles_form_feed (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_css_whitespace_normalization_handles_form_feed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 134, in test_hidden_css_whitespace_normalization_handles_form_feed
+    self.assert_rejected('<div style="display:\fnone !important">'
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         '本校官网：https://a.edu.cn/</div>')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_hidden_void_img_does_not_swallow_visible_following_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_void_img_does_not_swallow_visible_following_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 146, in test_hidden_void_img_does_not_swallow_visible_following_text
+    self.assert_allowed('<img hidden src="logo.png">'
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        '<p>本校官网：https://a.edu.cn/</p>')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 30, in assert_allowed
+    self.assertEqual(proof['status'], 'verified', proof['reason'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'rejected' != 'verified'
+- rejected
++ verified
+ : visible_article_missing
+
+======================================================================
+FAIL: test_hidden_void_input_does_not_swallow_visible_following_text (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_hidden_void_input_does_not_swallow_visible_following_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 142, in test_hidden_void_input_does_not_swallow_visible_following_text
+    self.assert_allowed('<input hidden name="example">'
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        '<p>本校官网：https://a.edu.cn/</p>')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 30, in assert_allowed
+    self.assertEqual(proof['status'], 'verified', proof['reason'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'rejected' != 'verified'
+- rejected
++ verified
+ : visible_article_missing
+
+======================================================================
+FAIL: test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='招生信息网')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 95, in test_nearest_foreign_owner_wins_for_all_role_categories
+    self.assert_rejected(
+    ~~~~~~~~~~~~~~~~~~~~^
+        f'甲大学提醒考生访问丙大学{role}：https://a.edu.cn/',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        relation=relation)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='研究生院网站')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 95, in test_nearest_foreign_owner_wins_for_all_role_categories
+    self.assert_rejected(
+    ~~~~~~~~~~~~~~~~~~~~^
+        f'甲大学提醒考生访问丙大学{role}：https://a.edu.cn/',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        relation=relation)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='招生专业目录')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 95, in test_nearest_foreign_owner_wins_for_all_role_categories
+    self.assert_rejected(
+    ~~~~~~~~~~~~~~~~~~~~^
+        f'甲大学提醒考生访问丙大学{role}：https://a.edu.cn/',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        relation=relation)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_nearest_foreign_owner_wins_for_all_role_categories (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_nearest_foreign_owner_wins_for_all_role_categories) (role='官方网站')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 95, in test_nearest_foreign_owner_wins_for_all_role_categories
+    self.assert_rejected(
+    ~~~~~~~~~~~~~~~~~~~~^
+        f'甲大学提醒考生访问丙大学{role}：https://a.edu.cn/',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        relation=relation)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_non_default_port_in_anchor_is_a_different_target (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_non_default_port_in_anchor_is_a_different_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 49, in test_non_default_port_in_anchor_is_a_different_target
+    self.assert_rejected(self.anchor('https://a.edu.cn:8443/admissions'),
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         official_url='https://a.edu.cn/admissions')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_non_default_port_in_visible_url_is_a_different_target (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_non_default_port_in_visible_url_is_a_different_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 45, in test_non_default_port_in_visible_url_is_a_different_target
+    self.assert_rejected('本校官网：https://a.edu.cn:8443/admissions',
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         official_url='https://a.edu.cn/admissions')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_url_embedded_in_another_url_query_is_not_an_entry (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_url_embedded_in_another_url_query_is_not_an_entry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 74, in test_url_embedded_in_another_url_query_is_not_an_entry
+    self.assert_rejected(
+    ~~~~~~~~~~~~~~~~~~~~^
+        '本校官网：https://evil.example/path?next=(https://a.edu.cn/)')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+======================================================================
+FAIL: test_visibility_hidden_with_newline_and_important_stays_hidden (tests.test_national_entry_regressions.EntryBoundaryRegressions.test_visibility_hidden_with_newline_and_important_stays_hidden)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 130, in test_visibility_hidden_with_newline_and_important_stays_hidden
+    self.assert_rejected('<div style="visibility:\nhidden!important">'
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         '本校官网：https://a.edu.cn/</div>')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_national_entry_regressions.py", line 36, in assert_rejected
+    self.assertEqual(proof['status'], 'rejected')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'verified' != 'rejected'
+- verified
++ rejected
+
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.329s
+
+FAILED (failures=15)

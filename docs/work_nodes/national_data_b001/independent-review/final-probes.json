@@ -1,0 +1,68 @@
+{
+  "semicolon_nested": {
+    "expected_selected": false,
+    "selected": false,
+    "proof_status": "rejected",
+    "passed": true
+  },
+  "comma_nested": {
+    "expected_selected": false,
+    "selected": false,
+    "proof_status": "rejected",
+    "passed": true
+  },
+  "apostrophe_nested": {
+    "expected_selected": false,
+    "selected": false,
+    "proof_status": "rejected",
+    "passed": true
+  },
+  "independent_parentheses": {
+    "expected_selected": true,
+    "selected": true,
+    "proof_status": "verified",
+    "passed": true
+  },
+  "valid_plain": {
+    "expected_selected": true,
+    "selected": true,
+    "proof_status": "verified",
+    "passed": true
+  },
+  "hidden_css_comment": {
+    "expected_selected": false,
+    "selected": false,
+    "proof_status": "rejected",
+    "passed": true
+  },
+  "comment_only_hidden_word": {
+    "expected_selected": true,
+    "selected": true,
+    "proof_status": "verified",
+    "passed": true
+  },
+  "comment_breaks_keyword": {
+    "expected_selected": true,
+    "selected": true,
+    "proof_status": "verified",
+    "passed": true
+  },
+  "nearest_foreign_possessive": {
+    "expected_selected": false,
+    "selected": false,
+    "proof_status": "rejected",
+    "passed": true
+  },
+  "nearest_foreign_punctuation": {
+    "expected_selected": false,
+    "selected": false,
+    "proof_status": "rejected",
+    "passed": true
+  },
+  "nearest_current_name": {
+    "expected_selected": true,
+    "selected": true,
+    "proof_status": "verified",
+    "passed": true
+  }
+}

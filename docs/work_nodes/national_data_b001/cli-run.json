@@ -1,37 +1,40 @@
 {
   "command": [
-    "D:/yx-data-b001/.venv/Scripts/python.exe",
+    "C:\\Users\\derlteuser\\Documents\\Codex\\2026-10-21\\https-builderx-csdn-net-activity-site\\outputs\\grad-admissions-guide\\data\\runtime\\claude-node4\\venv\\Scripts\\python.exe",
     "-X",
     "utf8",
     "national_data_baseline.py",
     "--data-dir",
     "data",
     "--out",
-    "data/batch_runs/b001",
+    "D:\\CodexRuntime\\yanxu-b001-fix-results\\recomputed-node0",
     "--repo-root",
     ".",
     "--raw-pdf",
-    "C:/Program Files/Git/mingw64/bin/pdftotext.exe",
-    "--bbox-pdf",
-    "E:/miniConda/envs/yanxu-pdf/Library/bin/pdftotext.exe"
+    "C:\\Program Files\\Git\\mingw64\\bin\\pdftotext.exe"
   ],
-  "cwd": "D:\\yx-data-b001",
-  "path_prefix": "C:\\Program Files\\Git\\mingw64\\bin",
-  "started_at": "2026-11-10T08:46:43+08:00",
-  "ended_at": "2026-11-10T08:48:17+08:00",
-  "wall_seconds": 94.754,
   "exit_code": 0,
-  "stderr_bytes": 0,
-  "peak_working_set_bytes": 1385734144,
-  "peak_sum_all_descendants_bytes": 1405673472,
-  "peak_per_process_bytes": {
-    "9164": 4030464,
-    "16764": 8732672,
-    "25024": 7176192,
-    "27720": 1385734144
+  "seconds": 200.894,
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "source_commit": "f4f01e624fea4039fcf25da6ed5317012e3ff581",
+  "inputs_unchanged": true,
+  "input_sha_before": {
+    "data/admissions.json": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
+    "data/units.json": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
+    "data/annual_registry_2027.json": "06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40",
+    "data/catalog_coverage_2027.csv": "42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e",
+    "data/bundles/catalog-data.zip": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
+    "data/bundles/manifest.json": "52655a92d671025e9cfb086e3a528d610d52ed53d09fd2c3f1b9847a87bf1394"
   },
-  "peak_measurement": "psapi PeakWorkingSetSize sampled every 200 ms on the direct child and its descendants; reported peak sums each observed process peak, so it is a conservative upper bound",
-  "python": "3.13.9",
-  "generated_at_commit": "97131fe3a604bcb4851640a3e8e7df2eb97dc656",
-  "log_path": "docs/work_nodes/national_data_b001/cli-recompute.log"
+  "input_sha_after": {
+    "data/admissions.json": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
+    "data/units.json": "91c8dbd8ccddd193dc4fc2391d4818a3968203d181920ab972b4c86d32548cdb",
+    "data/annual_registry_2027.json": "06b14458d64b5c28de8ff18bc6b6bf2f23851acc0d98d6c397389043faf31b40",
+    "data/catalog_coverage_2027.csv": "42060227e15b9b5fbf9731bc47cba12508a73b6616e20ece12fc1da4b064c04e",
+    "data/bundles/catalog-data.zip": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
+    "data/bundles/manifest.json": "52655a92d671025e9cfb086e3a528d610d52ed53d09fd2c3f1b9847a87bf1394"
+  },
+  "PATH_prefix": "C:\\Program Files\\Git\\mingw64\\bin",
+  "adopted": false,
+  "published": false
 }

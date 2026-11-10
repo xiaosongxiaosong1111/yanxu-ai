@@ -1,22 +1,7 @@
-# b001 coverage evidence
-# commands:
-#   ./.venv/Scripts/python.exe -m coverage run --branch --source=national_data_baseline -m unittest tests.test_national_data_baseline -q
-#   ./.venv/Scripts/python.exe -m coverage report -m
-#   ./.venv/Scripts/python.exe -m coverage json -o b001-final5-coverage.json
-# executed_at: 2026-11-10T08:48:51+08:00
-# runtime: Python 3.13.9, coverage 7.17.2; isolated .venv; coverage is not added to requirements.txt
-# code: national_data_baseline.py sha256 006952b9afd742e268f9dd60d7a4a59c62c3b16e24d268307f6a9f84a263bfbf, git blob fc8fd04388aca80d72cec0e9db12a872fe5c606d
-# pure branch coverage: 348/392 = 88.78% (from coverage JSON);
-#   partial branches (36) are not missing branches
-# line endings: this file is LF only; core.autocrlf=true may rewrite a checkout to CRLF, so bind by
-#   git blob SHA-1 (canonical) and by the SHA-256 of these LF bytes recorded in coverage-evidence.json
-# ---- unittest/coverage run tail ----
-
-Ran 111 tests in 0.379s
-OK
-# ---- coverage report ----
 Name                        Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------------------
-national_data_baseline.py     910     53    392     36    93%   270->272, 342, 344, 345->exit, 387-391, 419-421, 438, 439->441, 445-450, 466-467, 473, 475, 478-479, 498, 525->529, 542, 545-546, 552, 556-557, 560, 590, 607, 611, 621, 623, 649, 653, 656, 658, 720, 729, 746->745, 747->745, 759, 779, 787, 839-840, 895-896, 910-911, 935, 938->933, 1452
+national_data_baseline.py     344      1    106      1    99%   658
+national_entry_html.py        276     23    110     14    90%   57, 59, 60->exit, 174, 187, 190, 204-206, 240-241, 247, 249, 253-254, 257, 288, 299->294, 330->334, 394, 397-398, 404, 408-409, 412
+national_entry_proof.py       392     13    200     13    96%   213->215, 274, 290, 401, 410, 427->426, 428->426, 440, 460, 520-521, 576-577, 591-592, 616, 619->614
 -----------------------------------------------------------------------
-TOTAL                         910     53    392     36    93%
+TOTAL                        1012     37    416     28    95%
