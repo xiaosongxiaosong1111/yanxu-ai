@@ -796,15 +796,15 @@ class EntryRoleReplayTests(unittest.TestCase):
             relation='official_home_link')
         self.assertEqual(proof['reason'], 'relation_role_mismatch')
 
-    def test_percent_encoded_punctuation_is_normalised(self):
+    def test_encoded_path_punctuation_is_not_proved_by_root_url(self):
         proof = self.make(
             '我院官网地址：http://a.edu.cn/。',
             official_url='http://a.edu.cn/%E3%80%82',
             quote='http://a.edu.cn/%E3%80%82',
             linked='http://a.edu.cn/%E3%80%82',
             relation='declared_official_site')
-        self.assertEqual(proof['status'], 'verified')
-        self.assertEqual(proof['quote_match'], 'literal')
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
 
     def test_backface_visibility_style_does_not_hide_article_text(self):
         proof = self.make(full_html=(

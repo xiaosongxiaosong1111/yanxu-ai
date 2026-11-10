@@ -17,3 +17,9 @@ tests/fixtures/source_candidates/bift2027/*.html binary
 tests/fixtures/official_discovery/**/*.html binary
 tests/fixtures/official_discovery/**/*.js binary
 tests/fixtures/official_discovery/**/*.bin binary
+
+# Baseline provenance and generated artifact hashes use canonical LF bytes.
+national_data_baseline.py text eol=lf
+national_entry_html.py text eol=lf
+national_entry_proof.py text eol=lf
+docs/work_nodes/national_data_b001/*.json text eol=lf

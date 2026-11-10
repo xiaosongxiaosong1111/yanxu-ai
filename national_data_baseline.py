@@ -9,19 +9,67 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
-import html
 import json
 import math
-import re
 import subprocess
 import sys
 import time
 from collections import Counter, defaultdict
-from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urljoin, urlsplit
 
 import ijson
+
+from national_entry_html import (
+    _URL_TOKEN_CHAR,
+    _VISIBLE_URL,
+    _VisibleHTMLParser,
+    _WEB_SCHEMES,
+    _article_fragment,
+    _decode_original,
+    _is_web_url,
+    _resolve_web_target,
+    _url_key,
+    _url_token_boundary,
+    _visible_original,
+    _visible_quote_spans,
+)
+from national_entry_proof import (
+    ENTRY_ROLE_CATEGORIES,
+    SHA256_HEX,
+    SUPPORTED_ENTRY_RELATIONS,
+    SUPPORTED_ENTRY_VERIFICATIONS,
+    _ENTITY_LABEL,
+    _ENTITY_TAIL,
+    _GENERIC_ENTITY,
+    _GENERIC_ROLE_WORD,
+    _NAME_LEAD_NOISE,
+    _PLATFORM_LABEL,
+    _ROLE_PATTERNS,
+    _SELF_REFERENCE,
+    _STRONG_SELF_REFERENCE,
+    _document_matches,
+    _enclosing_anchor,
+    _entity_owned,
+    _entry_fingerprint,
+    _foreign_entity_before,
+    _foreign_label_in,
+    _foreign_name_in,
+    _host,
+    _identity_matches,
+    _longest_common_substring,
+    _official_hosts,
+    _pick_entry_failure,
+    _quote_match,
+    _relation_accepts,
+    _replay_entry_role,
+    _role_evidence,
+    _saved_original,
+    entry_trusted,
+    sha256_file,
+    verify_entries,
+    verify_entry,
+)
+
 
 PROTECTED_FILES = (
     'collectors/catalog_pdf_tables.py',
@@ -30,83 +78,36 @@ PROTECTED_FILES = (
     'collectors/catalog_pdf_national_v2.py',
     'collectors/catalog_hit_public.py',
 )
+
+
 COLLECTIONS = ('documents', 'programs', 'admitted_statistics', 'score_lines')
-SELECTION_RULE_VERSION = 'b001-node0-v4'
-SUPPORTED_ENTRY_VERIFICATIONS = frozenset({
-    'replayed_from_saved_chsi_official_site_statement',
-    'saved_visible_original_role_replayed',
-    'saved_declaration_and_own_primary_title_replayed',
-    'saved_original_exact_role_link',
-    'linked_from_saved_unit_profile',
-    'replayed_visible_declaration_and_own_title',
-    'homepage_name_and_admissions_navigation',
-    'saved_original_exact_link',
-    'linked_from_saved_annual_charter',
-    'saved_original_exact_catalog_link',
-})
-SUPPORTED_ENTRY_RELATIONS = frozenset({
-    'official_home_link',
-    'declared_official_site',
-    'own_admissions_publication',
-    'official_home_statement',
-    'official_annual_catalog_link',
-})
-ENTRY_ROLE_CATEGORIES = frozenset({'home', 'admissions', 'catalog', 'labeled'})
-_SELF_REFERENCE = re.compile(
-    r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院|学校|招生单位|单位|学院)')
-_STRONG_SELF_REFERENCE = re.compile(
-    r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院)')
-_ROLE_PATTERNS = (
-    # A self-referential or institutional site declaration is the strongest
-    # visible role evidence.  The label must be attached to the URL/link.
-    ('home', re.compile(
-        r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院|学校|招生单位|单位|学院)'
-        r'(?:官方网站|官网|官方网址|网站|网址|主页)')),
-    ('home', re.compile(
-        r'(?:研究生院|研究生处|研究生学院|研究生部|研究生教育部|党委研究生工作部|'
-        r'研招办|招生办公室)[^。；\n]{0,20}?'
-        r'(?:官方网站|官网|官方网址|网站|网址|主页|网)')),
-    ('labeled', re.compile(
-        r'([一-龥A-Za-z]{2,24})(?:官方网站|官网|官方网址|主页)')),
-    ('admissions', re.compile(
-        r'(?:招生信息网|招生网站|招生网址|招生网|招生官网|招生资讯网|'
-        r'招生信息发布网址|研究生招生信息网址|研招网址|研招网|研招在线|'
-        r'研究生招生网|研究生招生信息网|研究生招生专题网站|招生专题网站)')),
-    ('catalog', re.compile(r'(?:招生专业目录|专业目录|招生简章|招生章程|附件)')),
-    ('home', re.compile(r'(?:网站|网址|主页|官网)')),
-)
-_PLATFORM_LABEL = re.compile(
-    r'(?:中国研究生招生信息网|全国硕士研究生招生信息公开平台|'
-    r'中国高等教育学生信息网|学信网(?!址|站|页)|研招网(?!址|站|页))')
-_VISIBLE_URL = re.compile(
-    r'https?://[^\s<>"\'`()\[\]{}）】。，；、”‘」』,;]+', re.I)
-_ENTITY_LABEL = re.compile(
-    r'[一-龥A-Za-z]{1,20}(?:大学|学院|学校|研究院|研究所|科学院)')
-_GENERIC_ENTITY = frozenset({
-    '学校', '学院', '大学', '研究生院', '研究生学院', '研究生部', '本校', '我校',
-    '该校', '各学院', '各学校', '详见学校', '所属学院', '校内', '全校',
-})
-_GENERIC_ROLE_WORD = re.compile(
-    r'研究生招生|研招|招生信息|招生办|研究生院|研究生工作')
-_ENTITY_TAIL = re.compile(
-    r'[一-龥A-Za-z]{1,20}(?:大学|学院|学校|研究院|研究所|科学院|'
-    r'研究生院|研究生处|研究生部|党委研究生工作部)')
-_NAME_LEAD_NOISE = frozenset(
-    '的及或在将请见由可关注意登录考生查阅详获取咨询报名据了为与和等'
-    '访问进入点击前往到从向对于是有无未不如若需应须参加选择填写提交'
-    '打开看解更多全各本校我该通过')
-SHA256_HEX = re.compile(r'^[0-9a-f]{64}$')
+
+
+SELECTION_RULE_VERSION = 'b001-node0-v5'
+
+CODE_FILES = ('national_data_baseline.py', 'national_entry_html.py',
+              'national_entry_proof.py')
+
+
 NOTICE = ('只读审计：未联网、未调用模型或元宝、未写采用文件、未创建发布索引；'
           '非空字段不等于原文已核验，完整资格仍以逐条条款审校为准。')
+
+
 PRESENCE_KEYS = ('program_count', 'ids', 'duplicate_ids', 'units', 'tuition', 'tuition_year',
                  'tuition_full', 'tuition_other', 'duration', 'computed_total_cost',
                  'conditions_nonempty', 'requires_review', 'full_qualification')
+
+
 VERIFIED_KEYS = ('program_count', 'verified_tuition', 'verified_duration',
                  'verified_full_qualification', 'verified_computed_total_cost',
                  'tuition_claim_statuses', 'duration_claim_statuses',
                  'qualification_claim_statuses')
+
+
 EXPANSION_REQUIRED = ('unit_id', 'program_count', 'official_url', 'collection_status',
                       'missing_reason', 'original_urls', 'gaps', 'entry_verification')
+
+
 SUMMARY_ROW_KEYS = ('unit_id', 'unit_code', 'unit_name', 'province', 'year',
                     'annual_status', 'program_count', 'coverage_program_count',
                     'raw_tuition', 'raw_duration', 'raw_full_qualification',
@@ -118,14 +119,6 @@ SUMMARY_ROW_KEYS = ('unit_id', 'unit_code', 'unit_name', 'province', 'year',
                     'catalog_status', 'collection_status', 'source_count',
                     'missing_reason', 'official_url', 'entry_trusted', 'gaps',
                     'count_mismatch')
-
-
-def sha256_file(path):
-    digest = hashlib.sha256()
-    with open(path, 'rb') as handle:
-        for block in iter(lambda: handle.read(1 << 20), b''):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 def original_profile(text):
@@ -161,803 +154,6 @@ def _count(stats, name):
         return int(value or 0)
     except (TypeError, ValueError):
         return 0
-
-
-def _host(value):
-    text = str(value or '').strip()
-    if not text:
-        return ''
-    if '://' not in text:
-        text = 'http://' + text
-    try:
-        return (urlsplit(text).hostname or '').lower()
-    except ValueError:
-        return ''
-
-
-def _entry_fingerprint(row):
-    """Bind the persisted proof to the exact row evidence it verified."""
-    evidence = row.get('official_url_evidence')
-    proof = row.get('entry_verification')
-    evidence = evidence if isinstance(evidence, dict) else {}
-    proof = proof if isinstance(proof, dict) else {}
-    payload = {
-        'unit_id': str(row.get('unit_id') or ''),
-        'year': str(row.get('year') or ''),
-        'official_url': str(row.get('official_url') or ''),
-        'evidence_url': str(evidence.get('url') or ''),
-        'evidence_sha256': str(evidence.get('sha256') or ''),
-        'evidence_quote': str(evidence.get('quote') or ''),
-        'evidence_linked_url': str(evidence.get('linked_url') or ''),
-        'evidence_relation': str(evidence.get('relation') or ''),
-        'evidence_verification': str(evidence.get('verification') or ''),
-        'proof_unit_id': str(proof.get('unit_id') or ''),
-        'proof_year': str(proof.get('year') or ''),
-        'proof_official_url': str(proof.get('official_url') or ''),
-        'proof_document_id': str(proof.get('document_id') or ''),
-        'proof_document_sha256': str(proof.get('document_sha256') or ''),
-        'proof_file_sha256': str(proof.get('file_sha256') or ''),
-        'proof_document_path': str(proof.get('document_path') or ''),
-        'proof_quote_match': str(proof.get('quote_match') or ''),
-        'proof_role_category': str(proof.get('role_category') or ''),
-        'proof_role_evidence': str(proof.get('role_evidence') or ''),
-    }
-    canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
-    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
-
-
-def entry_trusted(row):
-    """An official entry is usable only with a replayed saved-original proof.
-
-    The selector consumes the proof record produced by :func:`verify_entry`.
-    It does not trust a bare URL, a metadata string, or a manually set flag:
-    the proof fingerprint must equal the fingerprint of the evidence actually
-    stored on this row.
-    """
-    gaps = row.get('gaps')
-    if isinstance(gaps, list) and 'missing_trusted_entry' in gaps:
-        return False
-    url = str(row.get('official_url') or '').strip()
-    if not url or '尚未核准' in str(row.get('missing_reason') or ''):
-        return False
-    evidence = row.get('official_url_evidence')
-    proof = row.get('entry_verification')
-    if not isinstance(evidence, dict) or not isinstance(proof, dict):
-        return False
-    if proof.get('status') != 'verified':
-        return False
-    if str(evidence.get('verification') or '') not in SUPPORTED_ENTRY_VERIFICATIONS:
-        return False
-    if str(evidence.get('relation') or '') not in SUPPORTED_ENTRY_RELATIONS:
-        return False
-    if str(proof.get('unit_id') or '') != str(row.get('unit_id') or ''):
-        return False
-    if str(proof.get('year') or '') != str(row.get('year') or ''):
-        return False
-    if str(proof.get('official_url') or '').strip() != url:
-        return False
-    if _host(evidence.get('quote')) != _host(url) or not _host(url):
-        return False
-    if proof.get('role_category') not in ENTRY_ROLE_CATEGORIES:
-        return False
-    if not str(proof.get('role_evidence') or '').strip():
-        return False
-    if not SHA256_HEX.match(str(proof.get('proof_sha256') or '')):
-        return False
-    return _entry_fingerprint(row) == proof.get('proof_sha256')
-
-
-def _document_matches(record, evidence):
-    """Find the annual document entry with the exact URL and SHA declared."""
-    for item in record.get('evidence') or []:
-        if not isinstance(item, dict):
-            continue
-        if (item.get('url') == evidence.get('url')
-                and str(item.get('sha256') or '').lower()
-                == str(evidence.get('sha256') or '').lower()):
-            return item
-    return None
-
-
-def _identity_matches(record, document, evidence_url):
-    """The saved document must belong to this unit, not just any unit."""
-    unit_id = str(record.get('unit_id') or '')
-    unit_code = str(record.get('unit_code') or '')
-    fields = document.get('structured_fields')
-    if isinstance(fields, dict):
-        if unit_code and str(fields.get('dwdm') or '') == unit_code:
-            return True
-        if unit_id and str(fields.get('schId') or '') == unit_id:
-            return True
-    try:
-        query = parse_qs(urlsplit(str(evidence_url or '')).query)
-    except ValueError:
-        query = {}
-    if unit_code and (query.get('schCode') or [''])[0] == unit_code:
-        return True
-    if unit_id and f'schId-{unit_id}' in str(evidence_url or ''):
-        return True
-    return False
-
-
-def _saved_original(data_dir, unit_id, year, sha256, document_id):
-    """Locate the saved original and bind its filename to the annual document."""
-    folder = Path(data_dir) / 'snapshots' / 'national' / str(year) / str(unit_id)
-    if not folder.is_dir():
-        return None, 'saved_original_missing'
-    prefix = str(sha256 or '').lower()[:16]
-    candidates = sorted(path for path in folder.glob('*.html')
-                        if prefix and prefix in path.name.lower())
-    if not candidates:
-        return None, 'saved_original_missing'
-    if len(candidates) != 1:
-        return None, 'ambiguous_saved_original'
-    path = candidates[0]
-    parts = str(document_id or '').split('-')
-    if len(parts) < 3:
-        return None, 'document_id_unbound'
-    bound = parts[-2].lower() + '-' + parts[-1].lower()
-    if not path.name.lower().startswith(bound):
-        return None, 'saved_original_unbound'
-    return path, ''
-
-
-class _VisibleHTMLParser(HTMLParser):
-    """Collect visible article text and real anchor targets.
-
-    Comments, scripts, styles, navigation/head/footer chrome and hidden
-    elements are not visible article content.  Text is whitespace-normalised
-    as it is appended so anchor offsets stay valid for later role checks.
-    """
-
-    _BLOCK = frozenset({
-        'p', 'div', 'br', 'li', 'tr', 'td', 'th', 'h1', 'h2', 'h3', 'h4',
-        'h5', 'h6', 'section', 'article', 'ul', 'ol', 'table', 'tbody',
-        'thead', 'hr', 'blockquote', 'pre'})
-    _SKIP = frozenset({'script', 'style', 'noscript', 'template', 'svg'})
-    _CHROME_TAG = frozenset({'head', 'header', 'nav', 'footer', 'aside'})
-    _CHROME_MARK = re.compile(
-        r'(?:^|[-_])(?:nav|navbar|menu|footer|header|breadcrumb|sidebar|banner)'
-        r'(?:$|[-_])', re.I)
-
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self._parts = []
-        self._length = 0
-        self._open = []
-        # Each suppressed subtree is [tag, depth].  Depth counts nested tags
-        # with the same name so an inner closing tag cannot end an outer
-        # hidden/chrome container early.
-        self._skip_tags = []
-        self.anchors = []
-
-    def _space(self):
-        if self._length and not self._parts[-1].endswith(' '):
-            self._parts.append(' ')
-            self._length += 1
-
-    def _add(self, value):
-        value = re.sub(r'\s+', ' ', value or '')
-        if not value:
-            return
-        if value.startswith(' ') and (not self._length or self._parts[-1].endswith(' ')):
-            value = value[1:]
-        if value:
-            self._parts.append(value)
-            self._length += len(value)
-
-    def _close_anchor(self):
-        if self._open:
-            href, start = self._open.pop()
-            self.anchors.append((start, self._length, href))
-
-    @staticmethod
-    def _hidden(attrs):
-        values = dict(attrs)
-        if 'hidden' in values:
-            return True
-        style = str(values.get('style') or '').lower().replace(' ', '')
-        # ``display:none !important`` is still a hidden declaration.
-        style = style.replace('!important', '')
-        return bool(re.search(
-            r'(?:^|;)(?:display:none|visibility:hidden)(?:;|$)', style))
-
-    def handle_starttag(self, tag, attrs):
-        tag = tag.lower()
-        if self._skip_tags:
-            if tag == self._skip_tags[-1][0]:
-                self._skip_tags[-1][1] += 1
-            return
-        values = dict(attrs)
-        marker = ' '.join((str(values.get('id') or ''),
-                           str(values.get('class') or '')))
-        if (tag in self._SKIP or tag in self._CHROME_TAG
-                or self._hidden(attrs)
-                or (tag in ('div', 'ul', 'ol') and self._CHROME_MARK.search(marker))):
-            self._close_anchor()
-            self._skip_tags.append([tag, 1])
-            return
-        if tag in self._BLOCK:
-            self._space()
-        if tag == 'a':
-            self._close_anchor()
-            self._open.append((str(values.get('href') or ''), self._length))
-
-    def handle_startendtag(self, tag, attrs):
-        tag = tag.lower()
-        if self._skip_tags:
-            return
-        if tag in self._BLOCK:
-            self._space()
-
-    def handle_endtag(self, tag):
-        tag = tag.lower()
-        if self._skip_tags:
-            if tag == self._skip_tags[-1][0]:
-                self._skip_tags[-1][1] -= 1
-                if self._skip_tags[-1][1] <= 0:
-                    self._skip_tags.pop()
-            return
-        if tag == 'a':
-            self._close_anchor()
-        if tag in self._BLOCK:
-            self._space()
-
-    def handle_data(self, data):
-        if not self._skip_tags:
-            self._add(data)
-
-    def text(self):
-        return ''.join(self._parts)
-
-
-def _decode_original(path):
-    raw = Path(path).read_bytes()
-    for encoding in ('utf-8', 'gb18030'):
-        try:
-            return raw.decode(encoding).replace('\\/', '/')
-        except UnicodeDecodeError:
-            continue
-    return raw.decode('utf-8', 'replace').replace('\\/', '/')
-
-
-def _article_fragment(raw):
-    """Return the rendered article body, not page chrome or hidden controls.
-
-    Chsi annual-charter pages keep the article HTML in the ``hid_content``
-    input value and render it into the visible container.  Other saved pages
-    expose the article directly in ``yxk-news-contain``.  The article is the
-    only place where a school's own site-role declaration is meaningful;
-    platform navigation/header/footer links must not become entry evidence.
-    """
-    match = re.search(r'<input\b[^>]*\bid\s*=\s*(["\'])hid_content\1[^>]*>',
-                      raw, re.I | re.S)
-    if match:
-        value = re.search(r'\bvalue\s*=\s*"([^"]*)"', match.group(0), re.S)
-        if value is None:
-            value = re.search(r"\bvalue\s*=\s*'([^']*)'", match.group(0), re.S)
-        if value is not None:
-            return html.unescape(value.group(1)), 'hid_content'
-    match = re.search(
-        r'<div\b[^>]*\bclass\s*=\s*(["\'])[^"\']*\byxk-news-contain\b[^"\']*\1[^>]*>',
-        raw, re.I | re.S)
-    if match:
-        start = match.end()
-        depth = 1
-        for token in re.finditer(r'<(/?)div\b[^>]*>', raw[start:], re.I | re.S):
-            depth += -1 if token.group(1) else 1
-            if depth == 0:
-                return raw[start:start + token.start()], 'yxk_news'
-    return raw, 'full_page'
-
-
-def _visible_original(path):
-    raw = _decode_original(path)
-    fragment, _ = _article_fragment(raw)
-    parser = _VisibleHTMLParser()
-    parser.feed(fragment)
-    parser.close()
-    return parser.text(), parser.anchors
-
-
-def _is_web_url(value):
-    try:
-        return urlsplit(str(value or '')).scheme.lower() in ('http', 'https')
-    except ValueError:
-        return False
-
-
-def _url_key(value):
-    text = str(value or '').strip().rstrip('。，；、）】》\'"')
-    if not text:
-        return ('', '', '', '')
-    if '://' not in text:
-        text = 'http://' + text
-    try:
-        parts = urlsplit(text)
-    except ValueError:
-        return ('', '', '', '')
-    path = unquote(parts.path or '/').rstrip('/。，；、）】》\'" ') or '/'
-    return ((parts.hostname or '').lower(), path,
-            parts.query or '', parts.fragment or '')
-
-
-_URL_TOKEN_CHAR = re.compile(r'[A-Za-z0-9._~%/?&=#:@+!$*\-]')
-_WEB_SCHEMES = frozenset({'http', 'https'})
-
-
-def _url_token_boundary(text, start, end):
-    """True when ``text[start:end]`` is a complete visible URL token.
-
-    A prefix such as ``https://a.edu.cn`` inside
-    ``https://a.edu.cn.attacker.example/`` or
-    ``https://a.edu.cn/admissions-other`` is not a complete target: the next
-    character continues the same URL token.
-    """
-    if start > 0 and _URL_TOKEN_CHAR.match(text[start - 1]):
-        return False
-    return not (end < len(text) and _URL_TOKEN_CHAR.match(text[end]))
-
-
-def _visible_quote_spans(text, quote):
-    """Find complete canonical URL occurrences in visible text.
-
-    The stored quote and the visible original may differ only by scheme, a
-    trailing slash or percent-encoded punctuation.  Literal prefix matches
-    are not accepted: only a whole visible URL token (or the canonical URL
-    match found by ``_VISIBLE_URL``) may prove the declared target.
-    """
-    quote = str(quote or '')
-    spans = []
-    looks_like_url = ('://' in quote or quote.lower().startswith('www.')
-                      or bool(re.match(r'^[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:[/:?#]|$)',
-                                       quote)))
-    position = 0
-    while True:
-        index = text.find(quote, position)
-        if index < 0:
-            break
-        end = index + len(quote)
-        if not looks_like_url or _url_token_boundary(text, index, end):
-            spans.append((index, end))
-        position = index + 1
-    key = _url_key(quote)
-    if key[0]:
-        for match in _VISIBLE_URL.finditer(text):
-            if _url_key(match.group(0)) == key:
-                spans.append((match.start(), match.end()))
-    return sorted(set(spans))
-
-
-def _resolve_web_target(href, base_url):
-    """Resolve a visible anchor target to an absolute HTTP(S) URL.
-
-    Relative hrefs are resolved against the saved original's URL, never
-    against the declared entry.  Non-HTTP schemes (``javascript:``,
-    ``mailto:``, ``data:``) and fragment-only links cannot prove a target and
-    return ``None`` instead of falling back to metadata.
-    """
-    href = str(href or '').strip()
-    if not href or href.startswith('#'):
-        return None
-    try:
-        parts = urlsplit(href)
-    except ValueError:
-        return None
-    scheme = parts.scheme.lower()
-    if scheme and scheme not in _WEB_SCHEMES:
-        return None
-    base = str(base_url or '').strip()
-    if not scheme and not href.startswith('//') and not _is_web_url(base):
-        return None
-    try:
-        resolved = urljoin(base, href)
-        resolved_parts = urlsplit(resolved)
-    except ValueError:
-        return None
-    if (resolved_parts.scheme.lower() not in _WEB_SCHEMES
-            or not resolved_parts.hostname):
-        return None
-    return resolved
-
-
-def _longest_common_substring(left, right):
-    left = str(left or '')
-    right = str(right or '')
-    best = ''
-    for start in range(len(left)):
-        for end in range(start + len(best) + 1, len(left) + 1):
-            piece = left[start:end]
-            if piece not in right:
-                break
-            best = piece
-    return best
-
-
-def _foreign_name_in(span, unit_name, other_names):
-    """Find another known unit's exact name in a tight role span.
-
-    School-name patterns over free text produce false positives such as
-    "详见学校" or "研究生学院".  The registry already contains every unit
-    name, so ownership is checked against those exact names instead.
-    """
-    unit_name = str(unit_name or '')
-    for name in other_names or ():
-        name = str(name or '')
-        if not name or name == unit_name:
-            continue
-        if unit_name and (name in unit_name or unit_name in name):
-            continue
-        if name in span:
-            return name
-    return ''
-
-
-def _foreign_label_in(label, unit_name):
-    """Entity-like name in a site label that the current unit does not own.
-
-    Applied only to the captured label of a ``labeled`` role, never to a
-    free-text window: Chinese word boundaries are unavailable, so scanning
-    arbitrary preceding words produces false names such as "考生关注学校".
-    """
-    unit_name = str(unit_name or '')
-    for match in _ENTITY_LABEL.finditer(str(label or '')):
-        name = match.group(0)
-        if name in _GENERIC_ENTITY or name.startswith('各'):
-            continue
-        if unit_name and (name in unit_name or unit_name in name):
-            continue
-        if len(_longest_common_substring(name, unit_name)) >= 3:
-            continue
-        return name
-    return ''
-
-
-def _entity_owned(name, unit_name):
-    """True when an entity-like token is the current unit or a clear variant."""
-    name = str(name or '')
-    unit_name = str(unit_name or '')
-    if not name:
-        return False
-    if unit_name and (unit_name in name or name in unit_name):
-        return True
-    return len(_longest_common_substring(name, unit_name)) >= 3
-
-
-def _foreign_entity_before(candidate, role_start, unit_name):
-    """Find an explicit other-unit owner immediately before a role word.
-
-    ``role_start`` is the offset of the role label ("网站", "研究生院网站",
-    ...) in ``candidate``.  The shortest entity-like suffix directly before
-    the label is considered, then leading prose words are stripped; longer
-    pieces are still checked for ownership so a full unit name is not split.
-    This rejects "丙大学网站" for 甲大学 while ordinary prose such as
-    "考生可登录学校" is not mistaken for a school name.  The current unit
-    or a variant of it is accepted.
-    """
-    prefix = candidate[max(0, role_start - 40):role_start]
-    prefix = prefix.rstrip(' 　:：,，、;；。.!！?？-—·')
-    pieces = []
-    # Shortest entity-like suffix is the word directly before the role.
-    for start in range(len(prefix) - 1, -1, -1):
-        piece = prefix[start:]
-        if _ENTITY_TAIL.fullmatch(piece):
-            pieces.append(piece)
-    if not pieces:
-        return ''
-    if any(_entity_owned(piece, unit_name) for piece in pieces):
-        return ''
-    tail = pieces[0]
-    cut = 0
-    while cut < len(tail) and tail[cut] in _NAME_LEAD_NOISE:
-        cut += 1
-    name = tail[cut:]
-    if not _ENTITY_TAIL.fullmatch(name) or _entity_owned(name, unit_name):
-        return ''
-    if name in _GENERIC_ENTITY:
-        return ''
-    return name
-
-
-def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
-    """Replay a visible role declaration attached to the URL/link.
-
-    Returns ``(role, '')`` when a school-own site role is declared, or
-    ``(None, reason)``.  A URL that merely appears in the article, in a
-    comment/script, or under another organisation's label is not a role.
-    """
-    prefix = text[max(0, target_start - 120):target_start]
-    cut = max(prefix.rfind('。'), prefix.rfind('\n'))
-    if cut >= 0:
-        prefix = prefix[cut + 1:]
-    target_text = text[target_start:target_end]
-    candidate = prefix + target_text
-    matches = []
-    for priority, (category, pattern) in enumerate(_ROLE_PATTERNS):
-        for match in pattern.finditer(candidate):
-            matches.append((priority, -match.end(), match.start(),
-                            match.end(), match.group(0), category))
-    if not matches:
-        return None, 'role_declaration_missing'
-    target_position = len(prefix)
-    distances = [max(0, target_position - item[3]) for item in matches]
-    nearest_distance = min(distances)
-    nearby = [item for item, distance in zip(matches, distances)
-              if distance <= nearest_distance + 2]
-    _, _, start, end, role_text, category = min(
-        nearby, key=lambda item: (item[0], max(0, target_position - item[3])))
-    window = candidate[max(0, start - 24):end]
-    tight_window = candidate[max(0, start - 16):end]
-    platform = _PLATFORM_LABEL.search(tight_window)
-    if platform and not _SELF_REFERENCE.search(tight_window):
-        return None, 'platform_not_official_site'
-    context = text[max(0, target_start - 220):min(len(text), target_end + 40)]
-    # Ownership is decided near the declaration.  A unit name elsewhere in
-    # the article does not make an unrelated site belong to this unit.
-    own = bool(unit_name and unit_name in context)
-    selfref = bool(_SELF_REFERENCE.search(window)
-                   or _STRONG_SELF_REFERENCE.search(context))
-    overlap = _longest_common_substring(context, unit_name or '')
-    label = role_text
-    if category == 'labeled':
-        label_match = re.match(r'([一-龥A-Za-z]{2,24})', role_text)
-        label = label_match.group(1) if label_match else role_text
-        owned = (bool(_SELF_REFERENCE.search(label))
-                 or bool(unit_name and unit_name in label)
-                 or len(_longest_common_substring(label, unit_name or '')) >= 3
-                 or bool(_GENERIC_ROLE_WORD.search(label))
-                 or bool(unit_name and unit_name in context))
-    elif category == 'home':
-        institutional = re.match(
-            r'(?:研究生院|研究生处|研究生学院|研究生部|研究生教育部|'
-            r'党委研究生工作部|研招办|招生办公室)', role_text)
-        owned = bool(institutional) or selfref or own or len(overlap) >= 3
-    elif category in ('admissions', 'catalog'):
-        # Admissions/catalog labels are generic role words of the unit's own
-        # annual charter; an explicit other-unit owner is rejected below.
-        owned = True
-    else:
-        owned = selfref or own or len(overlap) >= 3
-    foreign = _foreign_name_in(window, unit_name, other_names)
-    if not foreign:
-        foreign = _foreign_entity_before(candidate, start, unit_name)
-    if not foreign and category == 'labeled':
-        foreign = _foreign_label_in(label, unit_name)
-    if foreign:
-        return None, 'foreign_unit_reference'
-    if not owned:
-        return None, 'role_ownership_missing'
-    return {'category': category, 'evidence': role_text}, ''
-
-
-def _relation_accepts(relation, category):
-    if relation == 'own_admissions_publication':
-        return category in {'home', 'admissions', 'labeled', 'catalog'}
-    if category == 'catalog':
-        return relation == 'official_annual_catalog_link'
-    return relation in {
-        'official_home_link', 'declared_official_site',
-        'own_admissions_publication', 'official_home_statement'}
-
-
-def _enclosing_anchor(anchors, position):
-    found = None
-    for start, end, href in anchors:
-        if start <= position < end:
-            if found is None or start >= found[0]:
-                found = (start, end, href)
-    return found
-
-
-def _pick_entry_failure(reasons):
-    for reason in ('relation_role_mismatch', 'foreign_unit_reference',
-                   'platform_not_official_site', 'role_ownership_missing',
-                   'unresolved_link_target', 'link_target_mismatch',
-                   'role_declaration_missing'):
-        if reason in reasons:
-            return reason
-    return 'role_declaration_missing'
-
-
-def _replay_entry_role(path, evidence, official_url, unit_id, unit_name,
-                       known_hosts=None, known_names=None):
-    """Prove that the saved original visibly declares this school's site.
-
-    The check is structural and semantic, not a domain allow/deny list:
-    comments, scripts, page chrome and hidden controls are excluded; the
-    declared URL must be visible text or the real target of a visible link;
-    relative links are resolved against the saved original's URL; the role
-    label must belong to this unit; and the role category must match the
-    stored relation.
-    """
-    quote = str(evidence.get('quote') or '').strip()
-    linked = str(evidence.get('linked_url') or '').strip()
-    relation = str(evidence.get('relation') or '')
-    base_url = str(evidence.get('url') or '')
-    entry_host = _host(official_url)
-    if not quote or not entry_host:
-        return None, 'quote_not_in_original'
-    if linked and _url_key(linked) != _url_key(quote):
-        return None, 'linked_target_mismatch'
-    owners = (known_hosts or {}).get(entry_host) or set()
-    if owners and unit_id not in owners:
-        return None, 'other_unit_host'
-    text, anchors = _visible_original(path)
-    if not text.strip():
-        return None, 'visible_article_missing'
-    expected_key = _url_key(linked or quote)
-    candidates = []
-    for index, end in _visible_quote_spans(text, quote):
-        visible_key = _url_key(text[index:end])
-        inside = _enclosing_anchor(anchors, index)
-        if inside:
-            resolved = _resolve_web_target(inside[2], base_url)
-            if resolved is None:
-                candidates.append((index, end, False, 'literal',
-                                   'unresolved_link_target'))
-                continue
-            target_ok = (_host(resolved) == entry_host
-                         and _url_key(resolved) == expected_key)
-        else:
-            # The complete visible URL token is the target; two metadata
-            # strings agreeing with each other cannot substitute for it.
-            target_ok = (visible_key == expected_key
-                         and visible_key[0] == entry_host)
-        candidates.append((index, end, target_ok, 'literal', 'link_target_mismatch'))
-    for start, end, href in anchors:
-        resolved = _resolve_web_target(href, base_url)
-        if resolved is None:
-            continue
-        if _host(resolved) != entry_host:
-            continue
-        if _url_key(resolved) != expected_key:
-            continue
-        candidates.append((start, end, True, 'link_target', ''))
-    if not candidates:
-        return None, 'quote_not_in_original'
-    failures = []
-    for start, end, target_ok, quote_match, failure in candidates:
-        if not target_ok:
-            failures.append(failure)
-            continue
-        role, reason = _role_evidence(text, start, end, unit_name, known_names)
-        if role is None:
-            failures.append(reason or 'role_declaration_missing')
-            continue
-        if not _relation_accepts(relation, role['category']):
-            failures.append('relation_role_mismatch')
-            continue
-        return {**role, 'quote_match': quote_match}, ''
-    return None, _pick_entry_failure(failures)
-
-
-def _quote_match(path, quote):
-    """The ownership quote must literally occur in visible article text."""
-    quote = str(quote or '').strip()
-    if not quote:
-        return ''
-    text, _ = _visible_original(path)
-    return 'literal' if _visible_quote_spans(text, quote) else ''
-
-
-def verify_entry(unit, record, data_dir, known_hosts=None, known_names=None):
-    """Replay one official entry against the real saved original.
-
-    The proof is accepted only when every link in the chain holds: supported
-    verification/relation metadata, exact annual document URL+SHA, unit
-    identity, a saved file bound to that document, matching file bytes, a
-    visible article-level role declaration for this unit, and a real link
-    target that matches the claimed evidence. Any missing or mismatched link
-    yields a persisted rejection reason instead of a silent pass.
-    """
-    unit_id = str(record.get('unit_id') or '')
-    unit_name = str(unit.get('name') or unit.get('unit_name') or '').strip()
-    official_url = str(unit.get('official_url') or '').strip()
-    proof = {'status': 'rejected', 'reason': '', 'unit_id': unit_id,
-             'year': record.get('year'), 'official_url': official_url,
-             'evidence_url': '', 'evidence_sha256': '', 'document_id': '',
-             'document_sha256': '', 'document_path': '', 'file_sha256': '',
-             'quote_match': '', 'role_category': '', 'role_evidence': ''}
-    evidence = unit.get('official_url_evidence')
-    if not isinstance(evidence, dict):
-        proof['reason'] = 'no_entry_evidence'
-        return proof
-    proof['evidence_url'] = str(evidence.get('url') or '')
-    proof['evidence_sha256'] = str(evidence.get('sha256') or '').lower()
-    if str(evidence.get('verification') or '') not in SUPPORTED_ENTRY_VERIFICATIONS:
-        proof['reason'] = 'unsupported_verification'
-        return proof
-    if str(evidence.get('relation') or '') not in SUPPORTED_ENTRY_RELATIONS:
-        proof['reason'] = 'unsupported_relation'
-        return proof
-    entry_host = _host(official_url)
-    if not entry_host:
-        proof['reason'] = 'missing_official_url'
-        return proof
-    if _host(evidence.get('quote')) != entry_host:
-        proof['reason'] = 'quote_host_mismatch'
-        return proof
-    linked = str(evidence.get('linked_url') or '').strip()
-    if linked and _host(linked) != entry_host:
-        proof['reason'] = 'linked_host_mismatch'
-        return proof
-    if not SHA256_HEX.match(proof['evidence_sha256']):
-        proof['reason'] = 'invalid_evidence_sha256'
-        return proof
-    document = _document_matches(record, evidence)
-    if document is None:
-        proof['reason'] = 'no_exact_annual_document'
-        return proof
-    if document.get('kind') != 'annual_master_charter':
-        proof['reason'] = 'unsupported_document_kind'
-        return proof
-    if str(document.get('sha256') or '').lower() != proof['evidence_sha256']:
-        proof['reason'] = 'document_sha_mismatch'
-        return proof
-    proof['document_id'] = str(document.get('document_id') or '')
-    proof['document_sha256'] = proof['evidence_sha256']
-    if not _identity_matches(record, document, proof['evidence_url']):
-        proof['reason'] = 'unit_identity_mismatch'
-        return proof
-    path, reason = _saved_original(data_dir, unit_id, record.get('year'),
-                                   proof['evidence_sha256'], proof['document_id'])
-    if path is None:
-        proof['reason'] = reason or 'saved_original_missing'
-        return proof
-    try:
-        proof['document_path'] = (path.resolve().relative_to(Path(data_dir).resolve())
-                                  .as_posix())
-    except ValueError:
-        proof['document_path'] = path.as_posix()
-    actual = sha256_file(path)
-    proof['file_sha256'] = actual
-    if actual != proof['evidence_sha256']:
-        proof['reason'] = 'saved_original_sha_mismatch'
-        return proof
-    role, reason = _replay_entry_role(
-        path, evidence, official_url, unit_id, unit_name, known_hosts, known_names)
-    if role is None:
-        proof['reason'] = reason or 'role_declaration_missing'
-        return proof
-    proof['quote_match'] = role['quote_match']
-    proof['role_category'] = role['category']
-    proof['role_evidence'] = role['evidence']
-    proof['status'] = 'verified'
-    proof['reason'] = 'saved_original_replayed'
-    return proof
-
-
-def _official_hosts(registry):
-    """Map each known official host to the registry units that claim it."""
-    hosts = {}
-    for unit in registry.get('units', []):
-        if not isinstance(unit, dict):
-            continue
-        unit_id = unit.get('id')
-        host = _host(unit.get('official_url'))
-        if isinstance(unit_id, str) and unit_id and host:
-            hosts.setdefault(host, set()).add(unit_id)
-    return hosts
-
-
-def verify_entries(registry, annual, data_dir):
-    """Build one persisted proof record per confirmed annual unit."""
-    units = {unit['id']: unit for unit in registry.get('units', [])
-             if isinstance(unit, dict) and isinstance(unit.get('id'), str)}
-    known_hosts = _official_hosts(registry)
-    known_names = {str(unit.get('name') or '').strip()
-                   for unit in registry.get('units', [])
-                   if isinstance(unit, dict) and str(unit.get('name') or '').strip()}
-    proofs = {}
-    for record in annual.get('units', []):
-        if record.get('annual_status') != 'confirmed' or type(record.get('year')) is not int:
-            continue
-        unit_id = record.get('unit_id')
-        if not isinstance(unit_id, str) or not unit_id:
-            continue
-        proofs[unit_id] = verify_entry(
-            units.get(unit_id, {}), record, data_dir, known_hosts, known_names)
-    return proofs
 
 
 def classify_gaps(row, stats):
@@ -1341,6 +537,13 @@ def _write_json(path, payload):
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), 'utf-8', newline='\n')
 
 
+def _code_hashes(root):
+    """Bind the CLI and imported proof logic with checkout-independent LF hashes."""
+    return {name: hashlib.sha256(
+        (Path(root) / name).read_bytes().replace(b'\r\n', b'\n')).hexdigest()
+            for name in CODE_FILES}
+
+
 def audit(data_dir, out_dir, *, raw_pdf='', bbox_pdf='', repo_root='.', expansion=7, backfill=3):
     data_dir, out_dir = Path(data_dir), Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -1379,13 +582,16 @@ def audit(data_dir, out_dir, *, raw_pdf='', bbox_pdf='', repo_root='.', expansio
         'annual_registry_sha256': sha256_file(data_dir / 'annual_registry_2027.json'),
         'coverage_csv_sha256': sha256_file(data_dir / 'catalog_coverage_2027.csv'),
     }
+    code_hashes = _code_hashes(Path(__file__).resolve().parent)
     baseline = {
         'generated_at': batch['generated_at'],
         'git': {'commit': _git(repo_root, 'rev-parse', 'HEAD'),
                 'branch': _git(repo_root, 'rev-parse', '--abbrev-ref', 'HEAD'),
                 'tracked_dirty': bool(_git(repo_root, 'status', '--porcelain',
                                            '--untracked-files=no'))},
-        'module_sha256': sha256_file(Path(__file__)),
+        'module_sha256': code_hashes['national_data_baseline.py'],
+        'code_sha256': code_hashes,
+        'code_hash_format': 'UTF-8 source bytes with LF line endings',
         'inputs': inputs,
         'artifacts': artifacts,
         'package': {'catalog_data_zip_sha256': sha256_file(data_dir / 'bundles' / 'catalog-data.zip'),
