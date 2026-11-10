@@ -19,7 +19,7 @@ import time
 from collections import Counter, defaultdict
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urljoin, urlsplit
 
 import ijson
 
@@ -54,6 +54,8 @@ SUPPORTED_ENTRY_RELATIONS = frozenset({
 ENTRY_ROLE_CATEGORIES = frozenset({'home', 'admissions', 'catalog', 'labeled'})
 _SELF_REFERENCE = re.compile(
     r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院|学校|招生单位|单位|学院)')
+_STRONG_SELF_REFERENCE = re.compile(
+    r'(?:本校|我校|本单位|我单位|本所|我所|本院|我院)')
 _ROLE_PATTERNS = (
     # A self-referential or institutional site declaration is the strongest
     # visible role evidence.  The label must be attached to the URL/link.
@@ -77,7 +79,7 @@ _PLATFORM_LABEL = re.compile(
     r'(?:中国研究生招生信息网|全国硕士研究生招生信息公开平台|'
     r'中国高等教育学生信息网|学信网(?!址|站|页)|研招网(?!址|站|页))')
 _VISIBLE_URL = re.compile(
-    r'https?://[^\s<>"\'`）】。，；、”‘」』]+', re.I)
+    r'https?://[^\s<>"\'`()\[\]{}）】。，；、”‘」』,;]+', re.I)
 _ENTITY_LABEL = re.compile(
     r'[一-龥A-Za-z]{1,20}(?:大学|学院|学校|研究院|研究所|科学院)')
 _GENERIC_ENTITY = frozenset({
@@ -86,6 +88,13 @@ _GENERIC_ENTITY = frozenset({
 })
 _GENERIC_ROLE_WORD = re.compile(
     r'研究生招生|研招|招生信息|招生办|研究生院|研究生工作')
+_ENTITY_TAIL = re.compile(
+    r'[一-龥A-Za-z]{1,20}(?:大学|学院|学校|研究院|研究所|科学院|'
+    r'研究生院|研究生处|研究生部|党委研究生工作部)')
+_NAME_LEAD_NOISE = frozenset(
+    '的及或在将请见由可关注意登录考生查阅详获取咨询报名据了为与和等'
+    '访问进入点击前往到从向对于是有无未不如若需应须参加选择填写提交'
+    '打开看解更多全各本校我该通过')
 SHA256_HEX = re.compile(r'^[0-9a-f]{64}$')
 NOTICE = ('只读审计：未联网、未调用模型或元宝、未写采用文件、未创建发布索引；'
           '非空字段不等于原文已核验，完整资格仍以逐条条款审校为准。')
@@ -316,6 +325,9 @@ class _VisibleHTMLParser(HTMLParser):
         self._parts = []
         self._length = 0
         self._open = []
+        # Each suppressed subtree is [tag, depth].  Depth counts nested tags
+        # with the same name so an inner closing tag cannot end an outer
+        # hidden/chrome container early.
         self._skip_tags = []
         self.anchors = []
 
@@ -344,13 +356,17 @@ class _VisibleHTMLParser(HTMLParser):
         values = dict(attrs)
         if 'hidden' in values:
             return True
-        style = str(values.get('style') or '').replace(' ', '').lower()
+        style = str(values.get('style') or '').lower().replace(' ', '')
+        # ``display:none !important`` is still a hidden declaration.
+        style = style.replace('!important', '')
         return bool(re.search(
             r'(?:^|;)(?:display:none|visibility:hidden)(?:;|$)', style))
 
     def handle_starttag(self, tag, attrs):
         tag = tag.lower()
         if self._skip_tags:
+            if tag == self._skip_tags[-1][0]:
+                self._skip_tags[-1][1] += 1
             return
         values = dict(attrs)
         marker = ' '.join((str(values.get('id') or ''),
@@ -358,7 +374,8 @@ class _VisibleHTMLParser(HTMLParser):
         if (tag in self._SKIP or tag in self._CHROME_TAG
                 or self._hidden(attrs)
                 or (tag in ('div', 'ul', 'ol') and self._CHROME_MARK.search(marker))):
-            self._skip_tags.append(tag)
+            self._close_anchor()
+            self._skip_tags.append([tag, 1])
             return
         if tag in self._BLOCK:
             self._space()
@@ -376,8 +393,10 @@ class _VisibleHTMLParser(HTMLParser):
     def handle_endtag(self, tag):
         tag = tag.lower()
         if self._skip_tags:
-            if tag == self._skip_tags[-1]:
-                self._skip_tags.pop()
+            if tag == self._skip_tags[-1][0]:
+                self._skip_tags[-1][1] -= 1
+                if self._skip_tags[-1][1] <= 0:
+                    self._skip_tags.pop()
             return
         if tag == 'a':
             self._close_anchor()
@@ -463,20 +482,44 @@ def _url_key(value):
             parts.query or '', parts.fragment or '')
 
 
-def _visible_quote_spans(text, quote):
-    """Find canonical URL occurrences in visible text.
+_URL_TOKEN_CHAR = re.compile(r'[A-Za-z0-9._~%/?&=#:@+!$*\-]')
+_WEB_SCHEMES = frozenset({'http', 'https'})
 
-    The stored quote and the visible original may differ only by scheme or a
-    trailing slash.  A raw substring search would miss that legitimate case
-    and would also let unrelated URL prefixes through.
+
+def _url_token_boundary(text, start, end):
+    """True when ``text[start:end]`` is a complete visible URL token.
+
+    A prefix such as ``https://a.edu.cn`` inside
+    ``https://a.edu.cn.attacker.example/`` or
+    ``https://a.edu.cn/admissions-other`` is not a complete target: the next
+    character continues the same URL token.
     """
+    if start > 0 and _URL_TOKEN_CHAR.match(text[start - 1]):
+        return False
+    return not (end < len(text) and _URL_TOKEN_CHAR.match(text[end]))
+
+
+def _visible_quote_spans(text, quote):
+    """Find complete canonical URL occurrences in visible text.
+
+    The stored quote and the visible original may differ only by scheme, a
+    trailing slash or percent-encoded punctuation.  Literal prefix matches
+    are not accepted: only a whole visible URL token (or the canonical URL
+    match found by ``_VISIBLE_URL``) may prove the declared target.
+    """
+    quote = str(quote or '')
     spans = []
+    looks_like_url = ('://' in quote or quote.lower().startswith('www.')
+                      or bool(re.match(r'^[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:[/:?#]|$)',
+                                       quote)))
     position = 0
     while True:
         index = text.find(quote, position)
         if index < 0:
             break
-        spans.append((index, index + len(quote)))
+        end = index + len(quote)
+        if not looks_like_url or _url_token_boundary(text, index, end):
+            spans.append((index, end))
         position = index + 1
     key = _url_key(quote)
     if key[0]:
@@ -484,6 +527,38 @@ def _visible_quote_spans(text, quote):
             if _url_key(match.group(0)) == key:
                 spans.append((match.start(), match.end()))
     return sorted(set(spans))
+
+
+def _resolve_web_target(href, base_url):
+    """Resolve a visible anchor target to an absolute HTTP(S) URL.
+
+    Relative hrefs are resolved against the saved original's URL, never
+    against the declared entry.  Non-HTTP schemes (``javascript:``,
+    ``mailto:``, ``data:``) and fragment-only links cannot prove a target and
+    return ``None`` instead of falling back to metadata.
+    """
+    href = str(href or '').strip()
+    if not href or href.startswith('#'):
+        return None
+    try:
+        parts = urlsplit(href)
+    except ValueError:
+        return None
+    scheme = parts.scheme.lower()
+    if scheme and scheme not in _WEB_SCHEMES:
+        return None
+    base = str(base_url or '').strip()
+    if not scheme and not href.startswith('//') and not _is_web_url(base):
+        return None
+    try:
+        resolved = urljoin(base, href)
+        resolved_parts = urlsplit(resolved)
+    except ValueError:
+        return None
+    if (resolved_parts.scheme.lower() not in _WEB_SCHEMES
+            or not resolved_parts.hostname):
+        return None
+    return resolved
 
 
 def _longest_common_substring(left, right):
@@ -538,6 +613,52 @@ def _foreign_label_in(label, unit_name):
     return ''
 
 
+def _entity_owned(name, unit_name):
+    """True when an entity-like token is the current unit or a clear variant."""
+    name = str(name or '')
+    unit_name = str(unit_name or '')
+    if not name:
+        return False
+    if unit_name and (unit_name in name or name in unit_name):
+        return True
+    return len(_longest_common_substring(name, unit_name)) >= 3
+
+
+def _foreign_entity_before(candidate, role_start, unit_name):
+    """Find an explicit other-unit owner immediately before a role word.
+
+    ``role_start`` is the offset of the role label ("网站", "研究生院网站",
+    ...) in ``candidate``.  The shortest entity-like suffix directly before
+    the label is considered, then leading prose words are stripped; longer
+    pieces are still checked for ownership so a full unit name is not split.
+    This rejects "丙大学网站" for 甲大学 while ordinary prose such as
+    "考生可登录学校" is not mistaken for a school name.  The current unit
+    or a variant of it is accepted.
+    """
+    prefix = candidate[max(0, role_start - 40):role_start]
+    prefix = prefix.rstrip(' 　:：,，、;；。.!！?？-—·')
+    pieces = []
+    # Shortest entity-like suffix is the word directly before the role.
+    for start in range(len(prefix) - 1, -1, -1):
+        piece = prefix[start:]
+        if _ENTITY_TAIL.fullmatch(piece):
+            pieces.append(piece)
+    if not pieces:
+        return ''
+    if any(_entity_owned(piece, unit_name) for piece in pieces):
+        return ''
+    tail = pieces[0]
+    cut = 0
+    while cut < len(tail) and tail[cut] in _NAME_LEAD_NOISE:
+        cut += 1
+    name = tail[cut:]
+    if not _ENTITY_TAIL.fullmatch(name) or _entity_owned(name, unit_name):
+        return ''
+    if name in _GENERIC_ENTITY:
+        return ''
+    return name
+
+
 def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
     """Replay a visible role declaration attached to the URL/link.
 
@@ -571,8 +692,11 @@ def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
     if platform and not _SELF_REFERENCE.search(tight_window):
         return None, 'platform_not_official_site'
     context = text[max(0, target_start - 220):min(len(text), target_end + 40)]
-    own = bool(unit_name and (unit_name in context or unit_name in text))
-    selfref = bool(_SELF_REFERENCE.search(window))
+    # Ownership is decided near the declaration.  A unit name elsewhere in
+    # the article does not make an unrelated site belong to this unit.
+    own = bool(unit_name and unit_name in context)
+    selfref = bool(_SELF_REFERENCE.search(window)
+                   or _STRONG_SELF_REFERENCE.search(context))
     overlap = _longest_common_substring(context, unit_name or '')
     label = role_text
     if category == 'labeled':
@@ -588,9 +712,15 @@ def _role_evidence(text, target_start, target_end, unit_name, other_names=None):
             r'(?:研究生院|研究生处|研究生学院|研究生部|研究生教育部|'
             r'党委研究生工作部|研招办|招生办公室)', role_text)
         owned = bool(institutional) or selfref or own or len(overlap) >= 3
+    elif category in ('admissions', 'catalog'):
+        # Admissions/catalog labels are generic role words of the unit's own
+        # annual charter; an explicit other-unit owner is rejected below.
+        owned = True
     else:
         owned = selfref or own or len(overlap) >= 3
     foreign = _foreign_name_in(window, unit_name, other_names)
+    if not foreign:
+        foreign = _foreign_entity_before(candidate, start, unit_name)
     if not foreign and category == 'labeled':
         foreign = _foreign_label_in(label, unit_name)
     if foreign:
@@ -622,7 +752,8 @@ def _enclosing_anchor(anchors, position):
 def _pick_entry_failure(reasons):
     for reason in ('relation_role_mismatch', 'foreign_unit_reference',
                    'platform_not_official_site', 'role_ownership_missing',
-                   'link_target_mismatch', 'role_declaration_missing'):
+                   'unresolved_link_target', 'link_target_mismatch',
+                   'role_declaration_missing'):
         if reason in reasons:
             return reason
     return 'role_declaration_missing'
@@ -635,12 +766,14 @@ def _replay_entry_role(path, evidence, official_url, unit_id, unit_name,
     The check is structural and semantic, not a domain allow/deny list:
     comments, scripts, page chrome and hidden controls are excluded; the
     declared URL must be visible text or the real target of a visible link;
-    the role label must belong to this unit; and the role category must match
-    the stored relation.
+    relative links are resolved against the saved original's URL; the role
+    label must belong to this unit; and the role category must match the
+    stored relation.
     """
     quote = str(evidence.get('quote') or '').strip()
     linked = str(evidence.get('linked_url') or '').strip()
     relation = str(evidence.get('relation') or '')
+    base_url = str(evidence.get('url') or '')
     entry_host = _host(official_url)
     if not quote or not entry_host:
         return None, 'quote_not_in_original'
@@ -652,31 +785,40 @@ def _replay_entry_role(path, evidence, official_url, unit_id, unit_name,
     text, anchors = _visible_original(path)
     if not text.strip():
         return None, 'visible_article_missing'
+    expected_key = _url_key(linked or quote)
     candidates = []
     for index, end in _visible_quote_spans(text, quote):
+        visible_key = _url_key(text[index:end])
         inside = _enclosing_anchor(anchors, index)
-        if inside and _is_web_url(inside[2]):
-            target_ok = (_host(inside[2]) == entry_host
-                         and (not linked or _url_key(inside[2]) == _url_key(linked)))
+        if inside:
+            resolved = _resolve_web_target(inside[2], base_url)
+            if resolved is None:
+                candidates.append((index, end, False, 'literal',
+                                   'unresolved_link_target'))
+                continue
+            target_ok = (_host(resolved) == entry_host
+                         and _url_key(resolved) == expected_key)
         else:
-            target_ok = not linked or _url_key(quote) == _url_key(linked)
-        candidates.append((index, end, target_ok, 'literal'))
+            # The complete visible URL token is the target; two metadata
+            # strings agreeing with each other cannot substitute for it.
+            target_ok = (visible_key == expected_key
+                         and visible_key[0] == entry_host)
+        candidates.append((index, end, target_ok, 'literal', 'link_target_mismatch'))
     for start, end, href in anchors:
-        if not _is_web_url(href):
+        resolved = _resolve_web_target(href, base_url)
+        if resolved is None:
             continue
-        if _host(href) != entry_host:
+        if _host(resolved) != entry_host:
             continue
-        if linked and _url_key(href) != _url_key(linked):
+        if _url_key(resolved) != expected_key:
             continue
-        if not linked and _url_key(href) != _url_key(quote):
-            continue
-        candidates.append((start, end, True, 'link_target'))
+        candidates.append((start, end, True, 'link_target', ''))
     if not candidates:
         return None, 'quote_not_in_original'
     failures = []
-    for start, end, target_ok, quote_match in candidates:
+    for start, end, target_ok, quote_match, failure in candidates:
         if not target_ok:
-            failures.append('link_target_mismatch')
+            failures.append(failure)
             continue
         role, reason = _role_evidence(text, start, end, unit_name, known_names)
         if role is None:

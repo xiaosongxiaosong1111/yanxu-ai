@@ -824,6 +824,106 @@ class EntryRoleReplayTests(unittest.TestCase):
                           known_hosts={'a.edu.cn': {'u2'}})
         self.assertEqual(proof['reason'], 'other_unit_host')
 
+    def test_url_host_prefix_does_not_prove_the_declared_host(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<p>本校官网：https://a.edu.cn.attacker.example/</p></body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
+
+    def test_url_path_prefix_does_not_prove_the_declared_path(self):
+        proof = self.make(
+            '本校官网：https://a.edu.cn/admissions-other',
+            official_url='https://a.edu.cn/admissions')
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
+
+    def test_a_complete_visible_url_with_punctuation_is_still_accepted(self):
+        proof = self.make('本校官网：https://a.edu.cn/admissions。',
+                          official_url='https://a.edu.cn/admissions')
+        self.assertEqual(proof['status'], 'verified')
+
+    def test_relative_anchor_target_is_resolved_against_the_original_url(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<p>本校官网：<a href="/not-the-entry">https://a.edu.cn/</a></p>'
+            '</body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'link_target_mismatch')
+
+    def test_javascript_anchor_target_cannot_prove_the_entry(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<p>本校官网：<a href="javascript:void(0)">https://a.edu.cn/</a></p>'
+            '</body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'unresolved_link_target')
+
+    def test_scheme_relative_anchor_resolves_to_the_entry(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<p>本校官网：<a href="//a.edu.cn/">https://a.edu.cn/</a></p>'
+            '</body></html>'))
+        self.assertEqual(proof['status'], 'verified')
+        self.assertEqual(proof['quote_match'], 'literal')
+
+    def test_nested_hidden_container_keeps_the_declaration_hidden(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<div hidden><div>占位</div>'
+            '<p>本校官网：https://a.edu.cn/</p></div></body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
+
+    def test_hidden_css_with_important_stays_hidden(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<div style="display:none !important">'
+            '本校官网：https://a.edu.cn/</div></body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'quote_not_in_original')
+
+    def test_visible_nested_container_still_replays_the_declaration(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<div><div>说明</div>'
+            '<p>本校官网：https://a.edu.cn/</p></div></body></html>'))
+        self.assertEqual(proof['status'], 'verified')
+
+    def test_unregistered_foreign_plain_site_is_rejected(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<p>丙大学网站：https://a.edu.cn/</p></body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'foreign_unit_reference')
+
+    def test_unregistered_foreign_institute_site_is_rejected(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<p>丙大学研究生院网站：https://a.edu.cn/</p></body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'foreign_unit_reference')
+
+    def test_foreign_statement_outside_the_site_window_is_rejected(self):
+        filler = '其他说明。' * 50
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            f'<p>{filler}</p><p>丙大学网站：https://a.edu.cn/</p></body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'foreign_unit_reference')
+
+    def test_unregistered_foreign_admissions_site_is_rejected(self):
+        proof = self.make(full_html=(
+            '<html><body><h1>甲大学2027年招生章程</h1>'
+            '<p>丙大学招生信息网：https://a.edu.cn/</p></body></html>'))
+        self.assertEqual(proof['status'], 'rejected')
+        self.assertEqual(proof['reason'], 'foreign_unit_reference')
+
+    def test_prose_before_a_generic_site_word_is_not_a_foreign_name(self):
+        proof = self.make(
+            '考生可登录学校网站：https://a.edu.cn/ 查询。')
+        self.assertEqual(proof['status'], 'verified')
+
 
 class QueueTests(unittest.TestCase):
     def test_build_queue_keeps_raw_effective_verified_and_remaining_counts(self):
