@@ -136,7 +136,7 @@ def _transport(url, target, timeout, guard):
     try:
         path = urlunsplit(('', '', parts.path or '/', parts.query, ''))
         connection.request('GET', path, headers={'User-Agent': USER_AGENT,
-                            'Accept': 'text/html,application/xhtml+xml,application/pdf'})
+                            'Accept': 'text/html,application/xhtml+xml,application/pdf,application/octet-stream,*/*;q=0.8'})
         guard.bind(connection)
         return _Response(connection.getresponse(), connection)
     except Exception:
