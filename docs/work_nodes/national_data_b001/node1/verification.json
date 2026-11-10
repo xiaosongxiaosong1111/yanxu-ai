@@ -1,0 +1,160 @@
+{
+  "code_commit": "18ac1bbffdd568400e7ac06b10b34c9d264302c1",
+  "python": {
+    "total": 2531,
+    "passed": 2515,
+    "failed": 2,
+    "errors": 3,
+    "skipped": 11,
+    "all_known_model_environment_failures": true,
+    "failure_names": [
+      "test_context_and_prefix_share_the_budget_and_context_is_real_text",
+      "test_tail_exception_of_long_segment_survives_inside_token_budget",
+      "test_windows_partition_exact_spans_and_bind_sha_to_model_input",
+      "test_long_prefix_must_terminate_and_cover_the_tail",
+      "test_prefix_that_leaves_no_room_fails_fast_not_by_looping"
+    ],
+    "embedding_files_identical_to_598bb09": {
+      "embedding_inputs.py": true,
+      "embedding_local.py": true,
+      "tests/test_embedding_inputs.py": true
+    },
+    "full_suite_green": false
+  },
+  "independent_targeted": {
+    "passed": 388,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "node": {
+    "passed": 264,
+    "failed": 0
+  },
+  "coverage_scope": "12 affected modules; each combined coverage >=80%; not whole-repository coverage.",
+  "modules": [
+    {
+      "path": "catalog_index.py",
+      "statements_covered": 429,
+      "statements_total": 435,
+      "pure_branches_covered": 183,
+      "pure_branches_total": 202,
+      "pure_branch_percent": 90.5940594059406,
+      "combined_percent": 96.07535321821037
+    },
+    {
+      "path": "collectors\\catalog_pdf_national_v3.py",
+      "statements_covered": 190,
+      "statements_total": 202,
+      "pure_branches_covered": 81,
+      "pure_branches_total": 92,
+      "pure_branch_percent": 88.04347826086956,
+      "combined_percent": 92.17687074829932
+    },
+    {
+      "path": "collectors\\catalog_publication.py",
+      "statements_covered": 192,
+      "statements_total": 199,
+      "pure_branches_covered": 71,
+      "pure_branches_total": 74,
+      "pure_branch_percent": 95.94594594594595,
+      "combined_percent": 96.33699633699634
+    },
+    {
+      "path": "collectors\\catalog_semantic_audit.py",
+      "statements_covered": 94,
+      "statements_total": 101,
+      "pure_branches_covered": 37,
+      "pure_branches_total": 44,
+      "pure_branch_percent": 84.0909090909091,
+      "combined_percent": 90.34482758620689
+    },
+    {
+      "path": "collectors\\embedded_documents.py",
+      "statements_covered": 95,
+      "statements_total": 99,
+      "pure_branches_covered": 32,
+      "pure_branches_total": 36,
+      "pure_branch_percent": 88.88888888888889,
+      "combined_percent": 94.07407407407408
+    },
+    {
+      "path": "collectors\\national_catalog.py",
+      "statements_covered": 305,
+      "statements_total": 311,
+      "pure_branches_covered": 103,
+      "pure_branches_total": 114,
+      "pure_branch_percent": 90.35087719298245,
+      "combined_percent": 96.0
+    },
+    {
+      "path": "collectors\\national_sources.py",
+      "statements_covered": 548,
+      "statements_total": 588,
+      "pure_branches_covered": 195,
+      "pure_branches_total": 230,
+      "pure_branch_percent": 84.78260869565217,
+      "combined_percent": 90.83129584352078
+    },
+    {
+      "path": "collectors\\official_bindings.py",
+      "statements_covered": 400,
+      "statements_total": 426,
+      "pure_branches_covered": 159,
+      "pure_branches_total": 180,
+      "pure_branch_percent": 88.33333333333333,
+      "combined_percent": 92.24422442244224
+    },
+    {
+      "path": "collectors\\source_payload.py",
+      "statements_covered": 55,
+      "statements_total": 55,
+      "pure_branches_covered": 24,
+      "pure_branches_total": 24,
+      "pure_branch_percent": 100.0,
+      "combined_percent": 100.0
+    },
+    {
+      "path": "public_sources.py",
+      "statements_covered": 507,
+      "statements_total": 534,
+      "pure_branches_covered": 196,
+      "pure_branches_total": 214,
+      "pure_branch_percent": 91.58878504672897,
+      "combined_percent": 93.98395721925134
+    },
+    {
+      "path": "tools\\collect_national_batch.py",
+      "statements_covered": 182,
+      "statements_total": 195,
+      "pure_branches_covered": 74,
+      "pure_branches_total": 82,
+      "pure_branch_percent": 90.2439024390244,
+      "combined_percent": 92.4187725631769
+    },
+    {
+      "path": "tools\\evaluate_knowledge_gold.py",
+      "statements_covered": 206,
+      "statements_total": 226,
+      "pure_branches_covered": 67,
+      "pure_branches_total": 88,
+      "pure_branch_percent": 76.13636363636364,
+      "combined_percent": 86.94267515923566
+    }
+  ],
+  "dependencies_known_vulnerabilities": 0,
+  "user_runtime_or_credentials_read": false,
+  "live_service_restarted": false,
+  "source_chain_commit": "c56d7f504126d142c90c6a76d4018298d077373e",
+  "memory_fix_independent_regressions": 242,
+  "publication_and_cold_restore_status": "passed_final_18ac_full_cold_publication",
+  "release_validation": "final-release-validation.json",
+  "release_independent_review": "final-accept-independent-review.json",
+  "public_bundle_updated": true,
+  "live_runtime_updated": false,
+  "verification_scope": "Offline full publication, SQLite and service-layer API/algorithm equivalence. No HTTP/browser/paid AI or Yuanbao E2E replay.",
+  "gold_inputs_unchanged": true,
+  "gold_independent_review": "gold-input-independent-review.json",
+  "accept_independent_review": "accept-code-independent-review.json",
+  "full_suite_tested_content_equals_committed_source": true
+}

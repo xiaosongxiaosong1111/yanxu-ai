@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "case": "first full COLD publication, harness 470cc849",
+  "scope": "Read-only diagnosis of the archived failed run. The separately running retry is not assessed here.",
+  "portable_for_repository": true,
+  "privacy": "No WER attachment contents, private WER paths, credentials, user profile paths, or process dump contents included.",
+  "conclusion": {
+    "confirmed": "A native access violation occurred in python314.dll before the bulk catalog publication committed.",
+    "root_cause": "unproven",
+    "leading_hypothesis": "Concurrent timeout traceback inspection encountered an invalid interpreter frame/object.",
+    "qualification": "Fault symbol, incomplete traceback output, and timing support this hypothesis but do not supply a complete native call stack or exclude earlier native memory corruption. The catalog_index.py line shown by the interrupted dump is a sampled Python frame, not a proven faulting business-code instruction.",
+    "not_proven": [
+      "SQLite engine defect",
+      "A repeated Python MemoryError",
+      "Invalid admission/source facts",
+      "The completed HOT output being affected"
+    ]
+  },
+  "runtime": {
+    "implementation": "CPython",
+    "python_version": "3.14.2",
+    "architecture": "64-bit AMD64",
+    "compiler": "MSC v.1944",
+    "application_basename": "python.exe",
+    "module_basename": "python314.dll",
+    "windows_file_version": "3.14.2150.1013"
+  },
+  "process": {
+    "started_at_utc": "2026-11-10T07:38:04.549704Z",
+    "duration_seconds": 783.44,
+    "actual_pid": 4564,
+    "venv_launcher_pid": 7292,
+    "exit_code_unsigned": 3221225477,
+    "exception_hex": "0xc0000005",
+    "harness_sha256": "470cc849a677b05d72fda9e7ee3e18b0ebd8a6ff5a9114ca8b09043cecc04084"
+  },
+  "windows_events": [
+    {
+      "provider": "Application Error",
+      "event_id": 1000,
+      "record_id": 298675,
+      "at_utc": "2026-11-10T07:51:05.4426281Z",
+      "faulting_module": "python314.dll",
+      "exception": "0xc0000005",
+      "fault_rva": "0x00000000002ab997"
+    },
+    {
+      "provider": "Windows Error Reporting",
+      "event_id": 1001,
+      "record_id": 298676,
+      "at_utc": "2026-11-10T07:51:07.8382145Z",
+      "event_name": "APPCRASH",
+      "faulting_module": "python314.dll",
+      "exception": "c0000005",
+      "fault_rva": "00000000002ab997"
+    }
+  ],
+  "local_symbol_lookup": {
+    "method": "Installed Windows DbgHelp, local matching DLL/PDB, exact symbols option, separate helper process, no target process attachment.",
+    "dll_sha256": "7ffe3ab11342db03cc18b026f27485c0f74f5bf10f239f1f6573394900596394",
+    "pdb_sha256": "570981427fa3c31bcddcc6eb5ec5f9aa822e70ddc3fc31feee443d5086f1f57a",
+    "fault_rva": "0x2ab997",
+    "symbol": "_PyObject_IsFreed",
+    "displacement_bytes": 15,
+    "pdb_source_file": "Objects/object.c",
+    "pdb_source_line": 707,
+    "limitation": "Nearest symbol and PDB line identify the instruction region, not its callers. No native dump/backtrace was analyzed. PDB line numbering is build metadata; public source is cited for function relationships only."
+  },
+  "traceback_observations": {
+    "periodic_dump_interval_seconds": 60,
+    "stack_log_bytes": 16039,
+    "stack_log_sha256": "61e26996ea1010ba6f7d33d3fe010630b58e0cd624ca6b0d79bfcf4c4b8f53eb",
+    "stdout_bytes": 0,
+    "observed": [
+      "Earlier dumps showed progress through source/program validation, including _source_programs and _program_replays.",
+      "A late dump contained <invalid frame>.",
+      "The final timeout dump ended inside an incomplete catalog_index.py frame line.",
+      "The Windows crash event occurred about 781 seconds after launch, near the thirteenth 60-second dump interval."
+    ],
+    "source_relation": "CPython v3.14.2 dump_frame calls _PyFrame_SafeGetCode and _PyFrame_SafeGetLasti; _PyFrame_SafeGetCode calls _PyObject_IsFreed. These are heuristic validity checks and do not establish the runtime caller without a native backtrace."
+  },
+  "archived_sqlite_evidence": {
+    "sqlite_api_opened_by_this_diagnosis": false,
+    "method": "Read archived binary files; validate WAL header and consecutive frame salt/checksums per SQLite format; stop on first invalid frame.",
+    "database_bytes": 4096,
+    "database_sha256": "5c9dec1886cc01f5f2307ee1ea87f9b32a4cef0f8f9a2c68beebc558013bedab",
+    "wal_bytes": 155839032,
+    "wal_sha256": "ca6d114bccdc1e4d0b83174ee29d7c5f68efe16fb1587e6c229a4c8839522c39",
+    "page_size": 4096,
+    "header_checksum_valid": true,
+    "physical_frame_slots": 37825,
+    "consecutive_checksum_valid_frames": 970,
+    "first_invalid_frame": 971,
+    "first_invalid_reason": "checksum_mismatch",
+    "last_valid_commit_frame": 32,
+    "last_valid_commit_database_pages": 20,
+    "validated_uncommitted_tail_frames": 938,
+    "database_created_at_utc": "2026-11-10T07:51:02.9755431Z",
+    "wal_last_write_at_utc": "2026-11-10T07:51:05.1116650Z",
+    "conclusion": "The valid WAL prefix commits only the small schema state. No valid bulk-catalog commit is present. Frames after the first failed checksum and physical file allocation cannot be used as evidence of a successful transaction.",
+    "limits": "A checksum failure in a crash tail is not by itself proof of corruption of committed data or a SQLite bug. This report does not claim that a process-level Python rollback ran after a native crash."
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "name": "Periodic faulthandler frame inspection race",
+      "status": "supported but unproven",
+      "evidence": "Fault symbol exists on dump_frame's safe frame-check path; invalid/incomplete frame dumps and timeout-tick timing coincide.",
+      "missing": "Faulting thread native call stack and controlled repeatability."
+    },
+    {
+      "rank": 2,
+      "name": "Earlier native extension or interpreter memory corruption",
+      "status": "not excluded",
+      "evidence": "Native modules were loaded, but the event identifies Python DLL rather than a particular extension.",
+      "missing": "A native dump identifying an earlier corrupting write or an isolated minimal reproducer."
+    },
+    {
+      "rank": 3,
+      "name": "System memory/commit pressure contributing to failure",
+      "status": "not excluded; not established",
+      "evidence": "The machine had constrained available virtual/commit memory during surrounding diagnostics. A later system-wide reading is not a per-process measurement at the fault.",
+      "missing": "Process PrivateBytes/working set and system commit counters at the exact crash instant. Access violation alone is not proof of OOM."
+    }
+  ],
+  "controlled_diagnostic_already_authorized_by_parent": {
+    "owner": "batch_runner",
+    "retry_started_at_utc": "2026-11-10T08:05:49Z",
+    "case_is_separate_from_this_report": true,
+    "fixed_inputs": "Same production source, bundle, interpreter and source-verification gates; separately restored empty owned COLD data.",
+    "intentional_variable": "Remove periodic dump_traceback_later watchdog only; retain faulthandler.enable and external process/memory monitoring.",
+    "interpretation_if_passes": "Supports association with periodic dump instrumentation; does not prove the interpreter root cause or remove the need to verify output equivalence.",
+    "interpretation_if_fails": "Preserve owned run artifacts and compare events/fault offset; do not weaken source gates or retry repeatedly without new evidence.",
+    "next_if_reproducible": "With separate authorization, use an owned minimal subprocess and existing matching symbols/native dump or an isolated stable 64-bit runtime. Do not replace the user's global runtime or terminate unrelated processes."
+  },
+  "boundaries": {
+    "production_source_modified": false,
+    "source_gates_bypassed": false,
+    "archived_database_modified": false,
+    "live_retry_database_read": false,
+    "user_processes_stopped": false,
+    "tools_installed": false,
+    "global_settings_modified": false,
+    "full_publish_started_by_this_agent": false
+  },
+  "replayable_owned_artifacts": [
+    "memory-fix/resolve_cold_crash_symbol.py",
+    "memory-fix/cold-native-symbol.json",
+    "memory-fix/inspect_cold_wal.py",
+    "memory-fix/cold-wal-readonly.json",
+    "cold-native-crash-470cc849/evidence-manifest.json"
+  ],
+  "primary_references": [
+    "https://docs.python.org/3.14/library/faulthandler.html",
+    "https://raw.githubusercontent.com/python/cpython/v3.14.2/Python/traceback.c",
+    "https://raw.githubusercontent.com/python/cpython/v3.14.2/Include/internal/pycore_interpframe.h",
+    "https://raw.githubusercontent.com/python/cpython/v3.14.2/Objects/object.c",
+    "https://www.sqlite.org/fileformat.html#walformat",
+    "https://www.sqlite.org/walformat.html",
+    "https://learn.microsoft.com/en-us/windows/win32/api/dbghelp/nf-dbghelp-symfromaddrw"
+  ]
+}

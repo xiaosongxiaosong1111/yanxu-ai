@@ -1,0 +1,18 @@
+{
+  "before_bytes": {
+    "programs": 51182109,
+    "documents": 54053254,
+    "notices": 17183584
+  },
+  "after_bytes": {
+    "documents": 4482907,
+    "notices": 664827,
+    "programs": 6318343
+  },
+  "fixture": {
+    "records": 64,
+    "shared_notes_bytes": 262144,
+    "program_source_transient_bytes": 6291456
+  },
+  "threshold_bytes": 8388608
+}

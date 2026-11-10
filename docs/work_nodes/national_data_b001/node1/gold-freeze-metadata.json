@@ -1,0 +1,28 @@
+{
+  "base_head": "08c41492a721a7c082c32990b401338e502b8c3d",
+  "owned_files": {
+    "tools/evaluate_knowledge_gold.py": {
+      "sha256": "9621f5b02b106a967a545247d44b9b1e15b1d9c0f765a7ebd784e25dd5bbf4cd",
+      "bytes": 17916
+    },
+    "tests/test_knowledge_gold.py": {
+      "sha256": "be74099d2109d707141b1a34b256b67cd54b0b0ea81bdebd7d5d063ed682c0fb",
+      "bytes": 20657
+    },
+    "tests/fixtures/knowledge_gold/public_bundle_manifest.json": {
+      "sha256": "287bb81ab8e0893c8cf57fc817a489557e33c91d08611f64257a5a8e50f6112e",
+      "bytes": 1578525
+    }
+  },
+  "frozen_inputs": {
+    "corpus.json": "0b46b370bb75215fac0fa3c028a80309f37b28c300b0b36f7fa9cd04448edcd9",
+    "manifest.json": "922ab5e31cfee1db239fedc990e3e99b948b9c320b2a0b9b3371b9cd5323c1ce"
+  },
+  "historical_fixture_blob": "5d0460d086f9ab294a163588b4e589e9dd57feff",
+  "historical_fixture_blob_with_autocrlf": "5d0460d086f9ab294a163588b4e589e9dd57feff",
+  "inherited_text_attribute": "tests/fixtures/knowledge_gold/public_bundle_manifest.json: text: unset",
+  "regression_tests": 33,
+  "new_tests": 11,
+  "full_suite_or_publish_started": false,
+  "commit_created": false
+}

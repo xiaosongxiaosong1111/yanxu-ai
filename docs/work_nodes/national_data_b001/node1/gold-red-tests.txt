@@ -1,0 +1,34 @@
+test_changed_missing_and_duplicate_zipped_inputs_are_rejected (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_changed_missing_and_duplicate_zipped_inputs_are_rejected) ... ok
+test_changed_or_missing_expanded_original_and_units_are_rejected (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_changed_or_missing_expanded_original_and_units_are_rejected) ... ok
+test_conflicting_or_duplicate_selected_manifest_paths_are_rejected (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_conflicting_or_duplicate_selected_manifest_paths_are_rejected) ... ok
+test_current_real_public_bundle_keeps_the_same_gold_inputs (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_current_real_public_bundle_keeps_the_same_gold_inputs) ... ERROR
+test_historical_manifest_is_bound_to_the_original_frozen_sha (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_historical_manifest_is_bound_to_the_original_frozen_sha) ... ok
+test_missing_selected_manifest_member_is_rejected (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_missing_selected_manifest_member_is_rejected) ... ok
+test_selected_manifest_sha_and_size_changes_are_rejected (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_selected_manifest_sha_and_size_changes_are_rejected) ... ok
+test_unrelated_dataset_packages_and_members_may_change (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_unrelated_dataset_packages_and_members_may_change) ... ERROR
+
+======================================================================
+ERROR: test_current_real_public_bundle_keeps_the_same_gold_inputs (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_current_real_public_bundle_keeps_the_same_gold_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_knowledge_gold.py", line 205, in test_current_real_public_bundle_keeps_the_same_gold_inputs
+    self.assertEqual(load_fixture(PROJECT_ROOT), self.corpus)
+                     ~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tools\evaluate_knowledge_gold.py", line 101, in load_fixture
+    raise ValueError('Reviewed public bundle manifest changed.')
+ValueError: Reviewed public bundle manifest changed.
+
+======================================================================
+ERROR: test_unrelated_dataset_packages_and_members_may_change (tests.test_knowledge_gold.GoldPublicInputFreezeTests.test_unrelated_dataset_packages_and_members_may_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_knowledge_gold.py", line 200, in test_unrelated_dataset_packages_and_members_may_change
+    result = load_fixture(self.project)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tools\evaluate_knowledge_gold.py", line 101, in load_fixture
+    raise ValueError('Reviewed public bundle manifest changed.')
+ValueError: Reviewed public bundle manifest changed.
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.777s
+
+FAILED (errors=2)

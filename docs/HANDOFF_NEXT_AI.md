@@ -1,5 +1,17 @@
 # 交接说明（给下一个 AI）
 
+## 最新：2026-11-10 B001全国目录首批
+
+先读 [B001本轮报告](work_nodes/national_data_b001/node1/REPORT.md) 和 [复现步骤](work_nodes/national_data_b001/node1/REPLAY.md)。变更交付在 `data/national-b001`，未合并main，未更新个人4180运行库。来源链修复 `c56d7f5`；流式发布内存修复 `89dfac4`；默认附件接受类型修复 `08c4149`；金标输入冻结修复 `18ac1bb`，最终代码和6,560文件冷验均通过。当前准确提交以Git为准。
+
+公共包现为 **136/931个年度单位有目录、22,630条方向**；ECUST净增274，BNU462条只刷新证据，旧22,356个ID全部保留。十校原件、各类失败、独立审校及SHA输入包均在报告目录。最终9分片/6,560文件的空目录恢复、完整SQLite发布、服务层API与算法语义一致性均已实测。完整资格仍0，学费912与学制1,942未增长；`partial`保留。5个旧BGE模型环境用例仍失败，不能宣称整库全绿。
+
+下一节点先按[旧库实证风险](work_nodes/national_data_b001/node1/legacy-catalog-risk-scan.md)纠正3个来源的4个旧ID：保留明确更正映射，不只追加新ID、不批量删除803条候选；完整来源重放与独立语义审校后再采用。随后推进永久资格overlay：参照 [节点0报告E节](work_nodes/national_data_b001/NODE0_REPORT.md)，保存完整原文及范围、限制和例外，使用可执行AST并区分unknown、partial与complete；支持撤销/冲突重放、来源依赖闭包与SQLite同事务/冷恢复。不要把目录审校通过当资格完整。N4再补BNU126条专业学位及“0.8万元/生/学年”的真实单位换算，禁止给所有方向广播学术学费。剩余8校已有明确OCR/布局/动态目录/下载故障，不再统称找不到官网。
+
+注意 `_ingest_rows` 当前核心签名不覆盖degree/qualification，字段overlay须独立处理冲突与降级，不能借原目录刷新绕过门禁。旧的22,356条需另做语义风险扫描，不按启发式直接删除。下文2026-11-09及更早的数量和验证是历史记录。
+
+---
+
 更新：2026-11-09，包含官网发现及报考事实进入算法的实现与最终验收。
 仓库：`https://github.com/xiaosongxiaosong1111/yanxu-ai`。Windows 开发，Python 虚拟环境与前端原生 ES modules。
 

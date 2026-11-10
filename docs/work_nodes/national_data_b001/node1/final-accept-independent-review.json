@@ -1,0 +1,183 @@
+{
+  "generated_at": "2026-11-10T09:05:06.011964+00:00",
+  "passed": true,
+  "scope": "Final Accept and gold-input code at 18ac, exact e84 public package only.",
+  "code_commit": "18ac1bbffdd568400e7ac06b10b34c9d264302c1",
+  "bound_inputs_sha256": {
+    "controller": "7ab28a980cbfa5c9dea101375a9e2fd3f45c32d5cd85e0c90b0c88ff3d7b4b63",
+    "worker": "ffd75f3026a9708a05b5043383271521c3b1daffab40b445c13973061f5bac07",
+    "input": "7feba3454b29ec36644be9b200d430ee10aff7d060a4972b87b2569e59434e5d",
+    "release_validation": "2ba712d42f56c8736214c90852bd11074011de58056900270e46476b7b96f368",
+    "preparation": "c94344f9a9b9a06bead5974d2a1cb40cc8fadd093bfac82f0edc96fe950628a5",
+    "current_inspection": "44670bdd97a4418b044cc996411b47c352603d3abd3bc7c9214fcd0a9af9c8d2",
+    "previous_inspection": "989df3457268d584f0192c173739223ba0aa4f72943a56058e7cd9dd3b49fecb",
+    "bundle_manifest": "e84d8cd71bce3d5c7dc0119ff1827d590c1e6903e40db4d035b59fc3e1f38390",
+    "independent_input_review": "b14d38607ac6d9376672dc351737462ccfac71143b9a0c4a1a85d8e09c8f4fbc",
+    "independent_accept_code_review": "fc09e7e4564489d598937e652521157b64ab1eb52a5f3ee22e4daee1a39a64f4",
+    "independent_gold_input_review": "027671cefea66362f978ab6b5054170aaec48ef25e53342d9625acc6dbd2f1a0"
+  },
+  "executed": {
+    "one_fresh_cold_full_publish": {
+      "exit_code": 0,
+      "seconds": 820.27,
+      "all_originals_replayed": true,
+      "pdf_semantic_sources": 19,
+      "invalid_programs": 0,
+      "field_conflicts": 0
+    },
+    "all_five_stage_actual_provenance": {
+      "prepare-staging": {
+        "exit_code": 0,
+        "actual_log_entry_launcher_sha_verified": true,
+        "seconds": 52.481
+      },
+      "build-new-bundle": {
+        "exit_code": 0,
+        "actual_log_entry_launcher_sha_verified": true,
+        "seconds": 33.515
+      },
+      "restore-new-cold": {
+        "exit_code": 0,
+        "actual_log_entry_launcher_sha_verified": true,
+        "seconds": 57.38
+      },
+      "publish-cold": {
+        "exit_code": 0,
+        "actual_log_entry_launcher_sha_verified": true,
+        "seconds": 820.27
+      },
+      "inspect-cold": {
+        "exit_code": 0,
+        "actual_log_entry_launcher_sha_verified": true,
+        "seconds": 15.262
+      }
+    },
+    "all_six_SQL_tables_exactly_equal_prior_release": {
+      "units": {
+        "rows": 936,
+        "all_columns_identical_to_prior_release": true,
+        "rows_sha256": "98ec053cbb51703e614042cdf61f37f04fea3649cded0c4d3b1da4b5b464f329"
+      },
+      "programs": {
+        "rows": 22630,
+        "all_columns_identical_to_prior_release": true,
+        "rows_sha256": "ffb3c775b77984b9482ea2c6b49c722589c9a2d0ffcec569a45102518994324b"
+      },
+      "documents": {
+        "rows": 4648,
+        "all_columns_identical_to_prior_release": true,
+        "rows_sha256": "a1fb769244237193866377d8e3257fbad8be5a57048a327dce63b1422c02ff3e"
+      },
+      "records": {
+        "rows": 1108,
+        "all_columns_identical_to_prior_release": true,
+        "rows_sha256": "b1ae10507248527149d70ed47b63649329732142d311a9a4db148f154c82324e"
+      },
+      "program_subjects": {
+        "rows": 89218,
+        "all_columns_identical_to_prior_release": true,
+        "rows_sha256": "f0bdd2a901b8f6903c82486564f86b60ce759f6d761e46d63ee5555fac6764bf"
+      },
+      "subject_catalog": {
+        "rows": 33144,
+        "all_columns_identical_to_prior_release": true,
+        "rows_sha256": "7c8bbc27d37d415978cd710d20a61c56c3cc8c4071a72c50c6142559614507c6"
+      }
+    },
+    "independent_fresh_service_API_calls": [
+      {
+        "case": "four_units",
+        "id": "367859:2027:001:010100:01:全日制",
+        "units": 4,
+        "has_OR": true,
+        "full_program_equals_sql_and_prior_API": true,
+        "original_document_id_url_sha_pairs_equal": true
+      },
+      {
+        "case": "three_units",
+        "id": "367859:2027:001:040102:01:全日制",
+        "units": 3,
+        "has_OR": true,
+        "full_program_equals_sql_and_prior_API": true,
+        "original_document_id_url_sha_pairs_equal": true
+      },
+      {
+        "case": "two_units",
+        "id": "367859:2027:002:125100:01:非全日制",
+        "units": 2,
+        "has_OR": false,
+        "full_program_equals_sql_and_prior_API": true,
+        "original_document_id_url_sha_pairs_equal": true
+      },
+      {
+        "case": "or_choices",
+        "id": "367859:2027:001:010100:02:全日制",
+        "units": 4,
+        "has_OR": true,
+        "full_program_equals_sql_and_prior_API": true,
+        "original_document_id_url_sha_pairs_equal": true
+      },
+      {
+        "case": "ecust_academic",
+        "id": "368142:2027:001:081700:01:全日制",
+        "units": 4,
+        "has_OR": false,
+        "full_program_equals_sql_and_prior_API": true,
+        "original_document_id_url_sha_pairs_equal": true
+      },
+      {
+        "case": "ecust_professional",
+        "id": "368142:2027:001:085602:01:全日制",
+        "units": 4,
+        "has_OR": false,
+        "full_program_equals_sql_and_prior_API": true,
+        "original_document_id_url_sha_pairs_equal": true
+      }
+    ],
+    "algorithm_complete_projection_and_field_proofs_equal_prior": true,
+    "all_6560_cold_original_sha_verified": true,
+    "nine_package_sha_match_reviewed_manifest": true,
+    "prior_all_zip_members_were_independently_stream_checked_before_run": true,
+    "fee_coverage_independently_streamed": {
+      "records": 22630,
+      "effective_tuition_records": 912,
+      "year_fee_records": 640,
+      "explicit_full_fee_records": 272,
+      "duration_records": 1942,
+      "full_fee_computable_records": 907
+    },
+    "exact_two_new_audits": {
+      "source_and_programs_SHA_unchanged": true,
+      "new_graph_sha256": "b586f8d4b2b9a032fad38cab59c8ad9438bdf21d1bf6b9752f0a2c43dc4a1155",
+      "audit_file_sha256": "f16db713d9b65123e360c0b0a1e99df5fb52dc029981224c0b00af0fc19f2f36",
+      "new_review_sha256": "102482be10552fd9b32b127145c1ac51d3df2473a7641e292dcfb491de2b1a61",
+      "old_23_page_review_preserved": true
+    },
+    "all_117_runtime_source_files_equal_frozen_inputs": true,
+    "no_staging_HOT_SQLite_and_empty_COLD_start": true,
+    "all_ROOT_input_and_prior_reference_sha_unchanged": true,
+    "formal_ROOT_audit_and_package_still_old_before_adoption": true
+  },
+  "dataset_limits": {
+    "programs": 22630,
+    "units_with_programs": 136,
+    "annual_units": 931,
+    "catalog_complete": false,
+    "full_qualification_count": 0,
+    "all_candidates_needing_confirmation_in_737_algorithm_sample": true
+  },
+  "adoption_recommendation": {
+    "allowed": true,
+    "exact_manifest_sha256": "e84d8cd71bce3d5c7dc0119ff1827d590c1e6903e40db4d035b59fc3e1f38390",
+    "scope": "Adopt this reviewed nine-ZIP public package and exact audit/review bytes in the isolated branch. Do not copy SQLite or personal runtime/credentials; future source changes need independent validation.",
+    "separate_Git_blob_vs_raw_delivery_check_required": true
+  },
+  "not_executed": [
+    "HTTP/UI/live_AI_provider_end_to_end",
+    "new_online_collection",
+    "existing_user_runtime_migration_or_restart",
+    "independent_rerun_of_entire_Python_suite"
+  ],
+  "historical_native_crash": "Preserved in prior evidence; its cause remains unproven.",
+  "root_approval_authorship": "Reviewer validated root-provided exact audit bytes and did not write root approvals."
+}

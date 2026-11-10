@@ -1,0 +1,184 @@
+{
+  "unit_id": "368049",
+  "unit_code": "10152",
+  "unit_name": "大连工业大学",
+  "target_year": 2027,
+  "checked_at": "2026-11-10T08:11:56.107800+00:00",
+  "input_batch_sha256": "99e69a7c7ae216b4b7fc1d207f21e0751f0c402ff757c01e77aad8e6eb16bf23",
+  "source_evidence": [
+    {
+      "url": "http://yjs.dep.dlpu.edu.cn/6/2408.html",
+      "local_path": "data/snapshots/national-b001/2027/368049/5037e63f8cc00168-37cd7191bdd38c88.html",
+      "sha256": "37cd7191bdd38c88819d8a02e25d9c6b9a80ddd6e7680ae305a814256fcea384",
+      "literal_links": [
+        {
+          "href": "/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls",
+          "label": "大连工业大学2027年硕士研究生招生专业目录.xls",
+          "resolved_url": "http://yjs.dep.dlpu.edu.cn/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls"
+        }
+      ],
+      "base": null
+    },
+    {
+      "url": "http://yjs.dep.dlpu.edu.cn/6/2408.html",
+      "local_path": "data/snapshots/national-b001/2027/368049/5037e63f8cc00168-704c28f5dde4d1d0.html",
+      "sha256": "704c28f5dde4d1d00f259b2ffc2d71b6a28d23080f8844dd72db35fd3123c28b",
+      "literal_links": [
+        {
+          "href": "/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls",
+          "label": "大连工业大学2027年硕士研究生招生专业目录.xls",
+          "resolved_url": "http://yjs.dep.dlpu.edu.cn/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls"
+        }
+      ],
+      "base": null
+    }
+  ],
+  "literal_url": "http://yjs.dep.dlpu.edu.cn/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls",
+  "host_header_without_network": [
+    "Host: yjs.dep.dlpu.edu.cn"
+  ],
+  "boundary": {
+    "source_code_changed": false,
+    "catalog_adopted": false,
+    "tls_bypass": false,
+    "user_configuration_read": false,
+    "fake_browser_user_agent": false,
+    "max_requests": 3,
+    "max_body_bytes": 8388608,
+    "per_host_interval_seconds": 2
+  },
+  "attempts": [
+    {
+      "variant": "baseline",
+      "url": "http://yjs.dep.dlpu.edu.cn/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls",
+      "checked_at": "2026-11-10T08:11:56.108757+00:00",
+      "request_headers": {
+        "User-Agent": "GradScopeSourceDiscovery/0.1 (public admission source research)",
+        "Accept": "text/html,application/xhtml+xml,application/pdf"
+      },
+      "request_count": 1,
+      "pinned_target": {
+        "host": "yjs.dep.dlpu.edu.cn",
+        "port": 80,
+        "addresses": [
+          "210.30.62.11",
+          "2001:da8:a802:100a::d21e:3e0b"
+        ]
+      },
+      "http_status": 406,
+      "response_headers": {
+        "Content-Type": "text/html",
+        "Content-Length": "1227",
+        "Content-Disposition": "",
+        "Location": "",
+        "Server": "",
+        "Vary": "",
+        "Accept-Ranges": "",
+        "Content-Encoding": ""
+      },
+      "bytes": 1227,
+      "sha256": "cd06ed69bf15873cc2f4a922ac6f9cb82a7ab9303e56c44ca7fbe85cbcca4958",
+      "raw_path": "D:\\CodexRuntime\\yanxu-b001-progress-20261110\\review\\dlpu\\baseline-cd06ed69bf15873c.bin",
+      "magic_hex": "3c21444f43545950452068746d6c205055424c494320222d",
+      "response_title": "406 - 客户端浏览器不接受 MIME 类型的请求页面。",
+      "text_excerpt": "406 - 客户端浏览器不接受 MIME 类型的请求页面。 服务器错误 406 - 客户端浏览器不接受 MIME 类型的请求页面。 浏览器无法打开您要查找的页面，因为该页面包含一个浏览器不接受的文件扩展名。",
+      "successful_container": false,
+      "elapsed_seconds": 0.19
+    },
+    {
+      "variant": "accept_excel",
+      "url": "http://yjs.dep.dlpu.edu.cn/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls",
+      "checked_at": "2026-11-10T08:11:58.109751+00:00",
+      "request_headers": {
+        "User-Agent": "GradScopeSourceDiscovery/0.1 (public admission source research)",
+        "Accept": "application/vnd.ms-excel,application/octet-stream;q=0.9,*/*;q=0.8"
+      },
+      "request_count": 1,
+      "pinned_target": {
+        "host": "yjs.dep.dlpu.edu.cn",
+        "port": 80,
+        "addresses": [
+          "210.30.62.11",
+          "2001:da8:a802:100a::d21e:3e0b"
+        ]
+      },
+      "http_status": 200,
+      "response_headers": {
+        "Content-Type": "application/vnd.ms-excel",
+        "Content-Length": "63488",
+        "Content-Disposition": "",
+        "Location": "",
+        "Server": "",
+        "Vary": "",
+        "Accept-Ranges": "bytes",
+        "Content-Encoding": ""
+      },
+      "bytes": 63488,
+      "sha256": "8a7bf64617d3bc2410c9ae47c78ba810b875a22ad3ade0b34ce389081306996f",
+      "raw_path": "D:\\CodexRuntime\\yanxu-b001-progress-20261110\\review\\dlpu\\accept_excel-8a7bf64617d3bc24.bin",
+      "magic_hex": "d0cf11e0a1b11ae100000000000000000000000000000000",
+      "response_title": "",
+      "text_excerpt": "",
+      "successful_container": true,
+      "elapsed_seconds": 0.121,
+      "offline_xlrd": {
+        "opened": true,
+        "sheets": [
+          {
+            "name": "rep_print_kskm2",
+            "rows": 134,
+            "columns": 10,
+            "visibility": 0,
+            "title_and_header_rows": [
+              [
+                "大连工业大学2027年硕士研究生招生专业目录",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
+              [
+                "院系所",
+                "专业",
+                "研究方向",
+                "2027年拟招生人数（含推免）",
+                "学习方式",
+                "初试科目",
+                "初试自命题科目参考书",
+                "复试科目",
+                "复试参考书目",
+                "联系方式"
+              ]
+            ]
+          }
+        ],
+        "formula_execution": false,
+        "adopted": false
+      },
+      "portable_original_path": "data/snapshots/national-b001/2027/368049/dlpu-followup-8a7bf64617d3bc24.xls"
+    }
+  ],
+  "new_request_count": 2,
+  "conclusion": {
+    "url_or_encoding_error_observed": false,
+    "incorrect_default_host_observed": false,
+    "successful_variant": "accept_excel",
+    "requires_source_change": true,
+    "note": "诊断响应仅保存在独立审查目录，不等于正式目录采用或资格核准。",
+    "cause": "client_accept_header_excludes_excel",
+    "referer_required": false,
+    "referer_tested": false,
+    "header_variants_tested": [
+      "baseline",
+      "accept_excel"
+    ],
+    "evidence": "相同原始URL、Host、User-Agent、固定IP与限时守卫，仅更换Accept，HTTP406→200，工作簿可由xlrd打开。",
+    "recommended_fix": "给官方原件下载传输补充Office媒体及低权重*/*的Accept协商；保留下载后签名/结构/归属/年级审核。普通HTML发现器可保持HTML优先。",
+    "limits": "本次只测一个真实XLS案例；无法据此断言所有HTTP406都由Accept引起。没有发送Referer变体，因第二次已取得公开原件。"
+  }
+}

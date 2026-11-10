@@ -1,0 +1,149 @@
+{
+  "reviewer": "Codex independent ECUST semantic review agent",
+  "reviewed_at": "2026-11-10T06:02:56.503885+00:00",
+  "status": "recommend_exact_partial_recordsets_to_root",
+  "approved": false,
+  "approval_file_written": false,
+  "adopted": false,
+  "published": false,
+  "scope": {
+    "unit_id": "368142",
+    "year": 2027,
+    "source_files": 2,
+    "source_pages": 23,
+    "candidate_records_reviewed": 274,
+    "visual_pages": {
+      "academic": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "professional": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "independent_logic": "Separate physical-row/block, complete-direction-label and exam comparison; no production catalog parser called by the correctness checker.",
+    "shared_low_level_library": "pdfplumber is shared with production extraction; all 23 pages were additionally rendered and visually checked, with focused higher-resolution crops."
+  },
+  "sources": [
+    {
+      "document_id": "saved-catalog-368142-e9e1d6eaf1f1-d4634c0184de",
+      "url": "https://gschool.ecust.edu.cn/_upload/article/files/bf/41/3eff17e34c75a18efeced1216a5d/09ffa93d-a8f6-4a5c-90cc-87bdbd703293.pdf",
+      "source_path": "data/snapshots/national-b001/2027/368142/e9e1d6eaf1f1d8f6-d4634c0184de7c6b.pdf",
+      "source_sha256": "d4634c0184de7c6b49edda4af0323d21642a9d0867ecbba7108d633ccfa1bba6",
+      "candidate_path": "D:\\CodexRuntime\\yanxu-b001-recheck-0b4d8f6\\data\\runtime\\national_catalog_b001\\final-v4\\368142\\canonical\\source-d4634c0184de7c6b.json",
+      "candidate_file_sha256": "4584e7c2051916ed40509070e1a1ece873ab3fe364f5ed7008142e4755f9526e",
+      "program_count": 165,
+      "programs_sha256": "2cfaa856b8b9c2982c9a3713f1788595dc6d3b3bf1578dd2d5f246f4511efa95",
+      "full_current_parser_recordset_sha256": "2cfaa856b8b9c2982c9a3713f1788595dc6d3b3bf1578dd2d5f246f4511efa95",
+      "parser": "pdf_table_national_v3",
+      "parser_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+      "field_failure_count": 0,
+      "field_error_counts": {},
+      "source_census": {
+        "source_prefix": "d4634c0184de7c6b",
+        "printed_direction_count": 199,
+        "ordinary_printed_count": 199,
+        "recommendation_only_count": 0,
+        "candidate_count": 165,
+        "ordinary_withheld_count": 34
+      }
+    },
+    {
+      "document_id": "saved-catalog-368142-6e9f2411d9dc-0e760edd23db",
+      "url": "https://gschool.ecust.edu.cn/_upload/article/files/22/52/6b0b00fd45f0866aa26f7d891a1c/54f463e8-27d4-412d-bc23-64e68681e96e.pdf",
+      "source_path": "data/snapshots/national-b001/2027/368142/6e9f2411d9dc6ae5-0e760edd23db1457.pdf",
+      "source_sha256": "0e760edd23db14574d3f9a4ac03de867e1bd001cebf6cc76065cfc706b47fa4c",
+      "candidate_path": "D:\\CodexRuntime\\yanxu-b001-recheck-0b4d8f6\\data\\runtime\\national_catalog_b001\\final-v4\\368142\\canonical\\source-0e760edd23db1457.json",
+      "candidate_file_sha256": "3f2102d4a25908c42bb1eba2dadd57197f1fddf089c2ba47272c136af97a5210",
+      "program_count": 109,
+      "programs_sha256": "18d2739386efb7891482baf5699ec655468ccd4fad74205bb3747e8185d5bb16",
+      "full_current_parser_recordset_sha256": "18d2739386efb7891482baf5699ec655468ccd4fad74205bb3747e8185d5bb16",
+      "parser": "pdf_table_national_v3",
+      "parser_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+      "field_failure_count": 0,
+      "field_error_counts": {},
+      "source_census": {
+        "source_prefix": "0e760edd23db1457",
+        "printed_direction_count": 146,
+        "ordinary_printed_count": 120,
+        "recommendation_only_count": 26,
+        "candidate_count": 109,
+        "ordinary_withheld_count": 11
+      }
+    }
+  ],
+  "parser_dependencies": {
+    "collectors/catalog_pdf_national_v3.py": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+    "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+    "collectors/catalog_pdf_national.py": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+    "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+    "collectors/catalog_html.py": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb",
+    "collectors/catalog_publication.py": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+    "collectors/embedded_documents.py": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+    "collectors/catalogs.py": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e",
+    "collectors/documents.py": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804",
+    "service_verification.py": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+    "public_sources.py": "4a85a72b11266734764162ba786208771e3b8269f24700db4bc20cf32667d282",
+    "public_navigation.py": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef"
+  },
+  "failures": [],
+  "reviewed_fields": [
+    "unit and original year",
+    "faculty code/name and ID",
+    "major code/name",
+    "complete printed direction label",
+    "explicit learning mode",
+    "master degree category",
+    "complete physical initial-exam cell and same-unit alternatives",
+    "PDF verbatim quote and page"
+  ],
+  "scope_limits": [
+    "Only these exact complete CURRENT partial recordsets are recommended; the source and school are not complete.",
+    "Unparsed cross-page cells, ambiguous direction labels and recommendation-only rows are not silently accepted.",
+    "Qualification AST/completeness, costs, scores, ranking and student eligibility are outside this approval recommendation.",
+    "Printed enrollment figures include recommendations and are reference values; no quota was allocated per direction."
+  ],
+  "history": [
+    {
+      "candidate_count": 295,
+      "decision": "rejected",
+      "issues": [
+        "all faculty identities missing",
+        "20 truncated initial-exam combinations"
+      ]
+    },
+    {
+      "candidate_count": 284,
+      "decision": "rejected",
+      "issues": [
+        "AI inside a direction description became a false direction",
+        "truncated parentheses and merged 03/04EMBA direction labels"
+      ]
+    }
+  ],
+  "review_scripts": {
+    "review_ecust_independent.py": "3bd18f29bbcc5aad2c7026893bea1226bec5baa03452e9c3c39fb42fc9332065",
+    "check_ecust_candidates.py": "7ee0e3936c944ed08c4293ecd86048ab414c62421887dc42f8193f4512f39929",
+    "finalize_ecust_review.py": "0af94aff9b191d75e961f476d5d5919e5f11cea1fdd26fffa52909fce5bc682b"
+  }
+}

@@ -5,21 +5,21 @@
     "target_year": 2028,
     "index_units": 936,
     "annual_units": 931,
-    "program_units": 135,
-    "programs": 22356,
-    "catalog_documents": 4603,
+    "program_units": 136,
+    "programs": 22630,
+    "catalog_documents": 4640,
     "school_score_lines": 6,
     "transfer_rules": 1,
     "enrichment_rules": 7,
     "pending_original_table_rows": 389,
-    "individual_result_documents_excluded": 3,
-    "derived_admission_statistics_excluded": 6
+    "individual_result_documents_excluded": 0,
+    "derived_admission_statistics_excluded": 0
   },
   "packages": [
     {
       "name": "catalog-data.zip",
-      "size": 4601744,
-      "sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
+      "size": 4647337,
+      "sha256": "05d2b28e978eb897ebcbe2a706c966768cf15e727b7595b080d0f89fec3ed9a9",
       "files": [
         {
           "path": "data/units.json",
@@ -28,8 +28,8 @@
         },
         {
           "path": "data/admissions.json",
-          "size": 164656159,
-          "sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3"
+          "size": 166819302,
+          "sha256": "33276e3e4e0b626e212005e1f16bfc7476b61bb50e54af94e84ca95e08fd485f"
         },
         {
           "path": "data/history.json",
@@ -48,8 +48,8 @@
         },
         {
           "path": "data/catalog_semantic_audits.json",
-          "size": 17790,
-          "sha256": "e37d3d6dbda34310727debd1f2a74298fb294fe150d0bdb35cf28771c87d0848"
+          "size": 20317,
+          "sha256": "f16db713d9b65123e360c0b0a1e99df5fb52dc029981224c0b00af0fc19f2f36"
         },
         {
           "path": "data/catalog_facts.json",
@@ -32269,8 +32269,8 @@
     },
     {
       "name": "sources-008.zip",
-      "size": 1417797,
-      "sha256": "84f2c6de33ec788d9c23110c3392b5d07bf5129478b3da2f8137613e6e707ac2",
+      "size": 1965153,
+      "sha256": "4c4a7206cc4f74a76dc30b1afa72667773dc1238aeb693353a7f0950afee2bda",
       "files": [
         {
           "path": "data/snapshots/national/2027/688909319/7601c5bd0ba0033e-d7181505d87ef328.html",
@@ -32346,6 +32346,201 @@
           "path": "data/snapshots/national/2027/788359951/fdad6da506696b94-2476ced30ff7b256.html",
           "size": 111023,
           "sha256": "2476ced30ff7b256a3ee45c891dc8cf4755772d3042fa2a53299a5148e633ab1"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/01a310720a796e49-9c126e76f0299cf1.html",
+          "size": 17892,
+          "sha256": "9c126e76f0299cf13cae4c240ae412116370ed64a825fd85f526ed75bc8bde6a"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/1213c376584a8028-6265a2f546e12f6f.html",
+          "size": 17318,
+          "sha256": "6265a2f546e12f6f0cc959a9af805729471a3227822db881aec07e48d2ffabc9"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/132ed3423e5f9d44-e30364f9339f6f6b.html",
+          "size": 19533,
+          "sha256": "e30364f9339f6f6b9f23ca122e38ae4c019fcfba0c7b3ce1c5a1a4a8a373fe32"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/1b7c5b012dc46b10-1d0c5c62d4d0153d.html",
+          "size": 8590,
+          "sha256": "1d0c5c62d4d0153d32fd29696f620ea645ae4e991e3f8c37418e634ea6a44efe"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/1fb61bf853a5ebba-8ff096e2959e1ee7.html",
+          "size": 10229,
+          "sha256": "8ff096e2959e1ee799b92a87a1b8dc34500cd4e95091b46a9d0de056ef08393d"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/3511ad244d1c36d6-1fbb68dc67282a77.html",
+          "size": 14342,
+          "sha256": "1fbb68dc67282a776c4047fd62617651429b1ba292b6fb3bfa0bb4e1935e7f74"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/3bbfee9f2091bde1-1c6bb25ca7d605a7.html",
+          "size": 11265,
+          "sha256": "1c6bb25ca7d605a7f2594ccc3147d22d88168c323c30d1a103511bb4a142a135"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/3cfdaa37b0841eb7-8d2ac66d12ee8631.html",
+          "size": 16664,
+          "sha256": "8d2ac66d12ee863114cdd2019cadc27d481693fa6815cbe2df9d282e69f07fa6"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/4195611e7904ad19-627513710ee37373.html",
+          "size": 26935,
+          "sha256": "627513710ee37373ba553aacf2a155bfedf5dfe303413bce8cbbd96edb8feea8"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/4e4bf4f90351d5c1-4008ee7ca13fc4eb.html",
+          "size": 21009,
+          "sha256": "4008ee7ca13fc4eb4a57c5999d5bdb52bd5c58dd4bcbd12701fede44afd4fc01"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/51cb0db8bdc401c3-34a90618fbb0061b.html",
+          "size": 8097,
+          "sha256": "34a90618fbb0061b3bb93e2e274e2d3c8e20ec6ac958d59938f89bff8690e159"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/5b1d7aa3ae67df0d-8fbf43f82de01f6b.html",
+          "size": 9946,
+          "sha256": "8fbf43f82de01f6b090b736accac448b2526056d84e11930602352e7a2a51ffb"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/5d122b553096d297-b34ab6d52e65aa79.html",
+          "size": 52304,
+          "sha256": "b34ab6d52e65aa797fb7ec9158e7fd6f80ee398866afd0c92005fd2ea9590e94"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/66a023b5c2b4a96f-508a5f5e1b076546.html",
+          "size": 14603,
+          "sha256": "508a5f5e1b0765466b355b9389dfe6309ac8e1c1a40981c01220594e338a6818"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/79f40c6b10a90eb0-57fd5476bda10745.html",
+          "size": 11174,
+          "sha256": "57fd5476bda1074537d5e1368883fa7f2040f4b8f21fa7128a51b950a046fe0e"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/86eee66aa03fcf45-4238c4b2a1b744db.html",
+          "size": 38966,
+          "sha256": "4238c4b2a1b744db5f8987321f6f0dc595e02fea0c5a9581e36efa6d140d0292"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/8cb86fbbbeecb962-2d96ea1db3b9f2f2.html",
+          "size": 14302,
+          "sha256": "2d96ea1db3b9f2f24195988e10ff8709d055ab1b3b268bb638c043247898d3fe"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/8e9980dc1373b0f4-8b62b927ef1b62a3.html",
+          "size": 25611,
+          "sha256": "8b62b927ef1b62a3c2c316c14ce6ac0640cdfb7746fbe7f1c0b200a071860d75"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/9347b6de2bc629c1-0d8b9a6d6e82d836.html",
+          "size": 10977,
+          "sha256": "0d8b9a6d6e82d83635d281a5f30cbdeaf52f69771f1513297d86cd1b02e7c59b"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/94b3fb3f82cea7a5-da85fe5fdf05efb6.html",
+          "size": 7170,
+          "sha256": "da85fe5fdf05efb6f1492af04891133827a583499fe3028cb2cb46a4ca7d071c"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/9a3df433efb00e96-66cc85f7c89e5b50.html",
+          "size": 10907,
+          "sha256": "66cc85f7c89e5b5034283ceda4f78cce866580bd99cf30b767b061fb213dd868"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/a2994d54501848d2-17312b25f3b5a82e.html",
+          "size": 12210,
+          "sha256": "17312b25f3b5a82ec5316f4e21c65d1ec78565976455c6a1a05b2cfc7bf1c26f"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/a4c920a5b14d2fc0-ade9cbf7e3c49345.html",
+          "size": 9357,
+          "sha256": "ade9cbf7e3c493453dd5e62403f3dd78f63ba08920b42a45c68cf1b50a430fef"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/acd45a4ff982f23b-f3b026f68537759b.html",
+          "size": 13209,
+          "sha256": "f3b026f68537759b403fbaa29e3552daedcceca995c54387946e6e7a2e4c1989"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/b6a6d9565a2bc02d-394145dba1e5df4b.html",
+          "size": 12709,
+          "sha256": "394145dba1e5df4b8b1a0892f6bddf864975f9070393c2fae62b8b2a53e27aae"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/b8655742d8d99001-a0a8bb852da147c1.html",
+          "size": 9159,
+          "sha256": "a0a8bb852da147c1d6faebf5179050ca5efbbb38c9c16c4aa27a05f98e7ff9d8"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/b8cc69fab9c9aef9-db70aa6ce2798275.html",
+          "size": 20759,
+          "sha256": "db70aa6ce27982752772f1a319f2e4050830c0a1395075aef36c1f0a006bb1ca"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/c97b0d93f48c9145-0721339f58ca4d83.html",
+          "size": 17782,
+          "sha256": "0721339f58ca4d8376bf9782b673cf7a6a9034e8bf8559a644fb58da5e9997d1"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/cdb0d656fd316e22-6928c00e450204dc.html",
+          "size": 9357,
+          "sha256": "6928c00e450204dc517a5b7334048204a773da916b34cbfc28d69f48ce0ffddc"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/d04c0a7d2e645084-d2b270acaeb3ea9e.html",
+          "size": 9666,
+          "sha256": "d2b270acaeb3ea9e7f235d55c8ede9d4124c1aa6f6538d8f7a98bc8da0b3a505"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/ed8d057e2e455018-28a343699fa2bcc8.html",
+          "size": 17097,
+          "sha256": "28a343699fa2bcc870c3fa6dd6be4639ff5d563595f78588f1693ae459539c0d"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/f1444f3640ed07e8-2cd9e68047e160db.html",
+          "size": 9199,
+          "sha256": "2cd9e68047e160dbf6c416eaf07909f4640880b942a67e999691533023ae89b0"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/367859/f8e9532442e22b1a-325fac7a32459bf2.html",
+          "size": 8060,
+          "sha256": "325fac7a32459bf243cc61ca44a7354b34487d8a1d9a1b13287974fb7ad9ca71"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/368142/6e9f2411d9dc6ae5-0e760edd23db1457.pdf",
+          "size": 245873,
+          "sha256": "0e760edd23db14574d3f9a4ac03de867e1bd001cebf6cc76065cfc706b47fa4c"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/368142/aae911dfffd0c8c9-d8f4fb0a89e6668c.html",
+          "size": 22491,
+          "sha256": "d8f4fb0a89e6668cfd86024efe91a48cec5c4efeee22d6e41b2d9c1c9f373bc0"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/368142/c6b4a00409f9ea8e-0cab1f3545dd2225.html",
+          "size": 22491,
+          "sha256": "0cab1f3545dd22256d40b7ee47d64b77aab5659cf80648350722316c00d0d480"
+        },
+        {
+          "path": "data/snapshots/national-b001/2027/368142/e9e1d6eaf1f1d8f6-d4634c0184de7c6b.pdf",
+          "size": 207004,
+          "sha256": "d4634c0184de7c6b49edda4af0323d21642a9d0867ecbba7108d633ccfa1bba6"
+        },
+        {
+          "path": "data/snapshots/quality-audits/b001-ecust-accept-rebind.review.json",
+          "size": 3316,
+          "sha256": "102482be10552fd9b32b127145c1ac51d3df2473a7641e292dcfb491de2b1a61"
+        },
+        {
+          "path": "data/snapshots/quality-audits/b001-ecust-final-v4.review.json",
+          "size": 3328,
+          "sha256": "3839294a025cfb9a0b27977cf0c4d950dd8cba4b83509a9b3de32c2711045939"
         },
         {
           "path": "data/snapshots/quality-audits/expansion-20261102/catalog-facts-dom/1cc8f18069a6496cb7cd84d1bb285b9fde1e6717bbf71ceefb5699dfc2c437f3.json",

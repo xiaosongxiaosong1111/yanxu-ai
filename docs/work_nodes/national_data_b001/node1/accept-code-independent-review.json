@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-11-10T08:26:38.973807+00:00",
+  "passed": true,
+  "scope": "Code review of uncommitted Accept change only; does not grant root semantic approval or validate a new release.",
+  "base_commit": "89dfac45719b3354cc45d6dfabe7e96135a8441a",
+  "public_sources_sha256": "bf3a9e916dbb4bfa4e1a9a7a16ca0c59514ca45a1fdafcfae9ad22de9d2a41d6",
+  "test_sha256": "7dab4d9834c09fe71539759f83cc1ed395b4759116205f0bd0d4a29f774a3792",
+  "exact_change": "One literal Accept header value only; entire public_sources.py equals Git HEAD with that single byte replacement.",
+  "unchanged_guards": [
+    "Official ownership checked before each redirect",
+    "Pinned public DNS address and original Host/SNI",
+    "Default verified TLS context",
+    "No Referer or authentication header added",
+    "Whole-read deadline and host concurrency limit",
+    "Declared and streamed byte limits",
+    "Office payload signature/content validation"
+  ],
+  "tests_independently_executed": {
+    "count": 93,
+    "failures": 0,
+    "errors": 0,
+    "new_socket_level_cases": 7,
+    "local_only": true,
+    "HTTP_and_mocked_HTTPS_default_transports": true,
+    "real_remote_or_TLS_certificate_handshake": false
+  },
+  "v3_graph": {
+    "changed_dependencies": [
+      "public_sources.py"
+    ],
+    "old_compound_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+    "new_compound_sha256": "b586f8d4b2b9a032fad38cab59c8ad9438bdf21d1bf6b9752f0a2c43dc4a1155",
+    "dependencies": {
+      "collectors/catalog_pdf_national_v3.py": {
+        "before": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+        "after": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b"
+      },
+      "collectors/catalog_pdf_national_v2.py": {
+        "before": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+        "after": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d"
+      },
+      "collectors/catalog_pdf_national.py": {
+        "before": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+        "after": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e"
+      },
+      "collectors/catalog_pdf_tables.py": {
+        "before": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+        "after": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384"
+      },
+      "collectors/catalog_html.py": {
+        "before": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb",
+        "after": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb"
+      },
+      "collectors/catalog_publication.py": {
+        "before": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+        "after": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1"
+      },
+      "collectors/embedded_documents.py": {
+        "before": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+        "after": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b"
+      },
+      "collectors/catalogs.py": {
+        "before": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e",
+        "after": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e"
+      },
+      "collectors/documents.py": {
+        "before": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804",
+        "after": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804"
+      },
+      "service_verification.py": {
+        "before": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+        "after": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287"
+      },
+      "public_sources.py": {
+        "before": "4a85a72b11266734764162ba786208771e3b8269f24700db4bc20cf32667d282",
+        "after": "bf3a9e916dbb4bfa4e1a9a7a16ca0c59514ca45a1fdafcfae9ad22de9d2a41d6"
+      },
+      "public_navigation.py": {
+        "before": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef",
+        "after": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef"
+      }
+    },
+    "old_approval_cannot_match_new_graph": true
+  },
+  "root_reapproval_requirements": [
+    {
+      "source_sha256": "d4634c0184de7c6b49edda4af0323d21642a9d0867ecbba7108d633ccfa1bba6",
+      "programs_sha256": "2cfaa856b8b9c2982c9a3713f1788595dc6d3b3bf1578dd2d5f246f4511efa95",
+      "program_count": 165,
+      "old_parser_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+      "new_parser_sha256_for_root_review": "b586f8d4b2b9a032fad38cab59c8ad9438bdf21d1bf6b9752f0a2c43dc4a1155",
+      "review_evidence": {
+        "local_path": "data/snapshots/quality-audits/b001-ecust-final-v4.review.json",
+        "sha256": "3839294a025cfb9a0b27977cf0c4d950dd8cba4b83509a9b3de32c2711045939",
+        "method": "independent_physical_grid_all_fields_and_23_page_visual_review"
+      },
+      "scope": "exact_partial_catalog_recordset_only",
+      "catalog_complete": false,
+      "eligibility_complete": false
+    },
+    {
+      "source_sha256": "0e760edd23db14574d3f9a4ac03de867e1bd001cebf6cc76065cfc706b47fa4c",
+      "programs_sha256": "18d2739386efb7891482baf5699ec655468ccd4fad74205bb3747e8185d5bb16",
+      "program_count": 109,
+      "old_parser_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+      "new_parser_sha256_for_root_review": "b586f8d4b2b9a032fad38cab59c8ad9438bdf21d1bf6b9752f0a2c43dc4a1155",
+      "review_evidence": {
+        "local_path": "data/snapshots/quality-audits/b001-ecust-final-v4.review.json",
+        "sha256": "3839294a025cfb9a0b27977cf0c4d950dd8cba4b83509a9b3de32c2711045939",
+        "method": "independent_physical_grid_all_fields_and_23_page_visual_review"
+      },
+      "scope": "exact_partial_catalog_recordset_only",
+      "catalog_complete": false,
+      "eligibility_complete": false
+    }
+  ],
+  "root_semantic_approval_written_by_reviewer": false,
+  "new_pdf_or_recordset_semantics_reviewed": false,
+  "release_revalidation": "New graph requires explicit root audit and a separate fresh cold release; prior 89df passed report does not extend to this source.",
+  "findings": []
+}

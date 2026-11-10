@@ -1,5 +1,7 @@
 # Claude 全国目录与资格数据实施手册
 
+> B001首批已经执行，当前结果见[节点1报告](work_nodes/national_data_b001/node1/REPORT.md)。本页采集流程用于复盘或新的绑定批次；不要将旧queue当成新公共包的基线，也不要沿用旧PDF批准摘要。
+
 更新：2026-11-09。负责人分工：**Claude 负责全国采用数据，Codex 负责官网发现实测、共性故障与最终验收**。先完成节点0，随后以10个单位为一个批次推进；每个节点提交成果和问题，不长时间只报“仍在采集”。本手册是执行合同，不是全国数据已完成的声明。
 
 先读 [交接说明](HANDOFF_NEXT_AI.md)、[当前验收](VERIFICATION.md)、[公开包规则](../data/README.md)、[运行说明](RUNNING.md)、[原文到当轮候选](ON_DEMAND_CANDIDATES.md)、[官网与事实闭环](OFFICIAL_DISCOVERY_CLOSURE.md)。每批复制 [批次日志模板](work_nodes/NATIONAL_DATA_BATCH_LOG_TEMPLATE.md)，填写实际结果。

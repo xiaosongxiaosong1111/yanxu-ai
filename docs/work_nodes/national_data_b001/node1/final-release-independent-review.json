@@ -1,0 +1,162 @@
+{
+  "generated_at": "2026-11-10T08:23:11.006367+00:00",
+  "passed": true,
+  "status": "independently_verified_release_at_89df_only",
+  "code_commit": "89dfac45719b3354cc45d6dfabe7e96135a8441a",
+  "bound_input_sha256": {
+    "release_validation": "936414371f9d0454ecbf39649b96f579923f9f6f83f9dc1af0d765fc4f586863",
+    "code_manifest": "21b201c5b24f2d0305fe32c7a520039c80ba563550565a5df283baf1dcfc910d",
+    "bundle_manifest": "d9b12b6b312aa55a1d0d657340881ad58d01c92cc8d122ec32a752ae1c4c2d62",
+    "hot_inspection": "be43f1a4ee92b26d908581f711fb35bac88d8f909a1a055e846bdb2eaac43d05",
+    "cold_inspection": "989df3457268d584f0192c173739223ba0aa4f72943a56058e7cd9dd3b49fecb",
+    "hot_independent_review": "a84155d8fb870bb527f1449285c72b60436a7f9f9cae09e92e6d2717ec68a659",
+    "cold_independent_sql_api_review": "122949fd2c4b4c9882fe5a3d103b1d545d8d59059a3a6fd4779fcbb983c33091"
+  },
+  "executed_checks": {
+    "all_old_22356_ids_preserved_and_274_added": true,
+    "all_old_and_candidate_core_fields_and_full_exam_choices_match_hot_sql": true,
+    "six_tables_exact_hot_cold_rows": {
+      "units": {
+        "rows": 936,
+        "exact_rows_equal": true,
+        "rows_sha256": "98ec053cbb51703e614042cdf61f37f04fea3649cded0c4d3b1da4b5b464f329"
+      },
+      "programs": {
+        "rows": 22630,
+        "exact_rows_equal": true,
+        "rows_sha256": "ffb3c775b77984b9482ea2c6b49c722589c9a2d0ffcec569a45102518994324b"
+      },
+      "documents": {
+        "rows": 4648,
+        "exact_rows_equal": true,
+        "rows_sha256": "a1fb769244237193866377d8e3257fbad8be5a57048a327dce63b1422c02ff3e"
+      },
+      "records": {
+        "rows": 1108,
+        "exact_rows_equal": true,
+        "rows_sha256": "b1ae10507248527149d70ed47b63649329732142d311a9a4db148f154c82324e"
+      },
+      "program_subjects": {
+        "rows": 89218,
+        "exact_rows_equal": true,
+        "rows_sha256": "f0bdd2a901b8f6903c82486564f86b60ce759f6d761e46d63ee5555fac6764bf"
+      },
+      "subject_catalog": {
+        "rows": 33144,
+        "exact_rows_equal": true,
+        "rows_sha256": "7c8bbc27d37d415978cd710d20a61c56c3cc8c4071a72c50c6142559614507c6"
+      }
+    },
+    "independent_real_service_calls": {
+      "real_calls": 12,
+      "cases": 6,
+      "all_program_fields_equal_sqlite": true,
+      "all_full_program_and_document_objects_equal_hot_cold": true,
+      "network_disabled": true
+    },
+    "all_6559_member_sha_zip_hot_cold": true,
+    "hot_cold_algorithm_and_field_proof_projection_equal": true,
+    "fee_coverage_equal": true,
+    "zero_invalid_programs_zero_conflicts_qualification_complete_zero": true,
+    "all_19_pdf_semantic_sources_replayed": true,
+    "exact_ecust_approvals_source_parser_recordset_bound": true,
+    "cold_empty_database_start": {
+      "checked_at": "2026-11-10T08:05:49.165493+00:00",
+      "cold_sqlite_initially_absent": true,
+      "database_copied_from_hot": false,
+      "fresh_restore_attempt": 2,
+      "all_restored_member_sha256_verified": 6559
+    },
+    "reviewed_code_bytes_all_roots_equal": 117,
+    "original_admissions_and_all_nine_packages_unchanged": true,
+    "all_seven_stages_exit_zero_and_logs_bound": {
+      "prepare-baseline": {
+        "exit_code": 0,
+        "log_sha_verified": true,
+        "worker_entry_sha256_verified": false,
+        "seconds": 50.76
+      },
+      "publish-hot": {
+        "exit_code": 0,
+        "log_sha_verified": true,
+        "worker_entry_sha256_verified": true,
+        "seconds": 781.295
+      },
+      "inspect-hot": {
+        "exit_code": 0,
+        "log_sha_verified": true,
+        "worker_entry_sha256_verified": true,
+        "seconds": 13.727
+      },
+      "build-candidate-bundle": {
+        "exit_code": 0,
+        "log_sha_verified": true,
+        "worker_entry_sha256_verified": true,
+        "seconds": 31.63
+      },
+      "cold-restore": {
+        "exit_code": 0,
+        "log_sha_verified": true,
+        "worker_entry_sha256_verified": true,
+        "seconds": 52.492
+      },
+      "publish-cold": {
+        "exit_code": 0,
+        "log_sha_verified": true,
+        "worker_entry_sha256_verified": true,
+        "seconds": 769.497
+      },
+      "inspect-cold": {
+        "exit_code": 0,
+        "log_sha_verified": true,
+        "worker_entry_sha256_verified": true,
+        "seconds": 13.615
+      }
+    }
+  },
+  "historical_failures": {
+    "first_hot_memory_failure_preserved": true,
+    "first_cold_native_crash": {
+      "failed": true,
+      "exit_code": 3221225477,
+      "exception_code": "0xC0000005",
+      "raw_crash_archive_sha256": "aa5acc78b93164b14fdd5c086fbad157fc3ee51c39d357226bc0dc52eb7c905e",
+      "archived_metadata_and_sqlite_wal_shm_hashes_verified": true,
+      "visible_database_state_observed_after_crash": {
+        "publication_rows": 0,
+        "program_rows": 0,
+        "interpretation": "No committed release was visible; this is not an assertion that the candidate contains zero programs."
+      },
+      "root_cause": "unproven"
+    },
+    "cold_retry_diagnostic_only_diff_verified": true,
+    "root_cause_of_native_crash": "unproven; one successful retry does not establish cause"
+  },
+  "dataset_scope": {
+    "programs": 22630,
+    "units_with_programs": 136,
+    "annual_units": 931,
+    "verified_catalog_units": 51,
+    "bnu_records": 463,
+    "ecust_new_partial_records": 274,
+    "complete_qualification": 0,
+    "nationwide_catalog_complete": false
+  },
+  "not_executed": [
+    "HTTP_UI_or_live_AI_provider_end_to_end",
+    "new_online_collection",
+    "existing_user_runtime_migration_or_service_restart"
+  ],
+  "adoption_recommendation": {
+    "allowed": true,
+    "scope": "Only the exact reviewed nine ZIPs and manifest in the isolated development branch.",
+    "bundle_manifest_sha256": "d9b12b6b312aa55a1d0d657340881ad58d01c92cc8d122ec32a752ae1c4c2d62",
+    "existing_expanded_data_and_runtime_remain_unchanged": true,
+    "does_not_cover_later_accept_or_parser_source_changes": true
+  },
+  "limitations": [
+    "Initial baseline-prepare process predates entry-SHA instrumentation; final restored members and all code bytes were independently checked.",
+    "Source and permission boundaries are file inventories/hashes, not system-wide credential-access telemetry.",
+    "Partial catalogs and unknown qualifications must stay explicit; this is not a complete nationwide recommendation set."
+  ]
+}

@@ -44,6 +44,10 @@ collectors/official_bindings.py text eol=lf
 collectors/source_payload.py text eol=lf
 tools/collect_national_batch.py text eol=lf
 catalog_index.py text eol=lf
-docs/work_nodes/national_data_b001/node1/*.json text eol=lf
+docs/work_nodes/national_data_b001/node1/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 docs/work_nodes/national_data_b001/node1/*.md text eol=lf
-docs/work_nodes/national_data_b001/node1/*.txt text eol=lf
+docs/work_nodes/national_data_b001/node1/*.txt -text -whitespace
+
+# Release fingerprints and captured evidence retain their exact audited bytes.
+data/bundles/manifest.json -text
+data/catalog_coverage_2027.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

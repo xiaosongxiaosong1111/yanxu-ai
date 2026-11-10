@@ -1,0 +1,121 @@
+{"schema_version": 1, "year": 2027, "total_units": 1, "state": "network_disabled", "catalog_complete": false, "checked_at": "2026-11-10T08:42:12+00:00", "stop_reason": null, "notice": "\u4ec5\u4fdd\u5b58\u6b63\u5e38\u516c\u5f00\u53ef\u8bbf\u95ee\u8303\u56f4\uff1b\u9884\u8fd4\u56de\u9690\u85cf\u9879\u3001\u767b\u5f55\u5206\u9875\u4e0e\u5c1a\u672a\u6838\u9a8c\u7684\u53ef\u89c1\u8303\u56f4\u5747\u672a\u6293\u53d6\u3002"}
+{}
+{}
+{"unit": "大学2", "status": "failed", "pages": 0, "originals": 0, "bindings": 0, "remaining": 0}
+{"unit": "大学1", "status": "collected", "pages": 1, "originals": 1, "bindings": 0, "remaining": 0}
+{"year": 2027, "total_units": 2, "attempted_units": 2, "pending_units": 0, "failed_units": 0, "restricted_units": 0, "units_with_leads": 0, "candidate_count": 0, "external_candidate_count": 0, "current_year_document_candidates": 0, "fetched_pages": 0, "restricted_pages": 0, "failed_pages": 0, "attempt_complete": true, "catalog_complete": false, "checked_at": "2026-11-10T08:42:16+00:00", "notes": ["\u4ec5\u7edf\u8ba1\u5df2\u5c1d\u8bd5\u7684\u516c\u5f00\u6765\u6e90\u53d1\u73b0\u3002\u672a\u53d1\u73b0\u4e0d\u7b49\u4e8e\u4e0d\u5b58\u5728\uff1b\u6240\u6709\u7ebf\u7d22\u4ecd\u9700\u4eba\u5de5\u6216\u4e13\u7528\u89e3\u6790\u5668\u6838\u9a8c\u3002"]}
+{"year": 2026, "department": "计算机学院", "rows": 1, "groups": 1, "transfer_rules": 0, "warnings": []}
+{"year": 2026, "department": "计算机学院", "rows": 1, "groups": 1, "transfer_rules": 0, "warnings": []}
+{"year": 2026, "department": "计算机学院", "rows": 1, "groups": 1, "transfer_rules": 0, "warnings": []}
+{"year": 2026, "department": "计算机学院", "rows": 1, "groups": 1, "transfer_rules": 0, "warnings": []}
+{"year": 2026, "department": "计算机学院", "rows": 1, "groups": 0, "transfer_rules": 1, "warnings": []}
+{"year": 2026, "department": "计算机学院", "rows": 0, "groups": 0, "transfer_rules": 0, "warnings": ["未发现可识别的录取结果表头，未生成统计。"]}
+{"unit_id": "123", "unit_name": "样本大学", "program_count": 1, "catalog_status": "partial"}
+{"schema_version": 1, "reference_year": 2027, "target_year": 2028, "parser_revision": "44dddec9ed53c63de30db38c", "checked_at": "2026-11-10T08:43:52+00:00", "index_units": 1, "selected_units": 1, "processed_units": 1, "pending_units": 0, "traversal_complete": true, "processed_files": 1, "cache_hits": 0, "limited": false, "units_with_sources": 1, "units_with_programs": 1, "catalog_verified_units": 0, "program_count": 1, "catalog_complete": false, "notes": ["仅解析已保存原文，无联网，无招生库写入。", "分母为通用院校索引；完整招生单位名单与专业目录分别验收。"]}
+{"out_dir": "C:\\Users\\DERLTE~1\\AppData\\Local\\Temp\\tmp8stgrmcb\\out", "raw_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "effective_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "verified": {"program_count": 1, "verified_tuition": 0, "verified_duration": 0, "verified_full_qualification": 0, "verified_computed_total_cost": 0, "tuition_claim_statuses": {"needs_review": 1}, "duration_claim_statuses": {"needs_review": 1}, "qualification_claim_statuses": {}}, "batch": {"expansion": ["u1"], "backfill": ["u2"]}}
+{"out_dir": "C:\\Users\\DERLTE~1\\AppData\\Local\\Temp\\tmp0a_ntax9\\out", "raw_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "effective_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "verified": {"program_count": 1, "verified_tuition": 0, "verified_duration": 0, "verified_full_qualification": 0, "verified_computed_total_cost": 0, "tuition_claim_statuses": {"needs_review": 1}, "duration_claim_statuses": {"needs_review": 1}, "qualification_claim_statuses": {}}, "batch": {"expansion": ["u1"], "backfill": ["u2"]}}
+{"out_dir": "C:\\Users\\DERLTE~1\\AppData\\Local\\Temp\\tmp78lx0kw3\\out", "raw_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "effective_present": {"program_count": 1, "ids": 1, "duplicate_ids": 0, "units": 1, "tuition": 1, "tuition_year": 1, "tuition_full": 0, "tuition_other": 0, "duration": 1, "computed_total_cost": 1, "conditions_nonempty": 0, "requires_review": 1, "full_qualification": 0}, "verified": {"program_count": 1, "verified_tuition": 0, "verified_duration": 0, "verified_full_qualification": 0, "verified_computed_total_cost": 0, "tuition_claim_statuses": {"needs_review": 1}, "duration_claim_statuses": {"needs_review": 1}, "qualification_claim_statuses": {}}, "batch": {"expansion": ["u1"], "backfill": ["u2"]}}
+{"unit": "样本大学", "status": "restricted", "pages": 0, "originals": 0, "bindings": 0, "remaining": 0}
+{"unit": "样本大学", "status": "collected", "pages": 3, "originals": 3, "bindings": 0, "remaining": 0}
+{"unit": "样本大学", "status": "truncated", "pages": 3, "originals": 3, "bindings": 0, "remaining": 0}
+..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s.............................................................................s..........................................................................................E.FF.EEsssssss.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s...........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s................................................................................................D:\Python\Lib\tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 429: 'sensitive key'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+D:\Python\Lib\tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 401: 'sensitive key'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+........................................................
+======================================================================
+ERROR: test_context_and_prefix_share_the_budget_and_context_is_real_text (test_embedding_inputs.EmbeddingInputTests.test_context_and_prefix_share_the_budget_and_context_is_real_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_embedding_inputs.py", line 65, in test_context_and_prefix_share_the_budget_and_context_is_real_text
+    windows = prepare_inputs(segment(text), context(), LOCAL)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 108, in prepare_inputs
+    prefix_cost = measure(prefix)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 104, in measure
+    return token_length(data_dir, start) if local else len(start)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 101, in token_length
+    root = _verified_dir(data_dir)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 47, in _verified_dir
+    raise TransportError('embedding_model_not_ready',
+                         '本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。')
+provider_catalog.TransportError: 本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。
+
+======================================================================
+ERROR: test_tail_exception_of_long_segment_survives_inside_token_budget (test_embedding_inputs.EmbeddingInputTests.test_tail_exception_of_long_segment_survives_inside_token_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_embedding_inputs.py", line 54, in test_tail_exception_of_long_segment_survives_inside_token_budget
+    windows = prepare_inputs(segment(text), [], LOCAL)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 108, in prepare_inputs
+    prefix_cost = measure(prefix)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 104, in measure
+    return token_length(data_dir, start) if local else len(start)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 101, in token_length
+    root = _verified_dir(data_dir)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 47, in _verified_dir
+    raise TransportError('embedding_model_not_ready',
+                         '本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。')
+provider_catalog.TransportError: 本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。
+
+======================================================================
+ERROR: test_windows_partition_exact_spans_and_bind_sha_to_model_input (test_embedding_inputs.EmbeddingInputTests.test_windows_partition_exact_spans_and_bind_sha_to_model_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_embedding_inputs.py", line 37, in test_windows_partition_exact_spans_and_bind_sha_to_model_input
+    windows = prepare_inputs(segment(text), context(), LOCAL)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 108, in prepare_inputs
+    prefix_cost = measure(prefix)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 104, in measure
+    return token_length(data_dir, start) if local else len(start)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 101, in token_length
+    root = _verified_dir(data_dir)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 47, in _verified_dir
+    raise TransportError('embedding_model_not_ready',
+                         '本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。')
+provider_catalog.TransportError: 本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。
+
+======================================================================
+FAIL: test_long_prefix_must_terminate_and_cover_the_tail (test_embedding_inputs.EmbeddingInputTests.test_long_prefix_must_terminate_and_cover_the_tail)
+Independent subprocess: a long legal prefix with repeated public text used to
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_embedding_inputs.py", line 116, in test_long_prefix_must_terminate_and_cover_the_tail
+    self.assertEqual(done.returncode, 0, done.stderr[-2000:])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import sys;sys.path.insert(0, r'D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6');from embedding_inputs import prepare_inputs;t='本院只招收全日制硕士研究生，接受跨专业考生。'*8;segment={'id':'ks_x','text':t,'char_start':0,'char_end':len(t)};rows=prepare_inputs(segment,[],{'provider':'local_bge','document_prefix':'背'*256,'_data_dir':r'D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\data'});assert rows and rows[-1]['text'].endswith('跨专业考生。'), 'tail lost';print('ok', len(rows))
+                                                                                                                                                                                                                                                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 108, in prepare_inputs
+    prefix_cost = measure(prefix)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_inputs.py", line 104, in measure
+    return token_length(data_dir, start) if local else len(start)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 101, in token_length
+    root = _verified_dir(data_dir)
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\embedding_local.py", line 47, in _verified_dir
+    raise TransportError('embedding_model_not_ready',
+                         '本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。')
+provider_catalog.TransportError: 本机中文向量模型尚未准备就绪；请在知识检索设置中完成一次连接测试，或先在联网环境下显式准备公开模型。
+
+
+======================================================================
+FAIL: test_prefix_that_leaves_no_room_fails_fast_not_by_looping (test_embedding_inputs.EmbeddingInputTests.test_prefix_that_leaves_no_room_fails_fast_not_by_looping)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_embedding_inputs.py", line 126, in test_prefix_that_leaves_no_room_fails_fast_not_by_looping
+    self.assertEqual(caught.exception.code, 'embedding_input_too_long')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'embedding_model_not_ready' != 'embedding_input_too_long'
+- embedding_model_not_ready
++ embedding_input_too_long
+
+
+----------------------------------------------------------------------
+Ran 2531 tests in 180.788s
+
+FAILED (failures=2, errors=3, skipped=11)
+{"checked_at": "2026-11-10T08:43:58+00:00", "eligible_units": 1, "scanned_originals": 0, "recovered_units": 0, "review_units": 0, "unresolved_units": 1, "notice": "\u79bb\u7ebf\u5019\u9009\u62a5\u544a\uff1b\u672a\u53d1\u5e03\u5b98\u7f51\u5f52\u5c5e\uff0c\u672a\u4fee\u6539\u62db\u751f\u5355\u4f4d\u3001\u5e74\u5ea6\u540d\u5355\u53ca\u4e13\u4e1a\u76ee\u5f55\u3002"}

@@ -1,0 +1,378 @@
+{
+  "git_base_sha": "6ed095f506bdfb0730f301ffc2ba251e981a1fb1",
+  "worktree_code_sha256": "373f078897c3df90b1f2701b5eb654201dc4cd5d2c81f1ccf92f8d63f2131581",
+  "worktree_code_files": {
+    "collectors/catalog_batch.py": "f14fd16c673d843f7c90cf078230a98006cb620ed356083e010cacb5a442255f",
+    "collectors/catalog_enrichment.py": "9b4e3e1eebaa799551b9679685b84f28d0cb24129a97cff32113f7ba77b2534a",
+    "collectors/catalog_html.py": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb",
+    "collectors/catalog_office.py": "a90d4ba1167a4a56c367613dd6df24b14b70b7933b60334d87842eea93bb8eb4",
+    "collectors/catalog_pdf_national.py": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+    "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+    "collectors/catalog_pdf_national_v3.py": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+    "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+    "collectors/catalog_publication.py": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+    "collectors/catalog_semantic_audit.py": "91b7df07bcf2a07c4a02692557be6d8d59b291431c2ca605194fc796408f699d",
+    "collectors/catalog_source_set.py": "a6c9c3990d847041b18a607f4fa0633f3bf98387dd28ef6d23380c3b9f62d00a",
+    "collectors/catalog_zsml.py": "37897c28b1e28ac76dcc208ab2ec0095c20f59ab19fe979360ee839f7d8360e5",
+    "collectors/catalogs.py": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e",
+    "collectors/documents.py": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804",
+    "collectors/embedded_documents.py": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+    "collectors/national_catalog.py": "e87de9fbc3ae163afd2cfa6c7a1ca9d61b63e0b5bc1fe896cf248bbf88165ec3",
+    "collectors/official_bindings.py": "f47da7385487a3228d73e62956114c417b2a319c077391f9f8c301fbc8e3c01e",
+    "national_entry_html.py": "c42322d6964623242cff5dcfafe68a70abcffac0b8c0cb4df0e75574cebd09b8",
+    "official_authority.py": "45773f9e07e7ef55a6f7348e9d8152f016f8e7c74ac0aaca11c0002ac12c6905",
+    "public_navigation.py": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef",
+    "public_sources.py": "4a85a72b11266734764162ba786208771e3b8269f24700db4bc20cf32667d282",
+    "service_verification.py": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+    "unit_bindings.py": "0491fd88d0aca1f15c6098cd2dfc949b7b2027da4493189dcae8cd5d1fa56e8b"
+  },
+  "parser_revision": "3595c85c65ab648878ecc99e",
+  "v3_dependency_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+  "source_report_sha256": "99e69a7c7ae216b4b7fc1d207f21e0751f0c402ff757c01e77aad8e6eb16bf23",
+  "frozen_entries": {
+    "367859": "6eda8a3cc9cd47509a607979c6cf8e7c209ec121ceb50b9c02f04ce60bf54335",
+    "368142": "443b8de7cc20a5340056597a682caeee8902cf7e8efb62a581f151bcf5d6d0fe"
+  },
+  "checked_at": "2026-11-10T06:01:47.739625+00:00",
+  "stable_code_and_input": true,
+  "reports": [
+    {
+      "unit_id": "368295",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368295/units/368295-2027.json",
+      "entry_sha256": "bf39be5e45a0cd66ba4e1347783c32905ff6780dc4249cfc852a8e6732b0de36",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unit_id": "368049",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368049/units/368049-2027.json",
+      "entry_sha256": "1f51421f0cd68366f52fcee5273eed2a9cf97ec6b43e30365264361cbf2bed06",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unit_id": "368146",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368146/units/368146-2027.json",
+      "entry_sha256": "1d61ad0a762949c701707550424a8328e87fe4976f87717985bf58bd62610f1a",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unit_id": "368275",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368275/units/368275-2027.json",
+      "entry_sha256": "785502e777cebf2699564d6b4ea686c33b38c43e758b8b5d1c079e828ec0bdbc",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unit_id": "368611",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368611/units/368611-2027.json",
+      "entry_sha256": "bfbaee864a68805d8ca957ef6dd5acb9f646efd61dc948f6acab3610ae416f49",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unit_id": "368142",
+      "program_count": 274,
+      "catalog_status": "partial",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368142/units/368142-2027.json",
+      "entry_sha256": "287c94025ed82fb42fe16d7d9adbe1b1184b4afe285322a43ecf852e4de97685",
+      "recordset_sha256": "671df056f0777f6de524d206212d87a2a681cc56146e16b1b34b2c98628f809d"
+    },
+    {
+      "unit_id": "368436",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368436/units/368436-2027.json",
+      "entry_sha256": "d3ecdf4be609798fdc2105290e4f6b1b07924146afb936fa505c6385ea71e3bd",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unit_id": "367929",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/367929/units/367929-2027.json",
+      "entry_sha256": "0cf3f4048b88650041052806b383f82580e8869d9493680f7014f7d3ebb14106",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unit_id": "367859",
+      "program_count": 462,
+      "catalog_status": "partial",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/367859/units/367859-2027.json",
+      "entry_sha256": "6eda8a3cc9cd47509a607979c6cf8e7c209ec121ceb50b9c02f04ce60bf54335",
+      "recordset_sha256": "2484ac2a588f2653a106c291915b9a6591aff9c0c54e12e467a3c08939cf4771"
+    },
+    {
+      "unit_id": "368201",
+      "program_count": 0,
+      "catalog_status": "not_collected",
+      "entry_path": "data/runtime/national_catalog_b001/final-v4/368201/units/368201-2027.json",
+      "entry_sha256": "e6eaa80dde99f9b98721125408fc583bc3ab31dd3fb92423f663a46d2731ed44",
+      "recordset_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "replayed_candidate_count": 736,
+  "unique_candidate_ids": 736,
+  "full_eligibility_count": 0,
+  "requires_review_count": 736,
+  "canonical_sources": [
+    {
+      "candidate_only": true,
+      "semantic_approved": false,
+      "adopted": false,
+      "source_sha256": "d4634c0184de7c6b49edda4af0323d21642a9d0867ecbba7108d633ccfa1bba6",
+      "document_id": "saved-catalog-368142-e9e1d6eaf1f1-d4634c0184de",
+      "program_count": 165,
+      "recordset_sha256": "2cfaa856b8b9c2982c9a3713f1788595dc6d3b3bf1578dd2d5f246f4511efa95",
+      "parser_dependency_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+      "parser_dependencies": {
+        "collectors/catalog_pdf_national_v3.py": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+        "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+        "collectors/catalog_pdf_national.py": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+        "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+        "collectors/catalog_html.py": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb",
+        "collectors/catalog_publication.py": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+        "collectors/embedded_documents.py": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+        "collectors/catalogs.py": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e",
+        "collectors/documents.py": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804",
+        "service_verification.py": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+        "public_sources.py": "4a85a72b11266734764162ba786208771e3b8269f24700db4bc20cf32667d282",
+        "public_navigation.py": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef"
+      },
+      "expected_records": 202,
+      "issues": [
+        "第2页表2：原文未明确学习方式",
+        "第3页表3：原文未明确学习方式",
+        "第4页表4：原文研究方向无法完整解析",
+        "第4页表4：原文未明确学习方式",
+        "第5页表5：原文未明确学习方式",
+        "第5页表5：原文研究方向无法完整解析",
+        "第5页表5：原文未明确学习方式",
+        "第9页表9：原文研究方向无法完整解析",
+        "第9页表9：原文未明确学习方式",
+        "第10页表10：原文未明确学习方式",
+        "第11页表11：原文研究方向无法完整解析",
+        "第11页表11：原文未明确学习方式",
+        "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+        "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格"
+      ],
+      "rejected_source_rows": [
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 1,
+          "table": 1,
+          "row": 5,
+          "continuation_page": 2
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 2,
+          "table": 2,
+          "row": 1,
+          "continuation_page": 2
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 2,
+          "table": 2,
+          "row": 8,
+          "continuation_page": 3
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 3,
+          "table": 3,
+          "row": 1,
+          "continuation_page": 3
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 4,
+          "table": 4,
+          "row": 6,
+          "continuation_page": 5
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 5,
+          "table": 5,
+          "row": 1,
+          "continuation_page": 5
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 9,
+          "table": 9,
+          "row": 6,
+          "continuation_page": 10
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 10,
+          "table": 10,
+          "row": 1,
+          "continuation_page": 10
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 10,
+          "table": 10,
+          "row": 7,
+          "continuation_page": 11
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 11,
+          "table": 11,
+          "row": 1,
+          "continuation_page": 11
+        },
+        {
+          "reason": "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格",
+          "page": 8,
+          "table": 8,
+          "row": 6
+        }
+      ],
+      "full_SourceVerifier_program_pass": true,
+      "whole_school_complete": false,
+      "candidate_path": "data/runtime/national_catalog_b001/final-v4/368142/canonical/source-d4634c0184de7c6b.json",
+      "candidate_sha256": "4584e7c2051916ed40509070e1a1ece873ab3fe364f5ed7008142e4755f9526e"
+    },
+    {
+      "candidate_only": true,
+      "semantic_approved": false,
+      "adopted": false,
+      "source_sha256": "0e760edd23db14574d3f9a4ac03de867e1bd001cebf6cc76065cfc706b47fa4c",
+      "document_id": "saved-catalog-368142-6e9f2411d9dc-0e760edd23db",
+      "program_count": 109,
+      "recordset_sha256": "18d2739386efb7891482baf5699ec655468ccd4fad74205bb3747e8185d5bb16",
+      "parser_dependency_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+      "parser_dependencies": {
+        "collectors/catalog_pdf_national_v3.py": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+        "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+        "collectors/catalog_pdf_national.py": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+        "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+        "collectors/catalog_html.py": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb",
+        "collectors/catalog_publication.py": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+        "collectors/embedded_documents.py": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+        "collectors/catalogs.py": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e",
+        "collectors/documents.py": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804",
+        "service_verification.py": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+        "public_sources.py": "4a85a72b11266734764162ba786208771e3b8269f24700db4bc20cf32667d282",
+        "public_navigation.py": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef"
+      },
+      "expected_records": 153,
+      "issues": [
+        "第2页表2：原文研究方向无法完整解析",
+        "第2页表2：原文未明确学习方式",
+        "第3页表3：原文研究方向无法完整解析",
+        "第3页表3：原文未明确学习方式",
+        "第4页表4：原文研究方向无法完整解析",
+        "第4页表4：原文未明确学习方式",
+        "第6页表6：原文研究方向无法完整解析",
+        "第6页表6：原文未明确学习方式",
+        "第7页表7：原文研究方向无法完整解析",
+        "第7页表7：原文未明确学习方式",
+        "第9页表9：初试单元缺失或顺序不连续",
+        "第9页表9：初试单元缺失或顺序不连续",
+        "第10页表10：原文研究方向无法完整解析",
+        "第10页表10：原文未明确学习方式",
+        "第10页表10：初试单元缺失或顺序不连续",
+        "第10页表10：初试单元缺失或顺序不连续",
+        "第10页表10：初试单元缺失或顺序不连续",
+        "第11页表11：原文研究方向无法完整解析",
+        "第11页表11：原文未明确学习方式",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第11页表11：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "第12页表12：初试单元缺失或顺序不连续",
+        "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+        "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格"
+      ],
+      "rejected_source_rows": [
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 6,
+          "table": 6,
+          "row": 8,
+          "continuation_page": 7
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 7,
+          "table": 7,
+          "row": 1,
+          "continuation_page": 7
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 9,
+          "table": 9,
+          "row": 8,
+          "continuation_page": 10
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 10,
+          "table": 10,
+          "row": 1,
+          "continuation_page": 10
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 10,
+          "table": 10,
+          "row": 8,
+          "continuation_page": 11
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 11,
+          "table": 11,
+          "row": 1,
+          "continuation_page": 11
+        },
+        {
+          "reason": "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格",
+          "page": 9,
+          "table": 9,
+          "row": 6
+        }
+      ],
+      "full_SourceVerifier_program_pass": true,
+      "whole_school_complete": false,
+      "candidate_path": "data/runtime/national_catalog_b001/final-v4/368142/canonical/source-0e760edd23db1457.json",
+      "candidate_sha256": "3f2102d4a25908c42bb1eba2dadd57197f1fddf089c2ba47272c136af97a5210"
+    }
+  ],
+  "semantic_approved": false,
+  "adopted": false,
+  "counts_are_not_net_new_adopted_programs": true
+}

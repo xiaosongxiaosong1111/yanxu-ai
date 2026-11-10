@@ -1,4 +1,4 @@
-﻿unit_id,unit_code,unit_name,province,annual_status,program_count,fact_count,catalog_status,collection_status,source_count,missing_reason,official_url,original_urls
+unit_id,unit_code,unit_name,province,annual_status,program_count,fact_count,catalog_status,collection_status,source_count,missing_reason,official_url,original_urls
 367878,10001,北京大学,北京,confirmed,1,0,partial,collected,161,已有部分专业资料，全校目录及全部考试科目尚未对账完整。,http://yjsy.bjmu.edu.cn/,"https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3552089905&schCode=10001
 https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3552090259&schCode=10001
 https://admission.pku.edu.cn/zsxx/lxszs/lxszyml/2027/ss/zsml_ss_lxs_en.html
@@ -486,7 +486,7 @@ https://yanjiusheng.bucm.edu.cn/zsjy/sszs/index18.htm
 https://yanjiusheng.bucm.edu.cn/zsjy/sszs/index19.htm
 https://yanjiusheng.bucm.edu.cn/zsjy/sszs/index20.htm
 https://yanjiusheng.bucm.edu.cn/zsjy/sszs/81575.htm"
-367859,10027,北京师范大学,北京,confirmed,463,0,partial,collected,20,已有部分专业资料，全校目录及全部考试科目尚未对账完整。,https://yz.bnu.edu.cn/,"https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549213731&schCode=10027
+367859,10027,北京师范大学,北京,confirmed,463,0,partial,collected,20,本批32学院462条证据刷新；保留旧463条及052学院记录，整校目录与资格仍待完整核验。,https://yz.bnu.edu.cn/,"https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3549213731&schCode=10027
 https://yz.bnu.edu.cn/content/zyml/2027/ssyx.html
 https://yz.bnu.edu.cn/detail/77329e2e-0733-4b15-b085-104a7e5f5028
 https://yz.bnu.edu.cn/detail/6a0856f9-1830-4059-a142-54e7e35379d9
@@ -4645,7 +4645,7 @@ https://www.gs.sjtu.edu.cn/yjsjyfwzx
 https://www.gs.sjtu.edu.cn/about/yjsy/jj
 https://www.gs.sjtu.edu.cn/post/detail/Z3MzODE0
 https://www.gs.sjtu.edu.cn/post/detail/Z3MzODIw"
-368142,10251,华东理工大学,上海,confirmed,0,0,not_collected,collected,58,已保存官方原文，专业目录尚待解析或核验，不能据此认定没有招生专业。,https://gschool.ecust.edu.cn/,"https://yz.chsi.com.cn/sch/viewZszc--infoId-3550533513,categoryId-10461192,schId-368142,mindex-12.dhtml
+368142,10251,华东理工大学,上海,confirmed,274,0,partial,collected,58,本批独立审校并采用274个方向；45个普通初试方向仍待适配，学校目录与资格均未完整。,https://gschool.ecust.edu.cn/,"https://yz.chsi.com.cn/sch/viewZszc--infoId-3550533513,categoryId-10461192,schId-368142,mindex-12.dhtml
 https://yz.chsi.com.cn/zsgs/zsjz/detail.action?zsgsId=3547994285&schCode=10251
 https://gschool.ecust.edu.cn/2026/1008/c12754a193989/page.htm
 https://gschool.ecust.edu.cn/_upload/article/files/8a/5e/6bbefa194dceaf2e9c5d6ccb48cf/575f2e65-dfc8-4fcb-9433-d1f5e1890d73.pdf

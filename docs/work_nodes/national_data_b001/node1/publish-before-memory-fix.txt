@@ -1,0 +1,46 @@
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-progress-20261110\validate_candidate_release.py", line 247, in <module>
+    def options(row):
+    ^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-progress-20261110\validate_candidate_release.py", line 243, in main
+  File "D:\CodexRuntime\yanxu-b001-progress-20261110\validate_candidate_release.py", line 214, in publish_worker
+    result = publish(root / 'data')
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\collectors\publish_catalog.py", line 150, in publish
+    result=CatalogIndex(target).sync(registry,admissions,coverage,revision,verifier=service.verifier)
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\catalog_index.py", line 378, in sync
+    for ordinal, row in enumerate(_source_documents(admissions, registry, verifier))]
+                                  ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\catalog_index.py", line 196, in _source_documents
+    form_links = public_form_source_links(registry or {}, admissions, verifier)
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\evidence.py", line 86, in public_form_source_links
+    if not unit or not verifier.program(program, documents, unit):
+                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\service_verification.py", line 408, in program
+    return self._program_replays(program, documents, unit, explicit)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\service_verification.py", line 539, in _program_replays
+    parsed = self._source_programs(document, unit, program.get('year'), tree[0], documents)
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\service_verification.py", line 571, in _source_programs
+    return self._public_programs(document,unit,year,documents or {})
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\service_verification.py", line 318, in _public_programs
+    result=parser(decode_text(source[1],document.get('content_type','')),
+        unit,year,document,documents=documents,project_root=project)
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\collectors\catalog_public_forms.py", line 196, in parse_public_form_html
+    if profile=='zju':return _parse_zju(html,unit,year,document,documents,project_root)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\collectors\catalog_public_forms.py", line 490, in _parse_zju
+    faculty,_=_zju_context(unit,year,document,documents,root)
+              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\collectors\catalog_public_forms.py", line 418, in _zju_context
+    code=_read(script,root,unit,year)
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\collectors\catalog_public_forms.py", line 32, in _read
+    return decode_text(raw,document.get('content_type',''))
+  File "D:\CodexRuntime\yanxu-b001-candidate-validation-20261110\collectors\documents.py", line 40, in decode_text
+    return raw.decode(encoding)
+           ~~~~~~~~~~^^^^^^^^^^
+  File "D:\Python\Lib\encodings\utf_8_sig.py", line 23, in decode
+    (output, consumed) = codecs.utf_8_decode(input, errors, True)
+                         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+MemoryError
+decoding with 'utf-8-sig' codec failed

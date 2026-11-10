@@ -1,0 +1,12 @@
+test_accept_does_not_promote_a_fake_office_payload (tests.test_public_download_accept.PublicDownloadAcceptTests.test_accept_does_not_promote_a_fake_office_payload) ... ok
+test_cross_school_redirect_is_not_followed_under_the_wider_accept (tests.test_public_download_accept.PublicDownloadAcceptTests.test_cross_school_redirect_is_not_followed_under_the_wider_accept) ... ok
+test_declared_size_limit_remains_enforced (tests.test_public_download_accept.PublicDownloadAcceptTests.test_declared_size_limit_remains_enforced) ... ok
+test_default_http_and_https_downloads_accept_excel_without_spoofing_identity (tests.test_public_download_accept.PublicDownloadAcceptTests.test_default_http_and_https_downloads_accept_excel_without_spoofing_identity) ... ok
+test_https_certificate_failure_is_not_downgraded_or_retried (tests.test_public_download_accept.PublicDownloadAcceptTests.test_https_certificate_failure_is_not_downgraded_or_retried) ... ok
+test_private_dns_target_still_fails_before_opening_a_socket (tests.test_public_download_accept.PublicDownloadAcceptTests.test_private_dns_target_still_fails_before_opening_a_socket) ... ok
+test_public_document_entry_still_reads_html_through_the_same_pinned_transport (tests.test_public_download_accept.PublicDownloadAcceptTests.test_public_document_entry_still_reads_html_through_the_same_pinned_transport) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.025s
+
+OK

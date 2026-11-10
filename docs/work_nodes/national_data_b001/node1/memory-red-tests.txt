@@ -1,0 +1,54 @@
+test_document_payload_memory_stays_bounded (test_catalog_index_memory.CatalogIndexMemoryTests.test_document_payload_memory_stays_bounded) ... FAIL
+test_history_payload_memory_stays_bounded (test_catalog_index_memory.CatalogIndexMemoryTests.test_history_payload_memory_stays_bounded) ... FAIL
+test_late_program_encoding_failure_keeps_old_publication (test_catalog_index_memory.CatalogIndexMemoryTests.test_late_program_encoding_failure_keeps_old_publication) ... ok
+test_program_payload_memory_stays_bounded_during_source_replay (test_catalog_index_memory.CatalogIndexMemoryTests.test_program_payload_memory_stays_bounded_during_source_replay) ... FAIL
+test_same_revision_still_rejects_unencodable_history (test_catalog_index_memory.CatalogIndexMemoryTests.test_same_revision_still_rejects_unencodable_history) ... ok
+test_source_memory_error_is_not_swallowed_or_published (test_catalog_index_memory.CatalogIndexMemoryTests.test_source_memory_error_is_not_swallowed_or_published) ... ok
+test_sql_failure_after_partial_inserts_rolls_back_old_revision (test_catalog_index_memory.CatalogIndexMemoryTests.test_sql_failure_after_partial_inserts_rolls_back_old_revision) ... ok
+
+======================================================================
+FAIL: test_document_payload_memory_stays_bounded (test_catalog_index_memory.CatalogIndexMemoryTests.test_document_payload_memory_stays_bounded)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_catalog_index_memory.py", line 68, in test_document_payload_memory_stays_bounded
+    self.measured_publication('documents')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_catalog_index_memory.py", line 54, in measured_publication
+    self.assertLess(peak, 8 * 1024 * 1024,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                    f'{kind}: extra peak {peak:,} bytes retained serialized corpus')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 54053627 not less than 8388608 : documents: extra peak 54,053,627 bytes retained serialized corpus
+
+======================================================================
+FAIL: test_history_payload_memory_stays_bounded (test_catalog_index_memory.CatalogIndexMemoryTests.test_history_payload_memory_stays_bounded)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_catalog_index_memory.py", line 71, in test_history_payload_memory_stays_bounded
+    self.measured_publication('notices')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_catalog_index_memory.py", line 54, in measured_publication
+    self.assertLess(peak, 8 * 1024 * 1024,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                    f'{kind}: extra peak {peak:,} bytes retained serialized corpus')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 17183584 not less than 8388608 : notices: extra peak 17,183,584 bytes retained serialized corpus
+
+======================================================================
+FAIL: test_program_payload_memory_stays_bounded_during_source_replay (test_catalog_index_memory.CatalogIndexMemoryTests.test_program_payload_memory_stays_bounded_during_source_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_catalog_index_memory.py", line 65, in test_program_payload_memory_stays_bounded_during_source_replay
+    self.measured_publication('programs', source_work=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\CodexRuntime\yanxu-b001-recheck-0b4d8f6\tests\test_catalog_index_memory.py", line 54, in measured_publication
+    self.assertLess(peak, 8 * 1024 * 1024,
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+                    f'{kind}: extra peak {peak:,} bytes retained serialized corpus')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 51182109 not less than 8388608 : programs: extra peak 51,182,109 bytes retained serialized corpus
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.045s
+
+FAILED (failures=3)

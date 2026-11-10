@@ -1,0 +1,1376 @@
+{
+  "counts": {
+    "records": 22630,
+    "effective_tuition_records": 912,
+    "year_fee_records": 640,
+    "explicit_full_fee_records": 272,
+    "duration_records": 1942,
+    "full_fee_computable_records": 907,
+    "annual_times_duration_records": 635,
+    "complete_eligibility_records": 0
+  },
+  "by_unit": {
+    "367949": {
+      "records": 226,
+      "effective_tuition_records": 10,
+      "year_fee_records": 10,
+      "explicit_full_fee_records": 0,
+      "duration_records": 10,
+      "full_fee_computable_records": 10,
+      "annual_times_duration_records": 10,
+      "complete_eligibility_records": 0
+    },
+    "368317": {
+      "records": 438,
+      "effective_tuition_records": 252,
+      "year_fee_records": 252,
+      "explicit_full_fee_records": 0,
+      "duration_records": 252,
+      "full_fee_computable_records": 252,
+      "annual_times_duration_records": 252,
+      "complete_eligibility_records": 0
+    },
+    "367898": {
+      "records": 4,
+      "effective_tuition_records": 4,
+      "year_fee_records": 4,
+      "explicit_full_fee_records": 0,
+      "duration_records": 4,
+      "full_fee_computable_records": 4,
+      "annual_times_duration_records": 4,
+      "complete_eligibility_records": 0
+    },
+    "367782": {
+      "records": 11,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 11,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367788": {
+      "records": 13,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 13,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367847": {
+      "records": 20,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367842": {
+      "records": 32,
+      "effective_tuition_records": 32,
+      "year_fee_records": 32,
+      "explicit_full_fee_records": 0,
+      "duration_records": 32,
+      "full_fee_computable_records": 32,
+      "annual_times_duration_records": 32,
+      "complete_eligibility_records": 0
+    },
+    "367986": {
+      "records": 5,
+      "effective_tuition_records": 5,
+      "year_fee_records": 5,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367988": {
+      "records": 24,
+      "effective_tuition_records": 24,
+      "year_fee_records": 24,
+      "explicit_full_fee_records": 0,
+      "duration_records": 24,
+      "full_fee_computable_records": 24,
+      "annual_times_duration_records": 24,
+      "complete_eligibility_records": 0
+    },
+    "368040": {
+      "records": 79,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 79,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368103": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368101": {
+      "records": 9,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "688909092": {
+      "records": 88,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274414302": {
+      "records": 3,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302975907": {
+      "records": 110,
+      "effective_tuition_records": 110,
+      "year_fee_records": 110,
+      "explicit_full_fee_records": 0,
+      "duration_records": 110,
+      "full_fee_computable_records": 110,
+      "annual_times_duration_records": 110,
+      "complete_eligibility_records": 0
+    },
+    "302966133": {
+      "records": 15,
+      "effective_tuition_records": 15,
+      "year_fee_records": 15,
+      "explicit_full_fee_records": 0,
+      "duration_records": 15,
+      "full_fee_computable_records": 15,
+      "annual_times_duration_records": 15,
+      "complete_eligibility_records": 0
+    },
+    "368475": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368496": {
+      "records": 9,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 9,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3416381954": {
+      "records": 5,
+      "effective_tuition_records": 5,
+      "year_fee_records": 5,
+      "explicit_full_fee_records": 0,
+      "duration_records": 5,
+      "full_fee_computable_records": 5,
+      "annual_times_duration_records": 5,
+      "complete_eligibility_records": 0
+    },
+    "3416382019": {
+      "records": 2,
+      "effective_tuition_records": 2,
+      "year_fee_records": 2,
+      "explicit_full_fee_records": 0,
+      "duration_records": 2,
+      "full_fee_computable_records": 2,
+      "annual_times_duration_records": 2,
+      "complete_eligibility_records": 0
+    },
+    "368531": {
+      "records": 10,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "2125721162": {
+      "records": 48,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368259": {
+      "records": 663,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 638,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368470": {
+      "records": 114,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367950": {
+      "records": 286,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367884": {
+      "records": 357,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367879": {
+      "records": 260,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367920": {
+      "records": 94,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367912": {
+      "records": 1,
+      "effective_tuition_records": false,
+      "year_fee_records": false,
+      "explicit_full_fee_records": false,
+      "duration_records": false,
+      "full_fee_computable_records": false,
+      "annual_times_duration_records": false,
+      "complete_eligibility_records": false
+    },
+    "367913": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367850": {
+      "records": 124,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367798": {
+      "records": 2,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367780": {
+      "records": 10,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367793": {
+      "records": 2,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367841": {
+      "records": 25,
+      "effective_tuition_records": 25,
+      "year_fee_records": 25,
+      "explicit_full_fee_records": 0,
+      "duration_records": 25,
+      "full_fee_computable_records": 25,
+      "annual_times_duration_records": 25,
+      "complete_eligibility_records": 0
+    },
+    "368005": {
+      "records": 209,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3416382078": {
+      "records": 8,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368038": {
+      "records": 173,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302974482": {
+      "records": 16,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368080": {
+      "records": 1,
+      "effective_tuition_records": false,
+      "year_fee_records": false,
+      "explicit_full_fee_records": false,
+      "duration_records": false,
+      "full_fee_computable_records": false,
+      "annual_times_duration_records": false,
+      "complete_eligibility_records": false
+    },
+    "368085": {
+      "records": 44,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368076": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368129": {
+      "records": 241,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368187": {
+      "records": 8,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274412345": {
+      "records": 6,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368281": {
+      "records": 7,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368319": {
+      "records": 1,
+      "effective_tuition_records": false,
+      "year_fee_records": false,
+      "explicit_full_fee_records": false,
+      "duration_records": false,
+      "full_fee_computable_records": false,
+      "annual_times_duration_records": false,
+      "complete_eligibility_records": false
+    },
+    "368306": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368333": {
+      "records": 2,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368464": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274413086": {
+      "records": 3,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368358": {
+      "records": 718,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368192": {
+      "records": 176,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368434": {
+      "records": 465,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "499721721": {
+      "records": 33,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367888": {
+      "records": 70,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368218": {
+      "records": 30,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "678581": {
+      "records": 53,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274440551": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368033": {
+      "records": 454,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367877": {
+      "records": 70,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368128": {
+      "records": 700,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368133": {
+      "records": 166,
+      "effective_tuition_records": 156,
+      "year_fee_records": 156,
+      "explicit_full_fee_records": 0,
+      "duration_records": 166,
+      "full_fee_computable_records": 156,
+      "annual_times_duration_records": 156,
+      "complete_eligibility_records": 0
+    },
+    "368137": {
+      "records": 272,
+      "effective_tuition_records": 272,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 272,
+      "duration_records": 272,
+      "full_fee_computable_records": 272,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368152": {
+      "records": 165,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368183": {
+      "records": 278,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368201": {
+      "records": 305,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368211": {
+      "records": 142,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368237": {
+      "records": 202,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368480": {
+      "records": 182,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368600": {
+      "records": 152,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367878": {
+      "records": 1,
+      "effective_tuition_records": false,
+      "year_fee_records": false,
+      "explicit_full_fee_records": false,
+      "duration_records": false,
+      "full_fee_computable_records": false,
+      "annual_times_duration_records": false,
+      "complete_eligibility_records": false
+    },
+    "368246": {
+      "records": 451,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368052": {
+      "records": 45,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367975": {
+      "records": 64,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367887": {
+      "records": 37,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "2311267403": {
+      "records": 37,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302973928": {
+      "records": 14,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368274": {
+      "records": 58,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "679184": {
+      "records": 106,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367881": {
+      "records": 302,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367893": {
+      "records": 228,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367896": {
+      "records": 1010,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367927": {
+      "records": 142,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367981": {
+      "records": 50,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368042": {
+      "records": 78,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3416379410": {
+      "records": 5,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367861": {
+      "records": 29,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368190": {
+      "records": 565,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302972497": {
+      "records": 34,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3416381895": {
+      "records": 9,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368576": {
+      "records": 133,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "2807891793": {
+      "records": 7,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368178": {
+      "records": 17,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368169": {
+      "records": 5,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368226": {
+      "records": 7,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368338": {
+      "records": 8,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368331": {
+      "records": 22,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "688909319": {
+      "records": 38,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368444": {
+      "records": 10,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274440926": {
+      "records": 9,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "2125733175": {
+      "records": 26,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274414450": {
+      "records": 10,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368574": {
+      "records": 58,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368543": {
+      "records": 14,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368608": {
+      "records": 116,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368345": {
+      "records": 159,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274440799": {
+      "records": 8,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302965854": {
+      "records": 5,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367883": {
+      "records": 275,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 275,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368278": {
+      "records": 218,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368298": {
+      "records": 247,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368213": {
+      "records": 294,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368428": {
+      "records": 229,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368416": {
+      "records": 298,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368479": {
+      "records": 919,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368417": {
+      "records": 351,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367929": {
+      "records": 5165,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3416379589": {
+      "records": 7,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368233": {
+      "records": 6,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302960684": {
+      "records": 6,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "3274441049": {
+      "records": 4,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "677380": {
+      "records": 31,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "499721832": {
+      "records": 38,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368499": {
+      "records": 104,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302960377": {
+      "records": 37,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367905": {
+      "records": 437,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "302982783": {
+      "records": 2,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "677844": {
+      "records": 25,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368181": {
+      "records": 388,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368087": {
+      "records": 312,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368219": {
+      "records": 63,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367796": {
+      "records": 32,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368471": {
+      "records": 19,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "367859": {
+      "records": 463,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    },
+    "368142": {
+      "records": 274,
+      "effective_tuition_records": 0,
+      "year_fee_records": 0,
+      "explicit_full_fee_records": 0,
+      "duration_records": 0,
+      "full_fee_computable_records": 0,
+      "annual_times_duration_records": 0,
+      "complete_eligibility_records": 0
+    }
+  },
+  "method": "Read-only SQLite payload stream; grad_engine._tuition/_number; no full JSON loading or source re-verification.",
+  "grad_engine_sha256": "56a5ee8f75530f224a915ad99631969a246dd184a8ebb751d5fbcdc463ba6e33"
+}

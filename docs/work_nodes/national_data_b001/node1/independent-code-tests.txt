@@ -1,0 +1,15 @@
+..............{"checked_at": "2026-11-10T05:56:50+00:00", "eligible_units": 1, "scanned_originals": 0, "recovered_units": 0, "review_units": 0, "unresolved_units": 1, "notice": "\u79bb\u7ebf\u5019\u9009\u62a5\u544a\uff1b\u672a\u53d1\u5e03\u5b98\u7f51\u5f52\u5c5e\uff0c\u672a\u4fee\u6539\u62db\u751f\u5355\u4f4d\u3001\u5e74\u5ea6\u540d\u5355\u53ca\u4e13\u4e1a\u76ee\u5f55\u3002"}
+.............................................{"unit": "样本大学", "status": "restricted", "pages": 0, "originals": 0, "bindings": 0, "remaining": 0}
+{"unit": "样本大学", "status": "collected", "pages": 3, "originals": 3, "bindings": 0, "remaining": 0}
+.{"unit": "样本大学", "status": "truncated", "pages": 3, "originals": 3, "bindings": 0, "remaining": 0}
+...................................................................................{"unit_id": "123", "unit_name": "样本大学", "program_count": 1, "catalog_status": "partial"}
+{"schema_version": 1, "reference_year": 2027, "target_year": 2028, "parser_revision": "3595c85c65ab648878ecc99e", "checked_at": "2026-11-10T05:56:53+00:00", "index_units": 1, "selected_units": 1, "processed_units": 1, "pending_units": 0, "traversal_complete": true, "processed_files": 1, "cache_hits": 0, "limited": false, "units_with_sources": 1, "units_with_programs": 1, "catalog_verified_units": 0, "program_count": 1, "catalog_complete": false, "notes": ["仅解析已保存原文，无联网，无招生库写入。", "分母为通用院校索引；完整招生单位名单与专业目录分别验收。"]}
+.......................................{}
+{}
+..........{"unit": "大学2", "status": "failed", "pages": 0, "originals": 0, "bindings": 0, "remaining": 0}
+{"unit": "大学1", "status": "collected", "pages": 1, "originals": 1, "bindings": 0, "remaining": 0}
+....................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 388 tests in 16.345s
+
+OK

@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "scope": "controller source review and six no-write unit preflights; not final release acceptance",
+  "checked_at": "2026-11-10T08:44:21.149323+00:00",
+  "controller_path": "D:\\CodexRuntime\\yanxu-b001-progress-20261110\\validate_accept_release.py",
+  "controller_sha256": "7ab28a980cbfa5c9dea101375a9e2fd3f45c32d5cd85e0c90b0c88ff3d7b4b63",
+  "template_sha256": "1b4ca063c8b6c8455dc1e6bc76af44aa47967a01ba1b0c81e5149357b802d202",
+  "plan_sha256": "3795dd0e089dccad754b002a824ac9391b1b16e7b5c35d201721d8a8080d849a",
+  "test_path": "D:\\CodexRuntime\\yanxu-b001-progress-20261110\\test_validate_accept_release.py",
+  "test_sha256": "b3a0a977cb78d36bb0a372876d28d6093bbfe5b4c8e5e1d983654059ef58fc9d",
+  "tests": {
+    "run": 6,
+    "passed": 6,
+    "failed": 0,
+    "command": "python -B -m unittest test_validate_accept_release -v",
+    "full_publish_executed": false
+  },
+  "checks": {
+    "fresh_owned_roots_only": true,
+    "owned_root_and_parents_reparse_guard": true,
+    "source_and_input_bytes_bound_to_supplied_commit_and_hash": true,
+    "controller_and_worker_entry_drift_rejected": true,
+    "all_five_stages_require_finished_exit_zero": true,
+    "stage_logs_entries_launcher_argv_cwd_strictly_checked": true,
+    "exact_two_approved_audits_only_rebound": true,
+    "source_and_all_274_records_preserved": true,
+    "old_6559_members_unchanged_except_pinned_audits": true,
+    "only_new_review_member_added": true,
+    "no_hot_publish_or_hot_sqlite_copy": true,
+    "cold_restore_starts_without_any_data_or_sqlite": true,
+    "cold_publish_rechecks_database_wal_shm_absent": true,
+    "new_worker_process_does_not_reuse_ram_cache": true,
+    "single_full_production_publish_with_network_disabled": true,
+    "full_old_program_payload_digest_retained": true,
+    "six_api_examples_compare_with_independent_sql": true,
+    "field_proofs_full_samples_and_algorithm_projection_unchanged": true,
+    "separate_exact_new_approval_comparison_retained": true,
+    "errors_timeouts_and_native_nonzero_cannot_false_pass": true,
+    "prior_inspection_original_and_copy_sha_checked": true,
+    "no_root_old_hot_cold_credentials_modified": true
+  },
+  "actual_read_only_evidence": {
+    "baseline_bundle_member_count": 6559,
+    "approved_ecust_program_counts": [
+      165,
+      109
+    ],
+    "audit_rebind_equal_actual": true,
+    "template_sha_matches_pin": true,
+    "monitor_sha_matches_pin": true,
+    "fresh_roots_at_review": [
+      {
+        "path": "D:\\CodexRuntime\\yanxu-b001-accept-validation-20261110",
+        "exists": false
+      },
+      {
+        "path": "D:\\CodexRuntime\\yanxu-b001-accept-cold-20261110",
+        "exists": false
+      }
+    ]
+  },
+  "resolved_findings": [
+    {
+      "priority": "P2",
+      "issue": "finish previously ignored nonzero/running stage results",
+      "resolution": "stage_passed plus stage_provenance now gate all five terminal statuses, exit codes, logs and entry provenance"
+    },
+    {
+      "priority": "P2",
+      "issue": "controller/worker on-disk entry drift previously unguarded",
+      "resolution": "verify_frozen asserts current loaded controller/worker hashes and prepared receipt worker path/hash"
+    },
+    {
+      "priority": "P2",
+      "issue": "previous inspection copy SHA needed explicit guard",
+      "resolution": "finish assert_sha on copied previous-inspection.json before semantic comparison"
+    }
+  ],
+  "blockers": [],
+  "execution_preconditions": {
+    "not_execution_authorization": true,
+    "final_inputs_must_be_updated_and_frozen_by_root": true,
+    "inputs_sha256_seen": "be9a8afc9a671d7efcc90409ffa0771fb00df6db2a10c41caa1b74d4d5e0f87f",
+    "inputs_code_commit_seen_not_accepted_as_final": "08c41492a721a7c082c32990b401338e502b8c3d",
+    "instruction": "Use the final post-gold-fix committed code and a newly pinned input SHA; existing verify_frozen rejects HEAD or source drift. This review does not certify the old 08c inputs as final."
+  },
+  "limits": [
+    "No prepare/publish/inspect/finish stage executed by reviewer.",
+    "No HTTP/UI/real AI provider end-to-end validation.",
+    "Pass applies only to controller hash above; any later controller/template change requires re-review."
+  ],
+  "review_write_scope": [
+    "D:\\CodexRuntime\\yanxu-b001-progress-20261110\\review\\accept-controller-independent-review.json"
+  ]
+}

@@ -1,0 +1,1594 @@
+TAP version 13
+# Subtest: incremental events merge by identity and stale tasks do not contaminate a new research
+ok 1 - incremental events merge by identity and stale tasks do not contaminate a new research
+  ---
+  duration_ms: 6.0331
+  type: 'test'
+  ...
+# Subtest: polling stops at terminal or configuration states and labels remain honest
+ok 2 - polling stops at terminal or configuration states and labels remain honest
+  ---
+  duration_ms: 0.3917
+  type: 'test'
+  ...
+# Subtest: service loading or errors never imply that credentials are missing
+ok 3 - service loading or errors never imply that credentials are missing
+  ---
+  duration_ms: 1.0544
+  type: 'test'
+  ...
+# Subtest: decision intelligence surfaces the highest-impact unknown and keeps probability wording explicit
+ok 4 - decision intelligence surfaces the highest-impact unknown and keeps probability wording explicit
+  ---
+  duration_ms: 7.1404
+  type: 'test'
+  ...
+# Subtest: decision intelligence escapes user-visible candidate labels and disappears when absent
+ok 5 - decision intelligence escapes user-visible candidate labels and disappears when absent
+  ---
+  duration_ms: 1.4085
+  type: 'test'
+  ...
+# Subtest: decision card falls back to a non-enumerable next question instead of claiming low impact
+ok 6 - decision card falls back to a non-enumerable next question instead of claiming low impact
+  ---
+  duration_ms: 0.6131
+  type: 'test'
+  ...
+# Subtest: evidence ledger shows coverage, duplicate quotes and unsourced reasons without overclaiming
+ok 7 - evidence ledger shows coverage, duplicate quotes and unsourced reasons without overclaiming
+  ---
+  duration_ms: 0.9593
+  type: 'test'
+  ...
+# Subtest: relaxed candidate queries are disclosed in the report and never presented silently
+ok 8 - relaxed candidate queries are disclosed in the report and never presented silently
+  ---
+  duration_ms: 0.7886
+  type: 'test'
+  ...
+# Subtest: route and adjustment tool results remain visible without a matching tool result
+ok 9 - route and adjustment tool results remain visible without a matching tool result
+  ---
+  duration_ms: 1.408
+  type: 'test'
+  ...
+# Subtest: a missing configuration preserves the request without manufacturing an AI answer
+ok 10 - a missing configuration preserves the request without manufacturing an AI answer
+  ---
+  duration_ms: 1.1703
+  type: 'test'
+  ...
+# Subtest: search leads and official originals are distinguished and unsafe URLs never become links
+ok 11 - search leads and official originals are distinguished and unsafe URLs never become links
+  ---
+  duration_ms: 1.7072
+  type: 'test'
+  ...
+# Subtest: published snapshots are labeled as collected material without implying an original was just read
+ok 12 - published snapshots are labeled as collected material without implying an original was just read
+  ---
+  duration_ms: 0.5504
+  type: 'test'
+  ...
+# Subtest: algorithms show uncertainty instead of fabricated probability or zero changes
+ok 13 - algorithms show uncertainty instead of fabricated probability or zero changes
+  ---
+  duration_ms: 0.8063
+  type: 'test'
+  ...
+# Subtest: interpreted conditions need an explicit confirmation and preserve quoted wording
+ok 14 - interpreted conditions need an explicit confirmation and preserve quoted wording
+  ---
+  duration_ms: 2.614
+  type: 'test'
+  ...
+# Subtest: a running research keeps an editable composer before grouped candidates
+ok 15 - a running research keeps an editable composer before grouped candidates
+  ---
+  duration_ms: 2.989
+  type: 'test'
+  ...
+# Subtest: the initial result only expands three school groups and offers all remaining schools
+ok 16 - the initial result only expands three school groups and offers all remaining schools
+  ---
+  duration_ms: 5.0638
+  type: 'test'
+  ...
+# Subtest: the current action is derived from the current turn and the complete log starts closed
+ok 17 - the current action is derived from the current turn and the complete log starts closed
+  ---
+  duration_ms: 1.0053
+  type: 'test'
+  ...
+# Subtest: the overview exposes real algorithm results rather than only a separate method explanation
+ok 18 - the overview exposes real algorithm results rather than only a separate method explanation
+  ---
+  duration_ms: 1.369
+  type: 'test'
+  ...
+# Subtest: skills show loaded and related tool use separately and sources expose knowledge persistence
+ok 19 - skills show loaded and related tool use separately and sources expose knowledge persistence
+  ---
+  duration_ms: 0.7781
+  type: 'test'
+  ...
+# Subtest: a method not loaded in this turn is never labelled as a loaded skill
+ok 20 - a method not loaded in this turn is never labelled as a loaded skill
+  ---
+  duration_ms: 0.3915
+  type: 'test'
+  ...
+# Subtest: year-only proposals remain visible and the user can explicitly confirm study years
+ok 21 - year-only proposals remain visible and the user can explicitly confirm study years
+  ---
+  duration_ms: 0.4356
+  type: 'test'
+  ...
+# Subtest: sources are paged without silently changing the total and missing subjects never mean zero changes
+ok 22 - sources are paged without silently changing the total and missing subjects never mean zero changes
+  ---
+  duration_ms: 1.0439
+  type: 'test'
+  ...
+# Subtest: source admission separates accepted knowledge, pending leads and normal exclusions
+ok 23 - source admission separates accepted knowledge, pending leads and normal exclusions
+  ---
+  duration_ms: 0.7295
+  type: 'test'
+  ...
+# Subtest: legacy saved sources without admission quality never claim acceptance
+ok 24 - legacy saved sources without admission quality never claim acceptance
+  ---
+  duration_ms: 0.4065
+  type: 'test'
+  ...
+# Subtest: knowledge links retain real accepted or pending routing context and omit unknown quality
+ok 25 - knowledge links retain real accepted or pending routing context and omit unknown quality
+  ---
+  duration_ms: 0.8477
+  type: 'test'
+  ...
+# Subtest: research heading describes actual collaboration without a fixed nationwide disclaimer
+ok 26 - research heading describes actual collaboration without a fixed nationwide disclaimer
+  ---
+  duration_ms: 1.0351
+  type: 'test'
+  ...
+# Subtest: soft regions and excluded subjects stay visible, confirmable and editable
+ok 27 - soft regions and excluded subjects stay visible, confirmable and editable
+  ---
+  duration_ms: 0.4851
+  type: 'test'
+  ...
+# Subtest: exclusion editor values round-trip without losing scope
+ok 28 - exclusion editor values round-trip without losing scope
+  ---
+  duration_ms: 1.2402
+  type: 'test'
+  ...
+# Subtest: invalid exclusion tokens are rejected instead of silently truncated
+ok 29 - invalid exclusion tokens are rejected instead of silently truncated
+  ---
+  duration_ms: 1.212
+  type: 'test'
+  ...
+# Subtest: turn changes expose reused evidence, changed conditions and paused field conflicts
+ok 30 - turn changes expose reused evidence, changed conditions and paused field conflicts
+  ---
+  duration_ms: 0.8632
+  type: 'test'
+  ...
+# Subtest: the plan ledger lists checked goals, unknown facts, next actions and remaining budget
+ok 31 - the plan ledger lists checked goals, unknown facts, next actions and remaining budget
+  ---
+  duration_ms: 0.8197
+  type: 'test'
+  ...
+# Subtest: decision reasons and candidates return to the saved original without unsafe links
+ok 32 - decision reasons and candidates return to the saved original without unsafe links
+  ---
+  duration_ms: 3.6082
+  type: 'test'
+  ...
+# Subtest: recent research exposes more history and requires confirmation before deletion
+ok 33 - recent research exposes more history and requires confirmation before deletion
+  ---
+  duration_ms: 58.231
+  type: 'test'
+  ...
+# Subtest: original rows show exact year, unknown mode, OR choices and field-level original quotes
+ok 34 - original rows show exact year, unknown mode, OR choices and field-level original quotes
+  ---
+  duration_ms: 2.993
+  type: 'test'
+  ...
+# Subtest: all untrusted text is escaped and unsafe source links never become anchors
+ok 35 - all untrusted text is escaped and unsafe source links never become anchors
+  ---
+  duration_ms: 0.5169
+  type: 'test'
+  ...
+# Subtest: mounted facts require the requested school and year, and never render oversized or matching-enabled data
+ok 36 - mounted facts require the requested school and year, and never render oversized or matching-enabled data
+  ---
+  duration_ms: 6.8059
+  type: 'test'
+  ...
+# Subtest: disposing an expanded unit aborts fetch and ignores late responses
+ok 37 - disposing an expanded unit aborts fetch and ignores late responses
+  ---
+  duration_ms: 1.3736
+  type: 'test'
+  ...
+# Subtest: unit pagination carries only its scope and stale previous-page responses cannot repaint
+ok 38 - unit pagination carries only its scope and stale previous-page responses cannot repaint
+  ---
+  duration_ms: 1.5941
+  type: 'test'
+  ...
+# Subtest: a failed request can retry without losing the unit and empty rows never mean no admissions
+ok 39 - a failed request can retry without losing the unit and empty rows never mean no admissions
+  ---
+  duration_ms: 1.2038
+  type: 'test'
+  ...
+# Subtest: collection unit facts remain a separate optional disclosure from admitted program counts
+ok 40 - collection unit facts remain a separate optional disclosure from admitted program counts
+  ---
+  duration_ms: 0.6835
+  type: 'test'
+  ...
+# Subtest: an emptied source on a later page has a zero row range and a clear route back
+ok 41 - an emptied source on a later page has a zero row range and a clear route back
+  ---
+  duration_ms: 0.1997
+  type: 'test'
+  ...
+# Subtest: unverified, tampered or mismatched history values are retained as pending and never plotted
+ok 42 - unverified, tampered or mismatched history values are retained as pending and never plotted
+  ---
+  duration_ms: 4.9958
+  type: 'test'
+  ...
+# Subtest: evidence verification and reference applicability are independent chart gates
+ok 43 - evidence verification and reference applicability are independent chart gates
+  ---
+  duration_ms: 35.4006
+  type: 'test'
+  ...
+# Subtest: different numbered directions with the same name never share plotted history
+ok 44 - different numbered directions with the same name never share plotted history
+  ---
+  duration_ms: 1.8985
+  type: 'test'
+  ...
+# Subtest: one actual year keeps two missing years without a fabricated trend
+ok 45 - one actual year keeps two missing years without a fabricated trend
+  ---
+  duration_ms: 3.3729
+  type: 'test'
+  ...
+# Subtest: trend segments require adjacent years, matching cohorts and explicit matching full scores
+ok 46 - trend segments require adjacent years, matching cohorts and explicit matching full scores
+  ---
+  duration_ms: 68.3741
+  type: 'test'
+  ...
+# Subtest: different admission sources, plans, full score scales and directions never share a series
+ok 47 - different admission sources, plans, full score scales and directions never share a series
+  ---
+  duration_ms: 7.9225
+  type: 'test'
+  ...
+# Subtest: records from other schools, departments, codes or learning modes are excluded
+ok 48 - records from other schools, departments, codes or learning modes are excluded
+  ---
+  duration_ms: 0.8756
+  type: 'test'
+  ...
+# Subtest: two publications in one year are kept separately instead of combining samples
+ok 49 - two publications in one year are kept separately instead of combining samples
+  ---
+  duration_ms: 4.8734
+  type: 'test'
+  ...
+# Subtest: invalid numbers, unavailable sources and out of window years never become zero data
+ok 50 - invalid numbers, unavailable sources and out of window years never become zero data
+  ---
+  duration_ms: 1.4218
+  type: 'test'
+  ...
+# Subtest: retest lines remain their own chart with a separate evidence claim
+ok 51 - retest lines remain their own chart with a separate evidence claim
+  ---
+  duration_ms: 4.4413
+  type: 'test'
+  ...
+# Subtest: explicit full score aliases are accepted without inferring missing maxima
+ok 52 - explicit full score aliases are accepted without inferring missing maxima
+  ---
+  duration_ms: 1.2777
+  type: 'test'
+  ...
+# Subtest: school discipline reference lines remain separate and never become a program threshold
+ok 53 - school discipline reference lines remain separate and never become a program threshold
+  ---
+  duration_ms: 3.2537
+  type: 'test'
+  ...
+# Subtest: academic and professional school references retain exact code coverage changes
+ok 54 - academic and professional school references retain exact code coverage changes
+  ---
+  duration_ms: 3.171
+  type: 'test'
+  ...
+# Subtest: history chart provides actual accessible tables and escapes all labels and source identifiers
+ok 55 - history chart provides actual accessible tables and escapes all labels and source identifiers
+  ---
+  duration_ms: 2.2025
+  type: 'test'
+  ...
+# Subtest: mobile history keeps all three years and source controls in view without a wide SVG
+ok 56 - mobile history keeps all three years and source controls in view without a wide SVG
+  ---
+  duration_ms: 2.3161
+  type: 'test'
+  ...
+# Subtest: fee charts keep annual and total amounts separate, unknown distinct and literal zero valid
+ok 57 - fee charts keep annual and total amounts separate, unknown distinct and literal zero valid
+  ---
+  duration_ms: 1.9605
+  type: 'test'
+  ...
+# Subtest: different fee reference years get separate charts and uncertainty does not look free
+ok 58 - different fee reference years get separate charts and uncertainty does not look free
+  ---
+  duration_ms: 0.669
+  type: 'test'
+  ...
+# Subtest: subject adjustment counts use uncertainty and never invent zero changes
+ok 59 - subject adjustment counts use uncertainty and never invent zero changes
+  ---
+  duration_ms: 0.7448
+  type: 'test'
+  ...
+# Subtest: comparison labels escape markup, zero widths stay finite, and only first three candidates render
+ok 60 - comparison labels escape markup, zero widths stay finite, and only first three candidates render
+  ---
+  duration_ms: 0.7112
+  type: 'test'
+  ...
+# Subtest: route coverage plots actual direction counts while keeping school, major and pending counts distinct
+ok 61 - route coverage plots actual direction counts while keeping school, major and pending counts distinct
+  ---
+  duration_ms: 1.734
+  type: 'test'
+  ...
+# Subtest: national progress separates index, annual confirmation and catalog completeness
+ok 62 - national progress separates index, annual confirmation and catalog completeness
+  ---
+  duration_ms: 1.749
+  type: 'test'
+  ...
+# Subtest: missing schools retain reason, original links and remaining pages without inventing eligibility
+ok 63 - missing schools retain reason, original links and remaining pages without inventing eligibility
+  ---
+  duration_ms: 0.9987
+  type: 'test'
+  ...
+# Subtest: unit rows distinguish parsing readiness, format gaps and source verification failures from publication
+ok 64 - unit rows distinguish parsing readiness, format gaps and source verification failures from publication
+  ---
+  duration_ms: 0.5954
+  type: 'test'
+  ...
+# Subtest: mixed original processing counts keep ready files separate from failures and non-catalog documents
+ok 65 - mixed original processing counts keep ready files separate from failures and non-catalog documents
+  ---
+  duration_ms: 1.046
+  type: 'test'
+  ...
+# Subtest: expandable parser gaps show the exact original links and escaped reasons without asserting missing official publication
+ok 66 - expandable parser gaps show the exact original links and escaped reasons without asserting missing official publication
+  ---
+  duration_ms: 2.0268
+  type: 'test'
+  ...
+# Subtest: per-unit parser detail remains bounded and keeps the verified annual denominator and not-listed explanation
+ok 67 - per-unit parser detail remains bounded and keeps the verified annual denominator and not-listed explanation
+  ---
+  duration_ms: 1.3972
+  type: 'test'
+  ...
+# Subtest: a third knowledge tab shows independent embedding configuration and a local-first explanation
+ok 68 - a third knowledge tab shows independent embedding configuration and a local-first explanation
+  ---
+  duration_ms: 3.4527
+  type: 'test'
+  ...
+# Subtest: public embedding state preserves observed identity without leaking credentials
+ok 69 - public embedding state preserves observed identity without leaking credentials
+  ---
+  duration_ms: 0.6093
+  type: 'test'
+  ...
+# Subtest: unconfigured embedding never labels the semantic index as ready
+ok 70 - unconfigured embedding never labels the semantic index as ready
+  ---
+  duration_ms: 2.3165
+  type: 'test'
+  ...
+# Subtest: embedding connection validates provider, model, key and custom endpoint before any request
+ok 71 - embedding connection validates provider, model, key and custom endpoint before any request
+  ---
+  duration_ms: 2.6409
+  type: 'test'
+  ...
+# Subtest: model discovery records a finite list and never treats it as a passing vector test
+ok 72 - model discovery records a finite list and never treats it as a passing vector test
+  ---
+  duration_ms: 9.6818
+  type: 'test'
+  ...
+# Subtest: a passing test creates a receipt and the save response alone marks the connection connected
+ok 73 - a passing test creates a receipt and the save response alone marks the connection connected
+  ---
+  duration_ms: 2.5528
+  type: 'test'
+  ...
+# Subtest: save failures keep a test receipt for retry and named model failures get a specific title
+ok 74 - save failures keep a test receipt for retry and named model failures get a specific title
+  ---
+  duration_ms: 3.6325
+  type: 'test'
+  ...
+# Subtest: reusing a saved key is explicit and deleting a connection clears the receipt
+ok 75 - reusing a saved key is explicit and deleting a connection clears the receipt
+  ---
+  duration_ms: 1.7177
+  type: 'test'
+  ...
+# Subtest: cancelled or disposed requests cannot update the connection state
+ok 76 - cancelled or disposed requests cannot update the connection state
+  ---
+  duration_ms: 0.9373
+  type: 'test'
+  ...
+# Subtest: embedding form branches show manual model entry, stored keys and custom endpoints
+ok 77 - embedding form branches show manual model entry, stored keys and custom endpoints
+  ---
+  duration_ms: 1.1681
+  type: 'test'
+  ...
+# Subtest: embedding feedback distinguishes errors, success, busy states and an unavailable provider list
+ok 78 - embedding feedback distinguishes errors, success, busy states and an unavailable provider list
+  ---
+  duration_ms: 0.713
+  type: 'test'
+  ...
+# Subtest: serving index, desired identity and actual build counts are shown without inventing totals
+ok 79 - serving index, desired identity and actual build counts are shown without inventing totals
+  ---
+  duration_ms: 3.3203
+  type: 'test'
+  ...
+# Subtest: desired model changes are labelled pending while the old serving index remains explicit
+ok 80 - desired model changes are labelled pending while the old serving index remains explicit
+  ---
+  duration_ms: 1.5136
+  type: 'test'
+  ...
+# Subtest: a staging space is separate from serving and failed builds keep the old generation
+ok 81 - a staging space is separate from serving and failed builds keep the old generation
+  ---
+  duration_ms: 0.9133
+  type: 'test'
+  ...
+# Subtest: an unprepared local model requires an explicit prepare action and polling renders no implicit work
+ok 82 - an unprepared local model requires an explicit prepare action and polling renders no implicit work
+  ---
+  duration_ms: 0.6903
+  type: 'test'
+  ...
+# Subtest: unknown usage stays unknown and unconfigured connections never claim a serving index
+ok 83 - unknown usage stays unknown and unconfigured connections never claim a serving index
+  ---
+  duration_ms: 0.2351
+  type: 'test'
+  ...
+# Subtest: model and error strings are escaped and no credential field is rendered
+ok 84 - model and error strings are escaped and no credential field is rendered
+  ---
+  duration_ms: 0.396
+  type: 'test'
+  ...
+# Subtest: index loading keeps building state separate and a local unprepared model opens the section
+ok 85 - index loading keeps building state separate and a local unprepared model opens the section
+  ---
+  duration_ms: 7.7769
+  type: 'test'
+  ...
+# Subtest: invalid index status and request errors are surfaced without pretending the index is ready
+ok 86 - invalid index status and request errors are surfaced without pretending the index is ready
+  ---
+  duration_ms: 0.7714
+  type: 'test'
+  ...
+# Subtest: build, cancel and prepare expose started, already-running and failed outcomes
+ok 87 - build, cancel and prepare expose started, already-running and failed outcomes
+  ---
+  duration_ms: 78.6004
+  type: 'test'
+  ...
+# Subtest: cancel and prepare failures stay visible and no click action is silently invented
+ok 88 - cancel and prepare failures stay visible and no click action is silently invented
+  ---
+  duration_ms: 29.3632
+  type: 'test'
+  ...
+# Subtest: model preparation failures, unknown usage and partial counts are named without zeros
+ok 89 - model preparation failures, unknown usage and partial counts are named without zeros
+  ---
+  duration_ms: 0.9006
+  type: 'test'
+  ...
+# Subtest: index states distinguish failed generations, removed connections and dirty ready spaces
+ok 90 - index states distinguish failed generations, removed connections and dirty ready spaces
+  ---
+  duration_ms: 0.3616
+  type: 'test'
+  ...
+# Subtest: explicit build confirmation, notices and disabled actions are rendered from real state
+ok 91 - explicit build confirmation, notices and disabled actions are rendered from real state
+  ---
+  duration_ms: 0.5998
+  type: 'test'
+  ...
+# Subtest: source filters are bounded and serialize only public supported fields
+ok 92 - source filters are bounded and serialize only public supported fields
+  ---
+  duration_ms: 4.7791
+  type: 'test'
+  ...
+# Subtest: one source file with different quotes or URLs remains one evidence group
+ok 93 - one source file with different quotes or URLs remains one evidence group
+  ---
+  duration_ms: 0.9113
+  type: 'test'
+  ...
+# Subtest: a verified public form links to the actual GET query page and retains the POST fact as escaped text
+ok 94 - a verified public form links to the actual GET query page and retains the POST fact as escaped text
+  ---
+  duration_ms: 27.1661
+  type: 'test'
+  ...
+# Subtest: structured references deduplicate by field path and original value without swallowing empty-quote fields
+ok 95 - structured references deduplicate by field path and original value without swallowing empty-quote fields
+  ---
+  duration_ms: 0.3091
+  type: 'test'
+  ...
+# Subtest: structured originals show the real field path and escaped raw values without invented prose quotes
+ok 96 - structured originals show the real field path and escaped raw values without invented prose quotes
+  ---
+  duration_ms: 5.224
+  type: 'test'
+  ...
+# Subtest: structured values never turn dangerous detail URLs into links or unverified fields into adopted evidence
+ok 97 - structured values never turn dangerous detail URLs into links or unverified fields into adopted evidence
+  ---
+  duration_ms: 1.044
+  type: 'test'
+  ...
+# Subtest: source center preserves published-snapshot wording while marking the structured original format
+ok 98 - source center preserves published-snapshot wording while marking the structured original format
+  ---
+  duration_ms: 1.1982
+  type: 'test'
+  ...
+# Subtest: claims preserve annual and total units, unknown values and actual scopes
+ok 99 - claims preserve annual and total units, unknown values and actual scopes
+  ---
+  duration_ms: 0.8267
+  type: 'test'
+  ...
+# Subtest: field evidence contains full quote, source URL, page and distinct document count
+ok 100 - field evidence contains full quote, source URL, page and distinct document count
+  ---
+  duration_ms: 1.3848
+  type: 'test'
+  ...
+# Subtest: conflicting and missing claims remain explicit and unsupported URLs never become links
+ok 101 - conflicting and missing claims remain explicit and unsupported URLs never become links
+  ---
+  duration_ms: 1.8698
+  type: 'test'
+  ...
+# Subtest: source center filters and related directions are readable without inventing verification
+ok 102 - source center filters and related directions are readable without inventing verification
+  ---
+  duration_ms: 1.4064
+  type: 'test'
+  ...
+# Subtest: source cards target actual related claims and distinguish replaced or pending versions
+ok 103 - source cards target actual related claims and distinguish replaced or pending versions
+  ---
+  duration_ms: 1.8671
+  type: 'test'
+  ...
+# Subtest: out-of-scope original quotes remain readable and can never be labelled direct support
+ok 104 - out-of-scope original quotes remain readable and can never be labelled direct support
+  ---
+  duration_ms: 2.3699
+  type: 'test'
+  ...
+# Subtest: closing evidence aborts loading and a late result cannot repaint a disposed dialog
+ok 105 - closing evidence aborts loading and a late result cannot repaint a disposed dialog
+  ---
+  duration_ms: 15.431
+  type: 'test'
+  ...
+# Subtest: field switches do not refetch and close is delegated to the owning dialog
+ok 106 - field switches do not refetch and close is delegated to the owning dialog
+  ---
+  duration_ms: 1.63
+  type: 'test'
+  ...
+# Subtest: source filters abort old requests and stale responses never replace a new scope
+ok 107 - source filters abort old requests and stale responses never replace a new scope
+  ---
+  duration_ms: 2.8288
+  type: 'test'
+  ...
+# Subtest: failed source loading is readable and explicit retry can recover
+ok 108 - failed source loading is readable and explicit retry can recover
+  ---
+  duration_ms: 2.0743
+  type: 'test'
+  ...
+# Subtest: Chinese composition is not rerendered or queried until input is committed
+ok 109 - Chinese composition is not rerendered or queried until input is committed
+  ---
+  duration_ms: 303.4871
+  type: 'test'
+  ...
+# Subtest: source pagination is bounded and query state survives remount without leaking extra fields
+ok 110 - source pagination is bounded and query state survives remount without leaking extra fields
+  ---
+  duration_ms: 8.1309
+  type: 'test'
+  ...
+# Subtest: source ready callback runs after the current successful render only
+ok 111 - source ready callback runs after the current successful render only
+  ---
+  duration_ms: 1.5753
+  type: 'test'
+  ...
+# Subtest: server source pages retain published status and never claim a live original readback
+ok 112 - server source pages retain published status and never claim a live original readback
+  ---
+  duration_ms: 0.9169
+  type: 'test'
+  ...
+# Subtest: a legacy whole-array response is rejected instead of silently becoming page one
+ok 113 - a legacy whole-array response is rejected instead of silently becoming page one
+  ---
+  duration_ms: 1.5603
+  type: 'test'
+  ...
+# Subtest: source page responses cannot repaint a newer page or disposed center
+ok 114 - source page responses cannot repaint a newer page or disposed center
+  ---
+  duration_ms: 5.656
+  type: 'test'
+  ...
+# Subtest: a changed publication is explicit and retry starts at page one of the new revision
+ok 115 - a changed publication is explicit and retry starts at page one of the new revision
+  ---
+  duration_ms: 2.9432
+  type: 'test'
+  ...
+# Subtest: an out-of-range bookmarked page is fetched again at the valid last server page
+ok 116 - an out-of-range bookmarked page is fetched again at the valid last server page
+  ---
+  duration_ms: 1.3949
+  type: 'test'
+  ...
+# Subtest: related evidence and pagination keyboard focus preserve source context
+ok 117 - related evidence and pagination keyboard focus preserve source context
+  ---
+  duration_ms: 3.2905
+  type: 'test'
+  ...
+# Subtest: field evidence accepts a pinned source revision without changing the original API
+ok 118 - field evidence accepts a pinned source revision without changing the original API
+  ---
+  duration_ms: 3.8435
+  type: 'test'
+  ...
+# Subtest: department display omits contact details while preserving the original record
+ok 119 - department display omits contact details while preserving the original record
+  ---
+  duration_ms: 3.6776
+  type: 'test'
+  ...
+# Subtest: annual admission labels distinguish an index record from an independently listed unit
+ok 120 - annual admission labels distinguish an index record from an independently listed unit
+  ---
+  duration_ms: 0.6279
+  type: 'test'
+  ...
+# Subtest: light catalog bootstrap needs no nationwide programs or original documents
+ok 121 - light catalog bootstrap needs no nationwide programs or original documents
+  ---
+  duration_ms: 1.3211
+  type: 'test'
+  ...
+# Subtest: catalog pages request only six records and a listing row does not pretend to include history
+ok 122 - catalog pages request only six records and a listing row does not pretend to include history
+  ---
+  duration_ms: 1.2878
+  type: 'test'
+  ...
+# Subtest: lazy program loading deduplicates requests and a new revision clears all prior cached context
+ok 123 - lazy program loading deduplicates requests and a new revision clears all prior cached context
+  ---
+  duration_ms: 0.4105
+  type: 'test'
+  ...
+# Subtest: a stale catalog response never combines program data from different published versions
+ok 124 - a stale catalog response never combines program data from different published versions
+  ---
+  duration_ms: 0.679
+  type: 'test'
+  ...
+# Subtest: subject catalogs page all real exam identities without scanning cached programs
+ok 125 - subject catalogs page all real exam identities without scanning cached programs
+  ---
+  duration_ms: 0.9403
+  type: 'test'
+  ...
+# Subtest: lazy saved records preserve individual failures and retry a previously missing bundle
+ok 126 - lazy saved records preserve individual failures and retry a previously missing bundle
+  ---
+  duration_ms: 0.6733
+  type: 'test'
+  ...
+# Subtest: subject failures and cancellation cannot present a partial catalog as fully loaded
+ok 127 - subject failures and cancellation cannot present a partial catalog as fully loaded
+  ---
+  duration_ms: 0.9828
+  type: 'test'
+  ...
+# Subtest: server exam units and complete algorithm results do not depend on the six visible records
+ok 128 - server exam units and complete algorithm results do not depend on the six visible records
+  ---
+  duration_ms: 3.0366
+  type: 'test'
+  ...
+# Subtest: analysis preserves catalog hits for degree and study-mode search terms
+ok 129 - analysis preserves catalog hits for degree and study-mode search terms
+  ---
+  duration_ms: 0.6941
+  type: 'test'
+  ...
+# Subtest: continuing in Agent keeps the selected official material and reference year
+ok 130 - continuing in Agent keeps the selected official material and reference year
+  ---
+  duration_ms: 1.3109
+  type: 'test'
+  ...
+# Subtest: real programs retain missing admission statistics and scoped subjects
+ok 131 - real programs retain missing admission statistics and scoped subjects
+  ---
+  duration_ms: 0.5106
+  type: 'test'
+  ...
+# Subtest: self-set course identity includes institution and examination unit
+ok 132 - self-set course identity includes institution and examination unit
+  ---
+  duration_ms: 0.2256
+  type: 'test'
+  ...
+# Subtest: official program-level catalogs keep missing departments and directions explicit
+ok 133 - official program-level catalogs keep missing departments and directions explicit
+  ---
+  duration_ms: 1.0692
+  type: 'test'
+  ...
+# Subtest: API envelopes surface configured errors and serialize only explicit request bodies
+ok 134 - API envelopes surface configured errors and serialize only explicit request bodies
+  ---
+  duration_ms: 0.5177
+  type: 'test'
+  ...
+# Subtest: malformed local preferences cannot introduce keys or unknown subject identities
+ok 135 - malformed local preferences cannot introduce keys or unknown subject identities
+  ---
+  duration_ms: 0.2443
+  type: 'test'
+  ...
+# Subtest: ranking mode restores safely and stays aligned with the selected priority
+ok 136 - ranking mode restores safely and stays aligned with the selected priority
+  ---
+  duration_ms: 0.3372
+  type: 'test'
+  ...
+# Subtest: ranking evidence is visible and unknown cost never looks like a complete score
+ok 137 - ranking evidence is visible and unknown cost never looks like a complete score
+  ---
+  duration_ms: 23.8363
+  type: 'test'
+  ...
+# Subtest: tuition and duration retain their separate official evidence without repeated links
+ok 138 - tuition and duration retain their separate official evidence without repeated links
+  ---
+  duration_ms: 0.9467
+  type: 'test'
+  ...
+# Subtest: admitted samples require explicit institution, department, program and learning type identity
+ok 139 - admitted samples require explicit institution, department, program and learning type identity
+  ---
+  duration_ms: 0.7099
+  type: 'test'
+  ...
+# Subtest: API transport and invalid JSON failures remain visible rather than becoming empty data
+ok 140 - API transport and invalid JSON failures remain visible rather than becoming empty data
+  ---
+  duration_ms: 0.8834
+  type: 'test'
+  ...
+# Subtest: stored hard limits remain distinct and invalid personal fields do not survive restoration
+ok 141 - stored hard limits remain distinct and invalid personal fields do not survive restoration
+  ---
+  duration_ms: 0.385
+  type: 'test'
+  ...
+# Subtest: history fallback is restricted to the last three completed years and retains the actual year
+ok 142 - history fallback is restricted to the last three completed years and retains the actual year
+  ---
+  duration_ms: 0.4944
+  type: 'test'
+  ...
+# Subtest: shared enrollment counts retain scope and are not fabricated as direction seats
+ok 143 - shared enrollment counts retain scope and are not fabricated as direction seats
+  ---
+  duration_ms: 0.5797
+  type: 'test'
+  ...
+# Subtest: historical score inputs only appear for actual source rules and keep the selected source year
+ok 144 - historical score inputs only appear for actual source rules and keep the selected source year
+  ---
+  duration_ms: 0.9519
+  type: 'test'
+  ...
+# Subtest: historical rule discovery matches explicit school, department and program across different directory years
+ok 145 - historical rule discovery matches explicit school, department and program across different directory years
+  ---
+  duration_ms: 1.2991
+  type: 'test'
+  ...
+# Subtest: incomplete preference scores show a bounded range and keep unknown cost distinct from zero
+ok 146 - incomplete preference scores show a bounded range and keep unknown cost distinct from zero
+  ---
+  duration_ms: 0.7898
+  type: 'test'
+  ...
+# Subtest: official source rendering escapes untrusted text and rejects executable URLs
+ok 147 - official source rendering escapes untrusted text and rejects executable URLs
+  ---
+  duration_ms: 2.8764
+  type: 'test'
+  ...
+# Subtest: routes decode real program IDs and pagination clamps stale pages without mutating saved plans
+ok 148 - routes decode real program IDs and pagination clamps stale pages without mutating saved plans
+  ---
+  duration_ms: 1.2928
+  type: 'test'
+  ...
+# Subtest: nested historical rules expose the selected route, leaf status and official score evidence
+ok 149 - nested historical rules expose the selected route, leaf status and official score evidence
+  ---
+  duration_ms: 1.8221
+  type: 'test'
+  ...
+# Subtest: source center is a first class route without introducing another primary navigation
+ok 150 - source center is a first class route without introducing another primary navigation
+  ---
+  duration_ms: 0.2631
+  type: 'test'
+  ...
+# Subtest: research knowledge has a dedicated route without requiring a program selection
+ok 151 - research knowledge has a dedicated route without requiring a program selection
+  ---
+  duration_ms: 0.1666
+  type: 'test'
+  ...
+# Subtest: important detail fields open the precise evidence claim with escaped identities
+ok 152 - important detail fields open the precise evidence claim with escaped identities
+  ---
+  duration_ms: 0.7019
+  type: 'test'
+  ...
+# Subtest: historical rows preserve a direct evidence claim even when only one completed year exists
+ok 153 - historical rows preserve a direct evidence claim even when only one completed year exists
+  ---
+  duration_ms: 0.4811
+  type: 'test'
+  ...
+# Subtest: explicit department, study mode and direction scopes cannot leak into another program chart
+ok 154 - explicit department, study mode and direction scopes cannot leak into another program chart
+  ---
+  duration_ms: 0.5329
+  type: 'test'
+  ...
+# Subtest: school discipline cutoffs preserve unknown applicability and exclude different degree or discipline scopes
+ok 155 - school discipline cutoffs preserve unknown applicability and exclude different degree or discipline scopes
+  ---
+  duration_ms: 1.6171
+  type: 'test'
+  ...
+# Subtest: unverified history and cutoffs retain evidence context without presenting their numbers as facts
+ok 156 - unverified history and cutoffs retain evidence context without presenting their numbers as facts
+  ---
+  duration_ms: 1.1771
+  type: 'test'
+  ...
+# Subtest: different research direction codes never merge even when their names match
+ok 157 - different research direction codes never merge even when their names match
+  ---
+  duration_ms: 0.3339
+  type: 'test'
+  ...
+# Subtest: the library keeps keyword paging and offers an explicit separate hybrid submission
+ok 158 - the library keeps keyword paging and offers an explicit separate hybrid submission
+  ---
+  duration_ms: 2.4823
+  type: 'test'
+  ...
+# Subtest: hybrid results report finite counts, rule rerank, usage and an N3 reader link
+ok 159 - hybrid results report finite counts, rule rerank, usage and an N3 reader link
+  ---
+  duration_ms: 8.0714
+  type: 'test'
+  ...
+# Subtest: keyword degradation is named honestly and unknown usage never becomes zero
+ok 160 - keyword degradation is named honestly and unknown usage never becomes zero
+  ---
+  duration_ms: 0.6087
+  type: 'test'
+  ...
+# Subtest: empty and error states preserve the finite-scope boundary instead of claiming nothing exists
+ok 161 - empty and error states preserve the finite-scope boundary instead of claiming nothing exists
+  ---
+  duration_ms: 0.3511
+  type: 'test'
+  ...
+# Subtest: untrusted result titles, names and text are escaped in the hybrid list
+ok 162 - untrusted result titles, names and text are escaped in the hybrid list
+  ---
+  duration_ms: 1.8414
+  type: 'test'
+  ...
+# Subtest: indexed originals open a focused segment reader rather than the legacy text dump
+ok 163 - indexed originals open a focused segment reader rather than the legacy text dump
+  ---
+  duration_ms: 7.3594
+  type: 'test'
+  ...
+# Subtest: separate table context and neighboring clauses keep their own quotes and exact source location
+ok 164 - separate table context and neighboring clauses keep their own quotes and exact source location
+  ---
+  duration_ms: 0.9595
+  type: 'test'
+  ...
+# Subtest: inactive sources suppress bodies regardless of their former admission quality
+ok 165 - inactive sources suppress bodies regardless of their former admission quality
+  ---
+  duration_ms: 0.895
+  type: 'test'
+  ...
+# Subtest: unknown validity and missing modern usability fail closed
+ok 166 - unknown validity and missing modern usability fail closed
+  ---
+  duration_ms: 0.3938
+  type: 'test'
+  ...
+# Subtest: real Store unindexed metadata on search leads and published snapshots preserves their bounded summaries
+ok 167 - real Store unindexed metadata on search leads and published snapshots preserves their bounded summaries
+  ---
+  duration_ms: 1.1565
+  type: 'test'
+  ...
+# Subtest: maintenance is a secondary collapsed surface with separate validity and extraction/index states
+ok 168 - maintenance is a secondary collapsed surface with separate validity and extraction/index states
+  ---
+  duration_ms: 0.4828
+  type: 'test'
+  ...
+# Subtest: document-wide terms are explained instead of declaring a single clause satisfies the whole query
+ok 169 - document-wide terms are explained instead of declaring a single clause satisfies the whole query
+  ---
+  duration_ms: 1.5207
+  type: 'test'
+  ...
+# Subtest: HTML pages never receive made-up PDF anchors and exact source strings remain escaped
+ok 170 - HTML pages never receive made-up PDF anchors and exact source strings remain escaped
+  ---
+  duration_ms: 0.4733
+  type: 'test'
+  ...
+# Subtest: controller scopes search to current entry and accepted quality and bounds every read window
+ok 171 - controller scopes search to current entry and accepted quality and bounds every read window
+  ---
+  duration_ms: 10.569
+  type: 'test'
+  ...
+# Subtest: untrusted entries and unsupported index states do not request trusted segment APIs
+ok 172 - untrusted entries and unsupported index states do not request trusted segment APIs
+  ---
+  duration_ms: 1.1016
+  type: 'test'
+  ...
+# Subtest: outdated search and read responses cannot replace a newer entry or position
+ok 173 - outdated search and read responses cannot replace a newer entry or position
+  ---
+  duration_ms: 1.7473
+  type: 'test'
+  ...
+# Subtest: foreign entry, extraction or neighboring generation is rejected instead of displayed
+ok 174 - foreign entry, extraction or neighboring generation is rejected instead of displayed
+  ---
+  duration_ms: 1.4211
+  type: 'test'
+  ...
+# Subtest: a self-consistent old generation is rejected against the current generation
+ok 175 - a self-consistent old generation is rejected against the current generation
+  ---
+  duration_ms: 0.8985
+  type: 'test'
+  ...
+# Subtest: explicitly foreign context identities cannot be quoted as part of this source
+ok 176 - explicitly foreign context identities cannot be quoted as part of this source
+  ---
+  duration_ms: 1.707
+  type: 'test'
+  ...
+# Subtest: fresh read and search source metadata can withdraw trust or reveal a foreign source
+ok 177 - fresh read and search source metadata can withdraw trust or reveal a foreign source
+  ---
+  duration_ms: 4.4023
+  type: 'test'
+  ...
+# Subtest: agent deep links choose a legal segment from the current extraction generation only
+ok 178 - agent deep links choose a legal segment from the current extraction generation only
+  ---
+  duration_ms: 3.9485
+  type: 'test'
+  ...
+# Subtest: reindex only claims completion for a confirmed rebuilt successful generation
+ok 179 - reindex only claims completion for a confirmed rebuilt successful generation
+  ---
+  duration_ms: 3.8262
+  type: 'test'
+  ...
+# Subtest: network errors remain recoverable and aborted requests do not render failures
+ok 180 - network errors remain recoverable and aborted requests do not render failures
+  ---
+  duration_ms: 2.5834
+  type: 'test'
+  ...
+# Subtest: maintenance requires a reason and explicit confirmation and sends no null replacement
+ok 181 - maintenance requires a reason and explicit confirmation and sends no null replacement
+  ---
+  duration_ms: 2.8472
+  type: 'test'
+  ...
+# Subtest: index jobs and retry failures are visible without pretending a vector index exists
+ok 182 - index jobs and retry failures are visible without pretending a vector index exists
+  ---
+  duration_ms: 1.8172
+  type: 'test'
+  ...
+# Subtest: source URLs and contexts remain honest for unknown physical positions and malicious links
+ok 183 - source URLs and contexts remain honest for unknown physical positions and malicious links
+  ---
+  duration_ms: 1.3045
+  type: 'test'
+  ...
+# Subtest: library distinguishes saved originals, search leads and published material without claiming verified fields
+ok 184 - library distinguishes saved originals, search leads and published material without claiming verified fields
+  ---
+  duration_ms: 29.6856
+  type: 'test'
+  ...
+# Subtest: search, school, year and source status filters preserve the current query and selections
+ok 185 - search, school, year and source status filters preserve the current query and selections
+  ---
+  duration_ms: 1.37
+  type: 'test'
+  ...
+# Subtest: detail shows exact source text and provenance while preserving original dates and field limits
+ok 186 - detail shows exact source text and provenance while preserving original dates and field limits
+  ---
+  duration_ms: 3.407
+  type: 'test'
+  ...
+# Subtest: missing or changed snapshots never display their stale body as dependable original text
+ok 187 - missing or changed snapshots never display their stale body as dependable original text
+  ---
+  duration_ms: 1.6165
+  type: 'test'
+  ...
+# Subtest: lead summaries and published excerpts are never labelled as freshly read official originals
+ok 188 - lead summaries and published excerpts are never labelled as freshly read official originals
+  ---
+  duration_ms: 3.3268
+  type: 'test'
+  ...
+# Subtest: external titles, text, query and URLs cannot create executable content
+ok 189 - external titles, text, query and URLs cannot create executable content
+  ---
+  duration_ms: 2.9035
+  type: 'test'
+  ...
+# Subtest: retained page excerpts keep exact page numbers and never promote lead text to official originals
+ok 190 - retained page excerpts keep exact page numbers and never promote lead text to official originals
+  ---
+  duration_ms: 2.503
+  type: 'test'
+  ...
+# Subtest: metadata-only notices are explicit and suppress personal bodies or page excerpts even if mistakenly returned
+ok 191 - metadata-only notices are explicit and suppress personal bodies or page excerpts even if mistakenly returned
+  ---
+  duration_ms: 1.2856
+  type: 'test'
+  ...
+# Subtest: default original rows stay compact while search results and the reader keep the saved text
+ok 192 - default original rows stay compact while search results and the reader keep the saved text
+  ---
+  duration_ms: 1.7299
+  type: 'test'
+  ...
+# Subtest: short-name expansion is shown as a query change and never rendered as markup
+ok 193 - short-name expansion is shown as a query change and never rendered as markup
+  ---
+  duration_ms: 1.4168
+  type: 'test'
+  ...
+# Subtest: loading, recoverable failures, empty results and pagination have explicit states
+ok 194 - loading, recoverable failures, empty results and pagination have explicit states
+  ---
+  duration_ms: 2.2561
+  type: 'test'
+  ...
+# Subtest: quality admission is an independent default section with honest counts and an explicit pending section
+ok 195 - quality admission is an independent default section with honest counts and an explicit pending section
+  ---
+  duration_ms: 2.2567
+  type: 'test'
+  ...
+# Subtest: unclassified or internally inconsistent quality never displays an accepted entry badge
+ok 196 - unclassified or internally inconsistent quality never displays an accepted entry badge
+  ---
+  duration_ms: 1.1269
+  type: 'test'
+  ...
+# Subtest: an empty accepted section never claims the whole library is empty
+ok 197 - an empty accepted section never claims the whole library is empty
+  ---
+  duration_ms: 0.2666
+  type: 'test'
+  ...
+# Subtest: quality reasons are expandable in both rows and reader and escape untrusted messages
+ok 198 - quality reasons are expandable in both rows and reader and escape untrusted messages
+  ---
+  duration_ms: 1.2153
+  type: 'test'
+  ...
+# Subtest: excluded quality hides all garbage or personal text while preserving source metadata and reasons
+ok 199 - excluded quality hides all garbage or personal text while preserving source metadata and reasons
+  ---
+  duration_ms: 1.14
+  type: 'test'
+  ...
+# Subtest: knowledge location keeps filters, page and reader in the shareable hash while omitting defaults
+ok 200 - knowledge location keeps filters, page and reader in the shareable hash while omitting defaults
+  ---
+  duration_ms: 0.6122
+  type: 'test'
+  ...
+# Subtest: knowledge location preserves only a legal segment attached to an open entry
+ok 201 - knowledge location preserves only a legal segment attached to an open entry
+  ---
+  duration_ms: 0.5132
+  type: 'test'
+  ...
+# Subtest: official discovery keeps entry, target document and body stages distinct in one collapsed disclosure
+ok 202 - official discovery keeps entry, target document and body stages distinct in one collapsed disclosure
+  ---
+  duration_ms: 3.9638
+  type: 'test'
+  ...
+# Subtest: source roles are explicit and account or unverified links are never presented as a verified website
+ok 203 - source roles are explicit and account or unverified links are never presented as a verified website
+  ---
+  duration_ms: 1.0335
+  type: 'test'
+  ...
+# Subtest: an archived official account alone is labelled separately from an independent school website
+ok 204 - an archived official account alone is labelled separately from an independent school website
+  ---
+  duration_ms: 0.5732
+  type: 'test'
+  ...
+# Subtest: verified tuition and fractional duration retain fee period and exact proof without implying complete eligibility
+ok 205 - verified tuition and fractional duration retain fee period and exact proof without implying complete eligibility
+  ---
+  duration_ms: 2.0788
+  type: 'test'
+  ...
+# Subtest: conflicted, stale and pending values remain visibly suspended and never appear as usable fee or duration facts
+ok 206 - conflicted, stale and pending values remain visibly suspended and never appear as usable fee or duration facts
+  ---
+  duration_ms: 2.3296
+  type: 'test'
+  ...
+# Subtest: missing fields stay unknown and fact quotes, conditions and notices are escaped
+ok 207 - missing fields stay unknown and fact quotes, conditions and notices are escaped
+  ---
+  duration_ms: 0.739
+  type: 'test'
+  ...
+# Subtest: facts remain scoped to their program and formal candidates also expose admitted fields
+ok 208 - facts remain scoped to their program and formal candidates also expose admitted fields
+  ---
+  duration_ms: 0.7847
+  type: 'test'
+  ...
+# Subtest: backend eligibility arrays display only human labels and complex clauses keep their partial scope
+ok 209 - backend eligibility arrays display only human labels and complex clauses keep their partial scope
+  ---
+  duration_ms: 1.2123
+  type: 'test'
+  ...
+# Subtest: partial eligibility and object tuition follow the integrated backend contract without promoting coverage
+ok 210 - partial eligibility and object tuition follow the integrated backend contract without promoting coverage
+  ---
+  duration_ms: 0.9496
+  type: 'test'
+  ...
+# Subtest: machine missing codes become human explanations while clause text remains escaped
+ok 211 - machine missing codes become human explanations while clause text remains escaped
+  ---
+  duration_ms: 1.1122
+  type: 'test'
+  ...
+# Subtest: a model directory is never reported as a verified generation connection
+ok 212 - a model directory is never reported as a verified generation connection
+  ---
+  duration_ms: 2.7016
+  type: 'test'
+  ...
+# Subtest: failed provider loading offers a retry instead of an empty submittable form
+ok 213 - failed provider loading offers a retry instead of an empty submittable form
+  ---
+  duration_ms: 1.0233
+  type: 'test'
+  ...
+# Subtest: save retry is explicit and a saved local model can be disconnected without a key
+ok 214 - save retry is explicit and a saved local model can be disconnected without a key
+  ---
+  duration_ms: 3.2056
+  type: 'test'
+  ...
+# Subtest: saved keys are reused only for the exact provider and never included in public state
+ok 215 - saved keys are reused only for the exact provider and never included in public state
+  ---
+  duration_ms: 1.0717
+  type: 'test'
+  ...
+# Subtest: settings rendering escapes untrusted names and contains no credential value attribute
+ok 216 - settings rendering escapes untrusted names and contains no credential value attribute
+  ---
+  duration_ms: 0.8388
+  type: 'test'
+  ...
+# Subtest: Yuanbao configuration is independent and untested settings do not imply activation
+ok 217 - Yuanbao configuration is independent and untested settings do not imply activation
+  ---
+  duration_ms: 1.0035
+  type: 'test'
+  ...
+# Subtest: every discovered model remains selectable when the first model is already filled
+ok 218 - every discovered model remains selectable when the first model is already filled
+  ---
+  duration_ms: 0.6264
+  type: 'test'
+  ...
+# Subtest: a current model absent from the directory is preserved instead of silently replaced
+ok 219 - a current model absent from the directory is preserved instead of silently replaced
+  ---
+  duration_ms: 0.5232
+  type: 'test'
+  ...
+# Subtest: manual model entry preserves the ID and offers a return to the fetched list
+ok 220 - manual model entry preserves the ID and offers a return to the fetched list
+  ---
+  duration_ms: 0.9419
+  type: 'test'
+  ...
+# Subtest: model picker safely renders external model identifiers and names
+ok 221 - model picker safely renders external model identifiers and names
+  ---
+  duration_ms: 0.8771
+  type: 'test'
+  ...
+# Subtest: standard Yuanbao payload contains only its credential pair and selected authentication mode
+ok 222 - standard Yuanbao payload contains only its credential pair and selected authentication mode
+  ---
+  duration_ms: 0.308
+  type: 'test'
+  ...
+# Subtest: saved standard credentials are reused only as a complete pair for the same mode
+ok 223 - saved standard credentials are reused only as a complete pair for the same mode
+  ---
+  duration_ms: 0.2302
+  type: 'test'
+  ...
+# Subtest: public normalization preserves authentication mode without returning either standard credential
+ok 224 - public normalization preserves authentication mode without returning either standard credential
+  ---
+  duration_ms: 0.2067
+  type: 'test'
+  ...
+# Subtest: unconfigured Yuanbao defaults to clear standard credential fields and an explicit alternative mode
+ok 225 - unconfigured Yuanbao defaults to clear standard credential fields and an explicit alternative mode
+  ---
+  duration_ms: 0.4179
+  type: 'test'
+  ...
+# Subtest: saved legacy service keys retain API mode and busy auth switches are disabled
+ok 226 - saved legacy service keys retain API mode and busy auth switches are disabled
+  ---
+  duration_ms: 0.4295
+  type: 'test'
+  ...
+# Subtest: settings tabs label required and optional services and use roving focus
+ok 227 - settings tabs label required and optional services and use roving focus
+  ---
+  duration_ms: 0.2982
+  type: 'test'
+  ...
+# Subtest: saved connection removal takes a second explicit confirmation
+ok 228 - saved connection removal takes a second explicit confirmation
+  ---
+  duration_ms: 0.2678
+  type: 'test'
+  ...
+# Subtest: original candidates share school grouping but never expose catalog or old save actions
+ok 229 - original candidates share school grouping but never expose catalog or old save actions
+  ---
+  duration_ms: 6.6463
+  type: 'test'
+  ...
+# Subtest: reason links use their own evidence segment and never a same-source first segment
+ok 230 - reason links use their own evidence segment and never a same-source first segment
+  ---
+  duration_ms: 2.9389
+  type: 'test'
+  ...
+# Subtest: projected reasons use only the matching decision evidence and choices remain explicit
+ok 231 - projected reasons use only the matching decision evidence and choices remain explicit
+  ---
+  duration_ms: 0.8628
+  type: 'test'
+  ...
+# Subtest: stale temporary evidence and HTML metadata stay visibly unconfirmed and escaped
+ok 232 - stale temporary evidence and HTML metadata stay visibly unconfirmed and escaped
+  ---
+  duration_ms: 0.5873
+  type: 'test'
+  ...
+# Subtest: knowledge inventory distinguishes metadata, original, locatable text and unknown semantic state
+ok 233 - knowledge inventory distinguishes metadata, original, locatable text and unknown semantic state
+  ---
+  duration_ms: 3.7048
+  type: 'test'
+  ...
+# Subtest: unavailable knowledge hides the research action and explains how to choose usable evidence
+ok 234 - unavailable knowledge hides the research action and explains how to choose usable evidence
+  ---
+  duration_ms: 2.7
+  type: 'test'
+  ...
+# Subtest: forged knowledge research clicks cannot bypass current source eligibility
+ok 235 - forged knowledge research clicks cannot bypass current source eligibility
+  ---
+  duration_ms: 23.8542
+  type: 'test'
+  ...
+# Subtest: knowledge補证 hands off a draft only and cannot start research on open
+ok 236 - knowledge補证 hands off a draft only and cannot start research on open
+  ---
+  duration_ms: 2.666
+  type: 'test'
+  ...
+# Subtest: editable seed sends only validated entry identity on explicit create and clears it for a fresh study
+ok 237 - editable seed sends only validated entry identity on explicit create and clears it for a fresh study
+  ---
+  duration_ms: 8.2829
+  type: 'test'
+  ...
+# Subtest: forged temporary catalog and save events never reach legacy callbacks
+ok 238 - forged temporary catalog and save events never reach legacy callbacks
+  ---
+  duration_ms: 1.3732
+  type: 'test'
+  ...
+# Subtest: theme bootstrap follows stored choice, then system preference, and sets theme-color
+ok 239 - theme bootstrap follows stored choice, then system preference, and sets theme-color
+  ---
+  duration_ms: 8.0004
+  type: 'test'
+  ...
+# Subtest: explicit theme query overrides storage without persisting a new choice
+ok 240 - explicit theme query overrides storage without persisting a new choice
+  ---
+  duration_ms: 2.3882
+  type: 'test'
+  ...
+# Subtest: toggle flips the resolved theme and persists it for the next load
+ok 241 - toggle flips the resolved theme and persists it for the next load
+  ---
+  duration_ms: 1.3216
+  type: 'test'
+  ...
+# Subtest: application dialogs keep focus and the knowledge surface keeps its history contract
+ok 242 - application dialogs keep focus and the knowledge surface keeps its history contract
+  ---
+  duration_ms: 104.1071
+  type: 'test'
+  ...
+# Subtest: knowledge detail history: back closes, forward restores, close never duplicates list entries
+ok 243 - knowledge detail history: back closes, forward restores, close never duplicates list entries
+  ---
+  duration_ms: 37.2332
+  type: 'test'
+  ...
+# Subtest: knowledge deep link closes in place without rewinding unrelated history
+ok 244 - knowledge deep link closes in place without rewinding unrelated history
+  ---
+  duration_ms: 13.9294
+  type: 'test'
+  ...
+# Subtest: an in-flight list response predating a delete cannot resurrect the deleted research
+ok 245 - an in-flight list response predating a delete cannot resurrect the deleted research
+  ---
+  duration_ms: 33.707
+  type: 'test'
+  ...
+# Subtest: deleting the last research falls back to the research input instead of body
+ok 246 - deleting the last research falls back to the research input instead of body
+  ---
+  duration_ms: 5.4677
+  type: 'test'
+  ...
+# Subtest: delete failure keeps the confirmation retryable and never focuses a disabled control
+ok 247 - delete failure keeps the confirmation retryable and never focuses a disabled control
+  ---
+  duration_ms: 5.8331
+  type: 'test'
+  ...
+# Subtest: cancelling a delete returns focus to that row delete, not another control
+ok 248 - cancelling a delete returns focus to that row delete, not another control
+  ---
+  duration_ms: 4.4501
+  type: 'test'
+  ...
+# Subtest: info dialog keeps internal focus through content swaps and restores the first external trigger
+ok 249 - info dialog keeps internal focus through content swaps and restores the first external trigger
+  ---
+  duration_ms: 1.002
+  type: 'test'
+  ...
+# Subtest: unresolved exam notices explain missing candidates with safe original links in every result view
+ok 250 - unresolved exam notices explain missing candidates with safe original links in every result view
+  ---
+  duration_ms: 3.9295
+  type: 'test'
+  ...
+# Subtest: workbench annual scope preserves pending index records but excludes units not independently listed this year
+ok 251 - workbench annual scope preserves pending index records but excludes units not independently listed this year
+  ---
+  duration_ms: 1.6724
+  type: 'test'
+  ...
+# Subtest: route requests include only real scope IDs and retain hard facts without mutation
+ok 252 - route requests include only real scope IDs and retain hard facts without mutation
+  ---
+  duration_ms: 0.3972
+  type: 'test'
+  ...
+# Subtest: adjustments require explicit consent and cannot relax education or work facts
+ok 253 - adjustments require explicit consent and cannot relax education or work facts
+  ---
+  duration_ms: 1.0721
+  type: 'test'
+  ...
+# Subtest: request gates abort replaced work and reject stale completions and cleanup
+ok 254 - request gates abort replaced work and reject stale completions and cleanup
+  ---
+  duration_ms: 0.4174
+  type: 'test'
+  ...
+# Subtest: route render separates distinct coverage and unknown qualification and has real actions
+ok 255 - route render separates distinct coverage and unknown qualification and has real actions
+  ---
+  duration_ms: 21.1213
+  type: 'test'
+  ...
+# Subtest: route coverage visualization uses the same full-scope counts as its candidate cards
+ok 256 - route coverage visualization uses the same full-scope counts as its candidate cards
+  ---
+  duration_ms: 1.382
+  type: 'test'
+  ...
+# Subtest: proof output escapes official text, rejects script links and retains zero values
+ok 257 - proof output escapes official text, rejects script links and retains zero values
+  ---
+  duration_ms: 1.0563
+  type: 'test'
+  ...
+# Subtest: radar distinguishes initial baseline, failed reads and confirmed observations
+ok 258 - radar distinguishes initial baseline, failed reads and confirmed observations
+  ---
+  duration_ms: 0.7805
+  type: 'test'
+  ...
+# Subtest: mounted routes discard stale scope responses and restore only matching profile results
+ok 259 - mounted routes discard stale scope responses and restore only matching profile results
+  ---
+  duration_ms: 11.5226
+  type: 'test'
+  ...
+# Subtest: mounted radar never replaces unknown remote watches and serializes check with saving
+ok 260 - mounted radar never replaces unknown remote watches and serializes check with saving
+  ---
+  duration_ms: 1.8392
+  type: 'test'
+  ...
+# Subtest: editing adjustment consent invalidates an in-flight or previously displayed suggestion
+ok 261 - editing adjustment consent invalidates an in-flight or previously displayed suggestion
+  ---
+  duration_ms: 1.3594
+  type: 'test'
+  ...
+# Subtest: candidate and adjustment views keep qualification, fees and sources explicit
+ok 262 - candidate and adjustment views keep qualification, fees and sources explicit
+  ---
+  duration_ms: 1.22
+  type: 'test'
+  ...
+# Subtest: proof changes abort prior program research and keep results assigned to the requested kind
+ok 263 - proof changes abort prior program research and keep results assigned to the requested kind
+  ---
+  duration_ms: 2.4109
+  type: 'test'
+  ...
+# Subtest: radar refresh preserves unsaved choices and completion stays readable
+ok 264 - radar refresh preserves unsaved choices and completion stays readable
+  ---
+  duration_ms: 1.1653
+  type: 'test'
+  ...
+1..264
+# tests 264
+# suites 0
+# pass 264
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3963.6128

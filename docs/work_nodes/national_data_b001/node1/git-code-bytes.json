@@ -1,0 +1,67 @@
+{
+  "dependencies": [
+    {
+      "path": "collectors/catalog_pdf_national_v3.py",
+      "sha256": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/catalog_pdf_national_v2.py",
+      "sha256": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/catalog_pdf_national.py",
+      "sha256": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/catalog_pdf_tables.py",
+      "sha256": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/catalog_html.py",
+      "sha256": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/catalog_publication.py",
+      "sha256": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/embedded_documents.py",
+      "sha256": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/catalogs.py",
+      "sha256": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "collectors/documents.py",
+      "sha256": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "service_verification.py",
+      "sha256": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "public_sources.py",
+      "sha256": "4a85a72b11266734764162ba786208771e3b8269f24700db4bc20cf32667d282",
+      "git_index_bytes_match": true
+    },
+    {
+      "path": "public_navigation.py",
+      "sha256": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef",
+      "git_index_bytes_match": true
+    }
+  ],
+  "compound_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+  "staged_secret_pattern_hits": [],
+  "note": "No credentials or user runtime read. Pattern scan is scoped to staged files."
+}

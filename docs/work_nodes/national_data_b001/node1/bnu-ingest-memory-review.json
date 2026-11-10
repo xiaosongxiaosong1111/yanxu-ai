@@ -1,0 +1,33 @@
+{
+  "method": "read-only in-memory _ingest_school with one-unit previous subset, no output file, no adopted catalog writes",
+  "old_count": 463,
+  "input_candidate_count": 462,
+  "returned_count": 463,
+  "old_only_retained": [
+    "367859:2027:052:1258S1:01:全日制"
+  ],
+  "input_mutated": false,
+  "returned_state": {
+    "unit_id": "367859",
+    "unit_name": "北京师范大学",
+    "year": 2027,
+    "status": "partial",
+    "expected_records": null,
+    "parsed_records": 463,
+    "verified_records": 0,
+    "accepted_records": 462,
+    "added_records": 0,
+    "updated_records": 462,
+    "rejected_records": 0,
+    "conflicting_records": 0,
+    "retained_records": 463,
+    "rejections": [],
+    "superseded_records": 0,
+    "notes": [
+      "离线解析不修改招生资料；ready记录仍须经独立ingest核验。",
+      "已解析方向不等于资格通过或全校目录齐全。",
+      "逐条核验后增量收录；部分来源不代表该校目录全集。"
+    ]
+  },
+  "global_admissions_file_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3"
+}

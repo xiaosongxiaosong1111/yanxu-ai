@@ -1,0 +1,15 @@
+{
+  "url": "http://yjs.dep.dlpu.edu.cn/Upload/file/20260924/58395403-17f5-4165-bd61-65d6c06be3e1.xls",
+  "text": "",
+  "sha256": "8a7bf64617d3bc2410c9ae47c78ba810b875a22ad3ade0b34ce389081306996f",
+  "content_type": "application/vnd.ms-excel",
+  "checked_at": "2026-11-10T08:34:00+00:00",
+  "response_content_type": "application/vnd.ms-excel",
+  "response_content_disposition": "",
+  "type_detection": "ole_signature+content_type",
+  "default_production_transport": true,
+  "source_code_sha256": "bf3a9e916dbb4bfa4e1a9a7a16ca0c59514ca45a1fdafcfae9ad22de9d2a41d6",
+  "bytes": 63488,
+  "extra_retries": 0,
+  "adopted_programs": 0
+}

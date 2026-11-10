@@ -1,0 +1,43 @@
+{
+  "catalog_index_sha256": "da65d8855d5d754952eda6fdd43081e8c2c8ec37d1bf16591b3ef14e6e12035e",
+  "compared_to_commit": "c56d7f504126d142c90c6a76d4018298d077373e",
+  "tables": {
+    "program_subjects": {
+      "rows": 237,
+      "payloads_and_order_equal": true
+    },
+    "subject_catalog": {
+      "rows": 86,
+      "payloads_and_order_equal": true
+    },
+    "records": {
+      "rows": 15,
+      "payloads_and_order_equal": true
+    },
+    "programs": {
+      "rows": 90,
+      "payloads_and_order_equal": true
+    },
+    "documents": {
+      "rows": 3,
+      "payloads_and_order_equal": true
+    },
+    "units": {
+      "rows": 3,
+      "payloads_and_order_equal": true
+    }
+  },
+  "metadata_equal_except_published_at": true,
+  "extra_rollback_cases": [
+    "unit-encoding",
+    "history-second-pass-encoding",
+    "subject-row-encoding"
+  ],
+  "inputs_not_mutated": true,
+  "regression_tests": {
+    "count": 242,
+    "failures": 0,
+    "errors": 0
+  },
+  "real_full_publisher_not_run_by_reviewer": true
+}

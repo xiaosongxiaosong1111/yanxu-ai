@@ -1,0 +1,4810 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/independent_review",
+  "reviewed_at": "2026-11-10T05:48:27.955546+00:00",
+  "method": "Independent stdlib HTMLParser physical-cell reader, source heading/index/column replay, per-major same-above and literal within-unit OR enumeration. No production table or subject parser used for semantic comparisons.",
+  "inputs": {
+    "data\\batch_runs\\b001\\catalog-367859.json": "4a2f5050f7645b168c33c99c1b6de033b1df5611149df99e3eca589268ce76f9",
+    "data\\runtime\\national_catalog_b001\\367859\\units\\367859-2027.json": "6eda8a3cc9cd47509a607979c6cf8e7c209ec121ceb50b9c02f04ce60bf54335",
+    "data/admissions.json": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3"
+  },
+  "frozen_input_snapshots": [
+    "D:\\CodexRuntime\\yanxu-b001-progress-20261110\\review\\bnu-report-input.json",
+    "D:\\CodexRuntime\\yanxu-b001-progress-20261110\\review\\bnu-entry-input.json"
+  ],
+  "original_index": {
+    "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssyx.html",
+    "path": "data/snapshots/national-b001/2027/367859/d04c0a7d2e645084-d2b270acaeb3ea9e.html",
+    "sha256": "d2b270acaeb3ea9e7f235d55c8ede9d4124c1aa6f6538d8f7a98bc8da0b3a505",
+    "college_link_count": 33,
+    "missing_college_links": [
+      "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html"
+    ]
+  },
+  "candidate_count": 462,
+  "physical_direction_rows": 479,
+  "pages": [
+    {
+      "document_id": "saved-catalog-367859-3511ad244d1c-1fbb68dc6728",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-001.html",
+      "path": "data/snapshots/national-b001/2027/367859/3511ad244d1c36d6-1fbb68dc67282a77.html",
+      "sha256": "1fbb68dc67282a776c4047fd62617651429b1ba292b6fb3bfa0bb4e1935e7f74",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 21,
+      "physical_direction_rows": 14,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 14,
+      "same_above_rows_resolved_within_major": 9,
+      "OR_alternative_subjects": 33,
+      "explicit_professional_degree_missing": 3,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+      "path": "data/snapshots/national-b001/2027/367859/1213c376584a8028-6265a2f546e12f6f.html",
+      "sha256": "6265a2f546e12f6f0cc959a9af805729471a3227822db881aec07e48d2ffabc9",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 30,
+      "physical_direction_rows": 19,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 19,
+      "same_above_rows_resolved_within_major": 12,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 9,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-f8e9532442e2-325fac7a3245",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-051.html",
+      "path": "data/snapshots/national-b001/2027/367859/f8e9532442e22b1a-325fac7a32459bf2.html",
+      "sha256": "325fac7a32459bf243cc61ca44a7354b34487d8a1d9a1b13287974fb7ad9ca71",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 8,
+      "physical_direction_rows": 2,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 2,
+      "same_above_rows_resolved_within_major": 0,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 0,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-9a3df433efb0-66cc85f7c89e",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-003.html",
+      "path": "data/snapshots/national-b001/2027/367859/9a3df433efb00e96-66cc85f7c89e5b50.html",
+      "sha256": "66cc85f7c89e5b5034283ceda4f78cce866580bd99cf30b767b061fb213dd868",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 13,
+      "physical_direction_rows": 6,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 6,
+      "same_above_rows_resolved_within_major": 2,
+      "OR_alternative_subjects": 12,
+      "explicit_professional_degree_missing": 1,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-132ed3423e5f-e30364f9339f",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-050.html",
+      "path": "data/snapshots/national-b001/2027/367859/132ed3423e5f9d44-e30364f9339f6f6b.html",
+      "sha256": "e30364f9339f6f6b9f23ca122e38ae4c019fcfba0c7b3ce1c5a1a4a8a373fe32",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 34,
+      "physical_direction_rows": 21,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 21,
+      "same_above_rows_resolved_within_major": 12,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 1,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+      "path": "data/snapshots/national-b001/2027/367859/5d122b553096d297-b34ab6d52e65aa79.html",
+      "sha256": "b34ab6d52e65aa797fb7ec9158e7fd6f80ee398866afd0c92005fd2ea9590e94",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 99,
+      "physical_direction_rows": 67,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 67,
+      "same_above_rows_resolved_within_major": 35,
+      "OR_alternative_subjects": 147,
+      "explicit_professional_degree_missing": 20,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-86eee66aa03f-4238c4b2a1b7",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-048.html",
+      "path": "data/snapshots/national-b001/2027/367859/86eee66aa03fcf45-4238c4b2a1b744db.html",
+      "sha256": "4238c4b2a1b744db5f8987321f6f0dc595e02fea0c5a9581e36efa6d140d0292",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 72,
+      "physical_direction_rows": 43,
+      "explicitly_excluded_rows": 1,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 1
+      },
+      "direction_rows_matched": 42,
+      "same_above_rows_resolved_within_major": 17,
+      "OR_alternative_subjects": 18,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-b8cc69fab9c9-db70aa6ce279",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-005.html",
+      "path": "data/snapshots/national-b001/2027/367859/b8cc69fab9c9aef9-db70aa6ce2798275.html",
+      "sha256": "db70aa6ce27982752772f1a319f2e4050830c0a1395075aef36c1f0a006bb1ca",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 36,
+      "physical_direction_rows": 23,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 23,
+      "same_above_rows_resolved_within_major": 14,
+      "OR_alternative_subjects": 69,
+      "explicit_professional_degree_missing": 4,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-1b7c5b012dc4-1d0c5c62d4d0",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-047.html",
+      "path": "data/snapshots/national-b001/2027/367859/1b7c5b012dc46b10-1d0c5c62d4d0153d.html",
+      "sha256": "1d0c5c62d4d0153d32fd29696f620ea645ae4e991e3f8c37418e634ea6a44efe",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 9,
+      "physical_direction_rows": 3,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 3,
+      "same_above_rows_resolved_within_major": 1,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 1,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+      "path": "data/snapshots/national-b001/2027/367859/66a023b5c2b4a96f-508a5f5e1b076546.html",
+      "sha256": "508a5f5e1b0765466b355b9389dfe6309ac8e1c1a40981c01220594e338a6818",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 21,
+      "physical_direction_rows": 13,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 13,
+      "same_above_rows_resolved_within_major": 9,
+      "OR_alternative_subjects": 24,
+      "explicit_professional_degree_missing": 5,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-a4c920a5b14d-ade9cbf7e3c4",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-046.html",
+      "path": "data/snapshots/national-b001/2027/367859/a4c920a5b14d2fc0-ade9cbf7e3c49345.html",
+      "sha256": "ade9cbf7e3c493453dd5e62403f3dd78f63ba08920b42a45c68cf1b50a430fef",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 11,
+      "physical_direction_rows": 5,
+      "explicitly_excluded_rows": 1,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 1
+      },
+      "direction_rows_matched": 4,
+      "same_above_rows_resolved_within_major": 2,
+      "OR_alternative_subjects": 8,
+      "explicit_professional_degree_missing": 1,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-c97b0d93f48c-0721339f58ca",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-009.html",
+      "path": "data/snapshots/national-b001/2027/367859/c97b0d93f48c9145-0721339f58ca4d83.html",
+      "sha256": "0721339f58ca4d8376bf9782b673cf7a6a9034e8bf8559a644fb58da5e9997d1",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 30,
+      "physical_direction_rows": 21,
+      "explicitly_excluded_rows": 1,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 1
+      },
+      "direction_rows_matched": 20,
+      "same_above_rows_resolved_within_major": 15,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-b8655742d8d9-a0a8bb852da1",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-045.html",
+      "path": "data/snapshots/national-b001/2027/367859/b8655742d8d99001-a0a8bb852da147c1.html",
+      "sha256": "a0a8bb852da147c1d6faebf5179050ca5efbbb38c9c16c4aa27a05f98e7ff9d8",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 10,
+      "physical_direction_rows": 3,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 3,
+      "same_above_rows_resolved_within_major": 0,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 3,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4195611e7904-627513710ee3",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-010.html",
+      "path": "data/snapshots/national-b001/2027/367859/4195611e7904ad19-627513710ee37373.html",
+      "sha256": "627513710ee37373ba553aacf2a155bfedf5dfe303413bce8cbbd96edb8feea8",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 46,
+      "physical_direction_rows": 29,
+      "explicitly_excluded_rows": 1,
+      "exclusion_reasons": {
+        "original explicitly single-examination route": 1
+      },
+      "direction_rows_matched": 28,
+      "same_above_rows_resolved_within_major": 15,
+      "OR_alternative_subjects": 78,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-94b3fb3f82ce-da85fe5fdf05",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-043.html",
+      "path": "data/snapshots/national-b001/2027/367859/94b3fb3f82cea7a5-da85fe5fdf05efb6.html",
+      "sha256": "da85fe5fdf05efb6f1492af04891133827a583499fe3028cb2cb46a4ca7d071c",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 6,
+      "physical_direction_rows": 1,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 1,
+      "same_above_rows_resolved_within_major": 0,
+      "OR_alternative_subjects": 3,
+      "explicit_professional_degree_missing": 1,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-79f40c6b10a9-57fd5476bda1",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-011.html",
+      "path": "data/snapshots/national-b001/2027/367859/79f40c6b10a90eb0-57fd5476bda10745.html",
+      "sha256": "57fd5476bda1074537d5e1368883fa7f2040f4b8f21fa7128a51b950a046fe0e",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 14,
+      "physical_direction_rows": 7,
+      "explicitly_excluded_rows": 2,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 2
+      },
+      "direction_rows_matched": 5,
+      "same_above_rows_resolved_within_major": 0,
+      "OR_alternative_subjects": 6,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-a2994d545018-17312b25f3b5",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-042.html",
+      "path": "data/snapshots/national-b001/2027/367859/a2994d54501848d2-17312b25f3b5a82e.html",
+      "sha256": "17312b25f3b5a82ec5316f4e21c65d1ec78565976455c6a1a05b2cfc7bf1c26f",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 16,
+      "physical_direction_rows": 6,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 6,
+      "same_above_rows_resolved_within_major": 0,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 3,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+      "path": "data/snapshots/national-b001/2027/367859/ed8d057e2e455018-28a343699fa2bcc8.html",
+      "sha256": "28a343699fa2bcc870c3fa6dd6be4639ff5d563595f78588f1693ae459539c0d",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 27,
+      "physical_direction_rows": 18,
+      "explicitly_excluded_rows": 4,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 4
+      },
+      "direction_rows_matched": 14,
+      "same_above_rows_resolved_within_major": 9,
+      "OR_alternative_subjects": 33,
+      "explicit_professional_degree_missing": 3,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+      "path": "data/snapshots/national-b001/2027/367859/8cb86fbbbeecb962-2d96ea1db3b9f2f2.html",
+      "sha256": "2d96ea1db3b9f2f24195988e10ff8709d055ab1b3b268bb638c043247898d3fe",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 21,
+      "physical_direction_rows": 13,
+      "explicitly_excluded_rows": 1,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 1
+      },
+      "direction_rows_matched": 12,
+      "same_above_rows_resolved_within_major": 8,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-acd45a4ff982-f3b026f68537",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-015.html",
+      "path": "data/snapshots/national-b001/2027/367859/acd45a4ff982f23b-f3b026f68537759b.html",
+      "sha256": "f3b026f68537759b403fbaa29e3552daedcceca995c54387946e6e7a2e4c1989",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 19,
+      "physical_direction_rows": 12,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 12,
+      "same_above_rows_resolved_within_major": 9,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 1,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-8e9980dc1373-8b62b927ef1b",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-039.html",
+      "path": "data/snapshots/national-b001/2027/367859/8e9980dc1373b0f4-8b62b927ef1b62a3.html",
+      "sha256": "8b62b927ef1b62a3c2c316c14ce6ac0640cdfb7746fbe7f1c0b200a071860d75",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 49,
+      "physical_direction_rows": 35,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 35,
+      "same_above_rows_resolved_within_major": 25,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-3bbfee9f2091-1c6bb25ca7d6",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-019.html",
+      "path": "data/snapshots/national-b001/2027/367859/3bbfee9f2091bde1-1c6bb25ca7d605a7.html",
+      "sha256": "1c6bb25ca7d605a7f2594ccc3147d22d88168c323c30d1a103511bb4a142a135",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 16,
+      "physical_direction_rows": 10,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 10,
+      "same_above_rows_resolved_within_major": 8,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 0,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+      "path": "data/snapshots/national-b001/2027/367859/01a310720a796e49-9c126e76f0299cf1.html",
+      "sha256": "9c126e76f0299cf13cae4c240ae412116370ed64a825fd85f526ed75bc8bde6a",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 27,
+      "physical_direction_rows": 19,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 19,
+      "same_above_rows_resolved_within_major": 15,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 7,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-3cfdaa37b084-8d2ac66d12ee",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-022.html",
+      "path": "data/snapshots/national-b001/2027/367859/3cfdaa37b0841eb7-8d2ac66d12ee8631.html",
+      "sha256": "8d2ac66d12ee863114cdd2019cadc27d481693fa6815cbe2df9d282e69f07fa6",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 29,
+      "physical_direction_rows": 21,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 21,
+      "same_above_rows_resolved_within_major": 17,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 4,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-9347b6de2bc6-0d8b9a6d6e82",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-037.html",
+      "path": "data/snapshots/national-b001/2027/367859/9347b6de2bc629c1-0d8b9a6d6e82d836.html",
+      "sha256": "0d8b9a6d6e82d83635d281a5f30cbdeaf52f69771f1513297d86cd1b02e7c59b",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 15,
+      "physical_direction_rows": 9,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 9,
+      "same_above_rows_resolved_within_major": 7,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 3,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-b6a6d9565a2b-394145dba1e5",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-023.html",
+      "path": "data/snapshots/national-b001/2027/367859/b6a6d9565a2bc02d-394145dba1e5df4b.html",
+      "sha256": "394145dba1e5df4b8b1a0892f6bddf864975f9070393c2fae62b8b2a53e27aae",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 19,
+      "physical_direction_rows": 12,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 12,
+      "same_above_rows_resolved_within_major": 9,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 0,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-f1444f3640ed-2cd9e68047e1",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-036.html",
+      "path": "data/snapshots/national-b001/2027/367859/f1444f3640ed07e8-2cd9e68047e160db.html",
+      "sha256": "2cd9e68047e160dbf6c416eaf07909f4640880b942a67e999691533023ae89b0",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 10,
+      "physical_direction_rows": 4,
+      "explicitly_excluded_rows": 1,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 1
+      },
+      "direction_rows_matched": 3,
+      "same_above_rows_resolved_within_major": 1,
+      "OR_alternative_subjects": 9,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-51cb0db8bdc4-34a90618fbb0",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-026.html",
+      "path": "data/snapshots/national-b001/2027/367859/51cb0db8bdc401c3-34a90618fbb0061b.html",
+      "sha256": "34a90618fbb0061b3bb93e2e274e2d3c8e20ec6ac958d59938f89bff8690e159",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 8,
+      "physical_direction_rows": 2,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 2,
+      "same_above_rows_resolved_within_major": 0,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 1,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-1fb61bf853a5-8ff096e2959e",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-035.html",
+      "path": "data/snapshots/national-b001/2027/367859/1fb61bf853a5ebba-8ff096e2959e1ee7.html",
+      "sha256": "8ff096e2959e1ee799b92a87a1b8dc34500cd4e95091b46a9d0de056ef08393d",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 13,
+      "physical_direction_rows": 6,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 6,
+      "same_above_rows_resolved_within_major": 3,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+      "path": "data/snapshots/national-b001/2027/367859/4e4bf4f90351d5c1-4008ee7ca13fc4eb.html",
+      "sha256": "4008ee7ca13fc4eb4a57c5999d5bdb52bd5c58dd4bcbd12701fede44afd4fc01",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 34,
+      "physical_direction_rows": 25,
+      "explicitly_excluded_rows": 5,
+      "exclusion_reasons": {
+        "original explicitly recommendation-only": 5
+      },
+      "direction_rows_matched": 20,
+      "same_above_rows_resolved_within_major": 15,
+      "OR_alternative_subjects": 60,
+      "explicit_professional_degree_missing": 16,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-5b1d7aa3ae67-8fbf43f82de0",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-034.html",
+      "path": "data/snapshots/national-b001/2027/367859/5b1d7aa3ae67df0d-8fbf43f82de01f6b.html",
+      "sha256": "8fbf43f82de01f6b090b736accac448b2526056d84e11930602352e7a2a51ffb",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 12,
+      "physical_direction_rows": 6,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 6,
+      "same_above_rows_resolved_within_major": 4,
+      "OR_alternative_subjects": 0,
+      "explicit_professional_degree_missing": 3,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-cdb0d656fd31-6928c00e4502",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-030.html",
+      "path": "data/snapshots/national-b001/2027/367859/cdb0d656fd316e22-6928c00e450204dc.html",
+      "sha256": "6928c00e450204dc517a5b7334048204a773da916b34cbfc28d69f48ce0ffddc",
+      "sha_verified": true,
+      "index_member": true,
+      "physical_rows": 11,
+      "physical_direction_rows": 4,
+      "explicitly_excluded_rows": 0,
+      "exclusion_reasons": {},
+      "direction_rows_matched": 4,
+      "same_above_rows_resolved_within_major": 1,
+      "OR_alternative_subjects": 6,
+      "explicit_professional_degree_missing": 2,
+      "physical_merge_cells": [
+        {
+          "row": 1,
+          "column": 0,
+          "attrs": {
+            "colspan": "2",
+            "vertical-align": "middle"
+          }
+        },
+        {
+          "row": 1,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        },
+        {
+          "row": 2,
+          "column": 0,
+          "attrs": {
+            "colspan": "2"
+          }
+        },
+        {
+          "row": 2,
+          "column": 1,
+          "attrs": {
+            "colspan": "3"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded_original_rows": [
+    {
+      "document_id": "saved-catalog-367859-86eee66aa03f-4238c4b2a1b7",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-048.html",
+      "row": 7,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "02科学技术哲学（珠海）",
+        "全日制",
+        "5",
+        "",
+        "笔试：自然辩证法；专业面试",
+        "培养地点在珠海。接收推免生5人左右 仅接收推免生，含儒学计划2人左右"
+      ],
+      "major": [
+        "010100",
+        "哲学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-a4c920a5b14d-ade9cbf7e3c4",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-046.html",
+      "row": 6,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "01不设方向",
+        "全日制",
+        "37",
+        "",
+        "专业基础知识、综合素养、外语口语",
+        "接收推免生37人左右 不接收统考生"
+      ],
+      "major": [
+        "045300",
+        "国际中文教育"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-c97b0d93f48c-0721339f58ca",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-009.html",
+      "row": 22,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "06退役大学生士兵计划",
+        "全日制",
+        "",
+        "",
+        "同上",
+        "接收推免生1人左右 该方向招收1人左右，仅接收推免生。"
+      ],
+      "major": [
+        "040303",
+        "体育教育训练学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4195611e7904-627513710ee3",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-010.html",
+      "row": 33,
+      "reason": "original explicitly single-examination route",
+      "original_cells": [
+        "04文学创作（单独考试）",
+        "非全日制",
+        "15",
+        "①111思想政治理论（单独考试） ②251单独考试英语 ③725中外文学知识综合 ④835命题创意或创作",
+        "围绕“文学创作专业基础与能力”复试，书目不限",
+        "详见招生说明"
+      ],
+      "major": [
+        "050106",
+        "中国现当代文学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-79f40c6b10a9-57fd5476bda1",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-011.html",
+      "row": 9,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "02俄语语言文学",
+        "全日制",
+        "6",
+        "",
+        "俄语语言文学专业知识",
+        "接收推免生6人左右 仅招收推免生"
+      ],
+      "major": [
+        "050200",
+        "外国语言文学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-79f40c6b10a9-57fd5476bda1",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-011.html",
+      "row": 10,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "03日语语言文学",
+        "全日制",
+        "6",
+        "",
+        "日语语言文学专业知识",
+        "接收推免生6人左右 仅招收推免生"
+      ],
+      "major": [
+        "050200",
+        "外国语言文学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+      "row": 16,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "06历史教育",
+        "全日制",
+        "1",
+        "",
+        "笔试：历史课程与教学论；综合素质面试",
+        "接收推免生1人左右 只招收推免生"
+      ],
+      "major": [
+        "060200",
+        "中国史"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+      "row": 20,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "03专门史（影像史学）",
+        "全日制",
+        "1",
+        "",
+        "笔试：专门史（影像史学）；综合素质面试",
+        "接收推免生1人左右 只招收推免生"
+      ],
+      "major": [
+        "060300",
+        "世界史"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+      "row": 22,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "05专门史（非物质文化遗产）",
+        "全日制",
+        "1",
+        "",
+        "笔试：非物质文化遗产；综合素质面试",
+        "接收推免生1人左右 只招收推免生"
+      ],
+      "major": [
+        "060300",
+        "世界史"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+      "row": 23,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "06区域国别史",
+        "全日制",
+        "1",
+        "",
+        "笔试：世界近现代史（含世界当代史）；综合素质面试",
+        "接收推免生1人左右 只招收推免生"
+      ],
+      "major": [
+        "060300",
+        "世界史"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+      "row": 16,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "02工程硕博士培养改革专项",
+        "全日制",
+        "15",
+        "",
+        "面试（专业素质和能力、综合素质和能力、英语口语和听力测试）",
+        "接收推免生15人左右 仅招收推免生"
+      ],
+      "major": [
+        "085410",
+        "人工智能"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-f1444f3640ed-2cd9e68047e1",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-036.html",
+      "row": 7,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "02非物质文化遗产（珠海）",
+        "全日制",
+        "2",
+        "",
+        "同上",
+        "培养地点在珠海。接收推免生2人左右 仅接收推免生"
+      ],
+      "major": [
+        "030300",
+        "社会学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+      "row": 6,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "01艺术评论",
+        "全日制",
+        "2",
+        "",
+        "1、笔试：专业知识；2、面试：综合素质",
+        "接收推免生2人左右 仅接收推免生"
+      ],
+      "major": [
+        "130100",
+        "艺术学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+      "row": 10,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "05数字媒体",
+        "全日制",
+        "2",
+        "",
+        "1、专业作品评审；2、面试",
+        "接收推免生2人左右 仅接收推免生"
+      ],
+      "major": [
+        "130100",
+        "艺术学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+      "row": 11,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "06美术学",
+        "全日制",
+        "1",
+        "",
+        "1、写生； 2、面试",
+        "接收推免生1人左右 仅接收推免生"
+      ],
+      "major": [
+        "130100",
+        "艺术学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+      "row": 12,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "07美术教育",
+        "全日制",
+        "1",
+        "",
+        "1、笔试：美术作品解读；2、面试",
+        "接收推免生1人左右 仅接收推免生"
+      ],
+      "major": [
+        "130100",
+        "艺术学"
+      ]
+    },
+    {
+      "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+      "row": 13,
+      "reason": "original explicitly recommendation-only",
+      "original_cells": [
+        "08设计史论",
+        "全日制",
+        "1",
+        "",
+        "1、笔试：设计史论；2、面试",
+        "接收推免生1人左右 仅接收推免生"
+      ],
+      "major": [
+        "130100",
+        "艺术学"
+      ]
+    }
+  ],
+  "nonstandard_directions_requires_review": [
+    {
+      "document_id": "saved-catalog-367859-a2994d545018-17312b25f3b5",
+      "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-042.html",
+      "row": 10,
+      "reason": "nonstandard original direction code, no truncation permitted",
+      "original_cells": [
+        "0101不设方向（珠海）",
+        "全日制",
+        "20",
+        "①101思想政治理论 ②204英语（二） ③333教育综合 ④839教育实践与方法",
+        "综合素质面试（含外语水平）",
+        "培养地点在珠海。"
+      ],
+      "major": [
+        "045101",
+        "教育管理"
+      ],
+      "program_id": "367859:2027:042:045101:0101:全日制",
+      "literal_code": "0101",
+      "review_note": [
+        "官方原文方向编号为0101，保留原样；非常见两位编号，报名前需向学院核对。"
+      ]
+    }
+  ],
+  "errors": [],
+  "degree_data_gap": {
+    "explicit_scope_but_null_count": 126,
+    "records": [
+      {
+        "program_id": "367859:2027:001:015100:01:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-3511ad244d1c-1fbb68dc6728",
+        "major": [
+          "015100",
+          "应用伦理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-001.html",
+        "source_locator": {
+          "table": 1,
+          "row": 16,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:001:015100:02:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-3511ad244d1c-1fbb68dc6728",
+        "major": [
+          "015100",
+          "应用伦理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-001.html",
+        "source_locator": {
+          "table": 1,
+          "row": 16,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:001:015100:03:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-3511ad244d1c-1fbb68dc6728",
+        "major": [
+          "015100",
+          "应用伦理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-001.html",
+        "source_locator": {
+          "table": 1,
+          "row": 16,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:002:025400:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "025400",
+          "国际商务"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 14,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生10人左右"
+      },
+      {
+        "program_id": "367859:2027:002:0259S1:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "0259S1",
+          "低空经济"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 16,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:002:125100:01:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "125100",
+          "工商管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 22,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:002:125100:02:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "125100",
+          "工商管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 22,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:002:125100:03:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "125100",
+          "工商管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 22,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:002:125100:04:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "125100",
+          "工商管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 22,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:002:125100:05:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "125100",
+          "工商管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 22,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:002:125100:06:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "125100",
+          "工商管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 22,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:002:125300:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1213c376584a-6265a2f546e1",
+        "major": [
+          "125300",
+          "会计"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-002.html",
+        "source_locator": {
+          "table": 1,
+          "row": 29,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:003:045102:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-9a3df433efb0-66cc85f7c89e",
+        "major": [
+          "045102",
+          "学科教学(思政)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-003.html",
+        "source_locator": {
+          "table": 1,
+          "row": 12,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:050:085800:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-132ed3423e5f-e30364f9339f",
+        "major": [
+          "085800",
+          "能源动力"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-050.html",
+        "source_locator": {
+          "table": 1,
+          "row": 33,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045101:01:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045101",
+          "教育管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 52,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:004:045101:02:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045101",
+          "教育管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 52,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:004:045101:03:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045101",
+          "教育管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 52,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收定向生"
+      },
+      {
+        "program_id": "367859:2027:004:045103:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045103",
+          "学科教学(语文)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 56,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生8人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045103:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045103",
+          "学科教学(语文)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 56,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生8人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045104:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045104",
+          "学科教学(数学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 59,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045105:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045105",
+          "学科教学(物理)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 61,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生2人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045106:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045106",
+          "学科教学(化学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 63,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生2人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045107:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045107",
+          "学科教学(生物)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 65,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生2人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045108:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045108",
+          "学科教学(英语)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 67,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045109:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045109",
+          "学科教学(历史)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 69,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生2人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045110:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045110",
+          "学科教学(地理)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 71,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生2人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045114:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045114",
+          "现代教育技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 73,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045115:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045115",
+          "小学教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 75,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045116:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045116",
+          "心理健康教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 77,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045118:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045118",
+          "学前教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 79,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045118:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045118",
+          "学前教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 79,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045118:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045118",
+          "学前教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 79,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045118:04:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045118",
+          "学前教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 79,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:004:045119:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5d122b553096-b34ab6d52e65",
+        "major": [
+          "045119",
+          "特殊教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-004.html",
+        "source_locator": {
+          "table": 1,
+          "row": 84,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生3人左右"
+      },
+      {
+        "program_id": "367859:2027:048:085600:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-86eee66aa03f-4238c4b2a1b7",
+        "major": [
+          "085600",
+          "材料与化工"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-048.html",
+        "source_locator": {
+          "table": 1,
+          "row": 68,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生9人左右"
+      },
+      {
+        "program_id": "367859:2027:048:085600:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-86eee66aa03f-4238c4b2a1b7",
+        "major": [
+          "085600",
+          "材料与化工"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-048.html",
+        "source_locator": {
+          "table": 1,
+          "row": 68,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生9人左右"
+      },
+      {
+        "program_id": "367859:2027:005:035101:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-b8cc69fab9c9-db70aa6ce279",
+        "major": [
+          "035101",
+          "法律(非法学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-005.html",
+        "source_locator": {
+          "table": 1,
+          "row": 31,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生31人左右"
+      },
+      {
+        "program_id": "367859:2027:005:035101:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-b8cc69fab9c9-db70aa6ce279",
+        "major": [
+          "035101",
+          "法律(非法学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-005.html",
+        "source_locator": {
+          "table": 1,
+          "row": 31,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生31人左右"
+      },
+      {
+        "program_id": "367859:2027:005:035101:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-b8cc69fab9c9-db70aa6ce279",
+        "major": [
+          "035101",
+          "法律(非法学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-005.html",
+        "source_locator": {
+          "table": 1,
+          "row": 31,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生31人左右"
+      },
+      {
+        "program_id": "367859:2027:005:035102:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-b8cc69fab9c9-db70aa6ce279",
+        "major": [
+          "035102",
+          "法律(法学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-005.html",
+        "source_locator": {
+          "table": 1,
+          "row": 35,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生10人左右"
+      },
+      {
+        "program_id": "367859:2027:047:125600:01:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1b7c5b012dc4-1d0c5c62d4d0",
+        "major": [
+          "125600",
+          "工程管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-047.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收非全日制定向考生"
+      },
+      {
+        "program_id": "367859:2027:006:120400:01:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120400",
+          "公共管理学"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生30人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:120400:02:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120400",
+          "公共管理学"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生30人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:120400:03:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120400",
+          "公共管理学"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生30人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:120400:04:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120400",
+          "公共管理学"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生30人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:120400:05:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120400",
+          "公共管理学"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生30人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:120500:01:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120500",
+          "信息资源管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 11,
+          "column": "备注"
+        },
+        "quote": "接收推免生10人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:120500:02:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120500",
+          "信息资源管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 11,
+          "column": "备注"
+        },
+        "quote": "接收推免生10人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:120500:03:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "120500",
+          "信息资源管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 11,
+          "column": "备注"
+        },
+        "quote": "接收推免生10人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:006:125200:01:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "125200",
+          "公共管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:006:125200:02:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "125200",
+          "公共管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:006:125200:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "125200",
+          "公共管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:006:125200:04:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "125200",
+          "公共管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:006:1259S1:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-66a023b5c2b4-508a5f5e1b07",
+        "major": [
+          "1259S1",
+          "公共政策"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-006.html",
+        "source_locator": {
+          "table": 1,
+          "row": 20,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:046:045300:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-a4c920a5b14d-ade9cbf7e3c4",
+        "major": [
+          "045300",
+          "国际中文教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-046.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生55人左右"
+      },
+      {
+        "program_id": "367859:2027:009:045201:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-c97b0d93f48c-0721339f58ca",
+        "major": [
+          "045201",
+          "体育教学"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-009.html",
+        "source_locator": {
+          "table": 1,
+          "row": 28,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生36人左右 本科非体育教育、运动训练等专业考生复试时均需进行专项运动技能考查。"
+      },
+      {
+        "program_id": "367859:2027:009:045201:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-c97b0d93f48c-0721339f58ca",
+        "major": [
+          "045201",
+          "体育教学"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-009.html",
+        "source_locator": {
+          "table": 1,
+          "row": 28,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生36人左右 本科非体育教育、运动训练等专业考生复试时均需进行专项运动技能考查。"
+      },
+      {
+        "program_id": "367859:2027:045:025100:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-b8655742d8d9-a0a8bb852da1",
+        "major": [
+          "025100",
+          "金融"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-045.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生16人左右 培养地点在珠海"
+      },
+      {
+        "program_id": "367859:2027:045:025400:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-b8655742d8d9-a0a8bb852da1",
+        "major": [
+          "025400",
+          "国际商务"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-045.html",
+        "source_locator": {
+          "table": 1,
+          "row": 7,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生22人左右 培养地点在珠海"
+      },
+      {
+        "program_id": "367859:2027:045:125300:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-b8655742d8d9-a0a8bb852da1",
+        "major": [
+          "125300",
+          "会计"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-045.html",
+        "source_locator": {
+          "table": 1,
+          "row": 9,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生10人左右 培养地点在珠海"
+      },
+      {
+        "program_id": "367859:2027:010:045103:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4195611e7904-627513710ee3",
+        "major": [
+          "045103",
+          "学科教学(语文)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-010.html",
+        "source_locator": {
+          "table": 1,
+          "row": 7,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生15人左右 本专业鼓励本科为汉语言文学（含师范、创意写作等）、汉语言、汉语国际教育、秘书学专业的考生报考"
+      },
+      {
+        "program_id": "367859:2027:010:0554S1:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4195611e7904-627513710ee3",
+        "major": [
+          "0554S1",
+          "中文创意写作"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-010.html",
+        "source_locator": {
+          "table": 1,
+          "row": 45,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:043:135700:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-94b3fb3f82ce-da85fe5fdf05",
+        "major": [
+          "135700",
+          "设计"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-043.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生23人左右"
+      },
+      {
+        "program_id": "367859:2027:011:045108:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-79f40c6b10a9-57fd5476bda1",
+        "major": [
+          "045108",
+          "学科教学(英语)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-011.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生21人左右"
+      },
+      {
+        "program_id": "367859:2027:011:055101:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-79f40c6b10a9-57fd5476bda1",
+        "major": [
+          "055101",
+          "英语笔译"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-011.html",
+        "source_locator": {
+          "table": 1,
+          "row": 13,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生11人左右"
+      },
+      {
+        "program_id": "367859:2027:042:045101:0101:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-a2994d545018-17312b25f3b5",
+        "major": [
+          "045101",
+          "教育管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-042.html",
+        "source_locator": {
+          "table": 1,
+          "row": 9,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位"
+      },
+      {
+        "program_id": "367859:2027:042:045104:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-a2994d545018-17312b25f3b5",
+        "major": [
+          "045104",
+          "学科教学(数学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-042.html",
+        "source_locator": {
+          "table": 1,
+          "row": 11,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生11人左右"
+      },
+      {
+        "program_id": "367859:2027:042:045117:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-a2994d545018-17312b25f3b5",
+        "major": [
+          "045117",
+          "科学与技术教育"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-042.html",
+        "source_locator": {
+          "table": 1,
+          "row": 13,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生15人左右"
+      },
+      {
+        "program_id": "367859:2027:012:065100:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+        "major": [
+          "065100",
+          "博物馆"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:012:065100:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+        "major": [
+          "065100",
+          "博物馆"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:012:065100:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-ed8d057e2e45-28a343699fa2",
+        "major": [
+          "065100",
+          "博物馆"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-012.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:040:081200:01:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "081200",
+          "计算机科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生23人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:081200:02:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "081200",
+          "计算机科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生23人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:081200:03:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "081200",
+          "计算机科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生23人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:081200:04:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "081200",
+          "计算机科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生23人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:081200:05:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "081200",
+          "计算机科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生23人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:081200:06:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "081200",
+          "计算机科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "接收推免生23人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:085404:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "085404",
+          "计算机技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 12,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生9人左右"
+      },
+      {
+        "program_id": "367859:2027:040:085410:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "085410",
+          "人工智能"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 14,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生19人左右"
+      },
+      {
+        "program_id": "367859:2027:040:140500:01:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "140500",
+          "智能科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 17,
+          "column": "备注"
+        },
+        "quote": "接收推免生14人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:140500:02:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "140500",
+          "智能科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 17,
+          "column": "备注"
+        },
+        "quote": "接收推免生14人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:140500:03:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "140500",
+          "智能科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 17,
+          "column": "备注"
+        },
+        "quote": "接收推免生14人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:040:140500:04:全日制",
+        "degree": "学术学位",
+        "document_id": "saved-catalog-367859-8cb86fbbbeec-2d96ea1db3b9",
+        "major": [
+          "140500",
+          "智能科学与技术"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-040.html",
+        "source_locator": {
+          "table": 1,
+          "row": 17,
+          "column": "备注"
+        },
+        "quote": "接收推免生14人左右 学术学位"
+      },
+      {
+        "program_id": "367859:2027:015:045104:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-acd45a4ff982-f3b026f68537",
+        "major": [
+          "045104",
+          "学科教学(数学)"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-015.html",
+        "source_locator": {
+          "table": 1,
+          "row": 7,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生10人左右 学科教学（数学）专业鼓励数学及其相关专业本科毕业生报考。"
+      },
+      {
+        "program_id": "367859:2027:039:085700:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-8e9980dc1373-8b62b927ef1b",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-039.html",
+        "source_locator": {
+          "table": 1,
+          "row": 42,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生3人左右"
+      },
+      {
+        "program_id": "367859:2027:039:085700:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-8e9980dc1373-8b62b927ef1b",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-039.html",
+        "source_locator": {
+          "table": 1,
+          "row": 42,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生3人左右"
+      },
+      {
+        "program_id": "367859:2027:038:045400:01:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+        "major": [
+          "045400",
+          "应用心理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+        "source_locator": {
+          "table": 1,
+          "row": 18,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 非全日制培养，仅招收定向考生"
+      },
+      {
+        "program_id": "367859:2027:038:045400:02:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+        "major": [
+          "045400",
+          "应用心理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+        "source_locator": {
+          "table": 1,
+          "row": 18,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 非全日制培养，仅招收定向考生"
+      },
+      {
+        "program_id": "367859:2027:038:045400:03:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+        "major": [
+          "045400",
+          "应用心理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+        "source_locator": {
+          "table": 1,
+          "row": 18,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 非全日制培养，仅招收定向考生"
+      },
+      {
+        "program_id": "367859:2027:038:045400:04:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+        "major": [
+          "045400",
+          "应用心理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+        "source_locator": {
+          "table": 1,
+          "row": 18,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 非全日制培养，仅招收定向考生"
+      },
+      {
+        "program_id": "367859:2027:038:045400:05:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+        "major": [
+          "045400",
+          "应用心理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+        "source_locator": {
+          "table": 1,
+          "row": 18,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 非全日制培养，仅招收定向考生"
+      },
+      {
+        "program_id": "367859:2027:038:045400:06:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+        "major": [
+          "045400",
+          "应用心理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+        "source_locator": {
+          "table": 1,
+          "row": 18,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 非全日制培养，仅招收定向考生"
+      },
+      {
+        "program_id": "367859:2027:038:045400:07:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-01a310720a79-9c126e76f029",
+        "major": [
+          "045400",
+          "应用心理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-038.html",
+        "source_locator": {
+          "table": 1,
+          "row": 18,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 非全日制培养，仅招收定向考生"
+      },
+      {
+        "program_id": "367859:2027:022:085700:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-3cfdaa37b084-8d2ac66d12ee",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-022.html",
+        "source_locator": {
+          "table": 1,
+          "row": 25,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:022:085700:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-3cfdaa37b084-8d2ac66d12ee",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-022.html",
+        "source_locator": {
+          "table": 1,
+          "row": 25,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:022:085700:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-3cfdaa37b084-8d2ac66d12ee",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-022.html",
+        "source_locator": {
+          "table": 1,
+          "row": 25,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:022:085700:04:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-3cfdaa37b084-8d2ac66d12ee",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-022.html",
+        "source_locator": {
+          "table": 1,
+          "row": 25,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:037:055200:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-9347b6de2bc6-0d8b9a6d6e82",
+        "major": [
+          "055200",
+          "新闻与传播"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-037.html",
+        "source_locator": {
+          "table": 1,
+          "row": 12,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生20人左右 01-02方向招收52人左右，03方向招收30人左右"
+      },
+      {
+        "program_id": "367859:2027:037:055200:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-9347b6de2bc6-0d8b9a6d6e82",
+        "major": [
+          "055200",
+          "新闻与传播"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-037.html",
+        "source_locator": {
+          "table": 1,
+          "row": 12,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生20人左右 01-02方向招收52人左右，03方向招收30人左右"
+      },
+      {
+        "program_id": "367859:2027:037:055200:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-9347b6de2bc6-0d8b9a6d6e82",
+        "major": [
+          "055200",
+          "新闻与传播"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-037.html",
+        "source_locator": {
+          "table": 1,
+          "row": 12,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生20人左右 01-02方向招收52人左右，03方向招收30人左右"
+      },
+      {
+        "program_id": "367859:2027:036:035200:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-f1444f3640ed-2cd9e68047e1",
+        "major": [
+          "035200",
+          "社会工作"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-036.html",
+        "source_locator": {
+          "table": 1,
+          "row": 8,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生30人左右"
+      },
+      {
+        "program_id": "367859:2027:036:035200:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-f1444f3640ed-2cd9e68047e1",
+        "major": [
+          "035200",
+          "社会工作"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-036.html",
+        "source_locator": {
+          "table": 1,
+          "row": 8,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生30人左右"
+      },
+      {
+        "program_id": "367859:2027:026:125600:01:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-51cb0db8bdc4-34a90618fbb0",
+        "major": [
+          "125600",
+          "工程管理"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-026.html",
+        "source_locator": {
+          "table": 1,
+          "row": 7,
+          "column": "备注"
+        },
+        "quote": "不接收推荐免试 专业学位 只招收非全日制定向考生"
+      },
+      {
+        "program_id": "367859:2027:035:0455S1:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1fb61bf853a5-8ff096e2959e",
+        "major": [
+          "0455S1",
+          "教育测量与评价"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-035.html",
+        "source_locator": {
+          "table": 1,
+          "row": 11,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生3人左右"
+      },
+      {
+        "program_id": "367859:2027:035:0455S1:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-1fb61bf853a5-8ff096e2959e",
+        "major": [
+          "0455S1",
+          "教育测量与评价"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-035.html",
+        "source_locator": {
+          "table": 1,
+          "row": 11,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生3人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135200:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135200",
+          "音乐"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生12人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135200:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135200",
+          "音乐"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生12人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135200:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135200",
+          "音乐"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生12人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135200:04:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135200",
+          "音乐"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生12人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135200:05:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135200",
+          "音乐"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 15,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生12人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135300:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135300",
+          "舞蹈"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 21,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135300:02:非全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135300",
+          "舞蹈"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 21,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135400:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135400",
+          "戏剧与影视"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生27人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135400:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135400",
+          "戏剧与影视"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生27人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135400:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135400",
+          "戏剧与影视"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生27人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135400:04:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135400",
+          "戏剧与影视"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生27人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135400:05:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135400",
+          "戏剧与影视"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生27人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135400:06:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135400",
+          "戏剧与影视"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 24,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生27人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135600:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135600",
+          "美术与书法"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 31,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135600:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135600",
+          "美术与书法"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 31,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:029:135600:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-4e4bf4f90351-4008ee7ca13f",
+        "major": [
+          "135600",
+          "美术与书法"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-029.html",
+        "source_locator": {
+          "table": 1,
+          "row": 31,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生5人左右"
+      },
+      {
+        "program_id": "367859:2027:034:025200:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5b1d7aa3ae67-8fbf43f82de0",
+        "major": [
+          "025200",
+          "应用统计"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-034.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生78人左右"
+      },
+      {
+        "program_id": "367859:2027:034:025200:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5b1d7aa3ae67-8fbf43f82de0",
+        "major": [
+          "025200",
+          "应用统计"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-034.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生78人左右"
+      },
+      {
+        "program_id": "367859:2027:034:025200:03:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-5b1d7aa3ae67-8fbf43f82de0",
+        "major": [
+          "025200",
+          "应用统计"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-034.html",
+        "source_locator": {
+          "table": 1,
+          "row": 5,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生78人左右"
+      },
+      {
+        "program_id": "367859:2027:030:085700:01:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-cdb0d656fd31-6928c00e4502",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-030.html",
+        "source_locator": {
+          "table": 1,
+          "row": 9,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      },
+      {
+        "program_id": "367859:2027:030:085700:02:全日制",
+        "degree": "专业学位",
+        "document_id": "saved-catalog-367859-cdb0d656fd31-6928c00e4502",
+        "major": [
+          "085700",
+          "资源与环境"
+        ],
+        "evidence_scope": "same-major original note",
+        "source_url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-030.html",
+        "source_locator": {
+          "table": 1,
+          "row": 9,
+          "column": "备注"
+        },
+        "quote": "专业学位 接收推免生4人左右"
+      }
+    ]
+  },
+  "special_scope_requires_qualification_review": [
+    {
+      "program_id": "367859:2027:003:030500:03:全日制",
+      "direction": "03思想政治教育（援藏）",
+      "notes": [
+        "不接收推荐免试"
+      ]
+    },
+    {
+      "program_id": "367859:2027:050:082700:02:全日制",
+      "direction": "02退役大学生士兵专项",
+      "notes": [
+        "该专项计划单列，仅接受统考生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:004:040101:02:全日制",
+      "direction": "02援藏计划",
+      "notes": [
+        "02援藏计划招收2人左右，不接收推免生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:004:040106:02:全日制",
+      "direction": "02援藏计划",
+      "notes": [
+        "02援藏计划招收2人左右，不接收推免生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:004:0401Z1:02:全日制",
+      "direction": "02援藏计划",
+      "notes": [
+        "02援藏计划招收2人左右，不接收推免生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:004:047101:04:全日制",
+      "direction": "04教育管理（援藏计划）",
+      "notes": [
+        "04援藏计划招收2人左右，不接收推免生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:048:085600:02:全日制",
+      "direction": "02少数民族高层次骨干人才计划（珠海）",
+      "notes": [
+        "培养地点在珠海。仅接收统考生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:005:035101:03:全日制",
+      "direction": "03少数民族高层次骨干人才计划（珠海）",
+      "notes": [
+        "培养地点在珠海。"
+      ]
+    },
+    {
+      "program_id": "367859:2027:047:125600:01:非全日制",
+      "direction": "01应急管理（珠海）",
+      "notes": [
+        "培养地点在珠海。只招收非全日制定向考生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:047:140200:02:全日制",
+      "direction": "02退役大学生士兵专项（珠海）",
+      "notes": [
+        "培养地点在珠海。接收推免生1人左右"
+      ]
+    },
+    {
+      "program_id": "367859:2027:006:125200:01:非全日制",
+      "direction": "01不区分方向（北京）",
+      "notes": [
+        "培养地点在北京，01方向只招收非全日制定向考生，详情请见招生说明。"
+      ]
+    },
+    {
+      "program_id": "367859:2027:006:125200:02:非全日制",
+      "direction": "02不区分方向（珠海）",
+      "notes": [
+        "培养地点在珠海。培养地点在珠海，02方向只招收非全日制定向考生，详情请见招生说明。"
+      ]
+    },
+    {
+      "program_id": "367859:2027:006:125200:03:全日制",
+      "direction": "03少数民族高层次骨干人才计划",
+      "notes": [
+        "培养地点在北京。03方向只招收全日制定向考生。详情请见招生说明。"
+      ]
+    },
+    {
+      "program_id": "367859:2027:006:125200:04:全日制",
+      "direction": "04少数民族高层次骨干人才计划南疆高校教师专项",
+      "notes": [
+        "培养地点在北京，04方向仅招收少数民族高层次骨干人才计划南疆高校教师专项，详情请见招生说明。"
+      ]
+    },
+    {
+      "program_id": "367859:2027:040:081200:06:全日制",
+      "direction": "06退役大学生士兵专项",
+      "notes": [
+        "退役大学生士兵计划招收1人，该专项计划单列，仅招收统考生。"
+      ]
+    },
+    {
+      "program_id": "367859:2027:038:040200:10:全日制",
+      "direction": "10退役大学生士兵计划（珠海）",
+      "notes": [
+        "培养地点在珠海。接收推免生5人左右10方向招收7人左右，该专项计划单列。欢迎具有心理学、教育学、社会学、管理学、计算机科学、自动化、生命科学、医学等相关学科背景的退役大学生士兵报考。"
+      ]
+    },
+    {
+      "program_id": "367859:2027:026:125600:01:非全日制",
+      "direction": "01项目管理（珠海）",
+      "notes": [
+        "培养地点在珠海。只招收非全日制定向考生"
+      ]
+    },
+    {
+      "program_id": "367859:2027:029:135300:02:非全日制",
+      "direction": "02舞蹈治疗（珠海）",
+      "notes": [
+        "培养地点在珠海。仅招收统考生20人左右，招生类别为定向"
+      ]
+    },
+    {
+      "program_id": "367859:2027:034:071400:03:全日制",
+      "direction": "03少数民族高层次骨干人才计划（珠海）",
+      "notes": [
+        "培养地点在珠海。招收少数民族高层次骨干人才计划6人左右，只招收统考生"
+      ]
+    }
+  ],
+  "qualification": {
+    "complete_count": 0,
+    "unknown_count": 462,
+    "all_requires_review": true
+  },
+  "cross_unit_combination_warnings": [],
+  "previous_comparison": {
+    "old_count": 463,
+    "intersection_count": 462,
+    "new_only_ids": [],
+    "old_only_must_retain": [
+      {
+        "id": "367859:2027:052:1258S1:01:全日制",
+        "unit_id": "367859",
+        "unit_name": "北京师范大学",
+        "year": 2027,
+        "department": "中华文化研究院丨京师书院",
+        "department_code": "052",
+        "code": "1258S1",
+        "name": "全球发展与治理",
+        "direction": "01不设方向",
+        "study_mode": "全日制",
+        "degree_type": null,
+        "province": "北京",
+        "campus": null,
+        "subjects": [
+          {
+            "code": "101",
+            "name": "思想政治理论",
+            "scope": "national",
+            "exam_unit": 1,
+            "evidence": {
+              "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+              "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+              "quote": "①101思想政治理论②201英语（一）③705公共管理学科基础④806公共管理研究方法",
+              "page": null
+            }
+          },
+          {
+            "code": "201",
+            "name": "英语（一）",
+            "scope": "national",
+            "exam_unit": 2,
+            "evidence": {
+              "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+              "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+              "quote": "①101思想政治理论②201英语（一）③705公共管理学科基础④806公共管理研究方法",
+              "page": null
+            }
+          },
+          {
+            "code": "705",
+            "name": "公共管理学科基础",
+            "scope": "367859",
+            "exam_unit": 3,
+            "evidence": {
+              "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+              "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+              "quote": "①101思想政治理论②201英语（一）③705公共管理学科基础④806公共管理研究方法",
+              "page": null
+            }
+          },
+          {
+            "code": "806",
+            "name": "公共管理研究方法",
+            "scope": "367859",
+            "exam_unit": 4,
+            "evidence": {
+              "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+              "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+              "quote": "①101思想政治理论②201英语（一）③705公共管理学科基础④806公共管理研究方法",
+              "page": null
+            }
+          }
+        ],
+        "tuition": null,
+        "duration_years": null,
+        "conditions": [],
+        "requires_review": true,
+        "eligibility_evidence_complete": false,
+        "unparsed_condition_notes": [],
+        "notes": [
+          "接收推免生4人左右"
+        ],
+        "evidence": [
+          {
+            "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+            "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+            "quote": "01不设方向",
+            "page": null
+          },
+          {
+            "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+            "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+            "quote": "全日制",
+            "page": null
+          },
+          {
+            "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+            "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+            "quote": "1258S1全球发展与治理",
+            "page": null
+          },
+          {
+            "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+            "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+            "quote": "052中华文化研究院丨京师书院",
+            "page": null
+          }
+        ],
+        "exam_evidence": [
+          {
+            "document_id": "catalog-367859-2027-222d870373606979-78b6a0a355a9",
+            "url": "https://yz.bnu.edu.cn/content/zyml/2027/ssxx_yxsm-052.html",
+            "quote": "①101思想政治理论②201英语（一）③705公共管理学科基础④806公共管理研究方法",
+            "page": null
+          }
+        ],
+        "catalog_parser": "html_table_v1",
+        "source_locator": {
+          "table": 1,
+          "row": 6
+        },
+        "catalog_replay_status": "verified"
+      }
+    ],
+    "changed_core_or_optional_facts": {},
+    "changed_initial_exam_OR_facts": [],
+    "behavior": "Partial entry cannot delete absent old directions. Verified different core identity/exam facts cause catalog_conflict, preserve previous row, mark stale/requires_review; degree/notes are outside core signature, so do not assume all optional fact conflicts are guarded."
+  },
+  "adoption_recommendation": {
+    "scope": "Evidence refresh of exactly the independently matched existing candidate IDs only; no net new directions and no complete-school claim.",
+    "eligible_program_ids": [
+      "367859:2027:001:010100:01:全日制",
+      "367859:2027:001:010100:02:全日制",
+      "367859:2027:001:010100:03:全日制",
+      "367859:2027:001:010100:04:全日制",
+      "367859:2027:001:010100:05:全日制",
+      "367859:2027:001:010100:06:全日制",
+      "367859:2027:001:010100:07:全日制",
+      "367859:2027:001:010100:08:全日制",
+      "367859:2027:001:010100:09:全日制",
+      "367859:2027:001:010100:10:全日制",
+      "367859:2027:001:015100:01:非全日制",
+      "367859:2027:001:015100:02:非全日制",
+      "367859:2027:001:015100:03:非全日制",
+      "367859:2027:001:040102:01:全日制",
+      "367859:2027:002:020100:01:全日制",
+      "367859:2027:002:020100:02:全日制",
+      "367859:2027:002:020100:03:全日制",
+      "367859:2027:002:020100:04:全日制",
+      "367859:2027:002:020200:01:全日制",
+      "367859:2027:002:020200:02:全日制",
+      "367859:2027:002:020200:03:全日制",
+      "367859:2027:002:025400:01:全日制",
+      "367859:2027:002:0259S1:01:全日制",
+      "367859:2027:002:120200:01:全日制",
+      "367859:2027:002:120200:02:全日制",
+      "367859:2027:002:120200:03:全日制",
+      "367859:2027:002:125100:01:非全日制",
+      "367859:2027:002:125100:02:非全日制",
+      "367859:2027:002:125100:03:非全日制",
+      "367859:2027:002:125100:04:非全日制",
+      "367859:2027:002:125100:05:非全日制",
+      "367859:2027:002:125100:06:非全日制",
+      "367859:2027:002:125300:01:全日制",
+      "367859:2027:003:030500:01:全日制",
+      "367859:2027:003:030500:02:全日制",
+      "367859:2027:003:030500:03:全日制",
+      "367859:2027:003:030700:01:全日制",
+      "367859:2027:003:030700:02:全日制",
+      "367859:2027:003:045102:01:全日制",
+      "367859:2027:004:040101:01:全日制",
+      "367859:2027:004:040101:02:全日制",
+      "367859:2027:004:040102:01:全日制",
+      "367859:2027:004:040102:02:全日制",
+      "367859:2027:004:040103:01:全日制",
+      "367859:2027:004:040103:02:全日制",
+      "367859:2027:004:040104:01:全日制",
+      "367859:2027:004:040104:02:全日制",
+      "367859:2027:004:040104:03:全日制",
+      "367859:2027:004:040104:04:全日制",
+      "367859:2027:004:040104:05:全日制",
+      "367859:2027:004:040105:01:全日制",
+      "367859:2027:004:040105:02:全日制",
+      "367859:2027:004:040105:03:全日制",
+      "367859:2027:004:040105:04:全日制",
+      "367859:2027:004:040106:01:全日制",
+      "367859:2027:004:040106:02:全日制",
+      "367859:2027:004:040107:01:全日制",
+      "367859:2027:004:040108:01:全日制",
+      "367859:2027:004:040108:02:全日制",
+      "367859:2027:004:040108:03:全日制",
+      "367859:2027:004:040108:04:全日制",
+      "367859:2027:004:040109:01:全日制",
+      "367859:2027:004:040109:02:全日制",
+      "367859:2027:004:040109:03:全日制",
+      "367859:2027:004:040109:04:全日制",
+      "367859:2027:004:040109:05:全日制",
+      "367859:2027:004:040109:06:全日制",
+      "367859:2027:004:040109:07:全日制",
+      "367859:2027:004:040109:08:全日制",
+      "367859:2027:004:040109:09:全日制",
+      "367859:2027:004:0401Z1:01:全日制",
+      "367859:2027:004:0401Z1:02:全日制",
+      "367859:2027:004:0401Z2:01:全日制",
+      "367859:2027:004:0401Z2:02:全日制",
+      "367859:2027:004:0401Z2:03:全日制",
+      "367859:2027:004:045101:01:非全日制",
+      "367859:2027:004:045101:02:非全日制",
+      "367859:2027:004:045101:03:非全日制",
+      "367859:2027:004:045103:01:全日制",
+      "367859:2027:004:045103:02:全日制",
+      "367859:2027:004:045104:01:全日制",
+      "367859:2027:004:045105:01:全日制",
+      "367859:2027:004:045106:01:全日制",
+      "367859:2027:004:045107:01:全日制",
+      "367859:2027:004:045108:01:全日制",
+      "367859:2027:004:045109:01:全日制",
+      "367859:2027:004:045110:01:全日制",
+      "367859:2027:004:045114:01:全日制",
+      "367859:2027:004:045115:01:全日制",
+      "367859:2027:004:045116:01:全日制",
+      "367859:2027:004:045118:01:全日制",
+      "367859:2027:004:045118:02:全日制",
+      "367859:2027:004:045118:03:全日制",
+      "367859:2027:004:045118:04:全日制",
+      "367859:2027:004:045119:01:全日制",
+      "367859:2027:004:047101:01:全日制",
+      "367859:2027:004:047101:02:全日制",
+      "367859:2027:004:047101:03:全日制",
+      "367859:2027:004:047101:04:全日制",
+      "367859:2027:004:078401:01:全日制",
+      "367859:2027:004:078401:02:全日制",
+      "367859:2027:004:078401:03:全日制",
+      "367859:2027:004:078401:04:全日制",
+      "367859:2027:004:078401:05:全日制",
+      "367859:2027:004:081202:01:全日制",
+      "367859:2027:004:081202:02:全日制",
+      "367859:2027:005:030101:01:全日制",
+      "367859:2027:005:030101:02:全日制",
+      "367859:2027:005:030101:03:全日制",
+      "367859:2027:005:030103:01:全日制",
+      "367859:2027:005:030103:02:全日制",
+      "367859:2027:005:030103:03:全日制",
+      "367859:2027:005:030104:01:全日制",
+      "367859:2027:005:030105:01:全日制",
+      "367859:2027:005:030105:02:全日制",
+      "367859:2027:005:030105:03:全日制",
+      "367859:2027:005:030106:01:全日制",
+      "367859:2027:005:030106:02:全日制",
+      "367859:2027:005:030107:01:全日制",
+      "367859:2027:005:030107:02:全日制",
+      "367859:2027:005:030107:03:全日制",
+      "367859:2027:005:030107:04:全日制",
+      "367859:2027:005:030109:01:全日制",
+      "367859:2027:005:030109:02:全日制",
+      "367859:2027:005:030109:03:全日制",
+      "367859:2027:005:035101:01:全日制",
+      "367859:2027:005:035101:02:全日制",
+      "367859:2027:005:035101:03:全日制",
+      "367859:2027:005:035102:01:全日制",
+      "367859:2027:006:120400:01:全日制",
+      "367859:2027:006:120400:02:全日制",
+      "367859:2027:006:120400:03:全日制",
+      "367859:2027:006:120400:04:全日制",
+      "367859:2027:006:120400:05:全日制",
+      "367859:2027:006:120500:01:全日制",
+      "367859:2027:006:120500:02:全日制",
+      "367859:2027:006:120500:03:全日制",
+      "367859:2027:006:125200:01:非全日制",
+      "367859:2027:006:125200:02:非全日制",
+      "367859:2027:006:125200:03:全日制",
+      "367859:2027:006:125200:04:全日制",
+      "367859:2027:006:1259S1:01:全日制",
+      "367859:2027:009:040301:01:全日制",
+      "367859:2027:009:040301:02:全日制",
+      "367859:2027:009:040301:03:全日制",
+      "367859:2027:009:040301:04:全日制",
+      "367859:2027:009:040302:01:全日制",
+      "367859:2027:009:040302:02:全日制",
+      "367859:2027:009:040302:03:全日制",
+      "367859:2027:009:040302:04:全日制",
+      "367859:2027:009:040302:05:全日制",
+      "367859:2027:009:040303:01:全日制",
+      "367859:2027:009:040303:02:全日制",
+      "367859:2027:009:040303:03:全日制",
+      "367859:2027:009:040303:04:全日制",
+      "367859:2027:009:040303:05:全日制",
+      "367859:2027:009:040304:01:全日制",
+      "367859:2027:009:040304:02:全日制",
+      "367859:2027:009:040304:03:全日制",
+      "367859:2027:009:040304:04:全日制",
+      "367859:2027:009:045201:01:全日制",
+      "367859:2027:009:045201:02:全日制",
+      "367859:2027:010:040102:01:全日制",
+      "367859:2027:010:045103:01:全日制",
+      "367859:2027:010:050101:01:全日制",
+      "367859:2027:010:050101:02:全日制",
+      "367859:2027:010:050101:03:全日制",
+      "367859:2027:010:050101:04:全日制",
+      "367859:2027:010:050102:01:全日制",
+      "367859:2027:010:050102:02:全日制",
+      "367859:2027:010:050103:01:全日制",
+      "367859:2027:010:050103:02:全日制",
+      "367859:2027:010:050104:01:全日制",
+      "367859:2027:010:050104:02:全日制",
+      "367859:2027:010:050104:03:全日制",
+      "367859:2027:010:050104:04:全日制",
+      "367859:2027:010:050105:01:全日制",
+      "367859:2027:010:050105:02:全日制",
+      "367859:2027:010:050105:03:全日制",
+      "367859:2027:010:050106:01:全日制",
+      "367859:2027:010:050106:02:全日制",
+      "367859:2027:010:050106:03:全日制",
+      "367859:2027:010:050108:01:全日制",
+      "367859:2027:010:050108:02:全日制",
+      "367859:2027:010:050108:03:全日制",
+      "367859:2027:010:0501Z1:01:全日制",
+      "367859:2027:010:0501Z1:02:全日制",
+      "367859:2027:010:0501Z2:01:全日制",
+      "367859:2027:010:0501Z3:01:全日制",
+      "367859:2027:010:0554S1:01:全日制",
+      "367859:2027:011:045108:01:全日制",
+      "367859:2027:011:050200:01:全日制",
+      "367859:2027:011:050200:04:全日制",
+      "367859:2027:011:050200:05:全日制",
+      "367859:2027:011:055101:01:全日制",
+      "367859:2027:012:040102:01:全日制",
+      "367859:2027:012:060100:01:全日制",
+      "367859:2027:012:060100:02:全日制",
+      "367859:2027:012:060200:01:全日制",
+      "367859:2027:012:060200:02:全日制",
+      "367859:2027:012:060200:03:全日制",
+      "367859:2027:012:060200:04:全日制",
+      "367859:2027:012:060200:05:全日制",
+      "367859:2027:012:060300:01:全日制",
+      "367859:2027:012:060300:02:全日制",
+      "367859:2027:012:060300:04:全日制",
+      "367859:2027:012:065100:01:全日制",
+      "367859:2027:012:065100:02:全日制",
+      "367859:2027:012:065100:03:全日制",
+      "367859:2027:015:040102:01:全日制",
+      "367859:2027:015:045104:01:全日制",
+      "367859:2027:015:070100:01:全日制",
+      "367859:2027:015:070100:02:全日制",
+      "367859:2027:015:070100:03:全日制",
+      "367859:2027:015:070100:04:全日制",
+      "367859:2027:015:070100:05:全日制",
+      "367859:2027:015:070100:06:全日制",
+      "367859:2027:015:070100:07:全日制",
+      "367859:2027:015:070100:08:全日制",
+      "367859:2027:015:070100:09:全日制",
+      "367859:2027:015:070100:10:全日制",
+      "367859:2027:019:040102:01:全日制",
+      "367859:2027:019:040102:02:全日制",
+      "367859:2027:019:070300:01:全日制",
+      "367859:2027:019:070300:02:全日制",
+      "367859:2027:019:070300:03:全日制",
+      "367859:2027:019:070300:04:全日制",
+      "367859:2027:019:070300:05:全日制",
+      "367859:2027:019:070300:06:全日制",
+      "367859:2027:019:070300:07:全日制",
+      "367859:2027:019:070300:08:全日制",
+      "367859:2027:022:020106:01:全日制",
+      "367859:2027:022:020106:02:全日制",
+      "367859:2027:022:081500:01:全日制",
+      "367859:2027:022:081500:02:全日制",
+      "367859:2027:022:081500:03:全日制",
+      "367859:2027:022:081500:04:全日制",
+      "367859:2027:022:083000:01:全日制",
+      "367859:2027:022:083000:02:全日制",
+      "367859:2027:022:083000:03:全日制",
+      "367859:2027:022:083000:04:全日制",
+      "367859:2027:022:083000:05:全日制",
+      "367859:2027:022:083000:06:全日制",
+      "367859:2027:022:083000:07:全日制",
+      "367859:2027:022:083000:08:全日制",
+      "367859:2027:022:083000:09:全日制",
+      "367859:2027:022:083000:10:全日制",
+      "367859:2027:022:083000:11:全日制",
+      "367859:2027:022:085700:01:全日制",
+      "367859:2027:022:085700:02:全日制",
+      "367859:2027:022:085700:03:全日制",
+      "367859:2027:022:085700:04:全日制",
+      "367859:2027:023:040102:01:全日制",
+      "367859:2027:023:071000:01:全日制",
+      "367859:2027:023:071000:02:全日制",
+      "367859:2027:023:071000:03:全日制",
+      "367859:2027:023:071000:04:全日制",
+      "367859:2027:023:071000:05:全日制",
+      "367859:2027:023:071300:01:全日制",
+      "367859:2027:023:071300:02:全日制",
+      "367859:2027:023:071300:03:全日制",
+      "367859:2027:023:071300:04:全日制",
+      "367859:2027:023:071300:05:全日制",
+      "367859:2027:023:071300:06:全日制",
+      "367859:2027:026:071100:01:全日制",
+      "367859:2027:026:125600:01:非全日制",
+      "367859:2027:029:130100:02:全日制",
+      "367859:2027:029:130100:03:全日制",
+      "367859:2027:029:130100:04:全日制",
+      "367859:2027:029:130100:09:全日制",
+      "367859:2027:029:135200:01:全日制",
+      "367859:2027:029:135200:02:全日制",
+      "367859:2027:029:135200:03:全日制",
+      "367859:2027:029:135200:04:全日制",
+      "367859:2027:029:135200:05:全日制",
+      "367859:2027:029:135300:01:全日制",
+      "367859:2027:029:135300:02:非全日制",
+      "367859:2027:029:135400:01:全日制",
+      "367859:2027:029:135400:02:全日制",
+      "367859:2027:029:135400:03:全日制",
+      "367859:2027:029:135400:04:全日制",
+      "367859:2027:029:135400:05:全日制",
+      "367859:2027:029:135400:06:全日制",
+      "367859:2027:029:135600:01:全日制",
+      "367859:2027:029:135600:02:全日制",
+      "367859:2027:029:135600:03:全日制",
+      "367859:2027:030:081500:01:全日制",
+      "367859:2027:030:083000:01:全日制",
+      "367859:2027:030:085700:01:全日制",
+      "367859:2027:030:085700:02:全日制",
+      "367859:2027:034:025200:01:全日制",
+      "367859:2027:034:025200:02:全日制",
+      "367859:2027:034:025200:03:全日制",
+      "367859:2027:034:071400:01:全日制",
+      "367859:2027:034:071400:02:全日制",
+      "367859:2027:034:071400:03:全日制",
+      "367859:2027:035:040100:01:全日制",
+      "367859:2027:035:040100:02:全日制",
+      "367859:2027:035:040200:01:全日制",
+      "367859:2027:035:040200:02:全日制",
+      "367859:2027:035:0455S1:01:全日制",
+      "367859:2027:035:0455S1:02:全日制",
+      "367859:2027:036:030300:01:全日制",
+      "367859:2027:036:035200:01:全日制",
+      "367859:2027:036:035200:02:全日制",
+      "367859:2027:037:050302:01:全日制",
+      "367859:2027:037:050302:02:全日制",
+      "367859:2027:037:050302:03:全日制",
+      "367859:2027:037:050302:04:全日制",
+      "367859:2027:037:050302:05:全日制",
+      "367859:2027:037:050302:06:全日制",
+      "367859:2027:037:055200:01:全日制",
+      "367859:2027:037:055200:02:全日制",
+      "367859:2027:037:055200:03:全日制",
+      "367859:2027:038:040102:01:全日制",
+      "367859:2027:038:040200:01:全日制",
+      "367859:2027:038:040200:02:全日制",
+      "367859:2027:038:040200:03:全日制",
+      "367859:2027:038:040200:04:全日制",
+      "367859:2027:038:040200:05:全日制",
+      "367859:2027:038:040200:06:全日制",
+      "367859:2027:038:040200:07:全日制",
+      "367859:2027:038:040200:08:全日制",
+      "367859:2027:038:040200:09:全日制",
+      "367859:2027:038:040200:10:全日制",
+      "367859:2027:038:045400:01:非全日制",
+      "367859:2027:038:045400:02:非全日制",
+      "367859:2027:038:045400:03:非全日制",
+      "367859:2027:038:045400:04:非全日制",
+      "367859:2027:038:045400:05:非全日制",
+      "367859:2027:038:045400:06:非全日制",
+      "367859:2027:038:045400:07:非全日制",
+      "367859:2027:038:081203:01:全日制",
+      "367859:2027:039:040102:01:全日制",
+      "367859:2027:039:070501:01:全日制",
+      "367859:2027:039:070501:02:全日制",
+      "367859:2027:039:070501:03:全日制",
+      "367859:2027:039:070501:04:全日制",
+      "367859:2027:039:070501:05:全日制",
+      "367859:2027:039:070501:06:全日制",
+      "367859:2027:039:070502:01:全日制",
+      "367859:2027:039:070502:02:全日制",
+      "367859:2027:039:070502:03:全日制",
+      "367859:2027:039:070502:04:全日制",
+      "367859:2027:039:070503:01:全日制",
+      "367859:2027:039:070503:02:全日制",
+      "367859:2027:039:070503:03:全日制",
+      "367859:2027:039:070503:04:全日制",
+      "367859:2027:039:070503:05:全日制",
+      "367859:2027:039:070503:06:全日制",
+      "367859:2027:039:0705Z1:01:全日制",
+      "367859:2027:039:0705Z1:02:全日制",
+      "367859:2027:039:0705Z1:03:全日制",
+      "367859:2027:039:0705Z1:04:全日制",
+      "367859:2027:039:0705Z2:01:全日制",
+      "367859:2027:039:0705Z2:02:全日制",
+      "367859:2027:039:0705Z2:03:全日制",
+      "367859:2027:039:0705Z2:04:全日制",
+      "367859:2027:039:0705Z3:01:全日制",
+      "367859:2027:039:0705Z3:02:全日制",
+      "367859:2027:039:0705Z4:01:全日制",
+      "367859:2027:039:0705Z4:02:全日制",
+      "367859:2027:039:085700:01:全日制",
+      "367859:2027:039:085700:02:全日制",
+      "367859:2027:039:140400:01:全日制",
+      "367859:2027:039:140400:02:全日制",
+      "367859:2027:039:140400:03:全日制",
+      "367859:2027:039:140400:04:全日制",
+      "367859:2027:040:081200:01:全日制",
+      "367859:2027:040:081200:02:全日制",
+      "367859:2027:040:081200:03:全日制",
+      "367859:2027:040:081200:04:全日制",
+      "367859:2027:040:081200:05:全日制",
+      "367859:2027:040:081200:06:全日制",
+      "367859:2027:040:085404:01:全日制",
+      "367859:2027:040:085410:01:全日制",
+      "367859:2027:040:140500:01:全日制",
+      "367859:2027:040:140500:02:全日制",
+      "367859:2027:040:140500:03:全日制",
+      "367859:2027:040:140500:04:全日制",
+      "367859:2027:042:040101:01:全日制",
+      "367859:2027:042:040102:01:全日制",
+      "367859:2027:042:045101:0101:全日制",
+      "367859:2027:042:045104:01:全日制",
+      "367859:2027:042:045117:01:全日制",
+      "367859:2027:042:078401:01:全日制",
+      "367859:2027:043:135700:01:全日制",
+      "367859:2027:045:025100:01:全日制",
+      "367859:2027:045:025400:01:全日制",
+      "367859:2027:045:125300:01:全日制",
+      "367859:2027:046:045300:02:全日制",
+      "367859:2027:046:050100:01:全日制",
+      "367859:2027:046:050100:02:全日制",
+      "367859:2027:046:050100:03:全日制",
+      "367859:2027:047:125600:01:非全日制",
+      "367859:2027:047:140200:01:全日制",
+      "367859:2027:047:140200:02:全日制",
+      "367859:2027:048:010100:01:全日制",
+      "367859:2027:048:050102:01:全日制",
+      "367859:2027:048:050102:02:全日制",
+      "367859:2027:048:050103:01:全日制",
+      "367859:2027:048:050103:02:全日制",
+      "367859:2027:048:050104:01:全日制",
+      "367859:2027:048:050104:02:全日制",
+      "367859:2027:048:050105:01:全日制",
+      "367859:2027:048:050105:02:全日制",
+      "367859:2027:048:050108:01:全日制",
+      "367859:2027:048:050302:01:全日制",
+      "367859:2027:048:060200:01:全日制",
+      "367859:2027:048:060200:02:全日制",
+      "367859:2027:048:060200:03:全日制",
+      "367859:2027:048:060300:01:全日制",
+      "367859:2027:048:060300:02:全日制",
+      "367859:2027:048:070100:01:全日制",
+      "367859:2027:048:070100:02:全日制",
+      "367859:2027:048:070100:03:全日制",
+      "367859:2027:048:070100:04:全日制",
+      "367859:2027:048:070201:01:全日制",
+      "367859:2027:048:070205:01:全日制",
+      "367859:2027:048:070207:01:全日制",
+      "367859:2027:048:070300:01:全日制",
+      "367859:2027:048:070400:01:全日制",
+      "367859:2027:048:070501:01:全日制",
+      "367859:2027:048:070501:02:全日制",
+      "367859:2027:048:070501:03:全日制",
+      "367859:2027:048:070502:01:全日制",
+      "367859:2027:048:070502:02:全日制",
+      "367859:2027:048:070503:01:全日制",
+      "367859:2027:048:070503:02:全日制",
+      "367859:2027:048:071000:01:全日制",
+      "367859:2027:048:071100:01:全日制",
+      "367859:2027:048:071400:01:全日制",
+      "367859:2027:048:071400:02:全日制",
+      "367859:2027:048:071400:03:全日制",
+      "367859:2027:048:081200:01:全日制",
+      "367859:2027:048:082700:01:全日制",
+      "367859:2027:048:085600:01:全日制",
+      "367859:2027:048:085600:02:全日制",
+      "367859:2027:048:140500:01:全日制",
+      "367859:2027:050:040102:01:全日制",
+      "367859:2027:050:040102:02:全日制",
+      "367859:2027:050:040102:03:全日制",
+      "367859:2027:050:040102:04:全日制",
+      "367859:2027:050:070201:01:全日制",
+      "367859:2027:050:070201:02:全日制",
+      "367859:2027:050:070201:03:全日制",
+      "367859:2027:050:070202:01:全日制",
+      "367859:2027:050:070202:02:全日制",
+      "367859:2027:050:070202:03:全日制",
+      "367859:2027:050:070205:01:全日制",
+      "367859:2027:050:070205:02:全日制",
+      "367859:2027:050:070207:01:全日制",
+      "367859:2027:050:070207:02:全日制",
+      "367859:2027:050:070207:03:全日制",
+      "367859:2027:050:070207:04:全日制",
+      "367859:2027:050:0702Z1:01:全日制",
+      "367859:2027:050:070400:01:全日制",
+      "367859:2027:050:082700:01:全日制",
+      "367859:2027:050:082700:02:全日制",
+      "367859:2027:050:085800:01:全日制",
+      "367859:2027:051:081500:01:全日制",
+      "367859:2027:051:083000:01:全日制"
+    ],
+    "must_keep_unknown": [
+      "qualification",
+      "degree where absent",
+      "tuition",
+      "duration"
+    ],
+    "must_retain_previous_missing_rows": true,
+    "must_not_adopt_nonstandard_direction_without_separate_identity_review": true
+  },
+  "verdict": "partial_semantic_review_passed",
+  "limits": [
+    "No original bytes, registry, adopted catalog, runtime database, API configuration or key changed.",
+    "This is an HTML data review, not PDF semantic approval.",
+    "Explicit professional degree notes remain a known field-coverage gap; null is not an academic-degree assertion."
+  ],
+  "in_memory_ingest_verification": {
+    "method": "read-only in-memory _ingest_school with one-unit previous subset, no output file, no adopted catalog writes",
+    "old_count": 463,
+    "input_candidate_count": 462,
+    "returned_count": 463,
+    "old_only_retained": [
+      "367859:2027:052:1258S1:01:全日制"
+    ],
+    "input_mutated": false,
+    "returned_state": {
+      "unit_id": "367859",
+      "unit_name": "北京师范大学",
+      "year": 2027,
+      "status": "partial",
+      "expected_records": null,
+      "parsed_records": 463,
+      "verified_records": 0,
+      "accepted_records": 462,
+      "added_records": 0,
+      "updated_records": 462,
+      "rejected_records": 0,
+      "conflicting_records": 0,
+      "retained_records": 463,
+      "rejections": [],
+      "superseded_records": 0,
+      "notes": [
+        "离线解析不修改招生资料；ready记录仍须经独立ingest核验。",
+        "已解析方向不等于资格通过或全校目录齐全。",
+        "逐条核验后增量收录；部分来源不代表该校目录全集。"
+      ]
+    },
+    "global_admissions_file_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3"
+  }
+}

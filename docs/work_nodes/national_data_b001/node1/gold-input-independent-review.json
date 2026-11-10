@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-11-10T08:44:06.275720+00:00",
+  "passed": true,
+  "scope": "Gold benchmark input isolation code, not a new data release approval.",
+  "base_commit": "08c41492a721a7c082c32990b401338e502b8c3d",
+  "source_sha256": "9621f5b02b106a967a545247d44b9b1e15b1d9c0f765a7ebd784e25dd5bbf4cd",
+  "test_sha256": "be74099d2109d707141b1a34b256b67cd54b0b0ea81bdebd7d5d063ed682c0fb",
+  "historical_manifest_sha256": "287bb81ab8e0893c8cf57fc817a489557e33c91d08611f64257a5a8e50f6112e",
+  "historical_exact_git_blob": "5d0460d086f9ab294a163588b4e589e9dd57feff",
+  "historical_fixture_text_attribute": "tests/fixtures/knowledge_gold/public_bundle_manifest.json: text: unset",
+  "checks": {
+    "unchanged_corpus_and_freeze_constants": true,
+    "all_frozen_texts_equal_original_git_bytes": 154,
+    "existing_test_class_ast_and_thresholds_unchanged": true,
+    "only_old_tool_function_changed": "load_fixture",
+    "new_helpers": [
+      "_check_public_inputs",
+      "_checked_archive_input",
+      "_selected_members"
+    ],
+    "selected_actual_public_inputs": 30,
+    "actual_originals": 29,
+    "complete_units_file_is_frozen": true,
+    "manifest_zip_expanded_bytes_triple_checked": true,
+    "selected_manifest_or_zip_duplicates_rejected": true,
+    "simultaneous_current_manifest_zip_file_tampering_rejected": true,
+    "unrelated_package_growth_allowed_without_redefining_gold": true,
+    "archive_paths_confined_to_public_bundles": true,
+    "development_holdout_split": {
+      "development": 24,
+      "holdout": 10
+    }
+  },
+  "independently_executed_tests": {
+    "gold_and_hybrid": 33,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 19.188,
+    "real_29_source_extraction_index_and_bounded_read": true,
+    "socket_network_forbidden_by_integration_tests": true
+  },
+  "findings": [],
+  "limitations": [
+    "Existing split notice remains non-blind holdout; this repair does not turn it into blind evaluation.",
+    "Complete units.json is deliberately frozen, so a future legitimate units edit still requires separately reviewed benchmark context.",
+    "Full bundle archive gates in prepare_data/publication were not modified; only actual benchmark inputs are isolated.",
+    "No source questions, expected quotes, corpus hash, freeze hash or runtime database were modified by this review."
+  ]
+}

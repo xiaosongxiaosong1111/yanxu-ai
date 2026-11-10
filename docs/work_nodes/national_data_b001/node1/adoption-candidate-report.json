@@ -1,0 +1,62 @@
+{
+  "code_commit": "c56d7f504126d142c90c6a76d4018298d077373e",
+  "baseline_admissions_sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3",
+  "baseline_records": 22356,
+  "candidate_records": 22630,
+  "candidate_units_with_records": 136,
+  "added_records": 274,
+  "bnu_evidence_refreshed": 462,
+  "all_previous_program_ids_preserved": true,
+  "qualification_complete": 0,
+  "candidate_admissions_sha256": "33276e3e4e0b626e212005e1f16bfc7476b61bb50e54af94e84ca95e08fd485f",
+  "approved_audits_candidate_sha256": "f80a2645691a3bd5442dd48686e67910c9ff88bc650ef3a50b5dfe1fc24766b9",
+  "unit_statuses": [
+    {
+      "unit_id": "367859",
+      "unit_name": "北京师范大学",
+      "year": 2027,
+      "status": "partial",
+      "expected_records": null,
+      "parsed_records": 463,
+      "verified_records": 0,
+      "accepted_records": 462,
+      "added_records": 0,
+      "updated_records": 462,
+      "rejected_records": 0,
+      "conflicting_records": 0,
+      "retained_records": 463,
+      "rejections": [],
+      "superseded_records": 0,
+      "notes": [
+        "离线解析不修改招生资料；ready记录仍须经独立ingest核验。",
+        "已解析方向不等于资格通过或全校目录齐全。",
+        "逐条核验后增量收录；部分来源不代表该校目录全集。"
+      ]
+    },
+    {
+      "unit_id": "368142",
+      "unit_name": "华东理工大学",
+      "year": 2027,
+      "status": "partial",
+      "expected_records": null,
+      "parsed_records": 274,
+      "verified_records": 0,
+      "accepted_records": 274,
+      "added_records": 274,
+      "updated_records": 0,
+      "rejected_records": 0,
+      "conflicting_records": 0,
+      "retained_records": 0,
+      "rejections": [],
+      "superseded_records": 0,
+      "notes": [
+        "离线解析不修改招生资料；ready记录仍须经独立ingest核验。",
+        "已解析方向不等于资格通过或全校目录齐全。",
+        "逐条核验后增量收录；部分来源不代表该校目录全集。"
+      ]
+    }
+  ],
+  "root_data_files_unchanged": true,
+  "live_store_changed": false,
+  "public_bundle_rebuilt": false
+}

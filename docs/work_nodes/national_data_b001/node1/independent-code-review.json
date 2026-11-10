@@ -1,0 +1,231 @@
+{
+  "reviewer": "/root/independent_review",
+  "reviewed_at": "2026-11-10T05:59:13.465874+00:00",
+  "verdict": "code_changes_passed_independent_review_for_b001_scope",
+  "tested_suite": {
+    "started_at": "2026-11-10T05:56:50.621157+00:00",
+    "finished_at": "2026-11-10T05:57:07.245536+00:00",
+    "modules": [
+      "test_pinned_http_headers",
+      "test_official_binding_information_network",
+      "test_official_bindings",
+      "test_national_sources_index_links",
+      "test_national_sources",
+      "test_national_source_binary_headers",
+      "test_national_catalog_document_kind",
+      "test_national_catalog",
+      "test_embedded_documents",
+      "test_collect_national_batch",
+      "test_catalog_source_set",
+      "test_catalog_semantic_audit",
+      "test_catalog_publication_embedded",
+      "test_catalog_publication",
+      "test_catalog_pdf_variants",
+      "test_catalog_pdf_tables",
+      "test_catalog_pdf_national_v3",
+      "test_catalog_v3_replay",
+      "test_catalog_pdf_national_v2",
+      "test_catalog_pdf_national",
+      "test_catalog_pdf",
+      "test_catalog_batch_scope",
+      "test_catalog_batch"
+    ],
+    "tests": 388,
+    "failures": 0,
+    "errors": 0,
+    "skipped": [],
+    "successful": true,
+    "source_sha256": {
+      "collectors/catalog_pdf_national_v3.py": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+      "collectors/catalog_batch.py": "f14fd16c673d843f7c90cf078230a98006cb620ed356083e010cacb5a442255f",
+      "collectors/catalog_publication.py": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+      "collectors/catalog_semantic_audit.py": "91b7df07bcf2a07c4a02692557be6d8d59b291431c2ca605194fc796408f699d",
+      "collectors/discovery.py": "ecfc5e09e2dcb5bd706b1c7da8205aedf3a044cfb48b4ef5b9510d7d3d68d0fb",
+      "collectors/national_catalog.py": "e87de9fbc3ae163afd2cfa6c7a1ca9d61b63e0b5bc1fe896cf248bbf88165ec3",
+      "collectors/national_sources.py": "b4ad41f9ecdf48cea57d9c7a7c53596591871c7554544200e704b9c2a5b4a4a6",
+      "collectors/official_bindings.py": "f47da7385487a3228d73e62956114c417b2a319c077391f9f8c301fbc8e3c01e",
+      "collectors/embedded_documents.py": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+      "collectors/source_payload.py": "acddba473e5f611ca1eafb6bcced273e6fceea4ae223ed7a85487d74a1298b7f",
+      "service_verification.py": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+      "tools/collect_national_batch.py": "294a398deda4690d917b8212a24bc1b445d98b4d5da82a7778d5032965ee57e0",
+      ".gitattributes": "2714eefc221248e9a97bb8ee4351db0a6c126b6b8fb1388f18774371941d4b41"
+    },
+    "tested_bytes_unchanged": true,
+    "scope": "Targeted old and new collector/adoption/semantic/source replay regression; not full repository suite or live AI/search E2E."
+  },
+  "final_reviewed_source_sha256": {
+    "collectors/catalog_pdf_national_v3.py": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+    "collectors/catalog_batch.py": "f14fd16c673d843f7c90cf078230a98006cb620ed356083e010cacb5a442255f",
+    "collectors/catalog_publication.py": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+    "collectors/catalog_semantic_audit.py": "91b7df07bcf2a07c4a02692557be6d8d59b291431c2ca605194fc796408f699d",
+    "collectors/discovery.py": "ecfc5e09e2dcb5bd706b1c7da8205aedf3a044cfb48b4ef5b9510d7d3d68d0fb",
+    "collectors/national_catalog.py": "e87de9fbc3ae163afd2cfa6c7a1ca9d61b63e0b5bc1fe896cf248bbf88165ec3",
+    "collectors/national_sources.py": "b4ad41f9ecdf48cea57d9c7a7c53596591871c7554544200e704b9c2a5b4a4a6",
+    "collectors/official_bindings.py": "f47da7385487a3228d73e62956114c417b2a319c077391f9f8c301fbc8e3c01e",
+    "collectors/embedded_documents.py": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+    "collectors/source_payload.py": "acddba473e5f611ca1eafb6bcced273e6fceea4ae223ed7a85487d74a1298b7f",
+    "service_verification.py": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+    "tools/collect_national_batch.py": "294a398deda4690d917b8212a24bc1b445d98b4d5da82a7778d5032965ee57e0",
+    ".gitattributes": "2714eefc221248e9a97bb8ee4351db0a6c126b6b8fb1388f18774371941d4b41"
+  },
+  "v3_dependency_sha256": {
+    "collectors/catalog_pdf_national_v3.py": "0febe55c025145e1719cc7882de1b71de416687e1c73a4715cd02c8f7821a70b",
+    "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+    "collectors/catalog_pdf_national.py": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+    "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+    "collectors/catalog_html.py": "51d6d2190526fbac1d07abac29ca0c5250e5f4f5c127e97ef8cd2bbc1eae29cb",
+    "collectors/catalog_publication.py": "3c9c22cae4a90d755cb4ed2f92ecc93e7aa757857a572ad690b4d3406aaa05c1",
+    "collectors/embedded_documents.py": "942ba01d3f4fac0cf7263ee4fecc98d6386452b1e1faee4f8785ed9c2c8c798b",
+    "collectors/catalogs.py": "bbcc90f93db99e42a22426b0655d1388f1ad1effa666265ec5f526f3a7f96f8e",
+    "collectors/documents.py": "090ff005b6cf64b1677b5fb2e72073ffd9ebccfc4424e9720dcbe44cc7f58804",
+    "service_verification.py": "a500cd5befc59beb125e47051a0a73342e1e40cfacbe3439a602945ae70ee287",
+    "public_sources.py": "4a85a72b11266734764162ba786208771e3b8269f24700db4bc20cf32667d282",
+    "public_navigation.py": "a761955be8ead94718afc6aed988de48f62aca2a1426bfc0e3f05d5a8f189fef"
+  },
+  "v3_composite_parser_sha256": "07b0afe0b2d5eb34770295b8dcbbb015bec7f5b324a167f67049025a9ef701e3",
+  "protected_adapter_sha256": {
+    "collectors/catalog_pdf_tables.py": "cbaf2b3a78822e6558f939e8df4a8cf0660577223c3f873be2f3bd450a94d384",
+    "collectors/catalog_pdf_variants.py": "76583e49222980947a061fad641742a07fe85103b20a9759194c811384718971",
+    "collectors/catalog_pdf_national.py": "19772baec461b81d21ee2bc555193e7248ca1d9a2ec85bf0c4e12e808c97c55e",
+    "collectors/catalog_pdf_national_v2.py": "40528ad943d2557c7b5855a3afeceb44dffb47f528a90aaccd83c9804daa0d9d",
+    "collectors/catalog_hit_public.py": "e757752d9a707007288d55417318a00d947bbe30c55f124a82742cd8231f5f1e"
+  },
+  "protected_unchanged": true,
+  "counterexample_replays": [
+    {
+      "raw_direction": "01人工智能与AI技术",
+      "accepted": 0,
+      "rejected_source_rows": [
+        {
+          "reason": "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格",
+          "page": 1,
+          "table": 1,
+          "row": 2
+        }
+      ]
+    },
+    {
+      "raw_direction": "01计算机科学\n02人工智能与AI应用",
+      "accepted": 0,
+      "rejected_source_rows": [
+        {
+          "reason": "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格",
+          "page": 1,
+          "table": 1,
+          "row": 2
+        }
+      ]
+    },
+    {
+      "raw_direction": "01人工智能与\nAI 技术",
+      "accepted": 0,
+      "rejected_source_rows": [
+        {
+          "reason": "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格",
+          "page": 1,
+          "table": 1,
+          "row": 2
+        }
+      ]
+    },
+    {
+      "raw_direction": "AI 技术",
+      "accepted": 0,
+      "rejected_source_rows": [
+        {
+          "reason": "原文方向括号未闭合或印刷编号与完整名称无法逐项对账，未采用该方向整格",
+          "page": 1,
+          "table": 1,
+          "row": 2
+        }
+      ]
+    },
+    {
+      "continued_major": "",
+      "continued_department": "",
+      "continued_mode": "全日制",
+      "accepted": 0,
+      "rejected_source_rows": [
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 1,
+          "table": 1,
+          "row": 2,
+          "continuation_page": 2
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 2,
+          "table": 2,
+          "row": 1,
+          "continuation_page": 2
+        }
+      ]
+    },
+    {
+      "continued_major": "",
+      "continued_department": "002化学学院",
+      "continued_mode": "全日制",
+      "accepted": 0,
+      "rejected_source_rows": [
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 1,
+          "table": 1,
+          "row": 2,
+          "continuation_page": 2
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 2,
+          "table": 2,
+          "row": 1,
+          "continuation_page": 2
+        }
+      ]
+    },
+    {
+      "continued_major": "070302分析化学",
+      "continued_department": "002化学学院",
+      "continued_mode": "全日制",
+      "accepted": 0,
+      "rejected_source_rows": [
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 1,
+          "table": 1,
+          "row": 2,
+          "continuation_page": 2
+        },
+        {
+          "reason": "初试单元格在相邻页仍有续格，当前未拼接并核验完整原文，未采用截断方向",
+          "page": 2,
+          "table": 2,
+          "row": 1,
+          "continuation_page": 2
+        }
+      ]
+    }
+  ],
+  "mixed_alphanumeric_direction_positive_ids": [
+    "u:2027:001:081200:A1:全日制",
+    "u:2027:001:081200:0A:全日制",
+    "u:2027:001:081200:02:全日制"
+  ],
+  "resolved_findings": [
+    "Embedded viewer and base-aware parent proof with exact raw evidence",
+    "CHSI named portal role and exact secondary domain replay without broad aliases",
+    "Foreign owner, pronoun, inert and cross-clause origin contamination rejected",
+    "True PDF route subtitles retained without reading quota rows as titles",
+    "Inline and wrapped AI prose cannot produce registration directions",
+    "Cross-page initial cell tails cannot bless a truncated prefix when mode, department or same-major identity is repeated",
+    "New v3 full recordset and source graph cannot reuse v2 semantic approval"
+  ],
+  "limits": [
+    "This approves collector/replay code within B001, not completeness of all national catalogs.",
+    "Actual ECUST PDF source-recordset semantic approval must be granted independently against this final composite parser SHA.",
+    "BNU data separately reviewed in bnu-data-review.json; no net new BNU directions and no full-school coverage claim.",
+    "No live AI/Yuanbao end-to-end or deployed-service testing was performed by this reviewer.",
+    "After commit, compare each approved source graph file with its Git blob and verify restored package replay; this review occurred before commit."
+  ]
+}
