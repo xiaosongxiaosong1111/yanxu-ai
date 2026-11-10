@@ -104,6 +104,12 @@ New-Item -ItemType Directory -Path $dataBatchRoot -Force | Out-Null
 
 这个CLI默认`HostPacer`间隔0.35秒，**没有`--interval`参数**。并行真实联网批次须使用库函数`collect_national(..., project_root=..., fetcher=HostPacer(interval=2), workers=2, ...)`建立可复现的本批脚本，或先以TDD新增明确限速配置；不能写不存在的参数。与Codex协调同一主机并发，优先复用公开原件、同主机至少2秒。受限站点不反复撞门禁或改DNS/代理绕守卫。
 
+B001 已新增 `tools/collect_national_batch.py`：默认离线，只有显式 `--network` 才请求学校官网；批次清单须与当前HEAD已提交字节一致，最多2并发、同主机至少2秒。它复用已校验的HTML/二进制缓存，并阻止新增研招网请求（包括重定向）。首批可用以下入口，后续批次替换实际批次及输入路径；`max-pages`限制成功页数，不是HTTP尝试数，报告中的剩余frontier必须保留。
+
+```powershell
+& $dataPython tools/collect_national_batch.py --root $dataRepoRoot --batch "$dataRepoRoot/docs/work_nodes/national_data_b001/batch.json" --inventory "$dataBatchRoot/input-inventory.json" --output "$dataBatchRoot/national-sources.json" --snapshot-dir "$dataRepoRoot/data/snapshots/national-b001" --network --workers 2 --interval 2 --max-pages 24 --max-depth 4
+```
+
 2026/2025回退资料按其真实年份留档和展示；当前采集/增量采用链只支持2027，不接受把`year`强改为2027。历史扩展需单独增加并验证真实多年度通路，历史材料不进入本批2027覆盖增长。
 
 验收：10校都有终态或明确阻塞；可用原件均SHA可重放；目录全集入口与已取附件有差集；失败分类型，不能只写“没找到”。不把“已处理10校”说成“10校目录完成”。
@@ -113,8 +119,10 @@ New-Item -ItemType Directory -Path $dataBatchRoot -Force | Out-Null
 离线解析可调用：
 
 ```powershell
-& $dataPython -m collectors.national_catalog --root $dataRepoRoot --units "$dataBatchRoot/scope-units.json" --sources "$dataBatchRoot/national-sources.json" --output "$dataBatchRoot/national-catalog.json" --cache-dir "$dataRepoRoot/data/batch_cache/b001" --max-files 200
+& $dataPython -m collectors.national_catalog --root $dataRepoRoot --units "$dataRepoRoot/data/units.json" --sources "$dataBatchRoot/national-sources.json" --output "$dataBatchRoot/national-catalog.json" --cache-dir "$dataRepoRoot/data/runtime/national_catalog_b001" --max-files 200
 ```
+
+解析缓存必须位于当前隔离工作树新建的`data/runtime/`下；不要指向个人运行目录。实际批次建议逐校传`--unit-id`分别输出报告，避免总文件上限先被一个单位用完。这里的缓存不是正式采用库。
 
 `ready_entry_path`只是待采用结果。它需要完整来源集合、真实原文行、身份/科目重放与根PDF语义批准，不能直接复制成已核准数据。解析器不支持的格式先留`parser_unsupported`；新适配器先写失败测试，再实现，原文对照并交独立审校。
 

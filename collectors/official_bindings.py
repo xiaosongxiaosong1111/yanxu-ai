@@ -51,7 +51,7 @@ class _OriginalHTML(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         style = re.sub(r'\s+','',attrs.get('style','').lower())
-        hidden = (self.is_hidden() or tag in self.HIDDEN or 'hidden' in attrs
+        hidden = (self.is_hidden() or tag in self.HIDDEN or 'hidden' in attrs or 'inert' in attrs
             or attrs.get('aria-hidden','').lower()=='true' or bool(re.search(r'display:none|visibility:hidden',style))
             or attrs.get('role')=='tooltip' or bool(re.search(r'(?:^|\s)(?:tooltip(?:-[\w-]+)?|popover(?:-[\w-]+)?|hidden|d-none|hide)(?:$|\s)',attrs.get('class',''),re.I)))
         if tag not in self.VOID:
@@ -129,7 +129,7 @@ def _context(text, start, end):
 def _relation(label, prefix, context, unit, foreign_names):
     name = re.sub(r'\s+','',unit['name'])
     compact = re.sub(r'\s+','',label)
-    clause = re.split(r'[。；;\n]',context)[-1]
+    clause = re.split(r'[。；;\n]',context.rstrip('。；;\n '))[-1]
     if REFERENCE.search(clause) or any(other and other not in name and other in clause for other in foreign_names):
         return None
     if name in compact and PUBLICATION.search(compact):
@@ -147,6 +147,28 @@ def _relation(label, prefix, context, unit, foreign_names):
     if name in prefix or FIRST_PERSON.search(prefix) or re.search(r'研究生|研招|学校|学院|院校|部门|单位',role_text):
         return 'declared_official_site'
     return 'generic_contact_url' if re.fullmatch(r'[\s（）()\d一二三四五六七八九十、.]*',prefix[:tail.start()]) else None
+
+
+def _network_relation(text, start, end, prefix, label, unit, foreign_names):
+    """Replay narrowly named portals with the existing nearest-owner engine."""
+    scope = prefix + label
+    if (not re.search(r'招生信息网|研究生招生网|研招网', scope)
+            or re.search(r'参考|参照|借用|友情链接|其他|其它', scope)):
+        return None
+    from national_entry_proof import _role_evidence
+    # A preceding parenthesized platform URL is a separate alternative, not
+    # part of the next portal's institution name. Keep original proof offsets.
+    clause_start = max(prefix.rfind('。'), prefix.rfind('；'), prefix.rfind(';')) + 1
+    choices = list(re.finditer(r'[）)]\s*或', prefix[clause_start:]))
+    option_start = clause_start + choices[-1].end() if choices else clause_start
+    offset = start - len(prefix) + option_start
+    declared = text[offset:start] + label
+    own = re.escape(unit['name']) + r'|我校|本校|本单位|我单位|我院|本院|我所|本所'
+    if not re.search('(?:' + own + r')(?:的)?(?:研究生)?(?:招生信息网|研究生招生网|研招网)', declared):
+        return None
+    role, _ = _role_evidence(text[offset:], start - offset, end - offset,
+                             unit['name'], foreign_names)
+    return 'declared_official_site' if role and role['category'] == 'admissions' else None
 
 
 def binding_candidates(unit, document, raw, *, foreign_names=()):
@@ -178,8 +200,16 @@ def binding_candidates(unit, document, raw, *, foreign_names=()):
                 or any(other and other not in unit['name'] and other in bare_clause for other in foreign_names)):
             continue
         relation = (_relation(label,prefix,bare_clause,unit,foreign_names) or 'declared_official_site') if bare else _relation(label,prefix,context,unit,foreign_names)
+        legacy_relation = relation
+        if not relation and not bare:
+            relation = _network_relation(text, start, end, prefix, label, unit, foreign_names)
         if not relation:
             continue
+        if legacy_relation:
+            from national_entry_proof import _role_evidence
+            _, ownership_issue = _role_evidence(text, start, end, unit['name'], foreign_names)
+            if ownership_issue == 'foreign_unit_reference':
+                continue
         bare_scope = re.sub(r'\s+', '', prefix + label).replace(re.sub(r'\s+', '', unit['name']), '')
         bare_auxiliary = bare and (AUXILIARY.search(prefix + label)
             or re.search(r'学院|学部|院系|系所|二级单位', bare_scope.replace('研究生学院', '研究生院')))

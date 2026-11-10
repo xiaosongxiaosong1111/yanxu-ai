@@ -4,11 +4,12 @@ import json
 from pathlib import Path
 import re
 import stat
-from urllib.parse import quote, unquote, urljoin, urlsplit, urlunsplit
+from urllib.parse import quote, urljoin, urlsplit, urlunsplit
 
 from public_sources import _VisibleHTML, document_attribution, official_source_url, rendered_source_html
 from .catalogs import compact, evidence
 from .documents import PROJECT_ROOT, decode_text
+from .embedded_documents import extract_embedded_documents
 
 
 MAX_HTML = 8 * 1024 * 1024
@@ -18,34 +19,63 @@ _EXCLUDED = re.compile(r'留学生|国际学生|港澳台|推免(?:生)?(?:招�
 
 
 class _PublicationHTML(_VisibleHTML):
-    def __init__(self):
+    def __init__(self, html):
         super().__init__()
-        self.headings, self.links, self.active, self.anchor = [], [], [], None
+        self.headings, self.publication_links, self.active = [], [], []
+        self.publication_anchor, self.base_href, self.contexts = None, None, {}
+        self.base_span = None
+        self.script_start, self.script_ranges = None, []
+        self.lines = [0] + [match.end() for match in re.finditer('\n', html)]
+
+    def char_offset(self):
+        line, column = self.getpos()
+        return self.lines[line - 1] + column
 
     def handle_starttag(self, tag, attrs):
-        super().handle_starttag(tag, attrs)
-        values = dict(attrs)
+        values = {key: value or '' for key, value in attrs}
+        # Inert components are not part of the rendered publication.
+        if 'inert' in values:
+            values = {**values, 'hidden': ''}
+        inherited = bool(self.stack and self.stack[-1][1])
+        super().handle_starttag(tag, list(values.items()))
         hidden = bool(self.stack and self.stack[-1][1])
+        start = self.char_offset()
+        main = bool(self.stack and self.stack[-1][2])
+        self.contexts[start] = {'main': main, 'visible': not inherited if tag == 'script' else not hidden}
+        if tag == 'script':
+            self.script_start = start
+        base_hidden = ('hidden' in values or values.get('aria-hidden', '').lower() == 'true'
+            or values.get('role', '').lower() == 'tooltip'
+            or re.search(r'(?:^|\s)(?:tooltip(?:-[\w-]+)?|popover(?:-[\w-]+)?|hidden|d-none|hide)(?:$|\s)', values.get('class', ''), re.I)
+            or re.search(r'display\s*:\s*none|visibility\s*:\s*hidden', values.get('style', ''), re.I))
+        if tag == 'base' and not hidden and not base_hidden and self.base_href is None and 'href' in values:
+            self.base_href = values['href']
+            self.base_span = (start, start + len(self.get_starttag_text()))
         if hidden:
             return
         title_class = re.search(r'(?:^|\s)(?:sch-sspe-swtit|article-title|content-title|news-title|art-title|yxk-big-title)(?:\s|$)', values.get('class', ''), re.I)
         if tag in {'h1', 'h2', 'h3', 'h4'} or title_class:
             self.active.append({'tag': tag, 'depth': len(self.stack), 'parts': []})
         if tag == 'a' and values.get('href'):
-            self.anchor = {'href': values['href'], 'parts': [], 'main': bool(self.stack and self.stack[-1][2])}
+            self.publication_anchor = {'href': values['href'], 'parts': [], 'main': main,
+                'start': start, 'end': start + len(self.get_starttag_text())}
 
     def handle_data(self, data):
         super().handle_data(data)
         if self.stack and not self.stack[-1][1]:
             for heading in self.active:
                 heading['parts'].append(data)
-            if self.anchor:
-                self.anchor['parts'].append(data)
+            if self.publication_anchor:
+                self.publication_anchor['parts'].append(data)
 
     def handle_endtag(self, tag):
-        if tag == 'a' and self.anchor:
-            self.links.append({**self.anchor, 'label': re.sub(r'\s+', ' ', ''.join(self.anchor['parts'])).strip()})
-            self.anchor = None
+        if tag == 'script' and self.script_start is not None:
+            self.script_ranges.append((self.script_start, self.char_offset(), self.contexts[self.script_start]))
+            self.script_start = None
+        if tag == 'a' and self.publication_anchor:
+            self.publication_links.append({**self.publication_anchor,
+                'label': re.sub(r'\s+', ' ', ''.join(self.publication_anchor['parts'])).strip()})
+            self.publication_anchor = None
         completed = [value for value in self.active if value['tag'] == tag and value['depth'] == len(self.stack)]
         self.headings.extend(re.sub(r'\s+', ' ', ''.join(value['parts'])).strip() for value in completed)
         self.active = [value for value in self.active if value not in completed]
@@ -57,10 +87,50 @@ def _url(value, base=''):
         parsed = urlsplit(urljoin(base, value))
         if parsed.scheme not in {'http', 'https'} or not parsed.hostname or parsed.username or parsed.password or parsed.port not in {None, 80, 443}:
             return None
-        path = quote(unquote(parsed.path or '/'), safe='/%:@!$&\'()*+,;=-._~')
+        path = re.sub(r'%([0-9a-fA-F]{2})', _percent_path, parsed.path or '/')
+        path = quote(path, safe='/%:@!$&\'()*+,;=-._~')
         return urlunsplit((parsed.scheme.lower(), parsed.netloc.lower(), path, parsed.query, ''))
     except (ValueError, TypeError, UnicodeError):
         return None
+
+
+def _percent_path(match):
+    value = chr(int(match[1], 16))
+    return value if re.fullmatch(r'[a-zA-Z0-9._~-]', value) else '%' + match[1].upper()
+
+
+def _same_origin(left, right):
+    left, right = urlsplit(left), urlsplit(right)
+    return (left.scheme, left.hostname, left.port or (443 if left.scheme == 'https' else 80)) == (
+        right.scheme, right.hostname, right.port or (443 if right.scheme == 'https' else 80))
+
+
+def _publication_links(html, parser, page_url, target):
+    """Replay exact href/viewer declarations; metadata is not visible quote text."""
+    base = _url(parser.base_href, page_url) if parser.base_href is not None else page_url
+    safe_base = base if base and _same_origin(base, page_url) else None
+    base_proofs = []
+    if safe_base and parser.base_span:
+        start, end = parser.base_span
+        base_proofs = [{'source_url': page_url, 'start': start, 'end': end, 'snippet': html[start:end]}]
+    anchors = []
+    for link in parser.publication_links:
+        # An unsafe base cannot grant a relative link a new publisher origin.
+        url = _url(link['href'], safe_base or '')
+        if url == target:
+            anchors.append({**link, 'url': url, 'recipe': 'anchor', 'visible_label': True,
+                'evidence': [{'source_url': page_url, 'start': link['start'], 'end': link['end'],
+                              'snippet': html[link['start']:link['end']]}] + base_proofs})
+    embedded = []
+    for candidate in extract_embedded_documents(html, page_url):
+        offset = candidate['evidence'][0]['start']
+        context = parser.contexts.get(offset, {})
+        if candidate['recipe'] == 'vsb_pdf':
+            context = next((row for start, end, row in parser.script_ranges if start <= offset < end), {})
+        if _url(candidate['url']) == target and context.get('visible'):
+            embedded.append({**candidate, 'main': context.get('main', False), 'visible_label': False})
+    links = [*anchors, *embedded]
+    return [link for link in links if link['main']] if parser.main else links
 
 
 def _read(record, root, limit):
@@ -127,7 +197,7 @@ def _label_mode(value):
 
 def _failed(reason):
     return {'verified': False, 'reason': reason, 'evidence': [], 'documents': [],
-            'mode': None, 'mode_evidence': [], 'mode_conflict': False}
+            'mode': None, 'mode_evidence': [], 'mode_conflict': False, 'link_evidence': []}
 
 
 def verify_catalog_publication(document, unit, year, *, project_root=PROJECT_ROOT):
@@ -146,7 +216,7 @@ def verify_catalog_publication(document, unit, year, *, project_root=PROJECT_ROO
         return _failed('发布页原始文件未通过路径、大小或摘要核对：' + why)
     try:
         html = rendered_source_html(decode_text(raw, parent.get('content_type', '')), parent['url'])
-        parser = _PublicationHTML()
+        parser = _PublicationHTML(html)
         parser.feed(html)
         parser.close()
         text, title = parser.result()
@@ -161,9 +231,7 @@ def verify_catalog_publication(document, unit, year, *, project_root=PROJECT_ROO
         return _failed('发布页标题属于其他招生范围，不能当普通统考目录')
     if document_attribution(parent['url'], unit, text, title, heading)['status'] != 'verified':
         return _failed('发布页原文标题或单位字段与所选招生单位矛盾')
-    links = [link for link in parser.links if _url(link['href'], parent['url']) == _url(document['url'])]
-    if parser.main:
-        links = [link for link in links if link['main']]
+    links = _publication_links(html, parser, parent['url'], _url(document['url']))
     if not links:
         return _failed('发布页可见正文没有精确指向该附件的实际href')
     if any((years := set(re.findall(r'(?<!\d)(20\d{2})(?!\d)', link['label']))) and years != {str(year)} for link in links):
@@ -173,9 +241,10 @@ def verify_catalog_publication(document, unit, year, *, project_root=PROJECT_ROO
     publication = {**parent, 'id': parent.get('id') or 'publication-' + parent['sha256'][:20],
                    'unit_id': str(unit['id']), 'year': year, 'kind': 'publication', 'status': 'parsed', 'title': heading}
     publication = {key: value for key, value in publication.items() if key != 'catalog_parser'}
-    refs = [evidence(publication, heading, 1), *[evidence(publication, link['label'], 1) for link in links if link['label']]]
+    labels = [link['label'] for link in links if link['visible_label'] and link['label']]
+    refs = [evidence(publication, heading, 1), *[evidence(publication, label, 1) for label in labels]]
     refs = list({row['quote']: row for row in refs}.values())
-    mode_claims = [{'mode': mode, 'quote': value} for value in [heading, *[link['label'] for link in links]]
+    mode_claims = [{'mode': mode, 'quote': value} for value in [heading, *labels]
                    if (mode := _label_mode(value))]
     uniform = whole_document_mode(text, unit, year)
     mode_claims.extend(uniform['claims'])
@@ -183,4 +252,5 @@ def verify_catalog_publication(document, unit, year, *, project_root=PROJECT_ROO
     return {'verified': True, 'reason': '已重放官方发布页自身年度、单位归属与实际附件href',
             'evidence': refs, 'documents': [publication], 'mode': next(iter(modes)) if len(modes) == 1 else None,
             'mode_evidence': [evidence(publication, claim['quote'], 1) for claim in mode_claims] if len(modes) == 1 else [],
-            'mode_conflict': len(modes) > 1}
+            'mode_conflict': len(modes) > 1,
+            'link_evidence': [{key: link[key] for key in ('url', 'href', 'recipe', 'evidence')} for link in links]}

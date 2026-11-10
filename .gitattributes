@@ -23,3 +23,26 @@ national_data_baseline.py text eol=lf
 national_entry_html.py text eol=lf
 national_entry_proof.py text eol=lf
 docs/work_nodes/national_data_b001/*.json text eol=lf
+
+# New composite PDF approvals are portable across fresh checkouts. Frozen
+# adapters above retain their original exact bytes; other dependencies use LF.
+collectors/catalog_pdf_national_v3.py text eol=lf
+collectors/catalog_html.py text eol=lf
+collectors/catalog_publication.py text eol=lf
+collectors/embedded_documents.py text eol=lf
+collectors/catalogs.py text eol=lf
+collectors/documents.py text eol=lf
+service_verification.py text eol=lf
+public_sources.py text eol=lf
+public_navigation.py text eol=lf
+collectors/catalog_batch.py text eol=lf
+collectors/catalog_semantic_audit.py text eol=lf
+collectors/discovery.py text eol=lf
+collectors/national_catalog.py text eol=lf
+collectors/national_sources.py text eol=lf
+collectors/official_bindings.py text eol=lf
+collectors/source_payload.py text eol=lf
+tools/collect_national_batch.py text eol=lf
+docs/work_nodes/national_data_b001/node1/*.json text eol=lf
+docs/work_nodes/national_data_b001/node1/*.md text eol=lf
+docs/work_nodes/national_data_b001/node1/*.txt text eol=lf

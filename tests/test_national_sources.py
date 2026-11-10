@@ -86,7 +86,7 @@ class NationalSourceTests(unittest.TestCase):
         self.assertTrue(valid['pages'])
 
     def test_extensionless_office_download_keeps_actual_type_and_signature(self):
-        raw = b'\xd0\xcf\x11\xe0original'
+        raw = b'\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1original'
         mime = 'application/vnd.ms-excel'
         fetched = fetch_source('https://grad.sample.edu.cn/download.jsp?id=1', UNIT,
             resolver=lambda *args, **kwargs: [(2,1,6,'',('93.184.216.34',443))],

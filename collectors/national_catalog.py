@@ -9,7 +9,7 @@ import stat
 from urllib.parse import unquote, urlsplit
 
 from public_sources import official_source_url, rendered_source_html
-from service_verification import SourceVerifier, plain_text
+from service_verification import SourceVerifier, canonical, plain_text
 from .catalogs import compact
 from .documents import PROJECT_ROOT, DocumentError, decode_text, extract_pdf_text
 
@@ -28,9 +28,12 @@ def _digest(value):
 
 def parser_revision():
     names=('catalogs.py','catalog_batch.py','catalog_html.py','catalog_office.py','catalog_enrichment.py',
-           'catalog_pdf.py','catalog_pdf_tables.py','catalog_zsml.py','catalog_source_set.py','catalog_publication.py')
+           'catalog_pdf.py','catalog_pdf_tables.py','catalog_zsml.py','catalog_source_set.py','catalog_publication.py',
+           'embedded_documents.py','official_bindings.py','catalog_pdf_national.py',
+           'catalog_pdf_national_v2.py','catalog_pdf_national_v3.py','documents.py')
     paths=[Path(__file__).parent/name for name in names]
-    paths += [Path(__file__),PROJECT_ROOT/'service_verification.py',PROJECT_ROOT/'public_sources.py']
+    paths += [Path(__file__),PROJECT_ROOT/'service_verification.py',PROJECT_ROOT/'public_sources.py',
+              PROJECT_ROOT/'national_entry_html.py',PROJECT_ROOT/'national_entry_proof.py',PROJECT_ROOT/'public_navigation.py']
     return hashlib.sha256(b''.join(path.read_bytes() for path in paths if path.is_file())).hexdigest()[:24]
 
 
@@ -91,9 +94,31 @@ def _parent(document,pages,root,unit,year):
 
 
 def _has_table(html):
-    text=plain_text(html)
-    return bool(re.search(r'<table\b',html,re.I) and re.search(r'专业|学科|编码',text)
-                and re.search(r'初试|考试科目|业务课|[①②③④]',text))
+    from .catalog_html import _code_header, _header, _paired_header, _unrecognized_initial_table, visible_catalog_html
+    from .history import _Tables
+    parser=_Tables()
+    parser.feed(visible_catalog_html(html))
+    return any(_paired_header(table) or table and _code_header(table[0])
+               or any(_header(row) for row in table[:5]) or _unrecognized_initial_table(table)
+               for table in parser.tables)
+
+
+def _chsi_charter(document):
+    url=urlsplit(document['url'])
+    return url.hostname=='yz.chsi.com.cn' and (url.path=='/zsgs/zsjz/detail.action'
+        or re.fullmatch(r'/sch/viewZszc--[^/]+\.dhtml',url.path) is not None)
+
+
+def _catalog_html(raw,document):
+    from .catalog_html import visible_catalog_html
+    original=decode_text(raw,document.get('content_type',''))
+    html=rendered_source_html(original,document['url'])
+    if _chsi_charter(document):
+        from national_entry_html import _article_fragment
+        fragment,kind=_article_fragment(html)
+        # A hidden input is article content only after the known publisher actually renders it.
+        html=fragment if kind!='hid_content' or html!=original else ''
+    return visible_catalog_html(html)
 
 
 def _scope_status(document,headings=()):
@@ -114,18 +139,69 @@ def _html_scope(document,html):
     return _scope_status(document,headings)
 
 
-def _adapter(raw,path,document,unit,root):
+def _pdf_title(text):
+    """Read a wrapped leading title, stopping before catalogue columns or rows."""
+    first,title='',''
+    lines=text.splitlines()[:24]
+    for index,line in enumerate(lines):
+        value=compact(line)
+        if not value: continue
+        if not first: first=value
+        candidate=title+value
+        complete=bool(re.search(r'目录|招生(?:章程|简章)',candidate))
+        line_title=bool(re.search(r'目录|招生(?:章程|简章)',value))
+        if not line_title and re.search(r'考试科目|联系人|联系电话|拟招生人数|名称[（(]编号|^(?:\d{3}|\d{6})(?!\d)[^\d]',value):
+            break
+        title=candidate
+        if complete and title.count('（')<=title.count('）') and title.count('(')<=title.count(')'):
+            following=next((compact(line) for line in lines[index+1:] if compact(line)),'')
+            routes=(r'仅限|仅|适用|面向|全国统一考试|全国统考|统考|推荐免试|推免|单独考试|单考|'
+                    r'强军计划|港澳台|港澳臺|留学生|国际学生|博士|硕士|研究生|招生|目录|考生|范围|及|与|和|、|/|暨')
+            if re.fullmatch(r'[（(](?:'+routes+r')+[）)]',following): title+=following
+            return title
+    return title if re.search(r'目录|招生(?:章程|简章)',title) else first
+
+
+def _pdf_v3_header(path):
+    """Select one exact new schema from the first physical table, never body words."""
+    from .catalog_pdf_national import _plumber
+    if not path.is_file() or not 0<path.stat().st_size<=MAX_BYTES: return False
+    try:
+        plumber=_plumber()
+        from pdfminer.psparser import PSException
+    except (DocumentError,ImportError):
+        return False
+    try:
+        with plumber.open(path) as pdf:
+            if not pdf.doc.is_extractable or not 0<len(pdf.pages)<=1500: return False
+            tables=pdf.pages[0].find_tables()
+            if not 0<len(tables)<=8: return False
+            rows=tables[0].extract(x_tolerance=2,y_tolerance=3)
+            if not rows or len(rows)>2000: return False
+            header=[canonical(value or '') for value in rows[0]]
+            return header==['院、系所','专业代码及名称','学习方式','研究方向','招生人数','考试科目','备注']
+    except (OSError,ValueError,TypeError,IndexError,AttributeError,PSException):
+        return False
+
+
+def _adapter(raw,path,document,unit,root,*,publication_verified=False):
     status,reason=_scope_status(document)
     if status: return None,status,reason
     if raw.startswith(b'%PDF-'):
         from .catalog_pdf import sniff_catalog_pdf
         text=extract_pdf_text(path)
-        status,reason=_scope_status(document,[line.strip() for line in text.splitlines()[:8]])
+        status,reason=_scope_status(document,[_pdf_title(text)])
         if status: return None,status,reason
-        if not re.search(r'初试|考试科目|[①②③④]',text): return None,'not_catalog','PDF未见招生初试目录列'
+        if not compact(text):
+            return None,'needs_adapter','PDF未取得可用文字层，可能为扫描件或图片；需OCR与原文视觉审校，尚不能判定目录内容'
+        if not re.search(r'初试|考试科目|[①②③④]',text):
+            if re.search(r'(?:招生|专业)目录',document.get('title') or ''):
+                return None,'needs_adapter','来源标题指向目录，但提取文字未包含初试列；需核对图片或布局，未推定目录为空'
+            return None,'not_catalog','PDF未见招生初试目录列'
         if sniff_catalog_pdf(text): return 'pdf_row_v1',None,''
         if '考试方式' in text and '21全国统考' in text and unit['name']+str(document['year']) in compact(text):
             return 'nankai_raw_v1',None,''
+        if publication_verified and _pdf_v3_header(path): return 'pdf_table_national_v3',None,''
         return 'pdf_table_v1',None,''
     if raw.startswith((b'PK',bytes.fromhex('d0cf11e0a1b11ae1'))):
         from .catalog_office import extract_office_html
@@ -133,15 +209,17 @@ def _adapter(raw,path,document,unit,root):
         status,reason=_html_scope(document,html)
         if status: return None,status,reason
         return ('office_table_v1',None,'') if _has_table(html) else (None,'not_catalog','Office原文未见招生目录与初试列')
-    html=rendered_source_html(decode_text(raw,document.get('content_type','')),document['url'])
+    html=_catalog_html(raw,document)
     status,reason=_html_scope(document,html)
     if status: return None,status,reason
     if _has_table(html): return 'html_table_v1',None,''
     from .catalog_source_set import parse_catalog_index
     proof=parse_catalog_index(html,document['url'],unit,document['year'])
-    if proof['groups']:
+    if proof['groups'] and not proof['issues']:
         return 'catalog_index_v1',None,''
-    if re.search(r'招生.*(?:专业)?目录|(?:招生)?专业目录',plain_text(html)) and document.get('kind') in {'catalog','subjects'}:
+    source_kind=document.get('discovery_kind',document.get('kind'))
+    if (re.search(r'招生.*(?:专业)?目录|(?:招生)?专业目录',plain_text(html))
+            and source_kind in {'catalog','subjects'} and not _chsi_charter(document)):
         return None,'needs_adapter','目录为动态入口、图片或当前未适配布局，未推定目录为空'
     return None,'not_catalog','该份已保存原文未见可解析招生目录表格'
 
@@ -154,7 +232,7 @@ def parse_saved_document(document,unit,root):
     adapter=document.get('catalog_parser')
     if adapter=='catalog_index_v1':
         raw=verifier.read(document)
-        proof=parse_catalog_index(rendered_source_html(decode_text(raw[1],document.get('content_type','')),document['url']),document['url'],unit,document['year'])
+        proof=parse_catalog_index(_catalog_html(raw[1],document),document['url'],unit,document['year'])
         parsed={'programs':[],'expected_records':0,'issues':proof['issues'],'retest_rules':[]}
     else:
         parsed=verifier._source_programs(document,unit,document['year'],{},docs)
@@ -184,7 +262,7 @@ def _cached(path,key):
 
 def _source_context(document):
     if not isinstance(document,dict): return None
-    keys=('id','unit_id','url','sha256','local_path','year','content_type','title','source_url')
+    keys=('id','unit_id','url','sha256','local_path','year','content_type','title','source_url','discovery_kind')
     return {key:document.get(key) for key in keys}
 
 
@@ -198,23 +276,23 @@ def _process(source,unit,pages,bindings,root,cache,version,refresh):
         owned,binding=_owned_unit(unit,source.get('url'),bindings)
         if not owned: raise DocumentError('该来源尚无准确的本单位官方域名归属依据')
         document={**source,'id':'saved-catalog-'+str(unit['id'])+'-'+hashlib.sha256(source['url'].encode()).hexdigest()[:12]+'-'+source['sha256'][:12],
-            'unit_id':str(unit['id']),'year':2027,'kind':'catalog','status':'parsed',
+            'unit_id':str(unit['id']),'year':2027,'kind':'catalog','discovery_kind':source.get('kind'),'status':'parsed',
             'local_path':path.relative_to(root).as_posix()}
         parent,proof=_parent(document,pages,root,owned,2027)
         if parent: document={**document,'publication_page':parent}
         base={**base,'saved_original_valid':True,'publication_verified':proof['verified'],
               'publication_reason':proof['reason']}
         key=_digest({'source':_source_context(document),
-                     'unit':{key:owned.get(key) for key in ('id','name','unit_code','official_url')},
+                     'unit':owned,'binding':binding,
                      'parser_revision':version,'parent':_source_context(parent),
-                     'parent_verified':proof['verified'],'publication_reason':proof['reason'],'parser_dispatch':2})
+                     'parent_verified':proof['verified'],'publication_reason':proof['reason'],'parser_dispatch':3})
         target=cache/'files'/(key+'.json')
         value=None if refresh else _cached(target,key)
         if value is not None:
             return {**value,'source_id':source.get('id'),'cache_hit':True}
         excluded_publication=proof['reason'] in {'发布页标题属于其他招生范围，不能当普通统考目录',
                                               '附件链接明示留学生、推免或单考等不同招生范围'}
-        adapter,status,reason=(None,'not_catalog','已重放的发布原文明示其他招生范围：'+proof['reason']) if excluded_publication else _adapter(raw,path,document,owned,root)
+        adapter,status,reason=(None,'not_catalog','已重放的发布原文明示其他招生范围：'+proof['reason']) if excluded_publication else _adapter(raw,path,document,owned,root,publication_verified=proof['verified'])
         common={**base,'saved_original_valid':True,'cache_path':target.relative_to(root).as_posix(),
                 'parser':adapter,'parser_revision':version,'binding':binding,'unit':owned,
                 'publication_verified':proof['verified'],'publication_reason':proof['reason']}
@@ -297,7 +375,7 @@ def collect_saved(registry,national,output,*,project_root=PROJECT_ROOT,cache_dir
             break
         row=source_units.get(identity,{})
         sources=list({(doc.get('id'),doc.get('url'),doc.get('sha256'),doc.get('status')):doc for doc in row.get('documents',[]) if isinstance(doc,dict)}.values())
-        bindings=_unit_candidates(unit,row,root,names) if sources and not unit.get('official_url') else []
+        bindings=_unit_candidates(unit,row,root,names) if sources else []
         files=[]
         for source in sources:
             if max_files is not None and processed>=max_files:

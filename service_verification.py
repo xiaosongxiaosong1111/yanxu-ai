@@ -15,7 +15,7 @@ from urllib.parse import parse_qs, urlsplit
 
 PUBLIC_CATALOG_ADAPTERS=frozenset({'public_form_v1','public_aspx_v1','university_form_v1','ucas_public_v1','nuaa_public_v1'})
 STATIC_CATALOG_ADAPTERS=frozenset({'office_national_v1','html_structured_v1','office_structured_v1',
-    'html_national_v1','html_south_v1','pdf_table_national_v1','pdf_table_national_v2','pdf_table_hit_v1'})
+    'html_national_v1','html_south_v1','pdf_table_national_v1','pdf_table_national_v2','pdf_table_national_v3','pdf_table_hit_v1'})
 CATALOG_ADAPTERS = {'html_table_v1', 'pdf_row_v1', 'pdf_table_v1', 'office_table_v1',
                     'zsml_table', 'zsml_tree', 'catalog_index_v1', 'chsi_detail_v1', 'pdf_table_v2',
                     *STATIC_CATALOG_ADAPTERS,*PUBLIC_CATALOG_ADAPTERS}
@@ -589,7 +589,7 @@ class SourceVerifier:
             if not context: return None
         context_key = hashlib.sha256(json.dumps(context, sort_keys=True, ensure_ascii=False).encode()).hexdigest() if context else ''
         publication_key = ''
-        if adapter in {'pdf_table_v1', 'pdf_table_v2','pdf_table_national_v1','pdf_table_national_v2','pdf_table_hit_v1','office_national_v1','office_structured_v1'} and isinstance(document.get('publication_page'), dict):
+        if adapter in {'pdf_table_v1', 'pdf_table_v2','pdf_table_national_v1','pdf_table_national_v2','pdf_table_national_v3','pdf_table_hit_v1','office_national_v1','office_structured_v1'} and isinstance(document.get('publication_page'), dict):
             from collectors.catalog_publication import publication_context_signature
             publication_key = publication_context_signature(document, unit, year, project_root=self.root)
         route_code = None

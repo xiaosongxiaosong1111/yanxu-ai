@@ -48,6 +48,9 @@ def parse_document(document, unit, year, root=PROJECT_ROOT, raw=None):
         from .catalog_html_south import parse_catalog_html_south
         parser = parse_catalog_html_national if kind=='html_national_v1' else parse_catalog_html_south
         return parser(rendered_source_html(decode_text(raw,document.get('content_type','')),document['url']),unit,year,document,project_root=root)
+    if kind == 'pdf_table_national_v3':
+        from .catalog_pdf_national_v3 import parse_catalog_pdf_national_v3,extract_pdf_national_layout_v3
+        return parse_catalog_pdf_national_v3(extract_pdf_national_layout_v3(path),unit,year,document,project_root=root)
     if kind == 'pdf_table_national_v2':
         from .catalog_pdf_national_v2 import parse_catalog_pdf_national_v2,extract_pdf_national_layout_v2
         return parse_catalog_pdf_national_v2(extract_pdf_national_layout_v2(path),unit,year,document,project_root=root)
@@ -90,7 +93,7 @@ def parse_document(document, unit, year, root=PROJECT_ROOT, raw=None):
 
 
 def _headings(parser, text):
-    if parser in {'pdf_row_v1', 'pdf_table_v1', 'pdf_table_v2', 'pdf_table_national_v1','pdf_table_national_v2'}:
+    if parser in {'pdf_row_v1', 'pdf_table_v1', 'pdf_table_v2', 'pdf_table_national_v1','pdf_table_national_v2','pdf_table_national_v3'}:
         title = []
         for line in text.splitlines()[:8]:
             if re.search(r'院系所|考试科目|学习方式|全国统考|拟招生人数', line):

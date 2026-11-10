@@ -14,7 +14,13 @@ import stat
 
 PARSER_FILES = {'pdf_table_v1': 'catalog_pdf_tables.py', 'pdf_table_v2': 'catalog_pdf_variants.py',
                 'pdf_table_national_v1':'catalog_pdf_national.py','pdf_table_national_v2':'catalog_pdf_national_v2.py',
+                'pdf_table_national_v3':'catalog_pdf_national_v3.py',
                 'pdf_table_hit_v1':'catalog_hit_public.py'}
+V3_PARSER_DEPENDENCIES = ('collectors/catalog_pdf_national_v3.py', 'collectors/catalog_pdf_national_v2.py',
+    'collectors/catalog_pdf_national.py', 'collectors/catalog_pdf_tables.py',
+    'collectors/catalog_html.py', 'collectors/catalog_publication.py', 'collectors/embedded_documents.py',
+    'collectors/catalogs.py', 'collectors/documents.py', 'service_verification.py',
+    'public_sources.py', 'public_navigation.py')
 MAX_SOURCE_BYTES = 32 * 1024 * 1024
 MAX_AUDIT_BYTES = 8 * 1024 * 1024
 _METADATA = {'catalog_document_id', 'checked_at', 'published_at', 'stale', 'catalog_conflict',
@@ -75,6 +81,10 @@ def semantic_parser_sha256(document, project_root):
     if name is None:
         raise ValueError('PDF表格适配器未列入语义审核白名单')
     root = Path(project_root).resolve()
+    if document.get('catalog_parser') == 'pdf_table_national_v3':
+        dependencies = {relative: hashlib.sha256(_read_file(relative, root, 2 * 1024 * 1024)).hexdigest()
+                        for relative in V3_PARSER_DEPENDENCIES}
+        return hashlib.sha256(_encoded({'schema': 'national-v3-dependencies-v1', 'files': dependencies})).hexdigest()
     return hashlib.sha256(_read_file(Path('collectors') / name, root, 2 * 1024 * 1024)).hexdigest()
 
 

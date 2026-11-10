@@ -16,16 +16,16 @@ from public_sources import (SourceError, _DeadlineGuard, _DNS_POOL, _transport,
                             official_source_url, document_attribution, rendered_source_html, public_target, _LIMITS)
 from .documents import PROJECT_ROOT, decode_text
 from .discovery import DiscoveryError
+from .source_payload import OFFICE_MEDIA, classify_source_payload, office_link
+from .embedded_documents import extract_embedded_documents
 
 
 OFFICE = re.compile(r'\.(?:pdf|docx?|xlsx?)(?:[?#]|$)', re.I)
 CATALOG = re.compile(r'专业目录|招生目录|招生专业|专业及(?:研究)?方向|研究方向|初试科目|考试科目')
 HOME = re.compile(r'研究生招生|研究生院|研究生处|招生信息|硕士招生|招生工作|硕士研究生|研究生教育|学院目录|院系目录|下一页|下页')
+ADMISSION_FIELDS = re.compile(r'学费|收费标准|学制|学习方式|招生计划|招生人数')
 EXCLUDE = re.compile(r'调剂|复试|拟录取|录取名单|报考点|考点|推免|夏令营|博士后|本科招生|奖学金|助学金')
 MAX_BYTES = 32 * 1024 * 1024
-OFFICE_MEDIA = {'application/msword': '.doc', 'application/vnd.ms-excel': '.xls',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx'}
 
 
 def now():
@@ -65,7 +65,7 @@ class Links(HTMLParser):
         values = dict(attrs)
         style = re.sub(r'\s+', '', values.get('style', '').lower())
         hidden = (bool(self.stack and self.stack[-1][1]) or tag in {'script','style','noscript','template'}
-            or 'hidden' in values or values.get('aria-hidden','').lower() == 'true'
+            or 'hidden' in values or 'inert' in values or values.get('aria-hidden','').lower() == 'true'
             or bool(re.search(r'display:none|visibility:hidden', style)) or values.get('role') == 'tooltip'
             or bool(re.search(r'(?:^|\s)(?:tooltip(?:-[\w-]+)?|popover(?:-[\w-]+)?|hidden|d-none|hide)(?:$|\s)',values.get('class',''),re.I)))
         if tag not in self.VOID:
@@ -101,7 +101,7 @@ class Links(HTMLParser):
             self.handle_endtag(tag)
 
 
-def classify_link(label, url, year, *, parent_kind=None, parent_year=None):
+def classify_link(label, url, year, *, parent_kind=None, parent_year=None, index_member=False):
     label = re.sub(r'\s+', '', label or '')
     if EXCLUDE.search(label) or ('博士' in label and '硕士' not in label and '硕博' not in label):
         return None
@@ -110,11 +110,13 @@ def classify_link(label, url, year, *, parent_kind=None, parent_year=None):
         return None
     explicit = year in years
     inherited = parent_year == year and parent_kind in {'catalog', 'charter', 'subjects', 'attachment'}
-    attachment = bool(OFFICE.search(url))
-    if CATALOG.search(label) or attachment and inherited and '目录' in label:
+    attachment = office_link(url)
+    if CATALOG.search(label) or attachment and inherited and '目录' in label or index_member and inherited:
         kind, priority = ('subjects', 2) if re.search(r'考试科目|初试科目', label) else ('catalog', 0)
     elif re.search(r'招生章程|招生简章', label):
         kind, priority = 'charter', 5
+    elif ADMISSION_FIELDS.search(label):
+        kind, priority = ('attachment', 6) if explicit or inherited else ('navigation', 25)
     elif attachment and inherited:
         kind, priority = 'attachment', 3
     elif HOME.search(label):
@@ -128,16 +130,35 @@ def classify_link(label, url, year, *, parent_kind=None, parent_year=None):
             'year_status': 'explicit_link' if explicit else 'linked_publication' if inherited else 'unknown'}
 
 
+def _catalog_targets(html, parser, title, unit, year, url):
+    if not source_allowed(url, unit) or re.sub(r'\s+', '', title) not in re.sub(r'\s+', '', ''.join(parser.parts)):
+        return set()
+    classified = classify_link(title, url, year)
+    if not classified or classified['kind'] != 'catalog':
+        return set()
+    from .catalog_source_set import parse_catalog_index
+    proof = parse_catalog_index(html, url, unit, year)
+    if proof['issues']:
+        return set()
+    targets = {normalized_url(target) for group in proof['groups'] for target in group}
+    base = normalized_url(parser.base_href, url) if parser.base_href is not None else url
+    return targets & {normalized_url(href, base or url) for href, _ in parser.links}
+
+
 def _html_info(html, unit, year, url=''):
     html = rendered_source_html(html, url)
     headings = re.findall(r'<[^>]+class=["\'][^"\']*(?:sch-sspe-swtit|article-title|yxk-big-title)[^"\']*["\'][^>]*>(.*?)</[^>]+>', html, re.I | re.S)
     headings += re.findall(r'<h[1-3]\b[^>]*>(.*?)</h[1-3]>', html, re.I | re.S)
     headings += re.findall(r'<title\b[^>]*>(.*?)</title>', html, re.I | re.S)
     clean = lambda value: re.sub(r'\s+', ' ', unescape(re.sub(r'<[^>]+>', '', value))).strip()
-    title = next((clean(value) for value in headings if re.search(r'硕士|招生|目录', clean(value))), '')
+    title = next((clean(value) for value in headings
+                  if re.search(r'硕士|招生|目录', clean(value)) or ADMISSION_FIELDS.search(clean(value))), '')
     years = set(re.findall(r'(?<!\d)(20\d{2})(?:年|级)', title))
     parser = Links()
     parser.feed(html)
+    parser.catalog_targets = (_catalog_targets(html, parser, title, unit, year, url)
+                              if years == {str(year)} else set())
+    parser.links.extend((item['url'], item['label']) for item in extract_embedded_documents(html, url))
     text = ''.join(parser.parts)
     if not years:
         body = re.sub(r'<(nav|footer|header|a|script|style)\b[^>]*>.*?</\1>', '', html, flags=re.I | re.S)
@@ -216,24 +237,20 @@ def _restricted_html(text):
 
 
 def _binary_suffix(raw, url, content_type):
-    media = content_type.split(';')[0].lower().strip()
-    suffix = Path(urlsplit(url).path).suffix.lower()
-    suffix = OFFICE_MEDIA.get(media, suffix)
-    if raw.startswith(b'%PDF-') and (suffix == '.pdf' or media == 'application/pdf'):
-        return '.pdf'
-    if raw.startswith(b'PK\x03\x04') and suffix in {'.docx', '.xlsx'}:
-        return suffix
-    if raw.startswith(b'\xd0\xcf\x11\xe0') and suffix in {'.doc', '.xls'}:
-        return suffix
-    return None
+    detected = classify_source_payload(raw, url, content_type)
+    return detected['suffix'] if detected else None
 
 
-def fetch_source(url, unit, *, timeout=15, max_bytes=MAX_BYTES, resolver=None, transport=None):
+def fetch_source(url, unit, *, timeout=15, max_bytes=MAX_BYTES, resolver=None, transport=None,
+                 blocked_hosts=()):
     """Use the existing pinned-IP, ownership and hard-deadline transport for all originals."""
     import socket
     resolver, transport = resolver or socket.getaddrinfo, transport or _transport
     if type(max_bytes) is not int or not 0 < max_bytes <= MAX_BYTES or not 0 < timeout <= 60:
         raise SourceError('invalid_limit', '下载边界不合法')
+    if isinstance(blocked_hosts, str):
+        raise SourceError('invalid_limit', '禁用请求的主机必须为主机名集合')
+    blocked_hosts = frozenset(host.lower().rstrip('.') for host in blocked_hosts)
     deadline, current = time.monotonic() + timeout, url
     def remaining():
         value = deadline - time.monotonic()
@@ -241,6 +258,9 @@ def fetch_source(url, unit, *, timeout=15, max_bytes=MAX_BYTES, resolver=None, t
             raise SourceError('timeout', '官方来源超过总读取期限')
         return value
     for hop in range(4):
+        host = (urlsplit(current).hostname or '').lower().rstrip('.')
+        if any(host == blocked or host.endswith('.' + blocked) for blocked in blocked_hosts):
+            raise SourceError('network_disabled', '本批未启用此原件的新请求；只复用缓存，不代表远端限制访问')
         if not source_allowed(current, unit):
             raise SourceError('wrong_unit', '原文或重定向不属于该招生单位')
         lookup = _DNS_POOL.submit(public_target, current, resolver)
@@ -270,6 +290,7 @@ def fetch_source(url, unit, *, timeout=15, max_bytes=MAX_BYTES, resolver=None, t
             if not 200 <= response.status < 300:
                 raise SourceError('http_error', f'官方来源返回HTTP {response.status}')
             content_type = response.getheader('Content-Type', '')
+            disposition = response.getheader('Content-Disposition', '')
             length = response.getheader('Content-Length', '')
             if length.isdigit() and int(length) > max_bytes:
                 raise SourceError('too_large', '原文超过32MB读取上限')
@@ -295,16 +316,16 @@ def fetch_source(url, unit, *, timeout=15, max_bytes=MAX_BYTES, resolver=None, t
             if response:
                 response.close()
             semaphore.release()
-        media = content_type.split(';')[0].lower().strip()
-        is_html = media in {'text/html', 'application/xhtml+xml'}
-        valid_binary = _binary_suffix(raw, current, content_type)
-        if not is_html and not valid_binary:
+        detected = classify_source_payload(raw, current, content_type, disposition)
+        if not detected:
             raise SourceError('unsupported_type', '原文类型或文件签名无法确认，未采用')
-        text = decode_text(raw, content_type) if is_html else ''
-        if is_html and _restricted_html(text):
+        text = decode_text(raw, detected['content_type']) if detected['suffix'] is None else ''
+        if text and _restricted_html(text):
             raise SourceError('restricted', '官方来源要求登录或访问验证')
         return {'url': current, 'raw': raw, 'text': text, 'sha256': hashlib.sha256(raw).hexdigest(),
-                'content_type': content_type, 'checked_at': now()}
+                'content_type': detected['content_type'], 'checked_at': now(),
+                'response_content_type': content_type, 'response_content_disposition': disposition,
+                'type_detection': detected['type_detection']}
     raise SourceError('redirect_error', '官方来源重定向超过上限')
 
 
@@ -330,6 +351,9 @@ def _stored(page, item, directory, root, unit, year):
     return {'id': f'national-{unit["id"]}-{year}-{key}-{digest[:12]}', 'unit_id': str(unit['id']),
         'url': page['url'], 'requested_url': item['url'], 'local_path': local, 'sha256': digest,
         'content_type': page.get('content_type', ''), 'status': 'fetched', 'kind': item['kind'],
+        'response_content_type': page.get('response_content_type', page.get('content_type', '')),
+        'response_content_disposition': page.get('response_content_disposition', ''),
+        'type_detection': page.get('type_detection'),
         'title': item.get('title', ''), 'year': item.get('year'), 'year_status': item.get('year_status', 'unknown'),
         'year_evidence': item.get('year_evidence'), 'source_url': item.get('source_url'),
         'depth': item.get('depth', 0), 'checked_at': page.get('checked_at') or now()}
@@ -406,7 +430,10 @@ def _page_links(document, parser, year, unit):
     base = normalized_url(parser.base_href, document['url']) if parser.base_href is not None else document['url']
     for href, label in parser.links:
         url = normalized_url(href, base or document['url'])
-        classified = classify_link(label, url or '', year, parent_kind=document['kind'], parent_year=document.get('year'))
+        member = (document['kind'] == 'catalog' and document.get('year') == year
+                  and url in getattr(parser, 'catalog_targets', set()))
+        classified = classify_link(label, url or '', year, parent_kind=document['kind'],
+                                   parent_year=document.get('year'), index_member=member)
         if url and classified:
             candidate = {**classified, 'url': url, 'title': label, 'depth': document.get('depth', 0) + 1,
                 'source_url': document['url'], 'year_evidence': document.get('year_evidence')}
@@ -581,7 +608,7 @@ def collect_unit(unit, inventory, directory, *, project_root=PROJECT_ROOT, year=
                         'year_status': 'explicit_original', 'year_evidence': {'url': document['url'],
                             'sha256': document['sha256'], 'local_path': document['local_path'], 'quote': year_quote}}
                     classified_title = classify_link(title, document['url'], year)
-                    if classified_title and classified_title['kind'] in {'catalog', 'charter', 'subjects'}:
+                    if classified_title and classified_title['kind'] in {'catalog', 'charter', 'subjects', 'attachment'}:
                         document = {**document, 'kind': classified_title['kind']}
                 elif re.search(r'(?<!\d)20\d{2}(?:年|级)', title):
                     document = {**document, 'title': title, 'year': None, 'year_status': 'source_year_conflict'}
@@ -622,8 +649,9 @@ def collect_unit(unit, inventory, directory, *, project_root=PROJECT_ROOT, year=
 
 
 class HostPacer:
-    def __init__(self, interval=.35):
+    def __init__(self, interval=.35, fetcher=None):
         self.interval, self.lock, self.next = interval, threading.Lock(), {}
+        self.fetcher = fetcher
 
     def __call__(self, url, unit):
         host = urlsplit(url).hostname
@@ -632,7 +660,7 @@ class HostPacer:
             self.next[host] = time.monotonic() + delay + self.interval
         if delay:
             time.sleep(delay)
-        return fetch_source(url, unit)
+        return (self.fetcher or fetch_source)(url, unit)
 
 
 def collect_national(registry, inventory, output, snapshot_dir, *, project_root=PROJECT_ROOT,
