@@ -142,14 +142,23 @@ def _validate_subjects(program):
         seen.add(identity)
 
 
+def _subject_edges(programs):
+    ordinal = 0
+    for program in programs:
+        if program.get('exam_matching_supported') is False or program.get('subject_identity_issues'): continue
+        for subject in program.get('subjects', []):
+            yield (program['id'], program['unit_id'], program['year'], subject['code'], subject['scope'],
+                   subject['exam_unit'], subject['name'], ordinal)
+            ordinal += 1
+
+
 def _subject_publication(programs):
-    edges, buckets = [], {}
+    buckets = {}
     for program in programs:
         if program.get('exam_matching_supported') is False or program.get('subject_identity_issues'): continue
         counted = set()
         for subject in program.get('subjects', []):
             code, scope, slot, name = (subject[field] for field in ('code', 'scope', 'exam_unit', 'name'))
-            edges.append((program['id'], program['unit_id'], program['year'], code, scope, slot, name, len(edges)))
             for unit in ('', program['unit_id']):
                 for year in (0, program['year']):
                     for exam in (0, slot):
@@ -161,12 +170,34 @@ def _subject_publication(programs):
                         if key not in counted:
                             value['program_count'] += 1
                             counted.add(key)
-    rows = []
-    for ordinal, (key, value) in enumerate(buckets.items()):
-        payload = {**value, 'exam_units': sorted(value['exam_units'])}
-        search = ' '.join([value['code'], *value['names']]).casefold()
-        rows.append((*key, search, ordinal, encoded(payload)))
-    return edges, rows
+    def rows():
+        for ordinal, (key, value) in enumerate(buckets.items()):
+            payload = {**value, 'exam_units': sorted(value['exam_units'])}
+            search = ' '.join([value['code'], *value['names']]).casefold()
+            yield (*key, search, ordinal, encoded(payload))
+    return _subject_edges(programs), rows()
+
+
+def _program_rows(programs):
+    for ordinal, row in enumerate(programs):
+        search = [str(row.get(field) or '') for field in ('unit_name', 'department', 'code', 'name', 'direction',
+            'province', 'campus', 'study_mode', 'degree_type')]
+        search += [str(subject.get('code', '')) + ' ' + str(subject.get('name', ''))
+                   for subject in row.get('subjects', []) if isinstance(subject, dict)]
+        yield row['id'], row['unit_id'], row.get('year'), ordinal, ' '.join(search).casefold(), encoded(row)
+
+
+def _document_rows(documents, unit_names):
+    for ordinal, row in enumerate(documents):
+        yield (row['id'], row.get('unit_id'), row.get('year'), ordinal,
+               encoded({**row, 'unit_name': unit_names[row['unit_id']]}), row['kind'],
+               ' '.join(str(row.get(field) or '') for field in ('kind', 'title', 'url')).casefold())
+
+
+def _history_rows(admissions):
+    for kind in HISTORY_KINDS:
+        for ordinal, row in enumerate(admissions.get(kind, [])):
+            yield kind, row['id'], row['unit_id'], row['year'], ordinal, encoded(row)
 
 
 def _program_source_fields(program):
@@ -342,7 +373,6 @@ class CatalogIndex:
                           'study_mode', 'degree_type'):
                 if field in program and program[field] is not None:
                     bounded_text(program[field], 2000, '专业' + field)
-        record_rows = []
         for kind in HISTORY_KINDS:
             values = admissions.get(kind, [])
             _validate_rows(values, kind)
@@ -350,7 +380,7 @@ class CatalogIndex:
                 if row.get('unit_id') not in unit_ids: raise CatalogIndexError('历史记录不属于现有招生单位。')
                 _year(row.get('year'), '历史记录年度')
                 if 'kind' in row: bounded_text(row['kind'], 100, '历史记录种类')
-                record_rows.append((kind, row['id'], row['unit_id'], row['year'], ordinal, encoded(row)))
+                encoded(row)
         if self.path.is_file():
             try:
                 current = self.metadata()
@@ -361,22 +391,12 @@ class CatalogIndex:
         reference_year = meta.get('reference_year')
         counts = Counter(row['unit_id'] for row in programs if reference_year is None or row.get('year') == reference_year)
         states = {row['unit_id']: row for row in coverage.get('unit_catalog_status', []) if isinstance(row, dict) and 'unit_id' in row}
-        unit_rows = [(row['id'], ordinal, encoded({**row, 'unit_id': row['id'], 'unit_name': row.get('name', ''),
+        # Replaying public source contexts must not overlap a serialized corpus copy.
+        source_documents = _source_documents(admissions, registry, verifier)
+        unit_rows = ((row['id'], ordinal, encoded({**row, 'unit_id': row['id'], 'unit_name': row.get('name', ''),
             'program_count': counts[row['id']], 'catalog_status': states.get(row['id'], {}).get('status', 'not_collected'),
-            'verified': states.get(row['id'], {}).get('verified') is True, 'year': reference_year})) for ordinal, row in enumerate(units)]
-        program_rows = []
-        for ordinal, row in enumerate(programs):
-            search = [str(row.get(field) or '') for field in ('unit_name', 'department', 'code', 'name', 'direction',
-                                                               'province', 'campus', 'study_mode', 'degree_type')]
-            search += [str(subject.get('code', '')) + ' ' + str(subject.get('name', ''))
-                       for subject in row.get('subjects', []) if isinstance(subject, dict)]
-            program_rows.append((row['id'], row['unit_id'], row.get('year'), ordinal, ' '.join(search).casefold(), encoded(row)))
+            'verified': states.get(row['id'], {}).get('verified') is True, 'year': reference_year})) for ordinal, row in enumerate(units))
         unit_names = {row['id']: row['name'] for row in units}
-        document_rows = [(row['id'], row.get('unit_id'), row.get('year'), ordinal,
-                          encoded({**row, 'unit_name': unit_names[row['unit_id']]}), row['kind'],
-                          ' '.join(str(row.get(field) or '') for field in ('kind', 'title', 'url')).casefold())
-                         for ordinal, row in enumerate(_source_documents(admissions, registry, verifier))]
-        subject_edges, subject_rows = _subject_publication(programs)
         publication = encoded({'meta': meta, 'coverage': coverage, 'revision': revision,
             'registry_metadata': registry_meta, 'schema_version': SCHEMA_VERSION,
             'published_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
@@ -396,9 +416,12 @@ class CatalogIndex:
             for table in ('program_subjects', 'subject_catalog', 'records', 'programs', 'documents', 'units', 'publication'):
                 connection.execute('DELETE FROM ' + table)
             connection.executemany('INSERT INTO units VALUES(?,?,?)', unit_rows)
-            connection.executemany('INSERT INTO programs VALUES(?,?,?,?,?,?)', program_rows)
-            connection.executemany('INSERT INTO documents(document_id,unit_id,year,ordinal,payload,kind,search_text) VALUES(?,?,?,?,?,?,?)', document_rows)
-            connection.executemany('INSERT INTO records VALUES(?,?,?,?,?,?)', record_rows)
+            connection.executemany('INSERT INTO programs VALUES(?,?,?,?,?,?)', _program_rows(programs))
+            connection.executemany('INSERT INTO documents(document_id,unit_id,year,ordinal,payload,kind,search_text) VALUES(?,?,?,?,?,?,?)',
+                                   _document_rows(source_documents, unit_names))
+            del source_documents
+            connection.executemany('INSERT INTO records VALUES(?,?,?,?,?,?)', _history_rows(admissions))
+            subject_edges, subject_rows = _subject_publication(programs)
             connection.executemany('INSERT INTO program_subjects VALUES(?,?,?,?,?,?,?,?)', subject_edges)
             connection.executemany('INSERT INTO subject_catalog VALUES(?,?,?,?,?,?,?,?)', subject_rows)
             connection.execute('INSERT INTO publication VALUES(1,?,?)', (revision, publication))
@@ -407,6 +430,10 @@ class CatalogIndex:
             if connection is not None and connection.in_transaction:
                 connection.execute('ROLLBACK')
             raise CatalogIndexError('目录索引发布失败，保留上一已发布版本。') from error
+        except BaseException:
+            if connection is not None and connection.in_transaction:
+                connection.execute('ROLLBACK')
+            raise
         finally:
             if connection is not None:
                 connection.close()
