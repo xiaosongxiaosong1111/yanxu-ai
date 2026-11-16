@@ -276,6 +276,48 @@ def broad_catalog_queries(query, year, provinces=(), excluded_codes=()):
     return queries
 
 
+def broad_major_term(query):
+    from research_catalog_live import major_code
+    major = major_code(query)
+    if not major:
+        return ''
+    normalized = unicodedata.normalize('NFKC',query)
+    position = normalized.upper().find(major)
+    tail = re.split(r'初试|考试科目|(?<!\d)\d{3}(?!\d)|不考|排除',normalized[position+len(major):],maxsplit=1)
+    term = ' '.join(tail[0].strip().split())
+    return term if re.search(r'[\u4e00-\u9fff]',term) else ''
+
+
+def broad_major_variant(query,year,provinces):
+    """Use a looser publisher query when exam-code wording dominates the results."""
+    term = broad_major_term(query)
+    if (not term or not provinces or not re.search(
+            r'初试|考试科目|(?<!\d)\d{3}(?!\d)|不考|排除',unicodedata.normalize('NFKC',query))):
+        return ''
+    return f'{year}年 {" ".join(sorted(provinces))} {term} 硕士研究生专业目录'
+
+
+def topical_catalog_priority(title,term,major):
+    title = unicodedata.normalize('NFKC',title or '')
+    if (major and re.search(rf'(?<![0-9A-Za-z]){major}(?![0-9A-Za-z])',title,re.I)) or (term and term in title):
+        return 2
+    if len(term) >= 4 and term[:2] in title and term[-2:] in title:
+        return 1
+    return 0
+
+
+def catalog_ownership_lead(row, year):
+    return (row.get('status') == 'search_lead' and row.get('source_type') == 'yuanbao_catalog_owner_candidate'
+            and row.get('source_tier') == 'official_domain_candidate' and bool(row.get('unit_id'))
+            and row.get('requested_year') == year and target_matches(row,year,'catalog'))
+
+
+def catalog_navigation_lead(row,year):
+    return target_lead(row,year,'catalog') or catalog_ownership_lead(row,year) or (
+        row.get('status') == 'official_entry' and row.get('source_type') == 'yuanbao_school_routing'
+        and bool(row.get('unit_id')) and row.get('requested_year') == year)
+
+
 def target_matches(row, year, kind):
     """Discovery relevance only: neither URL dates nor summaries prove a cohort."""
     title = unicodedata.normalize('NFKC', str(row.get('title') or ''))
@@ -303,7 +345,9 @@ def target_matches(row, year, kind):
 
 def target_lead(row, year, kind):
     """A school-bound result worth reading, including possible attachment parents."""
-    return (row.get('status') == 'search_lead' and row.get('source_type') == 'yuanbao_search'
+    type_matches = (row.get('source_type') == 'yuanbao_search'
+                    or kind == 'catalog' and row.get('source_type') == 'official_catalog_index')
+    return (row.get('status') == 'search_lead' and type_matches
             and row.get('source_tier') == 'official' and isinstance(row.get('unit_id'), str)
             and bool(row['unit_id']) and http_url(row.get('url'))
             and row.get('requested_year') == year and row.get('requested_kind') == kind

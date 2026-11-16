@@ -262,6 +262,10 @@ def document_attribution(url, unit, text='', document_title='', document_heading
     def own_heading(heading):
         if name in heading:
             return True
+        if not chsi:
+            from unit_bindings import reviewed_publisher_title
+            if reviewed_publisher_title(url, unit, heading):
+                return True
         if qualified:
             from official_authority import qualified_title_matches
             return qualified_title_matches(unit, heading, text)

@@ -94,6 +94,20 @@ class ResearchOfficialToolsTests(unittest.TestCase):
         self.assertEqual(result['stage'], 'entry_verified')
         self.assertTrue(any(row['code']=='restricted' for row in result['errors']))
 
+    def test_visible_current_catalog_needs_no_navigation_script(self):
+        url = UNIT['official_url'] + 'current'
+        title = '示例大学2027年硕士研究生招生专业目录'
+        home = ('<title>示例大学</title><a href="/current">'+title+'</a>'
+                '<script src="/common.js"></script>').encode()
+        catalog = BODY.decode().replace(TITLE, title).encode()
+        seen = []
+        def fetch(address, unit, **kwargs):
+            seen.append(address)
+            return document(address, catalog if address == url else home)
+        self.tools(fetch).run('discover_official_entry', {'unit_id':'123','kind':'catalog'})
+        self.assertEqual(seen[:2], [UNIT['official_url'], url])
+        self.assertNotIn(UNIT['official_url']+'common.js', seen)
+
     def test_current_catalog_attachment_routes_to_original_reader(self):
         href = '/virtual_attach_file.vsb?oid=1&amp;e=.pdf'
         url = 'https://www.example.edu.cn/' + href[1:].replace('&amp;', '&')
@@ -104,6 +118,14 @@ class ResearchOfficialToolsTests(unittest.TestCase):
         result = tools.run('discover_official_entry', {'unit_id':'123','kind':'catalog'})
         self.assertEqual(tools.source_fetcher.call_args.args[0], url)
         self.assertEqual(result['stage'], 'access_restricted')
+
+    def test_historical_discovery_cannot_adopt_a_newer_catalog_candidate(self):
+        title = '示例大学2027年硕士研究生招生专业目录'
+        raw = BODY.decode().replace(TITLE,title).encode()
+        tools = self.tools(lambda address, unit, **kwargs: document(address,raw))
+        with patch('research_catalog_live.adopt') as adopt:
+            tools.run('discover_official_entry', {'unit_id':'123','kind':'catalog','year':2026})
+        adopt.assert_not_called()
 
     def test_new_yuanbao_lead_precedes_previously_tried_results(self):
         prefix = 'https://www.example.edu.cn/'

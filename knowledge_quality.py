@@ -23,7 +23,7 @@ _PROGRAM_CODE = r'(?:0[1-9]|1[0-4])\d{2}(?:\d{2}|[A-Z]\d)'
 _PROGRAM_NAME = r'[\u3400-\u9fff][\u3400-\u9fffA-Za-z·]{1,39}'
 _PROGRAM_ROW = re.compile(
     rf'(?:^|[\t|]|  )[ \t]*(?:\d{{1,3}}[.．、][ \t]*)?(?:{_PROGRAM_CODE}[ \t|]*{_PROGRAM_NAME}|'
-    rf'{_PROGRAM_NAME}[ \t]*[（(][ \t]*{_PROGRAM_CODE}[ \t]*[）)])')
+    rf'(?:学科[（(]专业[）)][ \t]*[:：][ \t]*)?{_PROGRAM_NAME}[ \t]*[（(][ \t]*{_PROGRAM_CODE}[ \t]*[）)])')
 _PROGRAM_EXAMS = re.compile(
     r'(?:^|[:：\t|])\s*(?!(?:本|各|招生|报考|部分|所有|有关|统考|自命题|研究生))'
     r'[\u3400-\u9fff]{2,24}专业(?:的)?(?:初试(?:考试)?|考试)科目(?:为|[:：])')

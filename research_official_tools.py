@@ -10,6 +10,7 @@ from urllib.parse import parse_qs, urlsplit
 from collectors.documents import decode_text
 from official_authority import OfficialAuthority, registered_scopes, scope_allows
 import official_search
+import catalog_entry_index
 from unit_bindings import consortium_admissions_scope
 from public_navigation import extract_navigation
 from public_sources import (SourceError, document_attribution, extract_saved_document,
@@ -278,6 +279,11 @@ def _target_restricted(errors, old_stage=None):
 def _is_attachment(url):
     parts = urlsplit(url)
     suffixes = ('.pdf', '.doc', '.docx', '.xls', '.xlsx')
+    if parts.path == '/system/_content/download.jsp':
+        query = parse_qs(parts.query)
+        return (query.get('urltype') == ['news.DownloadAttachUrl'] and
+                all(len(query.get(key, ())) == 1 and re.fullmatch(r'[0-9]{1,16}', query[key][0])
+                    for key in ('owner','wbfileid')))
     return (parts.path.lower().endswith(suffixes) or
             parts.path == '/virtual_attach_file.vsb' and any(
                 parse_qs(parts.query).get('e') == [suffix] for suffix in suffixes))
@@ -290,6 +296,8 @@ def discover(tools, args):
     year, kind = args.get('year', tools.task['reference_year']), args.get('kind', 'catalog')
     if type(year) is not int or not 2020 <= year <= tools.task['target_year'] or kind not in official_search.SEARCH_KINDS:
         raise ResearchError('invalid_scope', '请使用有效的招生年度和资料类型。')
+    if kind == 'catalog':
+        catalog_entry_index.register(tools, year, unit_ids=(unit['id'],))
     runner = _Discovery(tools, unit, year, kind)
     return runner.run()
 
@@ -300,6 +308,9 @@ class _Discovery:
         self.authority = tools._official_authority
         self.saved = declarations(tools, unit)
         self.deadline = min(tools.deadline, time.monotonic() + MAX_UNIT_SECONDS)
+        from research_tools import LIMITS
+        self.read_limit = (MAX_NAVIGATION_READS if tools.task['unit_ids']
+                           else min(MAX_NAVIGATION_READS,LIMITS['max_navigation_fetches']//2))
         self.reads, self.cache, self.errors, self.visited = 0, {}, [], set()
         self.entries, self.documents, self.pending, self.navigation = {}, {}, {}, {}
         self.scripts = {}
@@ -307,7 +318,7 @@ class _Discovery:
 
     def _guard(self):
         self._control()
-        if (self.reads >= MAX_NAVIGATION_READS or time.monotonic() >= self.deadline
+        if (self.reads >= self.read_limit or time.monotonic() >= self.deadline
                 or self.tools.usage['navigation_fetches'] >= 12):
             raise ResearchError('navigation_budget_exceeded', '本轮官网导航预算已用完；已定位入口和待补步骤已保留。', 409)
 
@@ -400,10 +411,15 @@ class _Discovery:
             'navigation': deepcopy(raw.get('navigation', []))})
         self._control()
         self.tools._save_source(sid, document=doc)
+        if self.kind == 'catalog' and actual == self.year and not cached_account:
+            from research_catalog_live import adopt
+            adopt(self.tools,sid)
         self._control()
         source = _public(self.tools.sources[sid])
         self.entries.setdefault(sid, source)
-        if actual == self.year and official_search.target_matches({'title': title}, self.year, self.kind):
+        if actual == self.year and (official_search.target_matches({'title': title}, self.year, self.kind)
+                or any(row.get('candidate_proof',{}).get('source_id')==sid
+                       for row in self.tools._source_candidate_records.values())):
             self.documents[sid] = source
         else:
             self.navigation[sid] = source
@@ -428,6 +444,11 @@ class _Discovery:
         links = extract_navigation(html, raw['url'], script_sources=self.scripts,
             authority_scope=next((row['scope'] for row in self.authority.bindings(self.unit)
                                   if scope_allows(raw['url'], row['scope'])), None))
+        if self.kind == 'catalog' and any(row.get('kind') != 'script' and (
+                official_search.target_matches({'title':row.get('label')},self.year,self.kind)
+                or (_is_attachment(row['url']) and re.search(r'专业目录|招生目录',row.get('label',''))))
+                for row in links):
+            return _rank(links,self.year,self.kind)
         scripts = _rank([row for row in links if row.get('kind') == 'script'], self.year, self.kind)
         for row in scripts[:2]:
             if row['url'] in self.scripts:continue
@@ -456,6 +477,11 @@ class _Discovery:
         self._control()
         return self._adopt(doc, unit)
 
+    def _matched_catalog(self, source_id):
+        return self.kind == 'catalog' and any(
+            row.get('candidate_proof',{}).get('source_id') == source_id
+            for row in self.tools._source_candidate_records.values())
+
     def run(self):
         self._control()
         self._cached_accounts()
@@ -474,15 +500,21 @@ class _Discovery:
                      for row in list(self.tools.sources.values()) if row.get('unit_id') == self.unit['id']
                      and row.get('source_tier') == 'official_domain_candidate')
         leads = [row for row in self.tools.sources.values() if row.get('unit_id') == self.unit['id']
-                 and official_search.target_lead(row, self.year, self.kind)]
+                 and (official_search.target_lead(row,self.year,self.kind) or self.kind=='catalog'
+                      and official_search.catalog_ownership_lead(row,self.year))]
         previous = self.tools._official_discovery.get(self.unit['id'], {})
         tried = (set(previous.get('attempted_urls', ()))
                  if (previous.get('year'), previous.get('kind')) == (self.year, self.kind) else set())
         leads.sort(key=lambda row: (row['url'].split('#', 1)[0] in tried,
-                                    not official_search.target_matches(row, self.year, self.kind)))
-        queue = [{'url': row['url'], 'label': row['title'], 'kind': 'page', 'depth': 0}
-                 for row in leads[:2]] + queue
-        while queue and self.reads < MAX_NAVIGATION_READS and time.monotonic() < self.deadline:
+                                    not official_search.target_matches(row, self.year, self.kind),
+                                    not row.get('provider_top_catalog',False),
+                                    official_search.catalog_ownership_lead(row,self.year),
+                                    row.get('source_type') == catalog_entry_index.SOURCE_TYPE))
+        direct = [{'url': row['url'], 'label': row['title'], 'kind': 'page', 'depth': 0,
+                   'direct_catalog': self.kind == 'catalog'}
+                  for row in leads[:5 if self.kind == 'catalog' else 2]]
+        queue = direct + queue
+        while queue and self.reads < self.read_limit and time.monotonic() < self.deadline:
             row = queue.pop(0)
             url = row['url'].split('#', 1)[0]
             if url in self.visited or row.get('kind') == 'script':continue
@@ -498,7 +530,12 @@ class _Discovery:
                 unit = self._verify(url)
                 if unit is None:continue
                 if row.get('kind') == 'pdf' or _is_attachment(url):
-                    self._read_document({**row, 'url': url}, unit)
+                    source_id = self._read_document({**row, 'url': url}, unit)
+                    if self._matched_catalog(source_id) or (
+                            source_id in self.documents
+                            and self.documents[source_id].get('knowledge_quality',{}).get('state') == 'accepted'
+                            and not any(child.get('catalog_attachment') or child.get('direct_catalog') for child in queue)):
+                        break
                     continue
                 scope = next(scope for scope in [*registered_scopes(self.unit),
                     *(entry['scope'] for entry in self.authority.bindings(self.unit))] if scope_allows(url, scope))
@@ -508,15 +545,25 @@ class _Discovery:
                 adopted = self._adopt(raw, unit)
                 links = self._links(raw)
                 if row.get('depth', 0) < 3:
+                    parent = self.tools.sources.get(adopted,{})
+                    catalogue_parent = (self.kind == 'catalog' and parent.get('year') == self.year and (
+                        adopted in self.documents or official_search.target_matches({'title':parent.get('title','')},
+                                                                                   self.year,'charter')))
                     children = [{**child, 'depth': row.get('depth', 0)+1,
-                                 'catalog_attachment': bool(adopted in self.documents and self.kind == 'catalog'
-                                     and re.search(r'专业目录|招生目录', child.get('label','')))}
+                                 'catalog_attachment': bool(catalogue_parent and
+                                     re.search(r'专业目录|招生目录', child.get('label','')))}
                                 for child in links if child.get('kind') != 'script']
-                    queue = children[:20] + queue
+                    priority = [child for child in children[:20] if child['catalog_attachment']]
+                    remaining = [child for child in children[:20] if not child['catalog_attachment']]
+                    direct = [child for child in queue if child.get('direct_catalog')]
+                    queue = priority + direct + remaining + [child for child in queue if not child.get('direct_catalog')]
                 if self.documents:
                     # A PDF-only publication still needs its actual attached original.
                     selected = self.documents[next(reversed(self.documents))]
-                    if selected.get('knowledge_quality', {}).get('state') == 'accepted':break
+                    if (self._matched_catalog(adopted) or (
+                            selected.get('knowledge_quality', {}).get('state') == 'accepted'
+                            and not any(child.get('catalog_attachment') or child.get('direct_catalog') for child in queue))):
+                        break
             except Exception as error:
                 self._error(url, error, target_document=target_document)
                 if getattr(error, 'code', '') in {'cancelled', 'research_cancelled'}:raise

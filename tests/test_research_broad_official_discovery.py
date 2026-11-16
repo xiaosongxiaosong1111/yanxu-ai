@@ -7,6 +7,7 @@ from unittest.mock import Mock, patch
 from grad_engine import validate_profile
 from provider_catalog import TransportError
 from research_tools import ResearchTools
+from research_store import ResearchError
 from tests.test_research_service import FakeAdmission, FakeSettings
 
 
@@ -61,6 +62,84 @@ class BroadOfficialDiscoveryTests(unittest.TestCase):
         self.assertEqual(value['results'][0]['search_channel'],'published_index_seed')
         self.assertEqual(value['results'][0]['status'],'search_lead')
         self.assertEqual(self.tools.programs,{})
+
+    def test_broad_catalog_navigation_prioritizes_relevant_official_college(self):
+        self.admission.units = [school('123','甲大学','https://grad.example.edu.cn/'),
+                                school('456','乙大学','https://admissions.example.ac.cn/')]
+        charter = result('https://grad.example.edu.cn/catalog',
+                         '环境科学与工程学院2027年硕士研究生招生简章')
+        other = result('https://admissions.example.ac.cn/catalog')
+        self.search([other,charter], provinces=('天津',),
+                    args={'query':'天津 085701 环境工程 初试 817'})
+        first = next(row for row in self.tools.plan()['next_actions']
+                     if row['tool']=='discover_official_entry')
+        self.assertEqual(first['args']['unit_id'],'123')
+
+    def test_school_name_in_provider_title_can_route_but_cannot_supply_subjects(self):
+        self.admission.units = [school('123','甲大学','https://grad.example.edu.cn/')]
+        third = result('https://www.offcn.com/kaoyan/catalog.html','甲大学考研初试考什么')
+        outcome = self.search([third], provinces=('天津',),
+                              args={'query':'天津 105400 护理 初试 308'})
+        self.assertEqual(outcome['failure_stage'],'third_party_only')
+        self.assertFalse(outcome.get('verified_catalog_evidence'))
+        first = next(row for row in self.tools.plan()['next_actions']
+                     if row['tool']=='discover_official_entry')
+        self.assertEqual(first['args']['unit_id'],'123')
+        self.assertFalse(self.tools.programs)
+
+    def test_missing_provider_catalog_uses_only_scoped_current_official_index(self):
+        self.admission.units = [school('123','甲大学','https://grad.example.edu.cn/'),
+                                school('456','乙大学','https://admissions.example.ac.cn/','北京')]
+        source = 'https://grad.example.edu.cn/approved-catalog'
+        def row(url, unit_id='123', year=2027):
+            return {'unit_id':unit_id,'year':year,'url':url,'publisher_url':url,
+                    'title':f'{year}年硕士研究生招生专业目录'}
+        entries = (row(source), row('https://grad.example.edu.cn/old',year=2026),
+                   row('https://shadow.grad.example.edu.cn/forged'),
+                   row('https://admissions.example.ac.cn/other','456'))
+        with patch('catalog_entry_index.reviewed_entries',return_value=entries):
+            result = self.search([], provinces=('天津',), args={'query':'天津 105400 护理 初试 308'})
+            self.assertEqual(result['results'], [])
+            self.assertEqual(result['target_status'],'not_found')
+            leads = result['catalog_index_leads']
+            self.assertEqual([(lead['unit_id'],lead['url'],lead['year']) for lead in leads],
+                             [('123',source,None)])
+            self.assertFalse(leads[0].get('original_available'))
+            action = next(item for item in self.tools.plan()['next_actions']
+                          if item['tool']=='discover_official_entry')
+            self.assertEqual(action['args']['unit_id'],'123')
+            self.assertFalse(self.tools.programs)
+            self.tools.navigation_fetcher = Mock(side_effect=ResearchError('test_stop','no body'))
+            review = self.tools.run(action['tool'],action['args'])
+            self.assertEqual(self.tools.navigation_fetcher.call_args_list[0].args[0],source)
+            self.assertEqual(review['usage']['paid_searches'],0)
+
+    def test_unregistered_college_result_is_an_ownership_candidate_only(self):
+        self.admission.units = [school('123','甲大学','https://grad.example.edu.cn/')]
+        sibling = 'https://physics.example.edu.cn/2027/item'
+        fake = 'https://physics.example.edu.cn.unrelated.org/2027/item'
+        title = '甲大学物理学院2027年硕士招生专业目录'
+        self.search([result(sibling,title),result(fake,title)], provinces=('天津',),
+                    args={'query':'天津 080900 电子科学与技术 初试 807'})
+        routes = [row for row in self.tools.sources.values()
+                  if row.get('source_type')=='yuanbao_catalog_owner_candidate']
+        self.assertEqual([(row['url'],row.get('year')) for row in routes],[(sibling,None)])
+        self.assertFalse(self.tools.programs)
+        self.assertTrue(any(row['tool']=='discover_official_entry' for row in self.tools.plan()['next_actions']))
+
+    def test_repeated_first_official_catalog_keeps_priority_over_regional_index(self):
+        self.admission.units = [school('123','甲大学','https://grad.example.edu.cn/'),
+                                school('456','乙大学','https://admissions.example.ac.cn/')]
+        catalog = 'https://grad.example.edu.cn/current'
+        other = 'https://admissions.example.ac.cn/current'
+        index = {'unit_id':'456','year':2027,'url':other,'publisher_url':other,
+                 'title':'乙大学2027年硕士招生专业目录'}
+        with patch('catalog_entry_index.reviewed_entries',return_value=(index,)):
+            self.search([result(catalog,'甲大学工学院2027年硕士招生专业目录')],
+                        provinces=('天津',),args={'query':'天津 085408 光电信息工程 初试 881'})
+            first = next(row for row in self.tools.plan()['next_actions']
+                         if row['tool']=='discover_official_entry')
+            self.assertEqual(first['args']['unit_id'],'123')
 
     def test_broad_rewrite_error_preserves_first_request_lead(self):
         url = 'https://grad.example.edu.cn/initial-catalog'

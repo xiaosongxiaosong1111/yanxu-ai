@@ -82,6 +82,50 @@ class ResearchServiceTests(unittest.TestCase):
         self.assertNotIn('虚构大学',str(task['report']));self.assertNotIn('350',str(task['report']))
         self.assertEqual(task['status'],'partial')
 
+    def test_final_turn_checks_at_most_two_indexed_schools_after_search_miss(self):
+        from research_tools import ResearchTools
+
+        query = '天津 085404 计算机技术 初试 408'
+        messages = [
+            {'role':'assistant','content':'','tool_calls':[
+                {'id':'c','name':'search_official_sources','arguments':{'query':query}}]},
+            {'role':'assistant','content':'未取得可核验资料。','tool_calls':[]},
+        ]
+        service,ai,_ = self.make(messages)
+        service.admission.rows = []
+        service.admission.units.extend([
+            {'id':'456','name':'第二大学','province':'天津','official_url':'https://second.example.edu.cn'},
+            {'id':'789','name':'第三大学','province':'天津','official_url':'https://third.example.edu.cn'},
+        ])
+        attempted = []
+
+        def search(tools,args):
+            tools.usage['searches'] += 1
+            for unit in service.admission.units:
+                tools._source({'unit_id':unit['id'],'url':unit['official_url']+'/catalog',
+                    'title':'2027年硕士研究生招生专业目录','source_type':'official_catalog_index',
+                    'source_tier':'official','status':'search_lead','year':None,
+                    'requested_year':2027,'requested_kind':'catalog'})
+            return {'results':[],'target_status':'not_found'}
+
+        def discover(tools,args):
+            attempted.append(args['unit_id'])
+            tools.usage['navigation_fetches'] += 1
+            return {'stage':'access_restricted'}
+
+        with patch.object(ResearchTools,'search_sources',search), \
+                patch.object(ResearchTools,'discover_entry',discover):
+            task = wait_done(service,service.create({'query':query})['id'])
+
+        self.assertEqual(attempted,['123','456'])
+        self.assertEqual(task['status'],'partial')
+        self.assertEqual(task['usage']['searches'],1)
+        self.assertEqual(len(ai.calls),2)
+        events = [event['data'] for event in task['events'] if event['type']=='tool_completed'
+                  and event['data'].get('invocation')=='system'
+                  and event['data'].get('tool')=='discover_official_entry']
+        self.assertEqual([item['stage'] for item in events],['access_restricted']*2)
+
     def test_unknown_tool_and_bad_arguments_are_finite_tool_feedback(self):
         service,ai,_=self.make([{'role':'assistant','content':'','tool_calls':[{'id':'c1','name':'run_shell','arguments':{'command':'x'}}]},
                                {'role':'assistant','content':'未取得可核验资料。','tool_calls':[]}])

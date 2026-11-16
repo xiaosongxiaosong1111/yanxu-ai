@@ -10,7 +10,7 @@ import json
 from math import isfinite
 from evidence import exam_unresolved_reason
 from grad_engine import _subject_units
-from official_search import target_lead, target_matches
+from official_search import catalog_navigation_lead, catalog_ownership_lead, target_lead, target_matches
 
 FACT_LABELS = {
     'eligibility': '报考资格与适用范围',
@@ -231,14 +231,37 @@ def _fact_action(program, fact, sources, discovery, receipts, audit, searched, u
     return _discovery_or_search(unit_id, year, kind, FACT_QUERIES[fact], discovery, searched, usage, sources)
 
 
+def _catalog_units(task, sources):
+    from catalog_entry_index import SOURCE_TYPE
+    from official_search import broad_major_term, topical_catalog_priority
+    from research_catalog_live import major_code
+    year = task.get('reference_year')
+    query = task.get('query','')
+    term, code = broad_major_term(query), major_code(query)
+
+    def priority(source):
+        if source.get('source_type') == SOURCE_TYPE:
+            return 3
+        if target_lead(source,year,'catalog'):
+            if topical_catalog_priority(source.get('title'),term,code):
+                return 0
+            if source.get('provider_top_catalog'):
+                return 1
+            return 2 if source.get('search_channel')=='yuanbao_school_hint' else 4
+        return 2 if catalog_ownership_lead(source,year) else 5
+
+    leads = [source for source in sources.values() if catalog_navigation_lead(source,year)]
+    return dict.fromkeys(source['unit_id'] for source in sorted(leads,key=priority))
+
+
 def _new_catalog_discovery(task, programs, sources, discovery, searched_units, usage):
     if task.get('unit_ids') or usage.get('tool_calls', 0) >= 20:
         return None
     year = task.get('reference_year')
     known = {program.get('unit_id') for program in programs.values()}
-    leads = dict.fromkeys(source['unit_id'] for source in sources.values()
-                          if target_lead(source, year, 'catalog') and source['unit_id'] not in known)
-    for unit_id in leads:
+    for unit_id in _catalog_units(task,sources):
+        if unit_id in known:
+            continue
         action = _discovery_or_search(
             unit_id, year, 'catalog', FACT_QUERIES['subjects'], discovery, searched_units, usage, sources)
         if action and action['tool'] == 'discover_official_entry':
@@ -363,15 +386,21 @@ def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=()
                  'reason': '精读后按完整行和科目逐字引用构造最多六个草案，再交确定性校验生成临时方向。',
                  'completion': '只采用工具校验通过的临时方向；学校和年度由来源推导，资格仍未知。'}])
             break
-        if not unique:
-            year = task.get('reference_year')
-            scope = task.get('unit_ids') or list(dict.fromkeys([
-                *(source['unit_id'] for source in sources.values() if target_lead(source, year, 'catalog')),
-                *(row['unit_id'] for row in discovery
-                  if isinstance(row, dict) and row.get('year') == year and row.get('unit_id')),
-            ]))
-            unique = [action for unit_id in scope if (action := _discovery_or_search(
-                unit_id, year, 'catalog', FACT_QUERIES['subjects'], discovery, searched_units, usage, sources))]
+        year = task.get('reference_year')
+        indexed = {source['unit_id'] for source in sources.values()
+                   if source.get('source_type') == 'official_catalog_index' and catalog_navigation_lead(source,year)}
+        scope = task.get('unit_ids') or list(dict.fromkeys([
+            *_catalog_units(task,sources),
+            *(row['unit_id'] for row in discovery
+              if isinstance(row,dict) and row.get('year') == year and row.get('unit_id')),
+        ]))
+        available = [action for unit_id in scope if (not unique or unit_id in indexed)
+                     and (action := _discovery_or_search(
+                        unit_id, year, 'catalog', FACT_QUERIES['subjects'], discovery, searched_units, usage, sources))]
+        if unique:
+            unique = [action for action in available if action['tool']=='discover_official_entry'] + unique
+        else:
+            unique = available
     elif action := _new_catalog_discovery(task, programs, sources, discovery, searched_units, usage):
         unique.insert(0, action)
     unique = _rotate_actions(unique)

@@ -62,6 +62,11 @@ class KnowledgeQualityTests(unittest.TestCase):
                 self.assertEqual(result['state'], 'pending')
                 self.assertIn('body_not_substantive', self.codes(result))
 
+    def test_pdf_program_heading_counts_as_substantive_catalog_body(self):
+        body = '学科（专业）：力学（080100）（学术型）\n考试科目\n101思想政治理论 201英语一 301数学一 806材料力学'
+        self.assertEqual(self.assess(body=body)['state'],'accepted')
+        self.assertEqual(self.assess(body='附件：'+body.splitlines()[0]+'.pdf')['state'],'pending')
+
     def test_directory_has_identifiable_program_rows_in_text_or_columns(self):
         for body in ('085501 机械工程\n①101思想政治理论\n④801机械原理',
                      '085404\t计算机技术\t01不区分研究方向\t101 201 301 408',

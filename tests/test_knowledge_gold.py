@@ -4,11 +4,12 @@ from pathlib import Path
 import hashlib
 import json
 import shutil
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 from knowledge_quality import assess_quality
 from tools.evaluate_knowledge_gold import CORPUS_SHA256, FREEZE_SHA256, covered, locate_quote, valid_span
-from tools.evaluate_knowledge_gold import evaluate, PROJECT_ROOT
+from tools.evaluate_knowledge_gold import evaluate, load_fixture, FIXTURE, PROJECT_ROOT
 
 
 class RealSourceAdmissionTests(unittest.TestCase):
@@ -86,6 +87,21 @@ class RealSourceAdmissionTests(unittest.TestCase):
 
 
 class GoldEvaluationContractTests(unittest.TestCase):
+    def test_bundle_repack_must_keep_every_reviewed_original(self):
+        sources = json.loads((FIXTURE/'corpus.json').read_text(encoding='utf-8'))['sources']
+        members = [{'path':source['original_member'],'sha256':source['raw_sha256']} for source in sources]
+        with TemporaryDirectory() as folder:
+            root = Path(folder)
+            manifest = root/'data/bundles/manifest.json'
+            manifest.parent.mkdir(parents=True)
+            manifest.write_text(json.dumps({'packages':[{'files':members}]}),encoding='utf-8')
+            self.assertEqual(len(load_fixture(root,FIXTURE)['sources']),len(sources))
+            changed = [{**members[0],'sha256':'0'*64},*members[1:]]
+            manifest.write_text(json.dumps({'packages':[{'files':changed}]}),encoding='utf-8')
+            with self.assertRaisesRegex(ValueError,'Frozen original missing or changed'):
+                load_fixture(root,FIXTURE)
+
+
     def setUp(self):
         self.extraction = {'text': '第1页\n相同条款。\n第2页\n相 同 条款。', 'page_kind': 'physical',
                            'pages': [{'page': 1, 'char_start': 0, 'char_end': 9},

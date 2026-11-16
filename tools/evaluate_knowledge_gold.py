@@ -98,7 +98,10 @@ def load_fixture(project=PROJECT_ROOT, fixture=FIXTURE):
     bundle_manifest = _local(project, 'data/bundles/manifest.json').read_bytes()
     manifest_hashes = {digest(bundle_manifest), digest(bundle_manifest.replace(b'\r\n', b'\n'))}
     if manifest['public_bundle_manifest_sha256'] not in manifest_hashes:
-        raise ValueError('Reviewed public bundle manifest changed.')
+        members = _bundle_members(project)
+        for source in corpus['sources']:
+            if members.get(source['original_member'], {}).get('sha256') != source['raw_sha256']:
+                raise ValueError('Frozen original missing or changed: ' + source['id'])
     for name, expected in manifest['files'].items():
         if name.startswith('texts/'): _checked_file(fixture, name, expected)
     _check_questions(corpus, fixture)

@@ -30,6 +30,76 @@ EXTERNAL_PATH = PROJECT_ROOT / 'data' / 'official_bindings.json'
 # official page that was actually read. `checked_at` is the review date.
 CURATED = (
     {
+        'name': '广州大学', 'aliases': (), 'unit_code': '11078',
+        'domains': (
+            {'url': 'https://yjsy.gzhu.edu.cn/', 'role': 'admissions_site',
+             'relation': 'linked_from_institution_homepage', 'evidence': 'https://www.gzhu.edu.cn/zzjg/xy_b_.htm',
+             'evidence_quote': '研究生招生 → http://yjsy.gzhu.edu.cn/', 'checked_at': '2026-11-16'},
+            {'url': 'https://environ.gzhu.edu.cn/', 'role': 'department_site',
+             'relation': 'linked_from_institution_organization_directory',
+             'evidence': 'https://www.gzhu.edu.cn/zzjg/xy_b_.htm',
+             'evidence_quote': '环境科学与工程学院 → http://environ.gzhu.edu.cn/', 'checked_at': '2026-11-16',
+             'publisher_label': '环境科学与工程学院、大湾区环境研究院',
+             'publisher_evidence': 'https://www.gzhu.edu.cn/xxgk/xrld/dw.htm'},
+        ),
+    },
+    {
+        'name': '福建医科大学', 'aliases': (), 'unit_code': '10392',
+        'domains': ({'url': 'https://yjsy.fjmu.edu.cn/', 'role': 'admissions_site',
+                     'relation': 'linked_from_institution_organization_directory',
+                     'evidence': 'https://www.fjmu.edu.cn/91/listm.htm',
+                     'evidence_quote': '研究生处 → https://yjsy.fjmu.edu.cn/', 'checked_at': '2026-11-16'},),
+    },
+    {
+        'name': '西南财经大学', 'aliases': (), 'unit_code': '10651',
+        'domains': (
+            {'url': 'https://yz.swufe.edu.cn/', 'role': 'admissions_site',
+             'relation': 'linked_from_institution_homepage', 'evidence': 'https://www.swufe.edu.cn/zsjy.htm',
+             'evidence_quote': '研究生招生 → https://yz.swufe.edu.cn/', 'checked_at': '2026-11-16'},
+            {'url': 'https://yzcx.swufe.edu.cn/chaxun/yzb/ss/', 'role': 'catalog_portal',
+             'relation': 'institution_links_to_master_catalog_portal',
+             'evidence': 'https://yz.swufe.edu.cn/info/1101/13351.htm',
+             'evidence_quote': '2027年硕士研究生招生目录 → https://yzcx.swufe.edu.cn/chaxun/yzb/ss/2027/01zszc&ml/2027ssml.html',
+             'checked_at': '2026-11-16'},
+        ),
+    },
+    {
+        'name': '四川外国语大学', 'aliases': (), 'unit_code': '10650',
+        'domains': ({'url': 'https://graduate.sisu.edu.cn/', 'role': 'admissions_site',
+                     'relation': 'linked_from_institution_homepage', 'evidence': 'https://www.sisu.edu.cn/zsjy/index.htm',
+                     'evidence_quote': '研究生招生 → http://graduate.sisu.edu.cn/', 'checked_at': '2026-11-16'},),
+    },
+    {
+        'name': '西安科技大学', 'aliases': (), 'unit_code': '10704',
+        'domains': ({'url': 'https://yjs.xust.edu.cn/', 'role': 'admissions_site',
+                     'relation': 'linked_from_institution_organization_directory',
+                     'evidence': 'https://www.xust.edu.cn/zzjg.htm',
+                     'evidence_quote': '研究生院 → https://yjs.xust.edu.cn/', 'checked_at': '2026-11-16'},),
+    },
+    {
+        'name': '中南财经政法大学', 'aliases': (), 'unit_code': '10520',
+        'domains': ({'url': 'https://yzb.zuel.edu.cn/', 'role': 'admissions_site',
+                     'relation': 'institution_college_names_graduate_admissions_site',
+                     'evidence': 'https://iprcn.zuel.edu.cn/zgzscqyjw-zgzscqyjw_tzgg/zgzscqyjwcn_cont_news/details-39613.html',
+                     'evidence_quote': '学校“研究生招生信息网”：http://yzb.zuel.edu.cn。',
+                     'checked_at': '2026-11-16'},),
+    },
+    {
+        'name': '辽宁大学', 'aliases': (), 'unit_code': '10140',
+        'domains': ({'url': 'https://grs.lnu.edu.cn/', 'role': 'admissions_site',
+                     'relation': 'linked_from_institution_homepage',
+                     'evidence': 'https://www.lnu.edu.cn/',
+                     'evidence_quote': '研究生招生 → https://grs.lnu.edu.cn/zsgz.htm', 'checked_at': '2026-11-16'},),
+    },
+    {
+        'name': '内江师范学院', 'aliases': (), 'unit_code': '10640',
+        'domains': ({'url': 'https://gc.njtc.edu.cn/', 'role': 'department_site',
+                     'relation': 'linked_from_institution_organization_directory',
+                     'evidence': 'https://www.njtc.edu.cn/jgsz/jxkyjg.htm',
+                     'evidence_quote': '物理与电子信息工程学院 → http://gc.njtc.edu.cn',
+                     'checked_at': '2026-11-16'},),
+    },
+    {
         'name': '昆明理工大学', 'aliases': (), 'unit_code': '10674',
         'domains': ({'url': 'https://yjs.kust.edu.cn/', 'role': 'admissions_site',
             'relation': 'institution_publishes_master_catalog',
@@ -263,6 +333,25 @@ def consortium_admissions_scope(url, unit):
     if row and row['unit_code'] == '10674':
         return host == 'www.swugs.ynu.edu.cn'
     return None
+
+
+def reviewed_publisher_title(url, unit, heading):
+    """Accept a reviewed department's short admissions heading only within its own scope."""
+    row = find_row(unit)
+    if row is None:
+        return False
+    from official_authority import _scope, scope_allows
+    for domain in row['domains']:
+        publisher = normalize_name(domain.get('publisher_label'))
+        if (domain.get('role') != 'department_site' or not publisher or not _http_url(domain.get('publisher_evidence'))
+                or not scope_allows(url, _scope(domain['url']))):
+            continue
+        section = re.escape(publisher.split('、', 1)[0])
+        title = (re.escape(publisher) + r'20\d{2}年(?:攻读)?硕士(?:学位)?研究生招生(?:简章|章程|专业目录|目录|公告|指南)'
+                 + r'(?:[-—|]' + section + r')?')
+        if re.fullmatch(title, normalize_name(heading)):
+            return True
+    return False
 
 
 def enrich(unit, path=None):

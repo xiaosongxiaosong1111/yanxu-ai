@@ -316,6 +316,12 @@ def refresh(tools):
         cache = {}
         for identifier, record in list(tools._source_candidate_records.items()):
             proof = record.get('candidate_proof') or {}
+            if proof.get('mode') == 'catalog_structure_v1':
+                from research_catalog_live import replay
+                current = replay(tools,record)
+                tools._source_candidate_records = {**tools._source_candidate_records,
+                    identifier:current or {**record,'validation':_validation(False,'catalog_replay_stale')}}
+                continue
             fields = proof.get('fields') or {}
             row = fields.get('row') or {}
             source_id = row.get('source_id') or next(iter(proof.get('sources') or [{}])).get('source_id')

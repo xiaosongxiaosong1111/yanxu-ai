@@ -265,6 +265,44 @@ class ResearchService:
             self.store.event(identifier,'compare','程序已完成条件核算',self._tool_label(name),event_type='tool_completed',
                              data={'tool':name,'invocation':'system','ok':True})
 
+    def _check_catalog_fallback(self, identifier, tools, stop):
+        year = tools.task['reference_year']
+        remaining = {row['unit_id'] for row in tools.sources.values()
+                     if row.get('source_type') == 'official_catalog_index'
+                     and row.get('status') == 'search_lead' and row.get('requested_year') == year
+                     and row.get('unit_id')}
+        name = 'discover_official_entry'
+        for _ in range(LIMITS['max_discoveries']):
+            if (not remaining or stop.is_set() or tools.programs or tools.profile_proposal
+                    or tools.usage['navigation_fetches'] >= LIMITS['max_navigation_fetches']
+                    or tools.usage['tool_calls'] >= LIMITS['max_tool_calls']
+                    or tools.usage['total_tokens'] >= LIMITS['max_total_tokens']):
+                return
+            action = next((row for row in tools.plan()['next_actions']
+                           if row['tool'] == name and row['args']['unit_id'] in remaining
+                           and row['args'].get('year') == year and row['args'].get('kind') == 'catalog'), None)
+            if action is None:
+                return
+            args = action['args']
+            remaining.remove(args['unit_id'])
+            data = {'tool':name,'invocation':'system','unit_id':args['unit_id']}
+            self.store.event(identifier,'research','正在核对官网目录索引',self._tool_label(name),
+                             event_type='tool_started',data=data)
+            try:
+                result = tools.run(name,args)
+            except Exception:
+                if stop.is_set():
+                    return
+                message = '目录入口暂时无法核对，保留待核状态。'
+                if message not in tools.gaps:
+                    tools.gaps.append(message)
+                self.store.event(identifier,'research','目录核对仍有缺口',message,
+                                 event_type='tool_error',data={**data,'ok':False})
+            else:
+                self.store.event(identifier,'research','已记录官网目录核对结果',self._tool_label(name),
+                                 event_type='tool_completed',data={**data,'ok':True,'stage':result['stage']})
+            self.store.update(identifier,report=tools.report(),usage=tools.usage)
+
     def _pause_for_input(self,identifier,tools):
         needed=bool(tools.profile_proposal or tools.programs and tools.usage['searches'] and len(tools.questions())>=2)
         if not needed or tools.usage['total_tokens']>=LIMITS['max_total_tokens']:return False
@@ -423,6 +461,10 @@ class ResearchService:
                 if type(tokens) is int and 0<=tokens<=10000000:tools.usage['total_tokens']+=tokens
                 messages.append(self._history_message(response['message'],content,calls))
                 if not calls:
+                    self._check_catalog_fallback(identifier,tools,combined_stop)
+                    if stop.is_set() or self._stopped.is_set():
+                        status='cancelled'
+                        break
                     self._compare(identifier,tools)
                     explanation,questions=self._explanation(content,tools)
                     tools.refresh_knowledge()
