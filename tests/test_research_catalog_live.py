@@ -8,6 +8,12 @@ from tests.test_research_broad_official_discovery import BroadOfficialDiscoveryT
 
 
 class LiveCatalogReplayTests(TestCase):
+    def test_catalog_heading_can_start_with_official_department_code(self):
+        actual = '004 信息科学与工程学院2027年硕士研究生招生目录-招生网'
+        self.assertEqual(_document_scope({'document_title':actual}),(actual,2027))
+        menu = '004 信息科学与工程学院2027年研究生招生首页'
+        self.assertIsNone(_document_scope({'document_title':menu})[1])
+
     def test_candidate_requires_exact_source_and_keeps_unprinted_fields_unknown(self):
         url = 'https://grad.example.edu.cn/catalog'
         source = {'id':'s','url':url,'unit_id':'unit','year':2027,'sha256':'a'*64}

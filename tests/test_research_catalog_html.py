@@ -59,7 +59,49 @@ def college_catalog(*, unsafe_exam_span=False, owner='电子学院', year=2027):
     return f'<title>{title}-电子学院</title><table><tr><td colspan="11">{title}</td></tr>{header}{first}{second}</table>'
 
 
+def split_catalog(*, span=' rowspan="2"', title='004 信息科学与工程学院2027年硕士研究生招生目录',
+                  second_exam='', first_exam='①101思想政治理论②201英语一③301数学一④807电路原理、模拟电子技术'):
+    header = row('专业代码', '专业名称', '拟招生人数', '初试科目', '复试科目')
+    first = ('<tr><td>080900</td><td>电子科学与技术</td><td>38</td>'
+             f'<td{span}>{first_exam}</td><td>④999禁止提取</td></tr>')
+    second = row('085408', '光电信息工程', '58', *([second_exam] if second_exam else []), 'M01数字电子技术')
+    return f'<title>{title}-招生网</title><h1>{title}</h1><table>{header}{first}{second}</table>'
+
+
 class GroupedHtmlExamCatalogTests(unittest.TestCase):
+    def test_split_catalog_reads_explicit_exam_span_and_cites_its_actual_origin(self):
+        first, shared = parse_catalog_html_blocks(split_catalog(), UNIT, 2027, DOCUMENT)['programs']
+        self.assertEqual(first['id'], '123:2027:004:080900::')
+        self.assertEqual(shared['id'], '123:2027:004:085408::')
+        for program in (first, shared):
+            self.assertEqual([subject['code'] for subject in program['subjects']], ['101', '201', '301', '807'])
+            self.assertEqual(program['subjects'][-1]['name'], '电路原理、模拟电子技术')
+            exam, = program['exam_evidence']
+            self.assertEqual((exam['row_index'], exam['column_index']), (2, 4))
+        self.assertEqual(shared['source_locator']['row'], 3)
+        self.assertEqual(shared['source_locator']['exam_row'], 2)
+        self.assertIsNone(shared['study_mode'])
+
+    def test_split_catalog_never_fills_blank_scope_or_treats_retest_as_initial(self):
+        for html, expected in (
+            (split_catalog(span=''), ['080900']),
+            (split_catalog(second_exam='①101思想政治理论②201英语一③301数学一④888其它'), ['080900']),
+            (split_catalog(span=' colspan="2"'), []),
+            (split_catalog(title='004 信息科学与工程学院2026年硕士研究生招生目录'), []),
+            (split_catalog(title='其它大学004 信息科学与工程学院2027年硕士研究生招生目录'), []),
+            (split_catalog(title='004 其它大学信息科学与工程学院2027年硕士研究生招生目录'), []),
+            (split_catalog().replace('<table>', '<table><tbody>').replace('</tr><tr><td>085408',
+             '</tr></tbody><tbody><tr><td>085408').replace('</table>', '</tbody></table>'), ['080900']),
+            (split_catalog().replace('<table>', '<table><tbody>').replace('</tr><tr><td>085408',
+             '</tr></tbody><tr><td>085408'), ['080900']),
+            (split_catalog().replace('复试科目', '初试科目'), []),
+        ):
+            with self.subTest(expected=expected, html=html):
+                result = parse_catalog_html_blocks(html, UNIT, 2027, DOCUMENT)
+                self.assertEqual([program['code'] for program in result['programs']], expected)
+        self.assertFalse(parse_catalog_html_blocks(
+            split_catalog(), UNIT, 2027, {**DOCUMENT, 'url': 'https://other.edu.cn/catalog.html'})['programs'])
+
     def test_college_catalog_binds_each_explicit_exam_cell_under_merged_department(self):
         rows = parse_catalog_html_blocks(college_catalog(), UNIT, 2027, DOCUMENT)['programs']
         first, second = rows

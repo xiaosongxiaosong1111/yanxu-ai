@@ -9,7 +9,8 @@ from collectors.catalog_strict_syntax import parse_strict_directions
 from collectors.catalogs import _program, compact, evidence
 from collectors.documents import DocumentError, extract_pdf_text
 from public_sources import official_source_url
-from research_catalog_pdf_unruled import parse_unruled_catalog
+from research_catalog_pdf_brochure import parse_brochure_catalog
+from research_catalog_pdf_unruled import parse_grouped_catalog, parse_unruled_catalog
 from service_verification import ordinary_catalog_scope
 
 
@@ -383,9 +384,11 @@ def parse_live_catalog_pdf(path,unit,year,document,*,major_code=''):
                 programs = []
                 if len(pdf.pages) <= 80:
                     programs = (_parse_pdf(pdf,raw_pages,unit,year,document,major_code)
-                                or _parse_split_catalog(pdf,raw_pages,unit,year,document,major_code))
+                                or _parse_split_catalog(pdf,raw_pages,unit,year,document,major_code)
+                                or parse_brochure_catalog(pdf,raw_pages,unit,year,document,major_code))
                 if not programs:
-                    programs = parse_unruled_catalog(pdf,raw_pages,unit,year,document,major_code)
+                    programs = (parse_unruled_catalog(pdf,raw_pages,unit,year,document,major_code)
+                                or parse_grouped_catalog(pdf,raw_pages,unit,year,document,major_code))
         except PSException as error:
             raise DocumentError('PDF表格网格未能可靠提取。') from error
     except (DocumentError,OSError,ValueError,TypeError,KeyError,ImportError,IndexError) as error:

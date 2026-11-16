@@ -11,6 +11,11 @@ from unit_bindings import enrich
 class ReviewedCatalogOwnershipTests(unittest.TestCase):
     def test_school_registry_uses_exact_reviewed_admissions_scopes(self):
         schools = (
+            ('367984', '10216', '燕山大学', 'zsjyc.ysu.edu.cn',
+             'https://zsjyc.ysu.edu.cn/info/1255/4496.htm', 'https://other.ysu.edu.cn/'),
+            ('368392', '10537', '湖南农业大学', 'yjsy.hunau.edu.cn',
+             'https://nxy.hunau.edu.cn/gksx/ssszs/202610/P020261013532536855478.pdf',
+             'https://other.hunau.edu.cn/gksx/ssszs/'),
             ('368423', '11078', '广州大学', 'yjsy.gzhu.edu.cn',
              'https://environ.gzhu.edu.cn/info/1063/8489.htm', 'https://other.gzhu.edu.cn/info/1063/8489.htm'),
             ('368252', '10392', '福建医科大学', 'yjsy.fjmu.edu.cn',

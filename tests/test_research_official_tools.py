@@ -119,6 +119,23 @@ class ResearchOfficialToolsTests(unittest.TestCase):
         self.assertEqual(tools.source_fetcher.call_args.args[0], url)
         self.assertEqual(result['stage'], 'access_restricted')
 
+    def test_catalog_column_retains_same_year_sibling_after_other_major(self):
+        root = UNIT['official_url']
+        title = '示例大学2027年硕士研究生招生目录'
+        pages = {
+            root: '<title>示例大学</title><a href="/menu">招生目录</a><script src="/common.js"></script>',
+            root+'menu': '<title>招生目录</title><a href="/first">'+title+'（学院一）</a>'
+                         '<a href="/second">'+title+'（学院二）</a>',
+            root+'first': '<title>'+title+'</title><main><p>081200计算机科学与技术</p></main>',
+            root+'second': '<title>'+title+'</title><main><p>080900电子科学与技术</p></main>',
+        }
+        self.task = {**self.task,'query':'080900 电子科学与技术'}
+        fetch = Mock(side_effect=lambda url, unit, **kwargs: document(url, pages.get(url,'').encode()))
+        result = self.tools(fetch).run('discover_official_entry', {'unit_id':'123','kind':'catalog'})
+        self.assertEqual([call.args[0] for call in fetch.call_args_list],
+                         [root,root+'menu',root+'first',root+'second'])
+        self.assertEqual([row['url'] for row in result['document_sources']], [root+'first',root+'second'])
+
     def test_historical_discovery_cannot_adopt_a_newer_catalog_candidate(self):
         title = '示例大学2027年硕士研究生招生专业目录'
         raw = BODY.decode().replace(TITLE,title).encode()

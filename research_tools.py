@@ -107,6 +107,9 @@ def _document_scope(doc):
         if not re.search(r'招生|招收|硕士研究生专业目录|初试|复试|调剂|考试科目|考试大纲|分数线|学费|收费|学制|奖助|报考',heading):continue
         label=re.match(r'^[【\[]\s*(20\d{2})\s*(?:年)?(?:考研|招生)\s*[】\]]\s*',heading)
         title=heading[label.end():] if label else heading
+        if re.match(r'^[0-9]{2,3}\s+[\u3400-\u9fff· ]{2,55}(?:学院|学部|研究院|研究所)'
+                    r'\s*20\d{2}\s*年\s*硕士(?:学位)?研究生招生(?:专业)?目录',title):
+            title=title.split(' ',1)[1]
         first_title=index==len(metadata) and len(heading)<=80 and re.search(
             r'(?:招生(?:简章|专业目录|目录|计划)|硕士研究生专业目录|学费(?:收费)?(?:标准|公示表)?|收费(?:标准|公示表)|学制(?:表)?)$',heading)
         marker=r'(?:年|级)' if index<len(metadata) or first_title else r'年'
@@ -1237,12 +1240,18 @@ class ResearchTools:
                 continue
             if not re.search(r'硕士|考研|研招|研究生|初试|目录',title):
                 continue
-            score = int(any(re.search(rf'(?<!\d){code}(?!\d)',title) for code in codes))*3
-            score += int(bool(years)) + int(bool(re.search(r'初试|考试科目|招生专业目录',title)))
+            exact_exam = any(re.search(rf'(?<!\d){code}(?!\d)',title) for code in codes)
+            score = int(exact_exam)*3
+            score += int(bool(years)) + int(bool(re.search(r'初试|考试科目',title)))
+            provisional = re.search(r'预公告|预发布|暂定|拟发布|调整|更正|变更',title)
+            dated_route = not provisional and (official_search.target_matches(page,year,'catalog')
+                or exact_exam and str(year) in years and bool(re.search(r'考试大纲|考试范围|参考书目',title)))
             score += official_search.topical_catalog_priority(title,term,major)
             if '非全日制' in title and self.task['profile'].get('study_mode') != '非全日制':
                 score -= 2
-            groups[identifier] = max(score,groups.get(identifier,0))
+            # A dated directory or the user's specific syllabus is a stronger route than a change notice.
+            rank = (dated_route,score)
+            groups[identifier] = max(rank,groups.get(identifier,rank))
         units = [self._unit(key) for key in sorted(groups,key=groups.get,reverse=True)]
         return [unit for unit in units if official_search.preferred_site(unit)][:4]
 

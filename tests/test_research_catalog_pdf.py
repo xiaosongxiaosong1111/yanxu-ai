@@ -15,6 +15,39 @@ _TITLE = '示例大学2027年硕士研究生招生专业目录（全日制）'
 _EXAMS = '①101思想政治理论②204英语（二）③333教育综合④847阅读与写作'
 _COURSE = '045103 学科教学（专业学位）'
 _UNIT = {'name':'示例大学','id':'12345','official_url':'https://yz.example.edu.cn/'}
+_GROUP_HEAD = ('专业代码、名称及研究方向','学习方式及\n招生人数','考试科目代码及名称','备注')
+
+
+def grouped_fixture(*, shift=0, header=_GROUP_HEAD, note='', cut=False, after='070200 物理学'):
+    title = '示例大学 2027 年硕士研究生招生专业目录'
+    college = '教师教育学院'
+    first = ('①101 思想政治理论','②204 英语（二）','③333 教育综合','④847 阅读与写作')
+    second = ('①101 思想政治理论','②201 英语（一）','③301 数学（一）','④805 普通物理')
+    grid = table([header,('','','','')])
+    grid.bbox = (0,10,400,160)
+    grid.rows = [SimpleNamespace(cells=[(i*100,top,(i+1)*100,bottom) for i in range(4)])
+                 for top,bottom in [(10,30),(30,160)]]
+    boxes = grid.rows[1].cells
+    columns = {boxes[0]:[(33,college),(45,_COURSE),(58,'01 语文教育'),(94,after)],
+               boxes[1]:[(45,'全日制'),(58,'4 人'),(94,'非全日制'),(107,'2 人')],
+               boxes[2]:[(45+shift,first[0]),(58,first[1]),(70,first[2]),(91 if cut else 82,first[3]),
+                         *zip((94,107,120,133),second)],
+               boxes[3]:[(45,note)] if note else []}
+    target = SimpleNamespace(height=300,find_tables=lambda: [grid],crop=lambda box: SimpleNamespace(
+        extract_text_lines=lambda: [{'top':y,'bottom':y+6,'text':value} for y,value in columns[box]]))
+    source = pdf(grid,grid)
+    open_pdf = source.open
+
+    def open_grouped(path):
+        result = open_pdf(path)
+        result.pages = [target,target]
+        return result
+
+    header_line = '\n'.join(header)
+    raw = '\n'.join([header_line,college,_COURSE+' 全日制 '+first[0]+' '+note,
+                    '01 语文教育 4 人 '+first[1],*first[2:],after+' 非全日制 '+second[0],
+                    '2 人 '+second[1],*second[2:]])
+    return SimpleNamespace(open=open_grouped),'1\n'+title+'\n'+header_line+'\f2\n'+raw
 
 
 def table(rows):
@@ -63,6 +96,28 @@ class LivePdfTests(unittest.TestCase):
         self.assertEqual(program['source_locator']['page'],1)
         self.assertTrue(all(item['quote'] in raw for item in program['evidence'] + program['exam_evidence']))
         self.assertFalse(program['eligibility_evidence_complete'])
+
+    def test_grouped_college_grid_binds_local_mode_and_exam_before_next_major(self):
+        [program] = self._parse(*grouped_fixture())['programs']
+        self.assertEqual(program['direction'],'01语文教育')
+        self.assertEqual(program['study_mode'],'全日制')
+        self.assertEqual(program['department'],'教师教育学院')
+        self.assertEqual([item['code'] for item in program['subjects']],['101','204','333','847'])
+        self.assertEqual(program['source_locator'],{'page':2,'table':1,'row':2,
+                         'identity_box':[0,45,100,64],'exam_box':[200,45,300,88]})
+        self.assertEqual({item['page'] for item in program['exam_evidence']},{2})
+        self.assertEqual({item['page'] for item in program['evidence']},{1,2})
+
+    def test_grouped_college_grid_declines_ambiguous_or_non_unified_columns(self):
+        for args in ({'shift':4}, {'cut':True}, {'after':'07020? 物理学'}, {'note':'仅招收推免'},
+                     {'header':(*_GROUP_HEAD[:2],'复试科目','备注')}):
+            with self.subTest(args=args):
+                self.assertEqual(self._parse(*grouped_fixture(**args))['programs'],[])
+        grid, raw = grouped_fixture()
+        for invalid in (raw.replace('2027 年','2026 年'), '旧材料\n'+raw,
+                        raw+'\n其他大学2027年硕士研究生招生专业目录',
+                        raw+'\n示例大学2026年硕士研究生招生目录'):
+            self.assertEqual(self._parse(grid,invalid)['programs'],[])
 
     def test_merged_programme_cell_only_shares_exams_with_printed_count_alignment(self):
         codes = _COURSE+'\n045104 学科教学数学（专业学位）'

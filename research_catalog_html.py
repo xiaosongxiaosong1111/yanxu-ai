@@ -1,11 +1,12 @@
 """Read explicit subject cells from current official HTML exam directories."""
 import re
 
+from collectors.catalog_facts import _Cells
 from collectors.catalog_html import visible_catalog_html
 from collectors.catalog_strict_syntax import parse_strict_directions, parse_strict_subjects
 from collectors.catalogs import _program, compact, evidence
 from collectors.history import _Tables
-from public_sources import official_source_url
+from public_sources import document_attribution, official_source_url
 from service_verification import ordinary_catalog_scope, plain_text
 
 
@@ -14,6 +15,7 @@ _LISTED_COLUMNS = ('专业代码、名称及研究方向', '拟招生人数', '�
 _BROCHURE_COLUMNS = ('学科、专业名称（代码）研究方向', '考试科目', '同等学力加试科目', '专业科目参考书目')
 _COLLEGE_COLUMNS = ('序号', '招生院系', '招生专业代码、名称', '研究方向', '拟招生人数', '招生院系联系方式',
                     '初试考试科目', '复试内容', '同等学力加试科目', '初试参考书目', '复试、加试参考书目')
+_SPLIT_COLUMNS = ('专业代码', '专业名称', '拟招生人数', '初试科目', '复试科目')
 _DEPARTMENT = re.compile(r'(?:\(([0-9]{3})\)|([0-9]{3}))([\u3400-\u9fff][^0-9]{1,55}(?:学院|学部|研究院|研究所|中心|系))')
 _MAJOR_CODE = r'[0-9]{4}[A-Z0-9][0-9]'
 _MAJOR = re.compile(rf'({_MAJOR_CODE})([\u3400-\u9fffA-Za-z][\u3400-\u9fffA-Za-z0-9·+－、/（）() -]{{0,80}})(?:\[(学术学位|专业学位)\])?')
@@ -37,6 +39,20 @@ class _BrochureTable(_Tables):
         if tag == 'tr' and self.stack and {0, 1} & self.stack[-1]['pending'].keys():
             self.carried_exam = True
         super().handle_starttag(tag, attrs)
+
+
+class _SplitCatalogCells(_Cells):
+    def _scope_span(self, tag):
+        if tag in {'thead', 'tbody', 'tfoot'} and self.stack:
+            self.stack[-1]['pending'] = {}
+
+    def handle_starttag(self, tag, attrs):
+        self._scope_span(tag)
+        super().handle_starttag(tag, attrs)
+
+    def handle_endtag(self, tag):
+        self._scope_span(tag)
+        super().handle_endtag(tag)
 
 
 def _catalog_title(html, unit, year):
@@ -243,6 +259,59 @@ def _college_rows(logical, physical, heading, unit, year, document, table):
                'source_locator': {'table': table, 'row': row_no, 'department_row': department_row}}
 
 
+def _split_catalog_heading(html, unit, year, url):
+    name = re.escape(compact(unit['name']))
+    heading = re.compile(rf'(?:{name})?([0-9]{{3}}[\u3400-\u9fff]{{2,55}}(?:学院|学部|研究院|研究所|中心|系))'
+                         r'(20\d{2})年硕士研究生招生(?:专业)?目录(?:[-—_|](?:招生网|研究生招生信息网))?')
+    texts = re.findall(r'<(?:title|h[1-6])\b[^>]*>(.*?)</(?:title|h[1-6])\s*>', html, re.I | re.S)[:50]
+    titles = {}
+    for value in texts:
+        printed = plain_text(value).strip()
+        if match := heading.fullmatch(compact(printed)):
+            faculty, edition = match.groups()
+            if _department(faculty):
+                titles[faculty, edition] = printed
+    if len(titles) != 1:
+        return None
+    (faculty, edition), printed = next(iter(titles.items()))
+    if edition == str(year) and document_attribution(url, unit, document_heading=printed)['status'] == 'verified':
+        return faculty, printed
+    return None
+
+
+def _split_rows(rows, heading, unit, year, document, table):
+    if not rows or tuple(compact(cell['text']) for cell in rows[0] if cell) != _SPLIT_COLUMNS:
+        return
+    if any(not cell or cell['origin_row'] != 1 or cell['rowspan'] != 1 or cell['colspan'] != 1 for cell in rows[0]):
+        return
+    faculty, title = heading
+    for number, row in enumerate(rows[1:], 2):
+        if len(row) != len(_SPLIT_COLUMNS) or any(not cell or cell['column'] != index or cell['colspan'] != 1
+                                                   for index, cell in enumerate(row, 1)):
+            continue
+        code, name, seats, exam, _ = row
+        if any(cell['origin_row'] != number or cell['rowspan'] != 1 for cell in (code, name, seats)):
+            continue
+        if not 2 <= exam['origin_row'] <= number < exam['origin_row'] + exam['rowspan'] <= len(rows) + 1:
+            continue
+        identity = compact(code['text'])
+        major = _major(identity + compact(name['text'])) if re.fullmatch(_MAJOR_CODE, identity) else None
+        marks = ''.join(re.findall('[①②③④]', exam['text']))
+        if not major or marks not in {'①②', '①②③', '①②③④'}:
+            continue
+        parsed = parse_strict_subjects(exam['text'], str(unit['id']), document)
+        if parsed['exam_scope'] != 'unified' or parsed['issues']:
+            continue
+        exam_ref = _ref(document, exam['text'], table, exam['origin_row'], exam['column'])
+        subjects = [{**item, 'evidence': exam_ref} for item in parsed['subjects']]
+        record = _program(unit, year, faculty, major[1], major[2], '', '', subjects, '', document)
+        yield {**record, 'study_mode': None, 'direction': None, 'direction_scope': 'program',
+               'evidence': [evidence(document, title), _ref(document, code['text'], table, number, 1),
+                            _ref(document, name['text'], table, number, 2)],
+               'exam_evidence': [exam_ref],
+               'source_locator': {'table': table, 'row': number, 'exam_row': exam['origin_row']}}
+
+
 def parse_catalog_html_blocks(html, unit, year, document):
     """Return year-bound candidates for replay against the source."""
     empty = {'programs': [], 'expected_records': 0, 'issues': []}
@@ -270,6 +339,11 @@ def parse_catalog_html_blocks(html, unit, year, document):
         physical.feed(visible)
         for index, (rows, cells) in enumerate(zip(logical.tables, physical.tables), 1):
             programs.extend(_college_rows(rows, cells, college, unit, year, document, index))
+    if split := _split_catalog_heading(visible, unit, year, document['url']):
+        tables = _SplitCatalogCells()
+        tables.feed(visible)
+        for index, rows in enumerate(tables.tables, 1):
+            programs.extend(_split_rows(rows, split, unit, year, document, index))
     # The same physical identity printed twice is unresolved, even if some fields agree.
     counts = {}
     for row in programs:

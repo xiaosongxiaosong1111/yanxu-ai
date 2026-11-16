@@ -260,7 +260,7 @@ def _rank(rows, year, kind):
         if re.search(r'登录|统一身份|报名系统|就业|财务|jquery|bootstrap|echarts|polyfill|vue(?:\.min)?\.js', lowered):
             continue
         score = 100 if official_search.target_matches({'title': label}, year, kind) else 0
-        score += 25 if re.search(r'研究生招生|研招|招生简章|招生章程|专业目录|硕士招生', label) else 0
+        score += 25 if re.search(r'研究生招生|研招|招生简章|招生章程|专业目录|招生目录|学科目录|硕士招生', label) else 0
         score += 12 if re.search(r'研究生院|研究生教育|招生信息|硕士|招生工作', label) else 0
         score += 8 if row.get('role') in {'location', 'onclick', 'vsb_pdf', 'iframe'} else 0
         score += 6 if re.search(r'(?:action|common|header|nav|site|main|config|getAppServer|utils|index)\.(?:min\.)?js', lowered) else 0
@@ -446,7 +446,9 @@ class _Discovery:
                                   if scope_allows(raw['url'], row['scope'])), None))
         if self.kind == 'catalog' and any(row.get('kind') != 'script' and (
                 official_search.target_matches({'title':row.get('label')},self.year,self.kind)
-                or (_is_attachment(row['url']) and re.search(r'专业目录|招生目录',row.get('label',''))))
+                or (_is_attachment(row['url']) and re.search(r'专业目录|招生目录',row.get('label','')))
+                or (re.fullmatch(r'(?:硕士(?:研究生)?)?(?:招生(?:专业)?目录|学科目录)',row.get('label',''))
+                    and official_source_url(row['url'],self.authority.enrich(self.unit))))
                 for row in links):
             return _rank(links,self.year,self.kind)
         scripts = _rank([row for row in links if row.get('kind') == 'script'], self.year, self.kind)
@@ -514,6 +516,10 @@ class _Discovery:
                    'direct_catalog': self.kind == 'catalog'}
                   for row in leads[:5 if self.kind == 'catalog' else 2]]
         queue = direct + queue
+        from research_catalog_live import major_code
+        exact_major = self.kind == 'catalog' and (
+            major_code(self.tools.task.get('query',''))
+            or major_code(getattr(self.tools,'_live_catalog_query','')))
         while queue and self.reads < self.read_limit and time.monotonic() < self.deadline:
             row = queue.pop(0)
             url = row['url'].split('#', 1)[0]
@@ -551,12 +557,16 @@ class _Discovery:
                                                                                    self.year,'charter')))
                     children = [{**child, 'depth': row.get('depth', 0)+1,
                                  'catalog_attachment': bool(catalogue_parent and
-                                     re.search(r'专业目录|招生目录', child.get('label','')))}
-                                for child in links if child.get('kind') != 'script']
-                    priority = [child for child in children[:20] if child['catalog_attachment']]
-                    remaining = [child for child in children[:20] if not child['catalog_attachment']]
+                                     re.search(r'专业目录|招生目录', child.get('label',''))),
+                                 'direct_catalog': bool(exact_major and official_source_url(child['url'],unit)
+                                     and official_search.target_matches({'title':child.get('label')},self.year,'catalog'))}
+                                for child in links if child.get('kind') != 'script'][:20]
+                    priority = [child for child in children if child['catalog_attachment']]
                     direct = [child for child in queue if child.get('direct_catalog')]
-                    queue = priority + direct + remaining + [child for child in queue if not child.get('direct_catalog')]
+                    siblings = [child for child in children if child['direct_catalog'] and not child['catalog_attachment']]
+                    remaining = [child for child in children if not child['catalog_attachment'] and not child['direct_catalog']]
+                    queue = priority + direct + siblings + remaining + [
+                        child for child in queue if not child.get('direct_catalog')]
                 if self.documents:
                     # A PDF-only publication still needs its actual attached original.
                     selected = self.documents[next(reversed(self.documents))]

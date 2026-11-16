@@ -141,6 +141,29 @@ class BroadOfficialDiscoveryTests(unittest.TestCase):
                          if row['tool']=='discover_official_entry')
             self.assertEqual(first['args']['unit_id'],'123')
 
+    def test_school_hint_prefers_current_catalog_to_subject_change_headline(self):
+        self.admission.units = [school('123','甲大学','https://grad.example.edu.cn/'),
+                                school('456','乙大学','https://admissions.example.ac.cn/')]
+        update = result('https://www.offcn.com/kaoyan/change.html',
+                        '乙大学2027年硕士招生考试部分初试科目807调整公告')
+        directory = result('https://www.offcn.com/kaoyan/catalog.html',
+                           '甲大学2027年硕士研究生招生目录')
+        self.search([update,directory],provinces=('天津',),
+                    args={'query':'天津 080900 电子科学与技术 初试 807 电路原理'})
+        queries = [call.args[3] for call in self.network.request_json.call_args_list]
+        self.assertEqual(queries[-1].get('Site'),'grad.example.edu.cn')
+
+    def test_exact_syllabus_hint_can_lead_to_formal_directory_on_other_site(self):
+        self.admission.units = [school('123','甲大学','https://grad.example.edu.cn/'),
+                                school('456','乙大学','https://admissions.example.ac.cn/')]
+        other = result('https://www.offcn.com/kaoyan/catalog.html',
+                       '乙大学2027年硕士研究生招生目录')
+        syllabus = result('https://www.offcn.com/kaoyan/syllabus.html',
+                          '甲大学2027年硕士研究生考试大纲 816 地球物理学基础')
+        self.search([other,syllabus],provinces=('天津',),args={'query':'天津 070800 地球物理学 初试 816'})
+        queries = [call.args[3] for call in self.network.request_json.call_args_list]
+        self.assertEqual(queries[-1].get('Site'),'grad.example.edu.cn')
+
     def test_broad_rewrite_error_preserves_first_request_lead(self):
         url = 'https://grad.example.edu.cn/initial-catalog'
         self.network.request_json.side_effect = [

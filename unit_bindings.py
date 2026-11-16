@@ -30,6 +30,34 @@ EXTERNAL_PATH = PROJECT_ROOT / 'data' / 'official_bindings.json'
 # official page that was actually read. `checked_at` is the review date.
 CURATED = (
     {
+        'name': '燕山大学', 'aliases': (), 'unit_code': '10216',
+        'domains': (
+            {'url': 'https://zsjyc.ysu.edu.cn/yjsxwz/', 'role': 'admissions_site',
+             'relation': 'linked_from_institution_homepage', 'evidence': 'https://www.ysu.edu.cn/',
+             'evidence_quote': '研究生招生 → http://zsjyc.ysu.edu.cn/yjsxwz/yzsy.htm',
+             'checked_at': '2026-11-16'},
+            {'url': 'https://zsjyc.ysu.edu.cn/info/1255/', 'role': 'catalog_portal',
+             'relation': 'institution_links_to_master_catalog_portal',
+             'evidence': 'https://zsjyc.ysu.edu.cn/yjsxwz/sszs/zsml.htm',
+             'evidence_quote': '004 信息科学与工程学院2027年硕士研究生招生目录 → /info/1255/4496.htm',
+             'checked_at': '2026-11-16'},
+        ),
+    },
+    {
+        'name': '湖南农业大学', 'aliases': (), 'unit_code': '10537',
+        'domains': (
+            {'url': 'https://yjsy.hunau.edu.cn/', 'role': 'admissions_site',
+             'relation': 'linked_from_institution_homepage', 'evidence': 'https://www.hunau.edu.cn/',
+             'evidence_quote': '研究生教育 → https://yjsy.hunau.edu.cn/',
+             'checked_at': '2026-11-16'},
+            {'url': 'https://nxy.hunau.edu.cn/gksx/ssszs/', 'role': 'department_site',
+             'relation': 'linked_from_institution_organization_directory',
+             'evidence': 'https://www.hunau.edu.cn/jgsz/xysz/',
+             'evidence_quote': '农学院 → http://nxy.hunau.edu.cn/',
+             'checked_at': '2026-11-16'},
+        ),
+    },
+    {
         'name': '广州大学', 'aliases': (), 'unit_code': '11078',
         'domains': (
             {'url': 'https://yjsy.gzhu.edu.cn/', 'role': 'admissions_site',
