@@ -9,6 +9,7 @@ import sys
 import threading
 
 STREAM_THRESHOLD = 32 * 1024 * 1024
+_SHARED_STRING_LIMIT = 65536
 _PARSER_VERSION = '3.4.0.post0'
 _IMPORT_LOCK = threading.Lock()
 
@@ -47,10 +48,18 @@ def _stream_parser():
 
 
 def _finite_events(events):
+    strings = {}
     for prefix, event, value in events:
         # Preserve unbounded integers; convert decimal tokens before building containers.
         if event == 'number' and isinstance(value, Decimal):
             value = _finite_float(value)
+        elif event in {'map_key', 'string'} and len(value) <= 2048:
+            # Share repeated keys and catalogue quotes for this single snapshot.
+            shared = strings.get(value)
+            if shared is not None:
+                value = shared
+            elif len(strings) < _SHARED_STRING_LIMIT:
+                strings[value] = value
         yield prefix, event, value
 
 

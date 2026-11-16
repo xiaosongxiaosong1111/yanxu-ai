@@ -897,7 +897,7 @@ class AdmissionService:
         # being turned into "the official site has no material".
         unit = unit_bindings.enrich(next(unit for unit in registry['units'] if unit['id'] == unit_id))
         roots = official_roots(unit)
-        site = roots[0] if roots else None
+        site = official_search.preferred_site(unit)
         variants = official_search.search_variants(unit['name'], year, payload['kind'])
         from yuanbao_auth import build_request
         from provider_catalog import TransportError
@@ -910,7 +910,8 @@ class AdmissionService:
             return self._search_response(Request(url, raw, headers=headers, method='POST'))
 
         def is_official(url):
-            return official_source_url(url, unit)
+            return (official_source_url(url, unit) and (payload['kind'] != 'catalog' or
+                    unit_bindings.consortium_admissions_scope(url, unit) is None))
 
         binding_missing = not roots
         result = official_search.run_ladder(

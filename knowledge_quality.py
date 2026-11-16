@@ -19,7 +19,16 @@ _GATE_TITLE = re.compile(r'^(?:访问验证|安全验证|人机验证|验证码|
 _GATE_BODY = re.compile(r'请完成.{0,16}(?:验证|验证码)|验证后.{0,8}访问|访问(?:过于)?频繁|请求过于频繁|Access Denied|403 Forbidden|checking your browser', re.I)
 _NOISE = re.compile(r'@font-face\s*\{|\.[\w-]+(?:\s+\w+)?\s*\{[^}]*\}|showDynClicks\s*\([^)]*\)|(?:font-family|width|height)\s*:[^;\n]+;', re.I)
 _EXAM_CODE = re.compile(r'(?<!\d)(?:10\d|20\d|30\d|[4-9]\d\d)(?!\d)')
-_NUMBER_CODE = re.compile(r'(?<!\d)(?:0[1-9]|1[0-4])\d{4}(?!\d)')
+_PROGRAM_CODE = r'(?:0[1-9]|1[0-4])\d{2}(?:\d{2}|[A-Z]\d)'
+_PROGRAM_NAME = r'[\u3400-\u9fff][\u3400-\u9fffA-Za-z·]{1,39}'
+_PROGRAM_ROW = re.compile(
+    rf'(?:^|[\t|]|  )[ \t]*(?:\d{{1,3}}[.．、][ \t]*)?(?:{_PROGRAM_CODE}[ \t|]*{_PROGRAM_NAME}|'
+    rf'{_PROGRAM_NAME}[ \t]*[（(][ \t]*{_PROGRAM_CODE}[ \t]*[）)])')
+_PROGRAM_EXAMS = re.compile(
+    r'(?:^|[:：\t|])\s*(?!(?:本|各|招生|报考|部分|所有|有关|统考|自命题|研究生))'
+    r'[\u3400-\u9fff]{2,24}专业(?:的)?(?:初试(?:考试)?|考试)科目(?:为|[:：])')
+_CATALOG_LINK = re.compile(r'^\s*(?:附件|(?:点击|请|详见|查看|下载|浏览).{0,15}(?:附件|目录))'
+                           r'|\.(?:pdf|docx?|xlsx?|zip)\b|考试大纲|参考书目', re.I)
 _SCORE_COLUMNS = re.compile(r'总分|思想政治理论|政治|外(?:国语|语)|英语(?:[一二])?|业务[课科][一二12]|专业课[一二12]|单科')
 _SCORE_ROW = re.compile(r'(?P<label>(?:\d{2,6}[ \t]*)?[\u3400-\u9fff][^\n]*?)[ \t|]+(?P<values>\d{1,3}(?:\.\d+)?(?:[ \t|]+\d{1,3}(?:\.\d+)?){2,5})[ \t|]*')
 _SCORE_SUBJECT_CODE = r'(?:0[1-9]|1[0-4])\d{0,4}(?:[A-Z]\d{1,2})?'
@@ -84,24 +93,44 @@ def _score_facts(body):
                  re.search(r'\d+(?:\.\d+)?\s*(?:分|%)', without_full_marks)) or _score_table(body))
 
 
+def _catalog_facts(body):
+    lines = [line.strip() for line in body.splitlines() if line.strip()]
+    for index, line in enumerate(lines):
+        if _CATALOG_LINK.search(line):
+            continue
+        if _PROGRAM_ROW.search(line):
+            return True
+        named = _PROGRAM_EXAMS.search(line)
+        if named and len(set(_EXAM_CODE.findall(line[named.end():]))) >= 2:
+            return True
+        # A visible table can present code and name in adjacent extracted cells.
+        if index + 1 < len(lines) and re.fullmatch(_PROGRAM_CODE, line):
+            header = '\n'.join(lines[max(0, index - 10):index])
+            name = lines[index + 1]
+            if (re.search(r'专业(?:代码|名称)|(?<!\S)专业(?!\S)', header)
+                    and re.search(r'初试|考试科目|研究方向|学习方式', header)
+                    and re.fullmatch(_PROGRAM_NAME, name) and not _CATALOG_LINK.search(name)):
+                return True
+    return False
+
+
 def _substantive(kind, body, title=''):
     # Analyse the saved text without rewriting the exact original returned to readers.
     body = '\n'.join(line for line in body.splitlines() if line.strip() != title and
                      not re.search(r'邮编|邮政编码|联系电话|传真|Copyright|版权所有', line, re.I) and
                      not re.match(r'\s*(?:附件(?:下载)?|点击下载|下载附件)\s*[:：]', line))
     body = _NOISE.sub(' ', body)
+    if kind == 'catalog':
+        return _catalog_facts(body)
     named_change = bool(re.search(r'调整为|改为|变更为|科目为', body) and
                         re.search(r'英语[一二]|数学[一二三]|思想政治理论|计算机学科专业基础|管理类综合能力|经济类综合能力', body))
     subjects = named_change or bool(_EXAM_CODE.search(body) and re.search(r'初试|业务课|考试|科目|数学|英语|计算机|统考|专业基础', body))
-    catalog = bool((any(re.search(r'专业|学科|技术|工程|研究方向', body[max(0, code.start()-25):code.end()+40])
-                        for code in _NUMBER_CODE.finditer(body))) or
-                   len(set(_EXAM_CODE.findall(body))) >= 2 and subjects)
     fees = bool(re.search(r'(?:学费|收费|学制|奖助)', body) and
                 re.search(r'\d+(?:\.\d+)?\s*(?:万元|元)|学制\D{0,8}(?:\d{1,2}(?:\.\d)?|[一二三四五六七八九])\s*年', body)) or _fee_table(body)
     eligibility = bool(re.search(r'报考|学历|学位|同等学力|毕业|资格', body) and re.search(r'须|必须|应当|不得|不接受|允许|要求|符合|具有', body))
     deadline = bool(re.search(r'申请|截止|报名|提交|开放', body) and re.search(r'\d{1,2}月\d{1,2}日|20\d{2}[-/.]\d{1,2}[-/.]\d{1,2}', body))
     scores = _score_facts(body)
-    facts = {'catalog': catalog, 'subjects': subjects, 'fees': fees,
+    facts = {'subjects': subjects, 'fees': fees,
              'admissions': eligibility or fees or deadline,
              'interview': scores or deadline or bool(re.search(r'复试.{0,50}(?:笔试|面试|权重|比例|资格)', body)),
              'transfer': deadline or bool(re.search(r'调剂.{0,50}(?:须|要求|不接受|相同|相近|缺额)', body)),

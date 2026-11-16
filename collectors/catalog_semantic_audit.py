@@ -12,8 +12,29 @@ import re
 import stat
 
 
+JXAU_PARSER = 'pdf_table_academic_professional_v1'
+YCIT_PARSER = 'pdf_table_ycit_exact_v1'
+QAU_PARSER = 'pdf_table_qau_chapter_v1'
+REPLAY_BINDINGS = Path(__file__).with_name('catalog_review_bindings.json')
+_PORT_MODULES = {
+    JXAU_PARSER: ('catalog_pdf_department_blocks.py',),
+    YCIT_PARSER: ('catalog_ycit_pdf.py',),
+    QAU_PARSER: ('catalog_qau_pdf.py','catalog_qau_public_source.py'),
+}
+PORTABLE_ADAPTERS = frozenset(_PORT_MODULES)
+_SHARED_PORT_DEPENDENCIES = (
+    'collectors/catalog_strict_syntax.py', 'collectors/catalog_publication.py',
+    'collectors/catalog_pdf_sectioned.py', 'collectors/catalog_ycit_vsb.py', 'collectors/catalog_html.py',
+    'collectors/catalog_pdf_national.py', 'collectors/catalog_pdf_national_v2.py',
+    'collectors/catalog_pdf_tables.py', 'collectors/catalog_pdf_variants.py',
+    'collectors/catalogs.py', 'collectors/documents.py', 'collectors/embedded_documents.py',
+    'collectors/catalog_semantic_audit.py', 'collectors/catalog_batch.py', 'document_extraction.py',
+    'collectors/national_viewer_links.py', 'official_authority.py', 'public_sources.py', 'public_navigation.py', 'service_verification.py',
+    'unit_bindings.py',
+)
 PARSER_FILES = {'pdf_table_v1': 'catalog_pdf_tables.py', 'pdf_table_v2': 'catalog_pdf_variants.py',
                 'pdf_table_national_v1':'catalog_pdf_national.py','pdf_table_national_v2':'catalog_pdf_national_v2.py',
+                **{adapter: files[0] for adapter,files in _PORT_MODULES.items()},
                 'pdf_table_hit_v1':'catalog_hit_public.py'}
 MAX_SOURCE_BYTES = 32 * 1024 * 1024
 MAX_AUDIT_BYTES = 8 * 1024 * 1024
@@ -74,6 +95,15 @@ def semantic_parser_sha256(document, project_root):
     name = PARSER_FILES.get(document.get('catalog_parser'))
     if name is None:
         raise ValueError('PDF表格适配器未列入语义审核白名单')
+    adapter = document['catalog_parser']
+    if adapter in PORTABLE_ADAPTERS:
+        # The evidence store can be mounted from another checkout with different code.
+        code_root = Path(__file__).resolve().parents[1]
+        paths = (*_SHARED_PORT_DEPENDENCIES,*(f'collectors/{name}' for name in _PORT_MODULES[adapter]))
+        files = {relative: hashlib.sha256(_read_file(relative,code_root,2*1024*1024)
+                                          .replace(b'\r\n',b'\n')).hexdigest()
+                 for relative in paths}
+        return hashlib.sha256(_encoded(files)).hexdigest()
     root = Path(project_root).resolve()
     return hashlib.sha256(_read_file(Path('collectors') / name, root, 2 * 1024 * 1024)).hexdigest()
 
@@ -104,6 +134,48 @@ def _approved_list(root, approved_audits):
     return approved_audits
 
 
+def _ported_approvals(document, audits, parser_sha, source_sha, programs_sha, programs, root):
+    index = json.loads(_read_file(REPLAY_BINDINGS.name,REPLAY_BINDINGS.parent.resolve(),16*1024))
+    binding = index.get(document['catalog_parser']) if isinstance(index,dict) else None
+    publication = document.get('publication_page') or {}
+    if (not isinstance(binding,dict) or not isinstance(publication,dict)
+            or parser_sha != _hash(binding.get('parser_sha256'))):
+        return []
+    publication_sha = _hash(binding.get('publication_sha256'))
+    if not publication_sha or _hash(publication.get('sha256')) != publication_sha:
+        return []
+    raw = _read_file(publication.get('local_path'),root,MAX_SOURCE_BYTES)
+    if hashlib.sha256(raw).hexdigest() != publication_sha:
+        return []
+    full_replay = hashlib.sha256(_encoded(sorted(programs,key=lambda row:row['id']))).hexdigest()
+    if full_replay != _hash(binding.get('full_replay_sha256')):
+        return []
+    expected = _hash(binding.get('reviewed_approval_sha256'))
+    matches = [row for row in audits if row.get('unit_id') == document.get('unit_id')
+               and _hash(row.get('source_sha256')) == source_sha
+               and _hash(row.get('programs_sha256')) == programs_sha
+               and hashlib.sha256(_encoded(row)).hexdigest() == expected]
+    if len(matches) != 1:
+        return []
+    proof = matches[0]['review_evidence']
+    raw = _read_file(proof['local_path'],root,MAX_AUDIT_BYTES)
+    if hashlib.sha256(raw).hexdigest() != _hash(proof['sha256']):
+        return []
+    return matches
+
+
+def _approved_subset(approval, programs):
+    ids = approval.get('approved_program_ids')
+    if not isinstance(ids,list) or not ids or any(not isinstance(item,str) or not item for item in ids):
+        raise ValueError('已审校目录方向清单无效')
+    allowed = set(ids)
+    rows = [row for row in programs if row['id'] in allowed]
+    if (len(allowed) != len(ids) or len(rows) != len(ids)
+            or semantic_programs_sha256(rows) != _hash(approval.get('approved_programs_sha256'))):
+        raise ValueError('当前目录方向与已审校子集不一致')
+    return ids
+
+
 def explain_semantic_audit(document, parsed_programs, project_root, approved_audits=None):
     """No cache: source bytes, adapter bytes, and root approvals are reread each call."""
     if not isinstance(document, dict):
@@ -115,6 +187,8 @@ def explain_semantic_audit(document, parsed_programs, project_root, approved_aud
         return {'approved': False, 'reason': '未知PDF表格适配器，不能绕过独立语义审核', 'applicable': True}
     try:
         root = Path(project_root).resolve()
+        if adapter in PORTABLE_ADAPTERS and root.name == 'data':
+            root = root.parent
         source_sha = _hash(document.get('sha256'))
         if source_sha is None:
             raise ValueError('来源摘要格式无效')
@@ -124,17 +198,20 @@ def explain_semantic_audit(document, parsed_programs, project_root, approved_aud
         parser_sha = semantic_parser_sha256(document, root)
         programs_sha = semantic_programs_sha256(parsed_programs)
         audits = _approved_list(root, approved_audits)
-        matches = [row for row in audits if _hash(row.get('source_sha256')) == source_sha
-                   and _hash(row.get('parser_sha256')) == parser_sha
-                   and _hash(row.get('programs_sha256')) == programs_sha]
+        ported = adapter in PORTABLE_ADAPTERS
+        matches = (_ported_approvals(document,audits,parser_sha,source_sha,programs_sha,parsed_programs,root) if ported else
+                   [row for row in audits if _hash(row.get('source_sha256')) == source_sha
+                    and _hash(row.get('parser_sha256')) == parser_sha
+                    and _hash(row.get('programs_sha256')) == programs_sha])
         if len(matches) != 1 or not _review_valid(matches[0]):
             return {'approved': False, 'reason': '当前原文、适配器及完整记录集没有唯一有效的根语义批准',
                     'applicable': True, 'source_sha256': source_sha, 'parser_sha256': parser_sha,
                     'programs_sha256': programs_sha}
+        subset = {'approved_program_ids':_approved_subset(matches[0],parsed_programs)} if ported else {}
         return {'approved': True, 'reason': '原文、适配器及完整记录集与根独立语义审校批准一致',
                 'applicable': True, 'source_sha256': source_sha, 'parser_sha256': parser_sha,
                 'programs_sha256': programs_sha, 'reviewer': matches[0]['reviewer'],
-                'reviewed_at': matches[0]['reviewed_at']}
+                'reviewed_at': matches[0]['reviewed_at'], **subset}
     except (OSError, ValueError, TypeError, KeyError, RecursionError, OverflowError) as error:
         return {'approved': False, 'reason': str(error), 'applicable': True}
 

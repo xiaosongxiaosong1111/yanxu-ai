@@ -85,6 +85,38 @@ def host_matches(host, roots):
     return any(host == root or host.endswith('.' + root) for root in roots)
 
 
+def preferred_site(unit):
+    """Use the strongest known admissions host as a search hint only."""
+    if not isinstance(unit, dict):
+        return ''
+    from public_sources import official_source_url
+    from unit_bindings import consortium_admissions_scope
+
+    def allowed_host(url, context):
+        parts = http_url(url)
+        if not parts:
+            return ''
+        host = parts.hostname.lower().rstrip('.')
+        if (host in {'chsi.com.cn', 'mp.weixin.qq.com'} or host.endswith('.chsi.com.cn')
+                or consortium_admissions_scope(url, context) is not None):
+            return ''
+        return host if official_source_url(url, context) else ''
+
+    for row in unit.get('official_urls') or ():
+        if (isinstance(row, dict) and row.get('role') == 'admissions_site'
+                and row.get('evidence') and row.get('checked_at')
+                and (host := allowed_host(row.get('url'), unit))):
+            return host
+    for row in unit.get('official_authorities') or ():
+        if (isinstance(row, dict) and row.get('publisher_role') == 'admissions'
+                and (host := allowed_host(row.get('candidate_url'), {**unit, 'official_authorities': [row]}))):
+            return host
+    url = unit.get('official_url')
+    host = allowed_host(url, unit)
+    root = root_domain(url)
+    return root if host and host == 'www.' + root else host
+
+
 def parse_pages(body):
     """Return accepted provider items plus the count of unparseable entries."""
     items, malformed = [], 0
@@ -204,6 +236,46 @@ def search_variants(unit_name, year, kind):
     return [primary] if wider == primary else [primary, wider]
 
 
+_BROAD_EXAM_CODE = r'[0-9]{3}(?![0-9A-Za-z])'
+_BROAD_NEGATIVE_SUBJECTS = re.compile(
+    rf'(?:不考|不选|不要|排除|避开)\s*(?:科目\s*)?{_BROAD_EXAM_CODE}'
+    rf'(?:\s*[、/,，]\s*{_BROAD_EXAM_CODE}){{0,4}}')
+
+
+def broad_subject_exclusions(query):
+    return {code for match in _BROAD_NEGATIVE_SUBJECTS.finditer(query)
+            for code in re.findall(_BROAD_EXAM_CODE, match[0])}
+
+
+def broad_catalog_queries(query, year, provinces=(), excluded_codes=()):
+    """Search for catalog entries; subject exclusions apply to the official rows later."""
+    from collectors.registry import PROVINCES
+
+    core = unicodedata.normalize('NFKC', query)
+    core, removed = _BROAD_NEGATIVE_SUBJECTS.subn(' ', core)
+    codes = [code for code in excluded_codes if isinstance(code, str) and re.fullmatch(r'\d{3}', code)]
+    if codes:
+        core = re.sub(r'(?<![0-9A-Za-z])(?:' + '|'.join(codes) + r')(?![0-9A-Za-z])', ' ', core)
+    subject_focus = bool(removed or codes or '自命题' in core)
+    core = re.sub(r'(?<!\d)20\d{2}\s*年', ' ', core)
+    core = re.sub(rf'(?<!\d){year}(?!\d)', ' ', core)
+    core = re.sub(r'帮我(?:找一下|查一下|找找|找|查)|想(?:找|报考)|有哪些|有没有|请问|推荐|考研|'
+                  r'(?:硕士(?:研究生)?)?(?:招生专业目录|招生目录|专业目录)|自命题|初试(?:考试)?科目|考试科目', ' ', core)
+    core = re.sub(r'(?<![0-9A-Za-z])([0-9]{4}[0-9A-Za-z][0-9])(?![0-9A-Za-z])', r' \1 ', core)
+    core = ' '.join(re.split(r'[\s,，。？?、;；：:]+', core.strip(' -'))).strip()
+    regions = dict.fromkeys(province for province in provinces if isinstance(province, str) and province in PROVINCES)
+    covered = ('北京', '天津', '河北') if '京津冀' in core else ()
+    prefix = ' '.join([f'{year}年', *(region for region in regions if region not in core and region not in covered)])
+    prefix = ' '.join(part for part in (prefix, core) if part)
+    queries = [f'{prefix} 硕士研究生招生专业目录']
+    specific = (subject_focus or regions or covered or any(province in core for province in PROVINCES)
+                or re.search(r'(?<![0-9A-Za-z])(?:[0-9]{3}|[0-9]{4}[0-9A-Za-z][0-9])(?![0-9A-Za-z])', core))
+    if specific:
+        alternative = '自命题 初试科目' if subject_focus else '硕士 初试科目 专业目录'
+        queries.append(f'{prefix} {alternative}')
+    return queries
+
+
 def target_matches(row, year, kind):
     """Discovery relevance only: neither URL dates nor summaries prove a cohort."""
     title = unicodedata.normalize('NFKC', str(row.get('title') or ''))
@@ -216,11 +288,27 @@ def target_matches(row, year, kind):
     if not re.search(r'(?<!\d)' + str(year) + r'(?!\d)\s*年?', title):
         return False
     if re.search(r'本科|博士|留学生', title) and '硕士' not in title:return False
-    markers = {'catalog': r'专业目录|招生目录|考试科目', 'charter': r'招生章程|招生简章|硕士.{0,24}(?:章程|简章)',
+    markers = {'charter': r'招生章程|招生简章|硕士.{0,24}(?:章程|简章)',
                'fees': r'学费|收费|学制', 'score': r'分数线|成绩基本要求|复试基本要求',
                'retest': r'复试.*(?:办法|细则|方案)', 'transfer': r'调剂',
                'change': r'科目.*调整|调整.*科目', 'enrollment': r'招生计划|招生人数|推免人数'}
-    return bool(re.search(markers.get(kind, markers['catalog']), title))
+    if kind in markers:
+        return bool(re.search(markers[kind], title))
+    catalog = r'(?:专业目录|招生目录|招生学科目录)'
+    change = r'(?:调整|变更|更正|修订|勘误|修正)'
+    if re.search(rf'关于{change}.*?{catalog}|{catalog}(?:的)?{change}(?:的)?(?:通知|公告|说明)', ordinary):
+        return False
+    return bool(re.search(catalog, ordinary))
+
+
+def target_lead(row, year, kind):
+    """A school-bound result worth reading, including possible attachment parents."""
+    return (row.get('status') == 'search_lead' and row.get('source_type') == 'yuanbao_search'
+            and row.get('source_tier') == 'official' and isinstance(row.get('unit_id'), str)
+            and bool(row['unit_id']) and http_url(row.get('url'))
+            and row.get('requested_year') == year and row.get('requested_kind') == kind
+            and (target_matches(row, year, kind)
+                 or kind == 'catalog' and target_matches(row, year, 'charter')))
 
 
 def infer_kind(query):
@@ -276,7 +364,8 @@ def notice(official, candidates, third, queries_count, *, binding_missing=False,
 
 def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_enabled=False,
                site='', include_third=False, collect_third=False, third_query=None,
-               third_only_without_official=False, can_call=None, target_match=None):
+               third_only_without_official=False, can_call=None, target_match=None,
+               stop_on_target=True):
     """Run the bounded query ladder and return tiered, deduplicated rows.
 
     ``call(body)`` performs one external request and returns a normalized
@@ -288,6 +377,9 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
     the ladder paid for; it never issues an extra request. A caller that wants
     a dedicated lead query (the page's extended scope) sets ``include_third``
     and ``third_query`` instead.
+
+    Cross-school searches may opt into running every supplied variant instead
+    of stopping at the first catalog lead.
     """
     def allowed():
         return can_call is None or can_call()
@@ -303,9 +395,7 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
             break
         queries_tried.append(query)
         request_body = {'Query': query}
-        if site and index == 0:
-            request_body['Site'] = site
-        body = call(request_body)
+        body = call({**request_body, 'Site': site} if site and index == 0 else request_body)
         request_count += 1
         items, bad = parse_pages(body)
         results, request_rejected = official_rows(items, is_official)
@@ -323,7 +413,7 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
             if not allowed():
                 budget_exhausted = True
                 break
-            fallback = call({'Query': query})
+            fallback = call(request_body)
             request_count += 1
             fallback_items, fallback_bad = parse_pages(fallback)
             if candidate_enabled:
@@ -340,9 +430,9 @@ def run_ladder(call, *, queries, is_official, unit_name='', roots=(), candidate_
         if candidate_enabled:
             candidate_pages.extend(candidate_rows(parse_pages(body)[0], unit_name, roots))
         results = dedupe(results)
-        if results and (target_match is None or any(target_match(row) for row in results)):
+        if stop_on_target and results and (target_match is None or any(target_match(row) for row in results)):
             break
-    official_results = dedupe(official_seen) if target_match is not None else list(results)
+    official_results = dedupe(official_seen) if target_match is not None or not stop_on_target else list(results)
     third = list(third_pages)
     wants_third = include_third and (not third_only_without_official or not official_results)
     if wants_third and third_query:

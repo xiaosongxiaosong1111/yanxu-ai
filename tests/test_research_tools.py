@@ -55,7 +55,7 @@ class ResearchToolsTests(unittest.TestCase):
         self.assertIn('未重复消耗',second['notice'])
         self.assertEqual(second['results'],first['results'])
         self.assertEqual(self.network.request_json.call_count,calls)
-        self.assertEqual(self.tools.usage['searches'],1)
+        self.assertEqual(self.tools.usage['searches'],first['request_count'])
         other=self.tools.run('search_official_sources',{'query':'招生简章'})
         self.assertNotIn('repeated_call',other)
         self.assertEqual(self.network.request_json.call_count,calls+1)
@@ -123,7 +123,9 @@ class ResearchToolsTests(unittest.TestCase):
         self.search_response()
         result=self.tools.search_sources({'query':'计算机 硕士目录'})
         self.assertEqual(len(result['results']),1);self.assertEqual(self.tools.report()['candidates'],[])
-        self.assertIsNone(result['results'][0]['unit_id'])
+        self.assertEqual(result['results'][0]['unit_id'],'123')
+        self.assertEqual(result['results'][0]['status'],'search_lead')
+        self.assertIsNone(result['results'][0]['year'])
 
     def test_original_read_is_saved_but_never_adopted_as_a_program(self):
         self.search_response();sid=self.tools.search_sources({'query':'目录','unit_id':'123'})['results'][0]['id']

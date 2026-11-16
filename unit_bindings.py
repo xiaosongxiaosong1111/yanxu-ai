@@ -29,6 +29,24 @@ EXTERNAL_PATH = PROJECT_ROOT / 'data' / 'official_bindings.json'
 # machine-readable reason a reviewer can replay; `evidence` must be an
 # official page that was actually read. `checked_at` is the review date.
 CURATED = (
+    {
+        'name': '昆明理工大学', 'aliases': (), 'unit_code': '10674',
+        'domains': ({'url': 'https://yjs.kust.edu.cn/', 'role': 'admissions_site',
+            'relation': 'institution_publishes_master_catalog',
+            'evidence': 'https://yjs.kust.edu.cn/info/1254/4413.htm',
+            'evidence_quote': '昆明理工大学2027年硕士研究生招生专业目录', 'checked_at': '2026-11-16'},
+            {'url': 'https://www.swugs.ynu.edu.cn/', 'role': 'special_admissions_site',
+             'relation': 'charter_limits_consortium_site_to_special_admissions',
+             'evidence': 'https://www.kust.edu.cn/info/1166/57688.htm',
+             'evidence_quote': '西南联合研究生院专项计划', 'checked_at': '2026-11-16'},),
+    },
+    {
+        'name': '太原科技大学', 'aliases': (), 'unit_code': '10109',
+        'domains': ({'url': 'https://yjsxy.tyust.edu.cn/', 'role': 'admissions_site',
+            'relation': 'institution_publishes_master_catalog',
+            'evidence': 'https://yjsxy.tyust.edu.cn/info/1203/3712.htm',
+            'evidence_quote': '太原科技大学2027年硕士研究生招生目录', 'checked_at': '2026-11-11'},),
+    },
     # Reviewed raw originals and their SHA256 live in fixtures/official_discovery/reviewed_roots.
     # These are entry bindings, never proof of a requested year's admissions facts.
     {
@@ -233,6 +251,18 @@ def expand_query(query, path=None):
 def aliases_for(unit, path=None):
     row = find_row(unit, path)
     return tuple(row['aliases']) if row else tuple(unit.get('aliases') or ())
+
+
+def consortium_admissions_scope(url, unit):
+    """Identify the exact special-program host or an unproven host on its shared domain."""
+    parts = _http_url(url)
+    host = parts.hostname.lower().rstrip('.') if parts else ''
+    if host != 'ynu.edu.cn' and not host.endswith('.ynu.edu.cn'):
+        return None
+    row = find_row(unit)
+    if row and row['unit_code'] == '10674':
+        return host == 'www.swugs.ynu.edu.cn'
+    return None
 
 
 def enrich(unit, path=None):

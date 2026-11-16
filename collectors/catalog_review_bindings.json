@@ -1,0 +1,20 @@
+{
+  "pdf_table_academic_professional_v1": {
+    "reviewed_approval_sha256": "cd5186cc83fe2a880e4f716de3bb7861ba80f70f4d98bb0b27c5407019da457d",
+    "parser_sha256": "d6333f4bc201edc21566114dbd5c6c3b216565914b5633e9480289b9c67f6602",
+    "publication_sha256": "58a2a9e1f602d7ff8d9e9f398ad274a12fecc5d067ead4bd1b77f97bcd18f730",
+    "full_replay_sha256": "632498363d0b40367049796a2a6b76de717226876c3c09f6013245f660408471"
+  },
+  "pdf_table_ycit_exact_v1": {
+    "reviewed_approval_sha256": "554f9d9c33ec5f4473ce0e934c2bcec8842d818e9b4fa5ca410651755be867ef",
+    "publication_sha256": "1ecdad0c493513104d7ccdf48ea720aa976ce716257512862a6b3b572b7d90d1",
+    "full_replay_sha256": "fa952b392ddac652de939e27afe01acec2e5e03dd45e193e52ce2de1de6f6f6b",
+    "parser_sha256": "cc437c24d861500a99722b81fbd215874208b846635982165bd9ecfe0cfca551"
+  },
+  "pdf_table_qau_chapter_v1": {
+    "reviewed_approval_sha256": "e0a89e2a91d944aa90a27e9a11a1f6d6d7c82161d8a6bea7b20773b7c0b0db23",
+    "publication_sha256": "93b03c18696855af6844b0b0c2be9ef92aba0448ce4bf4b65ef09cfc09306091",
+    "full_replay_sha256": "465064809c9ca45aaec5225f91a416c310f638388d6b30bd355322a33bd4ee87",
+    "parser_sha256": "bfb19a4e86c1836727d0810bc5a1806ca26522a82653799590e74464d886d94d"
+  }
+}

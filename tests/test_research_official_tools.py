@@ -50,6 +50,77 @@ class ResearchOfficialToolsTests(unittest.TestCase):
         self.assertEqual(len(result), 20)
         self.assertEqual(result[0]['url'], UNIT['official_url']+'catalog')
 
+    def test_yuanbao_target_original_is_checked_before_generic_official_homepage(self):
+        url = 'https://www.example.edu.cn/2027-charter'
+        other = 'https://www.example.edu.cn/2026-charter'
+        seen = []
+        def fetch(address, unit, **kwargs):
+            seen.append(address)
+            return document(address, BODY)
+        tools = self.tools(fetch)
+        for address, year in ((other,2026),(url,2027)):
+            tools._source({'url':address,'title':TITLE.replace('2027',str(year)),
+                'unit_id':'123','requested_year':year,'requested_kind':'charter','status':'search_lead',
+                'source_type':'yuanbao_search','source_tier':'official'})
+        result = tools.run('discover_official_entry', {'unit_id':'123','kind':'charter'})
+        self.assertEqual(seen, [url])
+        self.assertEqual(result['stage'], 'body_read')
+        self.assertEqual([source['url'] for source in result['document_sources']], [url])
+
+    def test_restricted_target_is_visible_even_with_an_official_entry(self):
+        url = 'https://www.example.edu.cn/2027-catalog'
+        title = '示例大学2027年硕士研究生招生专业目录'
+        def fetch(address, unit, **kwargs):
+            if address == url:
+                raise official.SourceError('restricted', '附件需要访问验证')
+            return document(address, b'<title>Example</title>')
+        tools = self.tools(fetch)
+        tools._source({'url':url,'title':title,'unit_id':'123','requested_year':2027,
+            'requested_kind':'catalog','status':'search_lead','source_type':'yuanbao_search',
+            'source_tier':'official'})
+        result = tools.run('discover_official_entry', {'unit_id':'123','kind':'catalog'})
+        self.assertTrue(result['entry_verified'])
+        self.assertEqual(result['stage'], 'access_restricted')
+        self.assertEqual(tools.report()['official_discovery'][0]['stage'], 'access_restricted')
+        self.assertFalse(result['document_sources'])
+
+    def test_restricted_navigation_script_is_not_a_restricted_catalog(self):
+        raw = ('<title>示例大学</title><h1>示例大学</h1><script src="/common.js"></script>').encode()
+        def fetch(url, unit, **kwargs):
+            if url.endswith('/common.js'):
+                raise official.SourceError('restricted', '脚本访问受限')
+            return document(url, raw)
+        result = self.tools(fetch).run('discover_official_entry', {'unit_id':'123','kind':'catalog'})
+        self.assertEqual(result['stage'], 'entry_verified')
+        self.assertTrue(any(row['code']=='restricted' for row in result['errors']))
+
+    def test_current_catalog_attachment_routes_to_original_reader(self):
+        href = '/virtual_attach_file.vsb?oid=1&amp;e=.pdf'
+        url = 'https://www.example.edu.cn/' + href[1:].replace('&amp;', '&')
+        title = '示例大学2027年硕士研究生招生专业目录'
+        raw = ('<title>'+title+'</title><h1>'+title+'</h1><a href="'+href+'">'+title+'.pdf</a>').encode()
+        tools = self.tools(lambda address, unit, **kwargs: document(address, raw))
+        tools.source_fetcher = Mock(side_effect=official.SourceError('restricted','附加原件需要访问验证'))
+        result = tools.run('discover_official_entry', {'unit_id':'123','kind':'catalog'})
+        self.assertEqual(tools.source_fetcher.call_args.args[0], url)
+        self.assertEqual(result['stage'], 'access_restricted')
+
+    def test_new_yuanbao_lead_precedes_previously_tried_results(self):
+        prefix = 'https://www.example.edu.cn/'
+        old = [prefix + 'old-1', prefix + 'old-2']
+        fresh = prefix + 'current'
+        fetch = Mock(side_effect=lambda url, unit, **kwargs: document(url, BODY))
+        tools = self.tools(fetch)
+        for url in old+[fresh]:
+            tools._source({'url':url,'title':TITLE,'unit_id':'123','requested_year':2027,
+                'requested_kind':'charter','status':'search_lead','source_type':'yuanbao_search',
+                'source_tier':'official'})
+        tools._official_discovery['123'] = {'year':2027,'kind':'charter',
+                                          'attempted_urls':old,'stage':'entry_verified'}
+        result = tools.run('discover_official_entry', {'unit_id':'123','kind':'charter'})
+        self.assertEqual(fetch.call_args.args[0],fresh)
+        self.assertEqual(set(result['attempted_urls']),set(old+[fresh]))
+
     def test_cancelled_read_does_not_save_a_new_original_or_completed_discovery(self):
         stop = threading.Event()
         def fetch(url, unit, **kwargs):

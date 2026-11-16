@@ -10,7 +10,7 @@ import json
 from math import isfinite
 from evidence import exam_unresolved_reason
 from grad_engine import _subject_units
-from official_search import target_matches
+from official_search import target_lead, target_matches
 
 FACT_LABELS = {
     'eligibility': '报考资格与适用范围',
@@ -125,14 +125,17 @@ def _candidate_fact(program, fact):
     }
 
 
-def _source_evidence(sources, unit_id, year):
+def _source_evidence(sources, program, fact):
     rows = []
     for source in sources.values():
-        if source.get('unit_id') != unit_id or source.get('year') != year:
+        if source.get('unit_id') != program.get('unit_id') or source.get('year') != program.get('year'):
             continue
         if source.get('knowledge_current') is False or source.get('usable') is False:
             continue
         if source.get('status') not in {'official_original_read', 'published_snapshot'}:
+            continue
+        if (source.get('source_type') == 'published_catalog_reference'
+                and (fact != 'subjects' or program.get('id') not in (source.get('program_ids') or ()))):
             continue
         rows.append({'source_id': source.get('id'), 'status': source.get('status'),
                      'year': source.get('year'), 'sha256': source.get('sha256'),
@@ -200,10 +203,15 @@ def _source_action(program, fact, source, receipts, audit):
             'completion': '完成有界原文阅读后再提交逐字引用；截断或缺失的上下文不能参与事实核验。'}
 
 
-def _discovery_or_search(unit_id, year, kind, query, discovery, searched, usage):
-    attempted = any(isinstance(row, dict) and row.get('unit_id') == unit_id
-                    and row.get('year') == year and row.get('kind') == kind for row in discovery)
-    if not attempted:
+def _discovery_or_search(unit_id, year, kind, query, discovery, searched, usage, sources):
+    previous = [row for row in discovery if isinstance(row, dict) and row.get('unit_id') == unit_id
+                and row.get('year') == year and row.get('kind') == kind]
+    visited = {url for row in previous for url in row.get('attempted_urls', ())}
+    new_lead = any(source.get('unit_id') == unit_id and target_lead(source, year, kind)
+                   and (source.get('url') or '').split('#', 1)[0] not in visited
+                   for source in sources.values())
+    if usage.get('navigation_fetches', 0) < 12 and (not previous or new_lead
+            and not any(row.get('stage') == 'body_read' for row in previous)):
         return _discovery_action(unit_id, year, kind)
     if unit_id not in searched and usage.get('searches', 0) < 4:
         return {'tool': 'search_official_sources', 'args': {'query': query, 'unit_id': unit_id, 'year': year},
@@ -220,7 +228,22 @@ def _fact_action(program, fact, sources, discovery, receipts, audit, searched, u
         action = _source_action(program, fact, source, receipts, audit)
         if action:
             return action
-    return _discovery_or_search(unit_id, year, kind, FACT_QUERIES[fact], discovery, searched, usage)
+    return _discovery_or_search(unit_id, year, kind, FACT_QUERIES[fact], discovery, searched, usage, sources)
+
+
+def _new_catalog_discovery(task, programs, sources, discovery, searched_units, usage):
+    if task.get('unit_ids') or usage.get('tool_calls', 0) >= 20:
+        return None
+    year = task.get('reference_year')
+    known = {program.get('unit_id') for program in programs.values()}
+    leads = dict.fromkeys(source['unit_id'] for source in sources.values()
+                          if target_lead(source, year, 'catalog') and source['unit_id'] not in known)
+    for unit_id in leads:
+        action = _discovery_or_search(
+            unit_id, year, 'catalog', FACT_QUERIES['subjects'], discovery, searched_units, usage, sources)
+        if action and action['tool'] == 'discover_official_entry':
+            return action
+    return None
 
 
 def _rotate_actions(actions):
@@ -300,7 +323,7 @@ def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=()
         for fact in FACT_ORDER:
             value = _candidate_fact(program, fact)
             if not value.get('evidence'):
-                value['evidence'] = _source_evidence(sources, program.get('unit_id'), program.get('year'))
+                value['evidence'] = _source_evidence(sources, program, fact)
             if value['status'] == 'unknown':
                 action = _fact_action(program, fact, sources, discovery, read_receipts, audit, searched_units, usage)
                 value['next_action'] = {**action, 'unit_id': program.get('unit_id')} if action else None
@@ -342,10 +365,15 @@ def build_plan(task, programs, sources, algorithm, gaps, usage, loaded_skills=()
             break
         if not unique:
             year = task.get('reference_year')
-            scope = task.get('unit_ids') or list(dict.fromkeys(row.get('unit_id') for row in discovery
-                if isinstance(row, dict) and row.get('year') == year and row.get('unit_id')))
+            scope = task.get('unit_ids') or list(dict.fromkeys([
+                *(source['unit_id'] for source in sources.values() if target_lead(source, year, 'catalog')),
+                *(row['unit_id'] for row in discovery
+                  if isinstance(row, dict) and row.get('year') == year and row.get('unit_id')),
+            ]))
             unique = [action for unit_id in scope if (action := _discovery_or_search(
-                unit_id, year, 'catalog', FACT_QUERIES['subjects'], discovery, searched_units, usage))]
+                unit_id, year, 'catalog', FACT_QUERIES['subjects'], discovery, searched_units, usage, sources))]
+    elif action := _new_catalog_discovery(task, programs, sources, discovery, searched_units, usage):
+        unique.insert(0, action)
     unique = _rotate_actions(unique)
     goals = [
         {'id': 'scope', 'label': '确定可研究的合理范围', 'status': 'done' if programs else 'open',

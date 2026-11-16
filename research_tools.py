@@ -13,7 +13,9 @@ from urllib.parse import urlsplit
 from decision_engine import analyze as decision_analysis
 from evidence import exam_unresolved_reason
 from evidence_ledger import audit as evidence_audit
-from grad_engine import EngineValidationError, match_programs, rank_order_key, validate_profile
+from grad_engine import (EngineValidationError, _exclusion_filter, _subject_units,
+                         match_programs, rank_order_key, validate_profile)
+from official_authority import registered_scopes, scope_allows
 from planning_engine import plan_routes, suggest_adjustments
 import official_search
 import unit_bindings
@@ -142,7 +144,7 @@ TOOLS=[
             {'query':{'type':'string'},'province':{'type':'string'}}),
     _schema('find_candidates','查询已发布核验快照的有限候选。可以用专业词或408等科目查询；返回范围不代表全国全集。',
             {'query':{'type':'string'},'unit_id':{'type':'string'}},('query',)),
-    _schema('search_official_sources','使用元宝搜索查公共学校、专业、年度资料。不得发送姓名、电话、成绩单、API Key等个人信息。搜索结果仅为线索；未登记官网的单位会返回归属待确认的疑似官方页面。',
+    _schema('search_official_sources','使用元宝搜索查公共学校、专业、年度资料。未指定学校时，在查询中保留已知的地区、准确专业名称和专业代码，不猜代码。不得发送姓名、电话、成绩单、API Key等个人信息。搜索结果仅为线索；未登记官网的单位会返回归属待确认的疑似官方页面。',
             {'query':{'type':'string'},'unit_id':{'type':'string'},'year':{'type':'integer'}},('query',)),
     _schema('read_official_source','按已发现的source_id读取已确认学校官网原文；不能读取任意URL，研招网门禁保持不请求。返回结果同时列出同站官方文章与PDF入口的source_id。',
             {'source_id':{'type':'string'},'unit_id':{'type':'string'}},('source_id','unit_id')),
@@ -250,6 +252,7 @@ class ResearchTools:
             identifier,url=row.get('id'),row.get('url')
             if not isinstance(identifier,str) or not re.fullmatch(r's_[0-9a-f]{20}',identifier):continue
             if row.get('status') not in {'official_original_read','published_snapshot'}:continue
+            if row.get('source_type')=='published_catalog_reference':continue
             if row.get('knowledge_filtered') is True or row.get('usable') is False:continue
             unit=(research_official_tools.current_unit(self,row['unit_id'])
                   if row.get('unit_id') in self.units else None)
@@ -672,7 +675,7 @@ class ResearchTools:
                     if len(selected)>=LIMITS['max_candidates']:break
         return [entry['program'] for entry in selected]
 
-    def _select_and_store(self,scanned):
+    def _select_and_store(self,scanned,*,save_sources=True):
         self._remember_research_pool(scanned)
         previous=deepcopy(self.programs)
         query_ids={row['id'] for row in scanned}
@@ -683,7 +686,7 @@ class ResearchTools:
         self.programs={row['id']:deepcopy(row) for row in selected}
         if previous!=self.programs:
             self.algorithm.clear();self._algorithm_signature=None
-        self._save_candidate_sources(selected)
+        if save_sources:self._save_candidate_sources(selected)
         return selected,query_ids
 
     def _remember_research_pool(self,rows):
@@ -798,6 +801,8 @@ class ResearchTools:
         url=value.get('url','');parsed=urlsplit(url)
         if parsed.scheme not in {'https','http'} or not parsed.hostname or parsed.username or parsed.password:return None
         version=value.get('knowledge_id') or value.get('sha256') or ''
+        if value.get('source_type')=='published_catalog_reference':
+            version+='|'+value['program_ids'][0]
         source_id='s_'+hashlib.sha256((url+'|'+str(value.get('year'))+'|'+str(value.get('unit_id'))+'|'+version).encode()).hexdigest()[:20]
         current=self.sources.get(source_id,{})
         if current.get('status')=='official_original_read' and not current.get('knowledge_filtered'):return source_id
@@ -860,7 +865,8 @@ class ResearchTools:
         reusable=_reusable_knowledge(record)
         if reusable:self.cache_hits.add(record['id'])
         return _public_source({**metadata,'id':source['id'],
-            **{key:deepcopy(source[key]) for key in ('authority_id','source_role') if key in source},
+            **{key:deepcopy(source[key]) for key in ('authority_id','source_role','requested_kind',
+                'source_tier','source_status','search_channel') if key in source},
             **({'links':deepcopy(source['links'])} if 'links' in source else {}),
             'requested_year':source.get('requested_year',record.get('requested_year')),
             'source_type':'knowledge_cache','knowledge_reused':True,'cache_hit':reusable,'cached_at':record.get('checked_at'),
@@ -990,6 +996,216 @@ class ResearchTools:
     def confirm_segment_delivery(self,original_result,delivered_result):
         research_candidate_tools.confirm_delivery(self,original_result,delivered_result)
 
+    def _catalog_search_provinces(self, query):
+        provinces = set(self.task['profile'].get('provinces') or ())
+        if provinces:
+            return provinces
+        named = {unit['province'] for unit in self.units.values()
+                 if unit.get('province') and unit['province'] in query}
+        return named | ({'北京','天津','河北'} if '京津冀' in query else set())
+
+    def _broad_unit_resolver(self, provinces=()):
+        """Bind only a unique unit whose existing official scope permits the URL."""
+        units_by_host, registered, current_units, resolved = {}, {}, {}, {}
+        for identifier, base in self._official_base_units.items():
+            registered[identifier] = registered_scopes(base)
+            prior = self.units[identifier].get('official_authorities') or ()
+            scopes = (*registered[identifier], *(row.get('scope') or {} for row in prior))
+            for scope in scopes:
+                if scope.get('host'):
+                    units_by_host.setdefault(scope['host'], set()).add(identifier)
+
+        selected = set(self.task['unit_ids'])
+        provinces = provinces or set(self.task['profile'].get('provinces') or ())
+        eligible = selected or {identifier for identifier, unit in self.units.items()
+                                if not provinces or unit.get('province') in provinces}
+
+        def resolve(url):
+            if url in resolved:
+                return resolved[url]
+            host = (urlsplit(url).hostname or '').lower().rstrip('.')
+            if host == 'chsi.com.cn' or host.endswith('.chsi.com.cn'):
+                return None
+            matches = []
+            for identifier in units_by_host.get(host, ()):
+                if identifier not in current_units:
+                    current_units[identifier] = research_official_tools.current_unit(self, identifier)
+                unit = current_units[identifier]
+                allowed = (official_source_url(url, unit) if 'official_authorities' in unit else
+                           any(scope_allows(url, scope) for scope in registered[identifier]))
+                if allowed and unit_bindings.consortium_admissions_scope(url, unit) is None:
+                    matches.append(unit)
+            # Scope restrictions cannot disambiguate a host shared by schools.
+            unit = matches[0] if len(matches) == 1 and matches[0]['id'] in eligible else None
+            resolved[url] = unit
+            return unit
+
+        return resolve
+
+    def _matching_catalog_programs(self, query, year):
+        codes = set(re.findall(r'(?<![0-9A-Z])(?:0[1-9]|1[0-4])\d{2}(?:\d{2}|[A-Z]\d)(?![0-9A-Z])', query))
+        if (len(codes) != 1 or year != self.task['reference_year']
+                or not callable(getattr(self.admission,'catalog_programs',None))):
+            return
+        major = codes.pop()
+        exclusions = list(self.task['profile'].get('excluded_subjects', ()))
+        excluded_codes = {item['code'] for item in exclusions}
+        requested_exclusions = official_search.broad_subject_exclusions(query)
+        exclusions.extend({'code':code} for code in requested_exclusions - excluded_codes)
+        required = set(re.findall(r'(?<!\d)\d{3}(?!\d)', query)) - excluded_codes - requested_exclusions
+        provinces = self._catalog_search_provinces(query)
+        inferred = self.infer_unit(query)
+        scope = set(self.task['unit_ids']) or ({inferred} if inferred else set())
+        # shortcut: an exact major scans at most 600 rows, paginate by school when broader coverage is required.
+        for offset in (0, 200, 400):
+            try:
+                state, page = self._scan_page(major, None, offset)
+            except Exception as error:
+                if getattr(error, 'code', '') not in {'catalog_unpublished','catalog_unavailable'}:
+                    raise
+                break
+            if state != 'ok':
+                break
+            rows = page.get('programs') or []
+            for row in rows:
+                uid = row.get('unit_id')
+                unit = self.units.get(uid)
+                if (not unit or scope and uid not in scope
+                        or provinces and unit.get('province') not in provinces
+                        or row.get('code') != major or row.get('year') != year
+                        or exam_unresolved_reason(row)):
+                    continue
+                source_subjects = row.get('subjects')
+                slots, unknown = _subject_units(source_subjects)
+                if unknown or sorted(slots) not in ([1,2], [1,2,3], [1,2,3,4]):
+                    continue
+                subjects, excluded = _exclusion_filter(source_subjects, exclusions)
+                if excluded['status'] != 'matched' or not required <= {item['code'] for item in subjects}:
+                    continue
+                yield row
+            if not rows or offset + len(rows) >= page.get('total', len(rows)):
+                break
+
+    def _catalog_search_seeds(self, programs, resolved_urls, schools_with_leads):
+        limit = min(2, LIMITS['max_searches'] - self.usage['searches'])
+        seeds, deferred = {}, {}
+        for row in programs:
+            uid = row['unit_id']
+            if uid in seeds or uid in deferred:
+                continue
+            if any(ref.get('url','').split('#',1)[0] in resolved_urls
+                   for ref in row.get('evidence') or () if isinstance(ref, dict)):
+                continue
+            current = self._unit(uid)
+            if official_search.preferred_site(current):
+                choices = deferred if uid in schools_with_leads else seeds
+                choices[uid] = current
+            if len(seeds) >= limit:
+                return list(seeds.values())
+        return [*seeds.values(), *deferred.values()][:limit]
+
+    def _published_catalog_ref(self, row, proof):
+        identity = ('id','unit_id','year','code','department_code','direction','study_mode')
+        if (proof.get('revision') != self.revision or any(
+                proof['program'].get(key) != row.get(key) for key in identity)):
+            return None
+        claims = {claim['id']:claim for claim in proof['claims'] if claim['status'] == 'verified'}
+        if 'catalog' not in claims or claims.get('subjects', {}).get('value') != row['subjects']:
+            return None
+        unit = self._unit(row['unit_id'])
+
+        def refs(claim):
+            return {(ref.get('document_id'),ref['url'],ref['sha256']):ref for ref in claims[claim]['evidence']
+                    if ref.get('verification') == 'exact_quote' and ref.get('relation') == 'supports'
+                    and ref.get('catalog_active') is True and ref.get('version_state') == 'current'
+                    and ref.get('unit_id') == row['unit_id'] and ref.get('year') == row['year']
+                    and re.fullmatch(r'[a-f0-9]{64}',ref.get('sha256') or '') and ref.get('quote')
+                    and official_source_url(ref.get('url',''),unit)}
+
+        catalog = refs('catalog')
+        return next((ref for key,ref in refs('subjects').items() if key in catalog),None)
+
+    def _verify_published_catalog_matches(self, programs):
+        evidence = getattr(self.admission,'evidence',None)
+        if not callable(evidence):
+            return []
+        by_unit = {}
+        for row in programs:
+            if row.get('id'):by_unit.setdefault(row['unit_id'],[]).append(row)
+        queue = (row for batch in zip_longest(*by_unit.values()) for row in batch if row)
+        verified, proven_units = [], set()
+        attempts = 0
+        for row in queue:
+            uid = row['unit_id']
+            if uid in proven_units:
+                continue
+            if attempts >= LIMITS['max_candidates']:
+                break
+            self._check_control()
+            attempts += 1
+            try:
+                ref = self._published_catalog_ref(row,evidence(row['id'],revision=self.revision))
+            except Exception as error:
+                if getattr(error,'code','') not in {'catalog_unavailable','catalog_unpublished','program_not_found','revision_changed'}:
+                    raise
+                continue
+            if ref:
+                verified.append((row,ref))
+                proven_units.add(uid)
+        if verified:
+            self._select_and_store([row for row,_ in verified],save_sources=False)
+        return [self._record_catalog_proof(row,ref) for row,ref in verified]
+
+    def _record_catalog_proof(self, row, ref):
+        program_id = row['id']
+        sid = self._source({'url':ref['url'],'title':f"{self.units[row['unit_id']]['name']} {row['year']}年硕士招生目录",
+                            'unit_id':row['unit_id'],'year':row['year'],'status':'published_snapshot',
+                            'source_type':'published_catalog_reference','source_tier':'official',
+                            'search_channel':'published_original_verified','sha256':ref['sha256'],
+                            'excerpt':ref['quote'][:1200],'program_ids':[program_id]})
+        return {'program_id':program_id,'unit_id':row['unit_id'],'year':row['year'],'url':ref['url'],
+                'subjects':self._candidate(row)['subjects'],'source_id':sid,
+                'search_channel':'published_original_verified','selected':program_id in self.programs}
+
+    def _search_catalog_seeds(self, result, programs, year, bind_unit, call):
+        existing = {row['url'].split('#', 1)[0] for row in result['results']}
+        resolved = {row['url'].split('#', 1)[0] for row in result['target_results']}
+        schools_with_leads = {unit['id'] for row in result['target_results'] if (unit := bind_unit(row['url']))}
+        found, target = [], []
+        for unit in self._catalog_search_seeds(programs, resolved, schools_with_leads):
+            name = unit['name']
+            wording = f'{year}年 {name} 硕士研究生招生专业目录'
+            result['queries_tried'].append(wording)
+            result['request_count'] += 1
+            try:
+                body = call({'Query':wording, 'Site':official_search.preferred_site(unit)})
+            except ResearchError as error:
+                if error.code in {'cancelled','research_budget_exceeded'}:
+                    raise
+                result.setdefault('seed_errors', []).append({'unit_id':unit['id'], 'code':error.code})
+                continue
+            items, malformed = official_search.parse_pages(body)
+            rows, rejected = official_search.official_rows(items,
+                lambda url: bool((owner := bind_unit(url)) and owner['id'] == unit['id']))
+            result['malformed_count'] += malformed
+            result['rejected_count'] += rejected
+            for row in rows:
+                key = row['url'].split('#', 1)[0]
+                if key in existing:
+                    continue
+                existing.add(key)
+                value = {**row,'search_channel':'published_index_seed','seed_query':wording}
+                found.append(value)
+                if (official_search.target_matches(row, year, 'catalog')
+                        or official_search.target_matches(row, year, 'charter')):
+                    target.append(value)
+            result['request_id'] = str(body.get('RequestId',''))[:120] or result['request_id']
+        result['official_results'].extend(found)
+        result['target_results'].extend(row for row in target if official_search.target_matches(row, year, 'catalog'))
+        result['results'] = [*target, *result['results'], *(row for row in found if row not in target)]
+        result['target_status'] = ('found' if result['target_results'] else
+                                   'navigation_only' if result['official_results'] else 'not_found')
+
     def search_sources(self,args):
         self._check_control()
         _object(args,('query','unit_id','year'));query=text(args.get('query'),240)
@@ -1038,41 +1254,66 @@ class ResearchTools:
                 raise ResearchError('search_invalid_response','元宝返回内容无法解析。',502) from None
 
         roots=official_roots(unit) if unit else ()
-        site=roots[0] if roots else ''
+        site=official_search.preferred_site(unit) if unit else ''
+        kind = official_search.infer_kind(query)
+        unscoped_catalog = unit is None and not self.task['unit_ids'] and kind == 'catalog'
         if unit:
             primary=f"{year}年 {unit['name']} {query}"
             wider=f"{unit['name']} 研究生院 {year} {query}"
             queries=[primary] if wider==primary else [primary,wider]
-            def is_official(url):return bool(official_source_url(url,unit))
-        else:
-            queries=[f"{year}年 {query}"]
             def is_official(url):
-                host=(urlsplit(url).hostname or '').lower().rstrip('.')
-                return host.endswith(('.edu.cn','.ac.cn','.gov.cn','.chsi.com.cn'))
+                return (official_source_url(url,unit) and (kind != 'catalog' or
+                        unit_bindings.consortium_admissions_scope(url,unit) is None))
+        else:
+            profile = self.task['profile']
+            queries = (official_search.broad_catalog_queries(query, year, profile.get('provinces', ()),
+                       (item['code'] for item in profile.get('excluded_subjects', ())))
+                       if unscoped_catalog else [f"{year}年 {query}"])
+            bind_unit = self._broad_unit_resolver(self._catalog_search_provinces(query) if unscoped_catalog else ())
+            def is_official(url):return bind_unit(url) is not None
         binding_missing=bool(unit) and not roots
-        kind=official_search.infer_kind(query)
         start_requests=self.usage['searches']
         per_unit_limit=LIMITS['max_searches'] if len(self.task['unit_ids'])==1 else 2
         unit_requests=self._official_unit_requests.get(unit['id'],0) if unit else 0
-        result=official_search.run_ladder(call,queries=queries,is_official=is_official,
+        partial_errors = []
+        def broad_call(body):
+            try:
+                return call(body)
+            except ResearchError as error:
+                if self.usage['searches'] - start_requests <= 1 or error.code in {'cancelled','research_budget_exceeded'}:
+                    raise
+                partial_errors.append({'query':body['Query'],'code':error.code})
+                return {'Pages':[]}
+
+        result=official_search.run_ladder(broad_call if unscoped_catalog else call,queries=queries,is_official=is_official,
             unit_name=unit['name'] if unit else '',roots=roots,candidate_enabled=bool(unit),site=site,
             target_match=lambda row:official_search.target_matches(row,year,kind),
-            collect_third=True,
+            collect_third=True, stop_on_target=not unscoped_catalog,
             can_call=lambda:self.usage['searches']<LIMITS['max_searches']
                 and unit_requests+self.usage['searches']-start_requests<per_unit_limit)
+        programs = list(self._matching_catalog_programs(query,year)) if unscoped_catalog else []
+        if programs and not partial_errors and self.usage['searches'] < LIMITS['max_searches']:
+            self._search_catalog_seeds(result, programs, year, bind_unit, call)
         if unit:
             self.searched_units.add(unit['id'])
             self._official_unit_requests[unit['id']]=unit_requests+self.usage['searches']-start_requests
         results=[]
         for row in result['results']:
+            matched_unit = unit
+            if matched_unit is None and row['source_tier'] == 'official':
+                matched_unit = bind_unit(row['url'])
             value={'url':row['url'],'title':row['title'] or '待核验的检索结果',
-                   'unit_id':unit['id'] if unit else None,'unit_name':unit['name'] if unit else None,
-                   'year':None,'requested_year':year,'status':'search_lead','source_type':'yuanbao_search',
+                   'unit_id':matched_unit['id'] if matched_unit else None,
+                   'unit_name':matched_unit['name'] if matched_unit else None,
+                   'year':None,'requested_year':year,'requested_kind':kind,
+                   'status':'search_lead','source_type':'yuanbao_search',
                    'checked_at':None,'excerpt':row['summary'],
-                   'source_tier':row['source_tier'],'source_status':row['source_status']}
+                   'source_tier':row['source_tier'],'source_status':row['source_status'],
+                   **({'search_channel':row['search_channel']} if row.get('search_channel') else {})}
             sid=self._source(value)
             if sid:
-                self._save_source(sid,query=queries[0]);results.append(deepcopy(self.sources[sid]))
+                self._save_source(sid,query=row.get('seed_query') or queries[0])
+                results.append(deepcopy(self.sources[sid]))
         official_results=[row for row in result['results'] if row['source_tier']=='official']
         candidates=[row for row in result['results'] if row['source_tier']=='official_domain_candidate']
         third=[row for row in result['results'] if row['source_tier']=='third_party_reference']
@@ -1082,6 +1323,8 @@ class ResearchTools:
         stage=official_search.failure_stage(official_results,candidates,third,result['rejected_count'],binding_missing)
         notice=official_search.notice(official_results,candidates,third,len(result['queries_tried']),
                                       binding_missing=binding_missing)
+        verified_catalog = self._verify_published_catalog_matches(programs)
+        if verified_catalog:notice+=' 已同时核对既有官网目录原件，并附在对应方向的初试科目依据中。'
         global_exhausted=self.usage['searches']>=LIMITS['max_searches']
         unit_exhausted=result['budget_exhausted'] and not global_exhausted
         if global_exhausted:notice+=' 本轮检索额度已用完，后续请求已停止；仍可沿官网核验。'
@@ -1097,8 +1340,11 @@ class ResearchTools:
                 'third_party_count':len(third),
                 'candidate_count':result['candidate_count'],'candidate_hosts':result['candidate_hosts'],
                 'target_status':result['target_status'],
+                **({'verified_catalog_evidence':verified_catalog} if verified_catalog else {}),
+                **({'seed_errors':result['seed_errors']} if result.get('seed_errors') else {}),
+                **({'partial_search_errors':partial_errors} if partial_errors else {}),
                 'next_action':({'tool':'discover_official_entry','args':{'unit_id':unit['id'],'year':year,'kind':kind}}
-                    if unit and result['target_status']!='found' else None),
+                    if unit else None),
                 'notice':notice}
 
     def read_source(self,args,*,refresh=False):
@@ -1113,7 +1359,11 @@ class ResearchTools:
             raise ResearchError('source_restricted','研招网访问门禁保持生效；可查看已保存依据，不发起新请求。',409)
         if source.get('unit_id') and source['unit_id']!=unit['id']:
             raise ResearchError('wrong_unit','来源登记在其他学校名下，不能在本次学校范围内读取。')
-        if not official_source_url(source['url'],unit):raise ResearchError('wrong_unit','来源不属于该学校的已核准官网。')
+        if not official_source_url(source['url'],unit):
+            raise ResearchError('wrong_unit','来源不属于该学校的已核准官网。')
+        if (source.get('requested_kind') == 'catalog'
+                and unit_bindings.consortium_admissions_scope(source['url'],unit) is not None):
+            raise ResearchError('outside_catalog_scope','这是专项招生入口，不能作为该校普通目录。',409)
         if source.get('status')=='official_original_read' and not refresh:return deepcopy(source)
         if self.usage['documents']>=LIMITS['max_documents']:
             raise ResearchError('research_budget_exceeded','已达到本轮官方原文读取上限。',409)

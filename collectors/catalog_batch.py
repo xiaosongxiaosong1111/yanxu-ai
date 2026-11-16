@@ -9,6 +9,7 @@ import re
 
 from public_sources import SourceError, fetch_official_document, official_source_url, rendered_source_html
 from service_verification import SourceVerifier, canonical, plain_text, PUBLIC_CATALOG_ADAPTERS, CATALOG_ADAPTERS
+from .catalog_semantic_audit import JXAU_PARSER, QAU_PARSER, YCIT_PARSER
 from .catalogs import catalog_status, merge_admissions
 from .documents import PROJECT_ROOT, DocumentError, decode_text, extract_pdf_text, save_pdf_text
 
@@ -51,6 +52,20 @@ def parse_document(document, unit, year, root=PROJECT_ROOT, raw=None):
     if kind == 'pdf_table_national_v2':
         from .catalog_pdf_national_v2 import parse_catalog_pdf_national_v2,extract_pdf_national_layout_v2
         return parse_catalog_pdf_national_v2(extract_pdf_national_layout_v2(path),unit,year,document,project_root=root)
+    if kind == JXAU_PARSER:
+        from .catalog_pdf_department_blocks import parse_catalog_pdf_academic_professional
+        return parse_catalog_pdf_academic_professional(path,unit,year,document,project_root=root)
+    if kind == YCIT_PARSER:
+        from .catalog_ycit_pdf import parse_catalog_ycit_exact
+        return parse_catalog_ycit_exact(path,unit,year,document,project_root=root)
+    if kind == QAU_PARSER:
+        from .catalog_qau_pdf import parse_catalog_qau_pdf
+        from .catalog_qau_public_source import verify_qau_public_source
+        proof = verify_qau_public_source(document,unit,root)
+        if not proof['verified']:
+            raise DocumentError(proof['reason'])
+        result = parse_catalog_qau_pdf(path,unit,year,document,project_root=root)
+        return {**result,'documents':[document['qau_public_download']['article']]}
     if kind == 'pdf_table_national_v1':
         from .catalog_pdf_national import parse_catalog_pdf_national,extract_pdf_national_layout
         return parse_catalog_pdf_national(extract_pdf_national_layout(path),unit,year,document,project_root=root)

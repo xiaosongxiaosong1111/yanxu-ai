@@ -221,6 +221,9 @@ def official_source_url(url, unit):
         unit_codes = _chsi_unit_codes(url)
         return ((not school_ids or school_ids == {str(unit.get('id'))})
                 and (not unit_codes or bool(unit.get('unit_code')) and unit_codes == {str(unit['unit_code'])}))
+    from unit_bindings import consortium_admissions_scope
+    if consortium_admissions_scope(url, unit) is False:
+        return False
     roots = official_roots(unit)
     return bool(roots) and any(host == root or host.endswith('.' + root) for root in roots)
 
@@ -278,6 +281,13 @@ def document_attribution(url, unit, text='', document_title='', document_heading
     return {'status': 'needs_review', 'reason': '研招网页面缺少本校schId及明确学校归属，仅保留未核验来源。'}
 
 
+def _inline_style_hidden(style):
+    declarations = re.sub(r'''/\*.*?\*/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*' ''', ' ', style or '',
+                          flags=re.S | re.X)
+    return bool(re.search(r'(?:^|;)\s*(?:display\s*:\s*none|visibility\s*:\s*hidden)'
+                          r'\s*(?:!\s*important\s*)?(?:;|$)', declarations, re.I))
+
+
 class _VisibleHTML(HTMLParser):
     VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'}
     BLOCK = {'p', 'div', 'section', 'article', 'main', 'li', 'tr', 'h1', 'h2', 'h3', 'br', 'table'}
@@ -312,10 +322,9 @@ class _VisibleHTML(HTMLParser):
             href = values.get('href')
             if isinstance(href, str) and href.strip():
                 self.links.append({'href': href.strip()[:2048], 'label': str(values.get('alt', ''))[:120]})
-        style = re.sub(r'\s+', '', values.get('style', '').lower())
         hidden = tag in {'script', 'style', 'nav', 'aside', 'footer', 'header', 'noscript', 'template'}
         hidden = hidden or 'hidden' in values or values.get('aria-hidden', '').lower() == 'true'
-        hidden = hidden or bool(re.search(r'display:none|visibility:hidden', style))
+        hidden = hidden or _inline_style_hidden(values.get('style'))
         hidden = hidden or values.get('role') == 'tooltip'
         hidden = hidden or bool(re.search(r'(?:^|\s)(?:tooltip(?:-[\w-]+)?|popover(?:-[\w-]+)?|hidden|d-none|hide)(?:$|\s)', values.get('class', ''), re.I))
         inherited = bool(self.stack and self.stack[-1][1])

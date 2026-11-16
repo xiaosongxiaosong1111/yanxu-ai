@@ -5,11 +5,12 @@ import json
 from pathlib import Path
 import re
 import time
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from collectors.documents import decode_text
 from official_authority import OfficialAuthority, registered_scopes, scope_allows
 import official_search
+from unit_bindings import consortium_admissions_scope
 from public_navigation import extract_navigation
 from public_sources import (SourceError, document_attribution, extract_saved_document,
                             fetch_navigation_resource, official_source_url, _VisibleHTML)
@@ -175,11 +176,11 @@ def _authority_view(report, units, authority):
         readable = any(row.get('knowledge_quality', {}).get('state') == 'accepted'
                        and row.get('knowledge_current') is not False and row.get('usable') is not False
                        for row in value['document_sources'])
-        value['stage'] = ('body_read' if readable else 'document_found' if value['document_sources'] else
-            'entry_verified' if value['entry_verified'] else 'verification_required' if pending else
-            'access_restricted' if any(row.get('code') in {'restricted', 'source_restricted'}
-                for row in value.get('errors', [])) else 'no_lead')
-        if value['stage'] != original.get('stage') or invalid:
+        restricted = _target_restricted(value.get('errors', []), original.get('stage'))
+        value['stage'] = ('body_read' if readable else 'access_restricted' if restricted else
+            'document_found' if value['document_sources'] else 'entry_verified' if value['entry_verified'] else
+            'verification_required' if pending else 'no_lead')
+        if invalid:
             value['notice'] = AUTHORITY_NOTICE
         discoveries.append(value)
     projected = {**report, 'evidence': evidence, 'official_discovery': discoveries}
@@ -269,6 +270,19 @@ def _rank(rows, year, kind):
     return [row for _, row in sorted(unique.values(), key=lambda pair: (-pair[0], pair[1]['url']))]
 
 
+def _target_restricted(errors, old_stage=None):
+    return any(row.get('code') in {'restricted', 'source_restricted'}
+               and row.get('target_document', old_stage == 'access_restricted') for row in errors)
+
+
+def _is_attachment(url):
+    parts = urlsplit(url)
+    suffixes = ('.pdf', '.doc', '.docx', '.xls', '.xlsx')
+    return (parts.path.lower().endswith(suffixes) or
+            parts.path == '/virtual_attach_file.vsb' and any(
+                parse_qs(parts.query).get('e') == [suffix] for suffix in suffixes))
+
+
 def discover(tools, args):
     if not isinstance(args, dict) or set(args) - {'unit_id', 'year', 'kind'}:
         raise ResearchError('invalid_tool_arguments', '官网发现参数不正确。')
@@ -321,10 +335,10 @@ class _Discovery:
         self.cache[raw['url']] = raw
         return raw
 
-    def _error(self, url, error):
+    def _error(self, url, error, *, target_document=False):
         if getattr(error, 'code', '') in {'cancelled', 'research_cancelled'}:raise error
         self.errors.append({'url': url, 'code': getattr(error, 'code', 'navigation_unavailable'),
-                            'message': str(error)[:180]})
+                            'message': str(error)[:180], 'target_document': target_document})
 
     def _verify(self, url):
         scoped = self.authority.enrich(self.unit)
@@ -428,7 +442,7 @@ class _Discovery:
             authority_scope=next((row['scope'] for row in self.authority.bindings(self.unit)
                                   if scope_allows(raw['url'], row['scope'])), None)), self.year, self.kind)
 
-    def _pdf(self, row, unit):
+    def _read_document(self, row, unit):
         self._guard()
         from research_tools import LIMITS, gated_resolver
         if self.tools.usage['documents'] >= LIMITS['max_documents']:
@@ -459,46 +473,64 @@ class _Discovery:
         queue.extend({'url': row['url'], 'label': row.get('title', ''), 'kind': 'page', 'depth': 0}
                      for row in list(self.tools.sources.values()) if row.get('unit_id') == self.unit['id']
                      and row.get('source_tier') == 'official_domain_candidate')
+        leads = [row for row in self.tools.sources.values() if row.get('unit_id') == self.unit['id']
+                 and official_search.target_lead(row, self.year, self.kind)]
+        previous = self.tools._official_discovery.get(self.unit['id'], {})
+        tried = (set(previous.get('attempted_urls', ()))
+                 if (previous.get('year'), previous.get('kind')) == (self.year, self.kind) else set())
+        leads.sort(key=lambda row: (row['url'].split('#', 1)[0] in tried,
+                                    not official_search.target_matches(row, self.year, self.kind)))
+        queue = [{'url': row['url'], 'label': row['title'], 'kind': 'page', 'depth': 0}
+                 for row in leads[:2]] + queue
         while queue and self.reads < MAX_NAVIGATION_READS and time.monotonic() < self.deadline:
             row = queue.pop(0)
             url = row['url'].split('#', 1)[0]
             if url in self.visited or row.get('kind') == 'script':continue
+            if self.kind == 'catalog' and consortium_admissions_scope(url, self.unit) is not None:
+                continue
             self.visited.add(url)
-            if contains_personal_roster(row.get('label', '')):continue
+            label = row.get('label', '')
+            if contains_personal_roster(label):continue
+            target_document = official_search.target_matches({'title': label}, self.year, self.kind)
+            if row.get('catalog_attachment'):
+                target_document = True
             try:
                 unit = self._verify(url)
                 if unit is None:continue
-                if row.get('kind') == 'pdf' or urlsplit(url).path.lower().endswith('.pdf'):
-                    self._pdf({**row, 'url': url}, unit)
+                if row.get('kind') == 'pdf' or _is_attachment(url):
+                    self._read_document({**row, 'url': url}, unit)
                     continue
                 scope = next(scope for scope in [*registered_scopes(self.unit),
                     *(entry['scope'] for entry in self.authority.bindings(self.unit))] if scope_allows(url, scope))
                 raw = self._fetch(url, scope)
                 if not any(kind in raw.get('content_type', '').lower() for kind in ('html', 'xhtml')):
                     continue
-                self._adopt(raw, unit)
+                adopted = self._adopt(raw, unit)
                 links = self._links(raw)
                 if row.get('depth', 0) < 3:
-                    children = [{**child, 'depth': row.get('depth', 0)+1} for child in links
-                                if child.get('kind') != 'script']
+                    children = [{**child, 'depth': row.get('depth', 0)+1,
+                                 'catalog_attachment': bool(adopted in self.documents and self.kind == 'catalog'
+                                     and re.search(r'专业目录|招生目录', child.get('label','')))}
+                                for child in links if child.get('kind') != 'script']
                     queue = children[:20] + queue
                 if self.documents:
                     # A PDF-only publication still needs its actual attached original.
                     selected = self.documents[next(reversed(self.documents))]
                     if selected.get('knowledge_quality', {}).get('state') == 'accepted':break
             except Exception as error:
-                self._error(url, error)
+                self._error(url, error, target_document=target_document)
                 if getattr(error, 'code', '') in {'cancelled', 'research_cancelled'}:raise
         entry_verified = bool(self.entries or self.authority.seed_urls(self.unit))
         readable = any(row.get('knowledge_quality', {}).get('state') == 'accepted' for row in self.documents.values())
-        restricted = any(row.get('code') in {'restricted', 'source_restricted'} for row in self.errors)
-        stage = ('body_read' if readable else 'document_found' if self.documents else
-                 'entry_verified' if entry_verified else 'access_restricted' if restricted else
+        restricted = _target_restricted(self.errors)
+        stage = ('body_read' if readable else 'access_restricted' if restricted else
+                 'document_found' if self.documents else 'entry_verified' if entry_verified else
                  'verification_required' if self.pending else 'no_lead')
         result = {'unit_id': self.unit['id'], 'unit_name': self.unit['name'], 'year': self.year, 'kind': self.kind,
             'stage': stage, 'entry_verified': entry_verified, 'entry_sources': list(self.entries.values()),
             'navigation_sources': list(self.navigation.values()), 'document_sources': list(self.documents.values()),
             'candidate_sources': list(self.pending.values()), 'errors': self.errors[:12],
+            'attempted_urls': sorted(tried | self.visited),
             'usage': {'public_reads': self.reads, 'paid_searches': 0},
             'notice': '已按官方归属、目标年度、公告和正文分阶段核对；待核、受限或历史材料不代表该校没有官网。'}
         self._control()

@@ -12,10 +12,11 @@ import threading
 import unicodedata
 from urllib.parse import parse_qs, urlsplit
 
+from collectors.catalog_semantic_audit import PORTABLE_ADAPTERS, explain_semantic_audit, semantic_programs_sha256
 
 PUBLIC_CATALOG_ADAPTERS=frozenset({'public_form_v1','public_aspx_v1','university_form_v1','ucas_public_v1','nuaa_public_v1'})
 STATIC_CATALOG_ADAPTERS=frozenset({'office_national_v1','html_structured_v1','office_structured_v1',
-    'html_national_v1','html_south_v1','pdf_table_national_v1','pdf_table_national_v2','pdf_table_hit_v1'})
+    'html_national_v1','html_south_v1','pdf_table_national_v1','pdf_table_national_v2','pdf_table_hit_v1',*PORTABLE_ADAPTERS})
 CATALOG_ADAPTERS = {'html_table_v1', 'pdf_row_v1', 'pdf_table_v1', 'office_table_v1',
                     'zsml_table', 'zsml_tree', 'catalog_index_v1', 'chsi_detail_v1', 'pdf_table_v2',
                     *STATIC_CATALOG_ADAPTERS,*PUBLIC_CATALOG_ADAPTERS}
@@ -250,7 +251,7 @@ class SourceVerifier:
 
     def _context_stamp(self, document, documents):
         fields=('learning_mode_document','publication_page','public_form_context','public_form_profile','public_aspx_page',
-                'request_method','request_body','request_sha256','request_document')
+                'request_method','request_body','request_sha256','request_document','qau_public_download')
         metadata={key:document[key] for key in fields if key in document}
         if not metadata: return ''
         metadata={**metadata,'original':{key:document.get(key) for key in
@@ -547,7 +548,8 @@ class SourceVerifier:
                 for field in ('province','campus','training_locations','campus_evidence','source_locator')):return False
         if document.get('catalog_parser')=='ucas_public_v1' and any(program.get(field)!=matches[0].get(field)
                 for field in ('catalog_variants','advisors','training_unit_address','province','eligibility_evidence_complete','requires_review')): return False
-        from collectors.catalog_semantic_audit import semantic_programs_sha256
+        if document.get('catalog_parser') in PORTABLE_ADAPTERS:
+            return program['id'] in parsed['approved_program_ids'] and self._strict_catalog_row(program,matches[0])
         exam_facts = lambda row: {'id': row['id'], 'subjects': row.get('subjects'),
             'exam_combinations': row.get('exam_combinations'), 'exam_matching_supported': row.get('exam_matching_supported'),
             'subject_identity_issues': row.get('subject_identity_issues')}
@@ -563,6 +565,20 @@ class SourceVerifier:
         return all(citation_signature(program.get(field)) is not None
                    and citation_signature(program.get(field)) == citation_signature(matches[0].get(field))
                    for field in ('evidence', 'exam_evidence'))
+
+    @staticmethod
+    def _strict_catalog_row(program, original):
+        try:
+            return (semantic_programs_sha256([program]) == semantic_programs_sha256([original])
+                    and all(program.get(field) == original.get(field)
+                            for field in ('evidence','exam_evidence','subjects','exam_placeholders')))
+        except (ValueError,TypeError):
+            return False
+
+    @staticmethod
+    def _approved_ported_result(document, result, project):
+        decision = explain_semantic_audit(document,result['programs'],project)
+        return {**result,'approved_program_ids':decision['approved_program_ids']} if decision['approved'] else None
 
     def _source_programs(self, document, unit, year, departments, documents=None, _seen=None):
         if document.get('catalog_parser') == 'chsi_detail_v1':
@@ -589,7 +605,7 @@ class SourceVerifier:
             if not context: return None
         context_key = hashlib.sha256(json.dumps(context, sort_keys=True, ensure_ascii=False).encode()).hexdigest() if context else ''
         publication_key = ''
-        if adapter in {'pdf_table_v1', 'pdf_table_v2','pdf_table_national_v1','pdf_table_national_v2','pdf_table_hit_v1','office_national_v1','office_structured_v1'} and isinstance(document.get('publication_page'), dict):
+        if adapter in {'pdf_table_v1', 'pdf_table_v2','pdf_table_national_v1','pdf_table_national_v2','pdf_table_hit_v1','office_national_v1','office_structured_v1',*PORTABLE_ADAPTERS} and isinstance(document.get('publication_page'), dict):
             from collectors.catalog_publication import publication_context_signature
             publication_key = publication_context_signature(document, unit, year, project_root=self.root)
         route_code = None
@@ -604,8 +620,13 @@ class SourceVerifier:
         key = (str(source[0]), document['sha256'], document.get('id'), document.get('url'), adapter,
                str(unit['id']), unit.get('name'), year, tuple(sorted(departments.items())), predecessor, context_key, publication_key, route_code,
                stamp)
+        strict = adapter in PORTABLE_ADAPTERS
+        project = self.root.parent if self.root.name == 'data' else self.root
+        if strict:
+            key += (json.dumps(unit,sort_keys=True),document.get('content_type'))
         with self._lock: cached = self._parsed.get(key)
-        if cached is not None: return cached
+        if cached is not None:
+            return self._approved_ported_result(document,cached,project) if strict else cached
         from collectors.catalogs import parse_nankai_raw, parse_zzu_html
         from collectors.documents import decode_text
         text = '\f'.join(pages)
@@ -632,7 +653,6 @@ class SourceVerifier:
             result = {**result, 'programs': apply_inline_policies(result['programs'], raw, unit, year, document)}
         elif adapter in STATIC_CATALOG_ADAPTERS:
             from collectors.catalog_batch import parse_document
-            project=self.root.parent if self.root.name=='data' else self.root
             try:result=parse_document({**document,'local_path':str(source[0])},unit,year,project,source[1])
             except (ValueError,OSError,ImportError,TypeError,KeyError):return None
         elif adapter == 'pdf_row_v1':
@@ -671,9 +691,12 @@ class SourceVerifier:
             if not match or parse_qs(parsed.query).get('ksfs') != ['21'] or match.group(1) not in departments: return None
             result = parse_zzu_html(raw, unit, departments[match.group(1)], year, document)
         self._remember('_parsed',key,result)
-        return result
+        return self._approved_ported_result(document,result,project) if strict else result
 
     def unit_reconciles(self, unit, year, programs, documents):
+        if any(document.get('catalog_parser') in PORTABLE_ADAPTERS and document.get('unit_id') == unit['id']
+               and document.get('year') == year and document.get('catalog_active',True)
+               for document in documents.values()): return False
         if any(program.get('subject_identity_issues') for program in programs): return False
         relevant = [document for document in documents.values() if document.get('unit_id') == unit.get('id') and document.get('year') == year and document.get('kind') == 'catalog' and document.get('catalog_active', True)]
         tree = self._tree_scope(unit, year, relevant)

@@ -280,7 +280,7 @@ class AgentSearchTests(unittest.TestCase):
             _page('中国科学院大学2027年硕士招生专业目录', 'https://admission.ucas.ac.cn/zsml'))
         result = self.tools.search_sources({'query': '硕士招生专业目录', 'unit_id': 'ucas'})
         self.assertEqual(len(self.request_bodies()), 1)
-        self.assertEqual(self.request_bodies()[0]['Site'], 'ucas.edu.cn')
+        self.assertEqual(self.request_bodies()[0]['Site'], 'admission.ucas.ac.cn')
         self.assertEqual(result['request_count'], 1)
         self.assertEqual(result['binding_status'], 'bound')
         self.assertEqual(result['failure_stage'], 'official_found')

@@ -81,7 +81,7 @@ class YuanbaoIntegrationTests(unittest.TestCase):
         self.assertTrue(request.get_header('Authorization').startswith('TC3-HMAC-SHA256 Credential='))
         self.assertEqual(request.get_header('X-tc-action'),'SearchPro')
         self.assertEqual(request.get_header('X-tc-version'),'2025-05-08')
-        self.assertEqual(json.loads(request.data)['Site'],'example.edu.cn')
+        self.assertEqual(json.loads(request.data)['Site'],'grad.example.edu.cn')
         self.assertEqual(set(json.loads(request.data)),{'Query','Site'})
         self.assertEqual(len(result['results']),1)
         for secret in (STANDARD['secret_id'],STANDARD['secret_key']):self.assertNotIn(secret,json.dumps(result))

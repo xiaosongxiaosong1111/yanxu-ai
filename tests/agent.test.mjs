@@ -2,6 +2,18 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mergeTaskEvents,shouldPoll,renderAgent,taskStatusLabel,parseExclusionList,formatExclusionList} from '../static/agent.mjs';
 
+test('verified catalog archives are labeled separately from ordinary snapshots and live search leads',()=>{
+ const html=renderAgent({task:{id:'a',status:'completed',report:{evidence:[
+  {status:'published_snapshot',source_type:'published_catalog_reference',title:'已核科目',
+   url:'https://example.edu.cn/catalog.pdf',excerpt:'101、204、302、853'},
+  {status:'published_snapshot',title:'旧收录资料'},
+  {status:'search_lead',title:'实时搜索线索'},
+ ]}},tab:'sources'});
+ assert.match(html,/官网留档已核对<\/span>.*?已核科目/);
+ assert.match(html,/已收录资料<\/span>.*?旧收录资料/);
+ assert.match(html,/检索线索<\/span>.*?实时搜索线索/);
+});
+
 test('incremental events merge by identity and stale tasks do not contaminate a new research',()=>{
  const old={id:'a',events:[{id:1,title:'first'},{id:2,title:'second'}]};
  const next=mergeTaskEvents(old,{id:'a',events:[{id:2,title:'updated'},{id:3,title:'third'}]});

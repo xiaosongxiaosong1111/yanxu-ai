@@ -50,6 +50,31 @@ class KnowledgeQualityTests(unittest.TestCase):
         value = self.assess(body=text)
         self.assertEqual(value['state'], 'pending'); self.assertIn('body_not_substantive', self.codes(value))
 
+    def test_directory_landing_page_cannot_borrow_exam_codes_from_outline_attachments(self):
+        title = '2027年硕士研究生招生专业目录及初试自命题科目考试大纲'
+        source = {**self.source, 'title': title + '-研究生院'}
+        for body in (title + '\n附件【338生物化学.pdf】已下载次\n附件【801机械原理.pdf】已下载次',
+                     '初试科目：101政治、201英语、301数学、408计算机学科专业基础，详见各专业目录。',
+                     '附件【085501机械工程考试大纲.pdf】已下载次',
+                     '专业代码 专业名称 考试科目\n请下载附件查看。\n801机械原理.pdf\n802控制工程基础.pdf'):
+            with self.subTest(body=body):
+                result = self.assess(source, body)
+                self.assertEqual(result['state'], 'pending')
+                self.assertIn('body_not_substantive', self.codes(result))
+
+    def test_directory_has_identifiable_program_rows_in_text_or_columns(self):
+        for body in ('085501 机械工程\n①101思想政治理论\n④801机械原理',
+                     '085404\t计算机技术\t01不区分研究方向\t101 201 301 408',
+                     '专业代码\n专业名称\n初试科目\n085501\n机械工程\n101 204 302 801',
+                     '材料物理与化学（080501）\n全日制',
+                     '1.应用经济学（020200）\n00不区分研究方向',
+                     '学院 专业 学位类型 学习方式 研究方向 考试科目 备注 基本学制\n'
+                     '001化学工程学院\n085600\n材料与化工\n专业学位 非全日制',
+                     '0502Z1 外国语言学及应用语言学\n全日制',
+                     '计算机专业考试科目为101、201、301、408。'):
+            with self.subTest(body=body):
+                self.assertEqual(self.assess(body=body)['state'], 'accepted')
+
     def test_footer_postcodes_and_title_years_cannot_supply_missing_programs_or_fees(self):
         cases = [('2027年硕士招生专业目录', '2027年硕士招生专业目录\n专业目录请下载附件。\n地址：天津市，邮编300387'),
                  ('2027年硕士招生专业目录', '专业目录见附件\n电话：010-80001111 邮政编码100084'),

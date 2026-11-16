@@ -26,6 +26,20 @@ class JsonReaderTests(unittest.TestCase):
             self.assertEqual(actual, expected)
             self.assertIs(type(actual['programs'][0]['fee']), float)
 
+    def test_streamed_string_pool_is_bounded_and_document_local(self):
+        def values(texts):
+            return [value for _, _, value in json_reader._finite_events(
+                ('', 'string', (' ' + text).strip()) for text in texts)]
+
+        texts = ['短值甲', '短值乙', '短值乙', '短值甲', '超长正文' * 1024, '超长正文' * 1024]
+        with patch.object(json_reader, '_SHARED_STRING_LIMIT', 1, create=True):
+            first, second = values(texts), values(texts)
+        self.assertEqual(first, texts)
+        self.assertIs(first[0], first[3])
+        self.assertIsNot(first[1], first[2])
+        self.assertIsNot(first[4], first[5])
+        self.assertIsNot(first[0], second[0])
+
     def test_streamed_invalid_or_trailing_data_is_rejected(self):
         for text in ('', '{', '{"v":NaN}', '{"v":Infinity}', '{"v":1e9999}', '{"v":-1e9999}',
                      '{"v":1}' + ' '*70000 + '{}', '{"v":1}' + ' '*70000 + 'junk'):

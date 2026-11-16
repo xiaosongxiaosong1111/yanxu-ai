@@ -26,6 +26,84 @@ class PlanTests(unittest.TestCase):
         values.update(overrides)
         return build_plan(**values)
 
+    def test_broad_search_lead_schedules_original_discovery_with_school_and_year(self):
+        source = {'id':'s1', 'unit_id':'u2', 'status':'search_lead', 'source_type':'yuanbao_search',
+                  'source_tier':'official', 'requested_year':2027, 'requested_kind':'catalog',
+                  'title':'示例大学2027年硕士研究生招生专业目录','url':'https://example.edu.cn/catalog'}
+        sources = {row['id']:row for row in (source, {**source,'id':'s2','unit_id':None},
+            {**source,'id':'s3','unit_id':'u3','requested_year':2026},
+            {**source,'id':'s4','unit_id':'u4','source_tier':'third_party_reference'})}
+        result = self.build(programs={}, sources=sources)
+        self.assertEqual([(row['tool'],row['args']['unit_id']) for row in result['next_actions']],
+                         [('discover_official_entry','u2')])
+        attempted = self.build(programs={}, sources=sources,
+            official_discovery=({'unit_id':'u2','year':2027,'kind':'catalog','stage':'access_restricted',
+                                 'attempted_urls':[source['url']]},), searched_units=('u2',))
+        self.assertFalse(any(row['tool']=='discover_official_entry' for row in attempted['next_actions']))
+        fresh = self.build(programs={}, sources=sources,
+            official_discovery=({'unit_id':'u2','year':2027,'kind':'catalog','stage':'entry_verified',
+                                 'attempted_urls':['https://example.edu.cn/']},), searched_units=('u2',))
+        self.assertEqual([(row['tool'], row['args']['unit_id']) for row in fresh['next_actions']],
+                         [('discover_official_entry','u2')])
+
+    def test_broad_catalog_discovery_reserves_one_untried_school_with_local_candidates(self):
+        def lead(identifier, **overrides):
+            return {'id': identifier, 'unit_id': identifier, 'status': 'search_lead',
+                    'source_type': 'yuanbao_search', 'source_tier': 'official',
+                    'requested_year': 2027, 'requested_kind': 'catalog',
+                    'title': '示例大学2027年硕士研究生招生专业目录',
+                    'url': 'https://example.edu.cn/catalog/' + identifier, **overrides}
+        programs = {f'p{i}': candidate(id=f'p{i}', unit_id=f'u{i}') for i in range(1, 9)}
+        sources = {row['id']: row for row in (lead('u1'), lead('visited'),
+                   lead('finished'), lead('unbound', unit_id=None),
+                   lead('new', source_tier='third_party_reference'), lead('new-a'), lead('new-b'))}
+        discovery = [
+            {'unit_id': 'visited', 'year': 2027, 'kind': 'catalog', 'stage': 'access_restricted',
+             'attempted_urls': [sources['visited']['url']]},
+            {'unit_id': 'finished', 'year': 2027, 'kind': 'catalog', 'stage': 'body_read'},
+        ]
+        plan = self.build(programs=programs, sources=sources, official_discovery=discovery)
+        self.assertEqual(plan['next_actions'][0]['args'], {'unit_id': 'new-a', 'year': 2027, 'kind': 'catalog'})
+        self.assertEqual(plan['next_actions'][0]['tool'], 'discover_official_entry')
+        self.assertEqual(len(plan['next_actions']), 8)
+        self.assertEqual([row['priority'] for row in plan['next_actions']], list(range(1, 9)))
+        self.assertFalse(any(row['args'].get('unit_id') == 'new-b' for row in plan['next_actions']))
+
+    def test_catalog_lead_cannot_expand_selected_scope_or_spend_exhausted_budget(self):
+        sources = {'s1': {'id': 's1', 'unit_id': 'outside', 'status': 'search_lead',
+                          'source_type': 'yuanbao_search', 'source_tier': 'official',
+                          'requested_year': 2027, 'requested_kind': 'catalog',
+                          'title': '示例大学2027年招生专业目录', 'url': 'https://example.edu.cn/catalog'}}
+        for values in ({'task': {'reference_year': 2027, 'unit_ids': ['u1']}},
+                       {'usage': {'navigation_fetches': 12}},
+                       {'usage': {'tool_calls': 20}}):
+            with self.subTest(values=values):
+                plan = self.build(sources=sources, **values)
+                self.assertFalse(any(row['args'].get('unit_id') == 'outside'
+                                     for row in plan['next_actions']))
+
+    def test_archived_catalog_evidence_applies_only_to_proven_subjects(self):
+        archive = {'id': 'archive', 'unit_id': 'u1', 'status': 'published_snapshot',
+                   'source_type': 'published_catalog_reference', 'source_tier': 'official',
+                   'search_channel': 'published_original_verified', 'year': 2027,
+                   'program_ids': ['p1'], 'sha256': 'a' * 64}
+        live = {'id': 'lead', 'unit_id': 'u2', 'status': 'search_lead', 'source_type': 'yuanbao_search',
+                'source_tier': 'official', 'requested_year': 2027, 'requested_kind': 'catalog',
+                'title': '示例大学2027年硕士研究生招生专业目录', 'url': 'https://example.edu.cn/catalog'}
+        plan = self.build(programs={'p1': candidate(), 'p2': candidate(id='p2', subjects=[])},
+                          sources={'archive': archive, 'lead': live},
+                          executed_tools=('find_candidates', 'search_knowledge_segments'))
+        linked = {(row['candidate_id'], row['fact']) for row in plan['facts']
+                  if any(source['source_id'] == 'archive' for source in row['evidence'])}
+        self.assertEqual(linked, {('p1', 'subjects')})
+        skills = {row['id']: row for row in plan['skills']}
+        self.assertFalse(skills['verify-evidence']['checked'])
+        self.assertTrue(skills['research-official-sources']['checked'])
+        self.assertEqual(plan['budget']['used']['searches'], 1)
+        self.assertEqual({row['args']['unit_id'] for row in plan['next_actions']
+                          if row['tool'] == 'discover_official_entry' and row['args']['kind'] == 'catalog'},
+                         {'u1', 'u2'})
+
     def test_missing_eligibility_and_tuition_stay_unknown_with_prioritized_next_actions(self):
         plan = self.build()
         facts = {(row['candidate_id'], row['fact']): row for row in plan['facts']}

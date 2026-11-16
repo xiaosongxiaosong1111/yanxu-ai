@@ -5,9 +5,9 @@
     "target_year": 2028,
     "index_units": 936,
     "annual_units": 931,
-    "program_units": 135,
-    "programs": 22356,
-    "catalog_documents": 4603,
+    "program_units": 138,
+    "programs": 22784,
+    "catalog_documents": 4609,
     "school_score_lines": 6,
     "transfer_rules": 1,
     "enrichment_rules": 7,
@@ -18,8 +18,8 @@
   "packages": [
     {
       "name": "catalog-data.zip",
-      "size": 4601744,
-      "sha256": "637f1990c02435127cca3c7a308b08087e24db40d8aefba41290fad294936478",
+      "size": 3868511,
+      "sha256": "fb29fa1c95394aacba6a7ccc53073df70d350719b4c94f65f483643c5bbeda90",
       "files": [
         {
           "path": "data/units.json",
@@ -28,8 +28,8 @@
         },
         {
           "path": "data/admissions.json",
-          "size": 164656159,
-          "sha256": "97eca2f6cf8727fa50a46241ee4c95098d308819c4641db9660c3ef758aee8e3"
+          "size": 118087947,
+          "sha256": "b855493630bacd0fa0cf9671329188b33fe59d62945af0c52a9f2cd8aeec9b09"
         },
         {
           "path": "data/history.json",
@@ -48,8 +48,8 @@
         },
         {
           "path": "data/catalog_semantic_audits.json",
-          "size": 17790,
-          "sha256": "e37d3d6dbda34310727debd1f2a74298fb294fe150d0bdb35cf28771c87d0848"
+          "size": 41766,
+          "sha256": "003785d442947027e13e171f8c40783a00287b17681c57dc702949eb50111c25"
         },
         {
           "path": "data/catalog_facts.json",
@@ -32681,6 +32681,68 @@
           "path": "data/snapshots/scores/nankai-school-2026-e207f065bfea29f3.pdf",
           "size": 155740,
           "sha256": "e207f065bfea29f374ab4fefd3a4623af8a4173bf5e3f57f1a5f26972c9c230f"
+        }
+      ]
+    },
+    {
+      "name": "sources-009.zip",
+      "size": 895743,
+      "sha256": "0b4408ca10a02e7e3bdd38a6dc94d1126de1ea0c7086796513d9fb8d0234b8df",
+      "files": [
+        {
+          "path": "data/snapshots/national-b002-recovery-20261111/2027/368269/7415247f0fb93a38-04107ff27bbe6364.pdf",
+          "size": 473853,
+          "sha256": "04107ff27bbe63648dd1a39a2a917be2de06f153ef28cdfd83ee35ad7765d717"
+        },
+        {
+          "path": "data/snapshots/national-b002-recovery-20261111/2027/368269/f2b42aa26850fb30-58a2a9e1f602d7ff.html",
+          "size": 17612,
+          "sha256": "58a2a9e1f602d7ff8d9e9f398ad274a12fecc5d067ead4bd1b77f97bcd18f730"
+        },
+        {
+          "path": "data/snapshots/qau-2027-official-button/attachment-capture.json",
+          "size": 712,
+          "sha256": "03c98a46362267eb6fcec16b413325646ad1d3c2aa7b8b5bddf8fd16e62b8803"
+        },
+        {
+          "path": "data/snapshots/qau-2027-official-button/catalogue.pdf",
+          "size": 260842,
+          "sha256": "70df9dc7609ba5dec26177bd3d5afab7c3a72a4ccf27085b01e37595705ae97e"
+        },
+        {
+          "path": "data/snapshots/qau-2027-official-button/front.js",
+          "size": 9399,
+          "sha256": "73bd2e8645a7180438b8bbe87bfa990758f9bd7ab5d8d97f097b96cc8964726e"
+        },
+        {
+          "path": "data/snapshots/qau-2027-official-button/publication.html",
+          "size": 34169,
+          "sha256": "93b03c18696855af6844b0b0c2be9ef92aba0448ce4bf4b65ef09cfc09306091"
+        },
+        {
+          "path": "data/snapshots/quality-audits/2124779846-57ca99aa3c02.json",
+          "size": 3425,
+          "sha256": "b50ba6084751c70990be86747b3b001b42e0509cc01cbcb9be685be155e31b73"
+        },
+        {
+          "path": "data/snapshots/quality-audits/368269-04107ff27bbe.json",
+          "size": 11325,
+          "sha256": "175e60e2f5240610ff334a95683c31ce56a1f47f2e55e879f98f336b49be9c5c"
+        },
+        {
+          "path": "data/snapshots/quality-audits/368296-70df9dc7609b.json",
+          "size": 7282,
+          "sha256": "a3b5eda144f84d58eb709d1fe0ee14105f3f7860ab10660ccd8b6d5ccb35f60d"
+        },
+        {
+          "path": "data/snapshots/ycit.html",
+          "size": 22570,
+          "sha256": "1ecdad0c493513104d7ccdf48ea720aa976ce716257512862a6b3b572b7d90d1"
+        },
+        {
+          "path": "data/snapshots/ycit.pdf",
+          "size": 165627,
+          "sha256": "57ca99aa3c02b7d22c3da2881701fdcef40a592609198cb05f97f402ad6a1e63"
         }
       ]
     }

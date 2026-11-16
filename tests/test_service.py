@@ -589,7 +589,7 @@ class ServiceTests(unittest.TestCase):
                                            search_opener=opener)
                 result = service.search({'unit_id': '123', 'year': 2027, 'kind': 'catalog'})
                 self.assertEqual(len(bodies), 1)
-                self.assertEqual(bodies[0]['Site'], roots[0])
+                self.assertEqual(bodies[0]['Site'], page_url.split("/")[2])
                 self.assertEqual(result['binding_status'], 'bound')
                 self.assertEqual(result['binding_domains'], roots)
                 self.assertEqual(result['failure_stage'], 'official_found')
